@@ -49,3 +49,27 @@ def test_managed_element_contains_amffunction(yang_dir, external_yams_dir):
     model, _ = _model(yang_dir, external_yams_dir)
     me = next(c for c in model.iocs if c.name == "ManagedElement")
     assert any("AMFFunction" in c for c in me.contains)
+
+def test_choice_case_leaves_flattened(yang_dir, external_yams_dir):
+    model, _ = _model(yang_dir, external_yams_dir)
+    pmj = next(c for c in model.iocs if c.name == "PerfMetricJob")
+    names = {l.name for l in pmj.leaves}
+    # streamTarget lives inside a choice/case under PerfMetricJob.attributes
+    assert "streamTarget" in names
+    assert "fileReportingPeriod" in names
+
+def test_nested_container_leaves_flattened(yang_dir, external_yams_dir):
+    model, _ = _model(yang_dir, external_yams_dir)
+    nrc = next(c for c in model.iocs if c.name == "NRCellRelation")
+    # cellIndividualOffset is a nested container; its leaves flatten onto NRCellRelation
+    assert "rsrpOffsetSsb" in {l.name for l in nrc.leaves}
+
+def test_nested_ioc_not_misclassified_as_datatype(yang_dir, external_yams_dir):
+    model, _ = _model(yang_dir, external_yams_dir)
+    # dynamic5QIs has an attributes container everywhere it appears -> must be ioc
+    kinds = {c.kind for c in model.classes if c.name == "dynamic5QIs"}
+    assert kinds == {"ioc"}, f"dynamic5QIs kinds={kinds}"
+
+def test_no_unmodeled_attribute_kinds(yang_dir, external_yams_dir):
+    _, errors = _model(yang_dir, external_yams_dir)
+    assert not any("unmodeled attribute node kind" in e for e in errors), errors
