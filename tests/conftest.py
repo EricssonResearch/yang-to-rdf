@@ -1,6 +1,7 @@
 import os, glob, zipfile, tempfile, shutil
 from pathlib import Path
 import pytest
+from yang_to_rdf.pyang_context import build_context
 
 def _find_zip():
     env = os.environ.get("YANG_TEST_ZIP")
@@ -29,3 +30,8 @@ def yang_dir(extracted_set):
 @pytest.fixture(scope="session")
 def external_yams_dir(yang_dir):
     return str(Path(yang_dir) / "external-yams")
+
+@pytest.fixture(scope="session")
+def parsed_context(yang_dir, external_yams_dir):
+    files = sorted(glob.glob(os.path.join(yang_dir, "_3gpp*.yang")))
+    return build_context(files, [yang_dir, external_yams_dir])
