@@ -52,6 +52,11 @@ The converter produces three Turtle files in the output directory (default: `out
    - ~121 unambiguous ranges inferred from name patterns (121 for the Rel-19 set; varies by module set)
    - Kept separate for auditability and optional loading
 
+A committed reference snapshot of all three files for the MnS Rel-19 set lives
+in [`examples/MnS-Rel-19-yang-models/`](examples/MnS-Rel-19-yang-models/) (see
+its README for provenance). Output is deterministic, so regenerating from the
+same input produces no diff.
+
 ## Design Decisions
 
 ### IRI Strategy
