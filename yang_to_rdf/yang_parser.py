@@ -1,312 +1,308 @@
-"""Parse YANG modules using pyang into an intermediate representation."""
-
+"""Build an RDF-oriented IR from pyang's *resolved* schema tree."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from pyang.context import Context
-from pyang.repository import FileRepository
-from pyang.statements import Statement
+from yang_to_rdf.namespace import class_iri
+from yang_to_rdf.pyang_context import build_context
+from yang_to_rdf.type_resolver import resolve_type
+
+INVARIANT_EXT = ("_3gpp-common-yang-extensions", "inVariant")
+MANAGED_FUNCTION_GRP = "ManagedFunctionGrp"
+MANAGED_FUNCTION_IRI = "https://3gpp.org/nrm/vocab#ManagedFunction"
 
 
 @dataclass
 class Leaf:
     name: str
-    type_name: str  # e.g. "string", "uint32", "inet:ipv4-address", "enumeration"
+    type_name: str = "string"
     description: str = ""
     mandatory: bool = False
-    is_list: bool = False  # True for leaf-list
+    is_list: bool = False
     min_elements: int | None = None
     max_elements: int | None = None
     enums: list[str] = field(default_factory=list)
     pattern: str | None = None
-    config: bool = True
+    xsd: object | None = None
+    is_reference: bool = False
+    is_invariant: bool = False
 
 
 @dataclass
-class ListNode:
-    """A YANG 'list' or 'container' inside a grouping."""
+class AttrRef:
     name: str
-    description: str = ""
-    key: str | None = None
+    target_iri: str
     min_elements: int | None = None
     max_elements: int | None = None
-    leaves: list[Leaf] = field(default_factory=list)
-    lists: list[ListNode] = field(default_factory=list)
-    uses: list[str] = field(default_factory=list)
-
-
-@dataclass
-class Choice:
-    name: str
-    cases: dict[str, list[Leaf]] = field(default_factory=dict)  # case_name → leaves
-
-
-@dataclass
-class Grouping:
-    name: str
     description: str = ""
-    uses: list[str] = field(default_factory=list)  # referenced grouping names
-    leaves: list[Leaf] = field(default_factory=list)
-    leaf_lists: list[Leaf] = field(default_factory=list)
-    lists: list[ListNode] = field(default_factory=list)
-    choices: list[Choice] = field(default_factory=list)
 
 
 @dataclass
-class Augment:
-    target_path: str  # e.g. "/me3gpp:ManagedElement"
-    lists: list[ListNode] = field(default_factory=list)  # IOCs added
+class Klass:
+    name: str
+    namespace: str
+    kind: str  # "ioc" | "datatype"
+    description: str = ""
+    subclass_of: list[str] = field(default_factory=list)
+    leaves: list[Leaf] = field(default_factory=list)
+    attr_refs: list[AttrRef] = field(default_factory=list)
+    contains: list[str] = field(default_factory=list)
 
 
 @dataclass
 class Typedef:
     name: str
-    base_type: str
-    description: str = ""
+    namespace: str
     enums: list[str] = field(default_factory=list)
     pattern: str | None = None
+    description: str = ""
 
 
 @dataclass
-class YangModule:
-    name: str
-    namespace: str
-    prefix: str
-    description: str = ""
-    imports: dict[str, str] = field(default_factory=dict)  # prefix → module_name
-    groupings: list[Grouping] = field(default_factory=list)
+class Model:
+    classes: list[Klass] = field(default_factory=list)
     typedefs: list[Typedef] = field(default_factory=list)
-    augments: list[Augment] = field(default_factory=list)
+
+    @property
+    def iocs(self) -> list[Klass]:
+        return [c for c in self.classes if c.kind == "ioc"]
 
 
-def parse_yang_files(yang_files: list[str], search_paths: list[str]) -> tuple[list[YangModule], dict]:
-    """Parse a set of YANG files and return their IR representations.
-
-    Returns (modules, submodule_groupings) where submodule_groupings maps
-    grouping name → Grouping for groupings defined in submodules.
-    """
-    repo = FileRepository(search_paths[0] if search_paths else ".", use_env=False)
-    ctx = Context(repo)
-    ctx.opts = _default_opts()
-
-    # Add all search paths
-    repo.dirs = list(search_paths)
-
-    modules = []
-    submodule_groupings: dict[str, Grouping] = {}
-    for fpath in yang_files:
-        with open(fpath, "r", encoding="utf-8") as f:
-            text = f.read()
-        ctx.add_module(fpath, text)
-
-    # Validate (resolves imports, augments, uses)
-    ctx.validate()
-
-    for mod in ctx.modules.values():
-        if mod.keyword in ("module", "submodule"):
-            if mod.keyword == "submodule":
-                # Index submodule groupings for cross-reference but don't emit as module
-                _index_submodule_groupings(mod, submodule_groupings)
-            else:
-                parsed = _extract_module(mod)
-                if parsed:
-                    modules.append(parsed)
-
-    return modules, submodule_groupings
+def _ns(stmt) -> str:
+    m = stmt.i_module if getattr(stmt, "i_module", None) is not None else stmt
+    n = m.search_one("namespace")
+    return n.arg if n is not None else ""
 
 
-def _index_submodule_groupings(stmt: Statement, index: dict) -> None:
-    """Extract grouping names from a submodule for cross-reference."""
-    for grp in stmt.search("grouping"):
-        parsed = _extract_grouping(grp)
-        index[parsed.name] = parsed
-    for td in stmt.search("typedef"):
-        parsed_td = _extract_typedef(td)
-        index[f"typedef:{parsed_td.name}"] = parsed_td
+def _desc(stmt) -> str:
+    d = stmt.search_one("description")
+    return d.arg if d is not None else ""
 
 
-def _extract_module(stmt: Statement) -> YangModule | None:
-    """Extract IR from a parsed pyang module statement."""
-    ns_stmt = stmt.search_one("namespace")
-    prefix_stmt = stmt.search_one("prefix")
+def _int(stmt, kw) -> int | None:
+    s = stmt.search_one(kw)
+    return int(s.arg) if s is not None else None
 
-    if not ns_stmt:
-        # Submodules don't have their own namespace — skip them.
-        # Their content is included via the parent module's 'include'.
-        return None
 
-    namespace = ns_stmt.arg
-    prefix = prefix_stmt.arg if prefix_stmt else ""
-    desc_stmt = stmt.search_one("description")
-
-    mod = YangModule(
-        name=stmt.arg,
-        namespace=namespace,
-        prefix=prefix,
-        description=desc_stmt.arg if desc_stmt else "",
+def _has_invariant(stmt) -> bool:
+    return any(
+        isinstance(s.keyword, tuple) and s.keyword == INVARIANT_EXT
+        for s in stmt.substmts
     )
 
-    # Imports
-    for imp in stmt.search("import"):
-        pfx = imp.search_one("prefix")
-        if pfx:
-            mod.imports[pfx.arg] = imp.arg
 
-    # Groupings
-    for grp in stmt.search("grouping"):
-        mod.groupings.append(_extract_grouping(grp))
-
-    # Typedefs
-    for td in stmt.search("typedef"):
-        mod.typedefs.append(_extract_typedef(td))
-
-    # Augments
-    for aug in stmt.search("augment"):
-        mod.augments.append(_extract_augment(aug))
-
-    return mod
+def _attributes_container(list_node):
+    for c in getattr(list_node, "i_children", []):
+        if c.keyword == "container" and c.arg == "attributes":
+            return c
+    return None
 
 
-def _extract_grouping(stmt: Statement) -> Grouping:
-    desc = stmt.search_one("description")
-    grp = Grouping(
-        name=stmt.arg,
-        description=desc.arg if desc else "",
-    )
-    for child in stmt.substmts:
-        if child.keyword == "uses":
-            grp.uses.append(child.arg)
-        elif child.keyword == "leaf":
-            grp.leaves.append(_extract_leaf(child))
-        elif child.keyword == "leaf-list":
-            grp.leaf_lists.append(_extract_leaf(child, is_list=True))
-        elif child.keyword == "list":
-            grp.lists.append(_extract_list_node(child))
-        elif child.keyword == "choice":
-            grp.choices.append(_extract_choice(child))
-    return grp
+def _is_ioc(list_node) -> bool:
+    return _attributes_container(list_node) is not None
 
 
-def _extract_leaf(stmt: Statement, is_list: bool = False) -> Leaf:
-    desc = stmt.search_one("description")
-    mandatory = stmt.search_one("mandatory")
-    type_stmt = stmt.search_one("type")
-    config_stmt = stmt.search_one("config")
-    min_el = stmt.search_one("min-elements")
-    max_el = stmt.search_one("max-elements")
-
-    type_name = type_stmt.arg if type_stmt else "string"
-    enums = []
-    pattern = None
-
-    if type_stmt and type_name == "enumeration":
-        enums = [e.arg for e in type_stmt.search("enum")]
-    if type_stmt:
-        pat = type_stmt.search_one("pattern")
-        if pat:
-            pattern = pat.arg
-
+def _leaf_from(stmt) -> Leaf:
+    t = stmt.search_one("type")
+    # anydata/anyxml have no 'type' and carry opaque content: leave xsd open.
+    if t is None:
+        return Leaf(
+            name=stmt.arg,
+            type_name=stmt.keyword,
+            description=_desc(stmt),
+            mandatory=False,
+            is_list=stmt.keyword == "leaf-list",
+            min_elements=_int(stmt, "min-elements"),
+            max_elements=_int(stmt, "max-elements"),
+            xsd=None,
+            is_invariant=_has_invariant(stmt),
+        )
+    rt = resolve_type(t)
+    mand = stmt.search_one("mandatory")
     return Leaf(
         name=stmt.arg,
-        type_name=type_name,
-        description=desc.arg if desc else "",
-        mandatory=mandatory is not None and mandatory.arg == "true",
-        is_list=is_list,
-        min_elements=int(min_el.arg) if min_el else None,
-        max_elements=int(max_el.arg) if max_el else None,
-        enums=enums,
-        pattern=pattern,
-        config=config_stmt.arg != "false" if config_stmt else True,
+        type_name=t.arg,
+        description=_desc(stmt),
+        mandatory=mand is not None and mand.arg == "true",
+        is_list=stmt.keyword == "leaf-list",
+        min_elements=_int(stmt, "min-elements"),
+        max_elements=_int(stmt, "max-elements"),
+        enums=rt.enums,
+        pattern=rt.pattern,
+        xsd=rt.xsd,
+        is_reference=rt.is_reference,
+        is_invariant=_has_invariant(stmt),
     )
 
 
-def _extract_list_node(stmt: Statement) -> ListNode:
-    desc = stmt.search_one("description")
-    key_stmt = stmt.search_one("key")
-    min_el = stmt.search_one("min-elements")
-    max_el = stmt.search_one("max-elements")
-
-    node = ListNode(
-        name=stmt.arg,
-        description=desc.arg if desc else "",
-        key=key_stmt.arg if key_stmt else None,
-        min_elements=int(min_el.arg) if min_el else None,
-        max_elements=int(max_el.arg) if max_el else None,
-    )
-
-    for child in stmt.substmts:
-        if child.keyword == "leaf":
-            node.leaves.append(_extract_leaf(child))
-        elif child.keyword == "leaf-list":
-            node.leaves.append(_extract_leaf(child, is_list=True))
-        elif child.keyword == "list":
-            node.lists.append(_extract_list_node(child))
-        elif child.keyword == "uses":
-            node.uses.append(child.arg)
-
-    return node
+def _grouping_uses_managed_function(grp) -> bool:
+    if grp.arg == MANAGED_FUNCTION_GRP:
+        return True
+    for sub in grp.substmts:
+        if sub.keyword == "uses":
+            g2 = getattr(sub, "i_grouping", None)
+            if g2 is not None and _grouping_uses_managed_function(g2):
+                return True
+    return False
 
 
-def _extract_choice(stmt: Statement) -> Choice:
-    choice = Choice(name=stmt.arg)
-    for case_stmt in stmt.search("case"):
-        leaves = []
-        for child in case_stmt.substmts:
-            if child.keyword in ("leaf", "leaf-list"):
-                leaves.append(_extract_leaf(child, is_list=(child.keyword == "leaf-list")))
-        choice.cases[case_stmt.arg] = leaves
-    return choice
+def _subclasses(list_node) -> list[str]:
+    out: list[str] = []
+    scopes = [list_node]
+    attrs = _attributes_container(list_node)
+    if attrs is not None:
+        scopes.append(attrs)
+    for scope in scopes:
+        for sub in scope.substmts:
+            if sub.keyword == "uses":
+                grp = getattr(sub, "i_grouping", None)
+                if grp is not None and _grouping_uses_managed_function(grp):
+                    if MANAGED_FUNCTION_IRI not in out:
+                        out.append(MANAGED_FUNCTION_IRI)
+    return out
 
 
-def _extract_typedef(stmt: Statement) -> Typedef:
-    desc = stmt.search_one("description")
-    type_stmt = stmt.search_one("type")
-    type_name = type_stmt.arg if type_stmt else "string"
-    enums = []
-    pattern = None
-    if type_stmt and type_name == "enumeration":
-        enums = [e.arg for e in type_stmt.search("enum")]
-    if type_stmt:
-        pat = type_stmt.search_one("pattern")
-        if pat:
-            pattern = pat.arg
-    return Typedef(
-        name=stmt.arg,
-        base_type=type_name,
-        description=desc.arg if desc else "",
-        enums=enums,
-        pattern=pattern,
-    )
-
-
-def _extract_augment(stmt: Statement) -> Augment:
-    aug = Augment(target_path=stmt.arg)
-    for child in stmt.substmts:
-        if child.keyword == "list":
-            aug.lists.append(_extract_list_node(child))
-    return aug
-
-
-class _Opts:
-    """Minimal options object for pyang Context."""
+class _Parser:
     def __init__(self):
-        self.verbose = False
-        self.debug = False
-        self.canonical = False
-        self.max_line_len = 0
-        self.max_identifier_len = 0
-        self.trim_yin_comments = False
-        self.lax_xpath_checks = True
-        self.strict = False
-        self.list_errors = False
-        self.ignore_errors = True
-        self.ignore_error_tags = []
-        self.keep_comments = False
-        self.features = []
-        self.deviations = []
-        self.path = []
+        self.model = Model()
+        self.seen: dict[str, Klass] = {}
+        # keywords encountered inside a class that we deliberately do not model,
+        # collected so nothing is dropped silently (surfaced by parse()).
+        self.unhandled: set[str] = set()
+
+    def _register_datatype(self, list_node) -> str:
+        """Register a nested dataType list as a class; return its IRI."""
+        ns = _ns(list_node)
+        iri = class_iri(ns + "/", list_node.arg)
+        if iri in self.seen:
+            return iri
+        cls = Klass(name=list_node.arg, namespace=ns, kind="datatype",
+                    description=_desc(list_node))
+        self.seen[iri] = cls
+        self.model.classes.append(cls)
+        self._fill_children(cls, list_node)
+        return iri
+
+    def _fill_children(self, cls: Klass, node) -> None:
+        """Populate leaves + nested dataType attr_refs from a node's children.
+
+        Handles every child kind a 3GPP attributes container can hold:
+        - leaf / leaf-list -> Leaf on the class
+        - list             -> a dataType class + an AttrRef
+        - container        -> a single-instance structured attribute; its leaves
+                              are flattened onto the class (not list-structured)
+        - choice / case    -> attribute groupings; recurse and flatten leaves
+                              (mutually-exclusive cardinality is not modelled here)
+        Any other keyword is ignored but recorded in self.unhandled so a future
+        schema shape cannot silently drop attributes.
+        """
+        for c in getattr(node, "i_children", []):
+            if c.keyword in ("leaf", "leaf-list", "anydata", "anyxml"):
+                # anydata/anyxml carry opaque, schema-less content; model them as
+                # a property with no datatype (open range) rather than drop them.
+                if c.arg != "idx":
+                    cls.leaves.append(_leaf_from(c))
+            elif c.keyword == "list":
+                # A nested list that itself has an 'attributes' container is a
+                # genuine IOC (register as such); otherwise it is a structured
+                # dataType value. Either way it becomes an AttrRef target.
+                if _is_ioc(c):
+                    target_cls = self.register_ioc(c)
+                    target = class_iri(target_cls.namespace + "/", target_cls.name)
+                else:
+                    target = self._register_datatype(c)
+                cls.attr_refs.append(AttrRef(
+                    name=c.arg, target_iri=target,
+                    min_elements=_int(c, "min-elements"),
+                    max_elements=_int(c, "max-elements"),
+                    description=_desc(c),
+                ))
+            elif c.keyword in ("container", "choice", "case"):
+                # structured attribute grouping — recurse, flatten its leaves
+                self._fill_children(cls, c)
+            else:
+                self.unhandled.add(c.keyword)
+
+    def register_ioc(self, list_node) -> Klass:
+        ns = _ns(list_node)
+        iri = class_iri(ns + "/", list_node.arg)
+        existing = self.seen.get(iri)
+        if existing is not None:
+            if existing.kind == "ioc":
+                return existing
+            # Previously reached as a nested dataType, but it is a genuine IOC
+            # (has an attributes container). Upgrade in place: set kind and add
+            # IOC-only semantics (subclass_of, contains). Its leaves/attr_refs
+            # were already populated by _register_datatype, so don't refill them.
+            cls = existing
+            cls.kind = "ioc"
+            cls.subclass_of = _subclasses(list_node)
+            self._fill_containment(cls, list_node)
+            return cls
+        cls = Klass(name=list_node.arg, namespace=ns, kind="ioc",
+                    description=_desc(list_node),
+                    subclass_of=_subclasses(list_node))
+        self.seen[iri] = cls
+        self.model.classes.append(cls)
+
+        # simple leaves directly on the list node (e.g. key 'id' is skipped as idx-like? no: keep non-idx)
+        for c in getattr(list_node, "i_children", []):
+            if c.keyword in ("leaf", "leaf-list") and c.arg != "idx":
+                cls.leaves.append(_leaf_from(c))
+
+        # attributes container: leaves + nested dataType structures
+        attrs = _attributes_container(list_node)
+        if attrs is not None:
+            self._fill_children(cls, attrs)
+
+        # sibling lists = contained sub-IOCs
+        self._fill_containment(cls, list_node)
+        return cls
+
+    def _fill_containment(self, cls: Klass, list_node) -> None:
+        """Record sibling lists that are themselves IOCs as contained sub-IOCs."""
+        for c in getattr(list_node, "i_children", []):
+            if c.keyword == "list" and c.arg != "idx" and _is_ioc(c):
+                child = self.register_ioc(c)
+                child_iri = class_iri(child.namespace + "/", child.name)
+                if child_iri not in cls.contains:
+                    cls.contains.append(child_iri)
+
+    def run(self, ctx):
+        # Sort modules by key for deterministic iteration
+        for key in sorted(ctx.modules.keys()):
+            m = ctx.modules[key]
+            if m.keyword != "module":
+                continue
+            for td in m.search("typedef"):
+                rt = resolve_type(td.search_one("type"))
+                self.model.typedefs.append(
+                    Typedef(td.arg, _ns(m), rt.enums, rt.pattern, _desc(td)))
+
+        for key in sorted(ctx.modules.keys()):
+            m = ctx.modules[key]
+            if m.keyword != "module":
+                continue
+            for aug in m.search("augment"):
+                tgt = getattr(aug, "i_target_node", None)
+                if tgt is None or tgt.keyword != "list":
+                    continue
+                parent = self.register_ioc(tgt)
+                for child in getattr(aug, "i_children", []):
+                    if child.keyword == "list" and child.arg != "idx" and _is_ioc(child):
+                        child_ioc = self.register_ioc(child)
+                        ci = class_iri(child_ioc.namespace + "/", child_ioc.name)
+                        if ci not in parent.contains:
+                            parent.contains.append(ci)
+        return self.model
 
 
-def _default_opts() -> _Opts:
-    return _Opts()
+def parse(yang_files, search_paths) -> tuple[Model, list[str]]:
+    ctx, errors = build_context(yang_files, search_paths)
+    parser = _Parser()
+    model = parser.run(ctx)
+    # Surface any attribute-child node kinds we did not model, so coverage gaps
+    # are visible rather than silent.
+    for kw in sorted(parser.unhandled):
+        errors.append(f"unmodeled attribute node kind: {kw!r}")
+    return model, errors
