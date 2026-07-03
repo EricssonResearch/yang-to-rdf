@@ -782,7 +782,7 @@ git commit -S -m "Rewrite yang_parser on pyang resolved tree (IOCs, inheritance,
 ```python
 # tests/test_rdf_converter.py
 import glob, os
-from rdflib import RDF, RDFS, URIRef
+from rdflib import RDF, RDFS, Literal, URIRef
 from rdflib.namespace import OWL
 from yang_to_rdf.yang_parser import parse
 from yang_to_rdf.rdf_converter import YangToRDFConverter, NRM
@@ -806,13 +806,13 @@ def test_dn_ref_is_object_property_without_range(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
     ref = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/aMFSetRef")
     assert (ref, RDF.type, OWL.ObjectProperty) in g
-    assert (ref, NRM.isReference, None) not in [(ref, NRM.isReference, o) for o in [None]] or True
+    assert (ref, NRM.isReference, Literal(True)) in g
     assert list(g.objects(ref, RDFS.range)) == []  # range left open in base
 
 def test_invariant_annotation(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
     inv = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/AUSFFunction/nFSrvGroupId")
-    assert (inv, NRM.isInvariant, None) in [(inv, NRM.isInvariant, o) for o in g.objects(inv, NRM.isInvariant)]
+    assert (inv, NRM.isInvariant, Literal(True)) in g
 
 def test_typedef_is_datatype_not_class(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
