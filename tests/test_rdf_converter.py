@@ -29,6 +29,7 @@ def test_datatype_is_class_and_linked(yang_dir, external_yams_dir):
     assert (prop, RDF.type, OWL.ObjectProperty) in g
     assert (prop, RDFS.range, dt) in g
     assert (prop, RDFS.domain, tm) in g
+    assert (tm, NRM.hasAttribute, dt) in g
 
 def test_dn_ref_is_object_property_without_range(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
@@ -42,3 +43,8 @@ def test_typedef_is_datatype_not_class(yang_dir, external_yams_dir):
     dn = URIRef("urn:3gpp:sa5:_3gpp-common-yang-types/DistinguishedName")
     assert (dn, RDF.type, RDFS.Datatype) in g
     assert (dn, RDF.type, RDFS.Class) not in g
+
+def test_invariant_leaf_annotated(yang_dir, external_yams_dir):
+    g = _graph(yang_dir, external_yams_dir)
+    prop = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/ausfInfo/nFSrvGroupId")
+    assert (prop, NRM.isInvariant, Literal(True)) in g
