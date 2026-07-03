@@ -16,8 +16,9 @@
 - IRI scheme (unchanged): class = `<module-namespace>/ClassName`; property = `<module-namespace>/ClassName/propertyName`; module base = `<yang-namespace>/`.
 - `nrm:` vocab base = `https://3gpp.org/nrm/vocab#`. New terms: `nrm:isReference`, `nrm:isInvariant`, `nrm:inferredBy`, `nrm:confidence`.
 - Commits: authored as the configured local identity (Jean Martins <jean.martins@ericsson.com>), GPG-signed (`git commit -S`). No co-author trailers. Do NOT push.
-- Extension keyword for invariants (from pyang) is the tuple `('_3gpp-common-yang-extensions', 'inVariant')` on a leaf's `substmts`, readable only on the authored grouping/module source (stripped from expanded `i_children` copies).
+- Extension keyword for invariants (from pyang) is the tuple `('_3gpp-common-yang-extensions', 'inVariant')` on a leaf's `substmts`, readable directly on resolved `i_children` nodes (verified: 67 authored → 1378 leaf instances).
 - DN detection is by resolved type chain bottoming out at `DistinguishedName`/`Dn`/`LDN` — never by leaf-name.
+- 3GPP `<<dataType>>` structured attributes (nested `list` inside an IOC's `attributes` container) are modeled as their own `rdfs:Class` linked by an `owl:ObjectProperty` (+ `nrm:hasAttribute`), NOT flattened and NOT dropped — applies to both singleton (min=1/max=1) and multivalued nested lists. An IOC is any `list` whose `i_children` has an `attributes` container.
 
 ## Reference Facts (verified against the set; use in assertions)
 
@@ -33,10 +34,10 @@
 
 - `yang_to_rdf/pyang_context.py` — **new**. Builds a properly-bootstrapped pyang `Context` (real optparse opts via `plugin.init`), validates, surfaces errors. One responsibility: "give me a validated pyang context from files + search paths."
 - `yang_to_rdf/input_handler.py` — modify. Add `external-yams` detection, zip-slip guard, tempdir cleanup.
-- `yang_to_rdf/yang_parser.py` — **rewrite**. IR dataclasses (kept, extended with `is_reference`, `is_invariant`) + resolved-tree walk.
+- `yang_to_rdf/yang_parser.py` — **rewrite**. IR dataclasses (`Leaf`, `AttrRef`, `Klass` with `kind` ioc/datatype, `Typedef`, `Model`) + resolved-tree walk producing IOC classes, dataType classes, containment, and inheritance.
 - `yang_to_rdf/type_resolver.py` — **new**. Shared YANG-type→(XSD datatype | typedef datatype IRI | DN-marker) resolution, following the typedef chain. Consumed by both converters and the parser.
-- `yang_to_rdf/rdf_converter.py` — modify. Consume IR + type_resolver; DN→object property; invariant annotation; typedef→`rdfs:Datatype`.
-- `yang_to_rdf/shacl_converter.py` — modify. Consume IR + type_resolver; materialize inherited properties; typedef constraints flow through.
+- `yang_to_rdf/rdf_converter.py` — modify. Consume IR; IOC + dataType classes; `nrm:hasAttribute` links; DN→object property; invariant annotation; typedef→`rdfs:Datatype`.
+- `yang_to_rdf/shacl_converter.py` — modify. Consume IR; one NodeShape per class (IOC + dataType); inherited leaves already materialized in IR; dataType attrs via `sh:class`.
 - `yang_to_rdf/reference_layer.py` — **new**. Build extension graph from IR: unambiguous ranges + unresolved worklist, with provenance.
 - `yang_to_rdf/main.py` — modify. `--no-inference`; emit `<stem>_refs.ttl`; updated examples.
 - `tests/conftest.py` — **new**. Session fixture: locate the zip, parse once, expose IR + graphs.
@@ -495,20 +496,29 @@ git commit -S -m "Add shared type_resolver over the resolved typedef chain"
 
 ---
 
-### Task 4: yang_parser — resolved-tree IR
+### Task 4: yang_parser — resolved-tree IR (IOCs, dataType classes, containment)
 
 **Files:**
 - Modify (rewrite): `yang_to_rdf/yang_parser.py`
 - Test: `tests/test_yang_parser.py`
 
 **Interfaces:**
-- Consumes: `build_context` (Task 1), `resolve_type`/`ResolvedType`/`DN_TYPEDEFS` (Task 3).
+- Consumes: `build_context` (Task 1), `resolve_type`/`ResolvedType` (Task 3), `class_iri`/`property_iri` (namespace.py, unchanged).
 - Produces:
-  - Dataclasses `Leaf` (adds `is_reference: bool = False`, `is_invariant: bool = False`; keeps `name, type_name, description, mandatory, is_list, min_elements, max_elements, enums, pattern, xsd`), `Ioc` (`name, namespace, description, subclass_of: list[str]` of class IRIs, `leaves: list[Leaf]`, `contains: list[str]` of child class IRIs), `Typedef` (`name, namespace, enums, pattern, description`), `Model` (`iocs: list[Ioc]`, `typedefs: list[Typedef]`).
-  - `parse(yang_files, search_paths) -> tuple[Model, list[str]]` — returns the IR and the error list from `build_context`.
-  - Helper `class_iri(namespace, name) -> str` and `property_iri(namespace, cls, prop) -> str` re-exported from `namespace.py` (unchanged module).
+  - `Leaf` — `name, type_name, description, mandatory, is_list, min_elements, max_elements, enums, pattern, xsd, is_reference, is_invariant`.
+  - `AttrRef` — a structured (dataType) attribute link: `name: str` (property local name), `target_iri: str` (dataType class IRI), `min_elements: int|None`, `max_elements: int|None`, `description: str`.
+  - `Klass` — models both IOCs and dataType classes: `name, namespace, kind` (`"ioc"` | `"datatype"`), `description`, `subclass_of: list[str]` (class IRIs), `leaves: list[Leaf]`, `attr_refs: list[AttrRef]` (nested dataType structures), `contains: list[str]` (child IOC class IRIs — IOC kind only).
+  - `Typedef` — `name, namespace, enums, pattern, description`.
+  - `Model` — `classes: list[Klass]`, `typedefs: list[Typedef]`. Convenience: `Model.iocs` property → `[c for c in classes if c.kind=="ioc"]`.
+  - `parse(yang_files, search_paths) -> tuple[Model, list[str]]`.
 
-Note on IOC discovery (replaces heuristics): an IOC is any `list` node reachable in the resolved tree whose parent chain includes a top-level augmentable object (`ManagedElement`, `SubNetwork`, or another IOC) — concretely, walk `augment.i_target_node` to get containment, and treat every augment-added `list` and every nested `list` under an IOC's resolved `i_children` as an IOC. Inheritance: for each IOC's originating grouping, read `uses` whose resolved `i_grouping` is `ManagedFunctionGrp` → `subclass_of += [nrm:ManagedFunction]`; other `uses` resolving to a grouping that itself maps to an emitted IOC → that IOC's class IRI.
+**Model rules (verified against the set — see Reference Facts):**
+- A schema `list` node is an **IOC** iff its resolved `i_children` contains a `container` named `attributes`. Its class IRI is `class_iri(namespace+"/", list.arg)`.
+- Inside an IOC's `attributes` container: `leaf`/`leaf-list` (≠ `idx`) → `Leaf`; a nested `list` → a **dataType class** (`kind="datatype"`), and the IOC gets an `AttrRef(name=list.arg, target_iri=<datatype class IRI>, min/max)`. dataType classes are registered recursively (a dataType may nest further dataType lists inside its own direct children — treat direct `leaf`/`leaf-list` as leaves and direct nested `list` as further dataType attr_refs). dataType class name = the list node's `arg` (e.g. `thresholdInfoList` → class `thresholdInfoList`; do not case-fold — keep the YANG identifier so IRIs stay deterministic and reversible).
+- A `list` that is a **sibling** of the `attributes` container (i.e. a direct child of the IOC list, not inside `attributes`) and is itself an IOC → recorded in the parent IOC's `contains` (containment), and registered as its own IOC.
+- Inheritance: for an IOC, inspect `uses` both directly on the list node and inside its `attributes` container; if a used grouping resolves (via `i_grouping`, recursively through nested `uses`) to `ManagedFunctionGrp`, add `"https://3gpp.org/nrm/vocab#ManagedFunction"` to `subclass_of`.
+- `is_invariant`: read directly from the leaf's `substmts` — true iff any substmt keyword tuple equals `("_3gpp-common-yang-extensions", "inVariant")`. (Verified readable on resolved `i_children`.)
+- Seed the walk from every `augment.i_target_node` that is a `list` (containment parents like `ManagedElement`/`SubNetwork`), plus register augment-added child lists. Deduplicate classes by IRI (`seen` dict) — a class reached by multiple paths is registered once.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -521,42 +531,55 @@ def _model(yang_dir, external_yams_dir):
     files = sorted(glob.glob(os.path.join(yang_dir, "_3gpp*.yang")))
     return parse(files, [yang_dir, external_yams_dir])
 
-def test_amffunction_is_an_ioc(yang_dir, external_yams_dir):
-    model, errors = _model(yang_dir, external_yams_dir)
+def test_parses_cleanly(yang_dir, external_yams_dir):
+    _, errors = _model(yang_dir, external_yams_dir)
     assert errors == []
-    names = {i.name for i in model.iocs}
-    assert "AMFFunction" in names
 
-def test_amffunction_subclass_of_managed_function(yang_dir, external_yams_dir):
+def test_amffunction_is_ioc_subclass_managed_function(yang_dir, external_yams_dir):
     model, _ = _model(yang_dir, external_yams_dir)
-    amf = next(i for i in model.iocs if i.name == "AMFFunction")
+    amf = next(c for c in model.iocs if c.name == "AMFFunction")
+    assert amf.kind == "ioc"
     assert any("ManagedFunction" in s for s in amf.subclass_of)
 
-def test_amffunction_contains_reference_and_invariant_leaves(yang_dir, external_yams_dir):
+def test_inherited_leaf_present(yang_dir, external_yams_dir):
     model, _ = _model(yang_dir, external_yams_dir)
-    amf = next(i for i in model.iocs if i.name == "AMFFunction")
-    lnames = {l.name for l in amf.leaves}
-    assert "userLabel" in lnames  # inherited from ManagedFunctionGrp
+    amf = next(c for c in model.iocs if c.name == "AMFFunction")
+    assert "userLabel" in {l.name for l in amf.leaves}
+
+def test_dn_reference_leaf_flagged(yang_dir, external_yams_dir):
+    model, _ = _model(yang_dir, external_yams_dir)
+    amf = next(c for c in model.iocs if c.name == "AMFFunction")
     ref = next(l for l in amf.leaves if l.name == "aMFSetRef")
     assert ref.is_reference is True
 
-def test_invariant_leaf_flagged(yang_dir, external_yams_dir):
+def test_datatype_modeled_as_class_not_dropped(yang_dir, external_yams_dir):
     model, _ = _model(yang_dir, external_yams_dir)
-    ausf = next(i for i in model.iocs if i.name == "AUSFFunction")
-    inv = next(l for l in ausf.leaves if l.name == "nFSrvGroupId")
+    # thresholdInfoList is a MULTIVALUED nested dataType under ThresholdMonitor.attributes
+    tm = next(c for c in model.iocs if c.name == "ThresholdMonitor")
+    ref = next(a for a in tm.attr_refs if a.name == "thresholdInfoList")
+    # its target is a datatype class carrying the structured leaves
+    dt = next(c for c in model.classes if c.kind == "datatype"
+              and c.name == "thresholdInfoList")
+    assert "thresholdValue" in {l.name for l in dt.leaves}
+
+def test_singleton_datatype_also_a_class(yang_dir, external_yams_dir):
+    model, _ = _model(yang_dir, external_yams_dir)
+    ausf = next(c for c in model.iocs if c.name == "AUSFFunction")
+    ref = next(a for a in ausf.attr_refs if a.name == "ausfInfo")
+    dt = next(c for c in model.classes if c.kind == "datatype" and c.name == "ausfInfo")
+    inv = next(l for l in dt.leaves if l.name == "nFSrvGroupId")
     assert inv.is_invariant is True
 
 def test_managed_element_contains_amffunction(yang_dir, external_yams_dir):
     model, _ = _model(yang_dir, external_yams_dir)
-    # containment is recorded on the parent IOC (ManagedElement)
-    me = next(i for i in model.iocs if i.name == "ManagedElement")
+    me = next(c for c in model.iocs if c.name == "ManagedElement")
     assert any("AMFFunction" in c for c in me.contains)
 ```
 
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `uv run pytest tests/test_yang_parser.py -v`
-Expected: FAIL (new `parse` API / dataclasses not present).
+Expected: FAIL (new API / dataclasses not present).
 
 - [ ] **Step 3: Write implementation**
 
@@ -567,12 +590,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from yang_to_rdf.namespace import class_iri, property_iri
+from yang_to_rdf.namespace import class_iri
 from yang_to_rdf.pyang_context import build_context
 from yang_to_rdf.type_resolver import resolve_type
 
 INVARIANT_EXT = ("_3gpp-common-yang-extensions", "inVariant")
 MANAGED_FUNCTION_GRP = "ManagedFunctionGrp"
+MANAGED_FUNCTION_IRI = "https://3gpp.org/nrm/vocab#ManagedFunction"
 
 
 @dataclass
@@ -592,12 +616,23 @@ class Leaf:
 
 
 @dataclass
-class Ioc:
+class AttrRef:
+    name: str
+    target_iri: str
+    min_elements: int | None = None
+    max_elements: int | None = None
+    description: str = ""
+
+
+@dataclass
+class Klass:
     name: str
     namespace: str
+    kind: str  # "ioc" | "datatype"
     description: str = ""
     subclass_of: list[str] = field(default_factory=list)
     leaves: list[Leaf] = field(default_factory=list)
+    attr_refs: list[AttrRef] = field(default_factory=list)
     contains: list[str] = field(default_factory=list)
 
 
@@ -612,8 +647,12 @@ class Typedef:
 
 @dataclass
 class Model:
-    iocs: list[Ioc] = field(default_factory=list)
+    classes: list[Klass] = field(default_factory=list)
     typedefs: list[Typedef] = field(default_factory=list)
+
+    @property
+    def iocs(self) -> list[Klass]:
+        return [c for c in self.classes if c.kind == "ioc"]
 
 
 def _ns(stmt) -> str:
@@ -627,6 +666,11 @@ def _desc(stmt) -> str:
     return d.arg if d is not None else ""
 
 
+def _int(stmt, kw) -> int | None:
+    s = stmt.search_one(kw)
+    return int(s.arg) if s is not None else None
+
+
 def _has_invariant(stmt) -> bool:
     return any(
         isinstance(s.keyword, tuple) and s.keyword == INVARIANT_EXT
@@ -634,54 +678,35 @@ def _has_invariant(stmt) -> bool:
     )
 
 
+def _attributes_container(list_node):
+    for c in getattr(list_node, "i_children", []):
+        if c.keyword == "container" and c.arg == "attributes":
+            return c
+    return None
+
+
+def _is_ioc(list_node) -> bool:
+    return _attributes_container(list_node) is not None
+
+
 def _leaf_from(stmt) -> Leaf:
-    rt = resolve_type(stmt.search_one("type"))
-    mand = stmt.search_one("mandatory")
-    minel = stmt.search_one("min-elements")
-    maxel = stmt.search_one("max-elements")
     t = stmt.search_one("type")
+    rt = resolve_type(t)
+    mand = stmt.search_one("mandatory")
     return Leaf(
         name=stmt.arg,
         type_name=t.arg if t is not None else "string",
         description=_desc(stmt),
         mandatory=mand is not None and mand.arg == "true",
         is_list=stmt.keyword == "leaf-list",
-        min_elements=int(minel.arg) if minel is not None else None,
-        max_elements=int(maxel.arg) if maxel is not None else None,
+        min_elements=_int(stmt, "min-elements"),
+        max_elements=_int(stmt, "max-elements"),
         enums=rt.enums,
         pattern=rt.pattern,
         xsd=rt.xsd,
         is_reference=rt.is_reference,
         is_invariant=_has_invariant(stmt),
     )
-
-
-def _collect_leaves(node) -> list[Leaf]:
-    """Leaves directly under a node and under its 'attributes' container."""
-    leaves: list[Leaf] = []
-    for child in getattr(node, "i_children", []):
-        if child.keyword in ("leaf", "leaf-list") and child.arg != "idx":
-            leaves.append(_leaf_from(child))
-        elif child.keyword == "container" and child.arg == "attributes":
-            for gc in getattr(child, "i_children", []):
-                if gc.keyword in ("leaf", "leaf-list") and gc.arg != "idx":
-                    leaves.append(_leaf_from(gc))
-    return leaves
-
-
-def _subclasses(list_node) -> list[str]:
-    """Resolve 'uses' on the list into subclass IRIs."""
-    out: list[str] = []
-    for sub in list_node.substmts:
-        if sub.keyword != "uses":
-            continue
-        grp = getattr(sub, "i_grouping", None)
-        if grp is None:
-            continue
-        # walk into the grouping for nested uses of ManagedFunctionGrp
-        if _grouping_uses_managed_function(grp):
-            out.append("https://3gpp.org/nrm/vocab#ManagedFunction")
-    return out
 
 
 def _grouping_uses_managed_function(grp) -> bool:
@@ -695,87 +720,148 @@ def _grouping_uses_managed_function(grp) -> bool:
     return False
 
 
+def _subclasses(list_node) -> list[str]:
+    out: list[str] = []
+    scopes = [list_node]
+    attrs = _attributes_container(list_node)
+    if attrs is not None:
+        scopes.append(attrs)
+    for scope in scopes:
+        for sub in scope.substmts:
+            if sub.keyword == "uses":
+                grp = getattr(sub, "i_grouping", None)
+                if grp is not None and _grouping_uses_managed_function(grp):
+                    if MANAGED_FUNCTION_IRI not in out:
+                        out.append(MANAGED_FUNCTION_IRI)
+    return out
+
+
+class _Parser:
+    def __init__(self):
+        self.model = Model()
+        self.seen: dict[str, Klass] = {}
+
+    def _register_datatype(self, list_node) -> str:
+        """Register a nested dataType list as a class; return its IRI."""
+        ns = _ns(list_node)
+        iri = class_iri(ns + "/", list_node.arg)
+        if iri in self.seen:
+            return iri
+        cls = Klass(name=list_node.arg, namespace=ns, kind="datatype",
+                    description=_desc(list_node))
+        self.seen[iri] = cls
+        self.model.classes.append(cls)
+        self._fill_children(cls, list_node)
+        return iri
+
+    def _fill_children(self, cls: Klass, node) -> None:
+        """Populate leaves + nested dataType attr_refs from a node's direct children."""
+        for c in getattr(node, "i_children", []):
+            if c.keyword in ("leaf", "leaf-list") and c.arg != "idx":
+                cls.leaves.append(_leaf_from(c))
+            elif c.keyword == "list":
+                target = self._register_datatype(c)
+                cls.attr_refs.append(AttrRef(
+                    name=c.arg, target_iri=target,
+                    min_elements=_int(c, "min-elements"),
+                    max_elements=_int(c, "max-elements"),
+                    description=_desc(c),
+                ))
+
+    def register_ioc(self, list_node) -> Klass:
+        ns = _ns(list_node)
+        iri = class_iri(ns + "/", list_node.arg)
+        existing = self.seen.get(iri)
+        if existing is not None and existing.kind == "ioc":
+            return existing
+        cls = Klass(name=list_node.arg, namespace=ns, kind="ioc",
+                    description=_desc(list_node),
+                    subclass_of=_subclasses(list_node))
+        self.seen[iri] = cls
+        self.model.classes.append(cls)
+
+        # simple leaves directly on the list node (e.g. key 'id' is skipped as idx-like? no: keep non-idx)
+        for c in getattr(list_node, "i_children", []):
+            if c.keyword in ("leaf", "leaf-list") and c.arg != "idx":
+                cls.leaves.append(_leaf_from(c))
+
+        # attributes container: leaves + nested dataType structures
+        attrs = _attributes_container(list_node)
+        if attrs is not None:
+            self._fill_children(cls, attrs)
+
+        # sibling lists = contained sub-IOCs
+        for c in getattr(list_node, "i_children", []):
+            if c.keyword == "list" and c.arg != "idx":
+                child = self.register_ioc(c)
+                child_iri = class_iri(child.namespace + "/", child.name)
+                if child_iri not in cls.contains:
+                    cls.contains.append(child_iri)
+        return cls
+
+    def run(self, ctx):
+        for m in ctx.modules.values():
+            if m.keyword != "module":
+                continue
+            for td in m.search("typedef"):
+                rt = resolve_type(td.search_one("type"))
+                self.model.typedefs.append(
+                    Typedef(td.arg, _ns(m), rt.enums, rt.pattern, _desc(td)))
+
+        for m in ctx.modules.values():
+            if m.keyword != "module":
+                continue
+            for aug in m.search("augment"):
+                tgt = getattr(aug, "i_target_node", None)
+                if tgt is None or tgt.keyword != "list":
+                    continue
+                parent = self.register_ioc(tgt)
+                for child in getattr(aug, "i_children", []):
+                    if child.keyword == "list" and child.arg != "idx":
+                        child_ioc = self.register_ioc(child)
+                        ci = class_iri(child_ioc.namespace + "/", child_ioc.name)
+                        if ci not in parent.contains:
+                            parent.contains.append(ci)
+        return self.model
+
+
 def parse(yang_files, search_paths) -> tuple[Model, list[str]]:
     ctx, errors = build_context(yang_files, search_paths)
-    model = Model()
-    seen_iocs: dict[str, Ioc] = {}
-
-    # Typedefs
-    for m in ctx.modules.values():
-        if m.keyword != "module":
-            continue
-        for td in m.search("typedef"):
-            rt = resolve_type(td.search_one("type"))
-            model.typedefs.append(
-                Typedef(td.arg, _ns(m), rt.enums, rt.pattern, _desc(td))
-            )
-
-    # IOCs: every 'list' with an 'attributes' container OR augment-added list.
-    def register_list(list_node) -> Ioc:
-        ns = _ns(list_node)
-        key = class_iri(ns + "/", list_node.arg)
-        if key in seen_iocs:
-            return seen_iocs[key]
-        ioc = Ioc(
-            name=list_node.arg,
-            namespace=ns,
-            description=_desc(list_node),
-            subclass_of=_subclasses(list_node),
-            leaves=_collect_leaves(list_node),
-        )
-        seen_iocs[key] = ioc
-        model.iocs.append(ioc)
-        # nested child lists => containment + recurse
-        for child in getattr(list_node, "i_children", []):
-            if child.keyword == "list" and child.arg != "idx":
-                child_ioc = register_list(child)
-                child_iri = class_iri(child_ioc.namespace + "/", child_ioc.name)
-                if child_iri not in ioc.contains:
-                    ioc.contains.append(child_iri)
-        return ioc
-
-    # Seed from augment targets (ManagedElement/SubNetwork and IOCs get children)
-    for m in ctx.modules.values():
-        if m.keyword != "module":
-            continue
-        for aug in m.search("augment"):
-            tgt = getattr(aug, "i_target_node", None)
-            if tgt is None or tgt.keyword != "list":
-                continue
-            parent = register_list(tgt)
-            for child in getattr(aug, "i_children", []):
-                if child.keyword == "list" and child.arg != "idx":
-                    child_ioc = register_list(child)
-                    child_iri = class_iri(child_ioc.namespace + "/", child_ioc.name)
-                    if child_iri not in parent.contains:
-                        parent.contains.append(child_iri)
-
+    model = _Parser().run(ctx)
     return model, errors
 ```
 
 - [ ] **Step 4: Run test to verify it passes**
 
 Run: `uv run pytest tests/test_yang_parser.py -v`
-Expected: PASS (all five). If `ManagedElement`/`AUSFFunction` containment differs, inspect via a scratch print and adjust `register_list` seeding — do not weaken assertions.
+Expected: PASS (all 7). If a class is reached first as a dataType then later as an IOC (or vice versa), the `seen` dedup keeps the first; the tests above do not hit that case. If one genuinely does, report it — do not weaken an assertion.
 
 - [ ] **Step 5: Commit**
 
 ```bash
 git add yang_to_rdf/yang_parser.py tests/test_yang_parser.py
-git commit -S -m "Rewrite yang_parser on pyang resolved tree (IOCs, inheritance, containment, DN, invariant)"
+git commit -S -m "Rewrite yang_parser on resolved tree: IOCs, dataType classes, containment, inheritance"
 ```
 
 ---
 
-### Task 5: rdf_converter — base TBox from the new IR
+### Task 5: rdf_converter — base TBox (IOCs + dataType classes)
 
 **Files:**
 - Modify (rewrite): `yang_to_rdf/rdf_converter.py`
 - Test: `tests/test_rdf_converter.py`
 
 **Interfaces:**
-- Consumes: `Model`/`Ioc`/`Leaf`/`Typedef` (Task 4), `class_iri`/`property_iri` (namespace.py), `YANG_TO_XSD` etc. (type_resolver, Task 3).
-- Produces: `class YangToRDFConverter(model: Model)` with `.convert() -> rdflib.Graph`. Module constants `NRM = Namespace("https://3gpp.org/nrm/vocab#")`.
+- Consumes: `Model`/`Klass`/`Leaf`/`AttrRef`/`Typedef` (Task 4), `class_iri`/`property_iri` (namespace.py).
+- Produces: `class YangToRDFConverter(model: Model)` with `.convert() -> rdflib.Graph`. Module constant `NRM = Namespace("https://3gpp.org/nrm/vocab#")`. New term `NRM.hasAttribute` (object property linking an IOC/dataType to a nested dataType class).
+
+**Emission rules:**
+- Every `Klass` (ioc and datatype) → `rdfs:Class` with `rdfs:comment` from description.
+- `subclass_of` → `rdfs:subClassOf`.
+- `contains` (IOC only) → `nrm:nameContains` to each child IOC class.
+- `attr_refs` → for each, an `owl:ObjectProperty` `property_iri(base, cls, attr.name)` with `rdfs:domain` = the class and `rdfs:range` = the dataType class IRI, plus `nrm:hasAttribute` from class to the dataType class.
+- Leaves: DN reference (`is_reference`) → `owl:ObjectProperty` + `nrm:isReference true`, range left open; else `rdf:Property` with `rdfs:range` = `leaf.xsd`. `rdfs:domain` = the class. `is_invariant` → `nrm:isInvariant true`.
+- Typedefs → `rdfs:Datatype` (not `rdfs:Class`).
 
 - [ ] **Step 1: Write the failing test**
 
@@ -802,17 +888,22 @@ def test_amffunction_subclass_managed_function(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
     assert (AMF, RDFS.subClassOf, NRM.ManagedFunction) in g
 
+def test_datatype_is_class_and_linked(yang_dir, external_yams_dir):
+    g = _graph(yang_dir, external_yams_dir)
+    tm = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor")
+    dt = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/thresholdInfoList")
+    assert (dt, RDF.type, RDFS.Class) in g
+    prop = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/thresholdInfoList")
+    assert (prop, RDF.type, OWL.ObjectProperty) in g
+    assert (prop, RDFS.range, dt) in g
+    assert (prop, RDFS.domain, tm) in g
+
 def test_dn_ref_is_object_property_without_range(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
     ref = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/aMFSetRef")
     assert (ref, RDF.type, OWL.ObjectProperty) in g
     assert (ref, NRM.isReference, Literal(True)) in g
-    assert list(g.objects(ref, RDFS.range)) == []  # range left open in base
-
-def test_invariant_annotation(yang_dir, external_yams_dir):
-    g = _graph(yang_dir, external_yams_dir)
-    inv = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/AUSFFunction/nFSrvGroupId")
-    assert (inv, NRM.isInvariant, Literal(True)) in g
+    assert list(g.objects(ref, RDFS.range)) == []
 
 def test_typedef_is_datatype_not_class(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
@@ -824,7 +915,7 @@ def test_typedef_is_datatype_not_class(yang_dir, external_yams_dir):
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `uv run pytest tests/test_rdf_converter.py -v`
-Expected: FAIL (new constructor signature / behavior).
+Expected: FAIL (module/behavior not present).
 
 - [ ] **Step 3: Write implementation**
 
@@ -837,7 +928,7 @@ from rdflib import Graph, Literal, Namespace, URIRef
 from rdflib.namespace import OWL, RDF, RDFS, XSD
 
 from yang_to_rdf.namespace import class_iri, property_iri
-from yang_to_rdf.yang_parser import Ioc, Leaf, Model, Typedef
+from yang_to_rdf.yang_parser import AttrRef, Klass, Leaf, Model, Typedef
 
 NRM = Namespace("https://3gpp.org/nrm/vocab#")
 
@@ -851,17 +942,17 @@ class YangToRDFConverter:
             self.graph.bind(p, ns)
 
     def convert(self) -> Graph:
-        g = self.graph
         self._emit_vocab()
         for td in self.model.typedefs:
             self._emit_typedef(td)
-        for ioc in self.model.iocs:
-            self._emit_ioc(ioc)
-        return g
+        for cls in self.model.classes:
+            self._emit_class(cls)
+        return self.graph
 
     def _emit_vocab(self):
         g = self.graph
         g.add((NRM.nameContains, RDF.type, OWL.ObjectProperty))
+        g.add((NRM.hasAttribute, RDF.type, OWL.ObjectProperty))
         g.add((NRM.ManagedFunction, RDF.type, RDFS.Class))
         g.add((NRM.isReference, RDF.type, OWL.ObjectProperty))
         g.add((NRM.isInvariant, RDF.type, OWL.DatatypeProperty))
@@ -875,23 +966,25 @@ class YangToRDFConverter:
         if td.description:
             self.graph.add((uri, RDFS.comment, Literal(td.description)))
 
-    def _emit_ioc(self, ioc: Ioc):
+    def _emit_class(self, cls: Klass):
         g = self.graph
-        base = self._base(ioc.namespace)
-        cls = URIRef(class_iri(base, ioc.name))
-        g.add((cls, RDF.type, RDFS.Class))
-        if ioc.description:
-            g.add((cls, RDFS.comment, Literal(ioc.description)))
-        for parent in ioc.subclass_of:
-            g.add((cls, RDFS.subClassOf, URIRef(parent)))
-        for child_iri in ioc.contains:
-            g.add((cls, NRM.nameContains, URIRef(child_iri)))
-        for leaf in ioc.leaves:
-            self._emit_leaf(leaf, ioc, base, cls)
+        base = self._base(cls.namespace)
+        uri = URIRef(class_iri(base, cls.name))
+        g.add((uri, RDF.type, RDFS.Class))
+        if cls.description:
+            g.add((uri, RDFS.comment, Literal(cls.description)))
+        for parent in cls.subclass_of:
+            g.add((uri, RDFS.subClassOf, URIRef(parent)))
+        for child_iri in cls.contains:
+            g.add((uri, NRM.nameContains, URIRef(child_iri)))
+        for leaf in cls.leaves:
+            self._emit_leaf(leaf, cls, base, uri)
+        for ref in cls.attr_refs:
+            self._emit_attr_ref(ref, cls, base, uri)
 
-    def _emit_leaf(self, leaf: Leaf, ioc: Ioc, base: str, cls: URIRef):
+    def _emit_leaf(self, leaf: Leaf, cls: Klass, base: str, cls_uri: URIRef):
         g = self.graph
-        prop = URIRef(property_iri(base, ioc.name, leaf.name))
+        prop = URIRef(property_iri(base, cls.name, leaf.name))
         if leaf.is_reference:
             g.add((prop, RDF.type, OWL.ObjectProperty))
             g.add((prop, NRM.isReference, Literal(True)))
@@ -899,11 +992,22 @@ class YangToRDFConverter:
             g.add((prop, RDF.type, RDF.Property))
             if leaf.xsd is not None:
                 g.add((prop, RDFS.range, leaf.xsd))
-        g.add((prop, RDFS.domain, cls))
+        g.add((prop, RDFS.domain, cls_uri))
         if leaf.description:
             g.add((prop, RDFS.comment, Literal(leaf.description)))
         if leaf.is_invariant:
             g.add((prop, NRM.isInvariant, Literal(True)))
+
+    def _emit_attr_ref(self, ref: AttrRef, cls: Klass, base: str, cls_uri: URIRef):
+        g = self.graph
+        prop = URIRef(property_iri(base, cls.name, ref.name))
+        target = URIRef(ref.target_iri)
+        g.add((prop, RDF.type, OWL.ObjectProperty))
+        g.add((prop, RDFS.domain, cls_uri))
+        g.add((prop, RDFS.range, target))
+        g.add((cls_uri, NRM.hasAttribute, target))
+        if ref.description:
+            g.add((prop, RDFS.comment, Literal(ref.description)))
 ```
 
 - [ ] **Step 4: Run test to verify it passes**
@@ -915,27 +1019,33 @@ Expected: PASS.
 
 ```bash
 git add yang_to_rdf/rdf_converter.py tests/test_rdf_converter.py
-git commit -S -m "Rewrite rdf_converter on new IR: DN object properties, invariant, datatype typedefs"
+git commit -S -m "Rewrite rdf_converter: IOC + dataType classes, hasAttribute, DN object props, datatypes"
 ```
 
 ---
 
-### Task 6: shacl_converter — shapes with inherited properties materialized
+### Task 6: shacl_converter — shapes for IOCs and dataType classes
 
 **Files:**
 - Modify (rewrite): `yang_to_rdf/shacl_converter.py`
 - Test: `tests/test_shacl_converter.py`
 
 **Interfaces:**
-- Consumes: `Model`/`Ioc`/`Leaf` (Task 4), `NRM` (Task 5), `class_iri`/`property_iri`.
+- Consumes: `Model`/`Klass`/`Leaf`/`AttrRef` (Task 4), `NRM` (Task 5), `class_iri`/`property_iri`.
 - Produces: `class YangToSHACLConverter(model: Model)` with `.convert() -> Graph`. `SH = Namespace("http://www.w3.org/ns/shacl#")`.
+
+**Emission rules:**
+- One `sh:NodeShape` per `Klass` (ioc and datatype), `sh:targetClass` = the class IRI, shape IRI = `class_iri(base, name+"Shape")`.
+- Each `Leaf` → a `sh:property` blank node: `sh:path` = property IRI; `sh:datatype` = `leaf.xsd` unless it has enums or is a reference; `sh:minCount 1` if mandatory (else from `min_elements`); `sh:maxCount 1` unless `is_list` (else from `max_elements`); `sh:in` for enums; `sh:pattern` for pattern; `sh:description`.
+- Each `AttrRef` → a `sh:property` blank node: `sh:path` = property IRI; `sh:class` = `attr.target_iri`; `sh:minCount`/`sh:maxCount` from min/max; `sh:description`.
+- Because the IR already materializes inherited leaves onto each IOC, no `subClassOf` walking is needed — shapes are self-contained.
 
 - [ ] **Step 1: Write the failing test**
 
 ```python
 # tests/test_shacl_converter.py
 import glob, os
-from rdflib import RDF, URIRef, Literal
+from rdflib import RDF, URIRef
 from yang_to_rdf.yang_parser import parse
 from yang_to_rdf.shacl_converter import YangToSHACLConverter, SH
 
@@ -945,38 +1055,45 @@ def _graph(yang_dir, external_yams_dir):
     return YangToSHACLConverter(model).convert()
 
 AMF_SHAPE = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunctionShape")
+AMF = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction")
 
 def test_shape_targets_class(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
     assert (AMF_SHAPE, RDF.type, SH.NodeShape) in g
-    assert (AMF_SHAPE, SH.targetClass,
-            URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction")) in g
+    assert (AMF_SHAPE, SH.targetClass, AMF) in g
 
-def test_inherited_property_is_materialized(yang_dir, external_yams_dir):
+def test_inherited_property_materialized(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
-    # userLabel is inherited from ManagedFunctionGrp; its property shape must exist.
-    paths = set()
-    for ps in g.objects(AMF_SHAPE, SH.property):
-        for p in g.objects(ps, SH.path):
-            paths.add(str(p))
+    paths = {str(p) for ps in g.objects(AMF_SHAPE, SH.property)
+             for p in g.objects(ps, SH.path)}
     assert any(p.endswith("/AMFFunction/userLabel") for p in paths)
+
+def test_datatype_attr_uses_sh_class(yang_dir, external_yams_dir):
+    g = _graph(yang_dir, external_yams_dir)
+    tm_shape = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitorShape")
+    dt = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/thresholdInfoList")
+    classes = set()
+    for ps in g.objects(tm_shape, SH.property):
+        for c in g.objects(ps, SH["class"]):
+            classes.add(c)
+    assert dt in classes
 
 def test_dn_pattern_present(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
     patterns = [str(o) for o in g.objects(None, SH.pattern)]
-    assert any("=" in p for p in patterns)  # DN pattern contains '='
+    assert any("=" in p for p in patterns)
 ```
 
 - [ ] **Step 2: Run test to verify it fails**
 
 Run: `uv run pytest tests/test_shacl_converter.py -v`
-Expected: FAIL (new constructor / behavior).
+Expected: FAIL.
 
 - [ ] **Step 3: Write implementation**
 
 ```python
 # yang_to_rdf/shacl_converter.py
-"""Convert the resolved-tree IR to SHACL NodeShapes (inherited props materialized)."""
+"""Convert the resolved-tree IR to SHACL NodeShapes (IOCs + dataType classes)."""
 from __future__ import annotations
 
 from rdflib import BNode, Graph, Literal, Namespace, URIRef
@@ -985,7 +1102,7 @@ from rdflib.namespace import RDF, RDFS, XSD
 
 from yang_to_rdf.namespace import class_iri, property_iri
 from yang_to_rdf.rdf_converter import NRM
-from yang_to_rdf.yang_parser import Ioc, Leaf, Model
+from yang_to_rdf.yang_parser import AttrRef, Klass, Leaf, Model
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
 
@@ -999,26 +1116,27 @@ class YangToSHACLConverter:
             self.graph.bind(p, ns)
 
     def convert(self) -> Graph:
-        for ioc in self.model.iocs:
-            self._emit_shape(ioc)
+        for cls in self.model.classes:
+            self._emit_shape(cls)
         return self.graph
 
-    def _emit_shape(self, ioc: Ioc):
+    def _emit_shape(self, cls: Klass):
         g = self.graph
-        base = ioc.namespace + "/"
-        cls = URIRef(class_iri(base, ioc.name))
-        shape = URIRef(class_iri(base, f"{ioc.name}Shape"))
+        base = cls.namespace + "/"
+        cls_uri = URIRef(class_iri(base, cls.name))
+        shape = URIRef(class_iri(base, f"{cls.name}Shape"))
         g.add((shape, RDF.type, SH.NodeShape))
-        g.add((shape, SH.targetClass, cls))
-        for leaf in ioc.leaves:  # IR already carries inherited leaves
-            self._emit_property(shape, leaf, ioc, base)
+        g.add((shape, SH.targetClass, cls_uri))
+        for leaf in cls.leaves:
+            self._emit_leaf_shape(shape, leaf, cls, base)
+        for ref in cls.attr_refs:
+            self._emit_attr_shape(shape, ref, cls, base)
 
-    def _emit_property(self, shape, leaf: Leaf, ioc: Ioc, base: str):
+    def _emit_leaf_shape(self, shape, leaf: Leaf, cls: Klass, base: str):
         g = self.graph
-        prop = URIRef(property_iri(base, ioc.name, leaf.name))
         ps = BNode()
         g.add((shape, SH.property, ps))
-        g.add((ps, SH.path, prop))
+        g.add((ps, SH.path, URIRef(property_iri(base, cls.name, leaf.name))))
         if leaf.xsd is not None and not leaf.enums and not leaf.is_reference:
             g.add((ps, SH.datatype, leaf.xsd))
         if leaf.mandatory:
@@ -1037,6 +1155,19 @@ class YangToSHACLConverter:
             g.add((ps, SH.pattern, Literal(leaf.pattern)))
         if leaf.description:
             g.add((ps, SH.description, Literal(leaf.description)))
+
+    def _emit_attr_shape(self, shape, ref: AttrRef, cls: Klass, base: str):
+        g = self.graph
+        ps = BNode()
+        g.add((shape, SH.property, ps))
+        g.add((ps, SH.path, URIRef(property_iri(base, cls.name, ref.name))))
+        g.add((ps, SH["class"], URIRef(ref.target_iri)))
+        if ref.min_elements:
+            g.add((ps, SH.minCount, Literal(ref.min_elements)))
+        if ref.max_elements is not None:
+            g.add((ps, SH.maxCount, Literal(ref.max_elements)))
+        if ref.description:
+            g.add((ps, SH.description, Literal(ref.description)))
 ```
 
 - [ ] **Step 4: Run test to verify it passes**
@@ -1048,7 +1179,7 @@ Expected: PASS.
 
 ```bash
 git add yang_to_rdf/shacl_converter.py tests/test_shacl_converter.py
-git commit -S -m "Rewrite shacl_converter: materialize inherited props, DN pattern, shared types"
+git commit -S -m "Rewrite shacl_converter: IOC + dataType shapes, sh:class links, DN pattern"
 ```
 
 ---
@@ -1060,14 +1191,17 @@ git commit -S -m "Rewrite shacl_converter: materialize inherited props, DN patte
 - Test: `tests/test_reference_layer.py`
 
 **Interfaces:**
-- Consumes: `Model`/`Ioc`/`Leaf` (Task 4), `NRM` (Task 5), `class_iri`/`property_iri`.
-- Produces: `class ReferenceLayerBuilder(model: Model)` with `.build() -> Graph`. Provenance predicates `NRM.inferredBy`, `NRM.confidence`. Confidence values `"unambiguous"` / `"unresolved"`. Class-name inference: strip trailing `RefList`/`Refs`/`Ref`/`List`, capitalize first char; unambiguous iff the candidate matches exactly one IOC name in the model.
+- Consumes: `Model`/`Klass`/`Leaf` (Task 4), `NRM` (Task 5), `class_iri`/`property_iri`.
+- Produces: `class ReferenceLayerBuilder(model: Model)` with `.build() -> Graph`. Provenance predicates `NRM.inferredBy`, `NRM.confidence`, `NRM.candidate`. Confidence values `"unambiguous"` / `"unresolved"`. Class-name inference: strip trailing `RefList`/`Refs`/`Ref`/`List`, capitalize first char; unambiguous iff the candidate matches exactly one IOC name in the model.
+
+**Rules:**
+- Iterate all classes (ioc + datatype); for each `is_reference` leaf, emit provenance. Match the stripped+capitalized candidate against IOC names only (`kind=="ioc"`). Exactly one match → `rdfs:range` = that class IRI + `nrm:confidence "unambiguous"`. No match → `nrm:confidence "unresolved"` + `nrm:candidate` (the guessed name), no range. Always `nrm:inferredBy "dn-name-suffix"`.
 
 - [ ] **Step 1: Write the failing test**
 
 ```python
 # tests/test_reference_layer.py
-import glob, os, re
+import glob, os
 from rdflib import RDFS, URIRef, Literal
 from yang_to_rdf.yang_parser import parse
 from yang_to_rdf.reference_layer import ReferenceLayerBuilder
@@ -1087,7 +1221,6 @@ def test_unambiguous_range_inferred(yang_dir, external_yams_dir):
 
 def test_unresolved_ref_listed_not_dropped(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
-    # _5GCNFRef has no matching class -> present as unresolved, no rdfs:range
     subj = [s for s in g.subjects(NRM.confidence, Literal("unresolved"))
             if str(s).endswith("_5GCNFRef")]
     assert subj, "unresolved DN ref must be recorded, not silently dropped"
@@ -1124,12 +1257,11 @@ class ReferenceLayerBuilder:
         self.graph = Graph()
         self.graph.bind("rdfs", RDFS)
         self.graph.bind("nrm", NRM)
-        # name -> class IRI, for exact-match inference
         self._by_name: dict[str, str] = {}
-        for ioc in model.iocs:
-            self._by_name.setdefault(
-                ioc.name, class_iri(ioc.namespace + "/", ioc.name)
-            )
+        for cls in model.classes:
+            if cls.kind == "ioc":
+                self._by_name.setdefault(
+                    cls.name, class_iri(cls.namespace + "/", cls.name))
 
     def _candidate(self, leaf_name: str) -> str | None:
         stub = _SUFFIX.sub("", leaf_name)
@@ -1139,12 +1271,12 @@ class ReferenceLayerBuilder:
 
     def build(self) -> Graph:
         g = self.graph
-        for ioc in self.model.iocs:
-            base = ioc.namespace + "/"
-            for leaf in ioc.leaves:
+        for cls in self.model.classes:
+            base = cls.namespace + "/"
+            for leaf in cls.leaves:
                 if not leaf.is_reference:
                     continue
-                prop = URIRef(property_iri(base, ioc.name, leaf.name))
+                prop = URIRef(property_iri(base, cls.name, leaf.name))
                 cand = self._candidate(leaf.name)
                 target = self._by_name.get(cand) if cand else None
                 g.add((prop, NRM.inferredBy, Literal("dn-name-suffix")))
@@ -1169,8 +1301,6 @@ Expected: PASS.
 git add yang_to_rdf/reference_layer.py tests/test_reference_layer.py
 git commit -S -m "Add auditable reference_layer: inferred DN ranges with provenance"
 ```
-
----
 
 ### Task 8: main.py wiring + determinism + README
 
@@ -1358,6 +1488,6 @@ git commit -S -m "Bump to 0.2.0, add pytest dev dependency"
 ## Self-Review Notes
 
 - **Spec coverage:** dataset/external-yams (Task 2), resolved-tree parser + heuristic deletion (Task 4), error surfacing (Tasks 1, 8), typedef→Datatype + shared resolver (Tasks 3, 5), DN object property + open range (Task 5), extension layer with tiers/provenance (Task 7), inVariant (Tasks 4, 5), SHACL inheritance materialization (Task 6), zip-slip/cleanup (Task 2), tests (all), README/CLI (Task 8). identityref explicitly deferred per spec Non-Goals. Covered.
-- **Type consistency:** `parse() -> (Model, list[str])`, `Model.iocs/typedefs`, `Ioc.leaves/subclass_of/contains/namespace`, `Leaf.is_reference/is_invariant/xsd`, converters take `model` positionally, `NRM` imported from rdf_converter by shacl_converter and reference_layer — consistent across tasks.
+- **Type consistency:** `parse() -> (Model, list[str])`, `Model.classes` + `Model.iocs` property, `Klass.kind/leaves/attr_refs/subclass_of/contains/namespace`, `AttrRef.name/target_iri/min_elements/max_elements`, `Leaf.is_reference/is_invariant/xsd`, converters take `model` positionally, `NRM` (incl. `hasAttribute`) imported from rdf_converter by shacl_converter and reference_layer — consistent across tasks.
 - **Placeholders:** none; all steps carry real code/commands and verified reference facts.
 - **Risk note:** Task 4's IOC-discovery seeding is the highest-risk step (depends on augment `i_target_node`/`i_children` shape). It is tested first (Task 4 Step 1) exactly so a surprise surfaces there, before Tasks 5–8 build on it — matching the "no dead-ends" goal.
