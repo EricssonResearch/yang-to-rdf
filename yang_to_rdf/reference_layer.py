@@ -20,11 +20,11 @@ class ReferenceLayerBuilder:
         self.graph = Graph()
         self.graph.bind("rdfs", RDFS)
         self.graph.bind("nrm", NRM)
-        self._by_name: dict[str, str] = {}
+        self._by_name: dict[str, list[str]] = {}
         for cls in model.classes:
             if cls.kind == "ioc":
-                self._by_name.setdefault(
-                    cls.name, class_iri(cls.namespace + "/", cls.name))
+                self._by_name.setdefault(cls.name, []).append(
+                    class_iri(cls.namespace + "/", cls.name))
 
     def _candidate(self, leaf_name: str) -> str | None:
         stub = _SUFFIX.sub("", leaf_name)
@@ -41,10 +41,10 @@ class ReferenceLayerBuilder:
                     continue
                 prop = URIRef(property_iri(base, cls.name, leaf.name))
                 cand = self._candidate(leaf.name)
-                target = self._by_name.get(cand) if cand else None
+                matches = self._by_name.get(cand, []) if cand else []
                 g.add((prop, NRM.inferredBy, Literal("dn-name-suffix")))
-                if target is not None:
-                    g.add((prop, RDFS.range, URIRef(target)))
+                if len(matches) == 1:
+                    g.add((prop, RDFS.range, URIRef(matches[0])))
                     g.add((prop, NRM.confidence, Literal("unambiguous")))
                 else:
                     g.add((prop, NRM.confidence, Literal("unresolved")))
