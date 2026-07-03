@@ -22,10 +22,13 @@ def test_amffunction_subclass_managed_function(yang_dir, external_yams_dir):
 
 def test_datatype_is_class_and_linked(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
-    tm = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor")
-    dt = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/thresholdInfoList")
+    # ThresholdMonitor is in one namespace, but ThresholdInfo (from ThresholdInfoGrp)
+    # is in the grouping's home namespace (_3gpp-common-measurements)
+    tm = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/ThresholdMonitor")
+    dt = URIRef("urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo")
     assert (dt, RDF.type, RDFS.Class) in g
-    prop = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/thresholdInfoList")
+    # Property IRI is path-scoped on ThresholdMonitor (owning class), name stays thresholdInfoList
+    prop = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/ThresholdMonitor/thresholdInfoList")
     assert (prop, RDF.type, OWL.ObjectProperty) in g
     assert (prop, RDFS.range, dt) in g
     assert (prop, RDFS.domain, tm) in g
@@ -46,5 +49,6 @@ def test_typedef_is_datatype_not_class(yang_dir, external_yams_dir):
 
 def test_invariant_leaf_annotated(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
-    prop = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/ausfInfo/nFSrvGroupId")
+    # ausfInfo uses AusfInfoGrp, so its class is now AusfInfo
+    prop = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/AusfInfo/nFSrvGroupId")
     assert (prop, NRM.isInvariant, Literal(True)) in g

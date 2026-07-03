@@ -20,8 +20,10 @@ changes to the ontology are reviewable as diffs.
 - Tool: `yang-to-rdf` v0.2.0.
 - Command: `uv run yang-to-rdf MnS-Rel-19-yang-models.zip -o examples/MnS-Rel-19-yang-models`
 - Generated: 2026-07-03.
-- Model summary: 501 IOCs, 2,229 dataType classes, 138 typedefs; reference layer
-  121 unambiguous / 494 unresolved DN references.
+- Model summary: 501 IOCs, 445 dataType classes, 138 typedefs; reference layer
+  121 unambiguous / 443 unresolved DN references. (dataType classes are named and
+  shared by their YANG grouping, so a grouping reused across many list nodes yields
+  one shared class — e.g. `ServiceProfile`, `GeoArea`.)
 
 ## Regenerating
 

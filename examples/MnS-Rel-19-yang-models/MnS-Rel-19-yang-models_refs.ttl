@@ -37,10 +37,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-affunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/farEndEntity> nrm:candidate "FarEndEntity" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -105,10 +101,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/aMFSetRef> rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/AMFSet> ;
     nrm:confidence "unambiguous" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -153,14 +145,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/nTNEntityConfigList/nTNConfEntity> nrm:candidate "NTNConfEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-amfregion/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -194,10 +178,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-amfregion/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfregion/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -238,10 +218,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -293,10 +269,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-dnfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -333,7 +305,11 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dnfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFRef> nrm:candidate "UPF" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFRef> nrm:candidate "_5GCNF" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -493,10 +469,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-externalnrffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-externalnssffunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -533,10 +505,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-externalnssffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-extternalseppfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -570,10 +538,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-extternalseppfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-extternalseppfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -614,10 +578,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-gmlcfunction/commModelList/targetNFServiceList> nrm:candidate "TargetNFService" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-gmlcfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -669,10 +629,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-lmffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-n3iwffunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -713,10 +669,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-n3iwffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -750,10 +702,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -797,7 +745,7 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ngeirfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
+<urn:3gpp:sa5:_3gpp-5gc-nrm-nrffunction/AIoTNRFMapping/aIOTFdN> nrm:candidate "AIOTFdN" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -837,14 +785,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nrffunction/aIoTNRFMapping/aIOTFdN> nrm:candidate "AIOTFdN" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nrffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nssffunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -881,16 +821,16 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nssffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nwdaffunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nwdaffunction/Files/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-nwdaffunction/NetworkSliceInfo/networkSliceRef> rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/NetworkSlice> ;
+    nrm:confidence "unambiguous" ;
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nwdaffunction/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
@@ -922,14 +862,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nwdaffunction/commModelList/targetNFServiceList> nrm:candidate "TargetNFService" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nwdaffunction/networkSliceInfoList/networkSliceRef> rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/NetworkSlice> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nwdaffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -981,10 +913,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-scpfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1021,10 +949,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-scpfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-seppfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1058,10 +982,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-seppfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-seppfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1113,10 +1033,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-smsffunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1154,10 +1070,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-smsffunction/commModelList/targetNFServiceList> nrm:candidate "TargetNFService" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-smsffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1201,10 +1113,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-udrfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1238,10 +1146,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-udrfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udrfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1281,10 +1185,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-5gc-nrm-upffunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1321,15 +1221,19 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-upffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesExcluded> nrm:candidate "ObjectInstancesExcluded" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/externalDataScope/objectInstancesExcluded> nrm:candidate "ObjectInstancesExcluded" ;
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesIncluded> nrm:candidate "ObjectInstancesIncluded" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/externalDataScope/objectInstancesIncluded> nrm:candidate "ObjectInstancesIncluded" ;
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/backUpObject> nrm:candidate "BackUpObject" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/objectInstance> nrm:candidate "ObjectInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1381,27 +1285,7 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/_5GCNfConnEcmInfoList/_5GCNFRef> nrm:candidate "_5GCNF" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-managed-element/alarmRecords/backUpObject> nrm:candidate "BackUpObject" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-managed-element/alarmRecords/objectInstance> nrm:candidate "ObjectInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-common-managed-element/correlatedNotifications/sourceObjectInstance> nrm:candidate "SourceObjectInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-managed-element/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-managed-element/uPFConnectionInfo/uPFRef> nrm:candidate "UPF" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1409,7 +1293,7 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/targetNodeFilter/objectInstances> nrm:candidate "ObjectInstances" ;
+<urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/objectInstances> nrm:candidate "ObjectInstances" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1433,7 +1317,7 @@
     nrm:confidence "unambiguous" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-mnsregistry/mnsScope/objectInstanceList> nrm:candidate "ObjectInstance" ;
+<urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope/objectInstanceList> nrm:candidate "ObjectInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1478,30 +1362,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-subnetwork/_5GCNfConnEcmInfoList/_5GCNFRef> nrm:candidate "_5GCNF" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-subnetwork/alarmRecords/backUpObject> nrm:candidate "BackUpObject" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-subnetwork/alarmRecords/objectInstance> nrm:candidate "ObjectInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-subnetwork/correlatedNotifications/sourceObjectInstance> nrm:candidate "SourceObjectInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-subnetwork/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-common-subnetwork/uPFConnectionInfo/uPFRef> nrm:candidate "UPF" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1561,10 +1421,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-eqp-antennafunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-eqp-sectorequipmentfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1609,10 +1465,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-eqp-sectorequipmentfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/nRSectorCarrierRef> rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork-nrsectorcarrier/NRSectorCarrier> ;
     nrm:confidence "unambiguous" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1653,10 +1505,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-bwp/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-bwpset/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1690,10 +1538,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-bwpset/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-bwpset/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1805,10 +1649,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutrancellrelation/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/eUtranFrequencyRef> rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> ;
     nrm:confidence "unambiguous" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1849,10 +1689,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-externalamffunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1889,10 +1725,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalamffunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -1926,10 +1758,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -1973,10 +1801,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcucpfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -2013,10 +1837,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -2050,10 +1870,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -2113,10 +1929,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcucpfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -2158,10 +1970,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -2217,10 +2025,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellcu/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -2258,10 +2062,6 @@
     nrm:inferredBy "dn-name-suffix" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellcu/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellcu/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -2329,10 +2129,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/adjacentNRCellRef> nrm:candidate "AdjacentNRCell" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -2385,10 +2181,6 @@
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork-nrsectorcarrier/targetInterfaceInfoList/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
-
 <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/configurable5QISetRef> nrm:candidate "Configurable5QISet" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
@@ -2401,7 +2193,7 @@
     nrm:confidence "unambiguous" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNEntityConfigList/nTNConfEntity> nrm:candidate "NTNConfEntity" ;
+<urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNEntityConfig/nTNConfEntity> nrm:candidate "NTNConfEntity" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -2441,7 +2233,7 @@
     nrm:confidence "unambiguous" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/serviceProfileList/serviceProfileId> nrm:candidate "ServiceProfileId" ;
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/ServiceProfile/serviceProfileId> nrm:candidate "ServiceProfileId" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 
@@ -2457,7 +2249,11 @@
     nrm:confidence "unambiguous" ;
     nrm:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sliceProfileList/sliceProfileId> nrm:candidate "SliceProfileId" ;
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/sliceProfileId> nrm:candidate "SliceProfileId" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
     nrm:confidence "unresolved" ;
     nrm:inferredBy "dn-name-suffix" .
 

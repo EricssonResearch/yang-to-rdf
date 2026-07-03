@@ -10,6 +10,14 @@ from yang_to_rdf.type_resolver import resolve_type
 INVARIANT_EXT = ("_3gpp-common-yang-extensions", "inVariant")
 MANAGED_FUNCTION_GRP = "ManagedFunctionGrp"
 MANAGED_FUNCTION_IRI = "https://3gpp.org/nrm/vocab#ManagedFunction"
+BASE_GROUPINGS = {
+    "Top_Grp",
+    "ManagedFunctionGrp",
+    "ManagedElementGrp",
+    "SubNetworkGrp",
+    "ManagedFunctionContainedClasses",
+    "DomainGrp",
+}
 
 
 @dataclass
@@ -102,6 +110,61 @@ def _is_ioc(list_node) -> bool:
     return _attributes_container(list_node) is not None
 
 
+def _grouping_home_ns(u, ctx):
+    """Resolve the home module namespace for a uses statement's grouping."""
+    g = getattr(u, "i_grouping", None)
+    if g is None:
+        return None
+    m = getattr(g, "i_module", None)
+    if m is None:
+        return None
+    ns = m.search_one("namespace")
+    if ns is not None:
+        return ns.arg  # defining module
+    bt = m.search_one("belongs-to")  # submodule -> parent module namespace
+    if bt is not None:
+        parent = ctx.get_module(bt.arg)
+        if parent is not None and parent.search_one("namespace") is not None:
+            return parent.search_one("namespace").arg
+    return None
+
+
+def _class_identity(list_node, ctx):
+    """Compute (name, namespace, iri) identity for a list node's class.
+
+    If the node uses exactly one non-base grouping ending with 'Grp',
+    derive from that grouping. Otherwise fallback to node-based naming.
+    """
+    # Collect resolved uses statements
+    uses_stmts = [s for s in list_node.substmts if s.keyword == "uses"]
+
+    # Filter to real groupings (non-base, ends with 'Grp')
+    real_groupings = []
+    for u in uses_stmts:
+        g = getattr(u, "i_grouping", None)
+        if g is None:
+            continue
+        # Strip any prefix (e.g., "prefix:GroupingName" -> "GroupingName")
+        local_name = g.arg.split(":")[-1]
+        if local_name not in BASE_GROUPINGS and local_name.endswith("Grp"):
+            real_groupings.append((u, local_name))
+
+    # Rule: exactly one real grouping -> derive from it
+    if len(real_groupings) == 1:
+        u, local_name = real_groupings[0]
+        class_name = local_name[:-3]  # strip 'Grp' suffix
+        class_ns = _grouping_home_ns(u, ctx)
+        if class_ns is not None:
+            cls_iri = class_iri(class_ns + "/", class_name)
+            return (class_name, class_ns, cls_iri)
+
+    # Fallback: node-based naming
+    ns = _ns(list_node)
+    name = list_node.arg
+    iri = class_iri(ns + "/", name)
+    return (name, ns, iri)
+
+
 def _leaf_from(stmt) -> Leaf:
     t = stmt.search_one("type")
     # anydata/anyxml have no 'type' and carry opaque content: leave xsd open.
@@ -169,14 +232,14 @@ class _Parser:
         # keywords encountered inside a class that we deliberately do not model,
         # collected so nothing is dropped silently (surfaced by parse()).
         self.unhandled: set[str] = set()
+        self.ctx = None  # set in run()
 
     def _register_datatype(self, list_node) -> str:
         """Register a nested dataType list as a class; return its IRI."""
-        ns = _ns(list_node)
-        iri = class_iri(ns + "/", list_node.arg)
+        name, ns, iri = _class_identity(list_node, self.ctx)
         if iri in self.seen:
             return iri
-        cls = Klass(name=list_node.arg, namespace=ns, kind="datatype",
+        cls = Klass(name=name, namespace=ns, kind="datatype",
                     description=_desc(list_node))
         self.seen[iri] = cls
         self.model.classes.append(cls)
@@ -206,13 +269,15 @@ class _Parser:
                 # A nested list that itself has an 'attributes' container is a
                 # genuine IOC (register as such); otherwise it is a structured
                 # dataType value. Either way it becomes an AttrRef target.
+                # Use _class_identity to get the target IRI consistent with registration.
                 if _is_ioc(c):
-                    target_cls = self.register_ioc(c)
-                    target = class_iri(target_cls.namespace + "/", target_cls.name)
+                    self.register_ioc(c)
                 else:
-                    target = self._register_datatype(c)
+                    self._register_datatype(c)
+                # Get the consistent IRI via _class_identity
+                _, _, target_iri = _class_identity(c, self.ctx)
                 cls.attr_refs.append(AttrRef(
-                    name=c.arg, target_iri=target,
+                    name=c.arg, target_iri=target_iri,
                     min_elements=_int(c, "min-elements"),
                     max_elements=_int(c, "max-elements"),
                     description=_desc(c),
@@ -224,8 +289,7 @@ class _Parser:
                 self.unhandled.add(c.keyword)
 
     def register_ioc(self, list_node) -> Klass:
-        ns = _ns(list_node)
-        iri = class_iri(ns + "/", list_node.arg)
+        name, ns, iri = _class_identity(list_node, self.ctx)
         existing = self.seen.get(iri)
         if existing is not None:
             if existing.kind == "ioc":
@@ -239,7 +303,7 @@ class _Parser:
             cls.subclass_of = _subclasses(list_node)
             self._fill_containment(cls, list_node)
             return cls
-        cls = Klass(name=list_node.arg, namespace=ns, kind="ioc",
+        cls = Klass(name=name, namespace=ns, kind="ioc",
                     description=_desc(list_node),
                     subclass_of=_subclasses(list_node))
         self.seen[iri] = cls
@@ -263,12 +327,13 @@ class _Parser:
         """Record sibling lists that are themselves IOCs as contained sub-IOCs."""
         for c in getattr(list_node, "i_children", []):
             if c.keyword == "list" and c.arg != "idx" and _is_ioc(c):
-                child = self.register_ioc(c)
-                child_iri = class_iri(child.namespace + "/", child.name)
+                self.register_ioc(c)
+                _, _, child_iri = _class_identity(c, self.ctx)
                 if child_iri not in cls.contains:
                     cls.contains.append(child_iri)
 
     def run(self, ctx):
+        self.ctx = ctx  # store for _class_identity resolver
         # Sort modules by key for deterministic iteration
         for key in sorted(ctx.modules.keys()):
             m = ctx.modules[key]
@@ -290,8 +355,8 @@ class _Parser:
                 parent = self.register_ioc(tgt)
                 for child in getattr(aug, "i_children", []):
                     if child.keyword == "list" and child.arg != "idx" and _is_ioc(child):
-                        child_ioc = self.register_ioc(child)
-                        ci = class_iri(child_ioc.namespace + "/", child_ioc.name)
+                        self.register_ioc(child)
+                        _, _, ci = _class_identity(child, self.ctx)
                         if ci not in parent.contains:
                             parent.contains.append(ci)
         return self.model

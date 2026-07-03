@@ -25,8 +25,10 @@ def test_inherited_property_materialized(yang_dir, external_yams_dir):
 
 def test_datatype_attr_uses_sh_class(yang_dir, external_yams_dir):
     g = _graph(yang_dir, external_yams_dir)
-    tm_shape = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitorShape")
-    dt = URIRef("urn:3gpp:sa5:_3gpp-common-managed-element/thresholdInfoList")
+    # ThresholdMonitor is in smffunction namespace
+    tm_shape = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/ThresholdMonitorShape")
+    # ThresholdInfo (from ThresholdInfoGrp) is in common-measurements namespace
+    dt = URIRef("urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo")
     classes = set()
     for ps in g.objects(tm_shape, SH.property):
         for c in g.objects(ps, SH["class"]):

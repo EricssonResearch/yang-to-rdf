@@ -29,19 +29,20 @@ def test_dn_reference_leaf_flagged(yang_dir, external_yams_dir):
 
 def test_datatype_modeled_as_class_not_dropped(yang_dir, external_yams_dir):
     model, _ = _model(yang_dir, external_yams_dir)
-    # thresholdInfoList is a MULTIVALUED nested dataType under ThresholdMonitor.attributes
+    # thresholdInfoList uses ThresholdInfoGrp, so its class is now ThresholdInfo
     tm = next(c for c in model.iocs if c.name == "ThresholdMonitor")
     ref = next(a for a in tm.attr_refs if a.name == "thresholdInfoList")
     # its target is a datatype class carrying the structured leaves
     dt = next(c for c in model.classes if c.kind == "datatype"
-              and c.name == "thresholdInfoList")
+              and c.name == "ThresholdInfo")
     assert "thresholdValue" in {l.name for l in dt.leaves}
 
 def test_singleton_datatype_also_a_class(yang_dir, external_yams_dir):
     model, _ = _model(yang_dir, external_yams_dir)
     ausf = next(c for c in model.iocs if c.name == "AUSFFunction")
     ref = next(a for a in ausf.attr_refs if a.name == "ausfInfo")
-    dt = next(c for c in model.classes if c.kind == "datatype" and c.name == "ausfInfo")
+    # ausfInfo uses AusfInfoGrp, so its class is now AusfInfo
+    dt = next(c for c in model.classes if c.kind == "datatype" and c.name == "AusfInfo")
     inv = next(l for l in dt.leaves if l.name == "nFSrvGroupId")
     assert inv.is_invariant is True
 
@@ -73,3 +74,24 @@ def test_nested_ioc_not_misclassified_as_datatype(yang_dir, external_yams_dir):
 def test_no_unmodeled_attribute_kinds(yang_dir, external_yams_dir):
     _, errors = _model(yang_dir, external_yams_dir)
     assert not any("unmodeled attribute node kind" in e for e in errors), errors
+
+def test_serviceprofile_class_named_from_grouping(yang_dir, external_yams_dir):
+    model, _ = _model(yang_dir, external_yams_dir)
+    names = {c.name for c in model.classes}
+    assert "ServiceProfile" in names
+    assert "serviceProfileList" not in names   # collection name no longer a class
+    ns = next(c for c in model.iocs if c.name == "NetworkSlice")
+    ref = next(a for a in ns.attr_refs if a.name == "serviceProfileList")
+    assert ref.target_iri.endswith("/ServiceProfile")
+    sp = next(c for c in model.classes if c.name == "ServiceProfile")
+    assert "availability" in {l.name for l in sp.leaves}
+
+def test_shared_grouping_is_single_class(yang_dir, external_yams_dir):
+    model, _ = _model(yang_dir, external_yams_dir)
+    geoareas = [c for c in model.classes if c.name == "GeoArea"]
+    assert len(geoareas) == 1, f"expected one shared GeoArea, got {len(geoareas)}"
+    # multiple properties across the model point their range at it
+    ga_iri_end = "/GeoArea"
+    users = [a for c in model.classes for a in c.attr_refs
+             if a.target_iri.endswith(ga_iri_end)]
+    assert len(users) >= 3
