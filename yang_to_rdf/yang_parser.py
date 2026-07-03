@@ -104,11 +104,24 @@ def _is_ioc(list_node) -> bool:
 
 def _leaf_from(stmt) -> Leaf:
     t = stmt.search_one("type")
+    # anydata/anyxml have no 'type' and carry opaque content: leave xsd open.
+    if t is None:
+        return Leaf(
+            name=stmt.arg,
+            type_name=stmt.keyword,
+            description=_desc(stmt),
+            mandatory=False,
+            is_list=stmt.keyword == "leaf-list",
+            min_elements=_int(stmt, "min-elements"),
+            max_elements=_int(stmt, "max-elements"),
+            xsd=None,
+            is_invariant=_has_invariant(stmt),
+        )
     rt = resolve_type(t)
     mand = stmt.search_one("mandatory")
     return Leaf(
         name=stmt.arg,
-        type_name=t.arg if t is not None else "string",
+        type_name=t.arg,
         description=_desc(stmt),
         mandatory=mand is not None and mand.arg == "true",
         is_list=stmt.keyword == "leaf-list",
@@ -153,6 +166,9 @@ class _Parser:
     def __init__(self):
         self.model = Model()
         self.seen: dict[str, Klass] = {}
+        # keywords encountered inside a class that we deliberately do not model,
+        # collected so nothing is dropped silently (surfaced by parse()).
+        self.unhandled: set[str] = set()
 
     def _register_datatype(self, list_node) -> str:
         """Register a nested dataType list as a class; return its IRI."""
@@ -168,25 +184,61 @@ class _Parser:
         return iri
 
     def _fill_children(self, cls: Klass, node) -> None:
-        """Populate leaves + nested dataType attr_refs from a node's direct children."""
+        """Populate leaves + nested dataType attr_refs from a node's children.
+
+        Handles every child kind a 3GPP attributes container can hold:
+        - leaf / leaf-list -> Leaf on the class
+        - list             -> a dataType class + an AttrRef
+        - container        -> a single-instance structured attribute; its leaves
+                              are flattened onto the class (not list-structured)
+        - choice / case    -> attribute groupings; recurse and flatten leaves
+                              (mutually-exclusive cardinality is not modelled here)
+        Any other keyword is ignored but recorded in self.unhandled so a future
+        schema shape cannot silently drop attributes.
+        """
         for c in getattr(node, "i_children", []):
-            if c.keyword in ("leaf", "leaf-list") and c.arg != "idx":
-                cls.leaves.append(_leaf_from(c))
+            if c.keyword in ("leaf", "leaf-list", "anydata", "anyxml"):
+                # anydata/anyxml carry opaque, schema-less content; model them as
+                # a property with no datatype (open range) rather than drop them.
+                if c.arg != "idx":
+                    cls.leaves.append(_leaf_from(c))
             elif c.keyword == "list":
-                target = self._register_datatype(c)
+                # A nested list that itself has an 'attributes' container is a
+                # genuine IOC (register as such); otherwise it is a structured
+                # dataType value. Either way it becomes an AttrRef target.
+                if _is_ioc(c):
+                    target_cls = self.register_ioc(c)
+                    target = class_iri(target_cls.namespace + "/", target_cls.name)
+                else:
+                    target = self._register_datatype(c)
                 cls.attr_refs.append(AttrRef(
                     name=c.arg, target_iri=target,
                     min_elements=_int(c, "min-elements"),
                     max_elements=_int(c, "max-elements"),
                     description=_desc(c),
                 ))
+            elif c.keyword in ("container", "choice", "case"):
+                # structured attribute grouping — recurse, flatten its leaves
+                self._fill_children(cls, c)
+            else:
+                self.unhandled.add(c.keyword)
 
     def register_ioc(self, list_node) -> Klass:
         ns = _ns(list_node)
         iri = class_iri(ns + "/", list_node.arg)
         existing = self.seen.get(iri)
         if existing is not None:
-            return existing
+            if existing.kind == "ioc":
+                return existing
+            # Previously reached as a nested dataType, but it is a genuine IOC
+            # (has an attributes container). Upgrade in place: set kind and add
+            # IOC-only semantics (subclass_of, contains). Its leaves/attr_refs
+            # were already populated by _register_datatype, so don't refill them.
+            cls = existing
+            cls.kind = "ioc"
+            cls.subclass_of = _subclasses(list_node)
+            self._fill_containment(cls, list_node)
+            return cls
         cls = Klass(name=list_node.arg, namespace=ns, kind="ioc",
                     description=_desc(list_node),
                     subclass_of=_subclasses(list_node))
@@ -204,13 +256,17 @@ class _Parser:
             self._fill_children(cls, attrs)
 
         # sibling lists = contained sub-IOCs
+        self._fill_containment(cls, list_node)
+        return cls
+
+    def _fill_containment(self, cls: Klass, list_node) -> None:
+        """Record sibling lists that are themselves IOCs as contained sub-IOCs."""
         for c in getattr(list_node, "i_children", []):
             if c.keyword == "list" and c.arg != "idx" and _is_ioc(c):
                 child = self.register_ioc(c)
                 child_iri = class_iri(child.namespace + "/", child.name)
                 if child_iri not in cls.contains:
                     cls.contains.append(child_iri)
-        return cls
 
     def run(self, ctx):
         # Sort modules by key for deterministic iteration
@@ -243,5 +299,10 @@ class _Parser:
 
 def parse(yang_files, search_paths) -> tuple[Model, list[str]]:
     ctx, errors = build_context(yang_files, search_paths)
-    model = _Parser().run(ctx)
+    parser = _Parser()
+    model = parser.run(ctx)
+    # Surface any attribute-child node kinds we did not model, so coverage gaps
+    # are visible rather than silent.
+    for kw in sorted(parser.unhandled):
+        errors.append(f"unmodeled attribute node kind: {kw!r}")
     return model, errors
