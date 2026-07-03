@@ -32,11 +32,12 @@ def collect_yang_files(input_paths: list[str]) -> tuple[list[str], list[str]]:
             all_files.extend(files)
             search_paths.append(sp)
             _augment_search_paths(Path(sp), search_paths)
-            # nested yang-models dir inside zip
-            for child in Path(sp).rglob("external-yams"):
-                if child.is_dir():
-                    search_paths.append(str(child))
-                    search_paths.append(str(child.parent))
+            # nested external-deps folder inside zip (e.g. yang-models/external-yams/)
+            for name in EXTERNAL_DIR_NAMES:
+                for child in Path(sp).rglob(name):
+                    if child.is_dir():
+                        search_paths.append(str(child))
+                        search_paths.append(str(child.parent))
         elif path.is_dir():
             yang_files = [
                 str(f) for f in sorted(path.rglob("*.yang")) if not _is_external(f)
