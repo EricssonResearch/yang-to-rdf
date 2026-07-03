@@ -1474,7 +1474,7 @@ Expected: prints IOC/typedef counts, writes `output/v4/MnS-Rel-19-yang-models_rd
 
 Run: `grep -c "a rdfs:Class" output/v4/MnS-Rel-19-yang-models_rdf.ttl` and compare IOC count is in a sane range (dozens+). Confirm `_refs.ttl` contains both `"unambiguous"` and `"unresolved"` confidence values:
 Run: `grep -c unambiguous output/v4/*_refs.ttl && grep -c unresolved output/v4/*_refs.ttl`
-Expected: 29 unambiguous, ~492 unresolved (unambiguous = DN candidate names unique among IOCs).
+Expected: 121 unambiguous, ~494 unresolved (unambiguous = DN candidate names unique among IOCs).
 
 - [ ] **Step 5: Commit**
 
