@@ -8,3 +8,6 @@ output/
 .ruff_cache/
 .mypy_cache/
 .pytest_cache/
+
+# YANG dataset (not distributed with the repo; download separately)
+*.zip
