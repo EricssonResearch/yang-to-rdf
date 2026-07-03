@@ -33,14 +33,15 @@ class YangToSHACLConverter:
         shape = URIRef(class_iri(base, f"{cls.name}Shape"))
         g.add((shape, RDF.type, SH.NodeShape))
         g.add((shape, SH.targetClass, cls_uri))
-        for leaf in cls.leaves:
-            self._emit_leaf_shape(shape, leaf, cls, base)
-        for ref in cls.attr_refs:
-            self._emit_attr_shape(shape, ref, cls, base)
+        for i, leaf in enumerate(cls.leaves):
+            self._emit_leaf_shape(shape, leaf, cls, base, i)
+        for i, ref in enumerate(cls.attr_refs, start=len(cls.leaves)):
+            self._emit_attr_shape(shape, ref, cls, base, i)
 
-    def _emit_leaf_shape(self, shape, leaf: Leaf, cls: Klass, base: str):
+    def _emit_leaf_shape(self, shape, leaf: Leaf, cls: Klass, base: str, idx: int):
         g = self.graph
-        ps = BNode()
+        # Use deterministic BNode ID based on shape URI and index
+        ps = BNode(f"{shape}_prop_{idx}")
         g.add((shape, SH.property, ps))
         g.add((ps, SH.path, URIRef(property_iri(base, cls.name, leaf.name))))
         if leaf.xsd is not None and not leaf.enums and not leaf.is_reference:
@@ -54,7 +55,7 @@ class YangToSHACLConverter:
         elif leaf.max_elements is not None:
             g.add((ps, SH.maxCount, Literal(leaf.max_elements)))
         if leaf.enums:
-            lst = BNode()
+            lst = BNode(f"{shape}_prop_{idx}_enumlist")
             Collection(g, lst, [Literal(e) for e in leaf.enums])
             g.add((ps, SH["in"], lst))
         if leaf.pattern:
@@ -62,9 +63,10 @@ class YangToSHACLConverter:
         if leaf.description:
             g.add((ps, SH.description, Literal(leaf.description)))
 
-    def _emit_attr_shape(self, shape, ref: AttrRef, cls: Klass, base: str):
+    def _emit_attr_shape(self, shape, ref: AttrRef, cls: Klass, base: str, idx: int):
         g = self.graph
-        ps = BNode()
+        # Use deterministic BNode ID based on shape URI and index
+        ps = BNode(f"{shape}_prop_{idx}")
         g.add((shape, SH.property, ps))
         g.add((ps, SH.path, URIRef(property_iri(base, cls.name, ref.name))))
         g.add((ps, SH["class"], URIRef(ref.target_iri)))

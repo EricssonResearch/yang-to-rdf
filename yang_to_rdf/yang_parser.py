@@ -213,7 +213,9 @@ class _Parser:
         return cls
 
     def run(self, ctx):
-        for m in ctx.modules.values():
+        # Sort modules by key for deterministic iteration
+        for key in sorted(ctx.modules.keys()):
+            m = ctx.modules[key]
             if m.keyword != "module":
                 continue
             for td in m.search("typedef"):
@@ -221,7 +223,8 @@ class _Parser:
                 self.model.typedefs.append(
                     Typedef(td.arg, _ns(m), rt.enums, rt.pattern, _desc(td)))
 
-        for m in ctx.modules.values():
+        for key in sorted(ctx.modules.keys()):
+            m = ctx.modules[key]
             if m.keyword != "module":
                 continue
             for aug in m.search("augment"):
