@@ -40,6 +40,8 @@ def main():
               file=sys.stderr)
         for e in errors[:10]:
             print(f"  {e}", file=sys.stderr)
+        if len(errors) > 10:
+            print(f"  ... and {len(errors) - 10} more", file=sys.stderr)
     print(f"Parsed {len(model.iocs)} IOCs, {len(model.typedefs)} typedefs")
 
     os.makedirs(args.output, exist_ok=True)

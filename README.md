@@ -18,7 +18,7 @@ uv sync
 # Convert the complete MnS Release 19 dataset (recommended)
 uv run yang-to-rdf MnS-Rel-19-yang-models.zip
 
-# Or from an extracted directory
+# Or from an extracted directory (must contain the external-yams/ subfolder)
 uv run yang-to-rdf MnS-Rel-19-yang-models/yang-models/
 
 # Skip the reference extension layer
@@ -49,7 +49,7 @@ The converter produces three Turtle files in the output directory (default: `out
 3. **`<stem>_refs.ttl`** — Reference extension layer (unless `--no-inference`)
    - Inferred `rdfs:range` for DN references (leaf names ending in `Ref`/`RefList`)
    - Provenance metadata: `nrm:inferredBy`, `nrm:confidence` (unambiguous/unresolved)
-   - ~29 unambiguous ranges inferred from name patterns
+   - ~29 unambiguous ranges inferred from name patterns (29 for the Rel-19 set; varies by module set)
    - Kept separate for auditability and optional loading
 
 ## Design Decisions
@@ -85,7 +85,7 @@ A small `nrm:` vocabulary defines 3GPP-specific relationships:
 
 3GPP YANG leaves ending in `Ref`, `Refs`, `RefList`, or `List` are Distinguished Name references to other IOCs. The base RDF layer marks these as `nrm:isReference` with an open range (no `rdfs:range` triple). The separate reference extension layer (`_refs.ttl`) infers ranges by stripping suffixes and matching IOC names:
 
-- **Unambiguous** (~29 cases): Single matching IOC → `rdfs:range` triple with `nrm:confidence "unambiguous"`
+- **Unambiguous** (29 for the Rel-19 set; varies by module set): Single matching IOC → `rdfs:range` triple with `nrm:confidence "unambiguous"`
 - **Unresolved**: Zero or multiple matches → no range, `nrm:confidence "unresolved"`, candidate name recorded
 
 This separation keeps the base TBox clean and the inference layer auditable. Load `_refs.ttl` optionally depending on your tolerance for heuristic reasoning.
