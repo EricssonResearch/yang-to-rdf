@@ -185,7 +185,7 @@ class _Parser:
         ns = _ns(list_node)
         iri = class_iri(ns + "/", list_node.arg)
         existing = self.seen.get(iri)
-        if existing is not None and existing.kind == "ioc":
+        if existing is not None:
             return existing
         cls = Klass(name=list_node.arg, namespace=ns, kind="ioc",
                     description=_desc(list_node),
@@ -205,7 +205,7 @@ class _Parser:
 
         # sibling lists = contained sub-IOCs
         for c in getattr(list_node, "i_children", []):
-            if c.keyword == "list" and c.arg != "idx":
+            if c.keyword == "list" and c.arg != "idx" and _is_ioc(c):
                 child = self.register_ioc(c)
                 child_iri = class_iri(child.namespace + "/", child.name)
                 if child_iri not in cls.contains:
@@ -230,7 +230,7 @@ class _Parser:
                     continue
                 parent = self.register_ioc(tgt)
                 for child in getattr(aug, "i_children", []):
-                    if child.keyword == "list" and child.arg != "idx":
+                    if child.keyword == "list" and child.arg != "idx" and _is_ioc(child):
                         child_ioc = self.register_ioc(child)
                         ci = class_iri(child_ioc.namespace + "/", child_ioc.name)
                         if ci not in parent.contains:
