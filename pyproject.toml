@@ -1,6 +1,6 @@
 [project]
 name = "yang-to-rdf"
-version = "0.1.0"
+version = "0.2.0"
 description = "Convert YANG modules to RDF TBox vocabularies and SHACL validation shapes for 3GPP NRM and telecom network models"
 authors = [{name = "Jean Martins", email = "jean.martins@gmail.com"}]
 readme = "README.md"
