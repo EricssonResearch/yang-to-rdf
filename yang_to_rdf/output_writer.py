@@ -34,14 +34,14 @@ def split_graph(g: Graph) -> tuple[dict[str, Graph], Graph]:
     (nrm: vocab, stray subjects) goes to the leftover index graph. No triple is
     dropped: a final completeness pass routes anything not yet emitted to index.
     """
-    modules: dict[str, Graph] = {}
-    index = Graph()
-
     def _new_graph() -> Graph:
         ng = Graph()
         for prefix, ns in g.namespaces():
             ng.bind(prefix, ns)
         return ng
+
+    modules: dict[str, Graph] = {}
+    index = _new_graph()  # inherit prefixes so index.ttl serializes with nrm:/rdfs: etc.
 
     emitted: set = set()
     # Seed only from URIRef subjects; CBD pulls their blank-node closure.

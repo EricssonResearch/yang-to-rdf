@@ -87,7 +87,9 @@ def main():
 
         for layer_name, layer_graph in layers:
             mods, leftover = split_graph(layer_graph)
-            # Accumulate leftovers into shared index
+            # Accumulate leftovers into shared index (carry prefixes for readable ttl)
+            for prefix, ns in leftover.namespaces():
+                index.bind(prefix, ns)
             for t in leftover:
                 index.add(t)
 

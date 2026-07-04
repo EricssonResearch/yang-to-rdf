@@ -1,7 +1,8 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-<https://3gpp.org/nrm/vocab#ManagedFunction> a rdfs:Class .
+nrm:ManagedFunction a rdfs:Class .
 
 <https://3gpp.org/nrm/ontology> a owl:Ontology ;
     owl:imports <urn:3gpp:sa5:_3gpp-5g-common-yang-types>,
@@ -110,13 +111,13 @@
         <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet>,
         <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> .
 
-<https://3gpp.org/nrm/vocab#hasAttribute> a owl:ObjectProperty .
+nrm:hasAttribute a owl:ObjectProperty .
 
-<https://3gpp.org/nrm/vocab#isInvariant> a owl:DatatypeProperty .
+nrm:isInvariant a owl:DatatypeProperty .
 
-<https://3gpp.org/nrm/vocab#isReference> a owl:ObjectProperty .
+nrm:isReference a owl:ObjectProperty .
 
-<https://3gpp.org/nrm/vocab#nameContains> a owl:ObjectProperty .
+nrm:nameContains a owl:ObjectProperty .
 
 <urn:ietf:params:xml:ns:yang:ietf-inet-types/as-number> a rdfs:Datatype ;
     rdfs:comment """The as-number type represents autonomous system numbers
