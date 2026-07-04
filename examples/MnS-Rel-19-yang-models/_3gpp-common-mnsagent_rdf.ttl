@@ -1,0 +1,36 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent> a rdfs:Class ;
+    rdfs:comment """The MnsAgent represents the MnS producers, incl. the
+supporting hardware and software, available for a certain management
+scope that is related to the object name-containing the MnS Agent.
+The MnSAgent can be name-contained under an IOC as follows:
+1) ManagementNode;
+2) SubNetwork, if the SubNetwork does not contain a ManagementNode;
+3) ManagedElement, if it is the root element.
+In case the MnsAgent is name-contained under a ManagementNode, the
+management scope is the complete management scope of the
+ManagementNode or a subset thereof.
+In case the MnsAgent is name-contained under a SubNetwork, the
+management scope is the complete SubNetwork or a subset thereof.
+In case the MnsAgent is name-contained under a ManagedElement, the
+management scope is the complete ManagedElement or a subset thereof.""" .
+
+<urn:3gpp:sa5:_3gpp-common-mnsagent> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/systemDN> a owl:ObjectProperty ;
+    rdfs:comment "Distinguished Name (DN) of a IRPAgent or a MnSAgent." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent> ;
+    nrm:isReference true .
+

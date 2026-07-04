@@ -1,10 +1,5 @@
 # tests/test_yang_parser.py
-import glob, os
-from yang_to_rdf.yang_parser import parse
-
-def _model(yang_dir, external_yams_dir):
-    files = sorted(glob.glob(os.path.join(yang_dir, "_3gpp*.yang")))
-    return parse(files, [yang_dir, external_yams_dir])
+from tests._shared import cached_parse as _model
 
 def test_parses_cleanly(yang_dir, external_yams_dir):
     _, errors = _model(yang_dir, external_yams_dir)

@@ -1,0 +1,46 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> a rdfs:Class ;
+    rdfs:comment """Represents common beamforming functionality (eg: SSB beams)
+for the NRSectorCarrier.""" ;
+    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/coverageShape> a rdf:Property ;
+    rdfs:comment """Identifies the sector carrier coverage shape described by
+the envelope of the contained SSB beams. The coverage shape is
+implementation dependent.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/digitalAzimuth> a rdf:Property ;
+    rdfs:comment """Digitally-controlled azimuth through beamforming.
+It represents the horizontal pointing direction of the antenna
+relative to the antenna bore sight, representing the total
+non-mechanical horizontal pan of the selected coverageShape.
+Positive value gives azimuth to the right and negative value gives
+an azimuth to the left.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/digitalTilt> a rdf:Property ;
+    rdfs:comment """Digitally-controlled tilt through beamforming.
+It represents the vertical pointing direction of the antenna relative
+to the antenna bore sight, representing the total non-mechanical
+vertical tilt of the selected coverageShape. Positive value gives
+downwards tilt and negative value gives upwards tilt.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> ;
+    rdfs:range xsd:string .
+

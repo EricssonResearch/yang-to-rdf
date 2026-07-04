@@ -1,0 +1,39 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> a rdfs:Class ;
+    rdfs:comment """This IOC contains attributes to support the Cross
+Domain-Centralized SON function of PCI configuration
+
+In the case where multiple CPCIConfiguration MOIs exist at different
+levels of the containment tree, the CPCIConfiguration MOI at the lower
+level overrides the CPCIConfiguration MOIs at higher level(s) of the
+same containment tree.""" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cPciConfigurationControl> a rdf:Property ;
+    rdfs:comment """This attribute determines whether the Centralized SON
+PCI configuration function is enabled or disabled.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cSonPciList> a rdf:Property ;
+    rdfs:comment """Holds a list of physical cell identities that can be
+assigned to the pci attribute by gNB. The assignment algorithm is not
+specified.
+See TS 38.211 clause 7.4.2.1 for legal values of pci.
+This attribute shall be supported if and only if the C-SON PCI
+configuration is supported.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> ;
+    rdfs:range xsd:string .
+

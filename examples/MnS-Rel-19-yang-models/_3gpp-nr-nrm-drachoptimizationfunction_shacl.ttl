@@ -1,0 +1,48 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunctionShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/id> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This attribute determines whether the RACH Optimization
+function is enabled or disabled.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/drachOptimizationControl> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> ;
+            sh:description """This is a list of target Access Probability (APn) for the
+RACH optimization function.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/ueAccProbilityDist> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> ;
+            sh:description """This is a list of target Access Delay probability (ADP)
+for the RACH optimization function.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/ueAccDelayProbilityDist> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelayShape> a sh:NodeShape ;
+    sh:property [ sh:description "This attribute determines the target Probability." ;
+            sh:in ( "25" "50" "75" "90" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay/targetProbability> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """This attribute indicates the number of preambles sent
+used to configure a wanted distribution of RACH preambles in a
+vendor implemented DRACH optimisation function.
+Note: The DRACH optimization function may configure preambleTransMax
+as defined in TS 38.331 [54]. The allowed values for preambleTransMax
+are 3, 4, 5, 6, 7, 8, 10, 20, 50, 100, 200 (see 38.331 [54],
+subclause 6.3.2).""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay/numberofpreamblessent> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> .
+

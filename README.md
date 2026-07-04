@@ -33,29 +33,34 @@ uv run yang-to-rdf MnS-Rel-19-yang-models.zip --format shacl
 
 ### Output Files
 
-The converter produces three Turtle files in the output directory (default: `output/`):
+The converter produces three **layers** of Turtle output. By default each layer is
+**split into one file per source YANG module** (`<module>_rdf.ttl`,
+`<module>_shacl.ttl`, `<module>_refs.ttl`) plus an `index.ttl` that carries the
+shared `nrm:` vocabulary and `owl:imports` every module — so files stay small and
+browsable. Pass `--single-file` to instead get one merged file per layer
+(`<stem>_rdf.ttl`, etc.). The three layers:
 
-1. **`<stem>_rdf.ttl`** — RDFS/OWL TBox vocabulary
+1. **RDF layer (`…_rdf.ttl`)** — RDFS/OWL TBox vocabulary
    - Classes for IOCs and dataTypes
    - Properties with domain/range
    - Containment relationships (`nrm:nameContains`)
    - Inheritance hierarchy (`rdfs:subClassOf`)
 
-2. **`<stem>_shacl.ttl`** — SHACL validation shapes
+2. **SHACL layer (`…_shacl.ttl`)** — SHACL validation shapes
    - NodeShapes for each class
    - Property constraints (cardinality, datatype, enums, patterns)
    - Validates instance data against the schema
 
-3. **`<stem>_refs.ttl`** — Reference extension layer (unless `--no-inference`)
+3. **Reference layer (`…_refs.ttl`)** — reference extension (unless `--no-inference`)
    - Inferred `rdfs:range` for DN references (leaf names ending in `Ref`/`RefList`)
    - Provenance metadata: `nrm:inferredBy`, `nrm:confidence` (unambiguous/unresolved)
    - ~121 unambiguous ranges inferred from name patterns (121 for the Rel-19 set; varies by module set)
    - Kept separate for auditability and optional loading
 
-A committed reference snapshot of all three files for the MnS Rel-19 set lives
-in [`examples/MnS-Rel-19-yang-models/`](examples/MnS-Rel-19-yang-models/) (see
-its README for provenance). Output is deterministic, so regenerating from the
-same input produces no diff.
+A committed reference snapshot for the MnS Rel-19 set lives in
+[`examples/MnS-Rel-19-yang-models/`](examples/MnS-Rel-19-yang-models/) (per-module
+files + `index.ttl`; see its README for provenance). Output is deterministic, so
+regenerating from the same input produces no diff.
 
 ## Design Decisions
 

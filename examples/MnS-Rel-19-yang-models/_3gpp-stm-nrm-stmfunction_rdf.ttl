@@ -1,0 +1,42 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> a rdfs:Class ;
+    rdfs:comment """List of network interface to be monitored. If this
+parameter is not present or it is empty, then all Network Functions
+within the SubNetwork or ManagedElement shall be monitored. This
+parameter shall be omitted if the STM control object is specified
+under a ManagedFunction. """ .
+
+<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceInstanceList> a owl:ObjectProperty ;
+    rdfs:comment """The list of applicable network interface instances, for
+which the monitoring is to be performed, of the network interface
+type specified by networkInterfaceType.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceType> a rdf:Property ;
+    rdfs:comment """List of network interface type to be monitored. The
+applicable network interface type names are specified based on
+subclause 4.2.3 of 3GPP TS 23.501 and clause 4.2.1 of 3GPP
+TS 23.273.
+The value ALL is specified for the case if all the applicable
+interface type of the network function shall be monitored.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/serviceOperationList> a rdf:Property ;
+    rdfs:comment """The list of applicable service operations exchanged
+over the network interface instances specified by
+networkInterfaceInstanceList, that needs to be monitored. Or,
+If networkInterfaceInstanceList is not present, the list of
+applicable service operations exchanged over the network
+interface type specified by networkInterfaceType.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> ;
+    rdfs:range xsd:string .
+

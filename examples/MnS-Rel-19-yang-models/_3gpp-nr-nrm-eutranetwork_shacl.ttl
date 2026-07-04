@@ -1,0 +1,15 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-eutranetwork> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-eutranetwork/EUtraNetworkShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-eutranetwork/EUtraNetwork/id> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-eutranetwork/EUtraNetwork> .
+

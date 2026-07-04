@@ -1,0 +1,57 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> a rdfs:Class ;
+    rdfs:comment """Represents a telecommunications management system (EM) within
+the TMN that contains functionality for managing a number of
+ManagedElements (MEs). The management system communicates with the MEs
+directly or indirectly over one or more interfaces for the purpose
+of monitoring and/or controlling these MEs.
+
+This class has similar characteristics as the ManagedElement. The
+main difference between these two classes is that the ManagementNode
+has a special association to the managed elements that it is
+responsible for managing.""" ;
+    nrm:nameContains <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent> .
+
+<urn:3gpp:sa5:_3gpp-common-management-node> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/locationName> a rdf:Property ;
+    rdfs:comment "The physical location of this entity (e.g. an address)." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/managedElements> a owl:ObjectProperty ;
+    rdfs:comment """Contains a list of the DN(s) of the related subclasses of
+ManagedElement_ instance(s).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/swVersion> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/userDefinedState> a rdf:Property ;
+    rdfs:comment "An operator defined state for operator specific usage" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/userLabel> a rdf:Property ;
+    rdfs:comment "A user-friendly (and user assignable) name of this object." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/vendorName> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> ;
+    rdfs:range xsd:string .
+

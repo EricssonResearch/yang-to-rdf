@@ -1,0 +1,110 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType> a rdfs:Class ;
+    rdfs:comment """It specifies the thresholds for reporting the packet delay
+between PSA and UE for QoS monitoring per QoS flow per UE.""" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> a rdfs:Class ;
+    rdfs:comment "Represents the QFQoSMonitoringControl IOC." ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType>,
+        <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs> a rdfs:Class ;
+    rdfs:comment """The S-NSSAIs for which the QoS monitoring per QoS flow
+per UE is to be performed.""" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType/thresholdDl> a rdf:Property ;
+    rdfs:comment "Downlink threshold" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType/thresholdRtt> a rdf:Property ;
+    rdfs:comment "Round trip threshold" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType/thresholdUl> a rdf:Property ;
+    rdfs:comment "Uplink threshold" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/isEventTriggeredQFMonitoringSupported> a rdf:Property ;
+    rdfs:comment """It indicates whether the event based QoS monitoring
+reporting per QoS flow per UE is supported.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/isPeriodicQFMonitoringSupported> a rdf:Property ;
+    rdfs:comment """It indicates whether the periodic QoS monitoring reporting
+per QoS flow per UE is supported.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/isSessionReleasedQFMonitoringSupported> a rdf:Property ;
+    rdfs:comment """It indicates whether the session release based QoS monitoring
+reporting  per QoS flow per UE is supported.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFMeasurementPeriod> a rdf:Property ;
+    rdfs:comment """It specifies the period (in seconds) for reporting the
+packet delay for QoS monitoring per QoS flow per UE.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFMinimumWaitTime> a rdf:Property ;
+    rdfs:comment """It specifies the minimum waiting time (in seconds) between
+two consecutive reports for event triggered QoS monitoring reporting
+per QoS flow per UE.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFMonitored5QIs> a rdf:Property ;
+    rdfs:comment """The 5QIs for which the QoS monitoring per QoS flow
+per UE is to be performed.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFMonitoredSNSSAIs> a owl:ObjectProperty ;
+    rdfs:comment """The S-NSSAIs for which the QoS monitoring per QoS flow
+per UE is to be performed.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFPacketDelayThresholds> a owl:ObjectProperty ;
+    rdfs:comment """It specifies the thresholds for reporting the packet delay
+between PSA and UE for QoS monitoring per QoS flow per UE.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFQoSMonitoringState> a rdf:Property ;
+    rdfs:comment "The state of QoS monitoring per QoS flow per UE." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs/sd> a rdf:Property ;
+    rdfs:comment """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs/sst> a rdf:Property ;
+    rdfs:comment """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs> ;
+    rdfs:range xsd:unsignedByte .
+

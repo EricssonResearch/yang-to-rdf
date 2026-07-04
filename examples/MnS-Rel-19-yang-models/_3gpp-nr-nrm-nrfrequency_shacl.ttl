@@ -1,0 +1,34 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequencyShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/id> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """The absolute frequency applicable for a downlink NR carrier
+frequency associated with the SSB, in terms of NR-ARFCN.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/absoluteFrequencySSB> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """Sub-carrier spacing of the SSB.
+Note that the allowed values of SSB used for representing data,
+by e.g. a BWP, are: 15, 30, 60 and 120 in units of kHz.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/ssBSubCarrierSpacing> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """List of additional frequency bands the frequency belongs to.
+The list is automatically set by the gNB.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/multiFrequencyBandListNR> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> .
+

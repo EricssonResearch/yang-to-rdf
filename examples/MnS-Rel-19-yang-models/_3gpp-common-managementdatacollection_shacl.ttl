@@ -1,0 +1,236 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-managementdatacollection> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterestShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "List of NR cells identified by NG-RAN CGI" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/nrCellIdList> ],
+        [ sh:datatype xsd:string ;
+            sh:description "List of E-UTRAN cells identified by E-UTRAN-CGI" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/eutraCellIdList> ],
+        [ sh:datatype xsd:string ;
+            sh:description "List of UTRAN cells identified by UTRAN CGI" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/utraCellIdList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping> ;
+            sh:description """Contains a geographical area and an association threshold.
+The geo-area is defined as a convex polygon using the attribute
+'geoArea'.
+
+The MnS producer shall map the geographical area to cells. There are
+two evaluation criteria whether a cell belongs to a geographical area
+or not. If attribute 'associationThreshold' is absent, the location
+of the base station antenna determines the belonging. If attribute
+'associationThreshold' is configured, the coverage area is considered.
+The attribute 'associationThreshold' determines the lower boundary of
+the coverage ratio. For example, if the 'associationThreshold' is
+configured to 60%, a cell shall be considered as included in the
+geographical area if at least 60% of the coverage area of that
+cell overlaps with the specified geographical area.
+
+The mapping of the geographical area to cells is performed at
+instantiation of the IOC.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/geoAreaToCellMapping> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> ;
+            sh:description "Tracking Area Identity list" ;
+            sh:maxCount 8 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/taiList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> .
+
+<urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMappingShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedByte ;
+            sh:description """It specifies the threshold of coverage area in
+percentage whether a cell belongs to the geographical area or not.
+
+If this attribute is absent, the location of the base station
+antenna determines whether a cell belongs to the geographical
+area or not.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping/associationThreshold> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> ;
+            sh:description """It specifies the geographical area using the cordinates of
+the corners of a convex polygon.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping/geoArea> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping> .
+
+<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollectionShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/id> ],
+        [ sh:description """This attributes defines the type of management data that
+are requested.
+
+Allowed values for data category are COVERAGE, CAPACITY,
+ENERGY_EFFICIENCY, MOBILITY, ACCESSIBILITY. The data categories
+will map to certain measurement families defined in TS 28.552, see
+below. In addition to the below mappings, MnS producer may map the
+provided categories to any additional proprietary management data,
+as appropriate.
+
+- The COVERAGE category will map to measurement families of MR
+(measurements related to Measurement Report) and L1M (measurements
+related to Layer 1 Measurement).
+
+- The CAPACITY category will map to measurement family RRU
+(measurements related to Radio Resource Utilization).
+
+- The ENERGY_EFFICIENCY category will map to measurement family PEE
+(measurements related to Power, Energy and Environment).
+
+- The MOBILITY category will map to measurement family MM
+(measurements related to Mobility Management).
+
+- The ACCESSIBILITY category will map to measurement family CE
+(measurements related to Connection Establishment).""" ;
+            sh:in ( "COVERAGE" "CAPACITY" "ENERGY_EFFICIENCY" "MOBILITY" "ACCESSIBILITY" ) ;
+            sh:maxCount 5 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/category> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managementdatacollection/processMonitor> ;
+            sh:description "Indicates the process of the ManagementDataCollection MOI." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/processMonitor> ],
+        [ sh:datatype xsd:string ;
+            sh:description """List of management data identified by name.
+
+The list may include metrics or set of metrics defined
+in TS 28.552, TS 28.554 and TS 32.422.
+
+The metrics are identified with their names/identifiers.
+For performance measurements defined in TS 28.552 the name is
+constructed as the bullet e) of the measurement definition.
+
+For KPIs defined in TS 28.554 the name is defined according to the
+KPI definitions template as the component designated with a).
+
+For trace metrics (including trace messages, MDT measurements
+(Immediate MDT, Logged MDT, Logged MBSFN MDT), RRC, RLF and RCEF
+reports) defined in TS 32.422, the name (metric identifier) is
+defined in clause 10 of TS 32.422.
+
+For non-3GPP specified managment data the name is defined
+elsewhere.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/name> ],
+        [ sh:description """It specifies whether the required data is reported per
+S-NSSAI or per 5QI.""" ;
+            sh:in ( "SNSSAI" "5QI" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/dataScope> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Logical expression of one or several condition(s).
+
+The actual syntax and capabilities of condition is SS specific. However,
+each SS should support condition consisting of one or several assertions
+that may be grouped using the logical operators AND, OR and NOT. Only if
+the whole expression of condition evaluates TRUE, the attribute
+conditionStatus will be TRUE.
+
+Each assertion is a pointer to a Boolean parameter or a logical
+expression of attribute existence or attribute value comparison
+('equal to X, less than Y' etc.).
+
+An empty string is not allowed.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/condition> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """Indicates whether the management data collection output will
+be consolidated into a single file per reporting period.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/consolidateOutput> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of a PerfMetricJob, a TraceJob or a QMCJob." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/jobId> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> ;
+            sh:description """Set of information to target the Object Instance to collect
+the measurements from.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/targetNodeFilter> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> ;
+            sh:description """Collection time window for which the management data
+should be reported.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/collectionTimeWindow> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl> ;
+            sh:description """Selecting the reporting method and defining associated
+control parameters.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/reportingCtrl> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> .
+
+<urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilterShape> a sh:NodeShape ;
+    sh:property [ sh:description """It specifies the network domain of the target node. This
+will also result in collecting appropriate management data from the
+nodes belonging to the specified domain.""" ;
+            sh:in ( "CN" "RAN" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/networkDomain> ],
+        [ sh:description """It specifies the traffic type of the target node. This will
+also result in collecting appropriate management data from the nodes
+handling the specified traffic (e.g AMF for CP and UPF for UP).""" ;
+            sh:in ( "CP" "UP" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/cpUpType> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """It specifies the slice service type (SST) of which the slice
+subnet should be targeted. Please refer to 3GPP TS 23.501: 'System
+Architecture for the 5G System'""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/sst> ],
+        [ sh:description """List of managed object instances. Each object instance is
+identified by its DN.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/objectInstances> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> ;
+            sh:description """It specifies a location(s) from where the management data
+shall be collected. It is defined in terms of TAI(s).""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/areaOfInterest> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> .
+
+<urn:3gpp:sa5:_3gpp-common-managementdatacollection/processMonitorShape> a sh:NodeShape ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managementdatacollection/processMonitor> .
+
+<urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrlShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:description """For the file-based reporting method this is the time
+window during which collected measurements are stored into the same
+file before the file is closed and a new file is opened.
+The time-period must be a multiple of the granularityPeriod.
+
+Applicable when the file-based reporting method is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl/fileReportingPeriod> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Applicable and must be present when the file-based
+reporting method is supported, and the files are stored on the
+MnS consumer.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl/fileLocation> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Must be present when the notification-based reporting
+method is supported, and the the files are available as
+notifications for the MnS consumer to subscribe to.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl/notificationRecipientAddress> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Applicable when stream-based reporting method is
+supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl/streamTarget> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl> .
+

@@ -1,0 +1,487 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-trace> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-trace/AreaConfigShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:description "List of neighbour cells subject for MDT scope." ;
+            sh:maxCount 32 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig/pciList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo> ;
+            sh:description """It specifies the carrier frequency and bands used in
+a cell.""" ;
+            sh:maxCount 32 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig/freqInfo> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholdsShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedByte ;
+            sh:description "It indicates 5QI value." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds/fiveQIValue> ],
+        [ sh:datatype xsd:decimal ;
+            sh:description """Value of excess packet delay threshold
+for M6 UL measurement in milliseconds.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds/excessPacketDelayThresholdValue> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/FreqInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:description """RF Reference Frequency as defined in TS 38.104,
+clause 5.4.2.1. The frequency provided identifies the absolute
+frequency position of the reference resource block (Common RB 0)
+of the carrier. Its lowest subcarrier is also known as Point A.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo/arfcn> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """List of NR frequency operating bands. Primary NR
+Operating Band as defined in TS 38.104, clause 5.4.2.3.
+The value 1 corresponds to n1, value 2 corresponds to NR operating
+band n2, etc.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo/freqBands> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfigShape> a sh:NodeShape ;
+    sh:property [ sh:description """It specifies the UE measurements that shall be
+collected in an Immediate MDT job. The attribute is
+applicable only for Immediate MDT.""" ;
+            sh:in ( "M1" "M2" "M3" "M4" "M5" "M6_DL" "M6_UL" "M7_DL" "M7_UL" "M1_EVENT_TRIGGERED" "M6" "M7" "M8" "M9" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/listOfMeasurements> ],
+        [ sh:description """It specifies whether periodic or event based measurements
+should be collected.
+The attribute is applicable only for Immediate MDT and when the
+listOfMeasurements is configured for M1 (for both UMTS and LTE)
+or M2 (only for UMTS).""" ;
+            sh:in ( "PERIODICAL" "A2_FOR_LTE" "1F_FOR_UMTS" "1I_FOR_UMTS_MCPS_TDD" "A2_TRIGGERED_PERIODIC_FOR_LTE" "ALL_CONFIGURED_RRM_FOR_LTE" "ALL_CONFIGURED_RRM_FOR_UMTS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportingTrigger> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Specifies the collection period for the Packet Delay
+measurement (M6) for MDT taken by the eNB. The attribute is applicable
+only for Immediate MDT. In case this attribute is not used,
+it carries a null semantic.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodM6LTE> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """It specifies the collection period for the Packet Loss Rate
+measurement (M7) for LTE MDT taken by the eNB. The attribute is
+applicable only for Immediate MDT.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodM7LTE> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """It specifies the threshold which should trigger
+the reporting in case of event-triggered periodic reporting for M4
+(UE power headroom measurement) in UMTS.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/eventThresholdUphUMTS> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Specifies the collection period for collecting RRM configured
+measurement samples for M3, M4, M5 in UMTS. The attribute is applicable
+only for Immediate MDT. """ ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodRRMUMTS> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the measurement period for the Data Volume and
+Throughput measurements for MDT taken by RNC.
+The attribute is applicable only for Immediate MDT. In case this
+attribute is not used, it carries a null semantic.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/measurementPeriodUMTS> ],
+        [ sh:description """It specifies the measurements that are collected in an MDT
+job for a UMTS MDT configured for event triggered reporting.""" ;
+            sh:in ( "CPICH_ECNO" "CPICH_RSCP" "PATHLOSS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/measurementQuantity> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """Indicates whether the NR M1 beam level measurements shall
+be included or not.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/beamLevelMeasurement> ],
+        [ sh:description """It specifies what positioning method should be used in the
+MDT job.""" ;
+            sh:in ( "GNSS" "E_CELL_ID" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/positioningMethod> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for LTE.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM1LTE> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for LTE.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM4LTE> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the interval between the periodical measurements
+that shall be taken when the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and when
+reportingTrigger is configured for periodical measurements.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportInterval> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for LTE.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM5LTE> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for LTE.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM6LTE> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for LTE.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM7LTE> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for NR.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM1NR> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for NR.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM4NR> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for NR.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM5NR> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for NR.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM6NR> ],
+        [ sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected mode.
+The attribute is applicable only for Immediate MDT and combined Trace
+and Immediate MDT and when reportingTrigger is configured for periodical
+measurements and applicable only for NR.""" ;
+            sh:in ( "1" "2" "4" "8" "16" "32" "64" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM7NR> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds> ;
+            sh:description "Excess packet delay thresholds info for M6 UL measurement." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/excessPacketDelayThresholds> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the number of measurement reports that shall be
+taken for periodic reporting while the UE is in connected.
+The attribute is applicable only for Immediate MDT and when
+reportingTrigger is configured for periodical measurements.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmount> ],
+        [ sh:datatype xsd:long ;
+            sh:description """Specifies the threshold which should trigger the reporting
+in case A2 event reporting in LTE or 1F/1l event in UMTS. The attribute
+is applicable only for Immediate MDT and when reportingTrigger is
+configured for A2 event in LTE or 1F event or 1l event in UMTS.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/eventThreshold> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Specifies the collection period for collecting RRM
+configured measurement samples for M4, M5 in NR. The attribute is
+applicable only for Immediate MDT.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodRRMNR> ],
+        [ sh:description """It specifies the collection period for the Packet Delay
+measurement (M6) for NR MDT taken by the gNB. The attribute is
+applicable only for Immediate MDT. """ ;
+            sh:in ( "120ms" "240ms" "480ms" "640ms" "1024ms" "2048ms" "5120ms" "10240ms" "20480ms" "40960ms" "1min" "6min" "12min" "30min" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodM6NR> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the collection period for the Packet Loss Rate
+measurement (M7) for NR MDT taken by the gNB. The attribute is
+applicable only for Immediate MDT.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodM7NR> ],
+        [ sh:description """Specifies the collection period for collecting RRM configured
+measurement samples for M3 in LTE. The attribute is applicable only
+for Immediate MDT.""" ;
+            sh:in ( "100ms" "1000ms" "1024ms" "1280ms" "2048ms" "2560ms" "5120ms" "10000ms" "10240ms" "1min" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodRRMLTE> ],
+        [ sh:description """It specifies the measurement period for the
+Data Volume (M4) and Scheduled IP throughput
+measurements (M5) for LTE MDT taken by the eNB.
+The attribute is applicable only for Immediate MDT.""" ;
+            sh:in ( "1024ms" "2048ms" "5120ms" "10240ms" "1min" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/measurementPeriodLTE> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfigShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:long ;
+            sh:description """It specifies the TCE Id which is sent to the UE in
+Logged MDT.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/traceCollectionEntityId> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Specifies how long the MDT configuration is valid at the
+UE in case of Logged MDT. The attribute is applicable only for
+Logged MDT and Logged MBSFN MDT.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/loggingDuration> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
+            sh:description """It defines which NPNs that can be served by the NR cell,
+and which CAG IDs or NIDs can be supported by the NR cell for
+corresponding PNI-NPN or SNPN in case of the cell is NPN-only cell.
+(NPN-Identity referring to TS 38.331)""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/nPNIdentityList> ],
+        [ sh:description """Specifies the periodicty for Logged MDT. The attribute is
+applicable only for Logged MDT and Logged MBSFN MDT.""" ;
+            sh:in ( "320ms" "640ms" "1280ms" "2560ms" "5120ms" "10240ms" "20480ms" "30720ms" "40960ms" "61440ms" "INFINITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/loggingInterval> ],
+        [ sh:description "It specifies report type for logged NR MDT" ;
+            sh:in ( "PERIODICAL" "EVENT_TRIGGERED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/reportType> ],
+        [ sh:description """Specifies event types for event triggered measurement in the
+case of logged NR MDT.  Each trace session may configure at most one
+event. The UE shall perform logging of measurements only upon certain
+condition being fulfilled:
+- Out of coverage.
+- A2 event.""" ;
+            sh:in ( "OUT_OF_COVERAGE" "A2_EVENT" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/eventListForEventTriggeredMeasurement> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the threshold which should trigger
+the reporting in case of event based reporting of logged NR MDT.
+The attribute is applicable only for Logged MDT and when reportType
+is configured for event triggered reporting and when
+eventListForEventTriggeredMeasurement is configured for L1 event.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/eventThresholdL1> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the hysteresis used within the entry and leave
+condition of the L1 event based reporting of logged NR MDT.
+The attribute is applicable only for Logged MDT, when reportType
+is configured for event triggered reporting and when
+eventListForEventTriggeredMeasurement is configured for L1 event.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/hysteresisL1> ],
+        [ sh:datatype xsd:int ;
+            sh:description """It specifies the threshold which should trigger
+the reporting in case of event based reporting of logged NR MDT.
+The attribute is applicable only for Logged MDT, when reportType
+is configured for event triggered reporting and when
+eventListForEventTriggeredMeasurement is configured for L1 event.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/timeToTriggerL1> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig> ;
+            sh:description """It specifies the area for which UE is requested to perform
+measurement logging for neighbour cells which have list of frequencies.
+If it is not configured, the UE shall perform measurement logging for
+all the neighbour cells.
+
+Applicable only to NR Logged MDT.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/areaConfigurationForNeighCell> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea> ;
+            sh:description """The MBSFN Area consists of a MBSFN Area ID and Carrier
+Frequency (EARFCN). The target MBSFN area List can have up to 8 entries.
+This parameter is applicable only if the job type is Logged MBSFN MDT.""" ;
+            sh:maxCount 8 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/mbsfnAreaList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/MbsfnAreaShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:description "MBSFN Area Identifier" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea/mbsfnAreaId> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Carrier Frequency" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea/earfcn> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/MdtConfigShape> a sh:NodeShape ;
+    sh:property [ sh:description """Specifies level of anonymization of MDT data.
+This attribute is only applicable for management based activation.""" ;
+            sh:in ( "NO_IDENTITY" "TAC_OF_IMEI" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/anonymizationOfMdtData> ],
+        [ sh:description """It specifies which sensor information shall be included in
+logged NR MDT and immediate NR MDT measurement if they are available.""" ;
+            sh:in ( "BAROMETRIC_PRESSURE" "UE_SPEED" "UE_ORIENTATION" ) ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/sensorInformation> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """Specifies whether the MDT configuration is for MN
+only or not. The value FALSE means the MDT configuration is for
+both MN and SN. The value TRUE means the MDT configuration is
+for MN only.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/mNOnly> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> ;
+            sh:description "It specifies the area where data shall be collected. " ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/areaScope> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig> ;
+            sh:description """The set of parameters specific for Immediate MDT
+configuration.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/immediateMdtConfig> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig> ;
+            sh:description """The set of parameters specific for Logged MDT and Logged
+MBSFN MDT configuration.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/loggedMdtConfig> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/plmnList> ;
+            sh:description """It indicates the PLMNs where measurement collection, status
+indication and log reporting is allowed.""" ;
+            sh:maxCount 16 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/plmnList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg> ;
+            sh:description """The TRSR prefix configuration parameters which are used by
+NR-RAN at TRSR assignment for a given C-MDT job. It defines both the
+base TRSR prefix and the size of the TRSR prefix. The attribute
+trstPrefix specifies the base TRSR prefix. The attribute
+trsrPrefixLength defines the size of base TRSR prefix.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/trsrPrefixCfg> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/TraceConfigShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Specifies the interfaces that need to be traced in the given
+ManagedEntityFunction.The attribute is applicable only for Trace. In
+case this attribute is not used, it carries a null semantic.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig/listOfInterfaces> ],
+        [ sh:description """Specifies the network element types where the trace should
+be activated. The attribute is applicable only for Trace with
+Signalling Based Trace activation.""" ;
+            sh:in ( "MSC_SERVER" "SGSN" "MGW" "GGSN" "RNC" "BM_SC" "MME" "SGW" "PGW" "ENB" "EN_GNB" "GNB_CU_CP" "GNB_CU_UP" "GNB_DU" ) ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig/listOfNeTypes> ],
+        [ sh:description """It specifies the trace depth. The attribute is applicable
+only for Trace.""" ;
+            sh:in ( "MINIMUM" "MEDIUM" "MAXIMUM" "VENDORMINIMUM" "VENDORMEDIUM" "VENDORMAXIMUM" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig/traceDepth> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/triggeringEvents> ;
+            sh:description """It specifies the triggering event parameter of the trace
+session. The attribute is applicable only for Trace.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig/triggeringEvents> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/TraceReferenceShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TraceReference/mcc> ;
+            sh:pattern "[02-79][0-9][0-9]" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TraceReference/mnc> ;
+            sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ],
+        [ sh:datatype xsd:string ;
+            sh:description """An identifier, which identifies the Trace
+(together with MCC and MNC). This is a 3 byte Octet String,
+expressed in hexadecimal form e.g., '1a7b3d').""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TraceReference/traceId> ;
+            sh:pattern "[0-9a-fA-F]{6}" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfgShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A 2 byte Octet String. This is the base TRSR prefix" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg/trsrPrefix> ],
+        [ sh:datatype xsd:int ;
+            sh:description """An integer to indicate how many bits are used for the
+TRSR prefix""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg/trsrPrefixLength> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg> .
+
+<urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfigShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """List of 5GC UE level measurements identified by name.
+
+The list may include 5GC UE level measurements defined in TS 28.558,
+or vendor specific measurements.
+
+For non-3GPP specified 5GC UE level measurements the name is defined
+elsewhere.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/ueCoreMeasurements> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Granularity period used to produce 5GC UE
+level measurements. The period is defined in milliseconds (ms).""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/ueCoreMeasGranularityPeriod> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It indicates the type of NE to produce the 5GC UE level
+measurements.
+
+allowedValues: The NF types represented by the measured object
+classes as defined by f) of the 5GC UE level measurements specified
+in TS 28.558.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/nfTypeToMeasure> ],
+        [ sh:datatype xsd:string ;
+            sh:description """List of object instances.
+Each object instance is identified by its DN.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/objectInstances> ],
+        [ sh:datatype xsd:string ;
+            sh:description """List of root object instances.
+Each object instance is identified by its DN and designates
+the root of a substree that contains the root object and all
+descendant objects.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/rootObjectInstances> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> .
+

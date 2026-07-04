@@ -1,0 +1,51 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunctionShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/id> ],
+        [ sh:datatype xsd:int ;
+            sh:description """This parameter defines the maximum allowed lower
+deviation of the Handover Trigger, from the default point of
+operation.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/maximumDeviationHoTriggerLow> ],
+        [ sh:datatype xsd:int ;
+            sh:description """This parameter defines the maximum allowed upper
+deviation of the Handover Trigger, from the default point of
+operation.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/maximumDeviationHoTriggerHigh> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """This parameter defines the minimum allowed time interval
+between two Handover Trigger change performed by MRO. This is used to
+control the stability and convergence of the algorithm.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/minimumTimeBetweenHoTriggerChange> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """The timer used for detection of too early HO, too late HO
+and HO to wrong cell.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/tstoreUEcntxt> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This attribute determines whether the MRO function is
+enabled or disabled.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/dmroControl> ],
+        [ sh:description """This attribute holds a DN list of MLModel ¨
+(See TS 28.105).""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/mLModelRefList> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """This attribute holds a DN list of AIMLInferenceFunction
+(See TS 28.105) .""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/aIMLInferenceFunctionRefList> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> .
+

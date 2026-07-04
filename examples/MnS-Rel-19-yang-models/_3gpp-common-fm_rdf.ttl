@@ -1,0 +1,319 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmComment> a rdfs:Class ;
+    rdfs:comment "List of comments and data about the comments." .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> a rdfs:Class ;
+    rdfs:comment "List of alarmRecords" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment>,
+        <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing>,
+        <urn:3gpp:sa5:_3gpp-common-managed-element/additionalInformation>,
+        <urn:3gpp:sa5:_3gpp-common-managed-element/correlatedNotifications>,
+        <urn:3gpp:sa5:_3gpp-common-managed-element/monitoredAttributes>,
+        <urn:3gpp:sa5:_3gpp-common-managed-element/stateChangeDefinition> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing> a rdfs:Class ;
+    rdfs:comment "Indicates the crossed threshold" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> a rdfs:Class ;
+    rdfs:comment """Indicates for counter and gauge thresholds that the
+threshold crossing occurred when going up.""" .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd> a rdfs:Class ;
+    rdfs:comment """In the case of a gauge the threshold level specifies
+a pair of threshold values, the first being the value of the crossed
+threshold and the second, its corresponding hysteresis; in the case
+of a counter the threshold level specifies only the threshold value
+(Rec. ITU-T X. 733).""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> .
+
+<urn:3gpp:sa5:_3gpp-common-fm> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentSystemId> a rdf:Property ;
+    rdfs:comment """It carries the identification of the system (
+Management System) from which the comment is made. That system
+supports the user that made the comment.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentText> a rdf:Property ;
+    rdfs:comment "It carries the textual comment." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentTime> a rdf:Property ;
+    rdfs:comment "Date and Time the comment was created." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentUserId> a rdf:Property ;
+    rdfs:comment """It carries the identification of the user who made the
+comment.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/ackState> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/ackSystemId> a rdf:Property ;
+    rdfs:comment """It identifies the system (Management System) that last
+changed the ackState of an alarm, i.e. acknowledged or unacknowledged
+the alarm.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/ackTime> a rdf:Property ;
+    rdfs:comment """It identifies the time when the alarm has been
+acknowledged or unacknowledged the last time, i.e. it registers the
+time when ackState changes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/ackUserId> a rdf:Property ;
+    rdfs:comment """It identifies the last user who has changed the
+Acknowledgement State.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/additionalInformation> a owl:ObjectProperty ;
+    rdfs:comment "Vendor specific alarm information in the alarm." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/additionalInformation> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/additionalText> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmChangedTime> a rdf:Property ;
+    rdfs:comment "not applicable if related alarm has not changed" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmClearedTime> a rdf:Property ;
+    rdfs:comment "not applicable if related alarm was not cleared" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmId> a rdf:Property ;
+    rdfs:comment "Identifies the alarmRecord" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmRaisedTime> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmType> a rdf:Property ;
+    rdfs:comment "General category for the alarm." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/backUpObject> a owl:ObjectProperty ;
+    rdfs:comment """Backup object of the alarmed object as defined in
+ITU-T Rec. X. 733""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/backedUpStatus> a rdf:Property ;
+    rdfs:comment """Indicates if an object (the MonitoredEntity) has a back
+up. See definition in ITU-T Recommendation X.733 clause 8.1.2.4.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/clearSystemId> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/clearUserId> a rdf:Property ;
+    rdfs:comment """Carries the identity of the user who invokes the
+clearAlarms operation.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/clearingType> a rdf:Property ;
+    rdfs:comment """Indicates whether the alarm needs
+to be cleared manually by the MnS consumer (ADMC)
+or the producer will clear it automatically (ADAC).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/comments> a owl:ObjectProperty ;
+    rdfs:comment "List of comments and data about the comments." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/correlatedNotifications> a owl:ObjectProperty ;
+    rdfs:comment "List of correlated notifications" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/correlatedNotifications> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/monitoredAttributes> a owl:ObjectProperty ;
+    rdfs:comment """Attributes of the monitored entity and their
+values at the time the alarm occurred that are of interest for the
+alarm report.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/monitoredAttributes> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/notificationId> a rdf:Property ;
+    rdfs:comment "The Id of the last notification updating the AlarmRecord." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/objectInstance> a owl:ObjectProperty ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    nrm:isInvariant true ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/perceivedSeverity> a rdf:Property ;
+    rdfs:comment """This is Writable only if producer supports consumer
+to set perceivedSeverity to CLEARED""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/probableCause> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/proposedRepairActions> a rdf:Property ;
+    rdfs:comment """Indicates proposed repair actions. See definition in
+ITU-T Recommendation X.733 clause 8.1.2.12.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/rootCauseIndicator> a rdf:Property ;
+    rdfs:comment """It indicates that this AlarmInformation is the root cause
+of the events captured by the notifications whose identifiers are in
+the related CorrelatedNotification instances.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/securityAlarmDetector> a rdf:Property ;
+    rdfs:comment """It carries the identity of the detector of the security
+alarm.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/serviceProvider> a rdf:Property ;
+    rdfs:comment """It identifies the service-provider whose service is
+requested by the serviceUser and the service request provokes the
+generation of the security alarm.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/serviceUser> a rdf:Property ;
+    rdfs:comment """It identifies the service-user whose request for service
+provided by the serviceProvider led to the generation of the
+security alarm.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/specificProblem> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/stateChangeDefinition> a owl:ObjectProperty ;
+    rdfs:comment """Indicates MO attribute value changes associated with the
+alarm for state attributes of the monitored entity (state transitions).
+The change is reported with the name of the state attribute, the new
+value and an optional old value.
+See definition in ITU-T Recommendation X.733 [4] clause 8.1.2.10.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/stateChangeDefinition> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/thresholdInfo> a owl:ObjectProperty ;
+    rdfs:comment "Indicates the crossed threshold" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/trendIndication> a rdf:Property ;
+    rdfs:comment """Indicates if some observed condition is getting better,
+worse, or not changing. """ ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing/armTime> a rdf:Property ;
+    rdfs:comment """For a gauge threshold, the time at which the threshold
+was last re-armed, namely the time after the previous threshold
+crossing at which the hysteresis value of the threshold was
+exceeded thus again permitting generation of notifications when the
+threshold is crossed. For a counter threshold, the later of the time
+at which the threshold offset was last applied, or the time at
+which the counter was last initialized (for resettable counters)
+(Rec. ITU-T X. 733)""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing/observedMeasurement> a rdf:Property ;
+    rdfs:comment """The name of the monitored measurement that crossed the
+threshold and that caused the notification (Rec. ITU-T X. 733 """ ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing/observedValue> a rdf:Property ;
+    rdfs:comment """The value of the gauge or counter which crossed the
+threshold. This may be different from the threshold value if, for
+example, the gauge may only take on discrete values.
+Integer values are used for counters and float values for gauges
+(Rec. ITU-T X. 733). Note that a 'number' type property can contain
+both integers and floating point numbers.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing/thresholdLevel> a owl:ObjectProperty ;
+    rdfs:comment """In the case of a gauge the threshold level specifies
+a pair of threshold values, the first being the value of the crossed
+threshold and the second, its corresponding hysteresis; in the case
+of a counter the threshold level specifies only the threshold value
+(Rec. ITU-T X. 733).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis/high> a rdf:Property ;
+    rdfs:comment """Higher value of a threshold with hysteresis, the integer
+type is used for counter thresholds and the float type for gauge
+thresholds.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis/low> a rdf:Property ;
+    rdfs:comment """Lower value of a threshold with hysteresis, applicable
+only to gauge thresholds.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> ;
+    rdfs:range xsd:decimal .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd/down> a owl:ObjectProperty ;
+    rdfs:comment """Indicates for gauge thresholds that the threshold crossing
+occurred when going down, applicable only to gauge thresholds.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd/up> a owl:ObjectProperty ;
+    rdfs:comment """Indicates for counter and gauge thresholds that the
+threshold crossing occurred when going up.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> .
+
+<urn:3gpp:sa5:_3gpp-common-fm/eventType> a rdfs:Datatype ;
+    rdfs:comment "General category for the alarm." .
+
+<urn:3gpp:sa5:_3gpp-common-fm/probable-causes> a rdfs:Datatype ;
+    rdfs:comment "Values are from the (informative) Annex B of 3GPP TS 28.111." .
+
+<urn:3gpp:sa5:_3gpp-common-fm/severity-level> a rdfs:Datatype ;
+    rdfs:comment "The possible alarm severities" .
+

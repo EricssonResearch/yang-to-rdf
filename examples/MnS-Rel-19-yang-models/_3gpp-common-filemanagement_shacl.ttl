@@ -1,0 +1,109 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-filemanagement> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJobShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/id> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/id> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Location of the file incl. the file transfer protocol,
+and the file name for the case the file content cannot be retrieved
+by reading the 'fileContent' attribute.
+
+The allowed file transfer protocols are:
+- sftp
+- ftpes
+- https
+
+Examples:
+'sftp://companyA.com/datastore/fileName.xml',
+'https://companyA.com/ManagedElement=1/Files=1/File=1'
+""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/fileLocation> ;
+            sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Address of the notification recipient." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/notificationRecipientAddress> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """Setting this attribute to TRUE cancels the file download job.
+As specified in the definition of ProcessMonitor, cancellation is
+possible in the NOT_STARTED and RUNNING state. Setting the attribute
+to FALSE has no observable result.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/cancelJob> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> ;
+            sh:description "Provides monitoring for the file download job." ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/jobMonitor> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob> .
+
+<urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitorShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Id of the process. It is unique within a single
+multivalue attribute of type ProcessMonitor.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/id> ],
+        [ sh:description "Status must not be 'PARTIALLY_FAILED'." ;
+            sh:in ( "NOT_STARTED" "RUNNING" "CANCELLING" "FINISHED" "FAILED" "PARTIALLY_FAILED" "CANCELLED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/status> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description "Progress of the associated process as percentage" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/progressPercentage> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Additional textual qualification of the states
+'NOT_STARTED', 'CANCELLING' and 'RUNNING'.
+
+For specific processes, specific well-defined strings (e.g. string
+patterns or enums) may be defined as a specialisation.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/progressStateInfo> ],
+        [ sh:datatype xsd:string ;
+            sh:description """If status is FAILED resultStateInfo will be one of
+the following or empty.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/resultStateInfo> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Start time of the associated process, i.e. the time when the
+status changed from 'NOT_STARTED' to 'RUNNING'.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/startTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:datatype xsd:string ;
+            sh:description """Date and time when status changed to 'SUCCESS', 'CANCELLED',
+'FAILED' or 'PARTIALLY_FAILED'.
+
+If the time is in the future, it is the estimated time
+the process will end.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/endTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Time until the associated process is automatically cancelled.
+If set, the system decreases the timer with time. When it reaches zero
+the cancellation of the associated process is initiated by the
+MnS_Producer.
+If not set, there is no time limit for the process.
+
+Once the timer is set, the consumer can not change it anymore.
+If the consumer has not set the timer the MnS Producer may set it.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/timer> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> .
+

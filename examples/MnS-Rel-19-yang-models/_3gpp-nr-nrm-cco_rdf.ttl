@@ -1,0 +1,206 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction> a rdfs:Class ;
+    rdfs:comment """This IOC contains attributes to support the C-SON
+function of Capacity and Coverage optimization
+(See clause 7.2.3 in TS 28.313).
+NOTE: in the case where multiple CCOFunction MOIs exist at different
+levels of the containment tree, the CCOFunction MOI at the lower
+level overrides the CCOFunction MOIs at higher level(s) of the same
+containment tree.""" ;
+    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters>,
+        <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters>,
+        <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> a rdfs:Class ;
+    rdfs:comment """This IOC represents the properties of
+CCOOvershootCoverageParameters. CCOOvershootCoverageParameters is
+one realization of abstract CCOParameters IOC.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> a rdfs:Class ;
+    rdfs:comment """This IOC represents the properties of
+CCOPilotPollutionParameters. CCOPilotPollutionParameters is one
+realization of abstract CCOParameters IOC.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> a rdfs:Class ;
+    rdfs:comment """This IOC represents the properties of
+CCOWeakCoverageParameters. CCOWeakCoverageParameters is one
+realization of abstract CCOParameters IOC.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> a rdfs:Class ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of downlinkTransmitPower to optimize radio coverage.""" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction/cCOControl> a rdf:Property ;
+    rdfs:comment """This attribute determines whether the centralized
+SON CCO Function is enabled or disabled.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/antennaAzimuthRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of antennaAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/antennaTiltRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of antennaTilt to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/coverageShapeList> a rdf:Property ;
+    rdfs:comment """It indicates the coverage shape of specific sites which
+can be selected to optimize radio coverage.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> ;
+    rdfs:range xsd:unsignedShort .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/digitalAzimuthRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of digitalAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/digitalTiltRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of digitalTilt to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/downlinkTransmitPowerRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/antennaAzimuthRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of antennaAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/antennaTiltRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of antennaTilt to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/coverageShapeList> a rdf:Property ;
+    rdfs:comment """It indicates the coverage shape of specific sites which
+can be selected to optimize radio coverage.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> ;
+    rdfs:range xsd:unsignedShort .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/digitalAzimuthRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of digitalAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/digitalTiltRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of digitalTilt to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/downlinkTransmitPowerRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/antennaAzimuthRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of antennaAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/antennaTiltRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of antennaTilt to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/coverageShapeList> a rdf:Property ;
+    rdfs:comment """It indicates the coverage shape of specific sites which
+can be selected to optimize radio coverage.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> ;
+    rdfs:range xsd:unsignedShort .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/digitalAzimuthRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of digitalAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/digitalTiltRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of digitalTilt to optimize radio coverage.
+units 0.1 degree""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/downlinkTransmitPowerRange> a owl:ObjectProperty ;
+    rdfs:comment """It indicates adjustment range (including maximum value,
+minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange/maxValue> a rdf:Property ;
+    rdfs:comment "It indicates the maximum value of the parameter." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
+    rdfs:range xsd:long .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange/minValue> a rdf:Property ;
+    rdfs:comment "It indicates the minimum value of the parameter." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
+    rdfs:range xsd:long .
+

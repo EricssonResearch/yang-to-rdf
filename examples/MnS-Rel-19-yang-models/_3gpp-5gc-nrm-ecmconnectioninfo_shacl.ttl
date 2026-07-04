@@ -1,0 +1,84 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLocShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc/civicLocations> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/geographicalCoordinates> ;
+            sh:description """This refers to the Topological Service Area,
+(see clause 7.3.3.2 in TS 23.558) that is defined as a datatype
+(see clause 6.3.8).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc/geographicalCoordinates> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocationShape> a sh:NodeShape ;
+    sh:property [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> ;
+            sh:description """This refers to the Geographical Service Area,
+(see clause 7.3.3.3 in TS 23.558 that is defined as a datatype
+(see clause 6.3.4).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation/geographicalLocation> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> ;
+            sh:description """This refers to the Topological Service Area,
+(see clause 7.3.3.2 in TS 23.558) that is defined as a datatype
+(see clause 6.3.7). """ ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation/topologicalLocation> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceAreaShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:int ;
+            sh:description """It represents the list of NR cells.
+
+The cell ID, together with the gNB Identifier (using gNBId of the
+parent GNBCUCPFunction or GNBDUFunction or ExternalCUCPFunction),
+identifies a NR cell within a PLMN. This is the NR Cell Identity(NCI).
+See subclause 8.2 of TS 38.300""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/cellIDList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> ;
+            sh:description "It represents the list of tracking areas within a PLMN." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/trackingAreaIdList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/servingPLMN> ;
+            sh:description "It specifies the PLMN to be served." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/servingPLMN> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """This parameter defines address of an UPF instance,
+It can be IP address (either IPv4 address (See RFC 791) or
+IPv6 address (See RFC 2373) or FQDN (See TS 23.003). """ ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFIpAddress> ],
+        [ sh:description "This attribute holds the DN of an UPF instance." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfoShape> a sh:NodeShape ;
+    sh:property [ sh:description "It indicates the type of a NF instance." ;
+            sh:in ( "PCF" "NEF" "SCEF" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFType> ],
+        [ sh:datatype xsd:string ;
+            sh:description """This parameter defines address of a NF instance,
+It can be IP address (either IPv4 address (See RFC 791) or
+IPv6 address (See RFC 2373) or FQDN (See TS 23.003). """ ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFIpAddress> ],
+        [ sh:description "This attribute holds the DN of a NF instance." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> .
+

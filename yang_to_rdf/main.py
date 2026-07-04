@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from yang_to_rdf.input_handler import collect_yang_files
+from yang_to_rdf.output_writer import module_stem, split_graph
 from yang_to_rdf.rdf_converter import YangToRDFConverter
 from yang_to_rdf.reference_layer import ReferenceLayerBuilder
 from yang_to_rdf.shacl_converter import YangToSHACLConverter
@@ -20,6 +21,8 @@ def main():
     p.add_argument("--format", choices=["rdf", "shacl", "both"], default="both")
     p.add_argument("--no-inference", action="store_true",
                    help="Skip the reference extension layer (<stem>_refs.ttl)")
+    p.add_argument("--single-file", action="store_true",
+                   help="Write one merged TTL per layer instead of one file per YANG module (default: split per module)")
     p.add_argument("--output", "-o", default="output")
     p.add_argument("--version", action="version", version="%(prog)s 0.2.0")
     args = p.parse_args()
@@ -45,25 +48,67 @@ def main():
     print(f"Parsed {len(model.iocs)} IOCs, {len(model.typedefs)} typedefs")
 
     os.makedirs(args.output, exist_ok=True)
-    stem = Path(args.input[0]).stem
 
-    if args.format in ("rdf", "both"):
-        g = YangToRDFConverter(model).convert()
-        path = os.path.join(args.output, f"{stem}_rdf.ttl")
-        g.serialize(destination=path, format="turtle")
-        print(f"RDF TBox -> {path} ({len(g)} triples)")
+    if args.single_file:
+        # Original behavior: one merged file per layer
+        stem = Path(args.input[0]).stem
 
-    if args.format in ("shacl", "both"):
-        g = YangToSHACLConverter(model).convert()
-        path = os.path.join(args.output, f"{stem}_shacl.ttl")
-        g.serialize(destination=path, format="turtle")
-        print(f"SHACL shapes -> {path} ({len(g)} triples)")
+        if args.format in ("rdf", "both"):
+            g = YangToRDFConverter(model).convert()
+            path = os.path.join(args.output, f"{stem}_rdf.ttl")
+            g.serialize(destination=path, format="turtle")
+            print(f"RDF TBox -> {path} ({len(g)} triples)")
 
-    if not args.no_inference:
-        g = ReferenceLayerBuilder(model).build()
-        path = os.path.join(args.output, f"{stem}_refs.ttl")
-        g.serialize(destination=path, format="turtle")
-        print(f"Reference layer -> {path} ({len(g)} triples)")
+        if args.format in ("shacl", "both"):
+            g = YangToSHACLConverter(model).convert()
+            path = os.path.join(args.output, f"{stem}_shacl.ttl")
+            g.serialize(destination=path, format="turtle")
+            print(f"SHACL shapes -> {path} ({len(g)} triples)")
+
+        if not args.no_inference:
+            g = ReferenceLayerBuilder(model).build()
+            path = os.path.join(args.output, f"{stem}_refs.ttl")
+            g.serialize(destination=path, format="turtle")
+            print(f"Reference layer -> {path} ({len(g)} triples)")
+    else:
+        # Split mode: one file per module per layer, plus shared index.ttl
+        from rdflib import Graph
+        index = Graph()
+        file_count = 0
+        module_count = 0
+
+        layers = []
+        if args.format in ("rdf", "both"):
+            layers.append(("rdf", YangToRDFConverter(model).convert()))
+        if args.format in ("shacl", "both"):
+            layers.append(("shacl", YangToSHACLConverter(model).convert()))
+        if not args.no_inference:
+            layers.append(("refs", ReferenceLayerBuilder(model).build()))
+
+        for layer_name, layer_graph in layers:
+            mods, leftover = split_graph(layer_graph)
+            # Accumulate leftovers into shared index (carry prefixes for readable ttl)
+            for prefix, ns in leftover.namespaces():
+                index.bind(prefix, ns)
+            for t in leftover:
+                index.add(t)
+
+            # Write per-module files
+            for urn, mg in mods.items():
+                stem = module_stem(urn)
+                path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
+                mg.serialize(destination=path, format="turtle")
+                file_count += 1
+
+            if layer_name == "rdf":  # Count modules once
+                module_count = len(mods)
+
+        # Write shared index.ttl
+        index_path = os.path.join(args.output, "index.ttl")
+        index.serialize(destination=index_path, format="turtle")
+        file_count += 1
+
+        print(f"Split output -> {args.output}/ ({module_count} modules, {file_count} files)")
 
     print("Done.")
 

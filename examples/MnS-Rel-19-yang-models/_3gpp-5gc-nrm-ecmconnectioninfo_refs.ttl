@@ -1,0 +1,13 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFRef> nrm:candidate "UPF" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFRef> nrm:candidate "_5GCNF" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

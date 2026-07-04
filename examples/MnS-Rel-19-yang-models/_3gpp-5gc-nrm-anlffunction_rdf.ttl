@@ -1,0 +1,35 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> a rdfs:Class ;
+    rdfs:comment "5G Core AnLF contained by NWDAF" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
+    rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction
+(See TS 28.105) .""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/activationStatus> a rdf:Property ;
+    rdfs:comment "It indicates the activation status of the AnLF" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/mLModelRefList> a owl:ObjectProperty ;
+    rdfs:comment """This attribute holds a DN list of MLModel ¨
+(See TS 28.105).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
+    nrm:isReference true .
+

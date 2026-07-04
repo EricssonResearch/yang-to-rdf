@@ -1,0 +1,466 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSetShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet/id> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+            sh:description "The list of predefined PCC rules." ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet/PredefinedPccRules> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRulesShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "It identifies the PCC rule." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/pccRuleId> ],
+        [ sh:datatype xsd:string ;
+            sh:description """A reference to the application detection filter configured
+at the UPF.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/applicationId> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It indicates the time (in date-time format) when the decision
+data shall be deactivated.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/deactivationTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:description """It provides the condition of access type of the UE when the
+session AMBR shall be enforced.""" ;
+            sh:in ( "3GPP_ACCESS" "NON_3GPP_ACCESS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/accessType> ],
+        [ sh:description """It provides the condition of RAT type of the UE when the
+session AMBR shall be enforced.""" ;
+            sh:in ( "NR" "EUTRA" "WLAN" "VIRTUAL" "NBIOT" "WIRELINE" "WIRELINE_CABLE" "WIRELINE_BBF" "LTE-M" "NR_U" "EUTRA_U" "TRUSTED_N3GA" "TRUSTED_WLAN" "UTRA" "GERA" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/ratType> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It identifies the time period between the start of two bursts
+in reference to the TSN GM.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/periodicity> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It Indicates the arrival time (in date-time format) of the
+data burst in reference to the TSN GM.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/burstArrivalTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It identifies the time period between the start of two bursts
+in reference to the TSN GM.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/periodicity> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It Indicates the arrival time (in date-time format) of the
+data burst in reference to the TSN GM.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/burstArrivalTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Indicates whether the EAS rediscovery is required for the application." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/easRedisIndRequired> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Indicates the (g)PTP domain that the (TSN)AF is located in." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/tscaiTimeDom> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Indicates the capability for AF to adjust the burst sending time." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/capBatNotificationCapable> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It is the ATSSS rule application descriptor." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/appDescriptor> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Indicates whether QoS flow parameter signalling to the UE is enabled (TRUE), when the SMF is notified by the NG-RAN of changes in the fulfilled QoS situation," ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/ueNotifEnabled> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Determines the order of TFT packet filter allocation for PCC rules." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/packFiltAllPrec> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Indicates the Network Function Service Consumer features supported per service." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/nscSupportedFeats> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+            sh:description "The list of IP flow packet filter information." ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/flowInfo> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+            sh:description "The list of QoS control policy data." ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/qosDataInfo> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+            sh:description "The list of QoS control policy data." ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/qosDataInfo> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
+            sh:description "The list of traffic control policy data." ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/trafficControlDataInfo> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description "Indicates the content version of the PCC rule." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/contentVersion> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """It indicates the order in which this PCC rule is applied
+relative to other PCC rules within the same PDU session.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/precedence> ],
+        [ sh:description """Indicates the protocol used for signalling between the UE
+and the AF, the default value is NO_INFORMATION.""" ;
+            sh:in ( "NO_INFORMATION" "SIP" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/afSigProtocol> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates the application relocation possibility, the
+default value is NO_INFORMATION.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/isAppRelocatable> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "It Indicates whether UE IP address should be preserved." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/isUeAddrPreserved> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It uniquely identifies the condition data." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/condId> ],
+        [ sh:datatype xsd:string ;
+            sh:description """ It indicates the time (in date-time format) when the decision
+data shall be activated.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/activationTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "It defines a packet filter for an IP flow." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/flowDescription> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the destination MAC address formatted in the
+hexadecimal .""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/destMacAddr> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "It indicates if the packet shall be sent to the UE." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/packetFilterUsage> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It contains the Ipv4 Type-of-Service and mask field or the Ipv6 Traffic-Class field and mask field." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/tosTrafficClass> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It is the security parameter index of the IPSec packet." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/spi> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It specifies the Ipv6 flow label header field." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/flowLabel> ],
+        [ sh:description "It indicates the direction/directions that a filter is applicable." ;
+            sh:in ( "DOWNLINK" "UPLINK" "BIDIRECTIONAL" "UNSPECIFIED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/flowDirection> ],
+        [ sh:datatype xsd:string ;
+            sh:description "A two-octet string that represents the Ethertype." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/ethType> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It contains the flow description for the Uplink or Downlink IP flow. It shall be present when the ethtype is IP." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/fDesc> ],
+        [ sh:description "It indicates the packet filter direction." ;
+            sh:in ( "DOWNLINK" "UPLINK" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/fDir> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the source MAC address formatted in the
+hexadecimal notation.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/sourceMacAddr> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the Customer-VLAN and/or Service-VLAN tags
+containing the VID, PCP/DEI fields as defined in IEEE 802.1Q and
+IETF RFC 7042. The first/lower instance in the array stands for the
+Customer-VLAN tag and the second/higher instance in the array stands
+for the Service-VLAN tag.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/vlanTags> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It specifies the source MAC address end. If this attribute is present, the sourceMacAddr attribute specifies the source MAC address start. E.g. srcMacAddrEnd with value 00-10-A4-23-3E-FE and sourceMacAddr with value 00-10-A4-23-3E-02 means all MAC addresses from 00-10-A4-23-3E-02 up to and including 00-10-A4-23-3E-FE." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/srcMacAddrEnd> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It specifies the destination MAC address end. If this attribute is present, the destMacAddr attribute specifies the destination MAC address start." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/destMacAddrEnd> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It is the identifier of the packet filter." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/packFiltId> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "It identifies the QoS control policy data for a PCC rule." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/qosId> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description "It indicates the 5QI value." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/fiveQIValue> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Indicates whether the QoS information is reflective for the corresponding non-GBR service data flow" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/reflectiveQos> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It indicates, by containing the same value, what PCC rules may share resource in downlink direction." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/sharingKeyDl> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It indicates, by containing the same value, what PCC rules may share resource in uplink direction." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/sharingKeyUl> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description "It indicates the downlink maximum rate for lost packets that can be tolerated for the service data flow." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/maxPacketLossRateDl> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description "It indicates the uplink maximum rate for lost packets that can be tolerated for the service data flow." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/maxPacketLossRateUl> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "It denotes the largest amount of data that is required to be transferred within a period of 5G-AN PDB, see TS 29.512" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/extMaxDataBurstVol> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It represents the maximum uplink bandwidth." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/maxbrUl> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It represents the maximum downlink bandwidth." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/maxbrDl> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It represents the guaranteed uplink bandwidth." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/gbrUl> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It represents the guaranteed downlink bandwidth." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/gbrDl> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description "It defines the relative importance of a resource request." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/priorityLevel> ],
+        [ sh:description "It defines whether a service data flow may get resources that were already assigned to another service data flow with a lower priority level." ;
+            sh:in ( "NOT_PREEMPT" "MAY_PREEMPT" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/preemptCap> ],
+        [ sh:description "It defines whether a service data flow may lose the resources assigned to it in order to admit a service data flow with higher priority level." ;
+            sh:in ( "NOT_PREEMPTABLE" "PREEMPTABLE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/preemptVuln> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "It indicates whether notifications are requested from 3GPP NG-RAN when the GFBR can no longer (or again) be guaranteed for a QoS Flow during the lifetime of the QoS Flow." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/qosNotificationControl> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:description "It indicates whether the redirect instruction is enabled." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo/redirectEnabled> ],
+        [ sh:description "It indicates the type of redirect address." ;
+            sh:in ( "IPV4_ADDR" "IPV6_ADDR" "URL" "SIP_URI" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo/redirectAddressType> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It indicates the address of the redirect server." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo/redirectServerAddress> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLocShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "It represents the DNAI (Data network access identifier)." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/dnai> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It defines the Ipv4 address of the tunnel end point in the
+data network, formatted in the dotted decimal notation.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/ipv4Addr> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It defines the Ipv6 address of the tunnel end point in the
+data network.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/ipv6Addr> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """ It defines the UDP port number of the tunnel end point in
+the data network, see TS 29.571""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/portNumber> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It identifies the routing profile." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/routeProfId> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """It univocally identifies the traffic control policy data
+within a PDU session.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/tcId> ],
+        [ sh:description """It represents whether the service data flow(s) are enabled
+or disabled.""" ;
+            sh:in ( "ENABLED-UPLINK" "ENABLED-DOWNLINK" "ENABLED" "DISABLED" "REMOVED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/flowStatus> ],
+        [ sh:description "It indicates the type of DNAI change, see TS 29.512" ;
+            sh:in ( "EARLY" "EARLY_LATE" "LATE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/dnaiChgType> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It identifies whether the AF acknowledgement of UP path
+event notification is expected.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/afAckInd> ],
+        [ sh:description "It indicates the applicable traffic steering functionality." ;
+            sh:in ( "MPTCP" "ATSSS_LL" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/steerFun> ],
+        [ sh:description "It indicates the value of the steering mode, see TS 29.512." ;
+            sh:in ( "ACTIVE_STANDBY" "LOAD_BALANCING" "SMALLEST_DELAY" "PRIORITY_BASED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/steerModeValue> ],
+        [ sh:description "It indicates the active access, see TS 29.571." ;
+            sh:in ( "3GPP_ACCESS" "NON_3GPP_ACCESS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/active> ],
+        [ sh:description "It indicates the Standby access, see TS 29.571." ;
+            sh:in ( "3GPP_ACCESS" "NON_3GPP_ACCESS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/standby> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """It indicates the traffic load to steer to the 3GPP Access
+expressed in one percent.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/threeGLoad> ],
+        [ sh:description "It indicates the high priority access." ;
+            sh:in ( "3GPP_ACCESS" "NON_3GPP_ACCESS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/prioAcc> ],
+        [ sh:description "It indicates the value of the steering mode, see TS 29.512." ;
+            sh:in ( "ACTIVE_STANDBY" "LOAD_BALANCING" "SMALLEST_DELAY" "PRIORITY_BASED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/steerModeValue> ],
+        [ sh:description "It indicates the active access, see TS 29.571." ;
+            sh:in ( "3GPP_ACCESS" "NON_3GPP_ACCESS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/active> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "It indicates whether the redirect instruction is enabled." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/redirectEnabled> ],
+        [ sh:description "It indicates the Standby access, see TS 29.571." ;
+            sh:in ( "3GPP_ACCESS" "NON_3GPP_ACCESS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/standby> ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """It indicates the traffic load to steer to the 3GPP Access
+expressed in one percent.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/threeGLoad> ],
+        [ sh:description "It indicates the high priority access." ;
+            sh:in ( "3GPP_ACCESS" "NON_3GPP_ACCESS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/prioAcc> ],
+        [ sh:description "It indicates whether the service data flow, corresponding to the service data flow template, is allowed or not allowed." ;
+            sh:in ( "ALLOWED" "NOT_ALLOWED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/mulAccCtrl> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo> ;
+            sh:description """The list of redirect information indicating whether the
+detected application traffic should be redirected to another
+controlled address.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/redirectInfo> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> ;
+            sh:description """The list of location which the traffic shall be routed to
+for the AF request.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/routeToLoc> ],
+        [ sh:description "It indicates the type of redirect address." ;
+            sh:in ( "IPV4_ADDR" "IPV6_ADDR" "URL" "SIP_URI" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/redirectAddressType> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It indicates the address of the redirect server." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/redirectServerAddress> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates whether applicat'on's start or stop notification
+is to be muted.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/muteNotif> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It references to a pre-configured traffic steering policy for downlink traffic at the SMF, see TS 29.512" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/trafficSteeringPolIdDl> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It references to a pre-configured traffic steering policy for
+uplink traffic at the SMF, see TS 29.512""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/trafficSteeringPolIdUl> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It provides notification address (Uri) of AF receiving the
+event notification.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/notificationUri> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It is used to set the value of Notification Correlation ID in
+the notification sent by the SMF, see TS 29.512""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/notifCorreId> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> .
+

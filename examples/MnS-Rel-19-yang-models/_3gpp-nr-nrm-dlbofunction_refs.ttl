@@ -1,0 +1,13 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/aIMLInferenceFunctionRefList> nrm:candidate "AIMLInferenceFunction" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/mLModelRefList> nrm:candidate "MLModel" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

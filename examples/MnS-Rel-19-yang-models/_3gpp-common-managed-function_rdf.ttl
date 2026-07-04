@@ -1,0 +1,123 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/Operation> a rdfs:Class ;
+    rdfs:comment """Set of operations supported by the managed NF
+service instance""" .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> a rdfs:Class ;
+    rdfs:comment """This attribute contains the parameter list for the control
+and monitoring of power, energy and environmental parameters of
+ManagedFunction instance(s). """ .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> a rdfs:Class ;
+    rdfs:comment """This attribute contains the parameter set of the VNF
+instance(s) corresponding to an NE. The presence of this attribute
+indicates that the ManagedFunction represented by the MOI is a
+virtualized function """ .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/Operation/allowedNFTypes> a rdf:Property ;
+    rdfs:comment """The type of the managed NF service instance
+The specifc values allowed are described in TS 23.501""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/Operation/name> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/Operation/operationSemantics> a rdf:Property ;
+    rdfs:comment "Semantics type of the operation." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/environmentType> a rdf:Property ;
+    rdfs:comment """The type of environment where the managedFunction
+instance resides.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/equipmentType> a rdf:Property ;
+    rdfs:comment """The type of equipment where the managedFunction
+instance resides.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/powerInterface> a rdf:Property ;
+    rdfs:comment "The type of power." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteAltitude> a rdf:Property ;
+    rdfs:comment """The altitude of the site where the ManagedFunction
+instance resides, in the unit of meter. This attribute is
+optional for BTSFunction, RNCFunction, GNBDUFunction and
+NRSectorCarrier instance(s).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:range xsd:decimal .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteDescription> a rdf:Property ;
+    rdfs:comment """An operator defined description of the site where
+the ManagedFunction instance resides.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteIdentification> a rdf:Property ;
+    rdfs:comment """The identification of the site where the
+ManagedFunction resides.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteLatitude> a rdf:Property ;
+    rdfs:comment """The latitude of the site where the ManagedFunction
+instance resides, based on World Geodetic System (1984 version)
+global reference frame (WGS 84). Positive values correspond to
+the northern hemisphere. This attribute is optional
+for BTSFunction, RNCFunction, GNBDUFunction and
+NRSectorCarrier instance(s).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:range xsd:decimal .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteLongitude> a rdf:Property ;
+    rdfs:comment """The longitude of the site where the ManagedFunction
+instance resides, based on World Geodetic System (1984 version)
+global reference frame (WGS 84). Positive values correspond to
+degrees east of 0 degrees longitude. This attribute is optional
+for BTSFunction, RNCFunction, GNBDUFunction and
+NRSectorCarrier
+instance(s).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:range xsd:decimal .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/autoScalable> a rdf:Property ;
+    rdfs:comment """Indicator of whether the auto-scaling of this
+VNF instance is enabled or disabled.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/flavourId> a rdf:Property ;
+    rdfs:comment """Identifier of the VNF Deployment Flavour applied to this
+VNF instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/vnfInstanceId> a rdf:Property ;
+    rdfs:comment "VNF instance identifier" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/vnfdId> a rdf:Property ;
+    rdfs:comment """Identifier of the VNFD on which the VNF instance is based.
+The absence of the leaf or a string length of zero for vnfInstanceId
+means the VNF instance(s) does not exist (e.g. has not been
+instantiated yet, has already been terminated).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+    rdfs:range xsd:string .
+

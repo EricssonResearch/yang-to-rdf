@@ -1,0 +1,25 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IABShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/id> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> ;
+            sh:description """It is IP configutation for OAM connectivity used
+by a mobile NR node (e.g., IAB-node, MWAB-node)
+to establish connection with management system as specified
+in TS 28.314[x] clause 6.1.2""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/mnrOamIPConfig> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> ;
+            sh:description """This parameter specifies the current location
+of mobile NR node (e.g., IAB-node, MWAB-node).""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/currentLocation> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> .
+

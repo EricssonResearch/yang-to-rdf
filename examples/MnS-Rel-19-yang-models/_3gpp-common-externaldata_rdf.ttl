@@ -1,0 +1,116 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> a rdfs:Class ;
+    rdfs:comment """It describes the concrete scope which the external management
+data is applicable.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> a rdfs:Class ;
+    rdfs:comment """This IOC specifies a type of external management data and
+the associated meta data.
+
+External management data is data which enrich 3GPP specified management
+data and management data specified based on 3GPP defined management data
+definition templates and frameworks. External management data can be
+produced by data sources of different nature (e.g. sensors) with different
+formats. Details see clause 6.4.1 in TS 28.537.
+
+MnS producer may use this IOC to describe external management data.
+
+For example, MnS producer publishes all external management data which
+are available.
+
+MnS consumer may use this IOC to configure, discover or request external
+management data. For example, MnS consumer discovers and requests certain
+types of external management data.
+
+The ExternalDataType IOC can be name-contained by SubNetwork.
+
+Attribute externalDataType defines the type of external management data.
+
+Attribute mediaLocation indicates the address from which the described
+external management data can be retrieved.
+
+The value of mediaLocation, if present, can provide one or several
+directories or the address where the described external management data
+can be retrieved. The different directories can be used to group the
+external management data, e.g., one directory per geographical area or
+per time period. For example, the value of the mediaLocation attribute
+can be given by
+
+sftp://companyA.com/datastore/weatherforecasts/
+
+In this case a potential file with name 'weatherforecastMunicht0.xml'
+needs to be retrieved using 'sftp' from
+
+sftp://companyA.com/datastore/weatherforecasts/weatherforecastMunicht0.xml.
+
+Attribute externalDataTypeSchema indicates the URI where the MnS consumer
+can get the schema to parse the external management data.
+
+Attribute externalDataScope is used to describe the concrete scope (e.g.,
+geographical areas) which the external management data is applicable.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/geoAreas> a owl:ObjectProperty ;
+    rdfs:comment "It describes the concrete geographical area(s)" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesExcluded> a owl:ObjectProperty ;
+    rdfs:comment """List of managed object instances which are not considered
+in relation to the described data. Each object instance is identified
+by its DN.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesIncluded> a owl:ObjectProperty ;
+    rdfs:comment """List of managed object instances to which the described
+data are related. Each object instance is identified by its DN.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataScope> a owl:ObjectProperty ;
+    rdfs:comment """It describes the concrete scope which the external management
+data is applicable.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataType> a rdf:Property ;
+    rdfs:comment """Type of external management data as defined by the
+implementation.
+
+Examples: 'Electronic Map', 'Camara Data', 'UE path', 'Camera Photo',
+'Event Schedule”""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataTypeSchema> a rdf:Property ;
+    rdfs:comment """URI of the schema to parse a type of external management data.
+The detailed schema definition for the different types of external
+management data is out of scope of this specification.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/mediaLocation> a rdf:Property ;
+    rdfs:comment """URI of the media which includes the transfer protocol.
+
+Examples:
+sftp://companyA.com/datastore/fileName.xml
+https://companyA.com/ManagedElement=1/Files=1/File=1""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:range xsd:string .
+

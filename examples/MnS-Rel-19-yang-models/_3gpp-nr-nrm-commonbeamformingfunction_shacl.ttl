@@ -1,0 +1,39 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunctionShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/id> ],
+        [ sh:datatype xsd:int ;
+            sh:description """Identifies the sector carrier coverage shape described by
+the envelope of the contained SSB beams. The coverage shape is
+implementation dependent.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/coverageShape> ],
+        [ sh:datatype xsd:int ;
+            sh:description """Digitally-controlled azimuth through beamforming.
+It represents the horizontal pointing direction of the antenna
+relative to the antenna bore sight, representing the total
+non-mechanical horizontal pan of the selected coverageShape.
+Positive value gives azimuth to the right and negative value gives
+an azimuth to the left.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/digitalAzimuth> ],
+        [ sh:datatype xsd:int ;
+            sh:description """Digitally-controlled tilt through beamforming.
+It represents the vertical pointing direction of the antenna relative
+to the antenna bore sight, representing the total non-mechanical
+vertical tilt of the selected coverageShape. Positive value gives
+downwards tilt and negative value gives upwards tilt.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/digitalTilt> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> .
+

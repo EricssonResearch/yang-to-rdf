@@ -1,0 +1,10 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/nRSectorCarrierRef> rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork-nrsectorcarrier/NRSectorCarrier> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+

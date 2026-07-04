@@ -1,0 +1,9 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<urn:3gpp:sa5:_3gpp-common-mecontext> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-mecontext/MeContext/dnPrefix> nrm:candidate "DnPrefix" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
