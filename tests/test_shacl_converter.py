@@ -1,13 +1,7 @@
 # tests/test_shacl_converter.py
-import glob, os
 from rdflib import RDF, URIRef
-from yang_to_rdf.yang_parser import parse
 from yang_to_rdf.shacl_converter import YangToSHACLConverter, SH
-
-def _graph(yang_dir, external_yams_dir):
-    files = sorted(glob.glob(os.path.join(yang_dir, "_3gpp*.yang")))
-    model, _ = parse(files, [yang_dir, external_yams_dir])
-    return YangToSHACLConverter(model).convert()
+from tests._shared import cached_shacl_graph as _graph
 
 AMF_SHAPE = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunctionShape")
 AMF = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction")

@@ -1,12 +1,10 @@
 # tests/test_type_resolver.py
-import glob, os
-from yang_to_rdf.pyang_context import build_context
 from yang_to_rdf.type_resolver import resolve_type, DN_TYPEDEFS
 from rdflib.namespace import XSD
+from tests._shared import cached_context
 
 def _ctx(yang_dir, external_yams_dir):
-    files = sorted(glob.glob(os.path.join(yang_dir, "_3gpp*.yang")))
-    return build_context(files, [yang_dir, external_yams_dir])[0]
+    return cached_context(yang_dir, external_yams_dir)[0]
 
 def _find_leaf(ctx, module, leaf_name):
     m = ctx.get_module(module)

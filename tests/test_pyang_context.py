@@ -1,9 +1,9 @@
 import glob, os
 from yang_to_rdf.pyang_context import build_context
+from tests._shared import cached_context
 
 def test_full_set_validates_cleanly(yang_dir, external_yams_dir):
-    files = sorted(glob.glob(os.path.join(yang_dir, "_3gpp*.yang")))
-    ctx, errors = build_context(files, [yang_dir, external_yams_dir])
+    ctx, errors = cached_context(yang_dir, external_yams_dir)
     assert errors == [], f"expected clean validation, got: {errors[:5]}"
     modules = [m for m in ctx.modules.values() if m.keyword == "module"]
     assert len(modules) == 118
