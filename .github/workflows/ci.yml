@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+      - name: Sync dependencies
+        run: uv sync --all-extras --dev
+      - name: Run tests
+        # The 3GPP YANG dataset is not redistributed; dataset-dependent tests
+        # skip automatically when MnS-Rel-19-yang-models.zip is absent. Set the
+        # YANG_TEST_ZIP env var to a local copy to run the full suite.
+        run: uv run pytest -v

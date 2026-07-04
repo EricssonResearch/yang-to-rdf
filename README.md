@@ -4,15 +4,29 @@ Convert YANG modules to RDF TBox vocabularies and SHACL validation shapes.
 
 Designed for 3GPP NRM (TS 28.541) YANG modules but applicable to any YANG schema.
 
+A committed, browsable example of the generated output for the 3GPP SA5 MnS
+Release-19 set is in [`examples/`](examples/) — you can inspect the vocabulary
+without running the tool. The source YANG modules are **not** redistributed here
+(see below for how to obtain them).
+
 ## Install
 
 ```bash
-uv sync
+uv sync            # from a clone
+# or
+pip install yang-to-rdf
 ```
+
+## Getting the YANG modules
+
+This tool does not ship 3GPP YANG. 3GPP SA5 publishes the MnS YANG models at
+<https://forge.3gpp.org/rep/sa5/MnS> — use the `yang-models/` folder, which
+bundles the `external-yams/` (IETF) dependencies the models import. Zip that
+folder (e.g. as `MnS-Rel-19-yang-models.zip`) and pass it to the converter.
 
 ## Usage
 
-**Important:** The converter requires a **complete** YANG module set with its `external-yams/` folder. Single modules or incomplete sets will fail validation. Download complete sets from the [3GPP MnS forge repository](https://forge.3gpp.org/rep/sa5/MnS).
+**Important:** The converter requires a **complete** YANG module set with its `external-yams/` folder. Single modules or incomplete sets will fail validation.
 
 ```bash
 # Convert the complete MnS Release 19 dataset (recommended)
@@ -77,10 +91,10 @@ Properties are path-scoped to avoid multi-domain conflicts:
 | `augment` adding `list X` | `nrm:nameContains` (containment) |
 | `uses ManagedFunctionGrp` | `rdfs:subClassOf` (inheritance) |
 | `leaf` | `rdf:Property` with `rdfs:domain` + `rdfs:range` |
-| `leaf` ending in `Ref`/`RefList` | `owl:ObjectProperty` + `nrm:isReference` (DN reference with open range in base; inferred ranges in `_refs.ttl`) |
+| `leaf` typed as `DistinguishedName`/`Dn`/`LDN` | `owl:ObjectProperty` + `nrm:isReference` (DN reference with open range in base; inferred ranges in `_refs.ttl`) |
 | `typedef` | `rdfs:Datatype` |
 | `list` inside `attributes` | `rdfs:Class` + `owl:ObjectProperty` + `nrm:hasAttribute` (3GPP <<dataType>> structured attributes) |
-| `choice/case` | `sh:xone` in SHACL |
+| `choice`/`case` leaves | flattened onto the owning class (mutual-exclusivity is not currently emitted as `sh:xone`) |
 
 ### NRM Vocabulary
 
@@ -93,7 +107,10 @@ A small `nrm:` vocabulary defines 3GPP-specific relationships:
 
 ### DN Reference Inference
 
-3GPP YANG leaves ending in `Ref`, `Refs`, `RefList`, or `List` are Distinguished Name references to other IOCs. The base RDF layer marks these as `nrm:isReference` with an open range (no `rdfs:range` triple). The separate reference extension layer (`_refs.ttl`) infers ranges by stripping suffixes and matching IOC names:
+Detection and range inference are two separate steps:
+
+1. **Detection (by type, reliable):** a leaf is treated as a Distinguished Name reference when its resolved type chain bottoms out at `DistinguishedName`, `Dn`, or `LDN`. The base RDF layer marks these as `owl:ObjectProperty` + `nrm:isReference` with an open range (no `rdfs:range` triple). This does not rely on the leaf name.
+2. **Range inference (by name, heuristic):** the separate reference extension layer (`_refs.ttl`) guesses the target IOC by stripping a trailing `Ref`, `Refs`, `RefList`, or `List` from the leaf name and matching against IOC class names:
 
 - **Unambiguous** (121 for the Rel-19 set; varies by module set): Single matching IOC → `rdfs:range` triple with `nrm:confidence "unambiguous"`
 - **Unresolved**: Zero or multiple matches → no range, `nrm:confidence "unresolved"`, candidate name recorded

@@ -11,3 +11,6 @@ output/
 
 # YANG dataset (not distributed with the repo; download separately)
 *.zip
+
+# Internal build/process scratch
+.superpowers/

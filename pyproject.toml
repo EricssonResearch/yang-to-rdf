@@ -2,7 +2,7 @@
 name = "yang-to-rdf"
 version = "0.2.0"
 description = "Convert YANG modules to RDF TBox vocabularies and SHACL validation shapes for 3GPP NRM and telecom network models"
-authors = [{name = "Jean Martins", email = "jean.martins@gmail.com"}]
+authors = [{name = "Jean Martins", email = "jean.martins@ericsson.com"}]
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
@@ -22,6 +22,10 @@ dependencies = [
     "pyang>=2.6.0",
     "rdflib>=7.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/EricssonResearch/yang-to-rdf"
+Repository = "https://github.com/EricssonResearch/yang-to-rdf"
 
 [project.scripts]
 yang-to-rdf = "yang_to_rdf.main:main"
