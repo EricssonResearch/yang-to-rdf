@@ -1,0 +1,49 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/epTransportRef> nrm:candidate "EpTransport" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

@@ -1,0 +1,58 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Files/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/configurable5QISetRef> nrm:candidate "Configurable5QISet" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/dynamic5QISetRef> rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/iABRef> rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/nRECMappingRuleRef> nrm:candidate "NRECMappingRule" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

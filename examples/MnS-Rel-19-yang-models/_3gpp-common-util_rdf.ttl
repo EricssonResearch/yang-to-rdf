@@ -1,0 +1,138 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> a rdfs:Class ;
+    rdfs:comment """This IOC defines one or several conditions and monitors
+whether these conditions are satisfied. It can be name-contained by
+SubNetwork or ManagedElement.
+
+The attribute condition allows to configure one or several conditions.
+Possible conditions include but are not limited to scheduling
+requirements or parameter settings e.g. evaluation if a configuration
+parameter is above a certain threshold or has a certain values.
+
+The boolean attribute conditionStatus switches between TRUE and FALSE
+depending upon whether the configured conditions are fulfilled or not.
+This attribute makes the internal ConditionMonitor status observable.""" .
+
+<urn:3gpp:sa5:_3gpp-common-util/Scheduler> a rdfs:Class ;
+    rdfs:comment """This IOC defines a time scheduler.
+It can be name-contained by SubNetwork or ManagedElement.
+
+The attribute schedulingTimes allows to configure one or several
+active time intervals. The active intervals can be configured to occur
+once or recurring periodically.
+
+The boolean attribute schedulerStatus switches between TRUE and FALSE
+depending upon whether the configured time constraints are fulfilled
+or not. This attribute makes the internal Scheduler status observable.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-util/SchedulingTime> .
+
+<urn:3gpp:sa5:_3gpp-common-util/SchedulingTime> a rdfs:Class ;
+    rdfs:comment "It defines the active scheduling times." ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-util/TimeInterval> .
+
+<urn:3gpp:sa5:_3gpp-common-util/TimeInterval> a rdfs:Class ;
+    rdfs:comment """List of intervals within one day for which the service
+shall be active.""" .
+
+<urn:3gpp:sa5:_3gpp-common-util> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor/condition> a rdf:Property ;
+    rdfs:comment """A logical condition containing an XPath expression.
+The leaf contains an XPath 1.0 string with the following restrictions
+- The accessible tree is the full Network Resource Model
+- The root node is the list representing the top level MOI
+(E.g. ManagedElement)
+- In the accessible tree, all leafs and leaf-lists with default values
+in use exist
+- The data tree has no concept of document order except when 'ordered-by
+user' is declared.
+- The set of variable bindings is empty.
+- The function library is the core function library defined in XPATH
+- Namespaces should be ignored when evaluating the expression
+
+An empty string is not allowed.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor/conditionStatus> a rdf:Property ;
+    rdfs:comment """The boolean result of the condition.
+Switches between TRUE and FALSE depending upon whether the
+configured constraints are fulfilled or not.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-util/Scheduler/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-util/Scheduler/schedulerStatus> a rdf:Property ;
+    rdfs:comment """Switches between TRUE and FALSE depending upon whether the
+configured time constraints are fulfilled or not.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-common-util/Scheduler/schedulingTimes> a owl:ObjectProperty ;
+    rdfs:comment "It defines the active scheduling times." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-util/SchedulingTime> .
+
+<urn:3gpp:sa5:_3gpp-common-util/SchedulingTime/daysOfMonth> a rdf:Property ;
+    rdfs:comment """Shall be present in case of Monthly periodicity,
+otherwise not""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/SchedulingTime> ;
+    rdfs:range xsd:unsignedByte .
+
+<urn:3gpp:sa5:_3gpp-common-util/SchedulingTime/daysOfWeek> a rdf:Property ;
+    rdfs:comment """Shall be present in case of Weekly periodicity,
+otherwise not""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/SchedulingTime> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-util/SchedulingTime/endTime> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/SchedulingTime> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-util/SchedulingTime/startTime> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/SchedulingTime> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-util/SchedulingTime/timeIntervals> a owl:ObjectProperty ;
+    rdfs:comment """List of intervals within one day for which the service
+shall be active.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/SchedulingTime> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-util/TimeInterval> .
+
+<urn:3gpp:sa5:_3gpp-common-util/TimeInterval/intervalEnd> a rdf:Property ;
+    rdfs:comment """It indicates the time (in 'full-time' format) when the
+service shall be stopped.
+'FullTime' defines the time as specified by 'full-time' in RFC3339.
+intervalEnd should use the same timezone as intervalStart and shall
+be later then intervalStart""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/TimeInterval> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-util/TimeInterval/intervalStart> a rdf:Property ;
+    rdfs:comment """It indicates the time (in 'full-time' format) when the
+service shall be started.
+Data type 'FullTime' defines the time as specified by 'full-time'
+in RFC3339.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-util/TimeInterval> ;
+    rdfs:range xsd:string .
+

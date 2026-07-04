@@ -1,0 +1,42 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/File/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/Files/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

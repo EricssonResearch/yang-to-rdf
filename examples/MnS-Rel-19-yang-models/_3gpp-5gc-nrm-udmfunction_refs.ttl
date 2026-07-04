@@ -1,0 +1,46 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/File/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/Files/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/commModelList/targetNFServiceList> nrm:candidate "TargetNFService" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

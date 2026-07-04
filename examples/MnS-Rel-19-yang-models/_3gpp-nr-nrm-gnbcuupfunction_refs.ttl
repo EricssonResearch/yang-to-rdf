@@ -1,0 +1,50 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/File/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/Files/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/GNBCUUPFunction/configurable5QISetRef> nrm:candidate "Configurable5QISet" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/GNBCUUPFunction/dynamic5QISetRef> rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbcuupfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

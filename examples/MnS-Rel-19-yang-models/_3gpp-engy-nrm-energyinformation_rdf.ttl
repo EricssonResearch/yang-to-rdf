@@ -1,0 +1,67 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup> a rdfs:Class ;
+    rdfs:comment """This IOC represents a group of Network Elements, represented
+by ManagedElement IOC and information related to the energy supply modes
+that are used to power them. This information is configured by the
+operator. Attribute memberDNList can be configured with the DNs of
+ManagedElement or DNs of SubNetwork. This attribute provides the list
+of Network Elements in the group, represented using ManagedElement MOIs
+or represented using SubNetwork MOIs. In the case, memberDNList is
+configured by DN of SubNetwork, then all the ManagedElement MOIs that
+are name-contained by the SubNetwork MOI are part of the group. Attribute
+energySupplyModeRefList is used to indicate the mode of energy supply
+for powering the Network Elements of the group.""" .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo> a rdfs:Class ;
+    rdfs:comment """This IOC defines the information related to energy supply
+and the sources used to produce the energy. This information is configured
+by the operator with the information obtained from sources external to
+3GPP e.g an energy supplier. """ .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup/energySupplyModeRefList> a owl:ObjectProperty ;
+    rdfs:comment """The list of energy supply modes for the Network Elements
+of the group. This information is configured by the operator with the
+information obtained from external sources.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup/memberDNList> a owl:ObjectProperty ;
+    rdfs:comment """This attribute contains the DNs of managed entities
+that are members of the energy info group.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo/energySupplyModeRefList> a owl:ObjectProperty ;
+    rdfs:comment """The list of energy supply modes for the Network Elements
+of the group. This information is configured by the operator with the
+information obtained from external sources.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo/memberDNList> a owl:ObjectProperty ;
+    rdfs:comment """This attribute contains the DNs of managed entities
+that are members of the energy info group.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo> ;
+    nrm:isReference true .
+

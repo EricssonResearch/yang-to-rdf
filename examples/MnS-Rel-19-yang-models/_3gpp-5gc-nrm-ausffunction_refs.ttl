@@ -1,0 +1,46 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/File/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/Files/jobRef> nrm:candidate "Job" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ausffunction/commModelList/targetNFServiceList> nrm:candidate "TargetNFService" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

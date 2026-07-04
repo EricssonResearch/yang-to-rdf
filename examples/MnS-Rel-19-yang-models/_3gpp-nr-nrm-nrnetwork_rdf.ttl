@@ -1,0 +1,24 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork/NRNetwork> a rdfs:Class ;
+    rdfs:comment """Represents a set of NR frequencies and external NR entities
+(e.g. ExternalGNBCUCPFunction). This is used to differentiate these
+entities and frequencies from those in EUTRAN.""" ;
+    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcucpfunction/ExternalGNBCUCPFunction>,
+        <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/ExternalGNBCUUPFunction>,
+        <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction/ExternalGNBDUFunction>,
+        <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork/NRNetwork/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork/NRNetwork> ;
+    rdfs:range xsd:string .
+

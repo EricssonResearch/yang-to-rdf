@@ -1,0 +1,35 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> a rdfs:Class ;
+    rdfs:comment """IAB-node architecture is specified in TS 38.401.
+This IOC defines the configuration information for the IAB management""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo>,
+        <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/currentLocation> a owl:ObjectProperty ;
+    rdfs:comment """This parameter specifies the current location
+of mobile NR node (e.g., IAB-node, MWAB-node).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/mnrOamIPConfig> a owl:ObjectProperty ;
+    rdfs:comment """It is IP configutation for OAM connectivity used
+by a mobile NR node (e.g., IAB-node, MWAB-node)
+to establish connection with management system as specified
+in TS 28.314[x] clause 6.1.2""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> .
+

@@ -1,0 +1,182 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-mnsregistry> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/id> ],
+        [ sh:description """This attributes defines the type of management data that
+are requested.
+
+Allowed values for data category are COVERAGE, CAPACITY,
+ENERGY_EFFICIENCY, MOBILITY, ACCESSIBILITY. The data categories
+will map to certain measurement families defined in TS 28.552, see
+below. In addition to the below mappings, MnS producer may map the
+provided categories to any additional proprietary management data,
+as appropriate.
+
+- The COVERAGE category will map to measurement families of MR
+(measurements related to Measurement Report) and L1M (measurements
+related to Layer 1 Measurement).
+
+- The CAPACITY category will map to measurement family RRU
+(measurements related to Radio Resource Utilization).
+
+- The ENERGY_EFFICIENCY category will map to measurement family PEE
+(measurements related to Power, Energy and Environment).
+
+- The MOBILITY category will map to measurement family MM
+(measurements related to Mobility Management).
+
+- The ACCESSIBILITY category will map to measurement family CE
+(measurements related to Connection Establishment).""" ;
+            sh:in ( "COVERAGE" "CAPACITY" "ENERGY_EFFICIENCY" "MOBILITY" "ACCESSIBILITY" ) ;
+            sh:maxCount 5 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/category> ],
+        [ sh:datatype xsd:string ;
+            sh:description """List of management data identified by name.
+
+The list may include metrics or set of metrics defined
+in TS 28.552, TS 28.554 and TS 32.422.
+
+The metrics are identified with their names/identifiers.
+For performance measurements defined in TS 28.552 the name is
+constructed as the bullet e) of the measurement definition.
+
+For KPIs defined in TS 28.554 the name is defined according to the
+KPI definitions template as the component designated with a).
+
+For trace metrics (including trace messages, MDT measurements
+(Immediate MDT, Logged MDT, Logged MBSFN MDT), RRC, RLF and RCEF
+reports) defined in TS 32.422, the name (metric identifier) is
+defined in clause 10 of TS 32.422.
+
+For non-3GPP specified managment data the name is defined
+elsewhere.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/name> ],
+        [ sh:datatype xsd:int ;
+            sh:description """Granularity periods supported for the production of
+associated management data. The period is defined in seconds.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedGranularityPeriods> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Reporting periods supported for the associated management
+data. The period is defined in seconds.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedReportingPeriods> ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description """This attribute describes the maximum period of the requested
+historical data. The period is defined in seconds.
+When the value of this attribute is NULL, which means the capability of
+querying historical data is not supported.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/historicalDataPeriod> ],
+        [ sh:description """List of supported reporting methods for the associated
+management data.""" ;
+            sh:in ( "FILE" "STREAM" ) ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedReportingMethod> ],
+        [ sh:description """List of supported sub counter capabilities for the associated
+management data""" ;
+            sh:in ( "SNSSAI" "5QI" "PLMN" ) ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedDataScope> ],
+        [ sh:description """List of DN of MnSInfo for the MnS instance(s) which can be
+used to request the associated management data""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedDataRequestMnSRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """List of DN of MnSInfo for the MnS instance(s) which can be
+used to report the associated management data""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedDataReportingMnSRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> .
+
+<urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/id> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name of management service." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsLabel> ],
+        [ sh:description "Type of management service." ;
+            sh:in ( "ProvMnS" "FaultSupervisionMnS" "StreamingDataReportingMnS" "FileDataReportingMnS" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsType> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version of management service." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsVersion> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Addressing information for Management Service operations." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsAddress> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It describes the types of management capabilities of the
+MnS instance provided by the MnS producer. The detailed description for
+above enum values see Annex F in TS 28.533.
+Note: vendor extension values are allowed for the attribute
+'mnsCapability'""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsCapability> ],
+        [ sh:description """List of DN of MgmtDataInfo instance(s) which are associated
+the MnSInfo which represent a management service instance""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mgmtDataInfoRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope> ;
+            sh:description """This attribute defines the information about the
+management scope of the Management Service. The management scope is
+used to represent  the set of managed object instances that can be
+accessed using the Management Service.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsScope> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo> .
+
+<urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsRegistryShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsRegistry/id> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsRegistry> .
+
+<urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScopeShape> a sh:NodeShape ;
+    sh:property [ sh:description """This attribute describes list of DNs for the managed
+object instances that can be accessed using the Management Service.
+If a complete SubNetwork can be accessed using the Management Service,
+this attribute may contain the DN of the SubNetwork instead of the
+DNs of the individual managed entities within the SubNetwork.
+
+If a complete ManagedElement can be accessed using the Management
+Service, this attribute may contain the DN of the ManagedElement
+instead of the DNs of the individual managed entities within the
+ManagedElement.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope/objectInstanceList> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> ;
+            sh:description """This attribute describes geographical areas for the
+managed object instances that can be accessed using the Management
+Service.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope/geoAreasList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> ;
+            sh:description """This attribute describes the list of Tracking Area
+Identities (TAI) for the managed object instances that can be accessed
+using the Management Service.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope/taiList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope> .
+

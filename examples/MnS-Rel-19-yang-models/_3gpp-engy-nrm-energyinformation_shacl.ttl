@@ -1,0 +1,46 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroupShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup/id> ],
+        [ sh:description """The list of energy supply modes for the Network Elements
+of the group. This information is configured by the operator with the
+information obtained from external sources.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup/energySupplyModeRefList> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """This attribute contains the DNs of managed entities
+that are members of the energy info group.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup/memberDNList> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup> .
+
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo/id> ],
+        [ sh:description """The list of energy supply modes for the Network Elements
+of the group. This information is configured by the operator with the
+information obtained from external sources.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo/energySupplyModeRefList> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """This attribute contains the DNs of managed entities
+that are members of the energy info group.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo/memberDNList> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo> .
+

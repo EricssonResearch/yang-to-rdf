@@ -1,0 +1,47 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> a rdfs:Class ;
+    rdfs:comment """This IOC contains attributes to support the Distributed SON
+function of PCI configuration.
+
+In the case where multiple DPCIConfiguration MOIs exist at different
+levels of the containment tree, the DPCIConfiguration MOI at the lower
+level overrides the DPCIConfiguration MOIs at higher level(s) of the
+same containment tree.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> a rdfs:Class ;
+    rdfs:comment """This holds a list of physical cell identities that can be
+assigned to the NR cells. This attribute shall be supported if D-SON
+PCI configuration function is supported.""" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/dPciConfigurationControl> a rdf:Property ;
+    rdfs:comment """This attribute determines whether the Distributed SON PCI
+configuration Function is enabled or disabled.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/nRPciList> a owl:ObjectProperty ;
+    rdfs:comment """This holds a list of physical cell identities that can be
+assigned to the NR cells. This attribute shall be supported if D-SON
+PCI configuration function is supported.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList/NRPci> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> ;
+    rdfs:range xsd:unsignedInt .
+

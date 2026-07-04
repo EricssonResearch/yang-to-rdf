@@ -1,0 +1,94 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsTypeShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:description "Downlink threshold" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType/thresholdDl> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Uplink threshold" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType/thresholdUl> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Round trip threshold" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType/thresholdRtt> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControlShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/id> ],
+        [ sh:description "The state of QoS monitoring per QoS flow per UE." ;
+            sh:in ( "ENABLED" "DISABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFQoSMonitoringState> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """The 5QIs for which the QoS monitoring per QoS flow
+per UE is to be performed.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFMonitored5QIs> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates whether the event based QoS monitoring
+reporting per QoS flow per UE is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/isEventTriggeredQFMonitoringSupported> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates whether the periodic QoS monitoring reporting
+per QoS flow per UE is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/isPeriodicQFMonitoringSupported> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates whether the session release based QoS monitoring
+reporting  per QoS flow per UE is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/isSessionReleasedQFMonitoringSupported> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the minimum waiting time (in seconds) between
+two consecutive reports for event triggered QoS monitoring reporting
+per QoS flow per UE.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFMinimumWaitTime> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the period (in seconds) for reporting the
+packet delay for QoS monitoring per QoS flow per UE.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFMeasurementPeriod> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs> ;
+            sh:description """The S-NSSAIs for which the QoS monitoring per QoS flow
+per UE is to be performed.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFMonitoredSNSSAIs> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFPacketDelayThresholdsType> ;
+            sh:description """It specifies the thresholds for reporting the packet delay
+between PSA and UE for QoS monitoring per QoS flow per UE.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl/qFPacketDelayThresholds> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/QFQoSMonitoringControl> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIsShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs/sd> ;
+            sh:pattern "([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?" ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs/sst> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-QFQoSMonitoringControl/qFMonitoredSNSSAIs> .
+

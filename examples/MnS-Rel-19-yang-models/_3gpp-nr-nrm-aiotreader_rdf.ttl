@@ -1,0 +1,79 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> a rdfs:Class ;
+    rdfs:comment """This IOC represents AIoT Reader which supports AIOT
+services.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID>,
+        <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId> a rdfs:Class ;
+    rdfs:comment "Defines which PLMN that can be served by the AIOT reader." .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/administrativeState> a rdf:Property ;
+    rdfs:comment """It indicates the administrative state of the AIOTReader.
+It describes the permission to use or prohibition against using the
+AIOT reader, imposed through the OAM services.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/nRSectorCarrierRef> a owl:ObjectProperty ;
+    rdfs:comment """This attribute contains the DN of the referenced
+NRSectorCarrier.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/pLMNId> a owl:ObjectProperty ;
+    rdfs:comment "Defines which PLMN that can be served by the AIOT reader." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/readerId> a rdf:Property ;
+    rdfs:comment """It defines the reader identifier to uniquely identify a
+reader within a gNB.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/readerLocation> a rdf:Property ;
+    rdfs:comment """This specifies the geographical location of a A-IoT reader.
+Reader Location may represent any of latitude/longitude, or any
+geographical location/coordinate/area polygon.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/servedAIOTAreas> a owl:ObjectProperty ;
+    rdfs:comment """This attribute is used to specify the A-IoT areas supported
+by the A-IoT reader. It contains one or multiple A-IoT Area ID, which
+is used to uniquely identify an A-IoT Area.
+
+A-IoT Area ID = PLMN ID +NID (optional) + A-IoT Area Code
+(OCTET STRING (SIZE(3))), which is defined in TS 38.413.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/supportedAIOTServices> a rdf:Property ;
+    rdfs:comment """It indicates the supported AIOT service type for an
+AIOT reader.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId/mcc> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId/mnc> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId> ;
+    rdfs:range xsd:string .
+

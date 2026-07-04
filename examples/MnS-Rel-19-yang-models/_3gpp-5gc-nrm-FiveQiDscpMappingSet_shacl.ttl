@@ -1,0 +1,29 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSetShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet/id> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> ;
+            sh:description "It provides the list of mapping between 5QIs and DSCP." ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet/fiveQiDscpMappingList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingListShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:description " Identifies the 5QI values that are mapped to a same DSCP" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList/fiveQIValues> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList/dscp> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> .
+

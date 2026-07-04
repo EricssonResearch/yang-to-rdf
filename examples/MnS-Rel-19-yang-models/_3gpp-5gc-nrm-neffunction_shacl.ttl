@@ -1,0 +1,859 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AIoTNEFMappingShape> a sh:NodeShape ;
+    sh:property [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> ;
+            sh:description """It represents the external target area provided by an AF
+to NEF for triggering A-IoT services. It could refer to a geographical
+location.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AIoTNEFMapping/targetAreaAF> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> ;
+            sh:description """This is the (internal) target area mapped to external
+target area. It is provided to NEF by NRF.
+It could refer to any of TAC/TAI(list), PLMN or any geographical
+location/coordinate/area polygon""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AIoTNEFMapping/internalTargetArea> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AIoTNEFMapping> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AfEventExposureDataShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """It represents AF Event(s) exposed by the NEF after
+registration of the AF(s) at the NEF.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AfEventExposureData/afEvents> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It represents list of application function identifiers of
+the managed PFDs.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AfEventExposureData/afIds> ],
+        [ sh:datatype xsd:string ;
+            sh:description "It represents list of internal application identifiers." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AfEventExposureData/appIds> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AfEventExposureData> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/DnnInfoItemShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """String representing a Data Network as defined in clause 9A
+of 3GPP TS 23.003; it shall contain either a DNN Network Identifier,
+or a full DNN with both the Network Identifier and Operator Identifier,
+as specified in 3GPP TS 23.003 clause 9.1.1 and 9.1.2. It shall be
+coded as string in which the labels are separated by dots
+(e.g. 'Label1.Label2.Label3').
+
+Whether the dnn data type contains just the DNN Network Identifier, or
+the Network Identifier plus the Operator Identifier, shall be
+documented in each API where this data type is used.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/DnnInfoItem/dnn> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/DnnInfoItem> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/FileShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/id> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Location of the file incl. the file transfer protocol,
+and the file name.
+
+The allowed file transfer protocols are:
+- sftp
+- ftpes
+- https
+
+Examples:
+'sftp://companyA.com/datastore/fileName.xml',
+'https://companyA.com/ManagedElement=1/Files=1/File=1'
+""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/fileLocation> ;
+            sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/jobId> ],
+        [ sh:datatype xsd:base64Binary ;
+            sh:description """File content as a Base64 encoded string according to
+RFC 4648 section 4.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/fileContent> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Name of the algorithm used for compressing the file.
+An absent 'fileCompression' parameter indicates the file is
+not compressed. The MnS producer selects the compression algorithm.
+It is encouraged to use popular algorithms such as GZIP.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/fileCompression> ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description "Size of the file" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/fileSize> ],
+        [ sh:description "Type of the management data stored in the file." ;
+            sh:in ( "PERFORMANCE" "TRACE" "ANALYTICS" "PROPRIETARY" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/fileDataType> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Identifier of the schema (incl. its version)
+used to produce the file content. If there is no schema for the file
+or it is not available, the fileFormat parameter is absent.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/fileFormat> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Date and time, when the file was closed (the last time)
+and made available on the MnS producer.
+The file content will not be changed anymore.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/fileReadyTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Date and time after which the file may be deleted." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/fileExpirationTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
+that produced the file.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File/jobRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/File> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/FilesShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/Files/id> ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description "Number of files in a file collection." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/Files/numberOfFiles> ],
+        [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
+that produced the file.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/Files/jobRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/Files/jobId> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/Files> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFServiceShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/id> ],
+        [ sh:datatype xsd:string ;
+            sh:description "A user-friendly (and user assignable) name of this object." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/userLabel> ],
+        [ sh:datatype xsd:string ;
+            sh:description """The type of the managed NF service instance
+The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/nFServiceType> ],
+        [ sh:description "Permission to use or prohibition against using the instance" ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/administrativeState> ],
+        [ sh:description "Describes whether the resource is installed and working" ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/operationalState> ],
+        [ sh:description """Describes whether the resource is actively in use at a
+specific instant, and if so, whether or not it has spare
+capacity for additional users.""" ;
+            sh:in ( "IDLE" "ACTIVE" "BUSY" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/usageState> ],
+        [ sh:in ( "REGISTERED" "DEREGISTERED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/registrationState> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> ;
+            sh:description "The service access point of the managed NF service instance" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/sAP> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+            sh:description """Set of operations supported by the managed NF
+service instance""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService/operations> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ManagedNFService> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunctionShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/id> ],
+        [ sh:datatype xsd:string ;
+            sh:description "A user-friendly (and user assignable) name of this object." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/userLabel> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNSSAIList> ;
+            sh:description """List of S-NSSAIs the managed object is capable of supporting.
+(Single Network Slice Selection Assistance Information)
+An S-NSSAI has an SST (Slice/Service type) and an optional SD
+(Slice Differentiator) field.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/sNSSAIList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
+            sh:description "This parameter defines profile for managed NF(See TS 23.501)" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/managedNFProfile> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo> ;
+            sh:description "This attribute represents information of an NEF NF Instance." ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/nefInfo> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AIoTNEFMapping> ;
+            sh:description """It represents mapping information between external target
+area (provided by AF) and (5G core internal) target area that is to
+be provided to NRF""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/AIoTNEFMapping> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/priorityLabel> ],
+        [ sh:datatype xsd:string ;
+            sh:description """List of trace metrics. When this attribute is contained in
+a managed object it defines the trace metrics supported for this
+object and all descendant objects.
+
+Trace metrics include trace messages, MDT measurements
+(Immediate MDT, Logged MDT, Logged MBSFN MDT), RLF and RCEF reports,
+see TS 32.422. Trace metrics are identified with their metric
+identifier. The metric identifier is constructed as defined
+in clause 10 of TS 32.422.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/supportedTraceMetrics> ],
+        [ sh:datatype xsd:string ;
+            sh:description """The FQDN of the registered NF instance in the
+service-based interface.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/sBIFQDN> ;
+            sh:pattern "((([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.)*([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.?)|\\." ],
+        [ sh:datatype xsd:string ;
+            sh:description "List of supported capabilities of the NEF." ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/capabilityList> ],
+        [ sh:datatype xsd:boolean ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/isCAPIFSup> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+            sh:description """This attribute contains the parameter set of the VNF
+instance(s) corresponding to an NE. The presence of this attribute
+indicates that the ManagedFunction represented by the MOI is a
+virtualized function """ ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/vnfParametersList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+            sh:description """This attribute contains the parameter list for the control
+and monitoring of power, energy and environmental parameters of
+ManagedFunction instance(s). """ ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/peeParameterslist> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SupportedPerfMetricGroups> ;
+            sh:description """Captures a group of supported performance metrics and
+associated parameters related to their production and reporting.
+A SupportedPerfMetricGroup attribute which is part of an MOI may
+define performanceMetrics for any MOI under the subtree contained
+under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
+can specify supported metrics for contained ManagedFunctions
+like a GNBDUFunction.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction/SupportedPerfMetricGroups> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NEFFunction> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """It represents the NEF ID.
+(see clause 6.1.6.3.2 of TS 29.510)""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/nefId> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It represents pattern (regular expression according to
+the ECMA-262 dialect [75]) representing the Domain names served by
+the NEF.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/servedFqdnList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/gpsiRanges> ;
+            sh:description """It represents list of ranges of GPSIs whose profile data
+is available.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/gpsiRanges> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/externalGroupIdentifiersRanges> ;
+            sh:description """It represents list of ranges of external groups whose
+profile data is available.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/externalGroupIdentifiersRanges> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/UnTrustAfInfo> ;
+            sh:description "It represents list of information corresponding to the AFs." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/unTrustAfInfoList> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It represents list of Data network access identifiers
+supported by the NEF. The absence of this attribute indicates that
+the NEF can be selected for any DNAI.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/dnaiList> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """When present, this attribute shall indicate whether the ,
+NEF supports UAS NF functionality:
+- True: UAS NF functionality is supported by the NEF.
+- False (default): UAS NF functionality is not supported by the NEF""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/uasNfFunctionalityInd> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This attribute indicates whether the NEF supports
+Multi-member AF session with required QoS functionality:
+
+- TRUE: Multi-member AF session with required QoS functionality is
+supported by the NEF
+- FALSE (default): Multi-member AF session with required QoS
+functionality is not supported by the NEF.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/multiMemAfSessQosInd> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This attribute indicates whether the NEF supports member
+UE selection assistance functionality:
+
+- TRUE: member UE selection assistance functionality is supported by
+the NEF
+- FALSE (default): member UE selection assistance functionality is
+not supported by the NEF.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/memberUESelAssistInd> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> ;
+            sh:description "List of TAIs" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/taiList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5g-common-yang-types/TaiRange> ;
+            sh:description "Range of TAIs" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/taiRangeList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PfdData> ;
+            sh:description """It represents PFD data, containing the list of internal
+application identifiers and/or the list of application function
+identifiers for which the PFDs can be provided.
+
+Absence of this attribute indicates that the PFDs for any internal
+application identifier and for any application function identifier
+can be provided.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/pfdData> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AfEventExposureData> ;
+            sh:description """It represents the AF provided event exposure data. The NEF
+registers such information in the NRF on behalf of the AF.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo/afEeData> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/NefInfo> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJobShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/id> ],
+        [ sh:description "Enable or disables production of the metrics" ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/administrativeState> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Must be present when the notification-based reporting
+method is supported, and the the files are available as
+notifications for the MnS consumer to subscribe to.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/notificationRecipientAddress> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Applicable when stream-based reporting method is
+supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/streamTarget> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Link to a 'Files' object." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/_linkToFiles> ],
+        [ sh:description "Pointer to a Scheduler object." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/schedulerRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description "Pointer to a ConditionMonitor object." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/conditionMonitorRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description "Indicates whether the PerfMetricJob is working." ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/operationalState> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Id for a PerfMetricJob job." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/jobId> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Performance metrics include measurements defined in
+TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
+also be those specified by other SDOs or vendor specific metrics.
+Performance metrics are identfied with their names. A name can also
+identify a vendor specific group of performance metrics.
+
+For measurements defined in TS 28.552 the name is constructed as
+the bullet e) of the measurement definition.
+
+For KPIs defined in TS 28.554 the name is defined in the KPI
+definitions template as the component designated with e).""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/performanceMetrics> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Granularity period used to produce measurements. The value
+must be one of the supported granularity periods for the metric.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/granularityPeriod> ],
+        [ sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/objectInstances> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """Each object instance designates the root of a subtree that
+contains the root object and all descendant objects.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/rootObjectInstances> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """For the file-based reporting method this is the time
+window during which collected measurements are stored into the same
+file before the file is closed and a new file is opened.
+The time-period must be a multiple of the granularityPeriod.
+
+Applicable when the file-based reporting method is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/fileReportingPeriod> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Applicable and must be present when the file-based
+reporting method is supported, and the files are stored on the
+MnS consumer.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob/fileLocation> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PerfMetricJob> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PfdDataShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "It represents list of internal application identifiers." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PfdData/appIds> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It represents list of application function identifiers of
+the managed PFDs.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PfdData/afIds> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/PfdData> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SnssaiInfoItemShape> a sh:NodeShape ;
+    sh:property [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNssai> ;
+            sh:description """It represents the S-NSSAI the NetworkSlice managed object
+is supporting. The S-NSSAI is defined in TS 23.003.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SnssaiInfoItem/sNssai> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/DnnInfoItem> ;
+            sh:description """It represents list of parameters supported by the
+NF per DNN.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SnssaiInfoItem/dnnInfoList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SnssaiInfoItem> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/StmCtrlShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/StmCtrl/id> ],
+        [ sh:description """List of Network Function Distinguished Name, which
+specifies the target network interface type to be monitored. If
+this parameter is not present or it is empty, then all applicable
+interface types from the target NF shall be monitored""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/StmCtrl/reportingNFList> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the Uniform Resource Identifier (URI) of the STM
+consumer that shall receive the monitored signalling message copies """ ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/StmCtrl/stmTargetUri> ;
+            sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
+        [ sh:description """It is used by the STM consumer to lock or unlock the
+StmCtrl instance in order to stop or start the signalling traffic
+monitoring""" ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/StmCtrl/administrativeState> ],
+        [ sh:description "It is used by STM consumer to report its working state" ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/StmCtrl/operationalState> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> ;
+            sh:description """List of network interface to be monitored. If this
+parameter is not present or it is empty, then all Network Functions
+within the SubNetwork or ManagedElement shall be monitored. This
+parameter shall be omitted if the STM control object is specified
+under a ManagedFunction. """ ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/StmCtrl/targetInterfaceInfoList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/StmCtrl> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SupportedPerfMetricGroupsShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Performance metrics include measurements defined in
+TS 28.552 and KPIs defined in TS 28.554.
+
+Measurements are identified by name.
+
+For measurements defined in TS 28.552 the name is constructed as
+the bullet e) of the measurement definition.
+
+For KPIs defined in TS 28.554 the name is defined in the KPI
+definitions template as the component designated with e).
+
+For non-3GPP specified measurements the name is defined
+elsewhere.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SupportedPerfMetricGroups/performanceMetrics> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Granularity periods supported for the associated
+measurement types. The period is defined in seconds.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SupportedPerfMetricGroups/granularityPeriods> ],
+        [ sh:in ( "FILE_BASED_LOC_SET_BY_PRODUCER" "FILE_BASED_LOC_SET_BY_CONSUMER" "STREAM_BASED" ) ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SupportedPerfMetricGroups/reportingMethods> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Reporting periods supported for the associated
+measurement types. The period is defined in seconds.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SupportedPerfMetricGroups/reportingPeriods> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SupportedPerfMetricGroups> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitorShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor/id> ],
+        [ sh:description "Enables or disables the ThresholdMonitor." ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor/administrativeState> ],
+        [ sh:description "Indicates whether the ThresholdMonitor is working." ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor/operationalState> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """ Granularity period used to monitor measurements for
+threshold crossings. """ ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor/monitorGranularityPeriod> ],
+        [ sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor/objectInstances> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """Each object instance designates the root of a subtree that
+contains the root object and all descendant objects.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor/rootObjectInstances> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> ;
+            sh:description "List of threshold info." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor/thresholdInfoList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/ThresholdMonitor> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJobShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/id> ],
+        [ sh:description """It specifies whether the
+TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
+level measurements job, or a combined job. It also defines the
+MDT mode.""" ;
+            sh:in ( "IMMEDIATE_MDT_ONLY" "LOGGED_MDT_ONLY" "TRACE_ONLY" "IMMEDIATE_MDT_AND_TRACE" "RLF_REPORT_ONLY" "RCEF_REPORT_ONLY" "LOGGED_MBSFN_MDT" "5GC_UE_LEVEL_MEASUREMENTS_ONLY" "TRACE_AND_5GC_UE_LEVEL_MEASUREMENTS" "IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "TRACE_AND_IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "RRC_REPORT" "IMMEDIATE_MDT_AND_LOGGED_MDT" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/jobType> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/traceTarget> ;
+            sh:description """It specifies the target object of the Trace, MDT and
+5GC UE level measurements collection. The attribute is applicable for
+Trace, MDT, and 5GC UE level measurements collection.
+In case of management based Immediate MDT, RLF reporting, RCEF
+reporting or RRC reposring, the traceTarget attribute shall be null
+value.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/traceTarget> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> ;
+            sh:description "Trace config" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/traceConfig> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
+            sh:description """This <<dataType>> defines the configuration parameters of
+IOC TraceJob which are specific for MDT or any combination of MDT.
+The attribute anonymizationOfMdtData specifies the level of
+anonymization of MDT data.
+The optional attribute areaScopedefines the area scope of MDT, which
+is specified in clause 5.10.2 of TS 32.422.
+The attribute sensorInformation allows to specify the sensor
+information to include.
+The attribute trsrPrefixCfg contains the TRSR prefix
+configuration parameters which shall be used by the NR-RAN nodes
+during TRSR assignment for a C-MDT job.
+Based on the value configured for attribute jobType in IOC TraceJob,
+the attributes immediateMdtConfig or loggedMdtConfig or both are
+available: If the attribute jobType indictes immediate MDT, the
+attribute immediateMdtConfig is applicable. If the attribute jobType
+indictes logged MDT or logged MBSFN MDT, the attribute loggedMdtConfig
+is applicable. If the attribute jobType indictes both immediate MDT
+and logged MDT, both the attribute immediateMdtConfig and the
+attribute loggedMdtConfig are applicable.
+The optional attribute plmnList allows to specify the PLMNs where
+measurements collection, status indication and log reporting is
+allowed.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/mdtConfig> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> ;
+            sh:description "5GC UE level measurements config" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/ueCoreMeasConfig> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
+            sh:description """applicable only for NR and shall be present in case of NPN
+either a PNI-NPN or a SNPN) and for management-based activation when
+several NPNs are supported in the RAN.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/nPNTarget> ],
+        [ sh:description "Specifies the RRC reports requested. " ;
+            sh:in ( "RLF_REPORT" "RCEF_REPORT" "SHR" "SPR" "MHI" "RA_REPORT" ) ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/rrcReportType> ],
+        [ sh:datatype xsd:string ;
+            sh:description """List of trace metrics identified by name.
+Includes trace messages, MDT measurements (Immediate MDT,
+Logged MDT, Logged MBSFN MDT), RLF, RCEF and RRC reports,
+see TS 32.422 Trace messages are identified with their message
+identifier. Trace metric identifier is constructed as defined
+in clause 10 of TS 32.422.
+For non-3GPP specified trace metrics the name is defined elsewhere.
+""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/listOfTraceMetrics> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the address of the Trace Collection Entity
+when the attribute traceReportingFormat is configured for the
+file-based reporting. The attribute is applicable for both Trace and
+MDT.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/traceCollectionEntityIPAddress> ],
+        [ sh:datatype xsd:string ;
+            sh:description """URI of the Streaming Trace data reporting MnS consumer
+(a.k.a. streaming target).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/traceReportingConsumerUri> ;
+            sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of a TraceJob" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/jobId> ],
+        [ sh:description """Specifies the trace reporting format - streaming trace
+reporting or file-based trace reporting""" ;
+            sh:in ( "FILE_BASED" "STREAMING" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/traceReportingFormat> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/pLMNTarget> ;
+            sh:description """It specifies which PLMN that the subscriber of the session to
+be recorded uses as selected PLMN.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/pLMNTarget> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> ;
+            sh:description """A globally unique identifier, which uniquely identifies the
+Trace Session that is created by the TraceJob.
+In case of shared network, it is the MCC and MNC of the Participating
+Operator that request the trace session that shall be provided.
+The attribute is applicable for both Trace and MDT.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob/traceReference> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/TraceJob> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/UnTrustAfInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "It represents associated AF id." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/UnTrustAfInfo/afId> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """When present, this attribute indicates whether the
+AF supports mapping between UE IP address (IPv4 address or IPv6 prefix)
+and UE ID (i.e. GPSI).
+True: the AF supports mapping between UE IP address and UE ID;
+False: the AF does not support mapping between UE IP address
+and UE ID.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/UnTrustAfInfo/mappingInd> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/SnssaiInfoItem> ;
+            sh:description "It represents S-NSSAIs and DNNs supported by the AF." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/UnTrustAfInfo/sNssaiInfoList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/UnTrustAfInfo> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/externalGroupIdentifiersRangesShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """First value identifying the start of an identity range.
+To be used when the range of identities can be represented
+as a numeric range (e.g., MSISDN ranges).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/externalGroupIdentifiersRanges/start> ;
+            sh:pattern "^[0-9]+$" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/externalGroupIdentifiersRanges/end> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/externalGroupIdentifiersRanges/pattern> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/externalGroupIdentifiersRanges> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/gpsiRangesShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """First value identifying the start of an identity range.
+To be used when the range of identities can be represented
+as a numeric range (e.g., MSISDN ranges).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/gpsiRanges/start> ;
+            sh:pattern "^[0-9]+$" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/gpsiRanges/end> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/gpsiRanges/pattern> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/gpsiRanges> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/pLMNTargetShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/pLMNTarget/mcc> ;
+            sh:pattern "[02-79][0-9][0-9]" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/pLMNTarget/mnc> ;
+            sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/pLMNTarget> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNSSAIListShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNSSAIList/sd> ;
+            sh:pattern "([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?" ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNSSAIList/sst> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNSSAIList> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNssaiShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNssai/sd> ;
+            sh:pattern "([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?" ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNssai/sst> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/sNssai> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/traceTargetShape> a sh:NodeShape ;
+    sh:property [ sh:description """It specifies the target object of the Trace, MDT and
+5GC UE level measurements collection. The attribute is applicable for
+Trace, MDT, and 5GC UE level measurements collection.
+
+The targetIdType shall be PUBLIC_ID in case of a Management Based
+Activation is done to an SCSCFFunction (Serving Call Session Control
+Function) or PCSCFFunction (Proxy Call Session Control Function)
+
+The targetIdType shall be UTRAN_CELL only in case of
+UTRAN cell traffic trace function.
+
+The targetIdType shall be E-UTRAN_CELL only in case of E-UTRAN cell
+traffic trace function.
+
+The targetIdType shall be NG-RAN_CELL only in case of NR cell
+traffic trace function.
+
+The targetIdType shall be either IMSI, IMEI or
+IMEISV if the Trace Session is activated to any of the following
+ManagedEntity(ies):
+- HssFunction
+- MscServerFunction
+- SgsnFunction
+- GgsnFunction
+- BmscFunction
+- RncFunction
+- MmeFunction
+- ServingGWFunction
+- PGWFunction
+
+The targetIdType shall be either SUPI or IMEISV if the Trace Session
+is activated to any of the following ManagedEntity(ies):
+- AFFunction
+- AMFFunction
+- AUSFunction
+- NEFFunction
+- NRFFunction
+- NSSFFunction
+- PCFFunction
+- SMFFunction
+- UPFFunction
+- UDMFunction
+
+In case of signalling based MDT, the targetIdType shall be
+able to carry PUBLIC_ID, IMSI, IMEI, IMEISV or SUPI.
+
+In case of management based Logged MDT, the targetIdType
+shall carry an eNB or a gNB or an RNC.
+The Logged MDT should be initiated on the specified eNB/gNB/RNC in
+targetIdValueList.
+
+In case of signalling based 5GC UE level measurements collection,
+the targetIdTypee shall be able to carry IMEISV or SUPI.
+
+In case of management based 5GC UE level measurements collection,
+the targetIdType shall be able to carry the corresponding
+Measured UE Identifier as defined by the bullet g) of the 5GC UE
+level measurements (see TS 28.558) when the TraceJob is created at
+the subject ManagedEntity.""" ;
+            sh:in ( "IMSI" "IMEI" "IMEISV" "PUBLIC_ID" "UTRAN_CELL" "E_UTRAN_CELL" "NG_RAN_CELL" "ENB" "RNC" "GNB" "SUPI" "N4_SESSION_ID" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/traceTarget/traceTargetType> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the ID value(s) of the target object defined
+by traceTargetType""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/traceTarget/traceTargetValueList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/traceTarget> .
+

@@ -1,0 +1,125 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U/farEndEntity> nrm:candidate "FarEndEntity" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

@@ -1,0 +1,159 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFServiceShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Unique ID of the service instance within a given NF Instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/serviceInstanceID> ],
+        [ sh:description "Name of the service instance (e.g. 'nudm-sdm')." ;
+            sh:in ( "NNRF_NFM" "NNRF_DISC" "NUDM_SDM" "NUDM_UECM" "NUDM_UEAU" "NUDM_EE" "NUDM_PP" "NAMF_COMM" "NAMF_EVTS" "NAMF_MT" "NAMF_LOC" "NSMF_PDUSESSION" "NSMF_EVENT-EXPOSURE" "NAUSF_AUTH" "NAUSF_SORPROTECTION" "NNEF_PFDMANAGEMENT" "NPCF_AM-POLICY-CONTROL" "NPCF_SMPOLICYCONTROL" "NPCF_POLICYAUTHORIZATION" "NPCF_BDTPOLICYCONTROL" "NPCF_EVENTEXPOSURE" "NPCF_UE_POLICY_CONTROL" "NSMSF_SMS" "NNSSF_NSSELECTION" "NNSSF_NSSAIAVAILABILITY" "NUDR_DR" "NLMF_LOC" "N5G_EIR_EIC" "NBSF_MANAGEMENT" "NCHF_SPENDINGLIMITCONTROL" "NCHF_CONVERGEDCHARGING" "NNWDAF_EVENTSSUBSCRIPTION" "NNWDAF_ANALYTICSINFO" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/serviceName> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It indicates the allowed operations on resources for
+a given NF Instance; the key of the map is the NF Instance Id, and
+the value is an array of scopes""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfInstance> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """When it is present and set to true, indicates that
+the scopes defined in attribute allowedOperationsPerNfInstance
+for a given NF Instance ID take precedence over the scopes defined
+in attribute allowedOperationsPerNfType for the corresponding
+NF type of the NF Instance associated to such NF Instance ID..""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfInstanceOverrides> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates whether the NF Service Instance requires
+Oauth2-based authorization""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/oauth2Required> ],
+        [ sh:datatype xsd:string ;
+            sh:description """String uniquely identifying SharedServiceData. The format
+of the sharedServiceDataId shall be a Universally Unique Identifier
+(UUID) version 4, as described in IETF RFC 4122 [44]. The hexadecimal
+letters should be formatted as lower-case characters by the sender,
+and they shall be handled as case-insensitive by the receiver.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/sharedServiceDataId> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """Priority (relative to other services of the same type)
+in the range of 0-65535, to be used for NF Service selection; lower
+values indicate a higher priority.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/priority> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """Static capacity information in the range of 0-65535,
+expressed as a weight relative to other services of the same type.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/capacity> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Timestamp when the NF was (re)started." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/recoveryTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Vendor ID of the NF instance" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/vendorId> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/versions> ;
+            sh:description """API versions supported by the NF Service and if available,
+the corresponding retirement date of the NF Service.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/versions> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/ipEndPoints> ;
+            sh:description """IP address(es) and port information of the Network Function
+(including IPv4 and/or IPv6 address)where the service is listening
+for incoming service requests.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/ipEndPoints> ],
+        [ sh:description "URI scheme (e.g. 'http', 'https')." ;
+            sh:in ( "HTTP" "HTTPS" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/scheme> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/defaultNotificationSubscriptions> ;
+            sh:description "Notification endpoints for different notification types." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/defaultNotificationSubscriptions> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedPLMNs> ;
+            sh:description """PLMNs allowed to access the service instance.
+The absence of this attribute indicates that any PLMN is allowed to
+access the service instance.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedPLMNs> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedSnpns> ;
+            sh:description """PLMNs allowed to access the service instance.
+The absence of this attribute indicates that any PLMN is allowed to
+access the service instance.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedSnpns> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedNSSAI> ;
+            sh:description """S-NSSAI of the allowed slices to access the service
+instance. The absence of this attribute indicates that any slice
+is allowed to access the service instance.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNSSAI> ],
+        [ sh:description "Status of the NF Service Instance." ;
+            sh:in ( "REGISTERED" "SUSPENDED" "UNDISCOVERABLE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/nfServiceStatus> ],
+        [ sh:datatype xsd:string ;
+            sh:description "FQDN of the NF Service Instance." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/fqdn> ;
+            sh:pattern "((([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.)*([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.?)|\\." ],
+        [ sh:datatype xsd:string ;
+            sh:description """If the NF service needs to be discoverable by other NFs in a
+different PLMN, then an FQDN that is used for inter PLMN routing.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/interPlmnFqdn> ;
+            sh:pattern "((([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.)*([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.?)|\\." ],
+        [ sh:datatype xsd:string ;
+            sh:description """Optional path segment(s) used to construct the {apiRoot}
+variable of the different API URIs.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/apiPrefix> ],
+        [ sh:description "SNPNs allowed to access the NF instance" ;
+            sh:in ( "NRF" "UDM" "AMF" "SMF" "AUSF" "NEF" "PCF" "SMSF" "NSSF" "UDR" "LMF" "GMLC" "5G_EIR" "SEPP" "UPF" "N3IWF" "AF" "UDSF" "BSF" "CHF" ) ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNfTypes> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Pattern representing the NF domain names allowed to
+access the service instance.""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNfDomains> ],
+        [ sh:datatype xsd:string ;
+            sh:description """It indicates the allowed operations on resources for
+each type of NF; the key of the map is the NF Type, and the value
+is an array of scopes""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfType> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNIdShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """This is the Mobile Country Code (MCC) of the PLMN
+identifier. See TS 23.003 [13] subclause 2.2 and 12.1""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/mCC> ],
+        [ sh:datatype xsd:string ;
+            sh:description """This is the Mobile Network Code (MNC) of the PLMN
+identifier. See TS 23.003 [13] subclause 2.2 and 12.1.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/mNC> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Network Identity; Shall be present if PlmnIdNid
+identifies an SNPN""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/nId> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> .
+

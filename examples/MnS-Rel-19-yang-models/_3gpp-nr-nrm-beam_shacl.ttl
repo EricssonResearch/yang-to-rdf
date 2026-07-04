@@ -1,0 +1,56 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-beam> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-beam/BeamShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/id> ],
+        [ sh:datatype xsd:int ;
+            sh:description "Index of the beam. " ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamIndex> ],
+        [ sh:description "The type of the beam. " ;
+            sh:in ( "SSB-BEAM" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamType> ],
+        [ sh:datatype xsd:int ;
+            sh:description """The azimuth of a beam transmission, which means the
+horizontal beamforming pointing angle (beam peak direction) in the
+Phi-axis in 1/10th degree resolution. The pointing angle is the
+direction equal to the geometric centre of the half-power contour
+of the beam relative to the reference plane. Zero degree implies
+explicit antenna bearing (boresight). Positive angle implies clockwise
+from the antenna bearing.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamAzimuth> ],
+        [ sh:datatype xsd:int ;
+            sh:description """The tilt of a beam transmission, which means the vertical
+beamforming pointing angle (beam peak direction) in the Theta-axis in
+1/10th degree resolution.
+The pointing angle is the direction equal to the geometric centre of
+the half-power contour of the beam relative to the reference plane.
+Positive value implies downtilt.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamTilt> ],
+        [ sh:datatype xsd:int ;
+            sh:description """ The Horizontal beamWidth of a beam transmission, which
+means the horizontal beamforming half-power (3dB down) beamwidth in the
+Phi-axis in 1/10th degree resolution.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamHorizWidth> ],
+        [ sh:datatype xsd:int ;
+            sh:description """ The Vertical beamWidth of a beam transmission, which means
+the vertical beamforming half-power (3dB down) beamwidth in the
+Theta-axis in 1/10th degree resolution.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamVertWidth> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> .
+

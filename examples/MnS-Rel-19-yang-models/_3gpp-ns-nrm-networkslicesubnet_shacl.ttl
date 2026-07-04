@@ -1,0 +1,407 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnetShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/id> ],
+        [ sh:description """The operational state of the resouce.
+It describes whether or not the resource is installed
+and working.""" ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/operationalState> ],
+        [ sh:description """The administrative state of the network slice instance.
+It describes the permission to use or prohibition against
+using the instance, imposed through the OAM services.""" ;
+            sh:in ( "LOCKED" "UNLOCKED" "SHUTTINGDOWN" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/administrativeState> ],
+        [ sh:datatype xsd:int ;
+            sh:description """Specifies a label that consumer would assign a value on
+an instance of network slice subnet. The management system takes
+the value of this attribute into account. The effect of this
+attribute value to the subject managed entity is not standardized""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/priorityLabel> ],
+        [ sh:description """Indicates the type of network slice subnet, including:
+- Top network slice subnet
+- RAN network slice subnet
+- CN network slice subnet""" ;
+            sh:in ( "TOP_SLICESUBNET" "RAN_SLICESUBNET" "CN_SLICESUBNET" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/networkSliceSubnetType> ],
+        [ sh:description """This holds a list of DN of ManagedFunction instances
+supporting the NetworkSliceSubnet instance.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/managedFunctionRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """List of DNs of constituent NetworkSliceSubnet supporting
+NetworkSliceSubnet instance .""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/networkSliceSubnetRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """List of transport level EPs associated with the
+application level EP (i.e. EP_N3 or EP_NgU) or network slice subnet.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/epTransportRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo> ;
+            sh:description """This list represents the properties of network service
+information corresponding to the network slice subnet instance.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/nsInfo> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+            sh:description """List of SliceProfiles supported by the network slice
+subnet instance. All members of the list, instances of SliceProfile,
+shall contain the same datatype representing slice profile requirements:
+TopSliceSubnetProfile, RANSliceSubnetProfile or CNSliceSubnetProfile.
+Members of the list may contain TopSliceSubnetProfile datatype
+only when this attribute (sliceProfileList) belongs to
+a NetworkSliceSubnet that is directly referenced by a NetworkSlice""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/sliceProfileList> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfoShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Uniquely identifies the NS instance." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo/nSInstanceId> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human readable name of the NS instance." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo/nsName> ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human readable description of the NS instance." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo/description> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/PositioningShape> a sh:NodeShape ;
+    sh:property [ sh:description """This attribute specifies the category of a service
+requirement/attribute of GST""" ;
+            sh:in ( "character" "scalability" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/category> ],
+        [ sh:description """This attribute specifies the tagging of a service
+requirement/attribute of GST in character category""" ;
+            sh:in ( "performance" "function" "operation" ) ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/tagging> ],
+        [ sh:description """This attribute specifies exposure mode of a service
+requirement/attribute of GST""" ;
+            sh:in ( "API" "KPI" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/exposure> ],
+        [ sh:description """Specifies if this attribute is provided by the RAN domain
+of the network slice and contains a list of positioning methods
+provided by the RAN domain. If the list is empty this attribute is
+not available in the RAN domain and the other parameters might be
+ignored, see NG.116. Values allowed: are
+CIDE-CID (LTE and NR), OTDOA (LTE and NR), RF fingerprinting, AECID,
+Hybrid positioning, NET-RTK.""" ;
+            sh:in ( "CIDE_CID" "OTDOA" "RF_FINGERPRINTING" "AECID" "HYBRID_POSITIONING" "NET_RTK" ) ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/availability> ],
+        [ sh:description """Specifies how often location information is provided.
+This parameter simply defines how often the customer is allowed to
+request location information. This is not related to the time it
+takes to determine the location, which is a characteristic of the
+positioning method.
+If leaf-list availability is empty, the value has no meaning.""" ;
+            sh:in ( "PERSEC" "PERMIN" "PERHOUR" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/predictionfrequency> ],
+        [ sh:datatype xsd:decimal ;
+            sh:description """Specifies the accuracy of the location information.
+Accuracy depends on the respective positioning solution applied in the
+RAN domain of the network slice.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/accuracy> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfileShape> a sh:NodeShape ;
+    sh:property [ sh:description """A unique identifier of the property of network slice
+subnet related requirement should be supported by the network
+slice subnet instance.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/sliceProfileId> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description """Specifies the maximum number of UEs may simultaneously
+access the network slice instance.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/maxNumberofUEs> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+            sh:description """ This represents the requirements for the top slice associated with the
+network slice. """ ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/TopSliceSubnetProfile> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """The packet transmission latency (milliseconds) through
+the RAN, CN, and TN part of 5G network, used to evaluate
+utilization performance of the end-to-end network slice instance.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/latency> ],
+        [ sh:description """The mobility level of UE accessing the network slice
+instance.""" ;
+            sh:in ( "STATIONARY" "NOMADIC" "RESTRICTED_MOBILITY" "FULLY_MOBILITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/uEMobilityLevel> ],
+        [ sh:description """Specifies whether the resources to be allocated to the
+network slice subnet  instance may be shared with another network
+slice subnet instance(s).""" ;
+            sh:in ( "SHARED" "NOT_SHARED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/resourceSharingLevel> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList> ;
+            sh:description """List of S-NSSAIs the managed object is capable of
+supporting. (Single Network Slice Selection Assistance Information)
+An S-NSSAI has an SST (Slice/Service type) and an optional SD
+(Slice Differentiator) field.""" ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/sNSSAIList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList> ;
+            sh:description """List of at most six entries of PLMN Identifiers, but at
+least one (the primary PLMN Id).  The PLMN Identifier is composed
+of a Mobile Country Code (MCC) and a Mobile Network Code (MNC).""" ;
+            sh:maxCount 6 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/pLMNIdList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> ;
+            sh:description "A list of TrackingAreas where the NSI can be selected." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/coverageAreaTAList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+            sh:description """ This represents the requirements for the top slice associated with the
+network slice. """ ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/CNSliceSubnetProfile> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+            sh:description """ This represents the requirements for the top slice associated with the
+network slice. """ ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/RANSliceSubnetProfile> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfileShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedShort ;
+            sh:description """The packet transmission latency (milliseconds) through
+the RAN, CN, and TN part of 5G network, used to evaluate
+utilization performance of the end-to-end network slice instance.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/latency> ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description """Specifies the maximum number of UEs may simultaneously
+access the network slice instance.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/maxNumberofUEs> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
+            sh:description """This attribute defines achievable data rate of the
+network slice subnet in downlink that is available ubiquitously
+across the coverage area of the slice""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/dLThptPerSliceSubnet> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
+            sh:description """This attribute defines data rate supported by the
+network slice per UE, refer NG.116.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/dLThptPerUE> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
+            sh:description """This attribute defines achievable data rate of the
+network slice subnet in uplink that is available ubiquitously
+across the coverage area of the slice""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/uLThptPerSliceSubnet> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
+            sh:description """This attribute defines data rate supported by the
+network slice per UE, refer NG.116""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/uLThptPerUE> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize> ;
+            sh:description """This parameter specifies the maximum packet size
+supported by the network slice""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/maxPktSize> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions> ;
+            sh:description """Represents the maximum number of
+concurrent PDU sessions supported by the network slice""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/maxNumberofPDUSessions> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance> ;
+            sh:description """An attribute specifies the properties of service delivery
+flexibility, especially for the vertical services that are not
+chasing a high system performance.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/delayTolerance> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity> ;
+            sh:description """An attribute specifies the overall user density over
+the coverage area of the network slice""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/termDensity> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> ;
+            sh:description "A list of TrackingAreas where the NSI can be selected." ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/coverageAreaTAList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm> ;
+            sh:description """This list represents the properties of the deterministic
+communication for periodic user traffic. Periodic traffic refers to the
+type of traffic with periodic transmissions.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/deterministicComm> ],
+        [ sh:description """This attribute describes whether a network slice
+can be simultaneously used by a device together with other
+network slices and if so, with which other classes of network slices.""" ;
+            sh:in ( "ZERO" "ONE" "TWO" "THREE" "FOUR" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/sliceSimultaneousUse> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> ;
+            sh:description """Specifies whether the network slice provides
+geo-localization methods or supporting methods""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/positioning> ],
+        [ sh:datatype xsd:decimal ;
+            sh:description """An attribute specifies the percentage value of the
+amount of simultaneous active UEs to the total number of UEs where
+active means the UEs are exchanging data with the network""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/activityFactor> ],
+        [ sh:description """The mobility level of UE accessing the network slice
+instance.""" ;
+            sh:in ( "STATIONARY" "NOMADIC" "RESTRICTED_MOBILITY" "FULLY_MOBILITY" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/uEMobilityLevel> ],
+        [ sh:description """Specifies whether the resources to be allocated to the
+network slice subnet instance may be shared with another network
+slice subnet instance(s).""" ;
+            sh:in ( "SHARED" "NOT_SHARED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/resourceSharingLevel> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """An attribute specifies the maximum speed (in km/hour)
+supported by the network slice at which a defined QoS can be
+achieved""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/uESpeed> ],
+        [ sh:datatype xsd:string ;
+            sh:description """An attribute specifies in the context of network layer
+packet transmissions, percentage value of the amount of sent
+network layer packets successfully delivered to a given system
+entity within the time constraint required by the targeted service,
+divided by the total number of sent network layer packets.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/reliability> ],
+        [ sh:description """An attribute specifies the standardized network slice type.
+allowedValues: eMBB, URLLC, MIoT, V2X.""" ;
+            sh:in ( "eMBB" "URLLC" "MIoT" "V2X" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/serviceType> ],
+        [ sh:datatype xsd:string ;
+            sh:description """An attribute specifies the time that an application
+consuming a communication service may continue without an
+anticipated message.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/survivalTime> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayToleranceShape> a sh:NodeShape ;
+    sh:property [ sh:description """An attribute specifies whether or not the network
+slice supports service delivery flexibility, especially for the
+vertical services that are not chasing a high system performance.""" ;
+            sh:in ( "NOT_SUPPORTED" "SUPPORTED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance/support> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
+            sh:description """This list represents the common properties of service
+requirement related attributes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance/servAttrCom> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicCommShape> a sh:NodeShape ;
+    sh:property [ sh:in ( "NOT_SUPPORTED" "SUPPORTED" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm/availability> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm/periodicityList> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
+            sh:description """This list represents the common properties of service
+requirement related attributes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm/servAttrCom> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessionsShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions/nOofPDUSessions> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
+            sh:description """This list represents the common properties of service
+requirement related attributes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions/servAttrCom> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSizeShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize/maxSize> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
+            sh:description """This list represents the common properties of service
+requirement related attributes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize/servAttrCom> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdListShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList/mcc> ;
+            sh:pattern "[02-79][0-9][0-9]" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList/mnc> ;
+            sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIListShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList/sd> ;
+            sh:pattern "([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?" ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList/sst> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensityShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity/density> ],
+        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
+            sh:description """This list represents the common properties of service
+requirement related attributes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity/servAttrCom> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity> .
+

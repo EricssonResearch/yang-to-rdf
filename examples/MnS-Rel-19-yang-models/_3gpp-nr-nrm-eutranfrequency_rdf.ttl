@@ -1,0 +1,27 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> a rdfs:Class ;
+    rdfs:comment "Represents certain E-UTRAN frequency properties." .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/earfcnDL> a rdf:Property ;
+    rdfs:comment "Specifies the channel number for the central DL frequency." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/multiBandInfoListEutra> a rdf:Property ;
+    rdfs:comment "List of additional frequency bands the frequency belongs to." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> ;
+    rdfs:range xsd:unsignedShort .
+

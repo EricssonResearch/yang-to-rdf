@@ -1,0 +1,62 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> a rdfs:Class ;
+    rdfs:comment """This list represents the common properties of service
+requirement related attributes.""" .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> a rdfs:Class ;
+    rdfs:comment """This attribute defines achievable data rate of the
+network slice in downlink that is available ubiquitously across
+the coverage area of the slice""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/Category-enum> a rdfs:Datatype .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/DeterminCommAvailability> a rdfs:Datatype .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/Exposure-enum> a rdfs:Datatype .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/category> a rdf:Property ;
+    rdfs:comment """This attribute specifies the category of a service
+requirement/attribute of GST""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/exposure> a rdf:Property ;
+    rdfs:comment """This attribute specifies exposure mode of a service
+requirement/attribute of GST""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/tagging> a rdf:Property ;
+    rdfs:comment """This attribute specifies the tagging of a service
+requirement/attribute of GST in character category""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/Support-enum> a rdfs:Datatype .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/Tagging-enum> a rdfs:Datatype .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/guaThpt> a rdf:Property ;
+    rdfs:comment "This attribute describes the guaranteed data rate." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
+    rdfs:range xsd:unsignedLong .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/maxThpt> a rdf:Property ;
+    rdfs:comment "This attribute describes the maximum data rate." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
+    rdfs:range xsd:unsignedLong .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/servAttrCom> a owl:ObjectProperty ;
+    rdfs:comment """This list represents the common properties of service
+requirement related attributes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+

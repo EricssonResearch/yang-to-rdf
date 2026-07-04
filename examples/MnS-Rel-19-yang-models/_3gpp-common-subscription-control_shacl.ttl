@@ -1,0 +1,71 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntryShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Identifier of an individual notificationEntry; unique within
+a NotificationList MOI.
+
+allowedValues:
+- If the NotificationList is contained under an NtfSubscriptionControl
+the value is the same as the notification's sequenceNo.
+- If the NotificationList is contained under SubNetwork or
+ManagedElement the value is the DN of the NtfSubscriptionControl that
+created the notification followed by a single '*' asterisk character
+and the sequenceNo.
+e.g. 'ManagedElement=me1,NtfSubscriptionControl=Fault1*12345'""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/notificationEntryId> ],
+        [ sh:datatype xsd:string ;
+            sh:description "eventTime from the header of the notification" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/eventTime> ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:datatype xsd:string ;
+            sh:description """The string representation of a notification as encoded in
+the HTTP body (excluding the HTTP headers and the optional VES header).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/notificationContent> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/ScopeShape> a sh:NodeShape ;
+    sh:property [ sh:description """If the optional scopeLevel parameter is not supported
+or absent, allowed values of scopeType are BASE_ONLY and BASE_ALL.
+
+The value BASE_ONLY indicates only the base object is selected.
+The value BASE_ALL indicates the base object and all of its
+subordinate objects (incl. the leaf objects) are selected.
+
+If the scopeLevel parameter is supported and present, allowed
+values of scopeType are BASE_ALL, BASE_ONLY, BASE_NTH_LEVEL
+and BASE_SUBTREE.
+
+The value BASE_NTH_LEVEL indicates all objects on the level,
+which is specified by the scopeLevel parameter, below the base
+object are selected. The base object is at scopeLevel zero.
+The value BASE_SUBTREE indicates the base object and all of its
+subordinate objects down to and including the objects on the level,
+which is specified by the scopeLevel parameter, are selected.
+The base object is at scopeLevel zero.""" ;
+            sh:in ( "BASE_ONLY" "BASE_ALL" "BASE_NTH_LEVEL" "BASE_SUBTREE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/scopeType> ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description "See description of scopeType." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/scopeLevel> ],
+        [ sh:description "Subtree filter" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/datastore-subtree-filter> ],
+        [ sh:datatype xsd:string ;
+            sh:description "XPath-filter" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/datastore-xpath-filter> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> .
+

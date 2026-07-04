@@ -1,0 +1,51 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-mecontext/MeContext> a rdfs:Class ;
+    rdfs:comment """This IOC is introduced for naming purposes. It may support
+creation of unique DNs in scenarios when some MEs have the same RDNs due
+to the fact that they have been manufacturer pre-configured.
+
+If some MEs have the same RDNs (for the above mentioned reason) and they
+are contained in the same SubNetwork instance, some measure shall be
+taken in order to assure the global uniqueness of DNs for all IOC
+instances under those MEs. One way could be to set different dnPrefix
+for those NEs, but that would require either that:
+
+a)  all LDNs or DNs are locally modified using the new dnPrefix for the
+upper portion of the DNs, or
+b)  a mapping (translation) of the old LDNs or DNs to the new DNs every
+time they are used externally, e.g. in alarm notifications.
+
+As both the two alternatives above may involve unacceptable drawbacks
+(as the old RDNs for the MEs then would have to be changed or mapped to
+new values), using MeContext offers a new alternative to resolve the DN
+creation. Using MeContext as part of the naming tree (and thus the DN)
+means that the dnPrefix, including a unique MeContext for each ME, may
+be directly concatenated with the LDNs, without any need to change or
+map the existing ME RDNs to new values.
+
+MeContext have 0..N instances. It may exist even if no SubNetwork exists.
+Every instance of MeContext contains exactly one ManagedElement during
+steady-state operations.""" .
+
+<urn:3gpp:sa5:_3gpp-common-mecontext> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-mecontext/MeContext/dnPrefix> a owl:ObjectProperty ;
+    rdfs:comment """It carries the DN Prefix information or no information.
+The instance of MeContext is the local root instance of the MIB.
+Otherwise the attribute shall be absent or carry no information.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-mecontext/MeContext> ;
+    nrm:isInvariant true ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-common-mecontext/MeContext/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-mecontext/MeContext> ;
+    rdfs:range xsd:string .
+

@@ -1,0 +1,77 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelationShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/id> ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description """Target NR Cell Identifier. It consists of NR Cell
+Identifier (NCI) and Physical Cell Identifier of the target NR cell
+(nRPCI).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/nRTCI> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True if the ANR function in the node is allowed to remove this relation." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isRemoveAllowed> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "True if handovers are allowed over this relation." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isHOAllowed> ],
+        [ sh:description """Indicates whether the adjacent cell
+provides no, partial or full coverage for the parent cell
+instance. Adjacent cells with this attribute equal to FULL are
+recommended to be considered as candidate cells to take over the
+coverage when the original cell is about to be changed to energy
+saving state. All adjacent cells with this property equal
+to PARTIAL are recommended to be considered as entirety of candidate
+cells to take over the coverage when the original cell is about to be
+changed to energy saving state.""" ;
+            sh:in ( "FULL" "NO" "PARTIAL" ) ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isESCoveredBy> ],
+        [ sh:datatype xsd:byte ;
+            sh:description "Offset value of rsrpOffsetSSB." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrpOffsetSsb> ],
+        [ sh:datatype xsd:byte ;
+            sh:description "Offset value of rsrqOffsetSSB." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrqOffsetSsb> ],
+        [ sh:datatype xsd:byte ;
+            sh:description "Offset value of sinrOffsetSSB." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/sinrOffsetSsb> ],
+        [ sh:datatype xsd:byte ;
+            sh:description "Offset value of rsrpOffsetCSI-RS." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrpOffsetCsiRs> ],
+        [ sh:datatype xsd:byte ;
+            sh:description "Offset value of rsrqOffsetCSI-RS." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrqOffsetCsiRs> ],
+        [ sh:datatype xsd:byte ;
+            sh:description "Offset value of sinrOffsetCSI-RS." ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/sinrOffsetCsiRs> ],
+        [ sh:description "Reference to a corresponding NRFreqRelation instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/nRFreqRelationRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """Reference to an adjacent NR cell (NRCellCU or
+ExternalNRCellCU).""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/adjacentNRCellRef> ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> .
+

@@ -1,0 +1,21 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRateShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:description """The Packet Error Rate of a 5QI expressed as Scalar x 10-k
+where k is the Exponent.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate/scalar> ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """The Packet Error Rate of a 5QI expressed as Scalar x 10-k,
+where k is the Exponent.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate/exponent> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> .
+

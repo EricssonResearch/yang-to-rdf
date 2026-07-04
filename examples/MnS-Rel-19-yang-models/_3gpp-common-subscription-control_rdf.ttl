@@ -1,0 +1,84 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> a rdfs:Class ;
+    rdfs:comment """Representation of the individual notifications.
+The entries shall be ordered based on eventTime of the notification,
+newest first.""" .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> a rdfs:Class ;
+    rdfs:comment "Scopes (selects) data nodes in an object tree." .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/eventTime> a rdf:Property ;
+    rdfs:comment "eventTime from the header of the notification" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/notificationContent> a rdf:Property ;
+    rdfs:comment """The string representation of a notification as encoded in
+the HTTP body (excluding the HTTP headers and the optional VES header).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/notificationEntryId> a rdf:Property ;
+    rdfs:comment """Identifier of an individual notificationEntry; unique within
+a NotificationList MOI.
+
+allowedValues:
+- If the NotificationList is contained under an NtfSubscriptionControl
+the value is the same as the notification's sequenceNo.
+- If the NotificationList is contained under SubNetwork or
+ManagedElement the value is the DN of the NtfSubscriptionControl that
+created the notification followed by a single '*' asterisk character
+and the sequenceNo.
+e.g. 'ManagedElement=me1,NtfSubscriptionControl=Fault1*12345'""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationTypes> a rdfs:Datatype ;
+    rdfs:comment "An extensible enumeration of notification types" .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/datastore-subtree-filter> a rdf:Property ;
+    rdfs:comment "Subtree filter" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/datastore-xpath-filter> a rdf:Property ;
+    rdfs:comment "XPath-filter" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/scopeLevel> a rdf:Property ;
+    rdfs:comment "See description of scopeType." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
+    rdfs:range xsd:unsignedShort .
+
+<urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/scopeType> a rdf:Property ;
+    rdfs:comment """If the optional scopeLevel parameter is not supported
+or absent, allowed values of scopeType are BASE_ONLY and BASE_ALL.
+
+The value BASE_ONLY indicates only the base object is selected.
+The value BASE_ALL indicates the base object and all of its
+subordinate objects (incl. the leaf objects) are selected.
+
+If the scopeLevel parameter is supported and present, allowed
+values of scopeType are BASE_ALL, BASE_ONLY, BASE_NTH_LEVEL
+and BASE_SUBTREE.
+
+The value BASE_NTH_LEVEL indicates all objects on the level,
+which is specified by the scopeLevel parameter, below the base
+object are selected. The base object is at scopeLevel zero.
+The value BASE_SUBTREE indicates the base object and all of its
+subordinate objects down to and including the objects on the level,
+which is specified by the scopeLevel parameter, are selected.
+The base object is at scopeLevel zero.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
+    rdfs:range xsd:string .
+

@@ -1,0 +1,36 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> a rdfs:Class ;
+    rdfs:comment "Represents certain NR frequency properties." .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/absoluteFrequencySSB> a rdf:Property ;
+    rdfs:comment """The absolute frequency applicable for a downlink NR carrier
+frequency associated with the SSB, in terms of NR-ARFCN.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/multiFrequencyBandListNR> a rdf:Property ;
+    rdfs:comment """List of additional frequency bands the frequency belongs to.
+The list is automatically set by the gNB.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> ;
+    rdfs:range xsd:unsignedShort .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/ssBSubCarrierSpacing> a rdf:Property ;
+    rdfs:comment """Sub-carrier spacing of the SSB.
+Note that the allowed values of SSB used for representing data,
+by e.g. a BWP, are: 15, 30, 60 and 120 in units of kHz.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> ;
+    rdfs:range xsd:unsignedByte .
+

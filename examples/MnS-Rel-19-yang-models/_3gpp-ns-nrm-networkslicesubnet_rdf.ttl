@@ -1,0 +1,527 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> a rdfs:Class ;
+    rdfs:comment """Represents the properties of a network slice subnet
+instance in a 5G network.
+
+The NetworkSliceSubnet can be categorized by following types:
+- RANSliceSubne represent the RAN network slice subnet in a 5G network,
+which is associated to one or multiple 'RANSliceSubnetProfile'.
+- CNSliceSubnet represent the CN network slice subnet in a 5G network,
+which is associated to one or multiple 'CNSliceSubnetProfile'.
+- TopSliceSubnet represent the top network slice subnet in a 5G network,
+which is associated to one or multiple 'TopSliceSubnetProfile'.
+
+The attribute epTransportRef is used to specify a list of EP_Transport
+instance as transport resources to be aggregated to a NetworkSliceSubnet
+instance. The MnS consumer determines the EP_Transport instance(s) to
+support EP_Application instances as part of the NetworkSliceSubnet
+instance and request the MnS producer to configure the attribute
+epTransportRef of the NetworkSliceSubnet.
+
+The EP_Transport is name contained by SubNetwork, and an EP_Transport
+instance can be a new instance created for the EP_Application instances
+as part of NetworkSliceSubnet instance or an existing instance reused
+for EP_Application instance.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo> a rdfs:Class ;
+    rdfs:comment """This list represents the properties of network service
+information corresponding to the network slice subnet instance.""" .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> a rdfs:Class ;
+    rdfs:comment """Specifies whether the network slice provides
+geo-localization methods or supporting methods""" .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> a rdfs:Class ;
+    rdfs:comment """List of SliceProfiles supported by the network slice
+subnet instance. All members of the list, instances of SliceProfile,
+shall contain the same datatype representing slice profile requirements:
+TopSliceSubnetProfile, RANSliceSubnetProfile or CNSliceSubnetProfile.
+Members of the list may contain TopSliceSubnetProfile datatype
+only when this attribute (sliceProfileList) belongs to
+a NetworkSliceSubnet that is directly referenced by a NetworkSlice""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-yang-types/Tai>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> a rdfs:Class ;
+    rdfs:comment """ This represents the requirements for the top slice associated with the
+network slice. """ ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-yang-types/Tai>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize>,
+        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance> a rdfs:Class ;
+    rdfs:comment """An attribute specifies the properties of service delivery
+flexibility, especially for the vertical services that are not
+chasing a high system performance.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm> a rdfs:Class ;
+    rdfs:comment """This list represents the properties of the deterministic
+communication for periodic user traffic. Periodic traffic refers to the
+type of traffic with periodic transmissions.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions> a rdfs:Class ;
+    rdfs:comment """Represents the maximum number of
+concurrent PDU sessions supported by the network slice""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize> a rdfs:Class ;
+    rdfs:comment """This parameter specifies the maximum packet size
+supported by the network slice""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList> a rdfs:Class ;
+    rdfs:comment """List of at most six entries of PLMN Identifiers, but at
+least one (the primary PLMN Id).  The PLMN Identifier is composed
+of a Mobile Country Code (MCC) and a Mobile Network Code (MNC).""" .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList> a rdfs:Class ;
+    rdfs:comment """List of S-NSSAIs the managed object is capable of
+supporting. (Single Network Slice Selection Assistance Information)
+An S-NSSAI has an SST (Slice/Service type) and an optional SD
+(Slice Differentiator) field.""" .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity> a rdfs:Class ;
+    rdfs:comment """An attribute specifies the overall user density over
+the coverage area of the network slice""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/ETSI-GS-NFV-Identifier> a rdfs:Datatype .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/administrativeState> a rdf:Property ;
+    rdfs:comment """The administrative state of the network slice instance.
+It describes the permission to use or prohibition against
+using the instance, imposed through the OAM services.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/epTransportRef> a owl:ObjectProperty ;
+    rdfs:comment """List of transport level EPs associated with the
+application level EP (i.e. EP_N3 or EP_NgU) or network slice subnet.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/managedFunctionRef> a owl:ObjectProperty ;
+    rdfs:comment """This holds a list of DN of ManagedFunction instances
+supporting the NetworkSliceSubnet instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/networkSliceSubnetRef> a owl:ObjectProperty ;
+    rdfs:comment """List of DNs of constituent NetworkSliceSubnet supporting
+NetworkSliceSubnet instance .""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/networkSliceSubnetType> a rdf:Property ;
+    rdfs:comment """Indicates the type of network slice subnet, including:
+- Top network slice subnet
+- RAN network slice subnet
+- CN network slice subnet""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/nsInfo> a owl:ObjectProperty ;
+    rdfs:comment """This list represents the properties of network service
+information corresponding to the network slice subnet instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/operationalState> a rdf:Property ;
+    rdfs:comment """The operational state of the resouce.
+It describes whether or not the resource is installed
+and working.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/priorityLabel> a rdf:Property ;
+    rdfs:comment """Specifies a label that consumer would assign a value on
+an instance of network slice subnet. The management system takes
+the value of this attribute into account. The effect of this
+attribute value to the subject managed entity is not standardized""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/sliceProfileList> a owl:ObjectProperty ;
+    rdfs:comment """List of SliceProfiles supported by the network slice
+subnet instance. All members of the list, instances of SliceProfile,
+shall contain the same datatype representing slice profile requirements:
+TopSliceSubnetProfile, RANSliceSubnetProfile or CNSliceSubnetProfile.
+Members of the list may contain TopSliceSubnetProfile datatype
+only when this attribute (sliceProfileList) belongs to
+a NetworkSliceSubnet that is directly referenced by a NetworkSlice""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo/description> a rdf:Property ;
+    rdfs:comment "Human readable description of the NS instance." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo/nSInstanceId> a rdf:Property ;
+    rdfs:comment "Uniquely identifies the NS instance." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo/nsName> a rdf:Property ;
+    rdfs:comment "Human readable name of the NS instance." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NsInfo> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/accuracy> a rdf:Property ;
+    rdfs:comment """Specifies the accuracy of the location information.
+Accuracy depends on the respective positioning solution applied in the
+RAN domain of the network slice.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> ;
+    rdfs:range xsd:decimal .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/availability> a rdf:Property ;
+    rdfs:comment """Specifies if this attribute is provided by the RAN domain
+of the network slice and contains a list of positioning methods
+provided by the RAN domain. If the list is empty this attribute is
+not available in the RAN domain and the other parameters might be
+ignored, see NG.116. Values allowed: are
+CIDE-CID (LTE and NR), OTDOA (LTE and NR), RF fingerprinting, AECID,
+Hybrid positioning, NET-RTK.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/category> a rdf:Property ;
+    rdfs:comment """This attribute specifies the category of a service
+requirement/attribute of GST""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/exposure> a rdf:Property ;
+    rdfs:comment """This attribute specifies exposure mode of a service
+requirement/attribute of GST""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/predictionfrequency> a rdf:Property ;
+    rdfs:comment """Specifies how often location information is provided.
+This parameter simply defines how often the customer is allowed to
+request location information. This is not related to the time it
+takes to determine the location, which is a characteristic of the
+positioning method.
+If leaf-list availability is empty, the value has no meaning.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning/tagging> a rdf:Property ;
+    rdfs:comment """This attribute specifies the tagging of a service
+requirement/attribute of GST in character category""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/CNSliceSubnetProfile> a owl:ObjectProperty ;
+    rdfs:comment """ This represents the requirements for the top slice associated with the
+network slice. """ ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/RANSliceSubnetProfile> a owl:ObjectProperty ;
+    rdfs:comment """ This represents the requirements for the top slice associated with the
+network slice. """ ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/TopSliceSubnetProfile> a owl:ObjectProperty ;
+    rdfs:comment """ This represents the requirements for the top slice associated with the
+network slice. """ ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/coverageAreaTAList> a owl:ObjectProperty ;
+    rdfs:comment "A list of TrackingAreas where the NSI can be selected." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/latency> a rdf:Property ;
+    rdfs:comment """The packet transmission latency (milliseconds) through
+the RAN, CN, and TN part of 5G network, used to evaluate
+utilization performance of the end-to-end network slice instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range xsd:unsignedShort .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/maxNumberofUEs> a rdf:Property ;
+    rdfs:comment """Specifies the maximum number of UEs may simultaneously
+access the network slice instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range xsd:unsignedLong .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/pLMNIdList> a owl:ObjectProperty ;
+    rdfs:comment """List of at most six entries of PLMN Identifiers, but at
+least one (the primary PLMN Id).  The PLMN Identifier is composed
+of a Mobile Country Code (MCC) and a Mobile Network Code (MNC).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/resourceSharingLevel> a rdf:Property ;
+    rdfs:comment """Specifies whether the resources to be allocated to the
+network slice subnet  instance may be shared with another network
+slice subnet instance(s).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/sNSSAIList> a owl:ObjectProperty ;
+    rdfs:comment """List of S-NSSAIs the managed object is capable of
+supporting. (Single Network Slice Selection Assistance Information)
+An S-NSSAI has an SST (Slice/Service type) and an optional SD
+(Slice Differentiator) field.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/sliceProfileId> a owl:ObjectProperty ;
+    rdfs:comment """A unique identifier of the property of network slice
+subnet related requirement should be supported by the network
+slice subnet instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/uEMobilityLevel> a rdf:Property ;
+    rdfs:comment """The mobility level of UE accessing the network slice
+instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/activityFactor> a rdf:Property ;
+    rdfs:comment """An attribute specifies the percentage value of the
+amount of simultaneous active UEs to the total number of UEs where
+active means the UEs are exchanging data with the network""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:decimal .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/coverageAreaTAList> a owl:ObjectProperty ;
+    rdfs:comment "A list of TrackingAreas where the NSI can be selected." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/dLThptPerSliceSubnet> a owl:ObjectProperty ;
+    rdfs:comment """This attribute defines achievable data rate of the
+network slice subnet in downlink that is available ubiquitously
+across the coverage area of the slice""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/dLThptPerUE> a owl:ObjectProperty ;
+    rdfs:comment """This attribute defines data rate supported by the
+network slice per UE, refer NG.116.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/delayTolerance> a owl:ObjectProperty ;
+    rdfs:comment """An attribute specifies the properties of service delivery
+flexibility, especially for the vertical services that are not
+chasing a high system performance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/deterministicComm> a owl:ObjectProperty ;
+    rdfs:comment """This list represents the properties of the deterministic
+communication for periodic user traffic. Periodic traffic refers to the
+type of traffic with periodic transmissions.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/latency> a rdf:Property ;
+    rdfs:comment """The packet transmission latency (milliseconds) through
+the RAN, CN, and TN part of 5G network, used to evaluate
+utilization performance of the end-to-end network slice instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:unsignedShort .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/maxNumberofPDUSessions> a owl:ObjectProperty ;
+    rdfs:comment """Represents the maximum number of
+concurrent PDU sessions supported by the network slice""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/maxNumberofUEs> a rdf:Property ;
+    rdfs:comment """Specifies the maximum number of UEs may simultaneously
+access the network slice instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:unsignedLong .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/maxPktSize> a owl:ObjectProperty ;
+    rdfs:comment """This parameter specifies the maximum packet size
+supported by the network slice""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/positioning> a owl:ObjectProperty ;
+    rdfs:comment """Specifies whether the network slice provides
+geo-localization methods or supporting methods""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/Positioning> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/reliability> a rdf:Property ;
+    rdfs:comment """An attribute specifies in the context of network layer
+packet transmissions, percentage value of the amount of sent
+network layer packets successfully delivered to a given system
+entity within the time constraint required by the targeted service,
+divided by the total number of sent network layer packets.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/resourceSharingLevel> a rdf:Property ;
+    rdfs:comment """Specifies whether the resources to be allocated to the
+network slice subnet instance may be shared with another network
+slice subnet instance(s).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/serviceType> a rdf:Property ;
+    rdfs:comment """An attribute specifies the standardized network slice type.
+allowedValues: eMBB, URLLC, MIoT, V2X.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/sliceSimultaneousUse> a rdf:Property ;
+    rdfs:comment """This attribute describes whether a network slice
+can be simultaneously used by a device together with other
+network slices and if so, with which other classes of network slices.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/survivalTime> a rdf:Property ;
+    rdfs:comment """An attribute specifies the time that an application
+consuming a communication service may continue without an
+anticipated message.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/termDensity> a owl:ObjectProperty ;
+    rdfs:comment """An attribute specifies the overall user density over
+the coverage area of the network slice""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/uEMobilityLevel> a rdf:Property ;
+    rdfs:comment """The mobility level of UE accessing the network slice
+instance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/uESpeed> a rdf:Property ;
+    rdfs:comment """An attribute specifies the maximum speed (in km/hour)
+supported by the network slice at which a defined QoS can be
+achieved""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/uLThptPerSliceSubnet> a owl:ObjectProperty ;
+    rdfs:comment """This attribute defines achievable data rate of the
+network slice subnet in uplink that is available ubiquitously
+across the coverage area of the slice""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile/uLThptPerUE> a owl:ObjectProperty ;
+    rdfs:comment """This attribute defines data rate supported by the
+network slice per UE, refer NG.116""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/TopSliceSubnetProfile> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance/servAttrCom> a owl:ObjectProperty ;
+    rdfs:comment """This list represents the common properties of service
+requirement related attributes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance/support> a rdf:Property ;
+    rdfs:comment """An attribute specifies whether or not the network
+slice supports service delivery flexibility, especially for the
+vertical services that are not chasing a high system performance.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/delayTolerance> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm/availability> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm/periodicityList> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm/servAttrCom> a owl:ObjectProperty ;
+    rdfs:comment """This list represents the common properties of service
+requirement related attributes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/deterministicComm> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions/nOofPDUSessions> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions/servAttrCom> a owl:ObjectProperty ;
+    rdfs:comment """This list represents the common properties of service
+requirement related attributes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxNumberofPDUSessions> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize/maxSize> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize/servAttrCom> a owl:ObjectProperty ;
+    rdfs:comment """This list represents the common properties of service
+requirement related attributes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/maxPktSize> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList/mcc> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList/mnc> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/pLMNIdList> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList/sd> a rdf:Property ;
+    rdfs:comment """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList/sst> a rdf:Property ;
+    rdfs:comment """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/sNSSAIList> ;
+    rdfs:range xsd:unsignedByte .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity/density> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity> ;
+    rdfs:range xsd:unsignedInt .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity/servAttrCom> a owl:ObjectProperty ;
+    rdfs:comment """This list represents the common properties of service
+requirement related attributes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/termDensity> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
+

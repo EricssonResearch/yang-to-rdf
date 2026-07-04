@@ -1,0 +1,185 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> a rdfs:Class ;
+    rdfs:comment """The QoE Measurement Collection provides capability for
+collecting QoE information from:
+- UEs which are in the specified area in case of Management Based
+Activation or
+- an individual UE in case of Signalling Based Activation.
+The QoE Measurement Collection enables collection of application layer
+measurements from the UE for specified end user service type.
+The supported service types are:
+- Streaming services, see TS 26.247
+- MTSI services, see TS 26.114
+- VR services, see TS 26.118
+A QMCJob instance represents the job for collecting QoE measurements
+according to the job parameters. For details of the QoE measurement
+collection configuration parameters see clause 5 of TS 28.405.
+QMCJob instance can be name-contained by SubNetwork or ManagedElement.
+A QMC Job is activated by creating a QMCJob object instance in the
+producer. For details of Management Based Activation of QoE Measurement
+Collection see clause 4.5 and for details of Signalling Based
+Activation of QoE Measurement Collection see clause 4.6 of TS 28.405.
+The attribute  pLMNTarget is only relevant when
+Management Based Activation is used and the attribute qoETarget is
+only relevant when Signalling Based Activation is used. All other
+attributes are common for both Management Based Activation and
+Signalling Based Activation.
+
+The areaScope attribute defines the area scope of QoE, which is
+specified in clause 5.4 of TS 28.405.
+
+When a MnS consumer wishes to deactivate a QMC Job, the MnS consumer
+shall delete the corresponding QMCJob instance.
+NOTE:  If the reporting is ongoing, when a request to delete a QMCJob
+is received, the reporting does not end. The QMCJob instance is deleted,
+when the last reporting for the QMC Job expires.
+
+The jobId attribute presents the job identifier of a QMCJob instance.
+jobId can be used to associate  multiple QMCJob instances. For example,
+it is possible to configure the same jobId value for multiple QMCJob
+instances required to produce the data (e.g. Streaming services and
+MTSI reports) for a specific network analysis.""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope>,
+        <urn:3gpp:sa5:_3gpp-common-qmcjob/pLMNTarget>,
+        <urn:3gpp:sa5:_3gpp-common-qmcjob/sliceScope>,
+        <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/pLMNTarget> a rdfs:Class ;
+    rdfs:comment """Defines the PLMN for which sessions shall be selected in
+the network request session in case of area based QMC when several
+PLMNs are supported in the RAN (this means that shared cells and not
+shared cells are allowed for the specified PLMN. Furthermore, several
+PLMNs can be used for not shared RAN cases as well as for shared RAN
+cases.). Only the sessions may be selected where the PLMN that the
+UE reports as selected PLMN is the same as the PLMN Target.""" .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/sliceScope> a rdfs:Class ;
+    rdfs:comment """Contains a list of S-NSSAIs (Single Network Slice Selection
+Assistance Information).  A Network Slice end to end is identified by
+S-NSSAI.""" .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/areaScope> a owl:ObjectProperty ;
+    rdfs:comment """It defines the area scope of QoE, which is specified
+in clause 5.4 of TS 28.405.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/availableRANqoEMetrics> a rdf:Property ;
+    rdfs:comment """This parameter indicates available RAN visible QoE metrics
+to the gNB. This parameter is optional and is valid for NR only.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/jobId> a rdf:Property ;
+    rdfs:comment """The jobId attribute presents the job identifier of a
+QMCJob instance. The jobId can be used to associate  multiple QMCJob
+instances. For example, it is possible to configure the same jobId
+for multiple QMCJob instances required to produce the data
+(e.g. Streaming services and MTSI reports) for a specific network
+analysis.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string ;
+    nrm:isInvariant true .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/mBSCommunicationServiceType> a rdf:Property ;
+    rdfs:comment """This attribute indicates which type of MBS communication
+service the QoE measurement configuration pertains to.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/mDTAlignmentInformation> a owl:ObjectProperty ;
+    rdfs:comment """This parameter indicates the MDT measurements with which
+alignment of QoE measurement is required. This parameter is optional
+and is valid for NR only.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/pLMNTarget> a owl:ObjectProperty ;
+    rdfs:comment """Defines the PLMN for which sessions shall be selected in
+the network request session in case of area based QMC when several
+PLMNs are supported in the RAN (this means that shared cells and not
+shared cells are allowed for the specified PLMN. Furthermore, several
+PLMNs can be used for not shared RAN cases as well as for shared RAN
+cases.). Only the sessions may be selected where the PLMN that the
+UE reports as selected PLMN is the same as the PLMN Target.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-qmcjob/pLMNTarget> .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/qMCConfigFile> a rdf:Property ;
+    rdfs:comment """Provides a reference to a file including the parameters for
+configuration of application layer measurements, known as Container
+for Application Layer Measurement Configuration.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/qoECollectionEntityAddress> a rdf:Property ;
+    rdfs:comment """Specifies the address to which the QMC records shall be
+transferred.  Ipv4 or Ipv6 address(es) may be used.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/qoEReference> a rdf:Property ;
+    rdfs:comment """Identifies the QoE measurement collection job in the
+Managed Elements and in the measurement collection entity.  The QoE
+reference shall be globally unique therefore it is composed as follows:
+MCC+MNC+QMC ID, where the MCC and MNC are coming with the QMC
+activation request from the management system to identify one PLMN
+containing the management system, and QMC ID is a 3 byte Octet String.
+The QMC ID is generated by the management system or the operator.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/qoETarget> a rdf:Property ;
+    rdfs:comment """Specifies the target object of the QMC in case of
+signalling based QMC.  The qoETarget attribute shall be able
+to carry IMSI or SUPI.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/serviceType> a rdf:Property ;
+    rdfs:comment "Specifies an end user service type for QoE measurements." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/sliceScope> a owl:ObjectProperty ;
+    rdfs:comment """Contains a list of S-NSSAIs (Single Network Slice Selection
+Assistance Information).  A Network Slice end to end is identified by
+S-NSSAI.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-qmcjob/sliceScope> .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/pLMNTarget/mcc> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/pLMNTarget> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/pLMNTarget/mnc> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/pLMNTarget> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/sliceScope/sd> a rdf:Property ;
+    rdfs:comment """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/sliceScope> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-common-qmcjob/sliceScope/sst> a rdf:Property ;
+    rdfs:comment """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-common-qmcjob/sliceScope> ;
+    rdfs:range xsd:unsignedByte .
+

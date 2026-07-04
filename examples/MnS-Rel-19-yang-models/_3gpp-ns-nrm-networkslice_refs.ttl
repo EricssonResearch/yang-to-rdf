@@ -1,0 +1,14 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslice> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/NetworkSlice/networkSliceSubnetRef> rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
+    nrm:confidence "unambiguous" ;
+    nrm:inferredBy "dn-name-suffix" .
+
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/ServiceProfile/serviceProfileId> nrm:candidate "ServiceProfileId" ;
+    nrm:confidence "unresolved" ;
+    nrm:inferredBy "dn-name-suffix" .
+

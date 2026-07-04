@@ -1,0 +1,112 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> a rdfs:Class ;
+    rdfs:comment """This refers to the Geographical Service Area,
+(see clause 7.3.3.3 in TS 23.558 that is defined as a datatype
+(see clause 6.3.4).""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-element/geographicalCoordinates> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> a rdfs:Class ;
+    rdfs:comment """This parameter defines the EAS service area
+(see clause 7.3.3.6 in TS 23.558).""" ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc>,
+        <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> a rdfs:Class ;
+    rdfs:comment """This refers to the Topological Service Area,
+(see clause 7.3.3.2 in TS 23.558) that is defined as a datatype
+(see clause 6.3.7). """ ;
+    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-element/servingPLMN>,
+        <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo> a rdfs:Class ;
+    rdfs:comment """The attribute is defined as a datatype UPFConnInfo
+(see clause 5.3.121). It is used to provide the UPF IP address and
+UPF DN. """ .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> a rdfs:Class ;
+    rdfs:comment """The attribute specifies a list of 5GCNfConnInfo which is
+defined as a datatype (see clause 5.3.120). It is used to
+provide 5GC NFs, such as PCF, NEF, SCEF, that are connected EDN NFs,
+such as EAS, EES, and ECS.""" .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc/civicLocations> a rdf:Property ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc/geographicalCoordinates> a owl:ObjectProperty ;
+    rdfs:comment """This refers to the Topological Service Area,
+(see clause 7.3.3.2 in TS 23.558) that is defined as a datatype
+(see clause 6.3.8).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/geographicalCoordinates> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation/geographicalLocation> a owl:ObjectProperty ;
+    rdfs:comment """This refers to the Geographical Service Area,
+(see clause 7.3.3.3 in TS 23.558 that is defined as a datatype
+(see clause 6.3.4).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation/topologicalLocation> a owl:ObjectProperty ;
+    rdfs:comment """This refers to the Topological Service Area,
+(see clause 7.3.3.2 in TS 23.558) that is defined as a datatype
+(see clause 6.3.7). """ ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/cellIDList> a rdf:Property ;
+    rdfs:comment """It represents the list of NR cells.
+
+The cell ID, together with the gNB Identifier (using gNBId of the
+parent GNBCUCPFunction or GNBDUFunction or ExternalCUCPFunction),
+identifies a NR cell within a PLMN. This is the NR Cell Identity(NCI).
+See subclause 8.2 of TS 38.300""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/servingPLMN> a owl:ObjectProperty ;
+    rdfs:comment "It specifies the PLMN to be served." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/servingPLMN> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/trackingAreaIdList> a owl:ObjectProperty ;
+    rdfs:comment "It represents the list of tracking areas within a PLMN." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> ;
+    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFIpAddress> a rdf:Property ;
+    rdfs:comment """This parameter defines address of an UPF instance,
+It can be IP address (either IPv4 address (See RFC 791) or
+IPv6 address (See RFC 2373) or FQDN (See TS 23.003). """ ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFRef> a owl:ObjectProperty ;
+    rdfs:comment "This attribute holds the DN of an UPF instance." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFIpAddress> a rdf:Property ;
+    rdfs:comment """This parameter defines address of a NF instance,
+It can be IP address (either IPv4 address (See RFC 791) or
+IPv6 address (See RFC 2373) or FQDN (See TS 23.003). """ ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFRef> a owl:ObjectProperty ;
+    rdfs:comment "This attribute holds the DN of a NF instance." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFType> a rdf:Property ;
+    rdfs:comment "It indicates the type of a NF instance." ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> ;
+    rdfs:range xsd:string .
+

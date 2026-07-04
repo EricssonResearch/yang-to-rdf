@@ -1,0 +1,30 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> a rdfs:Class ;
+    rdfs:comment """This IOC contains attributes to support the D-SON function
+of ANR Management (See clause 6.4.1.3 in TS 28.313 .""" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/intersystemANRManagementSwitch> a rdf:Property ;
+    rdfs:comment """This attribute determines whether the inter-system ANR
+function is activated or deactivated.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/intrasystemANRManagementSwitch> a rdf:Property ;
+    rdfs:comment """This attribute determines whether the intra-system ANR
+function is activated or deactivated.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> ;
+    rdfs:range xsd:boolean .
+

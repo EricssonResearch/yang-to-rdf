@@ -1,0 +1,62 @@
+@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> a rdfs:Class ;
+    rdfs:comment """This IOC contains attributes to support the D-SON function
+of LBO.
+
+In the case where multiple DLBO MOIs exist at different levels of the
+containment tree, the DLBO MOI at the lower level overrides the DLBO
+MOIs at higher level(s) of the same containment tree.""" .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
+    rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction
+(See TS 28.105) .""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/dlboControl> a rdf:Property ;
+    rdfs:comment """This attribute determines whether the LBO function is
+enabled or disabled.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
+    rdfs:range xsd:boolean .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/id> a rdf:Property ;
+    rdfs:comment """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
+    rdfs:range xsd:string .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/mLModelRefList> a owl:ObjectProperty ;
+    rdfs:comment """This attribute holds a DN list of MLModel ¨
+(See TS 28.105).""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
+    nrm:isReference true .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/maximumDeviationHoTriggerHigh> a rdf:Property ;
+    rdfs:comment """This parameter defines the maximum allowed upper
+deviation of the Handover Trigger, from the default point of
+operation.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/maximumDeviationHoTriggerLow> a rdf:Property ;
+    rdfs:comment """This parameter defines the maximum allowed lower
+deviation of the Handover Trigger, from the default point of
+operation.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
+    rdfs:range xsd:int .
+
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/minimumTimeBetweenHoTriggerChange> a rdf:Property ;
+    rdfs:comment """This parameter defines the minimum allowed time interval
+between two Handover Trigger change performed by MRO. This is used
+to control the stability and convergence of the algorithm.""" ;
+    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
+    rdfs:range xsd:int .
+

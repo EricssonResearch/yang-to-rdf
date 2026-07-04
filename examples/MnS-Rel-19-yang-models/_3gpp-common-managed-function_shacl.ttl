@@ -1,0 +1,106 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function> a owl:Ontology .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/OperationShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/Operation/name> ],
+        [ sh:datatype xsd:string ;
+            sh:description """The type of the managed NF service instance
+The specifc values allowed are described in TS 23.501""" ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/Operation/allowedNFTypes> ],
+        [ sh:description "Semantics type of the operation." ;
+            sh:in ( "REQUEST_RESPONSE" "SUBSCRIBE_NOTIFY" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/Operation/operationSemantics> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParametersShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """The identification of the site where the
+ManagedFunction resides.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteIdentification> ],
+        [ sh:datatype xsd:decimal ;
+            sh:description """The latitude of the site where the ManagedFunction
+instance resides, based on World Geodetic System (1984 version)
+global reference frame (WGS 84). Positive values correspond to
+the northern hemisphere. This attribute is optional
+for BTSFunction, RNCFunction, GNBDUFunction and
+NRSectorCarrier instance(s).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteLatitude> ],
+        [ sh:datatype xsd:decimal ;
+            sh:description """The longitude of the site where the ManagedFunction
+instance resides, based on World Geodetic System (1984 version)
+global reference frame (WGS 84). Positive values correspond to
+degrees east of 0 degrees longitude. This attribute is optional
+for BTSFunction, RNCFunction, GNBDUFunction and
+NRSectorCarrier
+instance(s).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteLongitude> ],
+        [ sh:datatype xsd:decimal ;
+            sh:description """The altitude of the site where the ManagedFunction
+instance resides, in the unit of meter. This attribute is
+optional for BTSFunction, RNCFunction, GNBDUFunction and
+NRSectorCarrier instance(s).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteAltitude> ],
+        [ sh:datatype xsd:string ;
+            sh:description """An operator defined description of the site where
+the ManagedFunction instance resides.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteDescription> ],
+        [ sh:datatype xsd:string ;
+            sh:description """The type of equipment where the managedFunction
+instance resides.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/equipmentType> ],
+        [ sh:datatype xsd:string ;
+            sh:description """The type of environment where the managedFunction
+instance resides.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/environmentType> ],
+        [ sh:datatype xsd:string ;
+            sh:description "The type of power." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/powerInterface> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> .
+
+<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParametersShape> a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "VNF instance identifier" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/vnfInstanceId> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Identifier of the VNFD on which the VNF instance is based.
+The absence of the leaf or a string length of zero for vnfInstanceId
+means the VNF instance(s) does not exist (e.g. has not been
+instantiated yet, has already been terminated).""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/vnfdId> ],
+        [ sh:datatype xsd:string ;
+            sh:description """Identifier of the VNF Deployment Flavour applied to this
+VNF instance.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/flavourId> ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """Indicator of whether the auto-scaling of this
+VNF instance is enabled or disabled.""" ;
+            sh:maxCount 1 ;
+            sh:path <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/autoScalable> ] ;
+    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> .
+
