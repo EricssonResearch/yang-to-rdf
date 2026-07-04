@@ -8,7 +8,7 @@ changes to the ontology are reviewable as diffs.
 ## Files
 
 Output is **split one file per source YANG module** (the default) so each file is
-small and browsable directly on GitLab. For each module `<m>` there are up to
+small and browsable directly on GitHub. For each module `<m>` there are up to
 three files:
 
 | File | Contents |
@@ -42,12 +42,24 @@ To produce a single merged file per layer instead, run with `--single-file`.
 
 ## Regenerating
 
-Output is deterministic (byte-identical for the same input), so regenerating
-from the same zip with the same tool version produces no diff:
+The source 3GPP YANG modules are **not** redistributed in this repository. To
+reproduce this output, obtain the module set from 3GPP and run the converter:
 
-```bash
-uv run yang-to-rdf MnS-Rel-19-yang-models.zip -o examples/MnS-Rel-19-yang-models
-```
+1. **Get the YANG modules.** 3GPP SA5 publishes the MnS YANG models at
+   <https://forge.3gpp.org/rep/sa5/MnS> (see the `yang-models/` folder, which
+   includes the required `external-yams/` dependencies). Package the Release-19
+   `yang-models/` folder into a zip named `MnS-Rel-19-yang-models.zip` at the
+   repository root. The set used for this snapshot has SHA-256
+   `7db850aaea7b6078bf62c6318e3cf9a7c3b9d987a7d49047a63ed51098e2de46`; a
+   different revision will produce a different (but equally valid) output.
 
-A diff here therefore means either the source module set or the converter
-changed — both intentional, reviewable events.
+2. **Run the converter:**
+
+   ```bash
+   uv run yang-to-rdf MnS-Rel-19-yang-models.zip -o examples/MnS-Rel-19-yang-models
+   ```
+
+Output is deterministic (byte-identical for the same input and tool version), so
+regenerating from the same zip produces no diff. A diff here therefore means
+either the source module set or the converter changed — both intentional,
+reviewable events.
