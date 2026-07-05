@@ -113,6 +113,10 @@ regenerating from the same input produces no diff.
 
 ## Design Decisions
 
+For a full audit of where the conversion follows RDF/OWL/SHACL standards and
+where it introduces its own conventions (the `nrm:` vocabulary and a few
+modelling choices), see [CONVERSION_NOTES.md](CONVERSION_NOTES.md).
+
 ### IRI Strategy
 
 Properties are path-scoped to avoid multi-domain conflicts:
