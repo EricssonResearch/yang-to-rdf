@@ -70,6 +70,7 @@ class Typedef:
 class Model:
     classes: list[Klass] = field(default_factory=list)
     typedefs: list[Typedef] = field(default_factory=list)
+    revisions: dict[str, tuple[str, str | None]] = field(default_factory=dict)
 
     @property
     def iocs(self) -> list[Klass]:
@@ -339,6 +340,16 @@ class _Parser:
             m = ctx.modules[key]
             if m.keyword != "module":
                 continue
+            # Capture revision metadata for versioning
+            ns = _ns(m)
+            if ns:
+                rev = m.search_one("revision")
+                if rev is not None:
+                    date = rev.arg
+                    ref_stmt = rev.search_one("reference")
+                    cr_ref = ref_stmt.arg if ref_stmt is not None else None
+                    self.model.revisions[ns] = (date, cr_ref)
+
             for td in m.search("typedef"):
                 rt = resolve_type(td.search_one("type"))
                 self.model.typedefs.append(

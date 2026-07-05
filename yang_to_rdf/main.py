@@ -4,8 +4,8 @@ import os
 import sys
 from pathlib import Path
 
-from yang_to_rdf.input_handler import collect_yang_files
-from yang_to_rdf.output_writer import module_stem, split_graph
+from yang_to_rdf.input_handler import collect_yang_files, fetch_forge_release
+from yang_to_rdf.output_writer import module_stem, split_graph, stamp_versions
 from yang_to_rdf.rdf_converter import YangToRDFConverter
 from yang_to_rdf.reference_layer import ReferenceLayerBuilder
 from yang_to_rdf.shacl_converter import YangToSHACLConverter
@@ -17,15 +17,34 @@ def main():
         description="Convert a complete 3GPP YANG module set to RDF TBox + SHACL shapes",
         epilog="Example: yang-to-rdf MnS-Rel-19-yang-models.zip",
     )
-    p.add_argument("input", nargs="+", help="Path(s) to .yang, directory, or .zip")
+    p.add_argument("input", nargs="*", help="Path(s) to .yang, directory, or .zip")
     p.add_argument("--format", choices=["rdf", "shacl", "both"], default="both")
     p.add_argument("--no-inference", action="store_true",
                    help="Skip the reference extension layer (<stem>_refs.ttl)")
     p.add_argument("--single-file", action="store_true",
                    help="Write one merged TTL per layer instead of one file per YANG module (default: split per module)")
     p.add_argument("--output", "-o", default="output")
+    p.add_argument("--release", default=None,
+                   help="Release/version label (e.g. Rel-19, Tag_Rel20_SA112); recorded as owl:versionIRI / owl:versionInfo so multiple releases can be told apart. See VERSIONING.md.")
+    p.add_argument("--fetch-release", dest="fetch_release", default=None,
+                   help="Download yang-models for this ref from 3GPP forge (e.g. Rel-19, Tag_Rel20_SA112)")
+    p.add_argument("--ref-type", choices=["heads", "tags"], default="heads",
+                   help="Ref type for --fetch-release: heads (branch) or tags (tag)")
     p.add_argument("--version", action="version", version="%(prog)s 0.2.0")
     args = p.parse_args()
+
+    # Handle --fetch-release before input collection
+    if args.fetch_release:
+        print(f"Downloading 3GPP MnS yang-models for {args.fetch_release} ...")
+        fetched_zip = fetch_forge_release(args.fetch_release, args.ref_type)
+        args.input = [fetched_zip]
+        # Default release label to the fetched ref if not explicitly set
+        if not args.release:
+            args.release = args.fetch_release
+
+    if not args.input:
+        print("Error: either provide input files/dirs or use --fetch-release", file=sys.stderr)
+        sys.exit(1)
 
     try:
         yang_files, search_paths = collect_yang_files(args.input)
@@ -55,18 +74,21 @@ def main():
 
         if args.format in ("rdf", "both"):
             g = YangToRDFConverter(model).convert()
+            stamp_versions(g, model, release_label=args.release, aggregate=True)
             path = os.path.join(args.output, f"{stem}_rdf.ttl")
             g.serialize(destination=path, format="turtle")
             print(f"RDF TBox -> {path} ({len(g)} triples)")
 
         if args.format in ("shacl", "both"):
             g = YangToSHACLConverter(model).convert()
+            stamp_versions(g, model, release_label=args.release, aggregate=True)
             path = os.path.join(args.output, f"{stem}_shacl.ttl")
             g.serialize(destination=path, format="turtle")
             print(f"SHACL shapes -> {path} ({len(g)} triples)")
 
         if not args.no_inference:
             g = ReferenceLayerBuilder(model).build()
+            stamp_versions(g, model, release_label=args.release, aggregate=True)
             path = os.path.join(args.output, f"{stem}_refs.ttl")
             g.serialize(destination=path, format="turtle")
             print(f"Reference layer -> {path} ({len(g)} triples)")
@@ -95,6 +117,7 @@ def main():
 
             # Write per-module files
             for urn, mg in mods.items():
+                stamp_versions(mg, model)
                 stem = module_stem(urn)
                 path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
                 mg.serialize(destination=path, format="turtle")
@@ -102,6 +125,9 @@ def main():
 
             if layer_name == "rdf":  # Count modules once
                 module_count = len(mods)
+
+        # Stamp index with aggregate versionIRI
+        stamp_versions(index, model, release_label=args.release, aggregate=True)
 
         # Write shared index.ttl
         index_path = os.path.join(args.output, "index.ttl")
