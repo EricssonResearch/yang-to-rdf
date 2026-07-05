@@ -11,18 +11,21 @@ without running the tool. The source YANG modules are **not** redistributed here
 
 ## Install
 
+Requires Python ≥ 3.10 and [uv](https://docs.astral.sh/uv/) (`uv` provisions the
+right Python and dependencies from the lockfile):
+
 ```bash
 uv sync            # from a clone
-# or
-pip install yang-to-rdf
 ```
 
 ## Getting the YANG modules
 
 This tool does not ship 3GPP YANG. 3GPP SA5 publishes the MnS YANG models at
-<https://forge.3gpp.org/rep/sa5/MnS> — use the `yang-models/` folder, which
-bundles the `external-yams/` (IETF) dependencies the models import. Zip that
-folder (e.g. as `MnS-Rel-19-yang-models.zip`) and pass it to the converter.
+<https://forge.3gpp.org/rep/sa5/MnS>. From the forge web UI, download the
+`yang-models/` directory as a zip archive (it bundles the `external-yams/` IETF
+dependencies the models import) and pass that zip straight to the converter — no
+repacking needed. Any recent Release-19 revision works; the exact revision only
+affects which classes appear, not whether the conversion succeeds.
 
 ## Usage
 
@@ -32,8 +35,14 @@ folder (e.g. as `MnS-Rel-19-yang-models.zip`) and pass it to the converter.
 # Convert the complete MnS Release 19 dataset (recommended)
 uv run yang-to-rdf MnS-Rel-19-yang-models.zip
 
+# Choose the output directory (default: output/)
+uv run yang-to-rdf MnS-Rel-19-yang-models.zip -o build/
+
 # Or from an extracted directory (must contain the external-yams/ subfolder)
 uv run yang-to-rdf MnS-Rel-19-yang-models/yang-models/
+
+# One merged file per layer instead of per-module split files
+uv run yang-to-rdf MnS-Rel-19-yang-models.zip --single-file
 
 # Skip the reference extension layer
 uv run yang-to-rdf MnS-Rel-19-yang-models.zip --no-inference
@@ -66,7 +75,7 @@ browsable. Pass `--single-file` to instead get one merged file per layer
    - Validates instance data against the schema
 
 3. **Reference layer (`…_refs.ttl`)** — reference extension (unless `--no-inference`)
-   - Inferred `rdfs:range` for DN references (leaf names ending in `Ref`/`RefList`)
+   - Inferred `rdfs:range` for DistinguishedName references (detected by type; ranges guessed from the leaf name — see [DN Reference Inference](#dn-reference-inference))
    - Provenance metadata: `nrm:inferredBy`, `nrm:confidence` (unambiguous/unresolved)
    - ~121 unambiguous ranges inferred from name patterns (121 for the Rel-19 set; varies by module set)
    - Kept separate for auditability and optional loading

@@ -46,12 +46,15 @@ The source 3GPP YANG modules are **not** redistributed in this repository. To
 reproduce this output, obtain the module set from 3GPP and run the converter:
 
 1. **Get the YANG modules.** 3GPP SA5 publishes the MnS YANG models at
-   <https://forge.3gpp.org/rep/sa5/MnS> (see the `yang-models/` folder, which
-   includes the required `external-yams/` dependencies). Package the Release-19
-   `yang-models/` folder into a zip named `MnS-Rel-19-yang-models.zip` at the
-   repository root. The set used for this snapshot has SHA-256
-   `7db850aaea7b6078bf62c6318e3cf9a7c3b9d987a7d49047a63ed51098e2de46`; a
-   different revision will produce a different (but equally valid) output.
+   <https://forge.3gpp.org/rep/sa5/MnS>. From the forge web UI, download the
+   Release-19 `yang-models/` directory as a zip (it includes the required
+   `external-yams/` dependencies) and place it at the repository root as
+   `MnS-Rel-19-yang-models.zip`. For reference, the archive used for this
+   snapshot had SHA-256
+   `7db850aaea7b6078bf62c6318e3cf9a7c3b9d987a7d49047a63ed51098e2de46` — but note
+   the zip's byte layout (and thus its hash) depends on how the forge packs the
+   download, so an exact match is not required; any recent Release-19 revision
+   yields valid output.
 
 2. **Run the converter:**
 
