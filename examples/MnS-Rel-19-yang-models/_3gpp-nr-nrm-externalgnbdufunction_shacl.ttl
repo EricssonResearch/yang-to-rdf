@@ -3,7 +3,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction/ExternalGNBDUFunctionShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;

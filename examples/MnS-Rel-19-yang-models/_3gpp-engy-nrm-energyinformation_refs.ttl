@@ -1,7 +1,8 @@
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation> a owl:Ontology ;
+    owl:versionInfo "revision 2025-05-07 (CR-0082)" .
 
 <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup/energySupplyModeRefList> nrm:candidate "EnergySupplyMode" ;
     nrm:confidence "unresolved" ;

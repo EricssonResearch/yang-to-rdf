@@ -1,7 +1,8 @@
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/aIMLInferenceFunctionRefList> nrm:candidate "AIMLInferenceFunction" ;
     nrm:confidence "unresolved" ;

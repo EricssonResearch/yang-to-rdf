@@ -9,7 +9,8 @@
 for the NRSectorCarrier.""" ;
     nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/coverageShape> a rdf:Property ;
     rdfs:comment """Identifies the sector carrier coverage shape described by

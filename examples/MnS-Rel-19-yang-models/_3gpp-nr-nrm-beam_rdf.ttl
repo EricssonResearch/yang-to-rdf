@@ -10,7 +10,8 @@ the RAN. Can have spatial attributes of horizontal/azimuth
 (ie: Phi-axis) and vertical/tilt (ie: Theta-axis) beam pointing
 direction and beam width attributes.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-beam> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-beam> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamAzimuth> a rdf:Property ;
     rdfs:comment """The azimuth of a beam transmission, which means the

@@ -12,7 +12,8 @@ newest first.""" .
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> a rdfs:Class ;
     rdfs:comment "Scopes (selects) data nodes in an object tree." .
 
-<urn:3gpp:sa5:_3gpp-common-subscription-control> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-subscription-control> a owl:Ontology ;
+    owl:versionInfo "revision 2025-11-07 (CR-0551 CR-0586)" .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/eventTime> a rdf:Property ;
     rdfs:comment "eventTime from the header of the notification" ;

@@ -2,11 +2,18 @@
 from __future__ import annotations
 
 import os
+import sys
 import tempfile
+import urllib.parse
+import urllib.request
 import zipfile
 from pathlib import Path
+from urllib.error import URLError
 
 EXTERNAL_DIR_NAMES = {"external-yams", "external-yangs"}
+
+FORGE_ARCHIVE = ("https://forge.3gpp.org/rep/sa5/MnS/-/archive/"
+                 "{ref}/MnS-{ref}.zip?ref_type={ref_type}&path=yang-models")
 
 
 def _is_external(path: Path) -> bool:
@@ -74,3 +81,27 @@ def _extract_zip(zip_path: Path) -> tuple[list[str], str]:
         str(f) for f in sorted(extract_dir.rglob("*.yang")) if not _is_external(f)
     ]
     return yang_files, str(extract_dir)
+
+
+def fetch_forge_release(ref: str, ref_type: str = "heads") -> str:
+    """Download the 3GPP SA5 MnS yang-models subtree archive for a ref.
+
+    Returns the path to the downloaded .zip (caller/collect_yang_files handles it).
+
+    Args:
+        ref: Branch or tag name (e.g. "Rel-19", "Tag_Rel20_SA112").
+        ref_type: "heads" for branches, "tags" for tags.
+
+    Raises:
+        SystemExit: If download fails (prints error to stderr).
+    """
+    url = FORGE_ARCHIVE.format(ref=urllib.parse.quote(ref, safe=""), ref_type=ref_type)
+    fd, path = tempfile.mkstemp(prefix=f"MnS-{ref}-", suffix=".zip")
+    os.close(fd)
+    try:
+        urllib.request.urlretrieve(url, path)
+    except URLError as e:
+        print(f"Error: Failed to download from 3GPP forge: {e}", file=sys.stderr)
+        print(f"URL: {url}", file=sys.stderr)
+        sys.exit(1)
+    return path

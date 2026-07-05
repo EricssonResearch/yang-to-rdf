@@ -409,7 +409,8 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-externalnrffunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-externalnrffunction> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-externalnrffunction/ExternalNRFFunction/SupportedPerfMetricGroups> a owl:ObjectProperty ;
     rdfs:comment """Captures a group of supported performance metrics and

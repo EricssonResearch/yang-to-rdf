@@ -34,7 +34,8 @@ defined as a datatype (see clause 5.3.120). It is used to
 provide 5GC NFs, such as PCF, NEF, SCEF, that are connected EDN NFs,
 such as EAS, EES, and ECS.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo> a owl:Ontology ;
+    owl:versionInfo "revision 2024-01-29 (CR-1166)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc/civicLocations> a rdf:Property ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> ;

@@ -39,7 +39,8 @@ or not. This attribute makes the internal Scheduler status observable.""" ;
     rdfs:comment """List of intervals within one day for which the service
 shall be active.""" .
 
-<urn:3gpp:sa5:_3gpp-common-util> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-util> a owl:Ontology ;
+    owl:versionInfo "revision 2024-08-13 (CR-0387)" .
 
 <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor/condition> a rdf:Property ;
     rdfs:comment """A logical condition containing an XPath expression.

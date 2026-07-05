@@ -3,7 +3,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-03-25 (CR-1504)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunctionShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;

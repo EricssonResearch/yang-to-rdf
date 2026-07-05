@@ -27,7 +27,8 @@ duration, which are used by distributed ES algorithms to allow a cell
 to enter the energySaving state. The time duration indicates how long
 the load needs to have been below the threshold.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/cesSwitch> a rdf:Property ;
     rdfs:comment """This attribute determines whether the Centralized SON energy

@@ -11,7 +11,8 @@ within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ .
 
-<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-08-07 (CR-0011)" .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceInstanceList> a owl:ObjectProperty ;
     rdfs:comment """The list of applicable network interface instances, for

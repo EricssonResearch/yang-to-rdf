@@ -540,7 +540,8 @@ session. The attribute is applicable only for Trace.""" .
     rdfs:comment """API versions supported by the NF Service and if available,
 the corresponding retirement date of the NF Service.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction> a owl:Ontology ;
+    owl:versionInfo "revision 2024-05-24 (CR-1273)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/AccessType> a rdfs:Datatype .
 

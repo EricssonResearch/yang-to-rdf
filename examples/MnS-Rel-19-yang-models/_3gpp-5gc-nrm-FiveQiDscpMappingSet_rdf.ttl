@@ -11,7 +11,8 @@
 <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> a rdfs:Class ;
     rdfs:comment "It provides the list of mapping between 5QIs and DSCP." .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet> a owl:Ontology ;
+    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet/fiveQiDscpMappingList> a owl:ObjectProperty ;
     rdfs:comment "It provides the list of mapping between 5QIs and DSCP." ;

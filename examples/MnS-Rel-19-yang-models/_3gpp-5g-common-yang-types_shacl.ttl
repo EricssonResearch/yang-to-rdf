@@ -3,7 +3,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-5g-common-yang-types> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5g-common-yang-types> a owl:Ontology ;
+    owl:versionInfo "revision 2026-01-07 (CR-)" .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScopeShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;

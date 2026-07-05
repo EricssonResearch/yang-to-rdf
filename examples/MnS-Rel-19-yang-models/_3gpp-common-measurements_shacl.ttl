@@ -3,7 +3,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-common-measurements> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-measurements> a owl:Ontology ;
+    owl:versionInfo "revision 2025-08-01 (CR-0551)" .
 
 <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfoShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;

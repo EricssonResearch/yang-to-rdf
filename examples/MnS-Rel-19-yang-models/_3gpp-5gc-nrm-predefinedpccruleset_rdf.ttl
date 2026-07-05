@@ -34,7 +34,8 @@ for the AF request.""" .
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo>,
         <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset> a owl:Ontology ;
+    owl:versionInfo "revision 2025-05-01 (CR-xxxx)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet/PredefinedPccRules> a owl:ObjectProperty ;
     rdfs:comment "The list of predefined PCC rules." ;

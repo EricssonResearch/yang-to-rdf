@@ -33,7 +33,8 @@ as MWAB-gNB. If the allowed time window/ validity indicates 20th June,
 June, 10 am to 5 pm of the day, and does not act as MWAB-gNB for any
 other time. (See sub clause 5.49 [11]).""" .
 
-<urn:3gpp:sa5:_3gpp-common-yang-types> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-yang-types> a owl:Ontology ;
+    owl:versionInfo "revision 2025-10-07 (CR-0573 CR-0582 CR-583)" .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/AdministrativeState> a rdfs:Datatype .
 

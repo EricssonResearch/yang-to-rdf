@@ -1,7 +1,8 @@
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ep> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep> a owl:Ontology ;
+    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/farEndEntity> nrm:candidate "FarEndEntity" ;
     nrm:confidence "unresolved" ;

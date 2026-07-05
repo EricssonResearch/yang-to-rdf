@@ -22,7 +22,8 @@ UEs to a NR Cell. This information can be used to decide whether
 RedCap/eRedCap UEs are barred or allowed at the time of new UE
 access attempt in NR cell during applicable RAN procedures.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess> a owl:Ontology ;
+    owl:versionInfo "revision 2025-11-07 (CR-1640)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap/sSearchDeltaPStationary> a rdf:Property ;
     rdfs:comment """This specifies the threshold (in dB) on Srxlev variation

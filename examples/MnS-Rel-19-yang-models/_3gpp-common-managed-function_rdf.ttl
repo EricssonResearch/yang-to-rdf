@@ -19,7 +19,8 @@ instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-managed-function> a owl:Ontology ;
+    owl:versionInfo "revision 2025-08-13 (CR-0551)" .
 
 <urn:3gpp:sa5:_3gpp-common-managed-function/Operation/allowedNFTypes> a rdf:Property ;
     rdfs:comment """The type of the managed NF service instance

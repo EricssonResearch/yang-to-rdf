@@ -16,7 +16,8 @@ in case of network slicing feature is supported. The plMNId of the
 first entry of the list is the PLMNId used to construct the nCGI for
 the NR cell.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu> a owl:Ontology ;
+    owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/administrativeState> a rdf:Property ;
     rdfs:comment """Administrative state of the NROperatorCellDU. Indicates the

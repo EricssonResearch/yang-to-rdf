@@ -38,7 +38,8 @@ realization of abstract CCOParameters IOC.""" ;
     rdfs:comment """It indicates adjustment range (including maximum value,
 minimum value) of downlinkTransmitPower to optimize radio coverage.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cco> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco> a owl:Ontology ;
+    owl:versionInfo "revision 2024-05-24 (CR-1273)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction/cCOControl> a rdf:Property ;
     rdfs:comment """This attribute determines whether the centralized

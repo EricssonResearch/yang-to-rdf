@@ -10,7 +10,8 @@ This IOC defines the configuration information for the IAB management""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo>,
         <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-11-01 (CR-1657)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/currentLocation> a owl:ObjectProperty ;
     rdfs:comment """This parameter specifies the current location

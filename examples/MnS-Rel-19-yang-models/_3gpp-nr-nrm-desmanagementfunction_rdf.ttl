@@ -26,7 +26,8 @@ cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed ES algorithms to allow a cell
 to enter the energySaving state.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
     rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction

@@ -12,7 +12,8 @@ levels of the containment tree, the CPCIConfiguration MOI at the lower
 level overrides the CPCIConfiguration MOIs at higher level(s) of the
 same containment tree.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cPciConfigurationControl> a rdf:Property ;
     rdfs:comment """This attribute determines whether the Centralized SON

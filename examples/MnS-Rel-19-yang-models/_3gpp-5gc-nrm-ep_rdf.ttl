@@ -172,7 +172,8 @@ like a GNBDUFunction.""" .
 The PLMN Identifier is composed of a Mobile Country Code
 (MCC) and a Mobile Network Code (MNC).""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ep> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ep> a owl:Ontology ;
+    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/SupportedPerfMetricGroups> a owl:ObjectProperty ;
     rdfs:comment """Captures a group of supported performance metrics and

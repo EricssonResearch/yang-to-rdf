@@ -406,7 +406,8 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork-nrsectorcarrier> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork-nrsectorcarrier> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork-nrsectorcarrier/File/fileCompression> a rdf:Property ;
     rdfs:comment """Name of the algorithm used for compressing the file.

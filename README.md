@@ -25,16 +25,30 @@ This tool does not ship 3GPP YANG. 3GPP SA5 publishes the MnS YANG models at
 directory as a zip (it bundles the `external-yams/` IETF dependencies the models
 import) and pass that zip straight to the converter — no repacking needed:
 
+The converter can fetch the set for you — just name a branch or tag:
+
+```bash
+# Branch (default --ref-type heads); also stamps the output with release "Rel-19"
+uv run yang-to-rdf --fetch-release Rel-19
+
+# A specific tag
+uv run yang-to-rdf --fetch-release Tag_Rel20_SA112 --ref-type tags
+```
+
+Or download the zip yourself and pass it in:
+
 ```bash
 curl -L -o yang-models.zip \
   "https://forge.3gpp.org/rep/sa5/MnS/-/archive/Rel-19/MnS-Rel-19.zip?ref_type=heads&path=yang-models"
 uv run yang-to-rdf yang-models.zip -o output/
 ```
 
-This pulls the current tip of the `Rel-19` branch, so the exact class counts will
-track upstream and won't byte-match the committed [`examples/`](examples/)
-snapshot — any recent revision yields valid output; the revision only affects
-which classes appear, not whether the conversion succeeds.
+`--fetch-release` pulls the current tip of the named ref, so the exact class
+counts track upstream and won't byte-match the committed [`examples/`](examples/)
+snapshot — any recent revision yields valid output. Because 3GPP YANG namespaces
+(and therefore the generated IRIs) are stable across releases, use `--release`
+(auto-set by `--fetch-release`) to tag each run so releases can be told apart —
+see [VERSIONING.md](VERSIONING.md).
 
 ## Usage
 
@@ -49,6 +63,9 @@ uv run yang-to-rdf MnS-Rel-19-yang-models.zip -o build/
 
 # Or from an extracted directory (must contain the external-yams/ subfolder)
 uv run yang-to-rdf MnS-Rel-19-yang-models/yang-models/
+
+# Tag the output with a release label (owl:versionIRI / owl:versionInfo)
+uv run yang-to-rdf MnS-Rel-19-yang-models.zip --release Rel-19
 
 # One merged file per layer instead of per-module split files
 uv run yang-to-rdf MnS-Rel-19-yang-models.zip --single-file

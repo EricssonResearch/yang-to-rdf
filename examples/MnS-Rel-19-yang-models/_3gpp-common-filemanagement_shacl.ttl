@@ -3,7 +3,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-common-filemanagement> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-filemanagement> a owl:Ontology ;
+    owl:versionInfo "revision 2024-11-07 (CR-0474)" .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJobShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;

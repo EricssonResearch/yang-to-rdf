@@ -438,7 +438,8 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-08-15 (CR-1598 CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Configurable5QISet/id> a rdf:Property ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.

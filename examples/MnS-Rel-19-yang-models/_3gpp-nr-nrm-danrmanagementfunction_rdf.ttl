@@ -7,7 +7,8 @@
     rdfs:comment """This IOC contains attributes to support the D-SON function
 of ANR Management (See clause 6.4.1.3 in TS 28.313 .""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/id> a rdf:Property ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
