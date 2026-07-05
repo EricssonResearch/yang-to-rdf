@@ -2,7 +2,8 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ngeirfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-ngeirfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ngeirfunction/File/jobRef> nrm:candidate "Job" ;
     nrm:confidence "unresolved" ;

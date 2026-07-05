@@ -87,7 +87,8 @@ trsrPrefixLength defines the size of base TRSR prefix.""" .
 <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> a rdfs:Class ;
     rdfs:comment "5GC UE level measurements config" .
 
-<urn:3gpp:sa5:_3gpp-common-trace> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-trace> a owl:Ontology ;
+    owl:versionInfo "revision 2026-02-07 (CR-1682)" .
 
 <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig/freqInfo> a owl:ObjectProperty ;
     rdfs:comment """It specifies the carrier frequency and bands used in

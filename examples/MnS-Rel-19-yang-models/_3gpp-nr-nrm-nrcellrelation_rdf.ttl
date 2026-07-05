@@ -9,7 +9,8 @@
 to a target cell, where the target cell is an NRCellCU or
 ExternalNRCellCU instance.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/EnergySavingCoverage> a rdfs:Datatype .
 

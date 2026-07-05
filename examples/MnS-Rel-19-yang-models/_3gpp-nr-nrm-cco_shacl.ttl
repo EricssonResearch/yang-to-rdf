@@ -2,7 +2,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cco> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-cco> a owl:Ontology ;
+    owl:versionInfo "revision 2024-05-24 (CR-1273)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunctionShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;

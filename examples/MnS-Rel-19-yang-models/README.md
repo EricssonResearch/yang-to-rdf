@@ -16,7 +16,13 @@ three files:
 | `<m>_rdf.ttl` | RDFS/OWL ontology (TBox) for that module: IOC classes, 3GPP `<<dataType>>` classes, containment, inheritance, properties |
 | `<m>_shacl.ttl` | SHACL NodeShapes for that module's classes |
 | `<m>_refs.ttl` | Reference-inference layer for that module's DistinguishedName references (only if it has any) — inferred `rdfs:range` with `nrm:confidence` / `nrm:inferredBy` provenance |
-| `index.ttl` | Aggregating ontology: the shared `nrm:` vocabulary + `owl:imports` of every module. Load this to pull in the whole set. |
+| `index.ttl` | Aggregating ontology: the shared `nrm:` vocabulary + `owl:imports` of every module, plus `owl:versionIRI`/`owl:versionInfo` for the release. Load this to pull in the whole set. |
+
+This snapshot was generated with `--release Rel-19`, so `index.ttl` carries
+`owl:versionIRI <https://3gpp.org/nrm/ontology/version/Rel-19>` and each module
+ontology carries an `owl:versionInfo "revision <date> (<CR>)"` from its YANG
+`revision`. See [VERSIONING.md](../../VERSIONING.md) for loading multiple
+releases side by side.
 
 Cross-module links (e.g. `AMFFunction rdfs:subClassOf nrm:ManagedFunction`,
 `ManagedElement nrm:nameContains AMFFunction`, or a property whose range is a
@@ -63,7 +69,8 @@ reproduce this output, obtain the module set from 3GPP and run the converter:
 2. **Run the converter:**
 
    ```bash
-   uv run yang-to-rdf MnS-Rel-19-yang-models.zip -o examples/MnS-Rel-19-yang-models
+   uv run yang-to-rdf MnS-Rel-19-yang-models.zip \
+     -o examples/MnS-Rel-19-yang-models --release Rel-19
    ```
 
 Output is deterministic (byte-identical for the same input and tool version), so

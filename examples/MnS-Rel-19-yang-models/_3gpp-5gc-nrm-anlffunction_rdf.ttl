@@ -7,7 +7,8 @@
 <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> a rdfs:Class ;
     rdfs:comment "5G Core AnLF contained by NWDAF" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> a owl:Ontology ;
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
     rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction

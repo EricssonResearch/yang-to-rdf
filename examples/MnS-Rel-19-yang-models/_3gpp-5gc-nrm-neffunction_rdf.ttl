@@ -471,7 +471,8 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-11-07 (CR-1640)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-neffunction/AIoTNEFMapping/internalTargetArea> a owl:ObjectProperty ;
     rdfs:comment """This is the (internal) target area mapped to external

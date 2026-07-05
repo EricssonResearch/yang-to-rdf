@@ -59,7 +59,8 @@ corresponding PLMN in case of network slicing feature is supported.
 The pLMNId of the first entry of the list is the PLMNId used to
 construct the nCGI for the NR cell.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2026-02-02 (CR-1682 CR-1683)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris/epochTime> a rdf:Property ;
     rdfs:comment "It defines the ephemeris reference time." ;

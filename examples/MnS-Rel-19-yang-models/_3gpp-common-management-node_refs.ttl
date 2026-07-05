@@ -1,7 +1,8 @@
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-<urn:3gpp:sa5:_3gpp-common-management-node> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-management-node> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-0271)" .
 
 <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/managedElements> nrm:candidate "ManagedElements" ;
     nrm:confidence "unresolved" ;

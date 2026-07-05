@@ -32,7 +32,8 @@ of a counter the threshold level specifies only the threshold value
 (Rec. ITU-T X. 733).""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> .
 
-<urn:3gpp:sa5:_3gpp-common-fm> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-fm> a owl:Ontology ;
+    owl:versionInfo "revision 2026-01-25 (CR-0060)" .
 
 <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentSystemId> a rdf:Property ;
     rdfs:comment """It carries the identification of the system (

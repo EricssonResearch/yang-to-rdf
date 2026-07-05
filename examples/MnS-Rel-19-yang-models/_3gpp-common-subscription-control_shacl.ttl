@@ -3,7 +3,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-common-subscription-control> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-subscription-control> a owl:Ontology ;
+    owl:versionInfo "revision 2025-11-07 (CR-0551 CR-0586)" .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntryShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;

@@ -2,7 +2,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRateShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:unsignedInt ;

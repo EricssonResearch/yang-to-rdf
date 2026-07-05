@@ -47,7 +47,8 @@ Server. It is an array of FQDN.""" ;
 the NF (Service) instance under CANARY_RELEASE status shall
 be selected.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile> a owl:Ontology ;
+    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/CollocatedNfInstance/nfInstanceId> a rdf:Property ;
     rdfs:comment "String uniquely identifying a NF instance." ;

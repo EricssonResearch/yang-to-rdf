@@ -13,7 +13,8 @@ entities and frequencies from those in EUTRAN.""" ;
         <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction/ExternalGNBDUFunction>,
         <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork> a owl:Ontology ;
+    owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork/NRNetwork/id> a rdf:Property ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.

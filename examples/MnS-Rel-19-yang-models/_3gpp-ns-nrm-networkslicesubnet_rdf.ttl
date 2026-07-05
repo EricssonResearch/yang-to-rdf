@@ -101,7 +101,8 @@ An S-NSSAI has an SST (Slice/Service type) and an optional SD
 the coverage area of the network slice""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet> a owl:Ontology ;
+    owl:versionInfo "revision 2025-01-25 (CR-1442)" .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/ETSI-GS-NFV-Identifier> a rdfs:Datatype .
 

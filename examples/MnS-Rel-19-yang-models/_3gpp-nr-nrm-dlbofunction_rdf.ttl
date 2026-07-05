@@ -12,7 +12,8 @@ In the case where multiple DLBO MOIs exist at different levels of the
 containment tree, the DLBO MOI at the lower level overrides the DLBO
 MOIs at higher level(s) of the same containment tree.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction> a owl:Ontology ;
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
     rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction

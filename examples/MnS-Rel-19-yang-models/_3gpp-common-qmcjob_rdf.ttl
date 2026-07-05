@@ -63,7 +63,8 @@ UE reports as selected PLMN is the same as the PLMN Target.""" .
 Assistance Information).  A Network Slice end to end is identified by
 S-NSSAI.""" .
 
-<urn:3gpp:sa5:_3gpp-common-qmcjob> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-qmcjob> a owl:Ontology ;
+    owl:versionInfo "revision 2025-11-07 (CR-0586)" .
 
 <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob/areaScope> a owl:ObjectProperty ;
     rdfs:comment """It defines the area scope of QoE, which is specified

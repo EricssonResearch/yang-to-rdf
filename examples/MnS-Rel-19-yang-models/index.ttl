@@ -109,7 +109,9 @@ nrm:ManagedFunction a rdfs:Class .
         <urn:3gpp:sa5:_3gpp-ns-nrm-common>,
         <urn:3gpp:sa5:_3gpp-ns-nrm-networkslice>,
         <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet>,
-        <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> .
+        <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> ;
+    owl:versionIRI <https://3gpp.org/nrm/ontology/version/Rel-19> ;
+    owl:versionInfo "Rel-19" .
 
 nrm:hasAttribute a owl:ObjectProperty .
 

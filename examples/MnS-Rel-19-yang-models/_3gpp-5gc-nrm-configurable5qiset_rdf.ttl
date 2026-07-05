@@ -7,7 +7,8 @@
     rdfs:comment """It indicates the Packet Error Rate of a 5QI,
 as specified in TS 23.501.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate/exponent> a rdf:Property ;
     rdfs:comment """The Packet Error Rate of a 5QI expressed as Scalar x 10-k,

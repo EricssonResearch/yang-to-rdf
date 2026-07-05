@@ -2,7 +2,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess> a owl:Ontology ;
+    owl:versionInfo "revision 2025-11-07 (CR-1640)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcapShape> a sh:NodeShape ;
     sh:property [ sh:datatype xsd:unsignedByte ;

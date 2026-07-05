@@ -23,7 +23,8 @@ MnS consumer except for the instance associated to
 PCFFunction MOI or SMFFunction MOI when the PCF is not deployed.""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset> a owl:Ontology ;
+    owl:versionInfo "revision 2025-03-25 (CR-1489)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet/dynamic5QIs> a owl:ObjectProperty ;
     rdfs:comment """This IOC specifies the dynamically assigned 5QIs

@@ -19,7 +19,8 @@ same containment tree.""" ;
 assigned to the NR cells. This attribute shall be supported if D-SON
 PCI configuration function is supported.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/dPciConfigurationControl> a rdf:Property ;
     rdfs:comment """This attribute determines whether the Distributed SON PCI

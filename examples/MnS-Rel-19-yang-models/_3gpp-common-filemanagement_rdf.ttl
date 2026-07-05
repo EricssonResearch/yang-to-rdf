@@ -11,7 +11,8 @@
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> a rdfs:Class ;
     rdfs:comment "Provides monitoring for the file download job." .
 
-<urn:3gpp:sa5:_3gpp-common-filemanagement> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-filemanagement> a owl:Ontology ;
+    owl:versionInfo "revision 2024-11-07 (CR-0474)" .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/cancelJob> a rdf:Property ;
     rdfs:comment """Setting this attribute to TRUE cancels the file download job.

@@ -13,7 +13,8 @@ services.""" ;
 <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId> a rdfs:Class ;
     rdfs:comment "Defines which PLMN that can be served by the AIOT reader." .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader> a owl:Ontology ;
+    owl:versionInfo "revision 2025-11-07 (CR-1640)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/administrativeState> a rdf:Property ;
     rdfs:comment """It indicates the administrative state of the AIOTReader.

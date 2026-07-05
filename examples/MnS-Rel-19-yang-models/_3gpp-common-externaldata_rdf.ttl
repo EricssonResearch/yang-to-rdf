@@ -56,7 +56,8 @@ Attribute externalDataScope is used to describe the concrete scope (e.g.,
 geographical areas) which the external management data is applicable.""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-common-externaldata> a owl:Ontology ;
+    owl:versionInfo "revision 2025-07-19 (CR-0551)" .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/geoAreas> a owl:ObjectProperty ;
     rdfs:comment "It describes the concrete geographical area(s)" ;

@@ -71,7 +71,8 @@ be selected for a certain UE""" ;
     rdfs:comment """VendorSpecificFeature objects as defined
 in the clause 5.3.247.""" .
 
-<urn:3gpp:sa5:_3gpp-5g-common-yang-types> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-5g-common-yang-types> a owl:Ontology ;
+    owl:versionInfo "revision 2026-01-07 (CR-)" .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/cAGIdList> a rdf:Property ;
     rdfs:comment """It identifies a CAG list containing up to

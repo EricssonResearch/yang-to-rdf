@@ -1,7 +1,8 @@
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2026-02-02 (CR-1682 CR-1683)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNEntityConfig/nTNConfEntity> nrm:candidate "NTNConfEntity" ;
     nrm:confidence "unresolved" ;

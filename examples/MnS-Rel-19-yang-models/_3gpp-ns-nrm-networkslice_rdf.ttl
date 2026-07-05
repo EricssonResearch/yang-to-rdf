@@ -79,7 +79,8 @@ of users' network services and corresponding requirements.""" ;
 communication mode is supported by the network slice.""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslice> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-ns-nrm-networkslice> a owl:Ontology ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/NetworkSlice/administrativeState> a rdf:Property ;
     rdfs:comment """The administrative state of the network slice instance.

@@ -19,7 +19,8 @@ same containment tree.""" ;
     rdfs:comment """This is a list of target Access Probability (APn) for the
 RACH optimization function.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction> a owl:Ontology .
+<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction> a owl:Ontology ;
+    owl:versionInfo "revision 2025-03-25 (CR-1504)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/AccessdelayT> a rdfs:Datatype .
 
