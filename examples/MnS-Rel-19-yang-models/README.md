@@ -45,16 +45,20 @@ To produce a single merged file per layer instead, run with `--single-file`.
 The source 3GPP YANG modules are **not** redistributed in this repository. To
 reproduce this output, obtain the module set from 3GPP and run the converter:
 
-1. **Get the YANG modules.** 3GPP SA5 publishes the MnS YANG models at
-   <https://forge.3gpp.org/rep/sa5/MnS>. From the forge web UI, download the
-   Release-19 `yang-models/` directory as a zip (it includes the required
-   `external-yams/` dependencies) and place it at the repository root as
-   `MnS-Rel-19-yang-models.zip`. For reference, the archive used for this
-   snapshot had SHA-256
-   `7db850aaea7b6078bf62c6318e3cf9a7c3b9d987a7d49047a63ed51098e2de46` — but note
-   the zip's byte layout (and thus its hash) depends on how the forge packs the
-   download, so an exact match is not required; any recent Release-19 revision
-   yields valid output.
+1. **Get the YANG modules.** Download the Release-19 `yang-models/` directory
+   (with its required `external-yams/` dependencies) from the 3GPP SA5 forge:
+
+   ```bash
+   curl -L -o MnS-Rel-19-yang-models.zip \
+     "https://forge.3gpp.org/rep/sa5/MnS/-/archive/Rel-19/MnS-Rel-19.zip?ref_type=heads&path=yang-models"
+   ```
+
+   This tracks the current `Rel-19` branch tip, which has grown since this
+   snapshot was generated (this snapshot: 501 IOCs; the live branch is larger),
+   so regenerating will **not** byte-match the committed files here. That is
+   expected — any recent Release-19 revision yields valid output. For the record,
+   the archive used for this snapshot had SHA-256
+   `7db850aaea7b6078bf62c6318e3cf9a7c3b9d987a7d49047a63ed51098e2de46`.
 
 2. **Run the converter:**
 

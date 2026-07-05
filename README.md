@@ -21,11 +21,20 @@ uv sync            # from a clone
 ## Getting the YANG modules
 
 This tool does not ship 3GPP YANG. 3GPP SA5 publishes the MnS YANG models at
-<https://forge.3gpp.org/rep/sa5/MnS>. From the forge web UI, download the
-`yang-models/` directory as a zip archive (it bundles the `external-yams/` IETF
-dependencies the models import) and pass that zip straight to the converter — no
-repacking needed. Any recent Release-19 revision works; the exact revision only
-affects which classes appear, not whether the conversion succeeds.
+<https://forge.3gpp.org/rep/sa5/MnS>. Download the Release-19 `yang-models/`
+directory as a zip (it bundles the `external-yams/` IETF dependencies the models
+import) and pass that zip straight to the converter — no repacking needed:
+
+```bash
+curl -L -o yang-models.zip \
+  "https://forge.3gpp.org/rep/sa5/MnS/-/archive/Rel-19/MnS-Rel-19.zip?ref_type=heads&path=yang-models"
+uv run yang-to-rdf yang-models.zip -o output/
+```
+
+This pulls the current tip of the `Rel-19` branch, so the exact class counts will
+track upstream and won't byte-match the committed [`examples/`](examples/)
+snapshot — any recent revision yields valid output; the revision only affects
+which classes appear, not whether the conversion succeeds.
 
 ## Usage
 
