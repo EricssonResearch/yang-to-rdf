@@ -2,22 +2,24 @@
 """Convert the resolved-tree IR to an RDFS/OWL TBox."""
 from __future__ import annotations
 
-from rdflib import Graph, Literal, Namespace, URIRef
-from rdflib.namespace import OWL, RDF, RDFS, XSD
+from rdflib import Graph, Literal, URIRef
+from rdflib.namespace import OWL, RDF, RDFS
 
-from yang_to_rdf.namespace import class_iri, property_iri
+from yang_to_rdf.namespace import (
+    NRM,
+    bind_standard_namespaces,
+    class_iri,
+    namespace_base,
+    property_iri,
+)
 from yang_to_rdf.yang_parser import AttrRef, Klass, Leaf, Model, Typedef
-
-NRM = Namespace("https://3gpp.org/nrm/vocab#")
 
 
 class YangToRDFConverter:
     def __init__(self, model: Model):
         self.model = model
         self.graph = Graph()
-        for p, ns in (("rdfs", RDFS), ("rdf", RDF), ("owl", OWL),
-                      ("xsd", XSD), ("nrm", NRM)):
-            self.graph.bind(p, ns)
+        bind_standard_namespaces(self.graph)
 
     def convert(self) -> Graph:
         self._emit_vocab()
@@ -35,18 +37,15 @@ class YangToRDFConverter:
         g.add((NRM.isReference, RDF.type, OWL.ObjectProperty))
         g.add((NRM.isInvariant, RDF.type, OWL.DatatypeProperty))
 
-    def _base(self, ns: str) -> str:
-        return ns + "/"
-
     def _emit_typedef(self, td: Typedef):
-        uri = URIRef(class_iri(self._base(td.namespace), td.name))
+        uri = URIRef(class_iri(namespace_base(td.namespace), td.name))
         self.graph.add((uri, RDF.type, RDFS.Datatype))
         if td.description:
             self.graph.add((uri, RDFS.comment, Literal(td.description)))
 
     def _emit_class(self, cls: Klass):
         g = self.graph
-        base = self._base(cls.namespace)
+        base = namespace_base(cls.namespace)
         uri = URIRef(class_iri(base, cls.name))
         g.add((uri, RDF.type, RDFS.Class))
         if cls.description:
