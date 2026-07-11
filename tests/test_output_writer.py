@@ -1,20 +1,31 @@
 """Tests for split-output module partitioning."""
 from rdflib import BNode, Graph, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, OWL
-from yang_to_rdf.output_writer import split_graph, module_urn, module_stem
+from yang_to_rdf.output_writer import split_graph, module_ns, module_stem
 import subprocess
 import sys
 from pathlib import Path
 
 NS_A = "urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction"
 NS_B = "urn:3gpp:sa5:_3gpp-common-managed-element"
+NSSET = {NS_A, NS_B}
 
 
-def test_module_urn_and_stem():
-    assert module_urn(URIRef(NS_A + "/AMFFunction")) == NS_A
-    assert module_urn(URIRef(NS_A + "/AMFFunction/userLabel")) == NS_A
-    assert module_urn(URIRef("https://3gpp.org/nrm/vocab#nameContains")) is None
+def test_module_ns_and_stem():
+    assert module_ns(URIRef(NS_A + "/AMFFunction"), NSSET) == NS_A
+    assert module_ns(URIRef(NS_A + "/AMFFunction/userLabel"), NSSET) == NS_A
+    # a namespace not in the known set -> no module
+    assert module_ns(URIRef("https://3gpp.org/nrm/vocab#nameContains"), NSSET) is None
     assert module_stem(NS_A) == "_3gpp-5gc-nrm-amffunction"
+
+
+def test_module_ns_is_scheme_agnostic():
+    # A non-3GPP / http namespace splits correctly when it's in the known set.
+    http_ns = "https://example.org/nrm/foofunction"
+    nsset = {http_ns}
+    assert module_ns(URIRef(http_ns + "/FooFunction"), nsset) == http_ns
+    assert module_ns(URIRef(http_ns + "/FooFunction/bar"), nsset) == http_ns
+    assert module_stem(http_ns) == "foofunction"
 
 
 def test_split_routes_triples_by_subject_module():
@@ -25,7 +36,7 @@ def test_split_routes_triples_by_subject_module():
     g.add((amf, RDF.type, RDFS.Class))
     g.add((me, NRM, amf))  # cross-module edge, subject = me
     g.add((NRM, RDF.type, OWL.ObjectProperty))  # vocab -> index
-    mods, index = split_graph(g)
+    mods, index = split_graph(g, NSSET)
     assert (amf, RDF.type, RDFS.Class) in mods[NS_A]
     assert (me, NRM, amf) in mods[NS_B]  # lives with its SUBJECT's module
     assert (NRM, RDF.type, OWL.ObjectProperty) in index
@@ -40,7 +51,7 @@ def test_split_keeps_bnode_closure_with_owner():
     PATH = URIRef("http://www.w3.org/ns/shacl#path")
     g.add((shape, SH, ps))
     g.add((ps, PATH, URIRef(NS_A + "/AMFFunction/userLabel")))
-    mods, index = split_graph(g)
+    mods, index = split_graph(g, NSSET)
     assert (shape, SH, ps) in mods[NS_A]
     assert (ps, PATH, URIRef(NS_A + "/AMFFunction/userLabel")) in mods[NS_A]
     assert len(index) == 0 or all(t[0] != ps for t in index)  # bnode not orphaned to index
@@ -50,7 +61,7 @@ def test_no_triple_dropped():
     g = Graph()
     g.add((URIRef(NS_A + "/X"), RDF.type, RDFS.Class))
     g.add((URIRef("https://ex/orphan"), RDF.value, Literal("z")))
-    mods, index = split_graph(g)
+    mods, index = split_graph(g, NSSET)
     # every original triple present somewhere (owl:Ontology/imports triples are additive)
     for t in g:
         assert t in index or any(t in mg for mg in mods.values())

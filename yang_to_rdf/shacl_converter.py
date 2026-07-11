@@ -48,7 +48,7 @@ class YangToSHACLConverter:
             g.add((ps, SH.datatype, leaf.xsd))
         if leaf.mandatory:
             g.add((ps, SH.minCount, Literal(1)))
-        elif leaf.min_elements:
+        elif leaf.min_elements is not None:
             g.add((ps, SH.minCount, Literal(leaf.min_elements)))
         if not leaf.is_list:
             g.add((ps, SH.maxCount, Literal(1)))
@@ -70,7 +70,7 @@ class YangToSHACLConverter:
         g.add((shape, SH.property, ps))
         g.add((ps, SH.path, URIRef(property_iri(base, cls.name, ref.name))))
         g.add((ps, SH["class"], URIRef(ref.target_iri)))
-        if ref.min_elements:
+        if ref.min_elements is not None:
             g.add((ps, SH.minCount, Literal(ref.min_elements)))
         if ref.max_elements is not None:
             g.add((ps, SH.maxCount, Literal(ref.max_elements)))

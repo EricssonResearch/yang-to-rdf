@@ -31,8 +31,6 @@ class ResolvedType:
     enums: list[str] = field(default_factory=list)
     pattern: str | None = None
     is_reference: bool = False
-    datatype_iri: str | None = None
-    base_name: str = "string"
 
 
 def _local(name: str) -> str:
@@ -66,7 +64,6 @@ def resolve_type(type_stmt) -> ResolvedType:
             break
         cur = nxt
 
-    rt.base_name = cur.arg
     if any(_local(n) in DN_TYPEDEFS for n in chain_names):
         rt.is_reference = True
 

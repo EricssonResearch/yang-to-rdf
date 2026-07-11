@@ -23,7 +23,6 @@ BASE_GROUPINGS = {
 @dataclass
 class Leaf:
     name: str
-    type_name: str = "string"
     description: str = ""
     mandatory: bool = False
     is_list: bool = False
@@ -71,6 +70,10 @@ class Model:
     classes: list[Klass] = field(default_factory=list)
     typedefs: list[Typedef] = field(default_factory=list)
     revisions: dict[str, tuple[str, str | None]] = field(default_factory=dict)
+    # Every source module's YANG namespace (URN or otherwise). This is the
+    # authoritative set used to partition output per module — scheme-agnostic,
+    # so non-3GPP / non-URN namespaces split correctly too.
+    module_namespaces: set[str] = field(default_factory=set)
 
     @property
     def iocs(self) -> list[Klass]:
@@ -90,7 +93,14 @@ def _desc(stmt) -> str:
 
 def _int(stmt, kw) -> int | None:
     s = stmt.search_one(kw)
-    return int(s.arg) if s is not None else None
+    if s is None:
+        return None
+    try:
+        return int(s.arg)
+    except (TypeError, ValueError):
+        # pyang normally validates min/max-elements as integers; guard anyway so
+        # a malformed value degrades to "unspecified" instead of crashing.
+        return None
 
 
 def _has_invariant(stmt) -> bool:
@@ -172,7 +182,6 @@ def _leaf_from(stmt) -> Leaf:
     if t is None:
         return Leaf(
             name=stmt.arg,
-            type_name=stmt.keyword,
             description=_desc(stmt),
             mandatory=False,
             is_list=stmt.keyword == "leaf-list",
@@ -185,7 +194,6 @@ def _leaf_from(stmt) -> Leaf:
     mand = stmt.search_one("mandatory")
     return Leaf(
         name=stmt.arg,
-        type_name=t.arg,
         description=_desc(stmt),
         mandatory=mand is not None and mand.arg == "true",
         is_list=stmt.keyword == "leaf-list",
@@ -343,6 +351,7 @@ class _Parser:
             # Capture revision metadata for versioning
             ns = _ns(m)
             if ns:
+                self.model.module_namespaces.add(ns)
                 rev = m.search_one("revision")
                 if rev is not None:
                     date = rev.arg
