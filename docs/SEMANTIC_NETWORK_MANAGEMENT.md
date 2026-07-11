@@ -31,25 +31,19 @@ The thesis of semantic network management is that the integration problem —
 TMF business APIs, 3GPP network specs, and vendor APIs all speaking different
 "languages" — becomes a **knowledge-graph problem**: different sources are
 different views onto one graph, and operational questions become graph queries and
-reasoning. A common shape for such a stack:
+reasoning. Any such system, whatever its exact shape, rests on a **shared
+vocabulary** — an ontology (TBox) that instance data from each source can be keyed
+to so that terms mean the same thing across domains.
 
-```
-┌───────────────────────────────────────────────────────────────┐
-│  Query & Reasoning     — SPARQL, RCA, intent conformance        │
-├───────────────────────────────────────────────────────────────┤
-│  Semantic lifting      — JSON/API responses → RDF, keyed to a   │
-│                          shared vocabulary (the TBox)           │
-├───────────────────────────────────────────────────────────────┤
-│  Schema foundation     — source schemas → TBox (RDFS/OWL/SHACL) │  ← yang-to-rdf
-└───────────────────────────────────────────────────────────────┘
-```
-
-**yang-to-rdf sits at the schema-foundation layer, for the 3GPP domain.** It
-supplies the *shared vocabulary* that everything above keys on: lifted instance
-data (a UPF, a cell, a slice, a service profile) resolves its meaning to the IRIs
-this tool mints, and cross-domain joins (TMF service ↔ 3GPP function ↔ vendor
-resource) close *because* the 3GPP side is now first-class RDF rather than opaque
-YANG. It is an **offline / build-time** step: run rarely, consumed everywhere.
+**yang-to-rdf produces that shared vocabulary for the 3GPP domain.** It is the
+schema-foundation piece: source schemas → ontology. Whatever consumes it — a
+triple store answering SPARQL, a validator, an intent engine, a reasoner — refers
+to 3GPP network attributes (a function, a cell, a slice, a service profile) through
+the IRIs this tool mints, and cross-domain joins (e.g. TMF service ↔ 3GPP function
+↔ vendor resource) can close *because* the 3GPP side is now first-class RDF rather
+than opaque YANG. It is an **offline / build-time** step: run rarely, consumed
+wherever the vocabulary is needed. It makes no assumption about how, or by what,
+its output is consumed.
 
 Two properties make it suitable as a foundation rather than a one-off script:
 
