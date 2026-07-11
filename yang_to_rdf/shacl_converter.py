@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from rdflib import BNode, Graph, Literal, Namespace, URIRef
 from rdflib.collection import Collection
-from rdflib.namespace import RDF, RDFS, XSD
+from rdflib.namespace import RDF
 
-from yang_to_rdf.namespace import class_iri, property_iri
-from yang_to_rdf.rdf_converter import NRM
+from yang_to_rdf.namespace import bind_standard_namespaces, class_iri, namespace_base, property_iri
 from yang_to_rdf.yang_parser import AttrRef, Klass, Leaf, Model
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
@@ -17,9 +16,8 @@ class YangToSHACLConverter:
     def __init__(self, model: Model):
         self.model = model
         self.graph = Graph()
-        for p, ns in (("sh", SH), ("rdfs", RDFS), ("rdf", RDF),
-                      ("xsd", XSD), ("nrm", NRM)):
-            self.graph.bind(p, ns)
+        bind_standard_namespaces(self.graph)
+        self.graph.bind("sh", SH)
 
     def convert(self) -> Graph:
         for cls in self.model.classes:
@@ -28,7 +26,7 @@ class YangToSHACLConverter:
 
     def _emit_shape(self, cls: Klass):
         g = self.graph
-        base = cls.namespace + "/"
+        base = namespace_base(cls.namespace)
         cls_uri = URIRef(class_iri(base, cls.name))
         shape = URIRef(class_iri(base, f"{cls.name}Shape"))
         g.add((shape, RDF.type, SH.NodeShape))
@@ -48,7 +46,7 @@ class YangToSHACLConverter:
             g.add((ps, SH.datatype, leaf.xsd))
         if leaf.mandatory:
             g.add((ps, SH.minCount, Literal(1)))
-        elif leaf.min_elements:
+        elif leaf.min_elements is not None:
             g.add((ps, SH.minCount, Literal(leaf.min_elements)))
         if not leaf.is_list:
             g.add((ps, SH.maxCount, Literal(1)))
@@ -70,7 +68,7 @@ class YangToSHACLConverter:
         g.add((shape, SH.property, ps))
         g.add((ps, SH.path, URIRef(property_iri(base, cls.name, ref.name))))
         g.add((ps, SH["class"], URIRef(ref.target_iri)))
-        if ref.min_elements:
+        if ref.min_elements is not None:
             g.add((ps, SH.minCount, Literal(ref.min_elements)))
         if ref.max_elements is not None:
             g.add((ps, SH.maxCount, Literal(ref.max_elements)))

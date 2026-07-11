@@ -31,8 +31,6 @@ class ResolvedType:
     enums: list[str] = field(default_factory=list)
     pattern: str | None = None
     is_reference: bool = False
-    datatype_iri: str | None = None
-    base_name: str = "string"
 
 
 def _local(name: str) -> str:
@@ -47,6 +45,8 @@ def resolve_type(type_stmt) -> ResolvedType:
         return rt
 
     # Walk the chain of type statements (leaf -> typedef -> typedef -> builtin).
+    # Bounded to guard against a cyclic or pathologically deep typedef chain;
+    # real 3GPP/IETF chains are only a few levels, so 12 is a safe ceiling.
     chain_names: list[str] = []
     cur = type_stmt
     for _ in range(12):
@@ -66,7 +66,6 @@ def resolve_type(type_stmt) -> ResolvedType:
             break
         cur = nxt
 
-    rt.base_name = cur.arg
     if any(_local(n) in DN_TYPEDEFS for n in chain_names):
         rt.is_reference = True
 

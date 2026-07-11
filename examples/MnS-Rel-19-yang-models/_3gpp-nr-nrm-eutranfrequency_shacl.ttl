@@ -19,6 +19,7 @@ stage 2 classes.""" ;
             sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/earfcnDL> ],
         [ sh:datatype xsd:unsignedShort ;
             sh:description "List of additional frequency bands the frequency belongs to." ;
+            sh:minCount 0 ;
             sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/multiBandInfoListEutra> ] ;
     sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> .
 

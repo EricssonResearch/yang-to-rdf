@@ -4,12 +4,30 @@ import os
 import sys
 from pathlib import Path
 
+from rdflib import Graph
+
 from yang_to_rdf.input_handler import collect_yang_files, fetch_forge_release
 from yang_to_rdf.output_writer import module_stem, split_graph, stamp_versions
 from yang_to_rdf.rdf_converter import YangToRDFConverter
 from yang_to_rdf.reference_layer import ReferenceLayerBuilder
 from yang_to_rdf.shacl_converter import YangToSHACLConverter
 from yang_to_rdf.yang_parser import parse
+
+
+def _build_layers(model, fmt: str, no_inference: bool) -> list[tuple[str, Graph]]:
+    """Build the requested output layers once: [(layer_name, graph), ...].
+
+    Shared by both --single-file and split output modes so the converters are
+    invoked in exactly one place.
+    """
+    layers: list[tuple[str, Graph]] = []
+    if fmt in ("rdf", "both"):
+        layers.append(("rdf", YangToRDFConverter(model).convert()))
+    if fmt in ("shacl", "both"):
+        layers.append(("shacl", YangToSHACLConverter(model).convert()))
+    if not no_inference:
+        layers.append(("refs", ReferenceLayerBuilder(model).build()))
+    return layers
 
 
 def main():
@@ -68,72 +86,42 @@ def main():
 
     os.makedirs(args.output, exist_ok=True)
 
+    # Build every requested layer once; the two modes differ only in routing.
+    layers = _build_layers(model, args.format, args.no_inference)
+
     if args.single_file:
-        # Original behavior: one merged file per layer
+        # One merged file per layer.
         stem = Path(args.input[0]).stem
-
-        if args.format in ("rdf", "both"):
-            g = YangToRDFConverter(model).convert()
+        titles = {"rdf": "RDF TBox", "shacl": "SHACL shapes", "refs": "Reference layer"}
+        for layer_name, g in layers:
             stamp_versions(g, model, release_label=args.release, aggregate=True)
-            path = os.path.join(args.output, f"{stem}_rdf.ttl")
+            path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
             g.serialize(destination=path, format="turtle")
-            print(f"RDF TBox -> {path} ({len(g)} triples)")
-
-        if args.format in ("shacl", "both"):
-            g = YangToSHACLConverter(model).convert()
-            stamp_versions(g, model, release_label=args.release, aggregate=True)
-            path = os.path.join(args.output, f"{stem}_shacl.ttl")
-            g.serialize(destination=path, format="turtle")
-            print(f"SHACL shapes -> {path} ({len(g)} triples)")
-
-        if not args.no_inference:
-            g = ReferenceLayerBuilder(model).build()
-            stamp_versions(g, model, release_label=args.release, aggregate=True)
-            path = os.path.join(args.output, f"{stem}_refs.ttl")
-            g.serialize(destination=path, format="turtle")
-            print(f"Reference layer -> {path} ({len(g)} triples)")
+            print(f"{titles[layer_name]} -> {path} ({len(g)} triples)")
     else:
-        # Split mode: one file per module per layer, plus shared index.ttl
-        from rdflib import Graph
+        # One file per module per layer, plus a shared index.ttl.
         index = Graph()
         file_count = 0
         module_count = 0
-
-        layers = []
-        if args.format in ("rdf", "both"):
-            layers.append(("rdf", YangToRDFConverter(model).convert()))
-        if args.format in ("shacl", "both"):
-            layers.append(("shacl", YangToSHACLConverter(model).convert()))
-        if not args.no_inference:
-            layers.append(("refs", ReferenceLayerBuilder(model).build()))
-
         for layer_name, layer_graph in layers:
-            mods, leftover = split_graph(layer_graph)
+            mods, leftover = split_graph(layer_graph, model.module_namespaces)
             # Accumulate leftovers into shared index (carry prefixes for readable ttl)
             for prefix, ns in leftover.namespaces():
                 index.bind(prefix, ns)
             for t in leftover:
                 index.add(t)
-
-            # Write per-module files
-            for urn, mg in mods.items():
+            for module_namespace, mg in sorted(mods.items()):  # sorted → deterministic
                 stamp_versions(mg, model)
-                stem = module_stem(urn)
+                stem = module_stem(module_namespace)
                 path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
                 mg.serialize(destination=path, format="turtle")
                 file_count += 1
+            module_count = max(module_count, len(mods))
 
-            if layer_name == "rdf":  # Count modules once
-                module_count = len(mods)
-
-        # Stamp index with aggregate versionIRI
         stamp_versions(index, model, release_label=args.release, aggregate=True)
-
-        # Write shared index.ttl
         index_path = os.path.join(args.output, "index.ttl")
         index.serialize(destination=index_path, format="turtle")
         file_count += 1
-
         print(f"Split output -> {args.output}/ ({module_count} modules, {file_count} files)")
 
     print("Done.")
