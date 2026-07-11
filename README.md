@@ -117,6 +117,11 @@ For a full audit of where the conversion follows RDF/OWL/SHACL standards and
 where it introduces its own conventions (the `nrm:` vocabulary and a few
 modelling choices), see [CONVERSION_NOTES.md](CONVERSION_NOTES.md).
 
+For how this tool fits the broader semantic network management picture and how it
+relates to intent-driven management (including why it supersedes the TMF
+connector-model approach to 3GPP), see
+[docs/SEMANTIC_NETWORK_MANAGEMENT.md](docs/SEMANTIC_NETWORK_MANAGEMENT.md).
+
 ### IRI Strategy
 
 Properties are path-scoped to avoid multi-domain conflicts:
