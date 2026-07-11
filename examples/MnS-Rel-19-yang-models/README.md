@@ -40,7 +40,8 @@ To produce a single merged file per layer instead, run with `--single-file`.
 - Tool: `yang-to-rdf` v0.2.0.
 - Command: `uv run yang-to-rdf MnS-Rel-19-yang-models.zip -o examples/MnS-Rel-19-yang-models`
 - Generated: 2026-07-04.
-- Layout: 105 modules → 284 per-module `.ttl` files + `index.ttl` (largest ~95 KB).
+- Layout: 107 modules → 286 per-module `.ttl` files + `index.ttl` (largest ~95 KB;
+  includes the imported IETF modules, each in its own file).
 - Model summary: 501 IOCs, 445 dataType classes, 138 typedefs; reference layer
   121 unambiguous / 443 unresolved DN references. (dataType classes are named and
   shared by their YANG grouping, so a grouping reused across many list nodes yields
