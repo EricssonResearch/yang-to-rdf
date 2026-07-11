@@ -46,14 +46,18 @@ class AttrRef:
 
 @dataclass
 class Klass:
+    """An emitted RDF class. `kind` is "ioc" (a managed object, from a YANG list
+    with an `attributes` container) or "datatype" (a 3GPP <<dataType>> structured
+    attribute). Named `Klass` to avoid shadowing the `class` keyword. This is the
+    central IR node the converters walk."""
     name: str
     namespace: str
     kind: str  # "ioc" | "datatype"
     description: str = ""
-    subclass_of: list[str] = field(default_factory=list)
-    leaves: list[Leaf] = field(default_factory=list)
-    attr_refs: list[AttrRef] = field(default_factory=list)
-    contains: list[str] = field(default_factory=list)
+    subclass_of: list[str] = field(default_factory=list)   # parent class IRIs
+    leaves: list[Leaf] = field(default_factory=list)        # scalar attributes
+    attr_refs: list[AttrRef] = field(default_factory=list)  # nested dataType links
+    contains: list[str] = field(default_factory=list)       # child IOC IRIs (nameContains)
 
 
 @dataclass
@@ -143,8 +147,13 @@ def _grouping_home_ns(u, ctx):
 def _class_identity(list_node, ctx):
     """Compute (name, namespace, iri) identity for a list node's class.
 
-    If the node uses exactly one non-base grouping ending with 'Grp',
-    derive from that grouping. Otherwise fallback to node-based naming.
+    Design decision (see CONVERSION_NOTES.md §5): a class is identified by the
+    YANG *grouping* it is built from, not the list node's own name. So a node
+    `serviceProfileList` that `uses ServiceProfileGrp` becomes class
+    `ServiceProfile` in the grouping's home module, and every node that reuses
+    that grouping collapses to one shared class. This applies only when the node
+    uses exactly one non-base grouping ending in 'Grp'; otherwise we fall back to
+    node-based naming (name and namespace from the list node itself).
     """
     # Collect resolved uses statements
     uses_stmts = [s for s in list_node.substmts if s.keyword == "uses"]

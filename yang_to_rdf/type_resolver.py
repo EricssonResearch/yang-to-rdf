@@ -45,6 +45,8 @@ def resolve_type(type_stmt) -> ResolvedType:
         return rt
 
     # Walk the chain of type statements (leaf -> typedef -> typedef -> builtin).
+    # Bounded to guard against a cyclic or pathologically deep typedef chain;
+    # real 3GPP/IETF chains are only a few levels, so 12 is a safe ceiling.
     chain_names: list[str] = []
     cur = type_stmt
     for _ in range(12):

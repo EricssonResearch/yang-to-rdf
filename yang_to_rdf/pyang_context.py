@@ -7,6 +7,9 @@ from pyang import plugin
 from pyang.context import Context
 from pyang.repository import FileRepository
 
+# pyang error tags treated as benign for our purpose: an unused import does not
+# affect the resolved schema tree we walk, so we drop it from the surfaced errors
+# to avoid noise. Add tags here only if they likewise cannot affect conversion.
 SUPPRESSED_ERROR_TAGS = {"UNUSED_IMPORT"}
 
 _plugins_initialized = False
