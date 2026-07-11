@@ -172,3 +172,33 @@ the *semantics* (one type, reused) than mirroring collection names.
 - Every deviation above is a modelling choice made to be *more* faithful to 3GPP
   semantics, not a shortcut — and each is isolated (own vocabulary term, own file,
   or clearly documented) so it can be reviewed, kept, or replaced independently.
+
+---
+
+## 8. Checking coverage ("do the YANG and the RDF represent the same things?")
+
+A full round-trip (YANG → RDF → YANG, byte-identical) is **not** achievable here
+by design — the conversion is the lossy projection described in §6. So equivalence
+is checked as **coverage + parity**, not round-trip identity, by
+`scripts/coverage_audit.py` (also enforced in `tests/test_coverage_audit.py`):
+
+1. **Parser completeness** — the parser records any attribute node *kind* it did
+   not model and surfaces it as an `unmodeled attribute node kind` warning. Zero
+   warnings ⇒ no schema construct was silently skipped.
+2. **RDF coverage** — every class, leaf, and structured-attribute link the parser
+   produced appears as a triple in the RDF TBox.
+3. **RDF/SHACL parity** — every emitted class has a SHACL NodeShape and vice
+   versa (guards against the two converters drifting).
+
+Run it against any module set:
+
+```bash
+python scripts/coverage_audit.py MnS-Rel-19-yang-models.zip   # exits non-zero on any gap
+```
+
+A **stronger** notion of equivalence — instance-level — is a separate, larger
+exercise not yet automated here: validate the same RESTCONF/NETCONF sample against
+the YANG (e.g. `yangson`/`yanglint`) and, converted to RDF, against the SHACL
+(`pyshacl`); the schema and the shapes agree if they accept/reject the same
+instances for the same reasons. This needs representative sample data and extra
+dependencies.
