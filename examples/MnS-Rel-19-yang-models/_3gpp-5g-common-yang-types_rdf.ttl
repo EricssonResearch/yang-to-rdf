@@ -40,7 +40,7 @@ of mobile NR node (e.g., IAB-node, MWAB-node).""" ;
         <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MappedCellIdInfo> a rdfs:Class ;
-    rdfs:label "MappedCellIdInfo" ;
+    rdfs:label "_3gpp-5g-common-yang-types:MappedCellIdInfo" ;
     rdfs:comment """It provides the list of mapping between GEO area and
 Mapped Cell ID.""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5g-common-yang-types/Ncgi>,
@@ -97,7 +97,7 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2026-01-07 (CR-)" .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/cAGIdList> a rdf:Property ;
-    rdfs:label "cAGIdList" ;
+    rdfs:label "AreaScope.cAGIdList" ;
     rdfs:comment """It identifies a CAG list containing up to
 256 CAG-identifiers per UE or up to 12 CAG-identifiers
 per cell, see TS 38.331 [38]. CAG ID is used to combine
@@ -107,13 +107,13 @@ range with size 32 bit.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/eutraCellIdList> a rdf:Property ;
-    rdfs:label "eutraCellIdList" ;
+    rdfs:label "AreaScope.eutraCellIdList" ;
     rdfs:comment "List of E-UTRAN cells identified by E-UTRAN-CGI" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/nPNIdentityList> a owl:ObjectProperty ;
-    rdfs:label "nPNIdentityList" ;
+    rdfs:label "AreaScope.nPNIdentityList" ;
     rdfs:comment """list of NPN IDs of in NR. It is either
 a list of PNI-NPNs identified by CAG ID with
 associated plmn-Identity or a list of SNPN
@@ -122,37 +122,37 @@ identified by Network ID with associated plmn-Identity""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/nrCellIdList> a rdf:Property ;
-    rdfs:label "nrCellIdList" ;
+    rdfs:label "AreaScope.nrCellIdList" ;
     rdfs:comment "List of NR cells identified by NG-RAN CGI" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/ntnGeoAreaList> a owl:ObjectProperty ;
-    rdfs:label "ntnGeoAreaList" ;
+    rdfs:label "AreaScope.ntnGeoAreaList" ;
     rdfs:comment "geographical areas for NTN MDT" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/sliceIdList> a owl:ObjectProperty ;
-    rdfs:label "sliceIdList" ;
+    rdfs:label "AreaScope.sliceIdList" ;
     rdfs:comment "Network Slice Id list" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/sliceIdList> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/tacList> a rdf:Property ;
-    rdfs:label "tacList" ;
+    rdfs:label "AreaScope.tacList" ;
     rdfs:comment "Tracking Area Code list" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope/taiList> a owl:ObjectProperty ;
-    rdfs:label "taiList" ;
+    rdfs:label "AreaScope.taiList" ;
     rdfs:comment "Tracking Area Identity list" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/CaraConfiguration/caraAddress> a rdf:Property ;
-    rdfs:label "caraAddress" ;
+    rdfs:label "CaraConfiguration.caraAddress" ;
     rdfs:comment """IP address or FQDN of the CMP (Certificate Management
 Protocol)
 server""" ;
@@ -160,7 +160,7 @@ server""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/CaraConfiguration/path> a rdf:Property ;
-    rdfs:label "path" ;
+    rdfs:label "CaraConfiguration.path" ;
     rdfs:comment """This parameter specifies the path (in ASCII string) to
 the CMP server directory. A CMP server may be located in an
 arbitrary path other than root.""" ;
@@ -168,7 +168,7 @@ arbitrary path other than root.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/CaraConfiguration/portNumber> a rdf:Property ;
-    rdfs:label "portNumber" ;
+    rdfs:label "CaraConfiguration.portNumber" ;
     rdfs:comment """This parameter specifies the port number used by
 CMP (Certificate Management Protocol) server. The port for HTTP/HTTPSs
 transfer of CMP messages is not explicitly given in RFC 9811, therefore
@@ -178,7 +178,7 @@ represented as 2 octets.""" ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/CaraConfiguration/protocol> a rdf:Property ;
-    rdfs:label "protocol" ;
+    rdfs:label "CaraConfiguration.protocol" ;
     rdfs:comment """This parameter specifies the protocol (HTTP or HTTPS)
 to be used for certificate enrolment. The use is described in
 3GPP TS 33.310 clause 9.6.""" ;
@@ -186,7 +186,7 @@ to be used for certificate enrolment. The use is described in
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/CaraConfiguration/subjectName> a rdf:Property ;
-    rdfs:label "subjectName" ;
+    rdfs:label "CaraConfiguration.subjectName" ;
     rdfs:comment """This parameter specifies the subject name (in ASCII
 string) of the CA/RA. The use is described in 3GPP TS 33.310
 clause 9.5.3.""" ;
@@ -206,48 +206,48 @@ clause 9.5.3.""" ;
     rdfs:label "EnergySavingTimeDurationT" .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/ExtSnssai/snssai> a owl:ObjectProperty ;
-    rdfs:label "snssai" ;
+    rdfs:label "ExtSnssai.snssai" ;
     rdfs:comment """It represents the S-NSSAI the NetworkSlice managed object
 is supporting. The S-NSSAI is defined in TS 23.003 """ ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/ExtSnssai> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-upffunction/snssai> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/ExtSnssai/snssaiExtension> a owl:ObjectProperty ;
-    rdfs:label "snssaiExtension" ;
+    rdfs:label "ExtSnssai.snssaiExtension" ;
     rdfs:comment "It represents extensions to the Snssai." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/ExtSnssai> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/SnssaiExtension> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/IpInterface/fqdn> a rdf:Property ;
-    rdfs:label "fqdn" ;
+    rdfs:label "IpInterface.fqdn" ;
     rdfs:comment """This parameter defines FQDN of the Network Function
 (See TS 23.003).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/IpInterface> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/IpInterface/ipv4EndpointAddresses> a rdf:Property ;
-    rdfs:label "ipv4EndpointAddresses" ;
+    rdfs:label "IpInterface.ipv4EndpointAddresses" ;
     rdfs:comment """Available endpoint IPv4 address(es) of
 the User Plane interface.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/IpInterface> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/IpInterface/ipv6EndpointAddresses> a rdf:Property ;
-    rdfs:label "ipv6EndpointAddresses" ;
+    rdfs:label "IpInterface.ipv6EndpointAddresses" ;
     rdfs:comment """Available endpoint IPv6 address(es) of
 the User Plane interface.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/IpInterface> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo/cellLocalId> a rdf:Property ;
-    rdfs:label "cellLocalId" ;
+    rdfs:label "LocationInfo.cellLocalId" ;
     rdfs:comment """Identifies an NR cell where IAB-MT or MWAB-UE
 is connected to.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo/gNBId> a rdf:Property ;
-    rdfs:label "gNBId" ;
+    rdfs:label "LocationInfo.gNBId" ;
     rdfs:comment """It is either the gNB ID of the IAB-donor-CU that target IAB-DU
 connects to or the gNB Id of the IAB-nonor-CU that serves IAB-MT, or
 the gNBId of the gNB that serves MWAB-UE.""" ;
@@ -255,53 +255,53 @@ the gNBId of the gNB that serves MWAB-UE.""" ;
     rdfs:range xsd:long .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo/geoArea> a owl:ObjectProperty ;
-    rdfs:label "geoArea" ;
+    rdfs:label "LocationInfo.geoArea" ;
     rdfs:comment """It specifies geographical area of mobile NR node
 (e.g., IAB-node or MWAB-node).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "LocationInfo.id" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo/nRTAC> a rdf:Property ;
-    rdfs:label "nRTAC" ;
+    rdfs:label "LocationInfo.nRTAC" ;
     rdfs:comment """It is TAC pertaining to the cells where IAB-MT or MWAB-UE is
 connected.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo/pLMNId> a owl:ObjectProperty ;
-    rdfs:label "pLMNId" ;
+    rdfs:label "LocationInfo.pLMNId" ;
     rdfs:comment "The PLMN ID where IAB-MT or MWAB-UE is connected to" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/pLMNId> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo/tAI> a owl:ObjectProperty ;
-    rdfs:label "tAI" ;
+    rdfs:label "LocationInfo.tAI" ;
     rdfs:comment """It is the TAI (see subclause 9.3.3.11 in TS 38.413) pertaining
 to the cells where IAB-MT or MWAB-UE is connected""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MappedCellIdInfo/mappedCellId> a owl:ObjectProperty ;
-    rdfs:label "mappedCellId" ;
+    rdfs:label "_3gpp-5g-common-yang-types:MappedCellIdInfo.mappedCellId" ;
     rdfs:comment """This attribute is in format of NCGI to indicate a fixed
 geographical area (See subclause 16.14.5 in TS 38.300)""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MappedCellIdInfo> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/Ncgi> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MappedCellIdInfo/ntnGeoArea> a owl:ObjectProperty ;
-    rdfs:label "ntnGeoArea" ;
+    rdfs:label "_3gpp-5g-common-yang-types:MappedCellIdInfo.ntnGeoArea" ;
     rdfs:comment """This attribute indicates a specific geographical location
 mapped to Mapped Cell ID(s).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MappedCellIdInfo> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig/caraConfiguration> a owl:ObjectProperty ;
-    rdfs:label "caraConfiguration" ;
+    rdfs:label "MnrOamIPConfig.caraConfiguration" ;
     rdfs:comment """configuration used for  an NR mobile node (e.g., IAB-node or MWAB),
 to perform certificate enrolment procedure as specified in
 TS 28.315.""" ;
@@ -309,12 +309,12 @@ TS 28.315.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/CaraConfiguration> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "MnrOamIPConfig.id" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig/scsConfiguration> a rdf:Property ;
-    rdfs:label "scsConfiguration" ;
+    rdfs:label "MnrOamIPConfig.scsConfiguration" ;
     rdfs:comment """this parameter specifies IP address or FQDN of
 configuration server (SCS) used for
 an NR mobile node (e.g., IAB-node or MWAB)
@@ -323,7 +323,7 @@ to establish connection as specified in TS 28.315.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig/seGwConfiguration> a rdf:Property ;
-    rdfs:label "seGwConfiguration" ;
+    rdfs:label "MnrOamIPConfig.seGwConfiguration" ;
     rdfs:comment """this parameter specifies IP address or
 FQDN of security gateway (SeGW) used for an
 an NR mobile node (e.g., IAB-node or MWAB)
@@ -345,7 +345,7 @@ and Extended-TAC is defined in subclause 9.3.1.29 of 3GPP TS 38.473.
 d) For a 5G SA (Stand Alone), it has a non-null value.""" .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/Ncgi/nId> a rdf:Property ;
-    rdfs:label "nId" ;
+    rdfs:label "Ncgi.nId" ;
     rdfs:comment """Network Identity; Shall be present if PlmnIdNid identifies
 an SNPN (see clauses 5.30.2.3, 5.30.2.9, 6.3.4, and 6.3.8 in
 3GPP TS 23.501.""" ;
@@ -353,7 +353,7 @@ an SNPN (see clauses 5.30.2.3, 5.30.2.9, 6.3.4, and 6.3.8 in
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/Ncgi/nrCellId> a rdf:Property ;
-    rdfs:label "nrCellId" ;
+    rdfs:label "Ncgi.nrCellId" ;
     rdfs:comment """This attribute represents NR Cell Identity.
 It's a 36-bit string identifying an NR Cell Id as specified in
 clause 9.3.1.7 of TS 38.413, in hexadecimal representation. Each
@@ -372,7 +372,7 @@ An NR Cell Id 0x225BD6007 shall be encoded as '225BD6007'.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/Ncgi/plmnId> a owl:ObjectProperty ;
-    rdfs:label "plmnId" ;
+    rdfs:label "Ncgi.plmnId" ;
     rdfs:comment "This attribute represents a PLMN Identity." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/Ncgi> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/plmnId> .
@@ -381,7 +381,7 @@ An NR Cell Id 0x225BD6007 shall be encoded as '225BD6007'.""" ;
     rdfs:label "PhysCellID" .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/SdRange/end> a rdf:Property ;
-    rdfs:label "end" ;
+    rdfs:label "SdRange.end" ;
     rdfs:comment """Last value identifying the end of an SD range.
 This string shall be formatted as specified for the sd attribute of the
 Snssai data type in clause 5.4.4.2 in TS 29.571""" ;
@@ -389,7 +389,7 @@ Snssai data type in clause 5.4.4.2 in TS 29.571""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/SdRange/start> a rdf:Property ;
-    rdfs:label "start" ;
+    rdfs:label "SdRange.start" ;
     rdfs:comment """First value identifying the start of an SD range.
 This string shall be formatted as specified for the sd attribute of the
 Snssai data type in clause 5.4.4.2 of TS 29.571.""" ;
@@ -397,7 +397,7 @@ Snssai data type in clause 5.4.4.2 of TS 29.571.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/SnssaiExtension/sdRanges> a owl:ObjectProperty ;
-    rdfs:label "sdRanges" ;
+    rdfs:label "SnssaiExtension.sdRanges" ;
     rdfs:comment """It shall contain the range(s) of Slice Differentiator values
 supported for the Slice/Service Type value indicated in the sst
 attribute of the Snssai data type (see clause 5.4.4.2 in TS 29.571).""" ;
@@ -405,7 +405,7 @@ attribute of the Snssai data type (see clause 5.4.4.2 in TS 29.571).""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/SdRange> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/SnssaiExtension/wildcardSd> a rdf:Property ;
-    rdfs:label "wildcardSd" ;
+    rdfs:label "SnssaiExtension.wildcardSd" ;
     rdfs:comment """It indicates that all SD values are supported for the
 Slice/Service Type value indicated in the sst attribute of the Snssai
 data type (see clause 5.4.4.2 in TS 29.571).""" ;
@@ -413,13 +413,13 @@ data type (see clause 5.4.4.2 in TS 29.571).""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/TaiRange/plmnId> a owl:ObjectProperty ;
-    rdfs:label "plmnId" ;
+    rdfs:label "TaiRange.plmnId" ;
     rdfs:comment "PLMN ID related to the TacRange." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/TaiRange> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/plmnId> .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/TaiRange/tacRangeList> a owl:ObjectProperty ;
-    rdfs:label "tacRangeList" ;
+    rdfs:label "TaiRange.tacRangeList" ;
     rdfs:comment "The range of the TACs." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/TaiRange> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/tacRangeList> .
@@ -430,7 +430,7 @@ data type (see clause 5.4.4.2 in TS 29.571).""" ;
 time zone.""" .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/VendorSpecificFeature/featureName> a rdf:Property ;
-    rdfs:label "featureName" ;
+    rdfs:label "VendorSpecificFeature.featureName" ;
     rdfs:comment """It is a string representing a proprietary feature
 specific to a given vendor.
 It is recommended that the case convention for these strings is the
@@ -440,7 +440,7 @@ see 3GPP TS 29.501, clause 5.1.1).""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5g-common-yang-types/VendorSpecificFeature/featureVersion> a rdf:Property ;
-    rdfs:label "featureVersion" ;
+    rdfs:label "VendorSpecificFeature.featureVersion" ;
     rdfs:comment "It is a string representing the version of the feature." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5g-common-yang-types/VendorSpecificFeature> ;
     rdfs:range xsd:string .

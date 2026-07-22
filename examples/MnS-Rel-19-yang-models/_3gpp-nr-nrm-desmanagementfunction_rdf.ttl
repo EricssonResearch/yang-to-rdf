@@ -19,12 +19,12 @@ containment tree.""" ;
         <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod> a rdfs:Class ;
-    rdfs:label "EsNotAllowedTimePeriod" ;
+    rdfs:label "_3gpp-nr-nrm-desmanagementfunction:EsNotAllowedTimePeriod" ;
     rdfs:comment """This is a list of time periods during which
 inter-RAT energy saving is not allowed""" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> a rdfs:Class ;
-    rdfs:label "loadTimeThreshold" ;
+    rdfs:label "_3gpp-nr-nrm-desmanagementfunction:loadTimeThreshold" ;
     rdfs:comment """This attributes is relevant, if the cell acts as an original
 cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed ES algorithms to allow a cell
@@ -44,35 +44,35 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2024-08-07 (CR-1331)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
-    rdfs:label "aIMLInferenceFunctionRefList" ;
+    rdfs:label "DESManagementFunction.aIMLInferenceFunctionRefList" ;
     rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction
 (See TS 28.105) .""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/desSwitch> a rdf:Property ;
-    rdfs:label "desSwitch" ;
+    rdfs:label "DESManagementFunction.desSwitch" ;
     rdfs:comment """This attribute determines whether the Distributed SON
 energy saving function is enabled or disabled.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/energySavingState> a rdf:Property ;
-    rdfs:label "energySavingState" ;
+    rdfs:label "DESManagementFunction.energySavingState" ;
     rdfs:comment """Specifies the status regarding the energy saving in the
 cell.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/esNotAllowedTimePeriod> a owl:ObjectProperty ;
-    rdfs:label "esNotAllowedTimePeriod" ;
+    rdfs:label "DESManagementFunction.esNotAllowedTimePeriod" ;
     rdfs:comment """This is a list of time periods during which
 inter-RAT energy saving is not allowed""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "DESManagementFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -80,7 +80,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/interRatEsActivationCandidateCellParameters> a owl:ObjectProperty ;
-    rdfs:label "interRatEsActivationCandidateCellParameters" ;
+    rdfs:label "DESManagementFunction.interRatEsActivationCandidateCellParameters" ;
     rdfs:comment """This attribute indicates the traffic load threshold and the
 time duration, which are used by distributed inter-RAT ES algorithms to
 allow an original cell to enter the energySaving state.""" ;
@@ -88,7 +88,7 @@ allow an original cell to enter the energySaving state.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/interRatEsActivationOriginalCellParameters> a owl:ObjectProperty ;
-    rdfs:label "interRatEsActivationOriginalCellParameters" ;
+    rdfs:label "DESManagementFunction.interRatEsActivationOriginalCellParameters" ;
     rdfs:comment """This attribute indicates the traffic load threshold and the
 time duration, which are used by distributed inter-RAT ES algorithms to
 allow an original cell to enter the energySaving state.""" ;
@@ -96,7 +96,7 @@ allow an original cell to enter the energySaving state.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/interRatEsDeactivationCandidateCellParameters> a owl:ObjectProperty ;
-    rdfs:label "interRatEsDeactivationCandidateCellParameters" ;
+    rdfs:label "DESManagementFunction.interRatEsDeactivationCandidateCellParameters" ;
     rdfs:comment """This attribute indicates the traffic load threshold and the
 time duration which is used by distributed inter-RAT ES algorithms to
 allow an original cell to leave the energySaving state.""" ;
@@ -104,7 +104,7 @@ allow an original cell to leave the energySaving state.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/intraRatEsActivationCandidateCellsLoadParameters> a owl:ObjectProperty ;
-    rdfs:label "intraRatEsActivationCandidateCellsLoadParameters" ;
+    rdfs:label "DESManagementFunction.intraRatEsActivationCandidateCellsLoadParameters" ;
     rdfs:comment """This attribute indicates the traffic load threshold and the
 time duration, which are used by distributed ES algorithms level to
 allow an 'original' cell to enter the energySaving state.""" ;
@@ -112,7 +112,7 @@ allow an 'original' cell to enter the energySaving state.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/intraRatEsActivationOriginalCellLoadParameters> a owl:ObjectProperty ;
-    rdfs:label "intraRatEsActivationOriginalCellLoadParameters" ;
+    rdfs:label "DESManagementFunction.intraRatEsActivationOriginalCellLoadParameters" ;
     rdfs:comment """This attributes is relevant, if the cell acts as an original
 cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed ES algorithms to allow a cell
@@ -121,7 +121,7 @@ to enter the energySaving state.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/intraRatEsDeactivationCandidateCellsLoadParameters> a owl:ObjectProperty ;
-    rdfs:label "intraRatEsDeactivationCandidateCellsLoadParameters" ;
+    rdfs:label "DESManagementFunction.intraRatEsDeactivationCandidateCellsLoadParameters" ;
     rdfs:comment """This attributes is relevant, if the cell acts as a candidate
 cell.This attribute indicates the traffic load threshold  and the time
 duration which is used by distributed ES algorithms to allow a cell to
@@ -130,21 +130,21 @@ leave the energySaving state.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/isProbingCapable> a rdf:Property ;
-    rdfs:label "isProbingCapable" ;
+    rdfs:label "DESManagementFunction.isProbingCapable" ;
     rdfs:comment """This attribute indicates whether this cell is capable of
 performing the ES probing procedure.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/mLModelRefList> a owl:ObjectProperty ;
-    rdfs:label "mLModelRefList" ;
+    rdfs:label "DESManagementFunction.mLModelRefList" ;
     rdfs:comment """This attribute holds a DN list of MLModel ¨
 (See TS 28.105]).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod/daysOfWeek> a rdf:Property ;
-    rdfs:label "daysOfWeek" ;
+    rdfs:label "_3gpp-nr-nrm-desmanagementfunction:EsNotAllowedTimePeriod.daysOfWeek" ;
     rdfs:comment """Specifies that the not allowed periods are only
 applicable to the specified days in UTC timezone. Every day if
 not set.""" ;
@@ -152,14 +152,14 @@ not set.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod/endTime> a rdf:Property ;
-    rdfs:label "endTime" ;
+    rdfs:label "_3gpp-nr-nrm-desmanagementfunction:EsNotAllowedTimePeriod.endTime" ;
     rdfs:comment """If endTime has a lower value than startTime, it will
 be interpreted as referring to the following day.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod/startTime> a rdf:Property ;
-    rdfs:label "startTime" ;
+    rdfs:label "_3gpp-nr-nrm-desmanagementfunction:EsNotAllowedTimePeriod.startTime" ;
     rdfs:comment """Start of not allowed time period in UTC time zone.
 If set, the endTime must also be set. If not set, this is
 interpreted as around the clock.""" ;
@@ -167,14 +167,14 @@ interpreted as around the clock.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold/threshold> a rdf:Property ;
-    rdfs:label "threshold" ;
+    rdfs:label "_3gpp-nr-nrm-desmanagementfunction:loadTimeThreshold.threshold" ;
     rdfs:comment """This attribute is used by distributed ES algorithms to allow
 a cell to enter the energySaving state.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold/timeDuration> a rdf:Property ;
-    rdfs:label "timeDuration" ;
+    rdfs:label "_3gpp-nr-nrm-desmanagementfunction:loadTimeThreshold.timeDuration" ;
     rdfs:comment """The time duration indicates how long the traffic load
 (either for UL or DL) in the cell needs to have been above the
 threshold to wake up one or more original cells which have been

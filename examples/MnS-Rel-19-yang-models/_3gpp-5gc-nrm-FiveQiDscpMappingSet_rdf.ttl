@@ -26,13 +26,13 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-07-25 (CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet/fiveQiDscpMappingList> a owl:ObjectProperty ;
-    rdfs:label "fiveQiDscpMappingList" ;
+    rdfs:label "FiveQiDscpMappingSet.fiveQiDscpMappingList" ;
     rdfs:comment "It provides the list of mapping between 5QIs and DSCP." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "FiveQiDscpMappingSet.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -40,12 +40,12 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList/dscp> a rdf:Property ;
-    rdfs:label "dscp" ;
+    rdfs:label "fiveQiDscpMappingList.dscp" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList/fiveQIValues> a rdf:Property ;
-    rdfs:label "fiveQIValues" ;
+    rdfs:label "fiveQiDscpMappingList.fiveQIValues" ;
     rdfs:comment " Identifies the 5QI values that are mapped to a same DSCP" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> ;
     rdfs:range xsd:unsignedInt .

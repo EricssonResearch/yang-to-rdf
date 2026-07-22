@@ -21,14 +21,14 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/absoluteFrequencySSB> a rdf:Property ;
-    rdfs:label "absoluteFrequencySSB" ;
+    rdfs:label "NRFrequency.absoluteFrequencySSB" ;
     rdfs:comment """The absolute frequency applicable for a downlink NR carrier
 frequency associated with the SSB, in terms of NR-ARFCN.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "NRFrequency.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -36,14 +36,14 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/multiFrequencyBandListNR> a rdf:Property ;
-    rdfs:label "multiFrequencyBandListNR" ;
+    rdfs:label "NRFrequency.multiFrequencyBandListNR" ;
     rdfs:comment """List of additional frequency bands the frequency belongs to.
 The list is automatically set by the gNB.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/ssBSubCarrierSpacing> a rdf:Property ;
-    rdfs:label "ssBSubCarrierSpacing" ;
+    rdfs:label "NRFrequency.ssBSubCarrierSpacing" ;
     rdfs:comment """Sub-carrier spacing of the SSB.
 Note that the allowed values of SSB used for representing data,
 by e.g. a BWP, are: 15, 30, 60 and 120 in units of kHz.""" ;

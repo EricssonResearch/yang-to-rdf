@@ -36,14 +36,14 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/dPciConfigurationControl> a rdf:Property ;
-    rdfs:label "dPciConfigurationControl" ;
+    rdfs:label "DPCIConfigurationFunction.dPciConfigurationControl" ;
     rdfs:comment """This attribute determines whether the Distributed SON PCI
 configuration Function is enabled or disabled.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "DPCIConfigurationFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -51,7 +51,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/nRPciList> a owl:ObjectProperty ;
-    rdfs:label "nRPciList" ;
+    rdfs:label "DPCIConfigurationFunction.nRPciList" ;
     rdfs:comment """This holds a list of physical cell identities that can be
 assigned to the NR cells. This attribute shall be supported if D-SON
 PCI configuration function is supported.""" ;
@@ -59,7 +59,7 @@ PCI configuration function is supported.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList/NRPci> a rdf:Property ;
-    rdfs:label "NRPci" ;
+    rdfs:label "nRPciList.NRPci" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> ;
     rdfs:range xsd:unsignedInt .
 

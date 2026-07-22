@@ -39,7 +39,7 @@ switchovers.""" ;
         <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNTimeBasedConfig> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNTimeBasedConfig> a rdfs:Class ;
-    rdfs:label "NTNTimeBasedConfig" ;
+    rdfs:label "_3gpp-nr-nrm-ntnfunction:NTNTimeBasedConfig" ;
     rdfs:comment """This IOC represents the NTN time-based configuration.
 """ ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow>,
@@ -82,27 +82,27 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2026-02-02 (CR-1682 CR-1683)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris/epochTime> a rdf:Property ;
-    rdfs:label "epochTime" ;
+    rdfs:label "Ephemeris.epochTime" ;
     rdfs:comment "It defines the ephemeris reference time." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris/orbital> a owl:ObjectProperty ;
-    rdfs:label "orbital" ;
+    rdfs:label "Ephemeris.orbital" ;
     rdfs:comment """It indicates ephemeris is in orbital parameter ephemeris
 format, as specified in NIMA TR 8350.2""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Orbital> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris/positionVelocity> a owl:ObjectProperty ;
-    rdfs:label "positionVelocity" ;
+    rdfs:label "Ephemeris.positionVelocity" ;
     rdfs:comment """It indicates ephemeris is in format of NTN payload
 position and velocity state vectors.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/PositionVelocity> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris/satelliteId> a rdf:Property ;
-    rdfs:label "satelliteId" ;
+    rdfs:label "Ephemeris.satelliteId" ;
     rdfs:comment """This attribute indicates satellite Id.number.
 It shall be formatted as a fixed 5-digit string, padding with
 leading digits '0' to complete a 5-digit length.
@@ -111,13 +111,13 @@ allowedValues: 00000..00255""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/EphemerisInfoSet/EphemerisInfos> a owl:ObjectProperty ;
-    rdfs:label "EphemerisInfos" ;
+    rdfs:label "EphemerisInfoSet.EphemerisInfos" ;
     rdfs:comment "This is the list of Ephemeris related information." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/EphemerisInfoSet> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Ephemeris> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/EphemerisInfoSet/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EphemerisInfoSet.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -125,7 +125,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNEntityConfig/nTNConfEntity> a owl:ObjectProperty ;
-    rdfs:label "nTNConfEntity" ;
+    rdfs:label "NTNEntityConfig.nTNConfEntity" ;
     rdfs:comment """Specifies the DN of a specific NTN related MOI.
 allowedValues:  DN of of the following MOIs:
 EP_NgC, NRCellCU, NRCellDU, NRSectorCarrier,
@@ -134,7 +134,7 @@ SectorEquipmentFunction, NRCellRelation.""" ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNEntityConfig/nTNConfigList> a owl:ObjectProperty ;
-    rdfs:label "nTNConfigList" ;
+    rdfs:label "NTNEntityConfig.nTNConfigList" ;
     rdfs:comment """Specifies the list of configuration parameters and values.
 The content of the attribute is a list of attributeName- attributeValue
 pairs.  AttributeValues may be complex types.""" ;
@@ -142,7 +142,7 @@ pairs.  AttributeValues may be complex types.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNConfigList> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNFunction/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "NTNFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -150,7 +150,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNFunction/nTNTAClist> a rdf:Property ;
-    rdfs:label "nTNTAClist" ;
+    rdfs:label "NTNFunction.nTNTAClist" ;
     rdfs:comment """It is the list of Tracking Area Codes (either legacy TAC or
 extended TAC) for NR NTN.
 Legacy TAC and Extended TAC are defined in clause 9.3.3.10 of
@@ -159,7 +159,7 @@ TS 38.413.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNFunction/nTNpLMNInfoList> a owl:ObjectProperty ;
-    rdfs:label "nTNpLMNInfoList" ;
+    rdfs:label "NTNFunction.nTNpLMNInfoList" ;
     rdfs:comment """It defines which PLMNs that can be served by the NR NTN cell,
 and which S-NSSAIs can be supported by the NR NTN cell for
 corresponding PLMN in case of network slicing feature is supported.
@@ -169,7 +169,7 @@ construct the nCGI for the NR cell.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNpLMNInfoList> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNTimeBasedConfig/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "_3gpp-nr-nrm-ntnfunction:NTNTimeBasedConfig.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -177,20 +177,20 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNTimeBasedConfig/nTNEntityConfigList> a owl:ObjectProperty ;
-    rdfs:label "nTNEntityConfigList" ;
+    rdfs:label "_3gpp-nr-nrm-ntnfunction:NTNTimeBasedConfig.nTNEntityConfigList" ;
     rdfs:comment """It contains a list of configuration
 updates to be applied to specified NTN entities.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNTimeBasedConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNEntityConfig> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNTimeBasedConfig/timeWindow> a owl:ObjectProperty ;
-    rdfs:label "timeWindow" ;
+    rdfs:label "_3gpp-nr-nrm-ntnfunction:NTNTimeBasedConfig.timeWindow" ;
     rdfs:comment "It defines the time window." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNTimeBasedConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Orbital/eccentricity> a rdf:Property ;
-    rdfs:label "eccentricity" ;
+    rdfs:label "Orbital.eccentricity" ;
     rdfs:comment """Satellite orbital parameter: eccentricity e,
 see NIMA TR 8350.2.
 Step 1.431 * 10**-8.
@@ -199,7 +199,7 @@ Actual value = field value * (1.431 * 10**-8).""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Orbital/inclination> a rdf:Property ;
-    rdfs:label "inclination" ;
+    rdfs:label "Orbital.inclination" ;
     rdfs:comment """Satellite orbital parameter: inclination i,
 see NIMA TR 8350.2.
 Step of 2.341* 10**-8 rad.
@@ -208,7 +208,7 @@ Actual value = field value * (2.341* 10**-8).""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Orbital/longitude> a rdf:Property ;
-    rdfs:label "longitude" ;
+    rdfs:label "Orbital.longitude" ;
     rdfs:comment """Satellite orbital parameter: longitude of ascending node
 OMEGA, see NIMA TR 8350.2.
 Step of 2.341* 10**-8 rad.
@@ -217,7 +217,7 @@ Actual value = field value * (2.341* 10**-8).""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Orbital/meanAnomaly> a rdf:Property ;
-    rdfs:label "meanAnomaly" ;
+    rdfs:label "Orbital.meanAnomaly" ;
     rdfs:comment """Satellite orbital parameter: Mean anomaly M at epoch time,
 see NIMA TR 8350.2.
 Step of 2.341* 10**-8 rad.
@@ -226,7 +226,7 @@ Actual value = field value * (2.341* 10**-8).""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Orbital/periapsis> a rdf:Property ;
-    rdfs:label "periapsis" ;
+    rdfs:label "Orbital.periapsis" ;
     rdfs:comment """Satellite orbital parameter: argument of periapsis omega,
 see NIMA TR 8350.2.
 Step of 2.341* 10**-8 rad.
@@ -235,7 +235,7 @@ Actual value = field value * (2.341* 10**-8).""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/Orbital/semiMajorAxis> a rdf:Property ;
-    rdfs:label "semiMajorAxis" ;
+    rdfs:label "Orbital.semiMajorAxis" ;
     rdfs:comment """Satellite orbital parameter: semi major axis alpha,
 see NIMA TR 8350.2.
 Step of 4.249 * 10**-3 m.
@@ -244,7 +244,7 @@ Actual value = 6500000 + field value * (4.249 * 10**-3).""" ;
     rdfs:range xsd:unsignedLong .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/PositionVelocity/positionX> a rdf:Property ;
-    rdfs:label "positionX" ;
+    rdfs:label "PositionVelocity.positionX" ;
     rdfs:comment """X, Y, Z coordinate of satellite position state vector
 in ECEF. Unit is meter.
 Step of 1.3 m. Actual value = field value * 1.3.""" ;
@@ -252,7 +252,7 @@ Step of 1.3 m. Actual value = field value * 1.3.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/PositionVelocity/positionY> a rdf:Property ;
-    rdfs:label "positionY" ;
+    rdfs:label "PositionVelocity.positionY" ;
     rdfs:comment """X, Y, Z coordinate of satellite position state vector
 in ECEF. Unit is meter.
 Step of 1.3 m. Actual value = field value * 1.3.""" ;
@@ -260,7 +260,7 @@ Step of 1.3 m. Actual value = field value * 1.3.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/PositionVelocity/positionZ> a rdf:Property ;
-    rdfs:label "positionZ" ;
+    rdfs:label "PositionVelocity.positionZ" ;
     rdfs:comment """X, Y, Z coordinate of satellite position state vector
 in ECEF. Unit is meter.
 Step of 1.3 m. Actual value = field value * 1.3.""" ;
@@ -268,7 +268,7 @@ Step of 1.3 m. Actual value = field value * 1.3.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/PositionVelocity/velocityVX> a rdf:Property ;
-    rdfs:label "velocityVX" ;
+    rdfs:label "PositionVelocity.velocityVX" ;
     rdfs:comment """X, Y, Z coordinate of satellite velocity state vector
 in ECEF.
 Step of 0.06 m/s. Actual value = field value * 0.06.""" ;
@@ -276,7 +276,7 @@ Step of 0.06 m/s. Actual value = field value * 0.06.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/PositionVelocity/velocityVY> a rdf:Property ;
-    rdfs:label "velocityVY" ;
+    rdfs:label "PositionVelocity.velocityVY" ;
     rdfs:comment """X, Y, Z coordinate of satellite velocity state vector
 in ECEF.
 Step of 0.06 m/s. Actual value = field value * 0.06.""" ;
@@ -284,7 +284,7 @@ Step of 0.06 m/s. Actual value = field value * 0.06.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/PositionVelocity/velocityVZ> a rdf:Property ;
-    rdfs:label "velocityVZ" ;
+    rdfs:label "PositionVelocity.velocityVZ" ;
     rdfs:comment """X, Y, Z coordinate of satellite velocity state vector
 in ECEF.
 Step of 0.06 m/s. Actual value = field value * 0.06.""" ;
@@ -292,34 +292,34 @@ Step of 0.06 m/s. Actual value = field value * 0.06.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNConfigList/name> a rdf:Property ;
-    rdfs:label "name" ;
+    rdfs:label "nTNConfigList.name" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNConfigList> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNConfigList/value> a rdf:Property ;
-    rdfs:label "value" ;
+    rdfs:label "nTNConfigList.value" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNConfigList> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNpLMNInfoList/mcc> a rdf:Property ;
-    rdfs:label "mcc" ;
+    rdfs:label "nTNpLMNInfoList.mcc" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNpLMNInfoList> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNpLMNInfoList/mnc> a rdf:Property ;
-    rdfs:label "mnc" ;
+    rdfs:label "nTNpLMNInfoList.mnc" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNpLMNInfoList> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNpLMNInfoList/sd> a rdf:Property ;
-    rdfs:label "sd" ;
+    rdfs:label "nTNpLMNInfoList.sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNpLMNInfoList> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/nTNpLMNInfoList/sst> a rdf:Property ;
-    rdfs:label "sst" ;
+    rdfs:label "nTNpLMNInfoList.sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;

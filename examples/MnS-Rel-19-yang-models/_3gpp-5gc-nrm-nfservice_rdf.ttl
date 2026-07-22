@@ -36,7 +36,7 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-01-25 (CR-1442)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNSSAI> a owl:ObjectProperty ;
-    rdfs:label "allowedNSSAI" ;
+    rdfs:label "NFService.allowedNSSAI" ;
     rdfs:comment """S-NSSAI of the allowed slices to access the service
 instance. The absence of this attribute indicates that any slice
 is allowed to access the service instance.""" ;
@@ -44,20 +44,20 @@ is allowed to access the service instance.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedNSSAI> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNfDomains> a rdf:Property ;
-    rdfs:label "allowedNfDomains" ;
+    rdfs:label "NFService.allowedNfDomains" ;
     rdfs:comment """Pattern representing the NF domain names allowed to
 access the service instance.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNfTypes> a rdf:Property ;
-    rdfs:label "allowedNfTypes" ;
+    rdfs:label "NFService.allowedNfTypes" ;
     rdfs:comment "SNPNs allowed to access the NF instance" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfInstance> a rdf:Property ;
-    rdfs:label "allowedOperationsPerNfInstance" ;
+    rdfs:label "NFService.allowedOperationsPerNfInstance" ;
     rdfs:comment """It indicates the allowed operations on resources for
 a given NF Instance; the key of the map is the NF Instance Id, and
 the value is an array of scopes""" ;
@@ -65,7 +65,7 @@ the value is an array of scopes""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfInstanceOverrides> a rdf:Property ;
-    rdfs:label "allowedOperationsPerNfInstanceOverrides" ;
+    rdfs:label "NFService.allowedOperationsPerNfInstanceOverrides" ;
     rdfs:comment """When it is present and set to true, indicates that
 the scopes defined in attribute allowedOperationsPerNfInstance
 for a given NF Instance ID take precedence over the scopes defined
@@ -75,7 +75,7 @@ NF type of the NF Instance associated to such NF Instance ID..""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfType> a rdf:Property ;
-    rdfs:label "allowedOperationsPerNfType" ;
+    rdfs:label "NFService.allowedOperationsPerNfType" ;
     rdfs:comment """It indicates the allowed operations on resources for
 each type of NF; the key of the map is the NF Type, and the value
 is an array of scopes""" ;
@@ -83,7 +83,7 @@ is an array of scopes""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedPLMNs> a owl:ObjectProperty ;
-    rdfs:label "allowedPLMNs" ;
+    rdfs:label "NFService.allowedPLMNs" ;
     rdfs:comment """PLMNs allowed to access the service instance.
 The absence of this attribute indicates that any PLMN is allowed to
 access the service instance.""" ;
@@ -91,7 +91,7 @@ access the service instance.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedPLMNs> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedSnpns> a owl:ObjectProperty ;
-    rdfs:label "allowedSnpns" ;
+    rdfs:label "NFService.allowedSnpns" ;
     rdfs:comment """PLMNs allowed to access the service instance.
 The absence of this attribute indicates that any PLMN is allowed to
 access the service instance.""" ;
@@ -99,40 +99,40 @@ access the service instance.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedSnpns> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/apiPrefix> a rdf:Property ;
-    rdfs:label "apiPrefix" ;
+    rdfs:label "NFService.apiPrefix" ;
     rdfs:comment """Optional path segment(s) used to construct the {apiRoot}
 variable of the different API URIs.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/capacity> a rdf:Property ;
-    rdfs:label "capacity" ;
+    rdfs:label "NFService.capacity" ;
     rdfs:comment """Static capacity information in the range of 0-65535,
 expressed as a weight relative to other services of the same type.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/defaultNotificationSubscriptions> a owl:ObjectProperty ;
-    rdfs:label "defaultNotificationSubscriptions" ;
+    rdfs:label "NFService.defaultNotificationSubscriptions" ;
     rdfs:comment "Notification endpoints for different notification types." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/defaultNotificationSubscriptions> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/fqdn> a rdf:Property ;
-    rdfs:label "fqdn" ;
+    rdfs:label "NFService.fqdn" ;
     rdfs:comment "FQDN of the NF Service Instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/interPlmnFqdn> a rdf:Property ;
-    rdfs:label "interPlmnFqdn" ;
+    rdfs:label "NFService.interPlmnFqdn" ;
     rdfs:comment """If the NF service needs to be discoverable by other NFs in a
 different PLMN, then an FQDN that is used for inter PLMN routing.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/ipEndPoints> a owl:ObjectProperty ;
-    rdfs:label "ipEndPoints" ;
+    rdfs:label "NFService.ipEndPoints" ;
     rdfs:comment """IP address(es) and port information of the Network Function
 (including IPv4 and/or IPv6 address)where the service is listening
 for incoming service requests.""" ;
@@ -140,20 +140,20 @@ for incoming service requests.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/ipEndPoints> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/nfServiceStatus> a rdf:Property ;
-    rdfs:label "nfServiceStatus" ;
+    rdfs:label "NFService.nfServiceStatus" ;
     rdfs:comment "Status of the NF Service Instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/oauth2Required> a rdf:Property ;
-    rdfs:label "oauth2Required" ;
+    rdfs:label "NFService.oauth2Required" ;
     rdfs:comment """It indicates whether the NF Service Instance requires
 Oauth2-based authorization""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/priority> a rdf:Property ;
-    rdfs:label "priority" ;
+    rdfs:label "NFService.priority" ;
     rdfs:comment """Priority (relative to other services of the same type)
 in the range of 0-65535, to be used for NF Service selection; lower
 values indicate a higher priority.""" ;
@@ -161,31 +161,31 @@ values indicate a higher priority.""" ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/recoveryTime> a rdf:Property ;
-    rdfs:label "recoveryTime" ;
+    rdfs:label "NFService.recoveryTime" ;
     rdfs:comment "Timestamp when the NF was (re)started." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/scheme> a rdf:Property ;
-    rdfs:label "scheme" ;
+    rdfs:label "NFService.scheme" ;
     rdfs:comment "URI scheme (e.g. 'http', 'https')." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/serviceInstanceID> a rdf:Property ;
-    rdfs:label "serviceInstanceID" ;
+    rdfs:label "NFService.serviceInstanceID" ;
     rdfs:comment "Unique ID of the service instance within a given NF Instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/serviceName> a rdf:Property ;
-    rdfs:label "serviceName" ;
+    rdfs:label "NFService.serviceName" ;
     rdfs:comment "Name of the service instance (e.g. 'nudm-sdm')." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/sharedServiceDataId> a rdf:Property ;
-    rdfs:label "sharedServiceDataId" ;
+    rdfs:label "NFService.sharedServiceDataId" ;
     rdfs:comment """String uniquely identifying SharedServiceData. The format
 of the sharedServiceDataId shall be a Universally Unique Identifier
 (UUID) version 4, as described in IETF RFC 4122 [44]. The hexadecimal
@@ -195,13 +195,13 @@ and they shall be handled as case-insensitive by the receiver.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/vendorId> a rdf:Property ;
-    rdfs:label "vendorId" ;
+    rdfs:label "NFService.vendorId" ;
     rdfs:comment "Vendor ID of the NF instance" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/versions> a owl:ObjectProperty ;
-    rdfs:label "versions" ;
+    rdfs:label "NFService.versions" ;
     rdfs:comment """API versions supported by the NF Service and if available,
 the corresponding retirement date of the NF Service.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
@@ -211,21 +211,21 @@ the corresponding retirement date of the NF Service.""" ;
     rdfs:label "NFServiceStatus" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/mCC> a rdf:Property ;
-    rdfs:label "mCC" ;
+    rdfs:label "SNPNId.mCC" ;
     rdfs:comment """This is the Mobile Country Code (MCC) of the PLMN
 identifier. See TS 23.003 [13] subclause 2.2 and 12.1""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/mNC> a rdf:Property ;
-    rdfs:label "mNC" ;
+    rdfs:label "SNPNId.mNC" ;
     rdfs:comment """This is the Mobile Network Code (MNC) of the PLMN
 identifier. See TS 23.003 [13] subclause 2.2 and 12.1.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/nId> a rdf:Property ;
-    rdfs:label "nId" ;
+    rdfs:label "SNPNId.nId" ;
     rdfs:comment """Network Identity; Shall be present if PlmnIdNid
 identifies an SNPN""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> ;

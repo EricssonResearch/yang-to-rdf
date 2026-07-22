@@ -66,19 +66,19 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-07-25 (CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/CollocatedNfInstance/nfInstanceId> a rdf:Property ;
-    rdfs:label "nfInstanceId" ;
+    rdfs:label "CollocatedNfInstance.nfInstanceId" ;
     rdfs:comment "String uniquely identifying a NF instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/CollocatedNfInstance> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/CollocatedNfInstance/nfType> a rdf:Property ;
-    rdfs:label "nfType" ;
+    rdfs:label "CollocatedNfInstance.nfType" ;
     rdfs:comment "Type of Network Function." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/CollocatedNfInstance> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/consumerNfTypes> a rdf:Property ;
-    rdfs:label "consumerNfTypes" ;
+    rdfs:label "ConditionItem.consumerNfTypes" ;
     rdfs:comment """It represents the NF types of the consumers for
 which the conditions included in this ConditionItem apply.
 If this attribute is absent, the conditions are applicable
@@ -87,7 +87,7 @@ to all NF consumer types.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/dnnList> a rdf:Property ;
-    rdfs:label "dnnList" ;
+    rdfs:label "ConditionItem.dnnList" ;
     rdfs:comment """ It represents a set of TAIs where the NF
 (Service) instance under CANARY_RELEASE status shall be
 selected for a certain UE""" ;
@@ -95,7 +95,7 @@ selected for a certain UE""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/gpsiRangeList> a owl:ObjectProperty ;
-    rdfs:label "gpsiRangeList" ;
+    rdfs:label "ConditionItem.gpsiRangeList" ;
     rdfs:comment """It represents a set of GPSIs for which the NF
 (Service)
 instance under CANARY_RELEASE status shall be selected""" ;
@@ -103,12 +103,12 @@ instance under CANARY_RELEASE status shall be selected""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/gpsiRangeList> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "ConditionItem.id" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/impiRangeList> a owl:ObjectProperty ;
-    rdfs:label "impiRangeList" ;
+    rdfs:label "ConditionItem.impiRangeList" ;
     rdfs:comment """It represents a set of IMS Private Identities
 for which theNF (Service) instance under
 CANARY_RELEASE status shall be selected.""" ;
@@ -116,7 +116,7 @@ CANARY_RELEASE status shall be selected.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/impiRangeList> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/impuRangeList> a owl:ObjectProperty ;
-    rdfs:label "impuRangeList" ;
+    rdfs:label "ConditionItem.impuRangeList" ;
     rdfs:comment """It represents a set of IMS Public Identities
 for which the NF (Service) instance under CANARY_RELEASE
 status shall be selected""" ;
@@ -124,7 +124,7 @@ status shall be selected""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/impuRangeList> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/peiList> a rdf:Property ;
-    rdfs:label "peiList" ;
+    rdfs:label "ConditionItem.peiList" ;
     rdfs:comment """It represents a set of PEIs of the UEs for
 which the NF(Service) instance under CANARY_RELEASE status
 shall be selected""" ;
@@ -132,7 +132,7 @@ shall be selected""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/serviceFeature> a rdf:Property ;
-    rdfs:label "serviceFeature" ;
+    rdfs:label "ConditionItem.serviceFeature" ;
     rdfs:comment """It represents a feature number of that NF Service
 Instance,under CANARY_RELEASE status. This attribute only
 applies when the          selectionConditions, where this
@@ -144,7 +144,7 @@ of the indicated feature on the NF Service Instance.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/supiRangeList> a owl:ObjectProperty ;
-    rdfs:label "supiRangeList" ;
+    rdfs:label "ConditionItem.supiRangeList" ;
     rdfs:comment """It represents a set of SUPIs for which
 the NF (Service) instance under CANARY_RELEASE status shall
 be selected.""" ;
@@ -152,7 +152,7 @@ be selected.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SupiRange> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/taiRangeList> a owl:ObjectProperty ;
-    rdfs:label "taiRangeList" ;
+    rdfs:label "ConditionItem.taiRangeList" ;
     rdfs:comment """It represents a set of TAIs where the
 NF(Service) instance under CANARY_RELEASE status shall
 be selected for a certain UE""" ;
@@ -160,7 +160,7 @@ be selected for a certain UE""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/TaiRange> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem/vsServiceFeature> a rdf:Property ;
-    rdfs:label "vsServiceFeature" ;
+    rdfs:label "ConditionItem.vsServiceFeature" ;
     rdfs:comment """It represents a Vendor-Specific feature
 number of thatNF Service Instance, under CANARY_RELEASE
 status. This attribute only applies when the
@@ -174,14 +174,14 @@ Service Instance.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/allowedNSSAIs> a owl:ObjectProperty ;
-    rdfs:label "allowedNSSAIs" ;
+    rdfs:label "ManagedNFProfile.allowedNSSAIs" ;
     rdfs:comment """S-NSSAI of the allowed slices to access the NF instance.
 If not provided, any slice is allowed to access the NF.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedNSSAIs> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/allowedNfDomains> a rdf:Property ;
-    rdfs:label "allowedNfDomains" ;
+    rdfs:label "ManagedNFProfile.allowedNfDomains" ;
     rdfs:comment """Pattern (regular expression according to the ECMA-262
 dialect [75]) representing the NF domain names within the PLMN of
 the NRF allowed to access the NF instance If not provided,
@@ -190,21 +190,21 @@ any NF domain is allowed to access the NF.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/allowedNfTypes> a rdf:Property ;
-    rdfs:label "allowedNfTypes" ;
+    rdfs:label "ManagedNFProfile.allowedNfTypes" ;
     rdfs:comment """Type of the NFs allowed to access the NF instance.
 If not provided, any NF type is allowed to access the NF.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/allowedPlmns> a owl:ObjectProperty ;
-    rdfs:label "allowedPlmns" ;
+    rdfs:label "ManagedNFProfile.allowedPlmns" ;
     rdfs:comment """PLMNs allowed to access the NF instance.
 If not provided, any PLMN is allowed to access the NF.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedPlmns> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/allowedSNPNs> a owl:ObjectProperty ;
-    rdfs:label "allowedSNPNs" ;
+    rdfs:label "ManagedNFProfile.allowedSNPNs" ;
     rdfs:comment """SNPNs allowed to access the NF instance.
 The absence of this attribute in the NF profile indicates that no SNPN,
 other than the SNPN(s) registered in the snpnList attribute of the
@@ -213,7 +213,7 @@ NF Profile, is allowed to access the service instance""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/authzInfo> a rdf:Property ;
-    rdfs:label "authzInfo" ;
+    rdfs:label "ManagedNFProfile.authzInfo" ;
     rdfs:comment """This parameter defines NF Specific Service authorization
 information. It shall include the NF type (s) and NF realms/origins
 allowed to consume NF Service(s) of NF Service Producer """ ;
@@ -221,7 +221,7 @@ allowed to consume NF Service(s) of NF Service Producer """ ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/canaryPrecedenceOverPreferred> a rdf:Property ;
-    rdfs:label "canaryPrecedenceOverPreferred" ;
+    rdfs:label "ManagedNFProfile.canaryPrecedenceOverPreferred" ;
     rdfs:comment """ManagedNFProfile.canaryPrecedenceOverPreferred  This
 attribute indicates whether the NRF shall prioritize the NF Service
 Producer in Canary Release condition over the preferences
@@ -241,7 +241,7 @@ Consumer preferences at NF discovery requests)""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/canaryRelease> a rdf:Property ;
-    rdfs:label "canaryRelease" ;
+    rdfs:label "ManagedNFProfile.canaryRelease" ;
     rdfs:comment """This attribute indicates whether an NF instance whose
 nfStatus is set to REGISTERED is in Canary Release condition,
 i.e. it should only be selected by NF Service Consumers under the
@@ -254,7 +254,7 @@ via the nfStatus attribute""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/capacity> a rdf:Property ;
-    rdfs:label "capacity" ;
+    rdfs:label "ManagedNFProfile.capacity" ;
     rdfs:comment """Static capacity information in the range of 0-65535,
 expressed as a weight relative to other NF instances of
 the same type; if capacity is also present in the nfServiceList
@@ -263,7 +263,7 @@ parameters, those will have precedence over this value.""" ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/collocatedNfInstances> a owl:ObjectProperty ;
-    rdfs:label "collocatedNfInstances" ;
+    rdfs:label "ManagedNFProfile.collocatedNfInstances" ;
     rdfs:comment """It represents information related to collocated NF
 type(s) and corresponding NF Instances when the NF is collocated
 with NFs supporting other NF types.""" ;
@@ -271,7 +271,7 @@ with NFs supporting other NF types.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/CollocatedNfInstance> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/defaultNotificationSubscriptions> a owl:ObjectProperty ;
-    rdfs:label "defaultNotificationSubscriptions" ;
+    rdfs:label "ManagedNFProfile.defaultNotificationSubscriptions" ;
     rdfs:comment """Notification endpoints for different notification types.
 This attribute may contain multiple default subscriptions for a same
 notification type; in that case, those default subscriptions are used
@@ -280,7 +280,7 @@ as alternative notification endpoints.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/defaultNotificationSubscriptions> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/exclusiveCanaryReleaseSelection> a rdf:Property ;
-    rdfs:label "exclusiveCanaryReleaseSelection" ;
+    rdfs:label "ManagedNFProfile.exclusiveCanaryReleaseSelection" ;
     rdfs:comment """This attribute indicates whether an NF Service
 Consumer should only select an NF Service Producer in Canary
 Release condition.
@@ -292,7 +292,7 @@ condition""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/extLocality> a rdf:Property ;
-    rdfs:label "extLocality" ;
+    rdfs:label "ManagedNFProfile.extLocality" ;
     rdfs:comment """It indicates the operator defined information about the
 location of the NF instance. The key of the map shall be a (unique)
 valid JSON string per clause 7 of IETF RFC 8259 [92], with a maximum
@@ -302,14 +302,14 @@ clause 6.1.6.3.18.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/fqdn> a rdf:Property ;
-    rdfs:label "fqdn" ;
+    rdfs:label "ManagedNFProfile.fqdn" ;
     rdfs:comment """FQDN of the Network Function. For AMF, the
 FQDN registered with the NRF shall be that of the AMF Name.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/heartBeatTimer> a rdf:Property ;
-    rdfs:label "heartBeatTimer" ;
+    rdfs:label "ManagedNFProfile.heartBeatTimer" ;
     rdfs:comment """Time in seconds expected between 2 consecutive
 heart-beat messages from an NF Instance to the NRF.
 It may be included in the registration request.
@@ -319,20 +319,20 @@ heartbeat time proposed by the NF service consumer.""" ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/hniList> a rdf:Property ;
-    rdfs:label "hniList" ;
+    rdfs:label "ManagedNFProfile.hniList" ;
     rdfs:comment """Identifications of Credentials Holder or Default Credentials
 Server. It is an array of FQDN.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/hostAddr> a rdf:Property ;
-    rdfs:label "hostAddr" ;
+    rdfs:label "ManagedNFProfile.hostAddr" ;
     rdfs:comment "Host address of a NF" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/interPlmnFqdn> a rdf:Property ;
-    rdfs:label "interPlmnFqdn" ;
+    rdfs:label "ManagedNFProfile.interPlmnFqdn" ;
     rdfs:comment """If the NF needs to be discoverable by other
 NFs in a different PLMN, then an FQDN that is used
 for inter-PLMN routing is specified.""" ;
@@ -340,21 +340,21 @@ for inter-PLMN routing is specified.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/lcHSupportInd> a rdf:Property ;
-    rdfs:label "lcHSupportInd" ;
+    rdfs:label "ManagedNFProfile.lcHSupportInd" ;
     rdfs:comment """This parameter indicates whether the NF supports or does
 not support Load Control based on LCI Header.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/load> a rdf:Property ;
-    rdfs:label "load" ;
+    rdfs:label "ManagedNFProfile.load" ;
     rdfs:comment """Dynamic load information, ranged from 0 to 100,
 indicates the current load percentage of the NF.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:unsignedByte .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/loadTimeStamp> a rdf:Property ;
-    rdfs:label "loadTimeStamp" ;
+    rdfs:label "ManagedNFProfile.loadTimeStamp" ;
     rdfs:comment """It indicates the point in time in which the latest load
 information (sent by the NF in the load attribute of the NF Profile)
 was generated at the NF Instance.If the NF did not provide a timestamp,
@@ -364,26 +364,26 @@ where the NF provided the latest load information.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/locality> a rdf:Property ;
-    rdfs:label "locality" ;
+    rdfs:label "ManagedNFProfile.locality" ;
     rdfs:comment """Operator defined information about the location
 of the NF instance (e.g. geographic location, data center).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfInstanceId> a rdf:Property ;
-    rdfs:label "nfInstanceId" ;
+    rdfs:label "ManagedNFProfile.nfInstanceId" ;
     rdfs:comment "String uniquely identifying a NF instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfInstanceName> a rdf:Property ;
-    rdfs:label "nfInstanceName" ;
+    rdfs:label "ManagedNFProfile.nfInstanceName" ;
     rdfs:comment "It represents human readable name of the NF Instance" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfProfileChangesInd> a rdf:Property ;
-    rdfs:label "nfProfileChangesInd" ;
+    rdfs:label "ManagedNFProfile.nfProfileChangesInd" ;
     rdfs:comment """NF Profile Changes Indicator. This IE shall be absent
 in the request to the NRF and may be included by the NRF
 in NFRegister or NFUpdate (NF Profile Complete Replacement) response.
@@ -393,7 +393,7 @@ false (default): complete NF Profile.""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfProfileChangesSupportInd> a rdf:Property ;
-    rdfs:label "nfProfileChangesSupportInd" ;
+    rdfs:label "ManagedNFProfile.nfProfileChangesSupportInd" ;
     rdfs:comment """This parameter indicates if the NF Service Consumer supports
 or does not support receiving NF Profile Changes. It may be present in
 the NFRegister or NFUpdate (NF Profile Complete Replacement) request and
@@ -402,7 +402,7 @@ shall be absent in the response (see Annex B 3GPP TS 29.510 [23]).  """ ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfProfilePartialUpdateChangesSupportInd> a rdf:Property ;
-    rdfs:label "nfProfilePartialUpdateChangesSupportInd" ;
+    rdfs:label "ManagedNFProfile.nfProfilePartialUpdateChangesSupportInd" ;
     rdfs:comment """It represents NF Profile Partial Update Changes Support
 Indicator. TRUE: the NF Service Consumer supports receiving NF Profile
 Changes in the response to an NF Profile Partial Update operation.
@@ -413,7 +413,7 @@ operation""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfServicePersistence> a rdf:Property ;
-    rdfs:label "nfServicePersistence" ;
+    rdfs:label "ManagedNFProfile.nfServicePersistence" ;
     rdfs:comment """This parameter indicates whether the different service
 instances of a same NF Service in the NF instance, supporting a same
 API version, are capable to persist their resource state in shared
@@ -424,7 +424,7 @@ Service Consumer """ ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfServices> a owl:ObjectProperty ;
-    rdfs:label "nfServices" ;
+    rdfs:label "ManagedNFProfile.nfServices" ;
     rdfs:comment """List of NF Service Instances. It shall include
 the services produced by the NF that can be
 discovered by other NFs.""" ;
@@ -432,7 +432,7 @@ discovered by other NFs.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfSetIdList> a rdf:Property ;
-    rdfs:label "nfSetIdList" ;
+    rdfs:label "ManagedNFProfile.nfSetIdList" ;
     rdfs:comment """A NF Set Identifier is a globally unique identifier of
 a set of equivalent and interchangeable CP NFs from a given network
 that provide distribution, redundancy and scalability
@@ -447,33 +447,33 @@ of the NF.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfSetRecoveryTimeList> a rdf:Property ;
-    rdfs:label "nfSetRecoveryTimeList" ;
+    rdfs:label "ManagedNFProfile.nfSetRecoveryTimeList" ;
     rdfs:comment """This parameter contains the recovery time of NF Set(s)
 indicated by the NfSetId, where the NF instance belongs.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfStatus> a rdf:Property ;
-    rdfs:label "nfStatus" ;
+    rdfs:label "ManagedNFProfile.nfStatus" ;
     rdfs:comment "Status of the NF Instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/nfType> a rdf:Property ;
-    rdfs:label "nfType" ;
+    rdfs:label "ManagedNFProfile.nfType" ;
     rdfs:comment "Type of Network Function." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/olcHSupportInd> a rdf:Property ;
-    rdfs:label "olcHSupportInd" ;
+    rdfs:label "ManagedNFProfile.olcHSupportInd" ;
     rdfs:comment """This parameter indicates whether the NF supports or does
 not support Overload Control based on OCI Header .""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/perPlmnSnssaiList> a owl:ObjectProperty ;
-    rdfs:label "perPlmnSnssaiList" ;
+    rdfs:label "ManagedNFProfile.perPlmnSnssaiList" ;
     rdfs:comment """It includes the S-NSSAIs supported by the Network Function
 for each PLMN supported by the Network Function. When present, it shall
 override sNssais IE.If the perPlmnSnssaiList attribute is provided in
@@ -484,7 +484,7 @@ of the NFService(s).""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/perPlmnSnssaiList> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/plmnList> a owl:ObjectProperty ;
-    rdfs:label "plmnList" ;
+    rdfs:label "ManagedNFProfile.plmnList" ;
     rdfs:comment """PLMN(s) of the Network Function.
 This IE shall be present if this information
 is available for the NF. If not provided, PLMN ID(s)
@@ -493,7 +493,7 @@ of the PLMN of the NRF are assumed for the NF.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/plmnList> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/recoveryTime> a rdf:Property ;
-    rdfs:label "recoveryTime" ;
+    rdfs:label "ManagedNFProfile.recoveryTime" ;
     rdfs:comment """Timestamp when the NF was (re)started. The NRF shall notify
 NFs subscribed to receiving notifications of changes of the NF profile,
 if the NF recoveryTime is changed""" ;
@@ -501,14 +501,14 @@ if the NF recoveryTime is changed""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/sNPNList> a owl:ObjectProperty ;
-    rdfs:label "sNPNList" ;
+    rdfs:label "ManagedNFProfile.sNPNList" ;
     rdfs:comment """SNPN(s) of the Network Function. This attributeIE shall be
 present if the NF pertains to one or more SNPNs.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SPNInfoId> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/sNssais> a owl:ObjectProperty ;
-    rdfs:label "sNssais" ;
+    rdfs:label "ManagedNFProfile.sNssais" ;
     rdfs:comment """S-NSSAIs of the Network Function. If not
 provided, the NF can serve any S-NSSAI. When present
 this IE represents the list of S-NSSAIs supported in
@@ -517,7 +517,7 @@ all the PLMNs listed in the plmnList IE.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/sNssais> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/scpDomains> a rdf:Property ;
-    rdfs:label "scpDomains" ;
+    rdfs:label "ManagedNFProfile.scpDomains" ;
     rdfs:comment """This parameter shall carry the list of SCP domains the
 SCP belongs to, or the SCP domain the NF (other than SCP) or the SEPP
 belongs to..""" ;
@@ -525,14 +525,14 @@ belongs to..""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/selectionConditions> a owl:ObjectProperty ;
-    rdfs:label "selectionConditions" ;
+    rdfs:label "ManagedNFProfile.selectionConditions" ;
     rdfs:comment """Identifications of Credentials Holder or Default Credentials
 Server. It is an array of FQDN.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SelectionConditions> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/serviceSetRecoveryTimeList> a rdf:Property ;
-    rdfs:label "serviceSetRecoveryTimeList" ;
+    rdfs:label "ManagedNFProfile.serviceSetRecoveryTimeList" ;
     rdfs:comment """This parameter contains the recovery time of NF Service
 Set(s) configured in the NF instance, which are indicated by the
 NfServiceSetId""" ;
@@ -540,14 +540,14 @@ NfServiceSetId""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/servingScope> a rdf:Property ;
-    rdfs:label "servingScope" ;
+    rdfs:label "ManagedNFProfile.servingScope" ;
     rdfs:comment """This parameter indicates the served geographical areas
 of a NF instance.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/sharedProfileDataId> a rdf:Property ;
-    rdfs:label "sharedProfileDataId" ;
+    rdfs:label "ManagedNFProfile.sharedProfileDataId" ;
     rdfs:comment """This attribute indicates a string uniquely identifying
 Shared Profile Data. The format of the sharedProfileDataId shall be
 a Universally Unique Identifier (UUID) version 4, as described in
@@ -559,7 +559,7 @@ Example: 4ace9d34-2c69-4f99-92d5-a73a3fe8e23b""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/shutdownTime> a rdf:Property ;
-    rdfs:label "shutdownTime" ;
+    rdfs:label "ManagedNFProfile.shutdownTime" ;
     rdfs:comment """It indicates the timestamp when the NF Instance is
 planned to be shut down. This attribute may be present if the
 nfStatus is set to UNDISCOVERABLE due to scheduled shutdown""" ;
@@ -567,13 +567,13 @@ nfStatus is set to UNDISCOVERABLE due to scheduled shutdown""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/supportedRcfs> a rdf:Property ;
-    rdfs:label "supportedRcfs" ;
+    rdfs:label "ManagedNFProfile.supportedRcfs" ;
     rdfs:comment "It represents a list of Resource Content Filter IDs" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/supportedVendorSpecificFeatures> a owl:ObjectProperty ;
-    rdfs:label "supportedVendorSpecificFeatures" ;
+    rdfs:label "ManagedNFProfile.supportedVendorSpecificFeatures" ;
     rdfs:comment """It indicates a map of Vendor-Specific features, where the
 key of the map is the IANA-assigned SMI Network Management Private
 Enterprise Codes and the value of each entry of the map shall be
@@ -583,7 +583,7 @@ in the clause 5.3.247.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/supportedVendorSpecificFeatures> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile/vendorId> a rdf:Property ;
-    rdfs:label "vendorId" ;
+    rdfs:label "ManagedNFProfile.vendorId" ;
     rdfs:comment """Vendor ID of the NF instance, according to the
 IANA-assigned SMI Network Management Private Enterprise Codes [77].
 allowedValues: 6 decimal digits; if the SMI code has less than
@@ -593,32 +593,32 @@ a 6-digit string value.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SPNInfoId/mcc> a rdf:Property ;
-    rdfs:label "mcc" ;
+    rdfs:label "SPNInfoId.mcc" ;
     rdfs:comment "Mobile Country Code (MCC) of the SNPN." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SPNInfoId> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SPNInfoId/mnc> a rdf:Property ;
-    rdfs:label "mnc" ;
+    rdfs:label "SPNInfoId.mnc" ;
     rdfs:comment "Mobile Network Code (MNC) of the SNPN." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SPNInfoId> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SPNInfoId/nId> a rdf:Property ;
-    rdfs:label "nId" ;
+    rdfs:label "SPNInfoId.nId" ;
     rdfs:comment "Network Identifier (NID) of the SNPN." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SPNInfoId> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SelectionConditions/conditionItem> a owl:ObjectProperty ;
-    rdfs:label "conditionItem" ;
+    rdfs:label "SelectionConditions.conditionItem" ;
     rdfs:comment """It represent a single condition item that shall be
 evaluated Instance shall be selected.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SelectionConditions> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ConditionItem> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SupiRange/end> a rdf:Property ;
-    rdfs:label "end" ;
+    rdfs:label "SupiRange.end" ;
     rdfs:comment """Last value identifying the end of a SUPI range.To be
 used when the range of SUPI's can be represented as a numeric range
 (e.g. IMSI ranges).""" ;
@@ -626,7 +626,7 @@ used when the range of SUPI's can be represented as a numeric range
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SupiRange/pattern> a rdf:Property ;
-    rdfs:label "pattern" ;
+    rdfs:label "SupiRange.pattern" ;
     rdfs:comment """Pattern representing the set of SUPI's belonging to
 this range.A SUPI value is considered part of the range if and
 only if the SUPI string fully matches the regular expression.""" ;
@@ -634,7 +634,7 @@ only if the SUPI string fully matches the regular expression.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SupiRange/start> a rdf:Property ;
-    rdfs:label "start" ;
+    rdfs:label "SupiRange.start" ;
     rdfs:comment """First value identifying the start ofa SUPI range.To be
 used when the range of SUPI's can be represented as a numeric range
 (e.g., IMSI ranges).""" ;

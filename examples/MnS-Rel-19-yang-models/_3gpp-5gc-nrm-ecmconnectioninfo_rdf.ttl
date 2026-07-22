@@ -53,12 +53,12 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2024-01-29 (CR-1166)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc/civicLocations> a rdf:Property ;
-    rdfs:label "civicLocations" ;
+    rdfs:label "GeoLoc.civicLocations" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc/geographicalCoordinates> a owl:ObjectProperty ;
-    rdfs:label "geographicalCoordinates" ;
+    rdfs:label "GeoLoc.geographicalCoordinates" ;
     rdfs:comment """This refers to the Topological Service Area,
 (see clause 7.3.3.2 in TS 23.558) that is defined as a datatype
 (see clause 6.3.8).""" ;
@@ -66,7 +66,7 @@ TTA, TTC). All rights reserved.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/geographicalCoordinates> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation/geographicalLocation> a owl:ObjectProperty ;
-    rdfs:label "geographicalLocation" ;
+    rdfs:label "ServingLocation.geographicalLocation" ;
     rdfs:comment """This refers to the Geographical Service Area,
 (see clause 7.3.3.3 in TS 23.558 that is defined as a datatype
 (see clause 6.3.4).""" ;
@@ -74,7 +74,7 @@ TTA, TTC). All rights reserved.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/GeoLoc> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation/topologicalLocation> a owl:ObjectProperty ;
-    rdfs:label "topologicalLocation" ;
+    rdfs:label "ServingLocation.topologicalLocation" ;
     rdfs:comment """This refers to the Topological Service Area,
 (see clause 7.3.3.2 in TS 23.558) that is defined as a datatype
 (see clause 6.3.7). """ ;
@@ -82,7 +82,7 @@ TTA, TTC). All rights reserved.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/cellIDList> a rdf:Property ;
-    rdfs:label "cellIDList" ;
+    rdfs:label "TopologicalServiceArea.cellIDList" ;
     rdfs:comment """It represents the list of NR cells.
 
 The cell ID, together with the gNB Identifier (using gNBId of the
@@ -93,19 +93,19 @@ See subclause 8.2 of TS 38.300""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/servingPLMN> a owl:ObjectProperty ;
-    rdfs:label "servingPLMN" ;
+    rdfs:label "TopologicalServiceArea.servingPLMN" ;
     rdfs:comment "It specifies the PLMN to be served." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-element/servingPLMN> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea/trackingAreaIdList> a owl:ObjectProperty ;
-    rdfs:label "trackingAreaIdList" ;
+    rdfs:label "TopologicalServiceArea.trackingAreaIdList" ;
     rdfs:comment "It represents the list of tracking areas within a PLMN." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/TopologicalServiceArea> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFIpAddress> a rdf:Property ;
-    rdfs:label "uPFIpAddress" ;
+    rdfs:label "UPFConnInfo.uPFIpAddress" ;
     rdfs:comment """This parameter defines address of an UPF instance,
 It can be IP address (either IPv4 address (See RFC 791) or
 IPv6 address (See RFC 2373) or FQDN (See TS 23.003). """ ;
@@ -113,13 +113,13 @@ IPv6 address (See RFC 2373) or FQDN (See TS 23.003). """ ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFRef> a owl:ObjectProperty ;
-    rdfs:label "uPFRef" ;
+    rdfs:label "UPFConnInfo.uPFRef" ;
     rdfs:comment "This attribute holds the DN of an UPF instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFIpAddress> a rdf:Property ;
-    rdfs:label "_5GCNFIpAddress" ;
+    rdfs:label "_5GCNfConnEcmInfo._5GCNFIpAddress" ;
     rdfs:comment """This parameter defines address of a NF instance,
 It can be IP address (either IPv4 address (See RFC 791) or
 IPv6 address (See RFC 2373) or FQDN (See TS 23.003). """ ;
@@ -127,13 +127,13 @@ IPv6 address (See RFC 2373) or FQDN (See TS 23.003). """ ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFRef> a owl:ObjectProperty ;
-    rdfs:label "_5GCNFRef" ;
+    rdfs:label "_5GCNfConnEcmInfo._5GCNFRef" ;
     rdfs:comment "This attribute holds the DN of a NF instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFType> a rdf:Property ;
-    rdfs:label "_5GCNFType" ;
+    rdfs:label "_5GCNfConnEcmInfo._5GCNFType" ;
     rdfs:comment "It indicates the type of a NF instance." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> ;
     rdfs:range xsd:string .

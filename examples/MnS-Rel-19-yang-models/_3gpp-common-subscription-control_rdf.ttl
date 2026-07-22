@@ -32,14 +32,14 @@ Solution Set (SS) definitions
     owl:versionInfo "revision 2025-11-07 (CR-0551 CR-0586)" .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/eventTime> a rdf:Property ;
-    rdfs:label "eventTime" ;
+    rdfs:label "NotificationEntry.eventTime" ;
     rdfs:comment "eventTime from the header of the notification" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> ;
     rdfs:range xsd:string ;
     nrm:isInvariant true .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/notificationContent> a rdf:Property ;
-    rdfs:label "notificationContent" ;
+    rdfs:label "NotificationEntry.notificationContent" ;
     rdfs:comment """The string representation of a notification as encoded in
 the HTTP body (excluding the HTTP headers and the optional VES header).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> ;
@@ -47,7 +47,7 @@ the HTTP body (excluding the HTTP headers and the optional VES header).""" ;
     nrm:isInvariant true .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/notificationEntryId> a rdf:Property ;
-    rdfs:label "notificationEntryId" ;
+    rdfs:label "NotificationEntry.notificationEntryId" ;
     rdfs:comment """Identifier of an individual notificationEntry; unique within
 a NotificationList MOI.
 
@@ -68,24 +68,24 @@ e.g. 'ManagedElement=me1,NtfSubscriptionControl=Fault1*12345'""" ;
     rdfs:comment "An extensible enumeration of notification types" .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/datastore-subtree-filter> a rdf:Property ;
-    rdfs:label "datastore-subtree-filter" ;
+    rdfs:label "Scope.datastore-subtree-filter" ;
     rdfs:comment "Subtree filter" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/datastore-xpath-filter> a rdf:Property ;
-    rdfs:label "datastore-xpath-filter" ;
+    rdfs:label "Scope.datastore-xpath-filter" ;
     rdfs:comment "XPath-filter" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/scopeLevel> a rdf:Property ;
-    rdfs:label "scopeLevel" ;
+    rdfs:label "Scope.scopeLevel" ;
     rdfs:comment "See description of scopeType." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/scopeType> a rdf:Property ;
-    rdfs:label "scopeType" ;
+    rdfs:label "Scope.scopeType" ;
     rdfs:comment """If the optional scopeLevel parameter is not supported
 or absent, allowed values of scopeType are BASE_ONLY and BASE_ALL.
 

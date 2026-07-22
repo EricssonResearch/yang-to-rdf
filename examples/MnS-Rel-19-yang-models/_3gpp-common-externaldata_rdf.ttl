@@ -71,13 +71,13 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-07-19 (CR-0551)" .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/geoAreas> a owl:ObjectProperty ;
-    rdfs:label "geoAreas" ;
+    rdfs:label "ExternalDataScope.geoAreas" ;
     rdfs:comment "It describes the concrete geographical area(s)" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesExcluded> a owl:ObjectProperty ;
-    rdfs:label "objectInstancesExcluded" ;
+    rdfs:label "ExternalDataScope.objectInstancesExcluded" ;
     rdfs:comment """List of managed object instances which are not considered
 in relation to the described data. Each object instance is identified
 by its DN.""" ;
@@ -85,21 +85,21 @@ by its DN.""" ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesIncluded> a owl:ObjectProperty ;
-    rdfs:label "objectInstancesIncluded" ;
+    rdfs:label "ExternalDataScope.objectInstancesIncluded" ;
     rdfs:comment """List of managed object instances to which the described
 data are related. Each object instance is identified by its DN.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataScope> a owl:ObjectProperty ;
-    rdfs:label "externalDataScope" ;
+    rdfs:label "ExternalDataType.externalDataScope" ;
     rdfs:comment """It describes the concrete scope which the external management
 data is applicable.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataType> a rdf:Property ;
-    rdfs:label "externalDataType" ;
+    rdfs:label "ExternalDataType.externalDataType" ;
     rdfs:comment """Type of external management data as defined by the
 implementation.
 
@@ -109,7 +109,7 @@ Examples: 'Electronic Map', 'Camara Data', 'UE path', 'Camera Photo',
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataTypeSchema> a rdf:Property ;
-    rdfs:label "externalDataTypeSchema" ;
+    rdfs:label "ExternalDataType.externalDataTypeSchema" ;
     rdfs:comment """URI of the schema to parse a type of external management data.
 The detailed schema definition for the different types of external
 management data is out of scope of this specification.""" ;
@@ -117,7 +117,7 @@ management data is out of scope of this specification.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "ExternalDataType.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -125,7 +125,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/mediaLocation> a rdf:Property ;
-    rdfs:label "mediaLocation" ;
+    rdfs:label "ExternalDataType.mediaLocation" ;
     rdfs:comment """URI of the media which includes the transfer protocol.
 
 Examples:

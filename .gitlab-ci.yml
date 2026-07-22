@@ -1,0 +1,31 @@
+# GitLab CI: run the tests, and publish ontology documentation to GitLab Pages.
+#
+# The Pages job fetches the current 3GPP SA5 Rel-19 yang-models straight from the
+# forge (needs the runner to reach forge.3gpp.org), converts them, and renders
+# browsable HTML with pyLODE into public/ — which GitLab serves as Pages.
+stages:
+  - test
+  - deploy
+
+default:
+  image: python:3.12-slim
+  before_script:
+    - pip install --quiet uv
+    - uv sync --group dev
+
+test:
+  stage: test
+  script:
+    # The 3GPP YANG dataset is not committed; dataset-dependent tests skip when
+    # MnS-Rel-19-yang-models.zip is absent, so this runs the unit tests only.
+    - uv run pytest -q
+
+pages:
+  stage: deploy
+  script:
+    - uv run python scripts/build_docs.py --fetch-release Rel-19 -o public/index.html
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

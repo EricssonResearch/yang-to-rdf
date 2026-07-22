@@ -27,14 +27,14 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cPciConfigurationControl> a rdf:Property ;
-    rdfs:label "cPciConfigurationControl" ;
+    rdfs:label "CPCIConfigurationFunction.cPciConfigurationControl" ;
     rdfs:comment """This attribute determines whether the Centralized SON
 PCI configuration function is enabled or disabled.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cSonPciList> a rdf:Property ;
-    rdfs:label "cSonPciList" ;
+    rdfs:label "CPCIConfigurationFunction.cSonPciList" ;
     rdfs:comment """Holds a list of physical cell identities that can be
 assigned to the pci attribute by gNB. The assignment algorithm is not
 specified.
@@ -45,7 +45,7 @@ configuration is supported.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "CPCIConfigurationFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;

@@ -22,13 +22,13 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/earfcnDL> a rdf:Property ;
-    rdfs:label "earfcnDL" ;
+    rdfs:label "EUtranFrequency.earfcnDL" ;
     rdfs:comment "Specifies the channel number for the central DL frequency." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EUtranFrequency.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -36,7 +36,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/multiBandInfoListEutra> a rdf:Property ;
-    rdfs:label "multiBandInfoListEutra" ;
+    rdfs:label "EUtranFrequency.multiBandInfoListEutra" ;
     rdfs:comment "List of additional frequency bands the frequency belongs to." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> ;
     rdfs:range xsd:unsignedShort .

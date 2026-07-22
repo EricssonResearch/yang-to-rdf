@@ -55,7 +55,7 @@ which is defined in 3GPP TS 23.369.""" ;
         <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> a rdfs:Class ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -65,7 +65,7 @@ can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> a rdfs:Class ;
-    rdfs:label "localAddress" ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep:localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep> a owl:Ontology ;
@@ -80,7 +80,7 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-11-01 (CR-1640)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_AIOT2.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -92,12 +92,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_AIOT2.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_AIOT2.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -105,25 +105,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_AIOT2.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_AIOT2.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_AIOT2.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_AIOT3.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -135,12 +135,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_AIOT3.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_AIOT3.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -148,25 +148,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_AIOT3.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_AIOT3.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_AIOT3.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_AIOT4.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -178,12 +178,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_AIOT4.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_AIOT4.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -191,25 +191,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_AIOT4.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_AIOT4.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_AIOT4.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_AIOT5.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -221,12 +221,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_AIOT5.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_AIOT5.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -234,25 +234,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_AIOT5.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_AIOT5.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_AIOT5.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_AIOT6.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -264,12 +264,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_AIOT6.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_AIOT6.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -277,25 +277,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_AIOT6.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_AIOT6.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_AIOT6.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_AIOT7.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -307,12 +307,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_AIOT7.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_AIOT7.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -320,25 +320,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_AIOT7.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_AIOT7.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_AIOT7.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_AIOT8.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -350,12 +350,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_AIOT8.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_AIOT8.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -363,32 +363,32 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_AIOT8.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_AIOT8.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_AIOT8.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
-    rdfs:label "granularityPeriods" ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
-    rdfs:label "performanceMetrics" ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
 
@@ -406,24 +406,24 @@ elsewhere.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
-    rdfs:label "reportingMethods" ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep:SupportedPerfMetricGroups.reportingMethods" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
-    rdfs:label "reportingPeriods" ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress/ipAddress> a rdf:Property ;
-    rdfs:label "ipAddress" ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep:localAddress.ipAddress" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress/vlanId> a rdf:Property ;
-    rdfs:label "vlanId" ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep:localAddress.vlanId" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
     rdfs:range xsd:unsignedShort .
 

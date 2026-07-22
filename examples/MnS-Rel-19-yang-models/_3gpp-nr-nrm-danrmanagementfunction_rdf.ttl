@@ -22,7 +22,7 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "DANRManagementFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -30,14 +30,14 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/intersystemANRManagementSwitch> a rdf:Property ;
-    rdfs:label "intersystemANRManagementSwitch" ;
+    rdfs:label "DANRManagementFunction.intersystemANRManagementSwitch" ;
     rdfs:comment """This attribute determines whether the inter-system ANR
 function is activated or deactivated.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/intrasystemANRManagementSwitch> a rdf:Property ;
-    rdfs:label "intrasystemANRManagementSwitch" ;
+    rdfs:label "DANRManagementFunction.intrasystemANRManagementSwitch" ;
     rdfs:comment """This attribute determines whether the intra-system ANR
 function is activated or deactivated.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> ;

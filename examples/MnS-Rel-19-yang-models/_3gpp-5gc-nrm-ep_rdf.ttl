@@ -187,7 +187,7 @@
         <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> a rdfs:Class ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "_3gpp-5gc-nrm-ep:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -197,7 +197,7 @@ can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> a rdfs:Class ;
-    rdfs:label "localAddress" ;
+    rdfs:label "_3gpp-5gc-nrm-ep:localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/remotePlmnId> a rdfs:Class ;
@@ -220,7 +220,7 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-07-25 (CR-1558)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_EP_N6.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -232,12 +232,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_EP_N6.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_EP_N6.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -245,25 +245,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_EP_N6.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_EP_N6.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_EP_N6.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_EP_N6> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_MAP_SMSC.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -275,12 +275,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_MAP_SMSC.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_MAP_SMSC.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -288,25 +288,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_MAP_SMSC.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_MAP_SMSC.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_MAP_SMSC.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_MAP_SMSC> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N10.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -318,12 +318,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N10.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N10.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -331,25 +331,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N10.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N10.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N10.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N10> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N11.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -361,12 +361,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N11.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N11.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -374,25 +374,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N11.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N11.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N11.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N12.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -404,12 +404,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N12.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N12.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -417,25 +417,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N12.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N12.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N12.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N13.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -447,12 +447,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N13.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N13.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -460,25 +460,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N13.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N13.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N13.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N13> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N14.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -490,12 +490,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N14.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N14.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -503,25 +503,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N14.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N14.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N14.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N15.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -533,12 +533,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N15.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N15.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -546,25 +546,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N15.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N15.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N15.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N16.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -576,12 +576,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N16.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N16.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -589,25 +589,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N16.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N16.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N16.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N16> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N17.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -619,12 +619,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N17.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N17.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -632,25 +632,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N17.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N17.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N17.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N2.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -662,12 +662,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N2.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N2.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -675,25 +675,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N2.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N2.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N2.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N20.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -705,12 +705,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N20.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N20.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -718,25 +718,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N20.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N20.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N20.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N21.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -748,12 +748,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N21.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N21.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -761,25 +761,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N21.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N21.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N21.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N21> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N22.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -791,12 +791,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N22.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N22.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -804,25 +804,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N22.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N22.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N22.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N26.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -834,12 +834,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N26.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N26.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -847,25 +847,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N26.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N26.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N26.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N27.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -877,12 +877,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N27.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N27.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -890,25 +890,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N27.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N27.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N27.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N27> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N3.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -920,12 +920,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N3.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N3.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -933,25 +933,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N3.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N3.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N3.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N3> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N31.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -963,12 +963,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N31.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N31.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -976,25 +976,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N31.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N31.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N31.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N31> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N32.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1006,12 +1006,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N32.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N32.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1019,29 +1019,29 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N32.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/n32cParas> a rdf:Property ;
-    rdfs:label "n32cParas" ;
+    rdfs:label "EP_N32.n32cParas" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/n32fPolicy> a rdf:Property ;
-    rdfs:label "n32fPolicy" ;
+    rdfs:label "EP_N32.n32fPolicy" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N32.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/remotePlmnId> a owl:ObjectProperty ;
-    rdfs:label "remotePlmnId" ;
+    rdfs:label "EP_N32.remotePlmnId" ;
     rdfs:comment """PLMN Identifiers of the remote sepp.
 The PLMN Identifier is composed of a Mobile Country Code
 (MCC) and a Mobile Network Code (MNC).""" ;
@@ -1049,29 +1049,29 @@ The PLMN Identifier is composed of a Mobile Country Code
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/remotePlmnId> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/remoteSeppAddress> a rdf:Property ;
-    rdfs:label "remoteSeppAddress" ;
+    rdfs:label "EP_N32.remoteSeppAddress" ;
     rdfs:comment "The host address of the SEPP." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/remoteSeppId> a rdf:Property ;
-    rdfs:label "remoteSeppId" ;
+    rdfs:label "EP_N32.remoteSeppId" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N32.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32/withIPX> a rdf:Property ;
-    rdfs:label "withIPX" ;
+    rdfs:label "EP_N32.withIPX" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N32> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N4.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1083,12 +1083,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N4.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N4.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1096,25 +1096,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N4.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N4.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N4.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N4> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N5.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1126,12 +1126,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N5.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N5.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1139,25 +1139,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N5.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N5.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N5.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N5> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N6.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1169,12 +1169,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N6.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N6.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1182,25 +1182,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N6.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N6.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N6.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N6> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N7.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1212,12 +1212,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N7.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N7.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1225,25 +1225,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N7.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N7.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N7.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N7> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N8.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1255,12 +1255,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N8.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N8.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1268,25 +1268,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N8.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N8.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N8.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_N9.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1298,12 +1298,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_N9.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_N9.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1311,25 +1311,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_N9.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_N9.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_N9.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N9> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_NL2.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1341,12 +1341,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_NL2.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_NL2.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1354,25 +1354,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_NL2.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_NL2.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_NL2.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_NLS.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1384,12 +1384,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_NLS.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_NLS.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1397,25 +1397,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_NLS.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_NLS.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_NLS.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_Rx.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1427,12 +1427,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_Rx.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_Rx.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1440,25 +1440,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_Rx.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_Rx.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_Rx.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_Rx> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_S5C.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1470,12 +1470,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_S5C.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_S5C.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1483,25 +1483,25 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_S5C.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_S5C.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_S5C.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5C> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U/SupportedPerfMetricGroups> a owl:ObjectProperty ;
-    rdfs:label "SupportedPerfMetricGroups" ;
+    rdfs:label "EP_S5U.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -1513,12 +1513,12 @@ like a GNBDUFunction.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U/farEndEntity> a owl:ObjectProperty ;
-    rdfs:label "farEndEntity" ;
+    rdfs:label "EP_S5U.farEndEntity" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "EP_S5U.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -1526,32 +1526,32 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U/localAddress> a owl:ObjectProperty ;
-    rdfs:label "localAddress" ;
+    rdfs:label "EP_S5U.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U/remoteAddress> a rdf:Property ;
-    rdfs:label "remoteAddress" ;
+    rdfs:label "EP_S5U.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U/userLabel> a rdf:Property ;
-    rdfs:label "userLabel" ;
+    rdfs:label "EP_S5U.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_S5U> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
-    rdfs:label "granularityPeriods" ;
+    rdfs:label "_3gpp-5gc-nrm-ep:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
-    rdfs:label "performanceMetrics" ;
+    rdfs:label "_3gpp-5gc-nrm-ep:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
 
@@ -1569,34 +1569,34 @@ elsewhere.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
-    rdfs:label "reportingMethods" ;
+    rdfs:label "_3gpp-5gc-nrm-ep:SupportedPerfMetricGroups.reportingMethods" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
-    rdfs:label "reportingPeriods" ;
+    rdfs:label "_3gpp-5gc-nrm-ep:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/SupportedPerfMetricGroups> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress/ipAddress> a rdf:Property ;
-    rdfs:label "ipAddress" ;
+    rdfs:label "_3gpp-5gc-nrm-ep:localAddress.ipAddress" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress/vlanId> a rdf:Property ;
-    rdfs:label "vlanId" ;
+    rdfs:label "_3gpp-5gc-nrm-ep:localAddress.vlanId" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/localAddress> ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/remotePlmnId/mcc> a rdf:Property ;
-    rdfs:label "mcc" ;
+    rdfs:label "remotePlmnId.mcc" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/remotePlmnId> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/remotePlmnId/mnc> a rdf:Property ;
-    rdfs:label "mnc" ;
+    rdfs:label "remotePlmnId.mnc" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/remotePlmnId> ;
     rdfs:range xsd:string .
 

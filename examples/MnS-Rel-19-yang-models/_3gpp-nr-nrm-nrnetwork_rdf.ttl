@@ -28,7 +28,7 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork/NRNetwork/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "NRNetwork.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;

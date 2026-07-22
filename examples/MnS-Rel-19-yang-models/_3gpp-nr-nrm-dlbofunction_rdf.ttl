@@ -28,21 +28,21 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2024-08-07 (CR-1331)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
-    rdfs:label "aIMLInferenceFunctionRefList" ;
+    rdfs:label "DLBOFunction.aIMLInferenceFunctionRefList" ;
     rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction
 (See TS 28.105) .""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/dlboControl> a rdf:Property ;
-    rdfs:label "dlboControl" ;
+    rdfs:label "DLBOFunction.dlboControl" ;
     rdfs:comment """This attribute determines whether the LBO function is
 enabled or disabled.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "DLBOFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -50,14 +50,14 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/mLModelRefList> a owl:ObjectProperty ;
-    rdfs:label "mLModelRefList" ;
+    rdfs:label "DLBOFunction.mLModelRefList" ;
     rdfs:comment """This attribute holds a DN list of MLModel ¨
 (See TS 28.105).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/maximumDeviationHoTriggerHigh> a rdf:Property ;
-    rdfs:label "maximumDeviationHoTriggerHigh" ;
+    rdfs:label "DLBOFunction.maximumDeviationHoTriggerHigh" ;
     rdfs:comment """This parameter defines the maximum allowed upper
 deviation of the Handover Trigger, from the default point of
 operation.""" ;
@@ -65,7 +65,7 @@ operation.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/maximumDeviationHoTriggerLow> a rdf:Property ;
-    rdfs:label "maximumDeviationHoTriggerLow" ;
+    rdfs:label "DLBOFunction.maximumDeviationHoTriggerLow" ;
     rdfs:comment """This parameter defines the maximum allowed lower
 deviation of the Handover Trigger, from the default point of
 operation.""" ;
@@ -73,7 +73,7 @@ operation.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/minimumTimeBetweenHoTriggerChange> a rdf:Property ;
-    rdfs:label "minimumTimeBetweenHoTriggerChange" ;
+    rdfs:label "DLBOFunction.minimumTimeBetweenHoTriggerChange" ;
     rdfs:comment """This parameter defines the minimum allowed time interval
 between two Handover Trigger change performed by MRO. This is used
 to control the stability and convergence of the algorithm.""" ;

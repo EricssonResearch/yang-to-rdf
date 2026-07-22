@@ -123,19 +123,19 @@ string.""" .
     rdfs:label "FullTime" .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea/geoPolygon> a owl:ObjectProperty ;
-    rdfs:label "geoPolygon" ;
+    rdfs:label "GeoArea.geoPolygon" ;
     rdfs:comment """Specifies the geographical area with a convex polygon.
 The convex polygon is specified by its corners.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate> .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate/altitude> a rdf:Property ;
-    rdfs:label "altitude" ;
+    rdfs:label "GeoCoordinate.altitude" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate> ;
     rdfs:range xsd:decimal .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate/latitude> a rdf:Property ;
-    rdfs:label "latitude" ;
+    rdfs:label "GeoCoordinate.latitude" ;
     rdfs:comment """Latitude based on World Geodetic System (1984 version)
 global reference frame (WGS 84). Positive values correspond to the
 northern hemisphere.""" ;
@@ -143,7 +143,7 @@ northern hemisphere.""" ;
     rdfs:range xsd:decimal .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate/longitude> a rdf:Property ;
-    rdfs:label "longitude" ;
+    rdfs:label "GeoCoordinate.longitude" ;
     rdfs:comment """Longitude based on World Geodetic System (1984 version)
 global reference frame (WGS 84). Positive values correspond to
 degrees east of 0 degrees longitude.""" ;
@@ -197,7 +197,7 @@ together with a PLMN ID is used to identify a SNPN.""" .
     rdfs:label "NotificationType" .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId/cAGIdList> a rdf:Property ;
-    rdfs:label "cAGIdList" ;
+    rdfs:label "NpnId.cAGIdList" ;
     rdfs:comment """It identifies a CAG list containing up to 12
 CAG-identifiers per Ue or up to 12 CAG-identifiers per cell,
 see TS 38.331.
@@ -207,7 +207,7 @@ a hexadecimal range with size 32 bit""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId/nIDList> a rdf:Property ;
-    rdfs:label "nIDList" ;
+    rdfs:label "NpnId.nIDList" ;
     rdfs:comment """It identifies a list of NIDs containing up to 16 NIDs, see
 TS 38.331. NID is used to combine with PLMN ID to identify an SNPN.
 NID is a hexadecimal range with size 44 bit.""" ;
@@ -215,7 +215,7 @@ NID is a hexadecimal range with size 44 bit.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId/plmnId> a owl:ObjectProperty ;
-    rdfs:label "plmnId" ;
+    rdfs:label "NpnId.plmnId" ;
     rdfs:comment "It specifies the PLMN Id of the NPN network." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/plmnId> .
@@ -253,12 +253,12 @@ string.""" .
     rdfs:label "ResourceSharingLevel" .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/SAP/host> a rdf:Property ;
-    rdfs:label "host" ;
+    rdfs:label "SAP.host" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/SAP/port> a rdf:Property ;
-    rdfs:label "port" ;
+    rdfs:label "SAP.port" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> ;
     rdfs:range xsd:unsignedShort .
 
@@ -281,13 +281,13 @@ A legacy TAC 0x4305 shall be encoded as '4305'.
 An extended TAC 0x63F84B shall be encoded as '63F84B'""" .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/Tai/plmnId> a owl:ObjectProperty ;
-    rdfs:label "plmnId" ;
+    rdfs:label "Tai.plmnId" ;
     rdfs:comment "PLMN Identity." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/plmnId> .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/Tai/tac> a rdf:Property ;
-    rdfs:label "tac" ;
+    rdfs:label "Tai.tac" ;
     rdfs:comment "Tracking Area Code" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> ;
     rdfs:range xsd:string .
@@ -298,13 +298,13 @@ An extended TAC 0x63F84B shall be encoded as '63F84B'""" .
 between 0 and 360 with a resolution of 0.1 degrees.""" .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow/endTime> a rdf:Property ;
-    rdfs:label "endTime" ;
+    rdfs:label "TimeWindow.endTime" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> ;
     rdfs:range xsd:string ;
     nrm:isInvariant true .
 
 <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow/startTime> a rdf:Property ;
-    rdfs:label "startTime" ;
+    rdfs:label "TimeWindow.startTime" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> ;
     rdfs:range xsd:string ;
     nrm:isInvariant true .

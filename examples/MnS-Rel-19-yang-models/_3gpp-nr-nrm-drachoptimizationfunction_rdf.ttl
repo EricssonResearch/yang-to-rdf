@@ -39,14 +39,14 @@ TTA, TTC). All rights reserved.""" ;
     rdfs:label "AccessdelayT" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/drachOptimizationControl> a rdf:Property ;
-    rdfs:label "drachOptimizationControl" ;
+    rdfs:label "DRACHOptimizationFunction.drachOptimizationControl" ;
     rdfs:comment """This attribute determines whether the RACH Optimization
 function is enabled or disabled.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "DRACHOptimizationFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -54,21 +54,21 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/ueAccDelayProbilityDist> a owl:ObjectProperty ;
-    rdfs:label "ueAccDelayProbilityDist" ;
+    rdfs:label "DRACHOptimizationFunction.ueAccDelayProbilityDist" ;
     rdfs:comment """This is a list of target Access Delay probability (ADP)
 for the RACH optimization function.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/ueAccProbilityDist> a owl:ObjectProperty ;
-    rdfs:label "ueAccProbilityDist" ;
+    rdfs:label "DRACHOptimizationFunction.ueAccProbilityDist" ;
     rdfs:comment """This is a list of target Access Probability (APn) for the
 RACH optimization function.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay/numberofpreamblessent> a rdf:Property ;
-    rdfs:label "numberofpreamblessent" ;
+    rdfs:label "NumPreableAccessDelay.numberofpreamblessent" ;
     rdfs:comment """This attribute indicates the number of preambles sent
 used to configure a wanted distribution of RACH preambles in a
 vendor implemented DRACH optimisation function.
@@ -80,7 +80,7 @@ subclause 6.3.2).""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay/targetProbability> a rdf:Property ;
-    rdfs:label "targetProbability" ;
+    rdfs:label "NumPreableAccessDelay.targetProbability" ;
     rdfs:comment "This attribute determines the target Probability." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> ;
     rdfs:range xsd:string .

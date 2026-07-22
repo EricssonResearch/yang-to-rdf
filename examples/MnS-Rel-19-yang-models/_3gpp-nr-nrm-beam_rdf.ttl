@@ -25,7 +25,7 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamAzimuth> a rdf:Property ;
-    rdfs:label "beamAzimuth" ;
+    rdfs:label "Beam.beamAzimuth" ;
     rdfs:comment """The azimuth of a beam transmission, which means the
 horizontal beamforming pointing angle (beam peak direction) in the
 Phi-axis in 1/10th degree resolution. The pointing angle is the
@@ -37,7 +37,7 @@ from the antenna bearing.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamHorizWidth> a rdf:Property ;
-    rdfs:label "beamHorizWidth" ;
+    rdfs:label "Beam.beamHorizWidth" ;
     rdfs:comment """ The Horizontal beamWidth of a beam transmission, which
 means the horizontal beamforming half-power (3dB down) beamwidth in the
 Phi-axis in 1/10th degree resolution.""" ;
@@ -45,13 +45,13 @@ Phi-axis in 1/10th degree resolution.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamIndex> a rdf:Property ;
-    rdfs:label "beamIndex" ;
+    rdfs:label "Beam.beamIndex" ;
     rdfs:comment "Index of the beam. " ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamTilt> a rdf:Property ;
-    rdfs:label "beamTilt" ;
+    rdfs:label "Beam.beamTilt" ;
     rdfs:comment """The tilt of a beam transmission, which means the vertical
 beamforming pointing angle (beam peak direction) in the Theta-axis in
 1/10th degree resolution.
@@ -62,13 +62,13 @@ Positive value implies downtilt.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamType> a rdf:Property ;
-    rdfs:label "beamType" ;
+    rdfs:label "Beam.beamType" ;
     rdfs:comment "The type of the beam. " ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamVertWidth> a rdf:Property ;
-    rdfs:label "beamVertWidth" ;
+    rdfs:label "Beam.beamVertWidth" ;
     rdfs:comment """ The Vertical beamWidth of a beam transmission, which means
 the vertical beamforming half-power (3dB down) beamwidth in the
 Theta-axis in 1/10th degree resolution.""" ;
@@ -76,7 +76,7 @@ Theta-axis in 1/10th degree resolution.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "Beam.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;

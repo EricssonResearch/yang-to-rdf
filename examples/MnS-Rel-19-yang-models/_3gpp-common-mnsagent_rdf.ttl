@@ -45,7 +45,7 @@ Umbrella Information Model (UIM)""" ;
     owl:versionInfo "revision 2023-09-18 (CR-0271)" .
 
 <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "MnsAgent.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -53,7 +53,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/systemDN> a owl:ObjectProperty ;
-    rdfs:label "systemDN" ;
+    rdfs:label "MnsAgent.systemDN" ;
     rdfs:comment "Distinguished Name (DN) of a IRPAgent or a MnSAgent." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent> ;
     nrm:isReference true .

@@ -36,21 +36,21 @@ TTA, TTC). All rights reserved.""" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> a owl:ObjectProperty ;
-    rdfs:label "gtpUPathDelayThresholds" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.gtpUPathDelayThresholds" ;
     rdfs:comment """It specifies the thresholds for reporting the packet delay
 for the GTO-U path QoS monitoring.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathMeasurementPeriod> a rdf:Property ;
-    rdfs:label "gtpUPathMeasurementPeriod" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.gtpUPathMeasurementPeriod" ;
     rdfs:comment """It specifies the period (in seconds) for reporting the packet
 delay for GTP-U path QoS monitoring.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathMinimumWaitTime> a rdf:Property ;
-    rdfs:label "gtpUPathMinimumWaitTime" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.gtpUPathMinimumWaitTime" ;
     rdfs:comment """It specifies the minimum waiting time (in seconds) between
 two consecutive reports for event triggered GTP-U path QoS monitoring
 reporting.""" ;
@@ -58,20 +58,20 @@ reporting.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs> a owl:ObjectProperty ;
-    rdfs:label "gtpUPathMonitoredSNSSAIs" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.gtpUPathMonitoredSNSSAIs" ;
     rdfs:comment """The S-NSSAIs for which the the GTP-U path QoS monitoring is
 to be performed.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathQoSMonitoringState> a rdf:Property ;
-    rdfs:label "gtpUPathQoSMonitoringState" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.gtpUPathQoSMonitoringState" ;
     rdfs:comment "The state of GTP-U path QoS monitoring." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/id> a rdf:Property ;
-    rdfs:label "id" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -79,72 +79,72 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/isEventTriggeredGtpUPathMonitoringSupported> a rdf:Property ;
-    rdfs:label "isEventTriggeredGtpUPathMonitoringSupported" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.isEventTriggeredGtpUPathMonitoringSupported" ;
     rdfs:comment """It indicates whether the event triggered GTP-U path QoS
 monitoring reporting based on thresholds is supported.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/isImmediateGtpUMonitoringSupported> a rdf:Property ;
-    rdfs:label "isImmediateGtpUMonitoringSupported" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.isImmediateGtpUMonitoringSupported" ;
     rdfs:comment """It indicates whether the immediate GTP-U path QoS monitoring
 reporting is supported.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/isPeriodicGtpUMonitoringSupported> a rdf:Property ;
-    rdfs:label "isPeriodicGtpUMonitoringSupported" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.isPeriodicGtpUMonitoringSupported" ;
     rdfs:comment """It indicates whether the periodic GTP-U path QoS monitoring
 reporting is supported.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/monitoredDSCPs> a rdf:Property ;
-    rdfs:label "monitoredDSCPs" ;
+    rdfs:label "GtpUPathQoSMonitoringControl.monitoredDSCPs" ;
     rdfs:comment """The DSCPs for which the GTP-U path QoS monitoring is to be
 performed.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n3AveragePacketDelayThreshold> a rdf:Property ;
-    rdfs:label "n3AveragePacketDelayThreshold" ;
+    rdfs:label "gtpUPathDelayThresholds.n3AveragePacketDelayThreshold" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n3MaxPacketDelayThreshold> a rdf:Property ;
-    rdfs:label "n3MaxPacketDelayThreshold" ;
+    rdfs:label "gtpUPathDelayThresholds.n3MaxPacketDelayThreshold" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n3MinPacketDelayThreshold> a rdf:Property ;
-    rdfs:label "n3MinPacketDelayThreshold" ;
+    rdfs:label "gtpUPathDelayThresholds.n3MinPacketDelayThreshold" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n9AveragePacketDelayThreshold> a rdf:Property ;
-    rdfs:label "n9AveragePacketDelayThreshold" ;
+    rdfs:label "gtpUPathDelayThresholds.n9AveragePacketDelayThreshold" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n9MaxPacketDelayThreshold> a rdf:Property ;
-    rdfs:label "n9MaxPacketDelayThreshold" ;
+    rdfs:label "gtpUPathDelayThresholds.n9MaxPacketDelayThreshold" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n9MinPacketDelayThreshold> a rdf:Property ;
-    rdfs:label "n9MinPacketDelayThreshold" ;
+    rdfs:label "gtpUPathDelayThresholds.n9MinPacketDelayThreshold" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs/sd> a rdf:Property ;
-    rdfs:label "sd" ;
+    rdfs:label "gtpUPathMonitoredSNSSAIs.sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs/sst> a rdf:Property ;
-    rdfs:label "sst" ;
+    rdfs:label "gtpUPathMonitoredSNSSAIs.sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;

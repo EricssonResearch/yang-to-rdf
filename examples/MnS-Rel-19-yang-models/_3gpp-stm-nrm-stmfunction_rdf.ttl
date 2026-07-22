@@ -26,7 +26,7 @@ Signalling traffic monitoring management""" ;
     owl:versionInfo "revision 2025-08-07 (CR-0011)" .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceInstanceList> a owl:ObjectProperty ;
-    rdfs:label "networkInterfaceInstanceList" ;
+    rdfs:label "NetworkInterface.networkInterfaceInstanceList" ;
     rdfs:comment """The list of applicable network interface instances, for
 which the monitoring is to be performed, of the network interface
 type specified by networkInterfaceType.""" ;
@@ -34,7 +34,7 @@ type specified by networkInterfaceType.""" ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceType> a rdf:Property ;
-    rdfs:label "networkInterfaceType" ;
+    rdfs:label "NetworkInterface.networkInterfaceType" ;
     rdfs:comment """List of network interface type to be monitored. The
 applicable network interface type names are specified based on
 subclause 4.2.3 of 3GPP TS 23.501 and clause 4.2.1 of 3GPP
@@ -45,7 +45,7 @@ interface type of the network function shall be monitored.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/serviceOperationList> a rdf:Property ;
-    rdfs:label "serviceOperationList" ;
+    rdfs:label "NetworkInterface.serviceOperationList" ;
     rdfs:comment """The list of applicable service operations exchanged
 over the network interface instances specified by
 networkInterfaceInstanceList, that needs to be monitored. Or,

@@ -60,7 +60,7 @@ Information Service (IS)""" ;
     owl:versionInfo "revision 2025-08-01 (CR-0551)" .
 
 <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo/hysteresis> a rdf:Property ;
-    rdfs:label "hysteresis" ;
+    rdfs:label "ThresholdInfo.hysteresis" ;
     rdfs:comment """Hysteresis of a threshold. If this attribute is present
 the monitored performance metric is not compared against the
 threshold value as specified by the thresholdValue attribute but
@@ -81,7 +81,7 @@ for a performance metric of type counter, it shall be ignored.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo/performanceMetrics> a rdf:Property ;
-    rdfs:label "performanceMetrics" ;
+    rdfs:label "ThresholdInfo.performanceMetrics" ;
     rdfs:comment """List of performance metrics.
 Performance metrics include measurements defined in TS 28.552 and KPIs
 defined in TS 28.554 [28]. Performance metrics can also be specified
@@ -97,7 +97,7 @@ group of vendor specific performance metrics.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo/thresholdDirection> a rdf:Property ;
-    rdfs:label "thresholdDirection" ;
+    rdfs:label "ThresholdInfo.thresholdDirection" ;
     rdfs:comment """Direction of a threshold indicating the direction for which
 a threshold crossing triggers a threshold.
 
@@ -122,7 +122,7 @@ direction attribute shall be set to 'UP_AND_DOWN'.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo/thresholdValue> a rdf:Property ;
-    rdfs:label "thresholdValue" ;
+    rdfs:label "ThresholdInfo.thresholdValue" ;
     rdfs:comment """Value against which the monitored performance metric is
 compared at a threshold level in case the hysteresis is zero""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> ;
