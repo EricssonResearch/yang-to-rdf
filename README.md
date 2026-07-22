@@ -4,6 +4,8 @@ Convert YANG modules to RDF TBox vocabularies and SHACL validation shapes.
 
 Designed for 3GPP NRM (TS 28.541) YANG modules but applicable to any YANG schema.
 
+📖 **[Browse the generated ontology documentation](https://gitlabpages-central.internal.ericsson.com/yang-to-rdf-c22bc3)** (GitLab Pages, rebuilt from the latest Rel-19 on every push to `main`).
+
 A committed, browsable example of the generated output for the 3GPP SA5 MnS
 Release-19 set is in [`examples/`](examples/) — you can inspect the vocabulary
 without running the tool. The source YANG modules are **not** redistributed here
