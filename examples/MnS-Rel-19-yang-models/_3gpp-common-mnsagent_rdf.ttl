@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,6 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent> a rdfs:Class ;
+    rdfs:label "MnsAgent" ;
     rdfs:comment """The MnsAgent represents the MnS producers, incl. the
 supporting hardware and software, available for a certain management
 scope that is related to the object name-containing the MnS Agent.
@@ -21,9 +23,29 @@ In case the MnsAgent is name-contained under a ManagedElement, the
 management scope is the complete ManagedElement or a subset thereof.""" .
 
 <urn:3gpp:sa5:_3gpp-common-mnsagent> a owl:Ontology ;
+    rdfs:label "_3gpp-common-mnsagent" ;
+    dcterms:description """Defines MnsAgent IOCs
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source """3GPP TS 28.623
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Solution Set (SS) definitions
+
+3GPP TS 28.622
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Information Service (IS)
+
+3GPP TS 28.620
+Umbrella Information Model (UIM)""" ;
+    dcterms:title "_3gpp-common-mnsagent" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-18 (CR-0271)" .
 
 <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -31,6 +53,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/systemDN> a owl:ObjectProperty ;
+    rdfs:label "systemDN" ;
     rdfs:comment "Distinguished Name (DN) of a IRPAgent or a MnSAgent." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent> ;
     nrm:isReference true .

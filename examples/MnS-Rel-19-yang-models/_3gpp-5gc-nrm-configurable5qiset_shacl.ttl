@@ -1,8 +1,26 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset> a owl:Ontology ;
+    rdfs:label "_3gpp-5gc-nrm-configurable5qiset" ;
+    dcterms:description """This IOC represents the configurable 5QIs, including
+their QoS characteristics, that need to be pre-configured
+(and configurable) to the 5G NFs.
+
+The 5QI set definition supports multiple deployment scenarios.  The sets can
+be name contained by SubNetwork ManagedElement, GNBDUFunction,
+GNBCUUPFunction and GNBCUCPFunction.  Sets are then referenced by attribute
+(configurable5QISetRef) in applicable MOIs.  For consistency it is
+recommended that referenced 5QI sets be defined within the same subtree.
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3gpp SA5" ;
+    dcterms:source "3GPP TS 28.541" ;
+    dcterms:title "_3gpp-5gc-nrm-configurable5qiset" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRateShape> a sh:NodeShape ;

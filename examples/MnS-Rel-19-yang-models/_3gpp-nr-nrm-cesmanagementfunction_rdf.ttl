@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,6 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction> a rdfs:Class ;
+    rdfs:label "CESManagementFunction" ;
     rdfs:comment """This IOC represents the management capabilities of
 Centralized SON Energy Saving (ES) functions. This is provided for
 Energy Saving purposes.
@@ -17,10 +19,12 @@ same containment tree.""" ;
         <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod> a rdfs:Class ;
+    rdfs:label "EsNotAllowedTimePeriod" ;
     rdfs:comment """This is a list of time periods during which
 inter-RAT energy saving is not allowed""" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> a rdfs:Class ;
+    rdfs:label "loadTimeThreshold" ;
     rdfs:comment """This attributes is relevant, if the cell acts as an original
 cell.This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed ES algorithms to allow a cell
@@ -28,15 +32,27 @@ to enter the energySaving state. The time duration indicates how long
 the load needs to have been below the threshold.""" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-cesmanagementfunction" ;
+    dcterms:description """Defines the YANG mapping of the CESManagementFunction
+Information Object Class (IOC) that is part of the NR Network Resource Model
+(NRM).
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-cesmanagementfunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/cesSwitch> a rdf:Property ;
+    rdfs:label "cesSwitch" ;
     rdfs:comment """This attribute determines whether the Centralized SON energy
 saving function is enabled or disabled.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/energySavingControl> a rdf:Property ;
+    rdfs:label "energySavingControl" ;
     rdfs:comment """This attribute allows the Cross Domain-Centralized SON
 energy saving function to initiate energy saving activation or
 deactivation.""" ;
@@ -44,6 +60,7 @@ deactivation.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/energySavingState> a rdf:Property ;
+    rdfs:label "energySavingState" ;
     rdfs:comment """Specifies the status regarding the energy saving in the
 cell. If the value of energySavingControl is toBeEnergySaving, then it
 shall be tried to achieve the value isEnergySaving for the
@@ -54,12 +71,14 @@ isNotEnergySaving for the energySavingState. """ ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/esNotAllowedTimePeriod> a owl:ObjectProperty ;
+    rdfs:label "esNotAllowedTimePeriod" ;
     rdfs:comment """This is a list of time periods during which
 inter-RAT energy saving is not allowed""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -67,6 +86,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/interRatEsActivationCandidateCellParameters> a owl:ObjectProperty ;
+    rdfs:label "interRatEsActivationCandidateCellParameters" ;
     rdfs:comment """This attribute is relevant, if the cell acts as a candidate
 cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed inter-RAT ES algorithms to
@@ -92,6 +112,7 @@ threshold should be set in range of 0..100.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/interRatEsActivationOriginalCellParameters> a owl:ObjectProperty ;
+    rdfs:label "interRatEsActivationOriginalCellParameters" ;
     rdfs:comment """This attribute is relevant, if the cell acts as an original
 cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed inter-RAT ES algorithms to
@@ -119,6 +140,7 @@ threshold should be set in range of 0..100.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/interRatEsDeactivationCandidateCellParameters> a owl:ObjectProperty ;
+    rdfs:label "interRatEsDeactivationCandidateCellParameters" ;
     rdfs:comment """This attribute is relevant, if the cell acts as a candidate
 cell. This attribute indicates the traffic load threshold and the time
 duration which is used by distributed inter-RAT ES algorithms to allow
@@ -140,6 +162,7 @@ an original cell to leave the energySaving state.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/intraRatEsActivationCandidateCellsLoadParameters> a owl:ObjectProperty ;
+    rdfs:label "intraRatEsActivationCandidateCellsLoadParameters" ;
     rdfs:comment """This attributes is relevant, if the cell acts as a candidate
 cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed ES algorithms level to allow an
@@ -156,6 +179,7 @@ saving state.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/intraRatEsActivationOriginalCellLoadParameters> a owl:ObjectProperty ;
+    rdfs:label "intraRatEsActivationOriginalCellLoadParameters" ;
     rdfs:comment """This attributes is relevant, if the cell acts as an original
 cell.This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed ES algorithms to allow a cell
@@ -165,6 +189,7 @@ the load needs to have been below the threshold.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/intraRatEsDeactivationCandidateCellsLoadParameters> a owl:ObjectProperty ;
+    rdfs:label "intraRatEsDeactivationCandidateCellsLoadParameters" ;
     rdfs:comment """This attributes is relevant, if the cell acts as a candidate
 cell. This attribute indicates the traffic load threshold and the time
 duration which is used by distributed ES algorithms to allow a cell to
@@ -180,6 +205,7 @@ cells which have been provided backup coverage by the candidate cell.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod/daysOfWeek> a rdf:Property ;
+    rdfs:label "daysOfWeek" ;
     rdfs:comment """Specifies that the not allowed periods are only
 applicable to the specified days in UTC timezone. Every day if
 not set.""" ;
@@ -187,12 +213,14 @@ not set.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod/endTime> a rdf:Property ;
+    rdfs:label "endTime" ;
     rdfs:comment """If endTime has a lower value than startTime, it will
 be interpreted as referring to the following day.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod/startTime> a rdf:Property ;
+    rdfs:label "startTime" ;
     rdfs:comment """Start of not allowed time period in UTC time zone.
 If set, the endTime must also be set. If not set, this is
 interpreted as around the clock.""" ;
@@ -200,12 +228,14 @@ interpreted as around the clock.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold/loadThreshold> a rdf:Property ;
+    rdfs:label "loadThreshold" ;
     rdfs:comment """This attribute is used by distributed ES algorithms to allow
 a cell to enter the energySaving state.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold/timeDuration> a rdf:Property ;
+    rdfs:label "timeDuration" ;
     rdfs:comment """The time duration indicates how long the traffic load
 (either for UL or DL) in the cell needs to have been above the
 threshold to wake up one or more original cells which have been

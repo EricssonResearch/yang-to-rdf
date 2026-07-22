@@ -40,6 +40,7 @@ class YangToRDFConverter:
     def _emit_typedef(self, td: Typedef):
         uri = URIRef(class_iri(namespace_base(td.namespace), td.name))
         self.graph.add((uri, RDF.type, RDFS.Datatype))
+        self.graph.add((uri, RDFS.label, Literal(td.name)))
         if td.description:
             self.graph.add((uri, RDFS.comment, Literal(td.description)))
 
@@ -48,6 +49,7 @@ class YangToRDFConverter:
         base = namespace_base(cls.namespace)
         uri = URIRef(class_iri(base, cls.name))
         g.add((uri, RDF.type, RDFS.Class))
+        g.add((uri, RDFS.label, Literal(cls.name)))
         if cls.description:
             g.add((uri, RDFS.comment, Literal(cls.description)))
         for parent in cls.subclass_of:
@@ -69,6 +71,7 @@ class YangToRDFConverter:
             g.add((prop, RDF.type, RDF.Property))
             if leaf.xsd is not None:
                 g.add((prop, RDFS.range, leaf.xsd))
+        g.add((prop, RDFS.label, Literal(leaf.name)))
         g.add((prop, RDFS.domain, cls_uri))
         if leaf.description:
             g.add((prop, RDFS.comment, Literal(leaf.description)))
@@ -80,6 +83,7 @@ class YangToRDFConverter:
         prop = URIRef(property_iri(base, cls.name, ref.name))
         target = URIRef(ref.target_iri)
         g.add((prop, RDF.type, OWL.ObjectProperty))
+        g.add((prop, RDFS.label, Literal(ref.name)))
         g.add((prop, RDFS.domain, cls_uri))
         g.add((prop, RDFS.range, target))
         g.add((cls_uri, NRM.hasAttribute, target))

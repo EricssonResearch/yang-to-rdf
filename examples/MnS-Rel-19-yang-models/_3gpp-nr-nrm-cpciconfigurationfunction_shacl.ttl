@@ -1,8 +1,19 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-cpciconfigurationfunction" ;
+    dcterms:description """Represents the CPCIConfigurationFunction Information Object
+Class(IOC) that is part of the NR Network Resource Model.
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-cpciconfigurationfunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunctionShape> a sh:NodeShape ;

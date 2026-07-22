@@ -1,9 +1,11 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> a rdfs:Class ;
+    rdfs:label "Beam" ;
     rdfs:comment """Represents the per-Beam information required for,
 e.g. beam performance management utilizing measurements generated in
 the RAN. Can have spatial attributes of horizontal/azimuth
@@ -11,9 +13,19 @@ the RAN. Can have spatial attributes of horizontal/azimuth
 direction and beam width attributes.""" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-beam" ;
+    dcterms:description """Defines the YANG mapping of the Beam Information
+Object Class (IOC) that is part of the NR Network Resource Model (NRM).
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-beam" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamAzimuth> a rdf:Property ;
+    rdfs:label "beamAzimuth" ;
     rdfs:comment """The azimuth of a beam transmission, which means the
 horizontal beamforming pointing angle (beam peak direction) in the
 Phi-axis in 1/10th degree resolution. The pointing angle is the
@@ -25,6 +37,7 @@ from the antenna bearing.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamHorizWidth> a rdf:Property ;
+    rdfs:label "beamHorizWidth" ;
     rdfs:comment """ The Horizontal beamWidth of a beam transmission, which
 means the horizontal beamforming half-power (3dB down) beamwidth in the
 Phi-axis in 1/10th degree resolution.""" ;
@@ -32,11 +45,13 @@ Phi-axis in 1/10th degree resolution.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamIndex> a rdf:Property ;
+    rdfs:label "beamIndex" ;
     rdfs:comment "Index of the beam. " ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamTilt> a rdf:Property ;
+    rdfs:label "beamTilt" ;
     rdfs:comment """The tilt of a beam transmission, which means the vertical
 beamforming pointing angle (beam peak direction) in the Theta-axis in
 1/10th degree resolution.
@@ -47,11 +62,13 @@ Positive value implies downtilt.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamType> a rdf:Property ;
+    rdfs:label "beamType" ;
     rdfs:comment "The type of the beam. " ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamVertWidth> a rdf:Property ;
+    rdfs:label "beamVertWidth" ;
     rdfs:comment """ The Vertical beamWidth of a beam transmission, which means
 the vertical beamforming half-power (3dB down) beamwidth in the
 Theta-axis in 1/10th degree resolution.""" ;
@@ -59,11 +76,13 @@ Theta-axis in 1/10th degree resolution.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-beam/BeamType> a rdfs:Datatype .
+<urn:3gpp:sa5:_3gpp-nr-nrm-beam/BeamType> a rdfs:Datatype ;
+    rdfs:label "BeamType" .
 

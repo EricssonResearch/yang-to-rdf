@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,57 +6,82 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> a rdfs:Class ;
+    rdfs:label "ServAttrCom" ;
     rdfs:comment """This list represents the common properties of service
 requirement related attributes.""" .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> a rdfs:Class ;
+    rdfs:label "XLThpt" ;
     rdfs:comment """This attribute defines achievable data rate of the
 network slice in downlink that is available ubiquitously across
 the coverage area of the slice""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common> a owl:Ontology ;
+    rdfs:label "_3gpp-ns-nrm-common" ;
+    dcterms:description """Common network slice definitions
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source """3GPP TS 28.541
+Management and orchestration;
+5G Network Resource Model (NRM);
+Information model definitions for network slice NRM (chapter 6)
+""" ;
+    dcterms:title "_3gpp-ns-nrm-common" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-common/Category-enum> a rdfs:Datatype .
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/Category-enum> a rdfs:Datatype ;
+    rdfs:label "Category-enum" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-common/DeterminCommAvailability> a rdfs:Datatype .
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/DeterminCommAvailability> a rdfs:Datatype ;
+    rdfs:label "DeterminCommAvailability" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-common/Exposure-enum> a rdfs:Datatype .
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/Exposure-enum> a rdfs:Datatype ;
+    rdfs:label "Exposure-enum" .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/category> a rdf:Property ;
+    rdfs:label "category" ;
     rdfs:comment """This attribute specifies the category of a service
 requirement/attribute of GST""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/exposure> a rdf:Property ;
+    rdfs:label "exposure" ;
     rdfs:comment """This attribute specifies exposure mode of a service
 requirement/attribute of GST""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/tagging> a rdf:Property ;
+    rdfs:label "tagging" ;
     rdfs:comment """This attribute specifies the tagging of a service
 requirement/attribute of GST in character category""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-common/Support-enum> a rdfs:Datatype .
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/Support-enum> a rdfs:Datatype ;
+    rdfs:label "Support-enum" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-common/Tagging-enum> a rdfs:Datatype .
+<urn:3gpp:sa5:_3gpp-ns-nrm-common/Tagging-enum> a rdfs:Datatype ;
+    rdfs:label "Tagging-enum" .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/guaThpt> a rdf:Property ;
+    rdfs:label "guaThpt" ;
     rdfs:comment "This attribute describes the guaranteed data rate." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
     rdfs:range xsd:unsignedLong .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/maxThpt> a rdf:Property ;
+    rdfs:label "maxThpt" ;
     rdfs:comment "This attribute describes the maximum data rate." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;
     rdfs:range xsd:unsignedLong .
 
 <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/servAttrCom> a owl:ObjectProperty ;
+    rdfs:label "servAttrCom" ;
     rdfs:comment """This list represents the common properties of service
 requirement related attributes.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> ;

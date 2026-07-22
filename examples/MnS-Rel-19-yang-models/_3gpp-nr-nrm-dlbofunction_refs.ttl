@@ -1,7 +1,19 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-dlbofunction" ;
+    dcterms:description """Defines the YANG mapping of the DLBOFunction
+Information Object Class (IOC) that is part of the NR Network Resource
+Model (NRM).
+Copyright 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-dlbofunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2024-08-07 (CR-1331)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/aIMLInferenceFunctionRefList> nrm:candidate "AIMLInferenceFunction" ;

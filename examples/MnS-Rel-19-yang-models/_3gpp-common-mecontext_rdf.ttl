@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,6 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-common-mecontext/MeContext> a rdfs:Class ;
+    rdfs:label "MeContext" ;
     rdfs:comment """This IOC is introduced for naming purposes. It may support
 creation of unique DNs in scenarios when some MEs have the same RDNs due
 to the fact that they have been manufacturer pre-configured.
@@ -33,9 +35,26 @@ Every instance of MeContext contains exactly one ManagedElement during
 steady-state operations.""" .
 
 <urn:3gpp:sa5:_3gpp-common-mecontext> a owl:Ontology ;
+    rdfs:label "_3gpp-common-mecontext" ;
+    dcterms:description """Defines basic MeContext which will be augmented by other IOCs
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source """3GPP TS 28.623
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Solution Set (SS) definitions
+
+3GPP TS 28.622
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Information Service (IS)""" ;
+    dcterms:title "_3gpp-common-mecontext" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2025-03-25 (CR-00525)" .
 
 <urn:3gpp:sa5:_3gpp-common-mecontext/MeContext/dnPrefix> a owl:ObjectProperty ;
+    rdfs:label "dnPrefix" ;
     rdfs:comment """It carries the DN Prefix information or no information.
 The instance of MeContext is the local root instance of the MIB.
 Otherwise the attribute shall be absent or carry no information.""" ;
@@ -44,6 +63,7 @@ Otherwise the attribute shall be absent or carry no information.""" ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-common-mecontext/MeContext/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;

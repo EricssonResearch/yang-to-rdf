@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,6 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> a rdfs:Class ;
+    rdfs:label "NetworkInterface" ;
     rdfs:comment """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
@@ -12,9 +14,19 @@ parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> a owl:Ontology ;
+    rdfs:label "_3gpp-stm-nrm-stmfunction" ;
+    dcterms:description """This IOC represents the STM function defined in 3GPP TS 28.560.
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3gpp SA5" ;
+    dcterms:source """3GPP TS 28.560
+Signalling traffic monitoring management""" ;
+    dcterms:title "_3gpp-stm-nrm-stmfunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2025-08-07 (CR-0011)" .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceInstanceList> a owl:ObjectProperty ;
+    rdfs:label "networkInterfaceInstanceList" ;
     rdfs:comment """The list of applicable network interface instances, for
 which the monitoring is to be performed, of the network interface
 type specified by networkInterfaceType.""" ;
@@ -22,6 +34,7 @@ type specified by networkInterfaceType.""" ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceType> a rdf:Property ;
+    rdfs:label "networkInterfaceType" ;
     rdfs:comment """List of network interface type to be monitored. The
 applicable network interface type names are specified based on
 subclause 4.2.3 of 3GPP TS 23.501 and clause 4.2.1 of 3GPP
@@ -32,6 +45,7 @@ interface type of the network function shall be monitored.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/serviceOperationList> a rdf:Property ;
+    rdfs:label "serviceOperationList" ;
     rdfs:comment """The list of applicable service operations exchanged
 over the network interface instances specified by
 networkInterfaceInstanceList, that needs to be monitored. Or,

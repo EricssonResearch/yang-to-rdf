@@ -1,8 +1,29 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <urn:3gpp:sa5:_3gpp-common-managed-element> a owl:Ontology ;
+    rdfs:label "_3gpp-common-managed-element" ;
+    dcterms:description """Defines ManagedElement which will be augmented
+by other IOCs
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source """3GPP TS 28.623
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Solution Set (SS) definitions
+
+3GPP TS 28.622
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Information Service (IS)
+
+3GPP TS 28.620
+Umbrella Information Model (UIM)""" ;
+    dcterms:title "_3gpp-common-managed-element" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2025-08-13 (CR-0561)" .
 
 <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList/unreliableAlarmScope> nrm:candidate "UnreliableAlarmScope" ;

@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -5,6 +6,13 @@
 nrm:ManagedFunction a rdfs:Class .
 
 <https://3gpp.org/nrm/ontology> a owl:Ontology ;
+    rdfs:label "3GPP TS 28.541 5G Network Resource Model (NRM) — RDF/OWL ontology" ;
+    dcterms:description "RDF/OWL ontology generated from 118 YANG modules. Primary source: 3GPP TS 28.541 5G Network Resource Model (NRM)." ;
+    dcterms:publisher "3GPP SA5",
+        "3gpp SA5",
+        "IETF NETMOD (NETCONF Data Modeling Language) Working Group",
+        "IETF Network Modeling (NETMOD) Working Group" ;
+    dcterms:title "3GPP TS 28.541 5G Network Resource Model (NRM) — RDF/OWL ontology" ;
     owl:imports <urn:3gpp:sa5:_3gpp-5g-common-yang-types>,
         <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet>,
         <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl>,

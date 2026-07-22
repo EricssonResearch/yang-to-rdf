@@ -70,6 +70,19 @@ class Typedef:
 
 
 @dataclass
+class ModuleMeta:
+    """Module-level metadata lifted verbatim from the YANG module's own
+    statements (organization/contact/description/reference), so ontology
+    metadata is sourced from the input rather than invented. Any field may be
+    empty when the module omits that statement."""
+    name: str
+    organization: str = ""
+    contact: str = ""
+    description: str = ""
+    reference: str = ""
+
+
+@dataclass
 class Model:
     classes: list[Klass] = field(default_factory=list)
     typedefs: list[Typedef] = field(default_factory=list)
@@ -78,6 +91,8 @@ class Model:
     # authoritative set used to partition output per module — scheme-agnostic,
     # so non-3GPP / non-URN namespaces split correctly too.
     module_namespaces: set[str] = field(default_factory=set)
+    # Module namespace -> metadata from that module's YANG statements.
+    module_meta: dict[str, "ModuleMeta"] = field(default_factory=dict)
 
     @property
     def iocs(self) -> list[Klass]:
@@ -93,6 +108,12 @@ def _ns(stmt) -> str:
 def _desc(stmt) -> str:
     d = stmt.search_one("description")
     return d.arg if d is not None else ""
+
+
+def _stmt_arg(stmt, keyword) -> str:
+    """Return a direct sub-statement's argument, or "" if absent."""
+    s = stmt.search_one(keyword)
+    return s.arg if s is not None else ""
 
 
 def _int(stmt, kw) -> int | None:
@@ -367,6 +388,15 @@ class _Parser:
                     ref_stmt = rev.search_one("reference")
                     cr_ref = ref_stmt.arg if ref_stmt is not None else None
                     self.model.revisions[ns] = (date, cr_ref)
+                # Capture module metadata (for ontology dcterms:* — sourced from
+                # the YANG itself; any statement may be absent).
+                self.model.module_meta[ns] = ModuleMeta(
+                    name=m.arg,
+                    organization=_stmt_arg(m, "organization"),
+                    contact=_stmt_arg(m, "contact"),
+                    description=_desc(m),
+                    reference=_stmt_arg(m, "reference"),
+                )
 
             for td in m.search("typedef"):
                 rt = resolve_type(td.search_one("type"))

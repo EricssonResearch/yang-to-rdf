@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,6 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> a rdfs:Class ;
+    rdfs:label "MgmtDataInfo" ;
     rdfs:comment """Describes the management capabilities for a set of
 management data, which can be used for management data discovery.
 MgmtDataInfo  is contained by MnSRegistry and associated to MnSInfo.
@@ -13,6 +15,7 @@ Multiple MgmtDataInfo instances maybe created for different sets of
 management data, it is MnS producer’s decision.""" .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo> a rdfs:Class ;
+    rdfs:label "MnsInfo" ;
     rdfs:comment """This IOC represents an available Management Service (MnS)
 and provides the data required to support its discovery.
 It is name-contained by MnsRegistry.
@@ -34,6 +37,7 @@ be accessed using the Management Service.""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope> .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsRegistry> a rdfs:Class ;
+    rdfs:label "MnsRegistry" ;
     rdfs:comment """This IOC is a container for MnsInfo IOC-s. It can be
 contained only by SubNetwork IOC. A SubNetwork IOC can contain
 only one instance of MnsRegistry.
@@ -42,6 +46,7 @@ The IOC is instantiated by the system.""" ;
         <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo> .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope> a rdfs:Class ;
+    rdfs:label "MnsScope" ;
     rdfs:comment """This attribute defines the information about the
 management scope of the Management Service. The management scope is
 used to represent  the set of managed object instances that can be
@@ -50,9 +55,19 @@ accessed using the Management Service.""" ;
         <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry> a owl:Ontology ;
+    rdfs:label "_3gpp-common-mnsregistry" ;
+    dcterms:description """Defines the YANG mapping of the MNSRegistry IOC and its
+contained classes that ares part of the Generic Network Resource Model (NRM).
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.623 Generic Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-common-mnsregistry" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2025-11-02 (CR-0586)" .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/category> a rdf:Property ;
+    rdfs:label "category" ;
     rdfs:comment """This attributes defines the type of management data that
 are requested.
 
@@ -82,6 +97,7 @@ related to Layer 1 Measurement).
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/historicalDataPeriod> a rdf:Property ;
+    rdfs:label "historicalDataPeriod" ;
     rdfs:comment """This attribute describes the maximum period of the requested
 historical data. The period is defined in seconds.
 When the value of this attribute is NULL, which means the capability of
@@ -90,6 +106,7 @@ querying historical data is not supported.""" ;
     rdfs:range xsd:unsignedLong .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -97,6 +114,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/name> a rdf:Property ;
+    rdfs:label "name" ;
     rdfs:comment """List of management data identified by name.
 
 The list may include metrics or set of metrics defined
@@ -120,42 +138,49 @@ elsewhere.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedDataReportingMnSRef> a owl:ObjectProperty ;
+    rdfs:label "supportedDataReportingMnSRef" ;
     rdfs:comment """List of DN of MnSInfo for the MnS instance(s) which can be
 used to report the associated management data""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedDataRequestMnSRef> a owl:ObjectProperty ;
+    rdfs:label "supportedDataRequestMnSRef" ;
     rdfs:comment """List of DN of MnSInfo for the MnS instance(s) which can be
 used to request the associated management data""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedDataScope> a rdf:Property ;
+    rdfs:label "supportedDataScope" ;
     rdfs:comment """List of supported sub counter capabilities for the associated
 management data""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedGranularityPeriods> a rdf:Property ;
+    rdfs:label "supportedGranularityPeriods" ;
     rdfs:comment """Granularity periods supported for the production of
 associated management data. The period is defined in seconds.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedReportingMethod> a rdf:Property ;
+    rdfs:label "supportedReportingMethod" ;
     rdfs:comment """List of supported reporting methods for the associated
 management data.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedReportingPeriods> a rdf:Property ;
+    rdfs:label "supportedReportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated management
 data. The period is defined in seconds.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -163,17 +188,20 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mgmtDataInfoRef> a owl:ObjectProperty ;
+    rdfs:label "mgmtDataInfoRef" ;
     rdfs:comment """List of DN of MgmtDataInfo instance(s) which are associated
 the MnSInfo which represent a management service instance""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsAddress> a rdf:Property ;
+    rdfs:label "mnsAddress" ;
     rdfs:comment "Addressing information for Management Service operations." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsCapability> a rdf:Property ;
+    rdfs:label "mnsCapability" ;
     rdfs:comment """It describes the types of management capabilities of the
 MnS instance provided by the MnS producer. The detailed description for
 above enum values see Annex F in TS 28.533.
@@ -183,11 +211,13 @@ Note: vendor extension values are allowed for the attribute
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsLabel> a rdf:Property ;
+    rdfs:label "mnsLabel" ;
     rdfs:comment "Human-readable name of management service." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsScope> a owl:ObjectProperty ;
+    rdfs:label "mnsScope" ;
     rdfs:comment """This attribute defines the information about the
 management scope of the Management Service. The management scope is
 used to represent  the set of managed object instances that can be
@@ -196,16 +226,19 @@ accessed using the Management Service.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope> .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsType> a rdf:Property ;
+    rdfs:label "mnsType" ;
     rdfs:comment "Type of management service." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mnsVersion> a rdf:Property ;
+    rdfs:label "mnsVersion" ;
     rdfs:comment "Version of management service." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsRegistry/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -213,6 +246,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope/geoAreasList> a owl:ObjectProperty ;
+    rdfs:label "geoAreasList" ;
     rdfs:comment """This attribute describes geographical areas for the
 managed object instances that can be accessed using the Management
 Service.""" ;
@@ -220,6 +254,7 @@ Service.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope/objectInstanceList> a owl:ObjectProperty ;
+    rdfs:label "objectInstanceList" ;
     rdfs:comment """This attribute describes list of DNs for the managed
 object instances that can be accessed using the Management Service.
 If a complete SubNetwork can be accessed using the Management Service,
@@ -235,6 +270,7 @@ ManagedElement.""" ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope/taiList> a owl:ObjectProperty ;
+    rdfs:label "taiList" ;
     rdfs:comment """This attribute describes the list of Tracking Area
 Identities (TAI) for the managed object instances that can be accessed
 using the Management Service.""" ;

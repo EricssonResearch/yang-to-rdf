@@ -1,10 +1,41 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types> a owl:Ontology ;
+    rdfs:label "ietf-yang-types" ;
+    dcterms:description """This module contains a collection of generally useful derived
+YANG data types.
+
+The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
+'MAY', and 'OPTIONAL' in this document are to be interpreted as
+described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
+they appear in all capitals, as shown here.
+
+Copyright (c) 2025 IETF Trust and the persons identified as
+authors of the code.  All rights reserved.
+
+Redistribution and use in source and binary forms, with or
+without modification, is permitted pursuant to, and subject
+to the license terms contained in, the Revised BSD License
+set forth in Section 4.c of the IETF Trust's Legal Provisions
+Relating to IETF Documents
+(https://trustee.ietf.org/license-info).
+
+This version of this YANG module is part of RFC XXXX;
+see the RFC itself for full legal notices.""" ;
+    dcterms:publisher "IETF Network Modeling (NETMOD) Working Group" ;
+    dcterms:title "ietf-yang-types" ;
+    rdfs:seeAlso """WG Web:   <https://datatracker.ietf.org/wg/netmod/>
+WG List:  <mailto:netmod@ietf.org>
+
+Editor:   Juergen Schoenwaelder
+          <mailto:jschoenwaelder@constructor.university>""" ;
     owl:versionInfo "revision 2025-06-23 (RFC XXXX: Common YANG Data Types)" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/centiseconds32> a rdfs:Datatype ;
+    rdfs:label "centiseconds32" ;
     rdfs:comment """A period of time, measured in units of 10^-2 seconds.
 
 The maximum time period that can be expressed is in the
@@ -15,6 +46,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/counter32> a rdfs:Datatype ;
+    rdfs:label "counter32" ;
     rdfs:comment """The counter32 type represents a non-negative integer
 that monotonically increases until it reaches a
 maximum value of 2^32-1 (4294967295 decimal), when it
@@ -40,6 +72,7 @@ In the value set and its semantics, this type is equivalent
 to the Counter32 type of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/counter64> a rdfs:Datatype ;
+    rdfs:label "counter64" ;
     rdfs:comment """The counter64 type represents a non-negative integer
 that monotonically increases until it reaches a
 maximum value of 2^64-1 (18446744073709551615 decimal),
@@ -65,6 +98,7 @@ In the value set and its semantics, this type is equivalent
 to the Counter64 type of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/date> a rdfs:Datatype ;
+    rdfs:label "date" ;
     rdfs:comment """The date type represents a time-interval of the length
 of a day, i.e., 24 hours. It includes an optional time
 zone offset.
@@ -91,6 +125,7 @@ date values reported in UTC with an unknown local time zone
 offset uses the time-offset Z.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/date-and-time> a rdfs:Datatype ;
+    rdfs:label "date-and-time" ;
     rdfs:comment """The date-and-time type is a profile of the ISO 8601
 standard for representation of dates and times using the
 Gregorian calendar.  The profile is defined by the
@@ -127,15 +162,18 @@ time zone offset SHOULD use the time-offset Z and MAY use
 -00:00 for backwards compatibility.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/date-no-zone> a rdfs:Datatype ;
+    rdfs:label "date-no-zone" ;
     rdfs:comment """The date-no-zone type represents a date without the optional
 time zone offset information.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/dotted-quad> a rdfs:Datatype ;
+    rdfs:label "dotted-quad" ;
     rdfs:comment """An unsigned 32-bit number expressed in the dotted-quad
 notation, i.e., four octets written as decimal numbers
 and separated with the '.' (full stop) character.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/gauge32> a rdfs:Datatype ;
+    rdfs:label "gauge32" ;
     rdfs:comment """The gauge32 type represents a non-negative integer, which
 may increase or decrease, but shall never exceed a maximum
 value, nor fall below a minimum value.  The maximum value
@@ -152,6 +190,7 @@ In the value set and its semantics, this type is equivalent
 to the Gauge32 type of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/gauge64> a rdfs:Datatype ;
+    rdfs:label "gauge64" ;
     rdfs:comment """The gauge64 type represents a non-negative integer, which
 may increase or decrease, but shall never exceed a maximum
 value, nor fall below a minimum value.  The maximum value
@@ -170,11 +209,13 @@ to the CounterBasedGauge64 SMIv2 textual convention defined
 in RFC 2856""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/hex-string> a rdfs:Datatype ;
+    rdfs:label "hex-string" ;
     rdfs:comment """A hexadecimal string with octets represented as hex digits
 separated by colons.  The canonical representation uses
 lowercase characters.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/hours32> a rdfs:Datatype ;
+    rdfs:label "hours32" ;
     rdfs:comment """A period of time, measured in units of hours.
 
 The maximum time period that can be expressed is in the
@@ -185,6 +226,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/language-tag> a rdfs:Datatype ;
+    rdfs:label "language-tag" ;
     rdfs:comment """A language tag according to RFC 5646 (BCP 47). The
 canonical representation uses lowercase characters.
 
@@ -200,6 +242,7 @@ language tags fitting the length constraints imposed
 by the LangTag textual convention.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/mac-address> a rdfs:Datatype ;
+    rdfs:label "mac-address" ;
     rdfs:comment """The mac-address type represents a 48-bit IEEE 802 MAC
 address. The canonical representation uses lowercase
 characters. Note that there are IEEE 802 MAC addresses
@@ -210,6 +253,7 @@ In the value set and its semantics, this type is equivalent
 to the MacAddress textual convention of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/microseconds32> a rdfs:Datatype ;
+    rdfs:label "microseconds32" ;
     rdfs:comment """A period of time, measured in units of 10^-6 seconds.
 
 The maximum time period that can be expressed is in the
@@ -220,6 +264,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/microseconds64> a rdfs:Datatype ;
+    rdfs:label "microseconds64" ;
     rdfs:comment """A period of time, measured in units of 10^-6 seconds.
 
 The maximum time period that can be expressed is in the
@@ -230,6 +275,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/milliseconds32> a rdfs:Datatype ;
+    rdfs:label "milliseconds32" ;
     rdfs:comment """A period of time, measured in units of 10^-3 seconds.
 
 The maximum time period that can be expressed is in the
@@ -240,6 +286,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/minutes32> a rdfs:Datatype ;
+    rdfs:label "minutes32" ;
     rdfs:comment """A period of time, measured in units of minutes.
 
 The maximum time period that can be expressed is in the
@@ -250,6 +297,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/nanoseconds32> a rdfs:Datatype ;
+    rdfs:label "nanoseconds32" ;
     rdfs:comment """A period of time, measured in units of 10^-9 seconds.
 
 The maximum time period that can be expressed is in the
@@ -260,6 +308,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/nanoseconds64> a rdfs:Datatype ;
+    rdfs:label "nanoseconds64" ;
     rdfs:comment """A period of time, measured in units of 10^-9 seconds.
 
 The maximum time period that can be expressed is in the
@@ -270,6 +319,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/object-identifier> a rdfs:Datatype ;
+    rdfs:label "object-identifier" ;
     rdfs:comment """The object-identifier type represents administratively
 assigned names in a registration-hierarchical-name tree.
 
@@ -299,6 +349,7 @@ IDENTIFIER type; the object-identifier-128 type SHOULD be
 used instead.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/object-identifier-128> a rdfs:Datatype ;
+    rdfs:label "object-identifier-128" ;
     rdfs:comment """This type represents object-identifiers restricted to 128
 sub-identifiers.
 
@@ -306,6 +357,7 @@ In the value set and its semantics, this type is equivalent
 to the OBJECT IDENTIFIER type of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/phys-address> a rdfs:Datatype ;
+    rdfs:label "phys-address" ;
     rdfs:comment """Represents media- or physical-level addresses represented
 as a sequence octets, each octet represented by two hexadecimal
 numbers.  Octets are separated by colons.  The canonical
@@ -315,6 +367,7 @@ In the value set and its semantics, this type is equivalent
 to the PhysAddress textual convention of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/seconds32> a rdfs:Datatype ;
+    rdfs:label "seconds32" ;
     rdfs:comment """A period of time, measured in units of seconds.
 
 The maximum time period that can be expressed is in the
@@ -325,6 +378,7 @@ where only non-negative time periods are desirable,
 (i.e., range '0..max').""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/time> a rdfs:Datatype ;
+    rdfs:label "time" ;
     rdfs:comment """The time type represents an instance of time of zero-duration
 that recurs every day. It includes an optional time zone
 offset. The value of 60 for seconds is allowed only in the
@@ -350,10 +404,12 @@ time values reported in UTC with an unknown local time zone
 offset uses the time-offset Z.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/time-no-zone> a rdfs:Datatype ;
+    rdfs:label "time-no-zone" ;
     rdfs:comment """The time-no-zone type represents a time without the optional
 time zone offset information.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/timestamp> a rdfs:Datatype ;
+    rdfs:label "timestamp" ;
     rdfs:comment """The timestamp type represents the value of an associated
 timeticks schema node instance at which a specific occurrence
 happened.  The specific occurrence must be defined in the
@@ -373,6 +429,7 @@ In the value set and its semantics, this type is equivalent
 to the TimeStamp textual convention of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/timeticks> a rdfs:Datatype ;
+    rdfs:label "timeticks" ;
     rdfs:comment """The timeticks type represents a non-negative integer that
 represents the time, modulo 2^32 (4294967296 decimal), in
 hundredths of a second between two epochs.  When a schema
@@ -383,6 +440,7 @@ In the value set and its semantics, this type is equivalent
 to the TimeTicks type of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/uuid> a rdfs:Datatype ;
+    rdfs:label "uuid" ;
     rdfs:comment """A Universally Unique IDentifier in the string representation
 defined in RFC 4122.  The canonical representation uses
 lowercase characters.
@@ -392,6 +450,7 @@ f81d4fae-7dec-11d0-a765-00a0c91e6bf6
 """ .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/xpath1.0> a rdfs:Datatype ;
+    rdfs:label "xpath1.0" ;
     rdfs:comment """This type represents an XPATH 1.0 expression.
 
 When a schema node is defined that uses this type, the
@@ -399,6 +458,7 @@ description of the schema node MUST specify the XPath
 context in which the XPath expression is evaluated.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/yang-identifier> a rdfs:Datatype ;
+    rdfs:label "yang-identifier" ;
     rdfs:comment """A YANG identifier string as defined by the 'identifier'
 rule in Section 14 of RFC 7950. An identifier must
 start with an alphabetic character or an underscore
@@ -414,6 +474,7 @@ is used in a YANG 1 context, then this restriction still
 applies.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/zero-based-counter32> a rdfs:Datatype ;
+    rdfs:label "zero-based-counter32" ;
     rdfs:comment """The zero-based-counter32 type represents a counter32
 that has the defined 'initial' value zero.
 
@@ -433,6 +494,7 @@ In the value set and its semantics, this type is equivalent
 to the ZeroBasedCounter32 textual convention of the SMIv2.""" .
 
 <urn:ietf:params:xml:ns:yang:ietf-yang-types/zero-based-counter64> a rdfs:Datatype ;
+    rdfs:label "zero-based-counter64" ;
     rdfs:comment """The zero-based-counter64 type represents a counter64 that
 has the defined 'initial' value zero.
 

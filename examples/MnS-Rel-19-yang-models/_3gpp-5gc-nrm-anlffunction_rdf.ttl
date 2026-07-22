@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,23 +6,36 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> a rdfs:Class ;
+    rdfs:label "AnLFFunction" ;
     rdfs:comment "5G Core AnLF contained by NWDAF" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> a owl:Ontology ;
+    rdfs:label "_3gpp-5gc-nrm-anlffunction" ;
+    dcterms:description """This IOC represents the AnLF function in 5GC.
+For more information about the AnLF, see 3GPP TS 23.288.
+Copyright 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3gpp SA5" ;
+    dcterms:source "3GPP TS 28.541" ;
+    dcterms:title "_3gpp-5gc-nrm-anlffunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2024-08-07 (CR-1331)" .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
+    rdfs:label "aIMLInferenceFunctionRefList" ;
     rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction
 (See TS 28.105) .""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
     nrm:isReference true .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/activationStatus> a rdf:Property ;
+    rdfs:label "activationStatus" ;
     rdfs:comment "It indicates the activation status of the AnLF" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -29,6 +43,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/mLModelRefList> a owl:ObjectProperty ;
+    rdfs:label "mLModelRefList" ;
     rdfs:comment """This attribute holds a DN list of MLModel ¨
 (See TS 28.105).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;

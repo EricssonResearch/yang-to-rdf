@@ -1,8 +1,29 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-common-management-node> a owl:Ontology ;
+    rdfs:label "_3gpp-common-management-node" ;
+    dcterms:description """Defines ManagementNode IOCs
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source """3GPP TS 28.623
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Solution Set (SS) definitions
+
+3GPP TS 28.622
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Information Service (IS)
+
+3GPP TS 28.620
+Umbrella Information Model (UIM)""" ;
+    dcterms:title "_3gpp-common-management-node" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-18 (CR-0271)" .
 
 <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNodeShape> a sh:NodeShape ;

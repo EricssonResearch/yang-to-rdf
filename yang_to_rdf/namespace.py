@@ -12,7 +12,7 @@ from __future__ import annotations
 from urllib.parse import quote
 
 from rdflib import Graph, Namespace
-from rdflib.namespace import OWL, RDF, RDFS, XSD
+from rdflib.namespace import DCTERMS, OWL, RDF, RDFS, XSD
 
 # 3GPP NRM project vocabulary (the tool's only non-standard namespace).
 NRM = Namespace("https://3gpp.org/nrm/vocab#")
@@ -36,5 +36,5 @@ def property_iri(base: str, class_name: str, prop_name: str) -> str:
 def bind_standard_namespaces(graph: Graph) -> None:
     """Bind the prefixes every converter uses, so serialized TTL is readable."""
     for prefix, ns in (("rdf", RDF), ("rdfs", RDFS), ("owl", OWL),
-                       ("xsd", XSD), ("nrm", NRM)):
+                       ("xsd", XSD), ("nrm", NRM), ("dcterms", DCTERMS)):
         graph.bind(prefix, ns)

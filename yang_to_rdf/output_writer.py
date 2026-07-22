@@ -4,10 +4,33 @@ from __future__ import annotations
 from urllib.parse import quote
 
 from rdflib import BNode, Graph, Literal, URIRef
-from rdflib.namespace import OWL, RDF
+from rdflib.namespace import DCTERMS, OWL, RDF, RDFS
 
 # Aggregating ontology IRI used by index.ttl to owl:imports every module.
 INDEX_ONTOLOGY = URIRef("https://3gpp.org/nrm/ontology")
+
+
+def _stamp_module_meta(graph: Graph, ns: str, model) -> None:
+    """Add Dublin Core metadata to a module ontology node, sourced from the
+    module's own YANG statements (organization/contact/description/reference).
+    Each mapping is emitted only when the source statement was present."""
+    meta = model.module_meta.get(ns)
+    if meta is None:
+        return
+    node = URIRef(ns)
+    # A title is required for ontology documentation tools (e.g. pyLODE); use the
+    # module name, which is always present.
+    graph.add((node, DCTERMS.title, Literal(meta.name)))
+    graph.add((node, RDFS.label, Literal(meta.name)))
+    if meta.description:
+        graph.add((node, DCTERMS.description, Literal(meta.description)))
+    if meta.organization:
+        graph.add((node, DCTERMS.publisher, Literal(meta.organization)))
+    if meta.contact:
+        # 3GPP `contact` is typically a URL; expose it as a see-also link.
+        graph.add((node, RDFS.seeAlso, Literal(meta.contact)))
+    if meta.reference:
+        graph.add((node, DCTERMS.source, Literal(meta.reference)))
 
 
 def module_ns(iri, namespaces: set[str]) -> str | None:
@@ -120,10 +143,44 @@ def stamp_versions(graph: Graph, model, release_label: str | None = None,
 
         graph.add((URIRef(ns), RDF.type, OWL.Ontology))
         graph.add((URIRef(ns), OWL.versionInfo, Literal(version_string)))
+        _stamp_module_meta(graph, ns, model)
 
-    # Stamp aggregate versionIRI if requested
-    if aggregate and release_label:
-        version_iri = URIRef(f"https://3gpp.org/nrm/ontology/version/{quote(release_label, safe='')}")
+    # Aggregate ontology: title/description (derived from the YANG) + version.
+    if aggregate:
         graph.add((INDEX_ONTOLOGY, RDF.type, OWL.Ontology))
-        graph.add((INDEX_ONTOLOGY, OWL.versionIRI, version_iri))
-        graph.add((INDEX_ONTOLOGY, OWL.versionInfo, Literal(release_label)))
+        title, description = _aggregate_title(model)
+        graph.add((INDEX_ONTOLOGY, DCTERMS.title, Literal(title)))
+        graph.add((INDEX_ONTOLOGY, RDFS.label, Literal(title)))
+        if description:
+            graph.add((INDEX_ONTOLOGY, DCTERMS.description, Literal(description)))
+        publishers = {m.organization for m in model.module_meta.values() if m.organization}
+        for pub in sorted(publishers):
+            graph.add((INDEX_ONTOLOGY, DCTERMS.publisher, Literal(pub)))
+        if release_label:
+            version_iri = URIRef(
+                f"https://3gpp.org/nrm/ontology/version/{quote(release_label, safe='')}")
+            graph.add((INDEX_ONTOLOGY, OWL.versionIRI, version_iri))
+            graph.add((INDEX_ONTOLOGY, OWL.versionInfo, Literal(release_label)))
+
+
+def _aggregate_title(model) -> tuple[str, str]:
+    """Title + description for the aggregate ontology, derived from the modules'
+    own `reference` statements (e.g. the common 3GPP TS number) so the metadata
+    comes from the input rather than being invented. Falls back to a generic
+    label if no references are present."""
+    from collections import Counter
+
+    refs = Counter(m.reference for m in model.module_meta.values() if m.reference)
+    n_modules = len(model.module_namespaces)
+    if refs:
+        # Most common reference — collapse to its first line (the TS title).
+        top_ref = refs.most_common(1)[0][0].splitlines()[0].strip()
+        title = f"{top_ref} — RDF/OWL ontology"
+        description = (
+            f"RDF/OWL ontology generated from {n_modules} YANG modules. "
+            f"Primary source: {top_ref}."
+        )
+    else:
+        title = "YANG-derived RDF/OWL ontology"
+        description = f"RDF/OWL ontology generated from {n_modules} YANG modules."
+    return title, description

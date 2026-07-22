@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,23 +6,40 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> a rdfs:Class ;
+    rdfs:label "NotificationEntry" ;
     rdfs:comment """Representation of the individual notifications.
 The entries shall be ordered based on eventTime of the notification,
 newest first.""" .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> a rdfs:Class ;
+    rdfs:label "Scope" ;
     rdfs:comment "Scopes (selects) data nodes in an object tree." .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control> a owl:Ontology ;
+    rdfs:label "_3gpp-common-subscription-control" ;
+    dcterms:description """Defines IOCs for subscription, notification list and heartbeat
+control.
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source """3GPP TS 28.623
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Solution Set (SS) definitions
+3GPP TS 28.623""" ;
+    dcterms:title "_3gpp-common-subscription-control" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2025-11-07 (CR-0551 CR-0586)" .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/eventTime> a rdf:Property ;
+    rdfs:label "eventTime" ;
     rdfs:comment "eventTime from the header of the notification" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> ;
     rdfs:range xsd:string ;
     nrm:isInvariant true .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/notificationContent> a rdf:Property ;
+    rdfs:label "notificationContent" ;
     rdfs:comment """The string representation of a notification as encoded in
 the HTTP body (excluding the HTTP headers and the optional VES header).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> ;
@@ -29,6 +47,7 @@ the HTTP body (excluding the HTTP headers and the optional VES header).""" ;
     nrm:isInvariant true .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry/notificationEntryId> a rdf:Property ;
+    rdfs:label "notificationEntryId" ;
     rdfs:comment """Identifier of an individual notificationEntry; unique within
 a NotificationList MOI.
 
@@ -45,23 +64,28 @@ e.g. 'ManagedElement=me1,NtfSubscriptionControl=Fault1*12345'""" ;
     nrm:isInvariant true .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationTypes> a rdfs:Datatype ;
+    rdfs:label "NotificationTypes" ;
     rdfs:comment "An extensible enumeration of notification types" .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/datastore-subtree-filter> a rdf:Property ;
+    rdfs:label "datastore-subtree-filter" ;
     rdfs:comment "Subtree filter" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/datastore-xpath-filter> a rdf:Property ;
+    rdfs:label "datastore-xpath-filter" ;
     rdfs:comment "XPath-filter" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/scopeLevel> a rdf:Property ;
+    rdfs:label "scopeLevel" ;
     rdfs:comment "See description of scopeType." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope/scopeType> a rdf:Property ;
+    rdfs:label "scopeType" ;
     rdfs:comment """If the optional scopeLevel parameter is not supported
 or absent, allowed values of scopeType are BASE_ONLY and BASE_ALL.
 

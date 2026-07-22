@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,11 +6,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember> a rdfs:Class ;
+    rdfs:label "RRMPolicyMember" ;
     rdfs:comment """It represents the list of RRMPolicyMember (s) that the
 managed object is supporting. A RRMPolicyMember <<dataType>> include
 the PLMNId <<dataType>> and S-NSSAI <<dataType>>.""" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyRatio> a rdfs:Class ;
+    rdfs:label "RRMPolicyRatio" ;
     rdfs:comment """This IOC represents the properties of RRMPolicyRatio.
 RRMPolicyRatio is one realization of abstract RRMPolicy_ IOC.
 RRMPolicyRatio has three attributes, apart from those inherited
@@ -59,23 +62,36 @@ resources quota is represented by [rRMPolicyDedicatedRatio].""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-rrmpolicy" ;
+    dcterms:description """Defines the YANG mapping of the RRMPolicy abstract class that
+is part of the NR Network Resource Model (NRM).
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-rrmpolicy" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-19 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember/mcc> a rdf:Property ;
+    rdfs:label "mcc" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember/mnc> a rdf:Property ;
+    rdfs:label "mnc" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember/sd> a rdf:Property ;
+    rdfs:label "sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember/sst> a rdf:Property ;
+    rdfs:label "sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
@@ -83,6 +99,7 @@ Values 0 to 127 belong to standardized SST range and are defined in
     rdfs:range xsd:unsignedByte .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyRatio/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -90,6 +107,7 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyRatio/rRMPolicyDedicatedRatio> a rdf:Property ;
+    rdfs:label "rRMPolicyDedicatedRatio" ;
     rdfs:comment """ This attribute specifies the percentage of radio resource
 that dedicatedly used by the associated rRMPolicyMemberList. The sum of
 the rRMPolicyDeidctaedRatio values assigned to all RRMPolicyRatio(s)
@@ -98,6 +116,7 @@ name-contained by same ManagedEntity shall be less or equal 100. """ ;
     rdfs:range xsd:unsignedByte .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyRatio/rRMPolicyMaxRatio> a rdf:Property ;
+    rdfs:label "rRMPolicyMaxRatio" ;
     rdfs:comment """ This attribute specifies the maximum percentage of radio
 resource that can be used by the associated rRMPolicyMemberList.
 The maximum percentage of radio resource include at least one of
@@ -108,6 +127,7 @@ name-contained by same ManagedEntity can be greater that 100.""" ;
     rdfs:range xsd:unsignedByte .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyRatio/rRMPolicyMemberList> a owl:ObjectProperty ;
+    rdfs:label "rRMPolicyMemberList" ;
     rdfs:comment """It represents the list of RRMPolicyMember (s) that the
 managed object is supporting. A RRMPolicyMember <<dataType>> include
 the PLMNId <<dataType>> and S-NSSAI <<dataType>>.""" ;
@@ -115,6 +135,7 @@ the PLMNId <<dataType>> and S-NSSAI <<dataType>>.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyMember> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyRatio/rRMPolicyMinRatio> a rdf:Property ;
+    rdfs:label "rRMPolicyMinRatio" ;
     rdfs:comment """ This attribute specifies the minimum percentage of radio
 resources that can be used by the associated rRMPolicyMemberList.
 The minimum percentage of radio resources including at least one of
@@ -125,6 +146,7 @@ name-contained by same ManagedEntity shall be less or equal 100.""" ;
     rdfs:range xsd:unsignedByte .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyRatio/resourceType> a rdf:Property ;
+    rdfs:label "resourceType" ;
     rdfs:comment """The resourceType attribute defines type of resource (PRB,
 RRC connected users, DRB usage etc.) that is subject to policy.
 Valid values are 'PRB', 'PRB_UL', 'PRB_DL', 'RRC' or 'DRB'""" ;

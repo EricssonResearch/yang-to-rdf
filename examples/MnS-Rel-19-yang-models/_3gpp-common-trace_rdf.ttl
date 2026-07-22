@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,6 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig> a rdfs:Class ;
+    rdfs:label "AreaConfig" ;
     rdfs:comment """It specifies the area for which UE is requested to perform
 measurement logging for neighbour cells which have list of frequencies.
 If it is not configured, the UE shall perform measurement logging for
@@ -14,18 +16,22 @@ Applicable only to NR Logged MDT.""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds> a rdfs:Class ;
+    rdfs:label "ExcessPacketDelayThresholds" ;
     rdfs:comment "Excess packet delay thresholds info for M6 UL measurement." .
 
 <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo> a rdfs:Class ;
+    rdfs:label "FreqInfo" ;
     rdfs:comment """It specifies the carrier frequency and bands used in
 a cell.""" .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig> a rdfs:Class ;
+    rdfs:label "ImmediateMdtConfig" ;
     rdfs:comment """The set of parameters specific for Immediate MDT
 configuration.""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig> a rdfs:Class ;
+    rdfs:label "LoggedMdtConfig" ;
     rdfs:comment """The set of parameters specific for Logged MDT and Logged
 MBSFN MDT configuration.""" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig>,
@@ -33,11 +39,13 @@ MBSFN MDT configuration.""" ;
         <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea> a rdfs:Class ;
+    rdfs:label "MbsfnArea" ;
     rdfs:comment """The MBSFN Area consists of a MBSFN Area ID and Carrier
 Frequency (EARFCN). The target MBSFN area List can have up to 8 entries.
 This parameter is applicable only if the job type is Logged MBSFN MDT.""" .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> a rdfs:Class ;
+    rdfs:label "MdtConfig" ;
     rdfs:comment """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
 The attribute anonymizationOfMdtData specifies the level of
@@ -67,10 +75,12 @@ allowed.""" ;
         <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> a rdfs:Class ;
+    rdfs:label "TraceConfig" ;
     rdfs:comment "Trace config" ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/triggeringEvents> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> a rdfs:Class ;
+    rdfs:label "TraceReference" ;
     rdfs:comment """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
@@ -78,6 +88,7 @@ Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg> a rdfs:Class ;
+    rdfs:label "TrsrPrefixCfg" ;
     rdfs:comment """The TRSR prefix configuration parameters which are used by
 NR-RAN at TRSR assignment for a given C-MDT job. It defines both the
 base TRSR prefix and the size of the TRSR prefix. The attribute
@@ -85,34 +96,55 @@ trstPrefix specifies the base TRSR prefix. The attribute
 trsrPrefixLength defines the size of base TRSR prefix.""" .
 
 <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> a rdfs:Class ;
+    rdfs:label "UECoreMeasConfig" ;
     rdfs:comment "5GC UE level measurements config" .
 
 <urn:3gpp:sa5:_3gpp-common-trace> a owl:Ontology ;
+    rdfs:label "_3gpp-common-trace" ;
+    dcterms:description """Trace handling
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source """3GPP TS 28.623
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Solution Set (SS) definitions
+3GPP TS 28.622
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Information Service (IS)""" ;
+    dcterms:title "_3gpp-common-trace" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2026-02-07 (CR-1682)" .
 
 <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig/freqInfo> a owl:ObjectProperty ;
+    rdfs:label "freqInfo" ;
     rdfs:comment """It specifies the carrier frequency and bands used in
 a cell.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig/pciList> a rdf:Property ;
+    rdfs:label "pciList" ;
     rdfs:comment "List of neighbour cells subject for MDT scope." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds/excessPacketDelayThresholdValue> a rdf:Property ;
+    rdfs:label "excessPacketDelayThresholdValue" ;
     rdfs:comment """Value of excess packet delay threshold
 for M6 UL measurement in milliseconds.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds> ;
     rdfs:range xsd:decimal .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds/fiveQIValue> a rdf:Property ;
+    rdfs:label "fiveQIValue" ;
     rdfs:comment "It indicates 5QI value." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds> ;
     rdfs:range xsd:unsignedByte .
 
 <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo/arfcn> a rdf:Property ;
+    rdfs:label "arfcn" ;
     rdfs:comment """RF Reference Frequency as defined in TS 38.104,
 clause 5.4.2.1. The frequency provided identifies the absolute
 frequency position of the reference resource block (Common RB 0)
@@ -121,6 +153,7 @@ of the carrier. Its lowest subcarrier is also known as Point A.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/FreqInfo/freqBands> a rdf:Property ;
+    rdfs:label "freqBands" ;
     rdfs:comment """List of NR frequency operating bands. Primary NR
 Operating Band as defined in TS 38.104, clause 5.4.2.3.
 The value 1 corresponds to n1, value 2 corresponds to NR operating
@@ -129,12 +162,14 @@ band n2, etc.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/beamLevelMeasurement> a rdf:Property ;
+    rdfs:label "beamLevelMeasurement" ;
     rdfs:comment """Indicates whether the NR M1 beam level measurements shall
 be included or not.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodM6LTE> a rdf:Property ;
+    rdfs:label "collectionPeriodM6LTE" ;
     rdfs:comment """Specifies the collection period for the Packet Delay
 measurement (M6) for MDT taken by the eNB. The attribute is applicable
 only for Immediate MDT. In case this attribute is not used,
@@ -143,6 +178,7 @@ it carries a null semantic.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodM6NR> a rdf:Property ;
+    rdfs:label "collectionPeriodM6NR" ;
     rdfs:comment """It specifies the collection period for the Packet Delay
 measurement (M6) for NR MDT taken by the gNB. The attribute is
 applicable only for Immediate MDT. """ ;
@@ -150,6 +186,7 @@ applicable only for Immediate MDT. """ ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodM7LTE> a rdf:Property ;
+    rdfs:label "collectionPeriodM7LTE" ;
     rdfs:comment """It specifies the collection period for the Packet Loss Rate
 measurement (M7) for LTE MDT taken by the eNB. The attribute is
 applicable only for Immediate MDT.""" ;
@@ -157,6 +194,7 @@ applicable only for Immediate MDT.""" ;
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodM7NR> a rdf:Property ;
+    rdfs:label "collectionPeriodM7NR" ;
     rdfs:comment """It specifies the collection period for the Packet Loss Rate
 measurement (M7) for NR MDT taken by the gNB. The attribute is
 applicable only for Immediate MDT.""" ;
@@ -164,6 +202,7 @@ applicable only for Immediate MDT.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodRRMLTE> a rdf:Property ;
+    rdfs:label "collectionPeriodRRMLTE" ;
     rdfs:comment """Specifies the collection period for collecting RRM configured
 measurement samples for M3 in LTE. The attribute is applicable only
 for Immediate MDT.""" ;
@@ -171,6 +210,7 @@ for Immediate MDT.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodRRMNR> a rdf:Property ;
+    rdfs:label "collectionPeriodRRMNR" ;
     rdfs:comment """Specifies the collection period for collecting RRM
 configured measurement samples for M4, M5 in NR. The attribute is
 applicable only for Immediate MDT.""" ;
@@ -178,6 +218,7 @@ applicable only for Immediate MDT.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/collectionPeriodRRMUMTS> a rdf:Property ;
+    rdfs:label "collectionPeriodRRMUMTS" ;
     rdfs:comment """Specifies the collection period for collecting RRM configured
 measurement samples for M3, M4, M5 in UMTS. The attribute is applicable
 only for Immediate MDT. """ ;
@@ -185,6 +226,7 @@ only for Immediate MDT. """ ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/eventThreshold> a rdf:Property ;
+    rdfs:label "eventThreshold" ;
     rdfs:comment """Specifies the threshold which should trigger the reporting
 in case A2 event reporting in LTE or 1F/1l event in UMTS. The attribute
 is applicable only for Immediate MDT and when reportingTrigger is
@@ -193,6 +235,7 @@ configured for A2 event in LTE or 1F event or 1l event in UMTS.""" ;
     rdfs:range xsd:long .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/eventThresholdUphUMTS> a rdf:Property ;
+    rdfs:label "eventThresholdUphUMTS" ;
     rdfs:comment """It specifies the threshold which should trigger
 the reporting in case of event-triggered periodic reporting for M4
 (UE power headroom measurement) in UMTS.""" ;
@@ -200,11 +243,13 @@ the reporting in case of event-triggered periodic reporting for M4
     rdfs:range xsd:unsignedShort .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/excessPacketDelayThresholds> a owl:ObjectProperty ;
+    rdfs:label "excessPacketDelayThresholds" ;
     rdfs:comment "Excess packet delay thresholds info for M6 UL measurement." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/ExcessPacketDelayThresholds> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/listOfMeasurements> a rdf:Property ;
+    rdfs:label "listOfMeasurements" ;
     rdfs:comment """It specifies the UE measurements that shall be
 collected in an Immediate MDT job. The attribute is
 applicable only for Immediate MDT.""" ;
@@ -212,6 +257,7 @@ applicable only for Immediate MDT.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/measurementPeriodLTE> a rdf:Property ;
+    rdfs:label "measurementPeriodLTE" ;
     rdfs:comment """It specifies the measurement period for the
 Data Volume (M4) and Scheduled IP throughput
 measurements (M5) for LTE MDT taken by the eNB.
@@ -220,6 +266,7 @@ The attribute is applicable only for Immediate MDT.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/measurementPeriodUMTS> a rdf:Property ;
+    rdfs:label "measurementPeriodUMTS" ;
     rdfs:comment """It specifies the measurement period for the Data Volume and
 Throughput measurements for MDT taken by RNC.
 The attribute is applicable only for Immediate MDT. In case this
@@ -228,18 +275,21 @@ attribute is not used, it carries a null semantic.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/measurementQuantity> a rdf:Property ;
+    rdfs:label "measurementQuantity" ;
     rdfs:comment """It specifies the measurements that are collected in an MDT
 job for a UMTS MDT configured for event triggered reporting.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/positioningMethod> a rdf:Property ;
+    rdfs:label "positioningMethod" ;
     rdfs:comment """It specifies what positioning method should be used in the
 MDT job.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmount> a rdf:Property ;
+    rdfs:label "reportAmount" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected.
 The attribute is applicable only for Immediate MDT and when
@@ -248,6 +298,7 @@ reportingTrigger is configured for periodical measurements.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM1LTE> a rdf:Property ;
+    rdfs:label "reportAmountM1LTE" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -257,6 +308,7 @@ measurements and applicable only for LTE.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM1NR> a rdf:Property ;
+    rdfs:label "reportAmountM1NR" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -266,6 +318,7 @@ measurements and applicable only for NR.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM4LTE> a rdf:Property ;
+    rdfs:label "reportAmountM4LTE" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -275,6 +328,7 @@ measurements and applicable only for LTE.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM4NR> a rdf:Property ;
+    rdfs:label "reportAmountM4NR" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -284,6 +338,7 @@ measurements and applicable only for NR.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM5LTE> a rdf:Property ;
+    rdfs:label "reportAmountM5LTE" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -293,6 +348,7 @@ measurements and applicable only for LTE.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM5NR> a rdf:Property ;
+    rdfs:label "reportAmountM5NR" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -302,6 +358,7 @@ measurements and applicable only for NR.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM6LTE> a rdf:Property ;
+    rdfs:label "reportAmountM6LTE" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -311,6 +368,7 @@ measurements and applicable only for LTE.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM6NR> a rdf:Property ;
+    rdfs:label "reportAmountM6NR" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -320,6 +378,7 @@ measurements and applicable only for NR.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM7LTE> a rdf:Property ;
+    rdfs:label "reportAmountM7LTE" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -329,6 +388,7 @@ measurements and applicable only for LTE.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportAmountM7NR> a rdf:Property ;
+    rdfs:label "reportAmountM7NR" ;
     rdfs:comment """It specifies the number of measurement reports that shall be
 taken for periodic reporting while the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and combined Trace
@@ -338,6 +398,7 @@ measurements and applicable only for NR.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportInterval> a rdf:Property ;
+    rdfs:label "reportInterval" ;
     rdfs:comment """It specifies the interval between the periodical measurements
 that shall be taken when the UE is in connected mode.
 The attribute is applicable only for Immediate MDT and when
@@ -346,6 +407,7 @@ reportingTrigger is configured for periodical measurements.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig/reportingTrigger> a rdf:Property ;
+    rdfs:label "reportingTrigger" ;
     rdfs:comment """It specifies whether periodic or event based measurements
 should be collected.
 The attribute is applicable only for Immediate MDT and when the
@@ -355,6 +417,7 @@ or M2 (only for UMTS).""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/areaConfigurationForNeighCell> a owl:ObjectProperty ;
+    rdfs:label "areaConfigurationForNeighCell" ;
     rdfs:comment """It specifies the area for which UE is requested to perform
 measurement logging for neighbour cells which have list of frequencies.
 If it is not configured, the UE shall perform measurement logging for
@@ -365,6 +428,7 @@ Applicable only to NR Logged MDT.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/AreaConfig> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/eventListForEventTriggeredMeasurement> a rdf:Property ;
+    rdfs:label "eventListForEventTriggeredMeasurement" ;
     rdfs:comment """Specifies event types for event triggered measurement in the
 case of logged NR MDT.  Each trace session may configure at most one
 event. The UE shall perform logging of measurements only upon certain
@@ -375,6 +439,7 @@ condition being fulfilled:
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/eventThresholdL1> a rdf:Property ;
+    rdfs:label "eventThresholdL1" ;
     rdfs:comment """It specifies the threshold which should trigger
 the reporting in case of event based reporting of logged NR MDT.
 The attribute is applicable only for Logged MDT and when reportType
@@ -384,6 +449,7 @@ eventListForEventTriggeredMeasurement is configured for L1 event.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/hysteresisL1> a rdf:Property ;
+    rdfs:label "hysteresisL1" ;
     rdfs:comment """It specifies the hysteresis used within the entry and leave
 condition of the L1 event based reporting of logged NR MDT.
 The attribute is applicable only for Logged MDT, when reportType
@@ -393,6 +459,7 @@ eventListForEventTriggeredMeasurement is configured for L1 event.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/loggingDuration> a rdf:Property ;
+    rdfs:label "loggingDuration" ;
     rdfs:comment """Specifies how long the MDT configuration is valid at the
 UE in case of Logged MDT. The attribute is applicable only for
 Logged MDT and Logged MBSFN MDT.""" ;
@@ -400,12 +467,14 @@ Logged MDT and Logged MBSFN MDT.""" ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/loggingInterval> a rdf:Property ;
+    rdfs:label "loggingInterval" ;
     rdfs:comment """Specifies the periodicty for Logged MDT. The attribute is
 applicable only for Logged MDT and Logged MBSFN MDT.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/mbsfnAreaList> a owl:ObjectProperty ;
+    rdfs:label "mbsfnAreaList" ;
     rdfs:comment """The MBSFN Area consists of a MBSFN Area ID and Carrier
 Frequency (EARFCN). The target MBSFN area List can have up to 8 entries.
 This parameter is applicable only if the job type is Logged MBSFN MDT.""" ;
@@ -413,6 +482,7 @@ This parameter is applicable only if the job type is Logged MBSFN MDT.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/nPNIdentityList> a owl:ObjectProperty ;
+    rdfs:label "nPNIdentityList" ;
     rdfs:comment """It defines which NPNs that can be served by the NR cell,
 and which CAG IDs or NIDs can be supported by the NR cell for
 corresponding PNI-NPN or SNPN in case of the cell is NPN-only cell.
@@ -421,11 +491,13 @@ corresponding PNI-NPN or SNPN in case of the cell is NPN-only cell.
     rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/reportType> a rdf:Property ;
+    rdfs:label "reportType" ;
     rdfs:comment "It specifies report type for logged NR MDT" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/timeToTriggerL1> a rdf:Property ;
+    rdfs:label "timeToTriggerL1" ;
     rdfs:comment """It specifies the threshold which should trigger
 the reporting in case of event based reporting of logged NR MDT.
 The attribute is applicable only for Logged MDT, when reportType
@@ -435,45 +507,53 @@ eventListForEventTriggeredMeasurement is configured for L1 event.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig/traceCollectionEntityId> a rdf:Property ;
+    rdfs:label "traceCollectionEntityId" ;
     rdfs:comment """It specifies the TCE Id which is sent to the UE in
 Logged MDT.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig> ;
     rdfs:range xsd:long .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea/earfcn> a rdf:Property ;
+    rdfs:label "earfcn" ;
     rdfs:comment "Carrier Frequency" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea/mbsfnAreaId> a rdf:Property ;
+    rdfs:label "mbsfnAreaId" ;
     rdfs:comment "MBSFN Area Identifier" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/MbsfnArea> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/anonymizationOfMdtData> a rdf:Property ;
+    rdfs:label "anonymizationOfMdtData" ;
     rdfs:comment """Specifies level of anonymization of MDT data.
 This attribute is only applicable for management based activation.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/areaScope> a owl:ObjectProperty ;
+    rdfs:label "areaScope" ;
     rdfs:comment "It specifies the area where data shall be collected. " ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/AreaScope> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/immediateMdtConfig> a owl:ObjectProperty ;
+    rdfs:label "immediateMdtConfig" ;
     rdfs:comment """The set of parameters specific for Immediate MDT
 configuration.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/ImmediateMdtConfig> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/loggedMdtConfig> a owl:ObjectProperty ;
+    rdfs:label "loggedMdtConfig" ;
     rdfs:comment """The set of parameters specific for Logged MDT and Logged
 MBSFN MDT configuration.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/LoggedMdtConfig> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/mNOnly> a rdf:Property ;
+    rdfs:label "mNOnly" ;
     rdfs:comment """Specifies whether the MDT configuration is for MN
 only or not. The value FALSE means the MDT configuration is for
 both MN and SN. The value TRUE means the MDT configuration is
@@ -482,18 +562,21 @@ for MN only.""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/plmnList> a owl:ObjectProperty ;
+    rdfs:label "plmnList" ;
     rdfs:comment """It indicates the PLMNs where measurement collection, status
 indication and log reporting is allowed.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/plmnList> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/sensorInformation> a rdf:Property ;
+    rdfs:label "sensorInformation" ;
     rdfs:comment """It specifies which sensor information shall be included in
 logged NR MDT and immediate NR MDT measurement if they are available.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig/trsrPrefixCfg> a owl:ObjectProperty ;
+    rdfs:label "trsrPrefixCfg" ;
     rdfs:comment """The TRSR prefix configuration parameters which are used by
 NR-RAN at TRSR assignment for a given C-MDT job. It defines both the
 base TRSR prefix and the size of the TRSR prefix. The attribute
@@ -503,6 +586,7 @@ trsrPrefixLength defines the size of base TRSR prefix.""" ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig/listOfInterfaces> a rdf:Property ;
+    rdfs:label "listOfInterfaces" ;
     rdfs:comment """Specifies the interfaces that need to be traced in the given
 ManagedEntityFunction.The attribute is applicable only for Trace. In
 case this attribute is not used, it carries a null semantic.""" ;
@@ -510,6 +594,7 @@ case this attribute is not used, it carries a null semantic.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig/listOfNeTypes> a rdf:Property ;
+    rdfs:label "listOfNeTypes" ;
     rdfs:comment """Specifies the network element types where the trace should
 be activated. The attribute is applicable only for Trace with
 Signalling Based Trace activation.""" ;
@@ -517,26 +602,31 @@ Signalling Based Trace activation.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig/traceDepth> a rdf:Property ;
+    rdfs:label "traceDepth" ;
     rdfs:comment """It specifies the trace depth. The attribute is applicable
 only for Trace.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig/triggeringEvents> a owl:ObjectProperty ;
+    rdfs:label "triggeringEvents" ;
     rdfs:comment """It specifies the triggering event parameter of the trace
 session. The attribute is applicable only for Trace.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/triggeringEvents> .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceReference/mcc> a rdf:Property ;
+    rdfs:label "mcc" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceReference/mnc> a rdf:Property ;
+    rdfs:label "mnc" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TraceReference/traceId> a rdf:Property ;
+    rdfs:label "traceId" ;
     rdfs:comment """An identifier, which identifies the Trace
 (together with MCC and MNC). This is a 3 byte Octet String,
 expressed in hexadecimal form e.g., '1a7b3d').""" ;
@@ -544,17 +634,20 @@ expressed in hexadecimal form e.g., '1a7b3d').""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg/trsrPrefix> a rdf:Property ;
+    rdfs:label "trsrPrefix" ;
     rdfs:comment "A 2 byte Octet String. This is the base TRSR prefix" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg/trsrPrefixLength> a rdf:Property ;
+    rdfs:label "trsrPrefixLength" ;
     rdfs:comment """An integer to indicate how many bits are used for the
 TRSR prefix""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/TrsrPrefixCfg> ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/nfTypeToMeasure> a rdf:Property ;
+    rdfs:label "nfTypeToMeasure" ;
     rdfs:comment """It indicates the type of NE to produce the 5GC UE level
 measurements.
 
@@ -565,12 +658,14 @@ in TS 28.558.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/objectInstances> a rdf:Property ;
+    rdfs:label "objectInstances" ;
     rdfs:comment """List of object instances.
 Each object instance is identified by its DN.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/rootObjectInstances> a rdf:Property ;
+    rdfs:label "rootObjectInstances" ;
     rdfs:comment """List of root object instances.
 Each object instance is identified by its DN and designates
 the root of a substree that contains the root object and all
@@ -579,12 +674,14 @@ descendant objects.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/ueCoreMeasGranularityPeriod> a rdf:Property ;
+    rdfs:label "ueCoreMeasGranularityPeriod" ;
     rdfs:comment """Granularity period used to produce 5GC UE
 level measurements. The period is defined in milliseconds (ms).""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> ;
     rdfs:range xsd:unsignedInt .
 
 <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig/ueCoreMeasurements> a rdf:Property ;
+    rdfs:label "ueCoreMeasurements" ;
     rdfs:comment """List of 5GC UE level measurements identified by name.
 
 The list may include 5GC UE level measurements defined in TS 28.558,

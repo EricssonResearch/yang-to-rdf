@@ -1,9 +1,11 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> a rdfs:Class ;
+    rdfs:label "CPCIConfigurationFunction" ;
     rdfs:comment """This IOC contains attributes to support the Cross
 Domain-Centralized SON function of PCI configuration
 
@@ -13,15 +15,26 @@ level overrides the CPCIConfiguration MOIs at higher level(s) of the
 same containment tree.""" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-cpciconfigurationfunction" ;
+    dcterms:description """Represents the CPCIConfigurationFunction Information Object
+Class(IOC) that is part of the NR Network Resource Model.
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-cpciconfigurationfunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2023-09-18 (CR-1043)" .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cPciConfigurationControl> a rdf:Property ;
+    rdfs:label "cPciConfigurationControl" ;
     rdfs:comment """This attribute determines whether the Centralized SON
 PCI configuration function is enabled or disabled.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cSonPciList> a rdf:Property ;
+    rdfs:label "cSonPciList" ;
     rdfs:comment """Holds a list of physical cell identities that can be
 assigned to the pci attribute by gNB. The assignment algorithm is not
 specified.
@@ -32,6 +45,7 @@ configuration is supported.""" ;
     rdfs:range xsd:int .
 
 <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;

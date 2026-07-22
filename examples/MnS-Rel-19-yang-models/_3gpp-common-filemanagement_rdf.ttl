@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -5,16 +6,28 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob> a rdfs:Class ;
+    rdfs:label "FileDownloadJob" ;
     rdfs:comment "Specifies the FileDownloadJob IOC, see 3GPP TS 28.622." ;
     nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> a rdfs:Class ;
+    rdfs:label "jobMonitor" ;
     rdfs:comment "Provides monitoring for the file download job." .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement> a owl:Ontology ;
+    rdfs:label "_3gpp-common-filemanagement" ;
+    dcterms:description """Defines the YANG mapping of the FileDownloadJob Information Object
+Class (IOC) that is part of the Generic Network Resource Model (NRM).
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.623 Generic Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-common-filemanagement" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
     owl:versionInfo "revision 2024-11-07 (CR-0474)" .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/cancelJob> a rdf:Property ;
+    rdfs:label "cancelJob" ;
     rdfs:comment """Setting this attribute to TRUE cancels the file download job.
 As specified in the definition of ProcessMonitor, cancellation is
 possible in the NOT_STARTED and RUNNING state. Setting the attribute
@@ -23,6 +36,7 @@ to FALSE has no observable result.""" ;
     rdfs:range xsd:boolean .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/fileLocation> a rdf:Property ;
+    rdfs:label "fileLocation" ;
     rdfs:comment """Location of the file incl. the file transfer protocol,
 and the file name for the case the file content cannot be retrieved
 by reading the 'fileContent' attribute.
@@ -41,6 +55,7 @@ Examples:
     nrm:isInvariant true .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
@@ -48,17 +63,20 @@ stage 2 classes.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/jobMonitor> a owl:ObjectProperty ;
+    rdfs:label "jobMonitor" ;
     rdfs:comment "Provides monitoring for the file download job." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob> ;
     rdfs:range <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob/notificationRecipientAddress> a rdf:Property ;
+    rdfs:label "notificationRecipientAddress" ;
     rdfs:comment "Address of the notification recipient." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob> ;
     rdfs:range xsd:string ;
     nrm:isInvariant true .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/endTime> a rdf:Property ;
+    rdfs:label "endTime" ;
     rdfs:comment """Date and time when status changed to 'SUCCESS', 'CANCELLED',
 'FAILED' or 'PARTIALLY_FAILED'.
 
@@ -68,17 +86,20 @@ the process will end.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/id> a rdf:Property ;
+    rdfs:label "id" ;
     rdfs:comment """Id of the process. It is unique within a single
 multivalue attribute of type ProcessMonitor.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/progressPercentage> a rdf:Property ;
+    rdfs:label "progressPercentage" ;
     rdfs:comment "Progress of the associated process as percentage" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> ;
     rdfs:range xsd:unsignedByte .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/progressStateInfo> a rdf:Property ;
+    rdfs:label "progressStateInfo" ;
     rdfs:comment """Additional textual qualification of the states
 'NOT_STARTED', 'CANCELLING' and 'RUNNING'.
 
@@ -88,23 +109,27 @@ patterns or enums) may be defined as a specialisation.""" ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/resultStateInfo> a rdf:Property ;
+    rdfs:label "resultStateInfo" ;
     rdfs:comment """If status is FAILED resultStateInfo will be one of
 the following or empty.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/startTime> a rdf:Property ;
+    rdfs:label "startTime" ;
     rdfs:comment """Start time of the associated process, i.e. the time when the
 status changed from 'NOT_STARTED' to 'RUNNING'.""" ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/status> a rdf:Property ;
+    rdfs:label "status" ;
     rdfs:comment "Status must not be 'PARTIALLY_FAILED'." ;
     rdfs:domain <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor> ;
     rdfs:range xsd:string .
 
 <urn:3gpp:sa5:_3gpp-common-filemanagement/jobMonitor/timer> a rdf:Property ;
+    rdfs:label "timer" ;
     rdfs:comment """Time until the associated process is automatically cancelled.
 If set, the system decreases the timer with time. When it reaches zero
 the cancellation of the associated process is initiated by the
