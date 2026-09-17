@@ -1,61 +1,50 @@
+@prefix conf5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-configurable5qiset#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix econn3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-ecmconnectioninfo#> .
+@prefix fm3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-fm#> .
+@prefix me3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-element#> .
+@prefix me3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-common-managed-element#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix subscr3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-subscription-control#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
+@prefix types5g3gpp: <https://semantics.ericsson.com/yang/_3gpp-5g-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element> a owl:Ontology ;
-    rdfs:label "_3gpp-common-managed-element" ;
-    dcterms:description """Defines ManagedElement which will be augmented
-by other IOCs
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source """3GPP TS 28.623
-Generic Network Resource Model (NRM)
-Integration Reference Point (IRP);
-Solution Set (SS) definitions
-
-3GPP TS 28.622
-Generic Network Resource Model (NRM)
-Integration Reference Point (IRP);
-Information Service (IS)
-
-3GPP TS 28.620
-Umbrella Information Model (UIM)""" ;
-    dcterms:title "_3gpp-common-managed-element" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-08-13 (CR-0561)" .
-
-<urn:3gpp:sa5:_3gpp-common-managed-element/AlarmListShape> a sh:NodeShape ;
+me3gpp-shapes:AlarmList a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList/id> ],
+            sh:path me3gpp:AlarmList.id ],
         [ sh:description """When set to UNLOCKED, the alarm list is updated.
 When the set to LOCKED, the existing alarm records are not
 updated, and new alarm records are not added to the alarm list.""" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList/administrativeState> ],
+            sh:path me3gpp:AlarmList.administrativeState ],
         [ sh:description """The producer sets this attribute to ENABLED, indicating
 that it has the resource and ability to record alarm in AlarmList
 else, it sets the attribute to DISABLED.""" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList/operationalState> ],
+            sh:path me3gpp:AlarmList.operationalState ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description "The number of alarm records in the AlarmList" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList/numOfAlarmRecords> ],
+            sh:path me3gpp:AlarmList.numOfAlarmRecords ],
         [ sh:datatype xsd:string ;
             sh:description "The last time when an alarm record was modified" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList/lastModification> ;
+            sh:path me3gpp:AlarmList.lastModification ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:description """Identifies, the part of the alarm scope that may not be
 reliable.
@@ -66,100 +55,100 @@ then all AlarmRecord instances in the AlarmList may not be reliable.
 If this parameter is equal to some instance represented by
 MonitoredEntity, then only AlarmRecord related to this instance and
 its descendants may not be reliable.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList/unreliableAlarmScope> ;
+            sh:path me3gpp:AlarmList.unreliableAlarmScope ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> ;
+        [ sh:class fm3gpp:AlarmRecord ;
             sh:description "List of alarmRecords" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList/alarmRecords> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/AlarmList> .
+            sh:path me3gpp:AlarmList.alarmRecords ] ;
+    sh:targetClass me3gpp:AlarmList .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/Configurable5QISetShape> a sh:NodeShape ;
+me3gpp-shapes:Configurable5QISet a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/Configurable5QISet/id> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/Configurable5QISet> .
+            sh:path me3gpp:Configurable5QISet.id ] ;
+    sh:targetClass me3gpp:Configurable5QISet .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfoShape> a sh:NodeShape ;
+me3gpp-shapes:EcmConnectionInfo a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/id> ],
+            sh:path me3gpp:EcmConnectionInfo.id ],
         [ sh:datatype xsd:string ;
             sh:description """This parameter defines address of an EAS instance.
 It can be IP address (either IPv4 address (See RFC 791) or IPv6
 address (See RFC 2373).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/eASIpAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo> ;
+            sh:path me3gpp:EcmConnectionInfo.eASIpAddress ],
+        [ sh:class econn3gpp:UPFConnInfo ;
             sh:description """The attribute is defined as a datatype UPFConnInfo
 (see clause 5.3.121). It is used to provide the UPF IP address and
 UPF DN. """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/uPFConnectionInfo> ],
+            sh:path me3gpp:EcmConnectionInfo.uPFConnectionInfo ],
         [ sh:datatype xsd:string ;
             sh:description """This parameter defines address of an EES instance.
 It can be IP address (either IPv4 address (See RFC 791) or IPv6
 address (See RFC 2373). """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/eESIpAddress> ],
+            sh:path me3gpp:EcmConnectionInfo.eESIpAddress ],
         [ sh:datatype xsd:string ;
             sh:description """This parameter defines address of an ECS instance.
 It can be IP address (either IPv4 address (See RFC 791) or IPv6
 address (See RFC 2373).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/eCSIpAddress> ],
+            sh:path me3gpp:EcmConnectionInfo.eCSIpAddress ],
         [ sh:datatype xsd:string ;
             sh:description "The identifier of the edge data network (See TS 23.558)." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/ednIdentifier> ],
+            sh:path me3gpp:EcmConnectionInfo.ednIdentifier ],
         [ sh:description """It indicates the type of ECM connection (i.e., user plane
 connection via UPF, control plane connection via PCF or NEF.""" ;
             sh:in ( "USERPLANE" "CONTROLPLANE" "BOTH" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/ecmConnectionType> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> ;
+            sh:path me3gpp:EcmConnectionInfo.ecmConnectionType ],
+        [ sh:class econn3gpp:ServingLocation ;
             sh:description """This parameter defines the EAS service area
 (see clause 7.3.3.6 in TS 23.558).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/eASServiceArea> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> ;
+            sh:path me3gpp:EcmConnectionInfo.eASServiceArea ],
+        [ sh:class econn3gpp:ServingLocation ;
             sh:description """This parameter defines the EES service area
 (see clause 7.3.3.5 in TS 23.558).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/eESServiceArea> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> ;
+            sh:path me3gpp:EcmConnectionInfo.eESServiceArea ],
+        [ sh:class econn3gpp:ServingLocation ;
             sh:description """This parameter defines the EDN service area
 (see clause 7.3.3.4 in TS 23.558)""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/eDNServiceArea> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> ;
+            sh:path me3gpp:EcmConnectionInfo.eDNServiceArea ],
+        [ sh:class econn3gpp:_5GCNfConnEcmInfo ;
             sh:description """The attribute specifies a list of 5GCNfConnInfo which is
 defined as a datatype (see clause 5.3.120). It is used to
 provide 5GC NFs, such as PCF, NEF, SCEF, that are connected EDN NFs,
 such as EAS, EES, and ECS.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo/_5GCNfConnEcmInfoList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/EcmConnectionInfo> .
+            sh:path me3gpp:EcmConnectionInfo._5GCNfConnEcmInfoList ] ;
+    sh:targetClass me3gpp:EcmConnectionInfo .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/FileShape> a sh:NodeShape ;
+me3gpp-shapes:File a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/id> ],
+            sh:path me3gpp:File.id ],
         [ sh:datatype xsd:string ;
             sh:description """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -174,140 +163,140 @@ Examples:
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/fileLocation> ;
+            sh:path me3gpp:File.fileLocation ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/jobId> ],
+            sh:path me3gpp:File.jobId ],
         [ sh:datatype xsd:base64Binary ;
             sh:description """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/fileContent> ],
+            sh:path me3gpp:File.fileContent ],
         [ sh:datatype xsd:string ;
             sh:description """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/fileCompression> ],
+            sh:path me3gpp:File.fileCompression ],
         [ sh:datatype xsd:unsignedLong ;
             sh:description "Size of the file" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/fileSize> ],
+            sh:path me3gpp:File.fileSize ],
         [ sh:description "Type of the management data stored in the file." ;
             sh:in ( "PERFORMANCE" "TRACE" "ANALYTICS" "PROPRIETARY" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/fileDataType> ],
+            sh:path me3gpp:File.fileDataType ],
         [ sh:datatype xsd:string ;
             sh:description """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/fileFormat> ],
+            sh:path me3gpp:File.fileFormat ],
         [ sh:datatype xsd:string ;
             sh:description """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/fileReadyTime> ;
+            sh:path me3gpp:File.fileReadyTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:description "Date and time after which the file may be deleted." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/fileExpirationTime> ;
+            sh:path me3gpp:File.fileExpirationTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/File/jobRef> ;
+            sh:path me3gpp:File.jobRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/File> .
+    sh:targetClass me3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/FilesShape> a sh:NodeShape ;
+me3gpp-shapes:Files a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/Files/id> ],
+            sh:path me3gpp:Files.id ],
         [ sh:datatype xsd:unsignedLong ;
             sh:description "Number of files in a file collection." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/Files/numberOfFiles> ],
+            sh:path me3gpp:Files.numberOfFiles ],
         [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/Files/jobRef> ;
+            sh:path me3gpp:Files.jobRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/Files/jobId> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/Files> .
+            sh:path me3gpp:Files.jobId ] ;
+    sh:targetClass me3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristicsShape> a sh:NodeShape ;
+me3gpp-shapes:FiveQICharacteristics a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics/id> ],
+            sh:path me3gpp:FiveQICharacteristics.id ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description "Identifies the 5QI value." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics/fiveQIValue> ],
+            sh:path me3gpp:FiveQICharacteristics.fiveQIValue ],
         [ sh:description """It indicates the Resource Type of a 5QI, as specified
 in TS 23.501 """ ;
             sh:in ( "GBR" "NON_GBR" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics/resourceType> ],
+            sh:path me3gpp:FiveQICharacteristics.resourceType ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """It indicates the Priority Level of a 5QI, as specified
 in TS 23.501.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics/priorityLevel> ],
+            sh:path me3gpp:FiveQICharacteristics.priorityLevel ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
 as specified in TS 23.501 """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics/packetDelayBudget> ],
+            sh:path me3gpp:FiveQICharacteristics.packetDelayBudget ],
         [ sh:datatype xsd:unsignedInt ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics/averagingWindow> ],
+            sh:path me3gpp:FiveQICharacteristics.averagingWindow ],
         [ sh:datatype xsd:unsignedInt ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics/maximumDataBurstVolume> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> ;
+            sh:path me3gpp:FiveQICharacteristics.maximumDataBurstVolume ],
+        [ sh:class conf5QIs3gpp:PacketErrorRate ;
             sh:description """It indicates the Packet Error Rate of a 5QI,
 as specified in TS 23.501.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics/packetErrorRate> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/FiveQICharacteristics> .
+            sh:path me3gpp:FiveQICharacteristics.packetErrorRate ] ;
+    sh:targetClass me3gpp:FiveQICharacteristics .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/HeartbeatControlShape> a sh:NodeShape ;
+me3gpp-shapes:HeartbeatControl a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/HeartbeatControl/id> ],
+            sh:path me3gpp:HeartbeatControl.id ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Specifies the periodicity of heartbeat notification emission.
 The value of zero has the special meaning of stopping the heartbeat
 notification emission.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/HeartbeatControl/heartbeatNtfPeriod> ],
+            sh:path me3gpp:HeartbeatControl.heartbeatNtfPeriod ],
         [ sh:datatype xsd:boolean ;
             sh:description """Setting this attribute to 'true' triggers an immediate
 additional heartbeat notification emission. Setting the value to
@@ -318,16 +307,16 @@ The periodicity of notifyHeartbeat emission is not changed.
 After triggering the heartbeat the system SHALL set the value
 back to false.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/HeartbeatControl/triggerHeartbeatNtf> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/HeartbeatControl> .
+            sh:path me3gpp:HeartbeatControl.triggerHeartbeatNtf ] ;
+    sh:targetClass me3gpp:HeartbeatControl .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/MWABShape> a sh:NodeShape ;
+me3gpp-shapes:MWAB a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/MWAB/id> ],
+            sh:path me3gpp:MWAB.id ],
         [ sh:description """It indicates the operational state of the MWAB instance.
 It describes whether the resource is installed and partially or fully
 operable (Enabled) or the resource is not installed or not
@@ -335,51 +324,51 @@ operable (Disabled).""" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/MWAB/operationalState> ],
+            sh:path me3gpp:MWAB.operationalState ],
         [ sh:description """It indicates the administrative state of the MWAB instance.
 It describes the permission to use or prohibition against using the
 MWAB functionalities, imposed through the OAM services.""" ;
             sh:in ( "LOCKED" "UNLOCKED" "SHUTTINGDOWN" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/MWAB/administrativeState> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> ;
+            sh:path me3gpp:MWAB.administrativeState ],
+        [ sh:class types5g3gpp:MnrOamIPConfig ;
             sh:description """It is IP configutation for OAM connectivity used
 by a mobile NR node (e.g., IAB-node, MWAB-node)
 to establish connection with management system as specified
 in TS 28.314[x] clause 6.1.2""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/MWAB/mnrOamIPConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> ;
+            sh:path me3gpp:MWAB.mnrOamIPConfig ],
+        [ sh:class types3gpp:GeoArea ;
             sh:description """This specifies the area where the MWAB can act as MWAB-gNB.
 If the OAM indicates that the MWAB can act as MWAB-gNB is allowed areas,
 it acts as MWAB-gNB only on the allowed area only.
 (See sub clause 5.49 TS 28.662).""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/MWAB/allowedArea> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> ;
+            sh:path me3gpp:MWAB.allowedArea ],
+        [ sh:class types3gpp:TimeWindow ;
             sh:description """This specifies the time window for which the MWAB can act
 as MWAB-gNB. If the allowed time window/ validity indicates 20th June,
 10 am to 5 pm of the day, the MWAB acts as an MWAB g-NB only during 20th
 June, 10 am to 5 pm of the day, and does not act as MWAB-gNB for any
 other time. (See sub clause 5.49 [11]).""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/MWAB/allowedTime> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> ;
+            sh:path me3gpp:MWAB.allowedTime ],
+        [ sh:class types5g3gpp:LocationInfo ;
             sh:description """This parameter specifies the current location
 of mobile NR node (e.g., IAB-node, MWAB-node).""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/MWAB/currentLocation> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/MWAB> .
+            sh:path me3gpp:MWAB.currentLocation ] ;
+    sh:targetClass me3gpp:MWAB .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElementShape> a sh:NodeShape ;
+me3gpp-shapes:ManagedElement a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/id> ],
+            sh:path me3gpp:ManagedElement.id ],
         [ sh:description """Provides naming context that allows the Managed
 Elements to be partitioned into logical domains.
 A Distingushed Name(DN) is defined by 3GPP TS 32.300,
 which splits the DN into a DN Prefix and Local DN""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/dnPrefix> ;
+            sh:path me3gpp:ManagedElement.dnPrefix ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description """List of trace metrics. When this attribute is contained in
@@ -391,8 +380,8 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/supportedTraceMetrics> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedPerfMetricGroups> ;
+            sh:path me3gpp:ManagedElement.supportedTraceMetrics ],
+        [ sh:class me3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -400,23 +389,23 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/SupportedPerfMetricGroups> ],
+            sh:path me3gpp:ManagedElement.SupportedPerfMetricGroups ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/userLabel> ],
+            sh:path me3gpp:ManagedElement.userLabel ],
         [ sh:datatype xsd:string ;
             sh:description """The physical location (e.g. an address) of an entity
 represented by a (derivative of) ManagedElement_. It may contain no
 information to support the case where the derivative of
 ManagedElement_ needs to represent a distributed multi-location NE.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/locationName> ],
+            sh:path me3gpp:ManagedElement.locationName ],
         [ sh:description """Relates to the role played by ManagementSystem_ in the
 between ManagedSystem_ and ManagedElement_. This attribute contains
 a list of the DN(s) of the related subclasses of
 ManagementSystem_ instance(s).""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/managedBy> ;
+            sh:path me3gpp:ManagedElement.managedBy ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description """The type of functionality provided by the ManagedElement.
@@ -435,72 +424,75 @@ when reading these values.
 -  NodeB;
 -  HLR, VLR.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/managedElementTypeList> ],
+            sh:path me3gpp:ManagedElement.managedElementTypeList ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/vendorName> ],
+            sh:path me3gpp:ManagedElement.vendorName ],
         [ sh:datatype xsd:string ;
             sh:description "An operator defined state for operator specific usage" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/userDefinedState> ],
+            sh:path me3gpp:ManagedElement.userDefinedState ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/swVersion> ],
+            sh:path me3gpp:ManagedElement.swVersion ],
         [ sh:datatype xsd:unsignedInt ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement/priorityLabel> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/ManagedElement> .
+            sh:path me3gpp:ManagedElement.priorityLabel ] ;
+    sh:targetClass me3gpp:ManagedElement .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/NRECMappingRuleShape> a sh:NodeShape ;
+me3gpp-shapes:NRECMappingRule a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NRECMappingRule/id> ],
-        [ sh:datatype xsd:unsignedByte ;
+            sh:path me3gpp:NRECMappingRule.id ],
+        [ sh:datatype xsd:unsignedInt ;
             sh:description """The minimum value of to be applied
 for mapping from this attribute to the energy cost.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NRECMappingRule/eCMRInputMinValue> ],
-        [ sh:datatype xsd:unsignedByte ;
+            sh:minCount 1 ;
+            sh:path me3gpp:NRECMappingRule.ecMRInputMinimumValue ],
+        [ sh:datatype xsd:unsignedInt ;
             sh:description """The maximum value of to be applied
 for mapping from this attribute to the energy cost.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NRECMappingRule/eCMRInputMaxValue> ],
-        [ sh:datatype xsd:unsignedByte ;
+            sh:minCount 1 ;
+            sh:path me3gpp:NRECMappingRule.ecMRInputMaximumValue ],
+        [ sh:datatype xsd:unsignedInt ;
             sh:description """Time interval (in seconds) that
 should be applied for collecting values of mapping
 rule attribute to be used for computing the energy cost.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NRECMappingRule/eCTimeInterval> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/NRECMappingRule> .
+            sh:minCount 1 ;
+            sh:path me3gpp:NRECMappingRule.ecTimeInterval ] ;
+    sh:targetClass me3gpp:NRECMappingRule .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/NotificationListShape> a sh:NodeShape ;
+me3gpp-shapes:NotificationList a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NotificationList/id> ],
+            sh:path me3gpp:NotificationList.id ],
         [ sh:datatype xsd:string ;
             sh:description """eventTime of first notification available.
 The attribute may be missing if and only if there are no notifications
 in the NotificationList.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NotificationList/firstEventTime> ;
+            sh:path me3gpp:NotificationList.firstEventTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:description """eventTime of latest notification available.
 The attribute may be missing if and only if there are no notifications
 in the NotificationList.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NotificationList/lastEventTime> ;
+            sh:path me3gpp:NotificationList.lastEventTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:description "List of notification types." ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NotificationList/notificationTypes> ],
+            sh:path me3gpp:NotificationList.notificationTypes ],
         [ sh:datatype xsd:string ;
             sh:description """Filter to be applied to candidate notifications identified
 by the notificationTypes attribute. Only notifications that pass the
@@ -510,32 +502,32 @@ The filter can be applied to any field of a notification.
 The format of the string shall confrm to a
 JSON expressions (Jex) 'JexConditionsExpr'""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NotificationList/notificationFilter> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> ;
+            sh:path me3gpp:NotificationList.notificationFilter ],
+        [ sh:class subscr3gpp:NotificationEntry ;
             sh:description """Representation of the individual notifications.
 The entries shall be ordered based on eventTime of the notification,
 newest first.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NotificationList/notificationEntries> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/NotificationList> .
+            sh:path me3gpp:NotificationList.notificationEntries ] ;
+    sh:targetClass me3gpp:NotificationList .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControlShape> a sh:NodeShape ;
+me3gpp-shapes:NtfSubscriptionControl a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl/id> ],
+            sh:path me3gpp:NtfSubscriptionControl.id ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl/notificationRecipientAddress> ],
+            sh:path me3gpp:NtfSubscriptionControl.notificationRecipientAddress ],
         [ sh:datatype xsd:string ;
             sh:description """Defines the types of notifications that are candidates
 for being forwarded to the notification recipient.
 If the notificationTypes attribute is not supported or not present
 all candidate notifications types are forwarded to the notification;
 discriminated by notificationFilter attribute.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl/notificationTypes> ],
+            sh:path me3gpp:NtfSubscriptionControl.notificationTypes ],
         [ sh:datatype xsd:string ;
             sh:description """Defines a filter to be applied to candidate notifications
 identified by the notificationTypes attribute.
@@ -547,13 +539,13 @@ The filter can be applied to any field of a notification.
 The format of the string shall confrm to a
 JSON expressions (Jex) 'JexConditionsExpr'""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl/notificationFilter> ],
+            sh:path me3gpp:NtfSubscriptionControl.notificationFilter ],
         [ sh:datatype xsd:unsignedLong ;
             sh:description """The sequence number of the last notification that was sent
 by a 'NtfSubscriptionControl' instance.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl/lastSequenceNo> ],
+            sh:path me3gpp:NtfSubscriptionControl.lastSequenceNo ],
         [ sh:description """Operational state of manged object instance.
 The operational state describes if an object instance is operable
 ('ENABLED') or inoperable ('DISABLED').
@@ -562,62 +554,62 @@ is hence READ-ONLY.""" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl/operationalState> ],
+            sh:path me3gpp:NtfSubscriptionControl.operationalState ],
         [ sh:description """The availability status provides additional information
 about the operational state""" ;
             sh:in ( "IN_TEST" "FAILED" "POWER_OFF" "OFF_LINE" "OFF_DUTY" "DEPENDENCY" "DEGRADED" "NOT_INSTALLED" "LOG_FULL" ) ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl/availabilityStatus> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
+            sh:path me3gpp:NtfSubscriptionControl.availabilityStatus ],
+        [ sh:class subscr3gpp:Scope ;
             sh:description "Scopes (selects) data nodes in an object tree." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl/scope> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/NtfSubscriptionControl> .
+            sh:path me3gpp:NtfSubscriptionControl.scope ] ;
+    sh:targetClass me3gpp:NtfSubscriptionControl .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJobShape> a sh:NodeShape ;
+me3gpp-shapes:PerfMetricJob a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/id> ],
+            sh:path me3gpp:PerfMetricJob.id ],
         [ sh:description "Enable or disables production of the metrics" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/administrativeState> ],
+            sh:path me3gpp:PerfMetricJob.administrativeState ],
         [ sh:datatype xsd:string ;
             sh:description """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/notificationRecipientAddress> ],
+            sh:path me3gpp:PerfMetricJob.notificationRecipientAddress ],
         [ sh:datatype xsd:string ;
             sh:description """Applicable when stream-based reporting method is
 supported.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/streamTarget> ],
+            sh:path me3gpp:PerfMetricJob.streamTarget ],
         [ sh:datatype xsd:string ;
             sh:description "Link to a 'Files' object." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/_linkToFiles> ],
+            sh:path me3gpp:PerfMetricJob._linkToFiles ],
         [ sh:description "Pointer to a Scheduler object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/schedulerRef> ;
+            sh:path me3gpp:PerfMetricJob.schedulerRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description "Pointer to a ConditionMonitor object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/conditionMonitorRef> ;
+            sh:path me3gpp:PerfMetricJob.conditionMonitorRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description "Indicates whether the PerfMetricJob is working." ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/operationalState> ],
+            sh:path me3gpp:PerfMetricJob.operationalState ],
         [ sh:datatype xsd:string ;
             sh:description "Id for a PerfMetricJob job." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/jobId> ],
+            sh:path me3gpp:PerfMetricJob.jobId ],
         [ sh:datatype xsd:string ;
             sh:description """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -631,18 +623,18 @@ the bullet e) of the measurement definition.
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/performanceMetrics> ],
+            sh:path me3gpp:PerfMetricJob.performanceMetrics ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/granularityPeriod> ],
-        [ sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/objectInstances> ;
+            sh:path me3gpp:PerfMetricJob.granularityPeriod ],
+        [ sh:path me3gpp:PerfMetricJob.objectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/rootObjectInstances> ;
+            sh:path me3gpp:PerfMetricJob.rootObjectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """For the file-based reporting method this is the time
@@ -653,72 +645,72 @@ The time-period must be a multiple of the granularityPeriod.
 Applicable when the file-based reporting method is supported.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/fileReportingPeriod> ],
+            sh:path me3gpp:PerfMetricJob.fileReportingPeriod ],
         [ sh:datatype xsd:string ;
             sh:description """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/fileLocation> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob> .
+            sh:path me3gpp:PerfMetricJob.fileLocation ] ;
+    sh:targetClass me3gpp:PerfMetricJob .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/StmCtrlShape> a sh:NodeShape ;
+me3gpp-shapes:StmCtrl a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/StmCtrl/id> ],
+            sh:path me3gpp:StmCtrl.id ],
         [ sh:description """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/StmCtrl/reportingNFList> ;
+            sh:path me3gpp:StmCtrl.reportingNFList ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/StmCtrl/stmTargetUri> ;
+            sh:path me3gpp:StmCtrl.stmTargetUri ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:description """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/StmCtrl/administrativeState> ],
+            sh:path me3gpp:StmCtrl.administrativeState ],
         [ sh:description "It is used by STM consumer to report its working state" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/StmCtrl/operationalState> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> ;
+            sh:path me3gpp:StmCtrl.operationalState ],
+        [ sh:class stm3gpp:NetworkInterface ;
             sh:description """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/StmCtrl/targetInterfaceInfoList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/StmCtrl> .
+            sh:path me3gpp:StmCtrl.targetInterfaceInfoList ] ;
+    sh:targetClass me3gpp:StmCtrl .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/SupportedNotificationsShape> a sh:NodeShape ;
+me3gpp-shapes:SupportedNotifications a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedNotifications/id> ],
+            sh:path me3gpp:SupportedNotifications.id ],
         [ sh:datatype xsd:string ;
             sh:description "List of notification types supported by the MnS producer" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedNotifications/notificationTypes> ],
+            sh:path me3gpp:SupportedNotifications.notificationTypes ],
         [ sh:description "List of protocols supported for notifications." ;
             sh:in ( "HTTP" "HTTP_VES_ENCAPS" ) ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedNotifications/notificationProtocols> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedNotifications> .
+            sh:path me3gpp:SupportedNotifications.notificationProtocols ] ;
+    sh:targetClass me3gpp:SupportedNotifications .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/SupportedPerfMetricGroupsShape> a sh:NodeShape ;
+me3gpp-shapes:SupportedPerfMetricGroups a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -734,69 +726,69 @@ definitions template as the component designated with e).
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedPerfMetricGroups/performanceMetrics> ],
+            sh:path me3gpp:SupportedPerfMetricGroups.performanceMetrics ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedPerfMetricGroups/granularityPeriods> ],
+            sh:path me3gpp:SupportedPerfMetricGroups.granularityPeriods ],
         [ sh:in ( "FILE_BASED_LOC_SET_BY_PRODUCER" "FILE_BASED_LOC_SET_BY_CONSUMER" "STREAM_BASED" ) ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedPerfMetricGroups/reportingMethods> ],
+            sh:path me3gpp:SupportedPerfMetricGroups.reportingMethods ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedPerfMetricGroups/reportingPeriods> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/SupportedPerfMetricGroups> .
+            sh:path me3gpp:SupportedPerfMetricGroups.reportingPeriods ] ;
+    sh:targetClass me3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitorShape> a sh:NodeShape ;
+me3gpp-shapes:ThresholdMonitor a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/id> ],
+            sh:path me3gpp:ThresholdMonitor.id ],
         [ sh:description "Enables or disables the ThresholdMonitor." ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/administrativeState> ],
+            sh:path me3gpp:ThresholdMonitor.administrativeState ],
         [ sh:description "Indicates whether the ThresholdMonitor is working." ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/operationalState> ],
+            sh:path me3gpp:ThresholdMonitor.operationalState ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/monitorGranularityPeriod> ],
-        [ sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/objectInstances> ;
+            sh:path me3gpp:ThresholdMonitor.monitorGranularityPeriod ],
+        [ sh:path me3gpp:ThresholdMonitor.objectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/rootObjectInstances> ;
+            sh:path me3gpp:ThresholdMonitor.rootObjectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> ;
+        [ sh:class meas3gpp:ThresholdInfo ;
             sh:description "List of threshold info." ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor/thresholdInfoList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/ThresholdMonitor> .
+            sh:path me3gpp:ThresholdMonitor.thresholdInfoList ] ;
+    sh:targetClass me3gpp:ThresholdMonitor .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/TraceJobShape> a sh:NodeShape ;
+me3gpp-shapes:TraceJob a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/id> ],
+            sh:path me3gpp:TraceJob.id ],
         [ sh:description """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
             sh:in ( "IMMEDIATE_MDT_ONLY" "LOGGED_MDT_ONLY" "TRACE_ONLY" "IMMEDIATE_MDT_AND_TRACE" "RLF_REPORT_ONLY" "RCEF_REPORT_ONLY" "LOGGED_MBSFN_MDT" "5GC_UE_LEVEL_MEASUREMENTS_ONLY" "TRACE_AND_5GC_UE_LEVEL_MEASUREMENTS" "IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "TRACE_AND_IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "RRC_REPORT" "IMMEDIATE_MDT_AND_LOGGED_MDT" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/jobType> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/traceTarget> ;
+            sh:path me3gpp:TraceJob.jobType ],
+        [ sh:class me3gpp:traceTarget ;
             sh:description """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
 Trace, MDT, and 5GC UE level measurements collection.
@@ -804,12 +796,12 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/traceTarget> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> ;
+            sh:path me3gpp:TraceJob.traceTarget ],
+        [ sh:class trace3gpp:TraceConfig ;
             sh:description "Trace config" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/traceConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
+            sh:path me3gpp:TraceJob.traceConfig ],
+        [ sh:class trace3gpp:MdtConfig ;
             sh:description """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
 The attribute anonymizationOfMdtData specifies the level of
@@ -831,22 +823,23 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/mdtConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> ;
+            sh:path me3gpp:TraceJob.mdtConfig ],
+        [ sh:class trace3gpp:UECoreMeasConfig ;
             sh:description "5GC UE level measurements config" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/ueCoreMeasConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
+            sh:path me3gpp:TraceJob.ueCoreMeasConfig ],
+        [ sh:class types3gpp:NpnId ;
             sh:description """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/nPNTarget> ],
+            sh:path me3gpp:TraceJob.nPNTarget ],
         [ sh:description "Specifies the RRC reports requested. " ;
             sh:in ( "RLF_REPORT" "RCEF_REPORT" "SHR" "SPR" "MHI" "RA_REPORT" ) ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/rrcReportType> ],
+            sh:path me3gpp:TraceJob.rrcReportType ],
         [ sh:datatype xsd:string ;
             sh:description """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -856,34 +849,34 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/listOfTraceMetrics> ],
+            sh:path me3gpp:TraceJob.listOfTraceMetrics ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/traceCollectionEntityIPAddress> ],
+            sh:path me3gpp:TraceJob.traceCollectionEntityIPAddress ],
         [ sh:datatype xsd:string ;
             sh:description """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/traceReportingConsumerUri> ;
+            sh:path me3gpp:TraceJob.traceReportingConsumerUri ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a TraceJob" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/jobId> ],
+            sh:path me3gpp:TraceJob.jobId ],
         [ sh:description """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
             sh:in ( "FILE_BASED" "STREAMING" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/traceReportingFormat> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/pLMNTarget> ;
+            sh:path me3gpp:TraceJob.traceReportingFormat ],
+        [ sh:class me3gpp:pLMNTarget ;
             sh:description """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/pLMNTarget> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> ;
+            sh:path me3gpp:TraceJob.pLMNTarget ],
+        [ sh:class trace3gpp:TraceReference ;
             sh:description """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
@@ -891,102 +884,102 @@ Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob/traceReference> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/TraceJob> .
+            sh:path me3gpp:TraceJob.traceReference ] ;
+    sh:targetClass me3gpp:TraceJob .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/additionalInformationShape> a sh:NodeShape ;
+me3gpp-shapes:additionalInformation a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/additionalInformation/name> ],
+            sh:path me3gpp:additionalInformation.name ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/additionalInformation/value> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/additionalInformation> .
+            sh:path me3gpp:additionalInformation.value ] ;
+    sh:targetClass me3gpp:additionalInformation .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/correlatedNotificationsShape> a sh:NodeShape ;
+me3gpp-shapes:correlatedNotifications a sh:NodeShape ;
     sh:property [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/correlatedNotifications/sourceObjectInstance> ;
+            sh:path me3gpp:correlatedNotifications.sourceObjectInstance ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:int ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/correlatedNotifications/notificationIds> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/correlatedNotifications> .
+            sh:path me3gpp:correlatedNotifications.notificationIds ] ;
+    sh:targetClass me3gpp:correlatedNotifications .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/geographicalCoordinatesShape> a sh:NodeShape ;
+me3gpp-shapes:geographicalCoordinates a sh:NodeShape ;
     sh:property [ sh:datatype xsd:decimal ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/geographicalCoordinates/latitude> ],
+            sh:path me3gpp:geographicalCoordinates.latitude ],
         [ sh:datatype xsd:decimal ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/geographicalCoordinates/longitude> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/geographicalCoordinates> .
+            sh:path me3gpp:geographicalCoordinates.longitude ] ;
+    sh:targetClass me3gpp:geographicalCoordinates .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/monitoredAttributesShape> a sh:NodeShape ;
+me3gpp-shapes:monitoredAttributes a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/monitoredAttributes/attributeName> ],
+            sh:path me3gpp:monitoredAttributes.attributeName ],
         [ sh:description """The value of the attribute. The content of this data
 node shall be in accordance with the data model for the attribute.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/monitoredAttributes/value> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/monitoredAttributes> .
+            sh:path me3gpp:monitoredAttributes.value ] ;
+    sh:targetClass me3gpp:monitoredAttributes .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/pLMNIdShape> a sh:NodeShape ;
+me3gpp-shapes:pLMNId a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/pLMNId/mcc> ;
+            sh:path me3gpp:pLMNId.mcc ;
             sh:pattern "[02-79][0-9][0-9]" ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/pLMNId/mnc> ;
+            sh:path me3gpp:pLMNId.mnc ;
             sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/pLMNId> .
+    sh:targetClass me3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/pLMNTargetShape> a sh:NodeShape ;
+me3gpp-shapes:pLMNTarget a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/pLMNTarget/mcc> ;
+            sh:path me3gpp:pLMNTarget.mcc ;
             sh:pattern "[02-79][0-9][0-9]" ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/pLMNTarget/mnc> ;
+            sh:path me3gpp:pLMNTarget.mnc ;
             sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/pLMNTarget> .
+    sh:targetClass me3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/servingPLMNShape> a sh:NodeShape ;
+me3gpp-shapes:servingPLMN a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/servingPLMN/mcc> ;
+            sh:path me3gpp:servingPLMN.mcc ;
             sh:pattern "[02-79][0-9][0-9]" ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/servingPLMN/mnc> ;
+            sh:path me3gpp:servingPLMN.mnc ;
             sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/servingPLMN> .
+    sh:targetClass me3gpp:servingPLMN .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/stateChangeDefinitionShape> a sh:NodeShape ;
+me3gpp-shapes:stateChangeDefinition a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/stateChangeDefinition/attributeName> ],
+            sh:path me3gpp:stateChangeDefinition.attributeName ],
         [ sh:description """The new value of the attribute. The content of this data
 node shall be in accordance with the data model for the attribute.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/stateChangeDefinition/newValue> ],
+            sh:path me3gpp:stateChangeDefinition.newValue ],
         [ sh:description """The old value of the attribute. The content of this data
 node shall be in accordance with the data model for the attribute.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/stateChangeDefinition/oldValue> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/stateChangeDefinition> .
+            sh:path me3gpp:stateChangeDefinition.oldValue ] ;
+    sh:targetClass me3gpp:stateChangeDefinition .
 
-<urn:3gpp:sa5:_3gpp-common-managed-element/traceTargetShape> a sh:NodeShape ;
+me3gpp-shapes:traceTarget a sh:NodeShape ;
     sh:property [ sh:description """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
 Trace, MDT, and 5GC UE level measurements collection.
@@ -1048,10 +1041,35 @@ level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
             sh:in ( "IMSI" "IMEI" "IMEISV" "PUBLIC_ID" "UTRAN_CELL" "E_UTRAN_CELL" "NG_RAN_CELL" "ENB" "RNC" "GNB" "SUPI" "N4_SESSION_ID" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/traceTarget/traceTargetType> ],
+            sh:path me3gpp:traceTarget.traceTargetType ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-managed-element/traceTarget/traceTargetValueList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-managed-element/traceTarget> .
+            sh:path me3gpp:traceTarget.traceTargetValueList ] ;
+    sh:targetClass me3gpp:traceTarget .
+
+<https://semantics.ericsson.com/yang/_3gpp-common-managed-element> a owl:Ontology ;
+    rdfs:label "_3gpp-common-managed-element" ;
+    dcterms:description """Defines ManagedElement which will be augmented
+by other IOCs
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source """3GPP TS 28.623
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Solution Set (SS) definitions
+
+3GPP TS 28.622
+Generic Network Resource Model (NRM)
+Integration Reference Point (IRP);
+Information Service (IS)
+
+3GPP TS 28.620
+Umbrella Information Model (UIM)""" ;
+    dcterms:title "_3gpp-common-managed-element" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2025-08-13 (CR-0561)" ;
+    y2r:yangModuleName "_3gpp-common-managed-element" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-managed-element> .
 

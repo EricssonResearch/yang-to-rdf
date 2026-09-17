@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix mmgmtnode3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-management-node#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-management-node> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-management-node> a owl:Ontology ;
     rdfs:label "_3gpp-common-management-node" ;
     dcterms:description """Defines ManagementNode IOCs
 Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -23,9 +24,11 @@ Information Service (IS)
 Umbrella Information Model (UIM)""" ;
     dcterms:title "_3gpp-common-management-node" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-0271)" .
+    owl:versionInfo "revision 2023-09-18 (CR-0271)" ;
+    y2r:yangModuleName "_3gpp-common-management-node" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-management-node> .
 
-<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/managedElements> nrm:candidate "ManagedElements" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+mmgmtnode3gpp:ManagementNode.managedElements y2r:candidate "ManagedElements" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

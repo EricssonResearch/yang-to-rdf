@@ -1,0 +1,799 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix mbsmf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-mbsmffunction#> .
+@prefix mbsmf3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-5gc-nrm-mbsmffunction#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
+@prefix mnfp3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-managed-nfprofile#> .
+@prefix nef3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-neffunction#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
+@prefix types5g3gpp: <https://semantics.ericsson.com/yang/_3gpp-5g-common-yang-types#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
+
+mbsmf3gpp-shapes:File a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:File.id ],
+        [ sh:datatype xsd:string ;
+            sh:description """Location of the file incl. the file transfer protocol,
+and the file name.
+
+The allowed file transfer protocols are:
+- sftp
+- ftpes
+- https
+
+Examples:
+'sftp://companyA.com/datastore/fileName.xml',
+'https://companyA.com/ManagedElement=1/Files=1/File=1'
+""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:File.fileLocation ;
+            sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:File.jobId ],
+        [ sh:datatype xsd:base64Binary ;
+            sh:description """File content as a Base64 encoded string according to
+RFC 4648 section 4.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:File.fileContent ],
+        [ sh:datatype xsd:string ;
+            sh:description """Name of the algorithm used for compressing the file.
+An absent 'fileCompression' parameter indicates the file is
+not compressed. The MnS producer selects the compression algorithm.
+It is encouraged to use popular algorithms such as GZIP.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:File.fileCompression ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description "Size of the file" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:File.fileSize ],
+        [ sh:description "Type of the management data stored in the file." ;
+            sh:in ( "PERFORMANCE" "TRACE" "ANALYTICS" "PROPRIETARY" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:File.fileDataType ],
+        [ sh:datatype xsd:string ;
+            sh:description """Identifier of the schema (incl. its version)
+used to produce the file content. If there is no schema for the file
+or it is not available, the fileFormat parameter is absent.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:File.fileFormat ],
+        [ sh:datatype xsd:string ;
+            sh:description """Date and time, when the file was closed (the last time)
+and made available on the MnS producer.
+The file content will not be changed anymore.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:File.fileReadyTime ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Date and time after which the file may be deleted." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:File.fileExpirationTime ;
+            sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
+        [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
+that produced the file.""" ;
+            sh:path mbsmf3gpp:File.jobRef ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass mbsmf3gpp:File .
+
+mbsmf3gpp-shapes:Files a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:Files.id ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description "Number of files in a file collection." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:Files.numberOfFiles ],
+        [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
+that produced the file.""" ;
+            sh:path mbsmf3gpp:Files.jobRef ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:Files.jobId ] ;
+    sh:targetClass mbsmf3gpp:Files .
+
+mbsmf3gpp-shapes:MBSMFFunction a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:MBSMFFunction.id ],
+        [ sh:datatype xsd:string ;
+            sh:description "A user-friendly (and user assignable) name of this object." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:MBSMFFunction.userLabel ],
+        [ sh:class mbsmf3gpp:MbSmfInfo ;
+            sh:description """This attribute represents information of an
+MB-SMF NF Instance""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:MBSMFFunction.mbSmfInfo ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:MBSMFFunction.priorityLabel ],
+        [ sh:datatype xsd:string ;
+            sh:description """List of trace metrics. When this attribute is contained in
+a managed object it defines the trace metrics supported for this
+object and all descendant objects.
+
+Trace metrics include trace messages, MDT measurements
+(Immediate MDT, Logged MDT, Logged MBSFN MDT), RLF and RCEF reports,
+see TS 32.422. Trace metrics are identified with their metric
+identifier. The metric identifier is constructed as defined
+in clause 10 of TS 32.422.""" ;
+            sh:path mbsmf3gpp:MBSMFFunction.supportedTraceMetrics ],
+        [ sh:class mf3gpp:VnfParameters ;
+            sh:description """This attribute contains the parameter set of the VNF
+instance(s) corresponding to an NE. The presence of this attribute
+indicates that the ManagedFunction represented by the MOI is a
+virtualized function """ ;
+            sh:path mbsmf3gpp:MBSMFFunction.vnfParametersList ],
+        [ sh:class mf3gpp:PeeParameters ;
+            sh:description """This attribute contains the parameter list for the control
+and monitoring of power, energy and environmental parameters of
+ManagedFunction instance(s). """ ;
+            sh:path mbsmf3gpp:MBSMFFunction.peeParameterslist ],
+        [ sh:class mbsmf3gpp:SupportedPerfMetricGroups ;
+            sh:description """Captures a group of supported performance metrics and
+associated parameters related to their production and reporting.
+A SupportedPerfMetricGroup attribute which is part of an MOI may
+define performanceMetrics for any MOI under the subtree contained
+under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
+can specify supported metrics for contained ManagedFunctions
+like a GNBDUFunction.""" ;
+            sh:path mbsmf3gpp:MBSMFFunction.SupportedPerfMetricGroups ],
+        [ sh:class mbsmf3gpp:pLMNIdList ;
+            sh:description "List of PLMN IDs." ;
+            sh:path mbsmf3gpp:MBSMFFunction.pLMNIdList ],
+        [ sh:class mnfp3gpp:ManagedNFProfile ;
+            sh:description "Profile definition of a Managed NF (See TS 23.501)" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:MBSMFFunction.managedNFProfile ],
+        [ sh:class mbsmf3gpp:commModelList ;
+            sh:description """Specifies a list of commModel. It can be used by NF and
+NF services to interact with each other in 5G Core network """ ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:MBSMFFunction.commModelList ] ;
+    sh:targetClass mbsmf3gpp:MBSMFFunction .
+
+mbsmf3gpp-shapes:ManagedNFService a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.id ],
+        [ sh:datatype xsd:string ;
+            sh:description "A user-friendly (and user assignable) name of this object." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.userLabel ],
+        [ sh:datatype xsd:string ;
+            sh:description """The type of the managed NF service instance
+The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.nFServiceType ],
+        [ sh:description "Permission to use or prohibition against using the instance" ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.administrativeState ],
+        [ sh:description "Describes whether the resource is installed and working" ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.operationalState ],
+        [ sh:description """Describes whether the resource is actively in use at a
+specific instant, and if so, whether or not it has spare
+capacity for additional users.""" ;
+            sh:in ( "IDLE" "ACTIVE" "BUSY" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.usageState ],
+        [ sh:in ( "REGISTERED" "DEREGISTERED" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.registrationState ],
+        [ sh:class types3gpp:SAP ;
+            sh:description "The service access point of the managed NF service instance" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.sAP ],
+        [ sh:class mf3gpp:Operation ;
+            sh:description """Set of operations supported by the managed NF
+service instance""" ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:ManagedNFService.operations ] ;
+    sh:targetClass mbsmf3gpp:ManagedNFService .
+
+mbsmf3gpp-shapes:MbSmfInfo a sh:NodeShape ;
+    sh:property [ sh:class nef3gpp:SnssaiInfoItem ;
+            sh:description """This attribute represents the list of S-NSSAIs and DNNs
+supported by the MB-SMF.
+The key of the map shall be a (unique) valid JSON string per clause 7
+of IETF RFC 8259, with a maximum of 32 characters.""" ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:MbSmfInfo.sNssaiInfoList ],
+        [ sh:class mbsmf3gpp:TmgiRange ;
+            sh:description """This attribute represents the list of TMGI range(s)
+supported by the MB-SMF
+The key of the map shall be a (unique) valid JSON string per clause 7
+of IETF RFC 8259, with a maximum of 32 characters.""" ;
+            sh:path mbsmf3gpp:MbSmfInfo.tmgiRangeList ],
+        [ sh:class types3gpp:Tai ;
+            sh:description """This attribute represents the list of TAIs the MB-SMF can
+serve.
+The absence of this attribute and the taiRangeList attribute indicates
+that the MB-SMF can be selected for any TAI in the serving network.""" ;
+            sh:path mbsmf3gpp:MbSmfInfo.taiList ],
+        [ sh:class types5g3gpp:TaiRange ;
+            sh:description """This attribute represents the range of TAIs the MB-SMF can
+serve.
+The absence of this attribute and the taiList attribute indicates that
+the MB-SMF can be selected for any TAI in the serving network.""" ;
+            sh:path mbsmf3gpp:MbSmfInfo.taiRangeList ],
+        [ sh:class mbsmf3gpp:MbsSession ;
+            sh:description """This attribute represents the list of MBS sessions currently
+served by the MB-SMF
+The key of the map shall be a (unique) valid JSON string per clause 7 of
+IETF RFC 8259, with a maximum of 32 characters.""" ;
+            sh:path mbsmf3gpp:MbSmfInfo.mbsSessionList ] ;
+    sh:targetClass mbsmf3gpp:MbSmfInfo .
+
+mbsmf3gpp-shapes:MbsServiceArea a sh:NodeShape ;
+    sh:property [ sh:class types5g3gpp:Ncgi ;
+            sh:description "Represents a list of NR cell ids with their pertaining TAIs." ;
+            sh:path mbsmf3gpp:MbsServiceArea.ncgiList ],
+        [ sh:class types3gpp:Tai ;
+            sh:description "Tracking Area Identity list" ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:MbsServiceArea.taiList ] ;
+    sh:targetClass mbsmf3gpp:MbsServiceArea .
+
+mbsmf3gpp-shapes:MbsServiceAreaInfo a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedShort ;
+            sh:description """This attribute represents Area Session Identifier used for
+MBS session with location dependent content.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:MbsServiceAreaInfo.areaSessionId ],
+        [ sh:class mbsmf3gpp:MbsServiceArea ;
+            sh:description """Represents Area Session Identifier used for MBS session
+with location dependent content.""" ;
+            sh:path mbsmf3gpp:MbsServiceAreaInfo.mbsServiceArea ] ;
+    sh:targetClass mbsmf3gpp:MbsServiceAreaInfo .
+
+mbsmf3gpp-shapes:MbsSession a sh:NodeShape ;
+    sh:property [ sh:class mbsmf3gpp:mbsSessionId ;
+            sh:description "This attribute represents the MBS Session Identifier." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:MbsSession.mbsSessionId ],
+        [ sh:class mbsmf3gpp:MbsServiceAreaInfo ;
+            sh:description """This attribute represents map of Area Session Id and related
+MBS Service Area information used for MBS session with location
+dependent content. The Area Session ID together with the mbsSessionId
+(TMGI) uniquely identifies the MBS session in a specific MBS service
+area.
+For an MBS session with location dependent content, one map entry shall
+be registered for each MBS Service Area served by the MBS session.
+The key of the map shall be the areaSessionId.""" ;
+            sh:path mbsmf3gpp:MbsSession.mbsAreaSessions ] ;
+    sh:targetClass mbsmf3gpp:MbsSession .
+
+mbsmf3gpp-shapes:PerfMetricJob a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.id ],
+        [ sh:description "Enable or disables production of the metrics" ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.administrativeState ],
+        [ sh:datatype xsd:string ;
+            sh:description """Must be present when the notification-based reporting
+method is supported, and the the files are available as
+notifications for the MnS consumer to subscribe to.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.notificationRecipientAddress ],
+        [ sh:datatype xsd:string ;
+            sh:description """Applicable when stream-based reporting method is
+supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.streamTarget ],
+        [ sh:datatype xsd:string ;
+            sh:description "Link to a 'Files' object." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob._linkToFiles ],
+        [ sh:description "Pointer to a Scheduler object." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.schedulerRef ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description "Pointer to a ConditionMonitor object." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.conditionMonitorRef ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description "Indicates whether the PerfMetricJob is working." ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.operationalState ],
+        [ sh:datatype xsd:string ;
+            sh:description "Id for a PerfMetricJob job." ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.jobId ],
+        [ sh:datatype xsd:string ;
+            sh:description """Performance metrics include measurements defined in
+TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
+also be those specified by other SDOs or vendor specific metrics.
+Performance metrics are identfied with their names. A name can also
+identify a vendor specific group of performance metrics.
+
+For measurements defined in TS 28.552 the name is constructed as
+the bullet e) of the measurement definition.
+
+For KPIs defined in TS 28.554 the name is defined in the KPI
+definitions template as the component designated with e).""" ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.performanceMetrics ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Granularity period used to produce measurements. The value
+must be one of the supported granularity periods for the metric.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.granularityPeriod ],
+        [ sh:path mbsmf3gpp:PerfMetricJob.objectInstances ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """Each object instance designates the root of a subtree that
+contains the root object and all descendant objects.""" ;
+            sh:path mbsmf3gpp:PerfMetricJob.rootObjectInstances ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """For the file-based reporting method this is the time
+window during which collected measurements are stored into the same
+file before the file is closed and a new file is opened.
+The time-period must be a multiple of the granularityPeriod.
+
+Applicable when the file-based reporting method is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.fileReportingPeriod ],
+        [ sh:datatype xsd:string ;
+            sh:description """Applicable and must be present when the file-based
+reporting method is supported, and the files are stored on the
+MnS consumer.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:PerfMetricJob.fileLocation ] ;
+    sh:targetClass mbsmf3gpp:PerfMetricJob .
+
+mbsmf3gpp-shapes:StmCtrl a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:StmCtrl.id ],
+        [ sh:description """List of Network Function Distinguished Name, which
+specifies the target network interface type to be monitored. If
+this parameter is not present or it is empty, then all applicable
+interface types from the target NF shall be monitored""" ;
+            sh:path mbsmf3gpp:StmCtrl.reportingNFList ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the Uniform Resource Identifier (URI) of the STM
+consumer that shall receive the monitored signalling message copies """ ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:StmCtrl.stmTargetUri ;
+            sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
+        [ sh:description """It is used by the STM consumer to lock or unlock the
+StmCtrl instance in order to stop or start the signalling traffic
+monitoring""" ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:StmCtrl.administrativeState ],
+        [ sh:description "It is used by STM consumer to report its working state" ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:StmCtrl.operationalState ],
+        [ sh:class stm3gpp:NetworkInterface ;
+            sh:description """List of network interface to be monitored. If this
+parameter is not present or it is empty, then all Network Functions
+within the SubNetwork or ManagedElement shall be monitored. This
+parameter shall be omitted if the STM control object is specified
+under a ManagedFunction. """ ;
+            sh:path mbsmf3gpp:StmCtrl.targetInterfaceInfoList ] ;
+    sh:targetClass mbsmf3gpp:StmCtrl .
+
+mbsmf3gpp-shapes:SupportedPerfMetricGroups a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Performance metrics include measurements defined in
+TS 28.552 and KPIs defined in TS 28.554.
+
+Measurements are identified by name.
+
+For measurements defined in TS 28.552 the name is constructed as
+the bullet e) of the measurement definition.
+
+For KPIs defined in TS 28.554 the name is defined in the KPI
+definitions template as the component designated with e).
+
+For non-3GPP specified measurements the name is defined
+elsewhere.""" ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:SupportedPerfMetricGroups.performanceMetrics ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Granularity periods supported for the associated
+measurement types. The period is defined in seconds.""" ;
+            sh:path mbsmf3gpp:SupportedPerfMetricGroups.granularityPeriods ],
+        [ sh:in ( "FILE_BASED_LOC_SET_BY_PRODUCER" "FILE_BASED_LOC_SET_BY_CONSUMER" "STREAM_BASED" ) ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:SupportedPerfMetricGroups.reportingMethods ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Reporting periods supported for the associated
+measurement types. The period is defined in seconds.""" ;
+            sh:path mbsmf3gpp:SupportedPerfMetricGroups.reportingPeriods ] ;
+    sh:targetClass mbsmf3gpp:SupportedPerfMetricGroups .
+
+mbsmf3gpp-shapes:ThresholdMonitor a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:ThresholdMonitor.id ],
+        [ sh:description "Enables or disables the ThresholdMonitor." ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:ThresholdMonitor.administrativeState ],
+        [ sh:description "Indicates whether the ThresholdMonitor is working." ;
+            sh:in ( "DISABLED" "ENABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:ThresholdMonitor.operationalState ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """ Granularity period used to monitor measurements for
+threshold crossings. """ ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:ThresholdMonitor.monitorGranularityPeriod ],
+        [ sh:path mbsmf3gpp:ThresholdMonitor.objectInstances ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """Each object instance designates the root of a subtree that
+contains the root object and all descendant objects.""" ;
+            sh:path mbsmf3gpp:ThresholdMonitor.rootObjectInstances ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:class meas3gpp:ThresholdInfo ;
+            sh:description "List of threshold info." ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:ThresholdMonitor.thresholdInfoList ] ;
+    sh:targetClass mbsmf3gpp:ThresholdMonitor .
+
+mbsmf3gpp-shapes:TmgiRange a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Represents the first MBS Service ID value identifying the
+start of a TMGI range.
+The value shall be coded as defined for the mbsServiceId attribute of
+the Tmgi data type defined in 3GPP TS 29.571""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:TmgiRange.mbsServiceIdStart ;
+            sh:pattern "[A-Fa-f0-9]{6}" ],
+        [ sh:datatype xsd:string ;
+            sh:description """Represents the last MBS Service ID value identifying the
+end of a TMGI range.
+The value shall be coded as defined for the mbsServiceId attribute of
+the Tmgi data type defined in 3GPP TS 29.571""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:TmgiRange.mbsServiceIdEnd ;
+            sh:pattern "[A-Fa-f0-9]{6}" ],
+        [ sh:datatype xsd:string ;
+            sh:description """Network Identity; Shall be present if PlmnIdNid identifies
+an SNPN (see clauses 5.30.2.3, 5.30.2.9, 6.3.4, and 6.3.8 in
+3GPP TS 23.501)""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:TmgiRange.nId ],
+        [ sh:class mbsmf3gpp:pLMNId ;
+            sh:description "The PLMN identifier." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:TmgiRange.pLMNId ] ;
+    sh:targetClass mbsmf3gpp:TmgiRange .
+
+mbsmf3gpp-shapes:TraceJob a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.id ],
+        [ sh:description """It specifies whether the
+TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
+level measurements job, or a combined job. It also defines the
+MDT mode.""" ;
+            sh:in ( "IMMEDIATE_MDT_ONLY" "LOGGED_MDT_ONLY" "TRACE_ONLY" "IMMEDIATE_MDT_AND_TRACE" "RLF_REPORT_ONLY" "RCEF_REPORT_ONLY" "LOGGED_MBSFN_MDT" "5GC_UE_LEVEL_MEASUREMENTS_ONLY" "TRACE_AND_5GC_UE_LEVEL_MEASUREMENTS" "IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "TRACE_AND_IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "RRC_REPORT" "IMMEDIATE_MDT_AND_LOGGED_MDT" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.jobType ],
+        [ sh:class mbsmf3gpp:traceTarget ;
+            sh:description """It specifies the target object of the Trace, MDT and
+5GC UE level measurements collection. The attribute is applicable for
+Trace, MDT, and 5GC UE level measurements collection.
+In case of management based Immediate MDT, RLF reporting, RCEF
+reporting or RRC reposring, the traceTarget attribute shall be null
+value.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.traceTarget ],
+        [ sh:class trace3gpp:TraceConfig ;
+            sh:description "Trace config" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.traceConfig ],
+        [ sh:class trace3gpp:MdtConfig ;
+            sh:description """This <<dataType>> defines the configuration parameters of
+IOC TraceJob which are specific for MDT or any combination of MDT.
+The attribute anonymizationOfMdtData specifies the level of
+anonymization of MDT data.
+The optional attribute areaScopedefines the area scope of MDT, which
+is specified in clause 5.10.2 of TS 32.422.
+The attribute sensorInformation allows to specify the sensor
+information to include.
+The attribute trsrPrefixCfg contains the TRSR prefix
+configuration parameters which shall be used by the NR-RAN nodes
+during TRSR assignment for a C-MDT job.
+Based on the value configured for attribute jobType in IOC TraceJob,
+the attributes immediateMdtConfig or loggedMdtConfig or both are
+available: If the attribute jobType indictes immediate MDT, the
+attribute immediateMdtConfig is applicable. If the attribute jobType
+indictes logged MDT or logged MBSFN MDT, the attribute loggedMdtConfig
+is applicable. If the attribute jobType indictes both immediate MDT
+and logged MDT, both the attribute immediateMdtConfig and the
+attribute loggedMdtConfig are applicable.
+The optional attribute plmnList allows to specify the PLMNs where
+measurements collection, status indication and log reporting is
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.mdtConfig ],
+        [ sh:class trace3gpp:UECoreMeasConfig ;
+            sh:description "5GC UE level measurements config" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.ueCoreMeasConfig ],
+        [ sh:class types3gpp:NpnId ;
+            sh:description """applicable only for NR and shall be present in case of NPN
+either a PNI-NPN or a SNPN) and for management-based activation when
+several NPNs are supported in the RAN.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.nPNTarget ],
+        [ sh:description "Specifies the RRC reports requested. " ;
+            sh:in ( "RLF_REPORT" "RCEF_REPORT" "SHR" "SPR" "MHI" "RA_REPORT" ) ;
+            sh:path mbsmf3gpp:TraceJob.rrcReportType ],
+        [ sh:datatype xsd:string ;
+            sh:description """List of trace metrics identified by name.
+Includes trace messages, MDT measurements (Immediate MDT,
+Logged MDT, Logged MBSFN MDT), RLF, RCEF and RRC reports,
+see TS 32.422 Trace messages are identified with their message
+identifier. Trace metric identifier is constructed as defined
+in clause 10 of TS 32.422.
+For non-3GPP specified trace metrics the name is defined elsewhere.
+""" ;
+            sh:path mbsmf3gpp:TraceJob.listOfTraceMetrics ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the address of the Trace Collection Entity
+when the attribute traceReportingFormat is configured for the
+file-based reporting. The attribute is applicable for both Trace and
+MDT.""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.traceCollectionEntityIPAddress ],
+        [ sh:datatype xsd:string ;
+            sh:description """URI of the Streaming Trace data reporting MnS consumer
+(a.k.a. streaming target).""" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.traceReportingConsumerUri ;
+            sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of a TraceJob" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.jobId ],
+        [ sh:description """Specifies the trace reporting format - streaming trace
+reporting or file-based trace reporting""" ;
+            sh:in ( "FILE_BASED" "STREAMING" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.traceReportingFormat ],
+        [ sh:class mbsmf3gpp:pLMNTarget ;
+            sh:description """It specifies which PLMN that the subscriber of the session to
+be recorded uses as selected PLMN.""" ;
+            sh:path mbsmf3gpp:TraceJob.pLMNTarget ],
+        [ sh:class trace3gpp:TraceReference ;
+            sh:description """A globally unique identifier, which uniquely identifies the
+Trace Session that is created by the TraceJob.
+In case of shared network, it is the MCC and MNC of the Participating
+Operator that request the trace session that shall be provided.
+The attribute is applicable for both Trace and MDT.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:TraceJob.traceReference ] ;
+    sh:targetClass mbsmf3gpp:TraceJob .
+
+mbsmf3gpp-shapes:commModelList a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedShort ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:commModelList.groupId ],
+        [ sh:in ( "DIRECT_COMMUNICATION_WO_NRF" "DIRECT_COMMUNICATION_WITH_NRF" "INDIRECT_COMMUNICATION_WO_DEDICATED_DISCOVERY" "INDIRECT_COMMUNICATION_WITH_DEDICATED_DISCOVERY" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:commModelList.commModelType ],
+        [ sh:path mbsmf3gpp:commModelList.targetNFServiceList ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:commModelList.commModelConfiguration ] ;
+    sh:targetClass mbsmf3gpp:commModelList .
+
+mbsmf3gpp-shapes:mbsSessionId a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "MBS Service ID - Temporary Mobile Group Identity" ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:mbsSessionId.mbsServiceId ;
+            sh:pattern "[A-Fa-f0-9]{6}" ],
+        [ sh:datatype xsd:string ;
+            sh:description "sourceIpAddr" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:mbsSessionId.sourceIpAddr ;
+            sh:pattern "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%.+)?" ],
+        [ sh:datatype xsd:string ;
+            sh:description "destIpAddr" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:mbsSessionId.destIpAddr ;
+            sh:pattern "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%.+)?" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:mbsSessionId.nid ;
+            sh:pattern "[A-Fa-f0-9]{11}" ] ;
+    sh:targetClass mbsmf3gpp:mbsSessionId .
+
+mbsmf3gpp-shapes:pLMNId a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:pLMNId.mcc ;
+            sh:pattern "[02-79][0-9][0-9]" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:pLMNId.mnc ;
+            sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
+    sh:targetClass mbsmf3gpp:pLMNId .
+
+mbsmf3gpp-shapes:pLMNIdList a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:pLMNIdList.mcc ;
+            sh:pattern "[02-79][0-9][0-9]" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:pLMNIdList.mnc ;
+            sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
+    sh:targetClass mbsmf3gpp:pLMNIdList .
+
+mbsmf3gpp-shapes:pLMNTarget a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:pLMNTarget.mcc ;
+            sh:pattern "[02-79][0-9][0-9]" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path mbsmf3gpp:pLMNTarget.mnc ;
+            sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
+    sh:targetClass mbsmf3gpp:pLMNTarget .
+
+mbsmf3gpp-shapes:traceTarget a sh:NodeShape ;
+    sh:property [ sh:description """It specifies the target object of the Trace, MDT and
+5GC UE level measurements collection. The attribute is applicable for
+Trace, MDT, and 5GC UE level measurements collection.
+
+The targetIdType shall be PUBLIC_ID in case of a Management Based
+Activation is done to an SCSCFFunction (Serving Call Session Control
+Function) or PCSCFFunction (Proxy Call Session Control Function)
+
+The targetIdType shall be UTRAN_CELL only in case of
+UTRAN cell traffic trace function.
+
+The targetIdType shall be E-UTRAN_CELL only in case of E-UTRAN cell
+traffic trace function.
+
+The targetIdType shall be NG-RAN_CELL only in case of NR cell
+traffic trace function.
+
+The targetIdType shall be either IMSI, IMEI or
+IMEISV if the Trace Session is activated to any of the following
+ManagedEntity(ies):
+- HssFunction
+- MscServerFunction
+- SgsnFunction
+- GgsnFunction
+- BmscFunction
+- RncFunction
+- MmeFunction
+- ServingGWFunction
+- PGWFunction
+
+The targetIdType shall be either SUPI or IMEISV if the Trace Session
+is activated to any of the following ManagedEntity(ies):
+- AFFunction
+- AMFFunction
+- AUSFunction
+- NEFFunction
+- NRFFunction
+- NSSFFunction
+- PCFFunction
+- SMFFunction
+- UPFFunction
+- UDMFunction
+
+In case of signalling based MDT, the targetIdType shall be
+able to carry PUBLIC_ID, IMSI, IMEI, IMEISV or SUPI.
+
+In case of management based Logged MDT, the targetIdType
+shall carry an eNB or a gNB or an RNC.
+The Logged MDT should be initiated on the specified eNB/gNB/RNC in
+targetIdValueList.
+
+In case of signalling based 5GC UE level measurements collection,
+the targetIdTypee shall be able to carry IMEISV or SUPI.
+
+In case of management based 5GC UE level measurements collection,
+the targetIdType shall be able to carry the corresponding
+Measured UE Identifier as defined by the bullet g) of the 5GC UE
+level measurements (see TS 28.558) when the TraceJob is created at
+the subject ManagedEntity.""" ;
+            sh:in ( "IMSI" "IMEI" "IMEISV" "PUBLIC_ID" "UTRAN_CELL" "E_UTRAN_CELL" "NG_RAN_CELL" "ENB" "RNC" "GNB" "SUPI" "N4_SESSION_ID" ) ;
+            sh:maxCount 1 ;
+            sh:path mbsmf3gpp:traceTarget.traceTargetType ],
+        [ sh:datatype xsd:string ;
+            sh:description """It specifies the ID value(s) of the target object defined
+by traceTargetType""" ;
+            sh:path mbsmf3gpp:traceTarget.traceTargetValueList ] ;
+    sh:targetClass mbsmf3gpp:traceTarget .
+
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-mbsmffunction> a owl:Ontology ;
+    rdfs:label "_3gpp-5gc-nrm-mbsmffunction" ;
+    dcterms:description """MNNPFFunction derived from basic ManagedFunction.
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3gpp SA5" ;
+    dcterms:source "3GPP TS 28.541" ;
+    dcterms:title "_3gpp-5gc-nrm-mbsmffunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2026-04-13 (CR-1694)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-mbsmffunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-mbsmffunction> .
+

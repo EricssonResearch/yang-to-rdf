@@ -1,36 +1,26 @@
+@prefix cesmf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cesmanagementfunction#> .
+@prefix cesmf3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-cesmanagementfunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction> a owl:Ontology ;
-    rdfs:label "_3gpp-nr-nrm-cesmanagementfunction" ;
-    dcterms:description """Defines the YANG mapping of the CESManagementFunction
-Information Object Class (IOC) that is part of the NR Network Resource Model
-(NRM).
-Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
-    dcterms:title "_3gpp-nr-nrm-cesmanagementfunction" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunctionShape> a sh:NodeShape ;
+cesmf3gpp-shapes:CESManagementFunction a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/id> ],
+            sh:path cesmf3gpp:CESManagementFunction.id ],
         [ sh:datatype xsd:boolean ;
             sh:description """This attribute determines whether the Centralized SON energy
 saving function is enabled or disabled.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/cesSwitch> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> ;
+            sh:path cesmf3gpp:CESManagementFunction.cesSwitch ],
+        [ sh:class cesmf3gpp:loadTimeThreshold ;
             sh:description """This attribute is relevant, if the cell acts as a candidate
 cell. This attribute indicates the traffic load threshold and the time
 duration which is used by distributed inter-RAT ES algorithms to allow
@@ -50,7 +40,7 @@ duration which is used by distributed inter-RAT ES algorithms to allow
 an original cell to leave the energySaving state.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/interRatEsDeactivationCandidateCellParameters> ],
+            sh:path cesmf3gpp:CESManagementFunction.interRatEsDeactivationCandidateCellParameters ],
         [ sh:description """Specifies the status regarding the energy saving in the
 cell. If the value of energySavingControl is toBeEnergySaving, then it
 shall be tried to achieve the value isEnergySaving for the
@@ -59,14 +49,14 @@ toBeNotEnergySaving, then it shall be tried to achieve the value
 isNotEnergySaving for the energySavingState. """ ;
             sh:in ( "isNotEnergySaving" "isEnergySaving" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/energySavingState> ],
+            sh:path cesmf3gpp:CESManagementFunction.energySavingState ],
         [ sh:description """This attribute allows the Cross Domain-Centralized SON
 energy saving function to initiate energy saving activation or
 deactivation.""" ;
             sh:in ( "toBeEnergySaving" "toBeNotEnergySaving" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/energySavingControl> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> ;
+            sh:path cesmf3gpp:CESManagementFunction.energySavingControl ],
+        [ sh:class cesmf3gpp:loadTimeThreshold ;
             sh:description """This attributes is relevant, if the cell acts as an original
 cell.This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed ES algorithms to allow a cell
@@ -74,8 +64,8 @@ to enter the energySaving state. The time duration indicates how long
 the load needs to have been below the threshold.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/intraRatEsActivationOriginalCellLoadParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> ;
+            sh:path cesmf3gpp:CESManagementFunction.intraRatEsActivationOriginalCellLoadParameters ],
+        [ sh:class cesmf3gpp:loadTimeThreshold ;
             sh:description """This attributes is relevant, if the cell acts as a candidate
 cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed ES algorithms level to allow an
@@ -90,8 +80,8 @@ will be provided backup coverage by the candidate cell enters energy
 saving state.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/intraRatEsActivationCandidateCellsLoadParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> ;
+            sh:path cesmf3gpp:CESManagementFunction.intraRatEsActivationCandidateCellsLoadParameters ],
+        [ sh:class cesmf3gpp:loadTimeThreshold ;
             sh:description """This attributes is relevant, if the cell acts as a candidate
 cell. This attribute indicates the traffic load threshold and the time
 duration which is used by distributed ES algorithms to allow a cell to
@@ -105,12 +95,12 @@ needs to have been above the threshold to wake up one or more original
 cells which have been provided backup coverage by the candidate cell.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/intraRatEsDeactivationCandidateCellsLoadParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod> ;
+            sh:path cesmf3gpp:CESManagementFunction.intraRatEsDeactivationCandidateCellsLoadParameters ],
+        [ sh:class cesmf3gpp:EsNotAllowedTimePeriod ;
             sh:description """This is a list of time periods during which
 inter-RAT energy saving is not allowed""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/esNotAllowedTimePeriod> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> ;
+            sh:path cesmf3gpp:CESManagementFunction.esNotAllowedTimePeriod ],
+        [ sh:class cesmf3gpp:loadTimeThreshold ;
             sh:description """This attribute is relevant, if the cell acts as an original
 cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed inter-RAT ES algorithms to
@@ -136,8 +126,8 @@ Class Value' should be set to 1 when calculating the load, and the load
 threshold should be set in range of 0..100.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/interRatEsActivationOriginalCellParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> ;
+            sh:path cesmf3gpp:CESManagementFunction.interRatEsActivationOriginalCellParameters ],
+        [ sh:class cesmf3gpp:loadTimeThreshold ;
             sh:description """This attribute is relevant, if the cell acts as a candidate
 cell. This attribute indicates the traffic load threshold and the time
 duration, which are used by distributed inter-RAT ES algorithms to
@@ -161,42 +151,57 @@ Class Value' should be set to 1 when calculating the load, and the load
 threshold should be set in range of 0..100.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction/interRatEsActivationCandidateCellParameters> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction> .
+            sh:path cesmf3gpp:CESManagementFunction.interRatEsActivationCandidateCellParameters ] ;
+    sh:targetClass cesmf3gpp:CESManagementFunction .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriodShape> a sh:NodeShape ;
+cesmf3gpp-shapes:EsNotAllowedTimePeriod a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Start of not allowed time period in UTC time zone.
 If set, the endTime must also be set. If not set, this is
 interpreted as around the clock.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod/startTime> ;
+            sh:path cesmf3gpp:EsNotAllowedTimePeriod.startTime ;
             sh:pattern "(([01]?[0-9])|(2[0-3])):([0-5][0-9])" ],
         [ sh:datatype xsd:string ;
             sh:description """If endTime has a lower value than startTime, it will
 be interpreted as referring to the following day.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod/endTime> ;
+            sh:path cesmf3gpp:EsNotAllowedTimePeriod.endTime ;
             sh:pattern "(([01]?[0-9])|(2[0-3])):([0-5][0-9])" ],
         [ sh:description """Specifies that the not allowed periods are only
 applicable to the specified days in UTC timezone. Every day if
 not set.""" ;
             sh:in ( "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday" ) ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod/daysOfWeek> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/EsNotAllowedTimePeriod> .
+            sh:path cesmf3gpp:EsNotAllowedTimePeriod.daysOfWeek ] ;
+    sh:targetClass cesmf3gpp:EsNotAllowedTimePeriod .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThresholdShape> a sh:NodeShape ;
+cesmf3gpp-shapes:loadTimeThreshold a sh:NodeShape ;
     sh:property [ sh:datatype xsd:unsignedInt ;
             sh:description """This attribute is used by distributed ES algorithms to allow
 a cell to enter the energySaving state.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold/loadThreshold> ],
+            sh:path cesmf3gpp:loadTimeThreshold.loadThreshold ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """The time duration indicates how long the traffic load
 (either for UL or DL) in the cell needs to have been above the
 threshold to wake up one or more original cells which have been
 provided backup coverage by the candidate cell.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold/timeDuration> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/loadTimeThreshold> .
+            sh:path cesmf3gpp:loadTimeThreshold.timeDuration ] ;
+    sh:targetClass cesmf3gpp:loadTimeThreshold .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cesmanagementfunction> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-cesmanagementfunction" ;
+    dcterms:description """Defines the YANG mapping of the CESManagementFunction
+Information Object Class (IOC) that is part of the NR Network Resource Model
+(NRM).
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-cesmanagementfunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-cesmanagementfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction> .
 

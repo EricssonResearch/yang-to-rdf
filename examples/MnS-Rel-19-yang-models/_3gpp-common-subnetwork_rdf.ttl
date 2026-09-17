@@ -1,11 +1,57 @@
+@prefix amfr3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amfregion#> .
+@prefix amfset3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amfset#> .
+@prefix cco3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cco#> .
+@prefix cesmf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cesmanagementfunction#> .
+@prefix conf5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-configurable5qiset#> .
+@prefix cpcicf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cpciconfigurationfunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix desmf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-desmanagementfunction#> .
+@prefix dlbof3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dlbofunction#> .
+@prefix dmrof3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dmrofunction#> .
+@prefix dpcicf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dpciconfigurationfunction#> .
+@prefix dracho3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-drachoptimizationfunction#> .
+@prefix dyn5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-dynamic5qiset#> .
+@prefix econn3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-ecmconnectioninfo#> .
+@prefix engyinfo3gpp: <https://semantics.ericsson.com/yang/_3gpp-engy-nrm-energyinformation#> .
+@prefix eutraneteutranfreq3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-eutranfrequency#> .
+@prefix exdata3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-externaldata#> .
+@prefix extamf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-externalamffunction#> .
+@prefix extenb3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-externalenbfunction#> .
+@prefix extgnbcucp3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-externalgnbcucpfunction#> .
+@prefix extgnbcuup3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-externalgnbcuupfunction#> .
+@prefix extgnbdu3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-externalgnbdufunction#> .
+@prefix extnrf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-externalnrffunction#> .
+@prefix extnssf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-externalnssffunction#> .
+@prefix filemgmt3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-filemanagement#> .
+@prefix fm3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-fm#> .
+@prefix iab3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-iabfunction#> .
+@prefix magent3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-mnsagent#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mectx3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-mecontext#> .
+@prefix mgtdatcol3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managementdatacollection#> .
+@prefix mmgmtnode3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-management-node#> .
+@prefix mnsregist3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-mnsregistry#> .
+@prefix nrfreq3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrfrequency#> .
+@prefix ns3gpp: <https://semantics.ericsson.com/yang/_3gpp-ns-nrm-networkslice#> .
+@prefix nss3gpp: <https://semantics.ericsson.com/yang/_3gpp-ns-nrm-networkslicesubnet#> .
+@prefix ntn3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-ntnfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qmc3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-qmcjob#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix redcap3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-redcapaccess#> .
+@prefix rrsset3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-rimrsset#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix subnet3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-subnetwork#> .
+@prefix subscr3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-subscription-control#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
+@prefix types5g3gpp: <https://semantics.ericsson.com/yang/_3gpp-5g-common-yang-types#> .
+@prefix util3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-util#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList> a rdfs:Class ;
+subnet3gpp:AlarmList a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:AlarmList" ;
     rdfs:comment """The AlarmList represents the capability to store and manage
 alarm records. The management scope of an AlarmList is defined by all
@@ -22,25 +68,25 @@ As the size of the alarm list is finite, if it becomes full, the
 producer may remove the oldest list entries in alarmRecords. If there
 are cleared but unacknowledged alarms these shall be removed before any
 not-cleared alarms are removed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> .
+    y2r:hasAttribute fm3gpp:AlarmRecord .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/Configurable5QISet> a rdfs:Class ;
+subnet3gpp:Configurable5QISet a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:Configurable5QISet" ;
     rdfs:comment """Specifies the non-standardized 5QIs, including their QoS
 characteristics, that need to be pre-configured (and configurable) to
 the 5G NFs, see 3GPP TS 23.501.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> .
+    y2r:nameContains subnet3gpp:FiveQICharacteristics .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> a rdfs:Class ;
+subnet3gpp:EcmConnectionInfo a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo" ;
     rdfs:comment """This IOC contains attributes to enable ECSP management
 system to connect EDN NFs (i.e., EAS, ECS, and EES) to 5GC NFs
 (i.e. UPF, PCF, NEF, SCEF) (See clause 7.4.3 and 7.4.4 in TS 28.538). """ ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> .
+    y2r:hasAttribute econn3gpp:ServingLocation,
+        econn3gpp:UPFConnInfo,
+        econn3gpp:_5GCNfConnEcmInfo .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File> a rdfs:Class ;
+subnet3gpp:File a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:File" ;
     rdfs:comment """Represents a file. It is name-contained by 'Files'.
 
@@ -115,7 +161,7 @@ clause 11.6.1.1.1. Note that to receive 'notifyFilePreparationError'
 in that case the notification subscription needs to include these
 objects in its scope.""" .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/Files> a rdfs:Class ;
+subnet3gpp:Files a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:Files" ;
     rdfs:comment """This IOC represents a collection of files. It can be
 name-contained by 'SubNetwork', 'ManagedElement', 'PerfMetricJob' or
@@ -162,15 +208,15 @@ In addition, the attribute '_linkToFiles' allows for simple
 deployments not relying on notifications for reporting the
 availability of new files, where the MnS consumer polls regularly
 for new files under 'Files'.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-common-subnetwork/File> .
+    y2r:nameContains subnet3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> a rdfs:Class ;
+subnet3gpp:FiveQICharacteristics a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics" ;
     rdfs:comment """This specifies the 5QI value and the corresponding
 QoS characteristics for a 5QI.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> .
+    y2r:hasAttribute conf5QIs3gpp:PacketErrorRate .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/HeartbeatControl> a rdfs:Class ;
+subnet3gpp:HeartbeatControl a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:HeartbeatControl" ;
     rdfs:comment """MnS consumers (i.e. notification recipients) use heartbeat
 notifications to monitor the communication channels between themselves
@@ -211,19 +257,19 @@ Whether and when to emit heartbeat notifications is controlled by
 HeartbeatControl. Subscription for heartbeat is not supported via the
 NtfSubscriptionControl.""" .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB> a rdfs:Class ;
+subnet3gpp:MWAB a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:MWAB" ;
     rdfs:comment """MWAB provides an NR access link to UEs in proximity and
 connects to the 5GC serving the UE through an IP connectivity provided
 by a Backhaul PDU session(s). The MWAB consists of a gNB component
 (MWAB-gNB) and a UE component (MWAB-UE). This IOC defines the
 configuration information for the MWAB-gNB.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo>,
-        <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    y2r:hasAttribute types5g3gpp:LocationInfo,
+        types5g3gpp:MnrOamIPConfig,
+        types3gpp:GeoArea,
+        types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule> a rdfs:Class ;
+subnet3gpp:NRECMappingRule a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:NRECMappingRule" ;
     rdfs:comment """Represents the unified mapping rule, applicable for the
 group of gNBs (within a certain area), for the calculation of the
@@ -232,7 +278,7 @@ energy cost (see TS 34.423).
 NRECMappingRule can be name-contained by SubNetwork or ManagedElement.
 It applies to all ManagedEntity contained by the parent.""" .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList> a rdfs:Class ;
+subnet3gpp:NotificationList a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:NotificationList" ;
     rdfs:comment """The NotificationList IOC provides an interface for the
 consumer that allows retrieval of notifications that have not been
@@ -279,9 +325,9 @@ in this MOI either.
 The number of notifications avaialble has a limit, so old
 notifications may be removed from NotificationList by the producer,
 while also updating  the.firstEventTime atttribute.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> .
+    y2r:hasAttribute subscr3gpp:NotificationEntry .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> a rdfs:Class ;
+subnet3gpp:NtfSubscriptionControl a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl" ;
     rdfs:comment """NtfSubscriptionControl represents a notification
 subscription of a notification recipient.
@@ -388,11 +434,11 @@ Creation and deletion of NtfSubscriptionControl instances by MnS
 consumers is optional; when not supported, the NtfSubscriptionControl
 instances may be created and deleted by the system or be
 pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-common-subnetwork/HeartbeatControl>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList> .
+    y2r:hasAttribute subscr3gpp:Scope ;
+    y2r:nameContains subnet3gpp:HeartbeatControl,
+        subnet3gpp:NotificationList .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> a rdfs:Class ;
+subnet3gpp:PerfMetricJob a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob" ;
     rdfs:comment """This IOC represents a performance metric production job. It
 can be name-contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -475,74 +521,74 @@ by the MnS producer.
 Creation and deletion of PerfMetricJob instances by MnS consumers is
 optional; when not supported, PerfMetricJob instances may be created and
 deleted by the system or be pre-installed.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-common-subnetwork/Files> .
+    y2r:nameContains subnet3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl> a rdfs:Class ;
+subnet3gpp:StmCtrl a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:StmCtrl" ;
     rdfs:comment """This IOC represents the STM Control and Configuration
 parameters of a particular STM controlling. It can be
 name-contained by SubNetwork, ManagedElement, or ManagedFunction.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    y2r:hasAttribute stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> a rdfs:Class ;
+subnet3gpp:SubNetwork a rdfs:Class ;
     rdfs:label "SubNetwork" ;
     rdfs:comment """Represents a set of managed entities
 Contained ManagedElements and SubNetworks shall be connected via
 YANG Schema-mount.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-amfregion/AMFRegion>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/AMFSet>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-externalnrffunction/ExternalNRFFunction>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-externalnssffunction/ExternalNSSFFunction>,
-        <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType>,
-        <urn:3gpp:sa5:_3gpp-common-filemanagement/FileDownloadJob>,
-        <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode>,
-        <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection>,
-        <urn:3gpp:sa5:_3gpp-common-mecontext/MeContext>,
-        <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent>,
-        <urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsRegistry>,
-        <urn:3gpp:sa5:_3gpp-common-qmcjob/QMCJob>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/Configurable5QISet>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/Files>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedNotifications>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob>,
-        <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor>,
-        <urn:3gpp:sa5:_3gpp-common-util/Scheduler>,
-        <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergyInfoGroup>,
-        <urn:3gpp:sa5:_3gpp-engy-nrm-energyinformation/EnergySupplyInfo>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-cesmanagementfunction/CESManagementFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-externalamffunction/ExternalAMFFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/ExternalENBFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcucpfunction/ExternalGNBCUCPFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbcuupfunction/ExternalGNBCUUPFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-externalgnbdufunction/ExternalGNBDUFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/RedCapAccessCriteria>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal>,
-        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/NetworkSlice>,
-        <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> .
+    y2r:hasAttribute subnet3gpp:SupportedPerfMetricGroups ;
+    y2r:nameContains amfr3gpp:AMFRegion,
+        amfset3gpp:AMFSet,
+        dyn5QIs3gpp:Dynamic5QISet,
+        extnrf3gpp:ExternalNRFFunction,
+        extnssf3gpp:ExternalNSSFFunction,
+        exdata3gpp:ExternalDataType,
+        filemgmt3gpp:FileDownloadJob,
+        mmgmtnode3gpp:ManagementNode,
+        mgtdatcol3gpp:ManagementDataCollection,
+        mectx3gpp:MeContext,
+        magent3gpp:MnsAgent,
+        mnsregist3gpp:MnsRegistry,
+        qmc3gpp:QMCJob,
+        subnet3gpp:AlarmList,
+        subnet3gpp:Configurable5QISet,
+        subnet3gpp:EcmConnectionInfo,
+        subnet3gpp:Files,
+        subnet3gpp:MWAB,
+        subnet3gpp:NRECMappingRule,
+        subnet3gpp:NotificationList,
+        subnet3gpp:NtfSubscriptionControl,
+        subnet3gpp:PerfMetricJob,
+        subnet3gpp:StmCtrl,
+        subnet3gpp:SupportedNotifications,
+        subnet3gpp:ThresholdMonitor,
+        subnet3gpp:TraceJob,
+        util3gpp:ConditionMonitor,
+        util3gpp:Scheduler,
+        engyinfo3gpp:EnergyInfoGroup,
+        engyinfo3gpp:EnergySupplyInfo,
+        cco3gpp:CCOFunction,
+        cesmf3gpp:CESManagementFunction,
+        cpcicf3gpp:CPCIConfigurationFunction,
+        desmf3gpp:DESManagementFunction,
+        dlbof3gpp:DLBOFunction,
+        dmrof3gpp:DMROFunction,
+        dpcicf3gpp:DPCIConfigurationFunction,
+        dracho3gpp:DRACHOptimizationFunction,
+        eutraneteutranfreq3gpp:EUtranFrequency,
+        extamf3gpp:ExternalAMFFunction,
+        extenb3gpp:ExternalENBFunction,
+        extgnbcucp3gpp:ExternalGNBCUCPFunction,
+        extgnbcuup3gpp:ExternalGNBCUUPFunction,
+        extgnbdu3gpp:ExternalGNBDUFunction,
+        iab3gpp:IAB,
+        nrfreq3gpp:NRFrequency,
+        ntn3gpp:NTNFunction,
+        redcap3gpp:RedCapAccessCriteria,
+        rrsset3gpp:RimRSGlobal,
+        ns3gpp:NetworkSlice,
+        nss3gpp:NetworkSliceSubnet .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedNotifications> a rdfs:Class ;
+subnet3gpp:SupportedNotifications a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:SupportedNotifications" ;
     rdfs:comment """SupportedNotifications represents the notification related
 capabilities of a MnS producer.
@@ -554,7 +600,7 @@ but not necessary every supported notificationType.
 The notificationProtocols attribute identifies the notification
 transport protocols supported by a MnS producer.""" .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups> a rdfs:Class ;
+subnet3gpp:SupportedPerfMetricGroups a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -564,7 +610,7 @@ under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor> a rdfs:Class ;
+subnet3gpp:ThresholdMonitor a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:ThresholdMonitor" ;
     rdfs:comment """Represents a threshold monitor for performance metrics.
 It can be contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -638,14 +684,15 @@ monitored are not produced by a PerfMetricJob.
 Creation and deletion of ThresholdMonitor instances by MnS consumers is
 optional; when not supported, ThresholdMonitor instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    y2r:hasAttribute meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> a rdfs:Class ;
+subnet3gpp:TraceJob a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob" ;
     rdfs:comment """A TraceJob instance represents the Trace Control and
 Configuration parameters of a particular Trace Job (see TS 32.421 and
 TS 32.422 for details). It can be name-contained by SubNetwork,
-ManagedElement, ManagedFunction.
+ManagedElement, ManagedFunction. In case of signalling based trace
+activation, it shall be name-contained by the UDMFunction, see TS 28.541.
 
 To activate Trace Jobs, a MnS consumer has to create TraceJob object
 instances on the MnS producer. A MnS consumer can activate a Trace Job
@@ -657,15 +704,14 @@ For the details of Trace Job activation see clauses 4.1.1.1.2 and
 4.1.2.1.2 of TS 32.422.
 
 When a MnS consumer wishes to deactivate a Trace Job, the MnS consumer
-shall delete the corresponding TraceJob instance.
-
-For details of management Trace Job activation/deactivation see clause
-4.1.1.1.2 of TS 32.422.
+shall delete the corresponding TraceJob instance. For details of
+management Trace Job deactivation see clauses 4.1.3.8 to 4.1.3.11 a
+nd 4.1.4.10 to 4.1.4.13  of TS 32.422
 
 The attribute traceReference specifies a globally unique ID and
 identifies a Trace session. One Trace Session may be activated to
 multiple Network Elements. The traceReference is populated by the
-consumer that makes the request for a Trace Session.
+consumer that makes the request for a Trace Session, TS 32.422.
 
 The jobId attribute presents the job identifier of a TraceJob instance.
 The jobId can be used to associate  multiple TraceJob instances.
@@ -681,14 +727,15 @@ which the trace records shall be transferred, while in case of
 stream-based reporting the attribute traceReportingConsumerUri
 specifies the streaming target.
 
-The mandatory attribute traceTarget determines the target object of
-the TraceJob. Dependent on the network element to which the Trace
-Session is activated different types of the target object are possible.
+The attribute traceTarget determines the target object of the
+TraceJob. Dependent on the network element to which the Trace Session
+is activated different types of the target object are possible.
+
 The attribute pLMNTarget defines the PLMN for which sessions shall be
 selected in the Trace Session in case of management based activation
-when several PLMNs are supported in the RAN.The MDT configuration may
-include area scope defined by network slice, in which case
-the attribute pLMNTarget is not applicable.
+when several PLMNs are supported in the RAN.  The MDT configuration
+may include area scope defined by network slice, in which case the
+attribute pLMNTarget is not applicable.
 
 The attribute listOfTraceMetrics allows configuraton of which metrics
 shall be recorded.
@@ -707,21 +754,21 @@ be present. The rrcReportType allows the tracing of RRC reports.
 Creation and deletion of TraceJob instances by MnS consumers is
 optional; when not supported, the TraceJob instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-subnetwork/pLMNTarget>,
-        <urn:3gpp:sa5:_3gpp-common-subnetwork/traceTarget>,
-        <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceReference>,
-        <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-common-subnetwork/Files> .
+    y2r:hasAttribute subnet3gpp:pLMNTarget,
+        subnet3gpp:traceTarget,
+        trace3gpp:MdtConfig,
+        trace3gpp:TraceConfig,
+        trace3gpp:TraceReference,
+        trace3gpp:UECoreMeasConfig,
+        types3gpp:NpnId ;
+    y2r:nameContains subnet3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/pLMNTarget> a rdfs:Class ;
+subnet3gpp:pLMNTarget a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/traceTarget> a rdfs:Class ;
+subnet3gpp:traceTarget a rdfs:Class ;
     rdfs:label "_3gpp-common-subnetwork:traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -730,7 +777,7 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-subnetwork> a owl:Ontology ;
     rdfs:label "_3gpp-common-subnetwork" ;
     dcterms:description """Defines basic SubNetwork which will be augmented by other IOCs
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -750,51 +797,53 @@ Information Service (IS)
 Umbrella Information Model (UIM)""" ;
     dcterms:title "_3gpp-common-subnetwork" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-08-13 (CR-0561)" .
+    owl:versionInfo "revision 2025-08-13 (CR-0561)" ;
+    y2r:yangModuleName "_3gpp-common-subnetwork" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-subnetwork> .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList/administrativeState> a rdf:Property ;
+subnet3gpp:AlarmList.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:AlarmList.administrativeState" ;
     rdfs:comment """When set to UNLOCKED, the alarm list is updated.
 When the set to LOCKED, the existing alarm records are not
 updated, and new alarm records are not added to the alarm list.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList> ;
+    rdfs:domain subnet3gpp:AlarmList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList/alarmRecords> a owl:ObjectProperty ;
+subnet3gpp:AlarmList.alarmRecords a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:AlarmList.alarmRecords" ;
     rdfs:comment "List of alarmRecords" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> .
+    rdfs:domain subnet3gpp:AlarmList ;
+    rdfs:range fm3gpp:AlarmRecord .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList/id> a rdf:Property ;
+subnet3gpp:AlarmList.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:AlarmList.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList> ;
+    rdfs:domain subnet3gpp:AlarmList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList/lastModification> a rdf:Property ;
+subnet3gpp:AlarmList.lastModification a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:AlarmList.lastModification" ;
     rdfs:comment "The last time when an alarm record was modified" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList> ;
+    rdfs:domain subnet3gpp:AlarmList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList/numOfAlarmRecords> a rdf:Property ;
+subnet3gpp:AlarmList.numOfAlarmRecords a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:AlarmList.numOfAlarmRecords" ;
     rdfs:comment "The number of alarm records in the AlarmList" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList> ;
+    rdfs:domain subnet3gpp:AlarmList ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList/operationalState> a rdf:Property ;
+subnet3gpp:AlarmList.operationalState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:AlarmList.operationalState" ;
     rdfs:comment """The producer sets this attribute to ENABLED, indicating
 that it has the resource and ability to record alarm in AlarmList
 else, it sets the attribute to DISABLED.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList> ;
+    rdfs:domain subnet3gpp:AlarmList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList/unreliableAlarmScope> a owl:ObjectProperty ;
+subnet3gpp:AlarmList.unreliableAlarmScope a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:AlarmList.unreliableAlarmScope" ;
     rdfs:comment """Identifies, the part of the alarm scope that may not be
 reliable.
@@ -805,142 +854,142 @@ then all AlarmRecord instances in the AlarmList may not be reliable.
 If this parameter is equal to some instance represented by
 MonitoredEntity, then only AlarmRecord related to this instance and
 its descendants may not be reliable.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/AlarmList> ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:AlarmList ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/Configurable5QISet/id> a rdf:Property ;
+subnet3gpp:Configurable5QISet.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:Configurable5QISet.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/Configurable5QISet> ;
+    rdfs:domain subnet3gpp:Configurable5QISet ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/_5GCNfConnEcmInfoList> a owl:ObjectProperty ;
+subnet3gpp:EcmConnectionInfo._5GCNfConnEcmInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo._5GCNfConnEcmInfoList" ;
     rdfs:comment """The attribute specifies a list of 5GCNfConnInfo which is
 defined as a datatype (see clause 5.3.120). It is used to
 provide 5GC NFs, such as PCF, NEF, SCEF, that are connected EDN NFs,
 such as EAS, EES, and ECS.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo> .
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
+    rdfs:range econn3gpp:_5GCNfConnEcmInfo .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/eASIpAddress> a rdf:Property ;
+subnet3gpp:EcmConnectionInfo.eASIpAddress a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.eASIpAddress" ;
     rdfs:comment """This parameter defines address of an EAS instance.
 It can be IP address (either IPv4 address (See RFC 791) or IPv6
 address (See RFC 2373).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/eASServiceArea> a owl:ObjectProperty ;
+subnet3gpp:EcmConnectionInfo.eASServiceArea a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.eASServiceArea" ;
     rdfs:comment """This parameter defines the EAS service area
 (see clause 7.3.3.6 in TS 23.558).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> .
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
+    rdfs:range econn3gpp:ServingLocation .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/eCSIpAddress> a rdf:Property ;
+subnet3gpp:EcmConnectionInfo.eCSIpAddress a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.eCSIpAddress" ;
     rdfs:comment """This parameter defines address of an ECS instance.
 It can be IP address (either IPv4 address (See RFC 791) or IPv6
 address (See RFC 2373).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/eDNServiceArea> a owl:ObjectProperty ;
+subnet3gpp:EcmConnectionInfo.eDNServiceArea a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.eDNServiceArea" ;
     rdfs:comment """This parameter defines the EDN service area
 (see clause 7.3.3.4 in TS 23.558)""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> .
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
+    rdfs:range econn3gpp:ServingLocation .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/eESIpAddress> a rdf:Property ;
+subnet3gpp:EcmConnectionInfo.eESIpAddress a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.eESIpAddress" ;
     rdfs:comment """This parameter defines address of an EES instance.
 It can be IP address (either IPv4 address (See RFC 791) or IPv6
 address (See RFC 2373). """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/eESServiceArea> a owl:ObjectProperty ;
+subnet3gpp:EcmConnectionInfo.eESServiceArea a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.eESServiceArea" ;
     rdfs:comment """This parameter defines the EES service area
 (see clause 7.3.3.5 in TS 23.558).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/ServingLocation> .
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
+    rdfs:range econn3gpp:ServingLocation .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/ecmConnectionType> a rdf:Property ;
+subnet3gpp:EcmConnectionInfo.ecmConnectionType a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.ecmConnectionType" ;
     rdfs:comment """It indicates the type of ECM connection (i.e., user plane
 connection via UPF, control plane connection via PCF or NEF.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/ednIdentifier> a rdf:Property ;
+subnet3gpp:EcmConnectionInfo.ednIdentifier a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.ednIdentifier" ;
     rdfs:comment "The identifier of the edge data network (See TS 23.558)." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/id> a rdf:Property ;
+subnet3gpp:EcmConnectionInfo.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo/uPFConnectionInfo> a owl:ObjectProperty ;
+subnet3gpp:EcmConnectionInfo.uPFConnectionInfo a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:EcmConnectionInfo.uPFConnectionInfo" ;
     rdfs:comment """The attribute is defined as a datatype UPFConnInfo
 (see clause 5.3.121). It is used to provide the UPF IP address and
 UPF DN. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/EcmConnectionInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo> .
+    rdfs:domain subnet3gpp:EcmConnectionInfo ;
+    rdfs:range econn3gpp:UPFConnInfo .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/fileCompression> a rdf:Property ;
+subnet3gpp:File.fileCompression a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.fileCompression" ;
     rdfs:comment """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/fileContent> a rdf:Property ;
+subnet3gpp:File.fileContent a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.fileContent" ;
     rdfs:comment """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:base64Binary ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/fileDataType> a rdf:Property ;
+subnet3gpp:File.fileDataType a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.fileDataType" ;
     rdfs:comment "Type of the management data stored in the file." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/fileExpirationTime> a rdf:Property ;
+subnet3gpp:File.fileExpirationTime a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.fileExpirationTime" ;
     rdfs:comment "Date and time after which the file may be deleted." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/fileFormat> a rdf:Property ;
+subnet3gpp:File.fileFormat a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.fileFormat" ;
     rdfs:comment """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/fileLocation> a rdf:Property ;
+subnet3gpp:File.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.fileLocation" ;
     rdfs:comment """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -954,147 +1003,147 @@ Examples:
 'sftp://companyA.com/datastore/fileName.xml',
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/fileReadyTime> a rdf:Property ;
+subnet3gpp:File.fileReadyTime a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.fileReadyTime" ;
     rdfs:comment """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/fileSize> a rdf:Property ;
+subnet3gpp:File.fileSize a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.fileSize" ;
     rdfs:comment "Size of the file" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:unsignedLong ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/id> a rdf:Property ;
+subnet3gpp:File.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/jobId> a rdf:Property ;
+subnet3gpp:File.jobId a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:File.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
+    rdfs:domain subnet3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/File/jobRef> a owl:ObjectProperty ;
+subnet3gpp:File.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:File.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/File> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:File ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/Files/id> a rdf:Property ;
+subnet3gpp:Files.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:Files.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/Files> ;
+    rdfs:domain subnet3gpp:Files ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/Files/jobId> a rdf:Property ;
+subnet3gpp:Files.jobId a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:Files.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/Files> ;
+    rdfs:domain subnet3gpp:Files ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/Files/jobRef> a owl:ObjectProperty ;
+subnet3gpp:Files.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:Files.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/Files> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:Files ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/Files/numberOfFiles> a rdf:Property ;
+subnet3gpp:Files.numberOfFiles a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:Files.numberOfFiles" ;
     rdfs:comment "Number of files in a file collection." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/Files> ;
+    rdfs:domain subnet3gpp:Files ;
     rdfs:range xsd:unsignedLong .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics/averagingWindow> a rdf:Property ;
+subnet3gpp:FiveQICharacteristics.averagingWindow a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics.averagingWindow" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> ;
+    rdfs:domain subnet3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics/fiveQIValue> a rdf:Property ;
+subnet3gpp:FiveQICharacteristics.fiveQIValue a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics.fiveQIValue" ;
     rdfs:comment "Identifies the 5QI value." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> ;
+    rdfs:domain subnet3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics/id> a rdf:Property ;
+subnet3gpp:FiveQICharacteristics.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> ;
+    rdfs:domain subnet3gpp:FiveQICharacteristics ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics/maximumDataBurstVolume> a rdf:Property ;
+subnet3gpp:FiveQICharacteristics.maximumDataBurstVolume a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics.maximumDataBurstVolume" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> ;
+    rdfs:domain subnet3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics/packetDelayBudget> a rdf:Property ;
+subnet3gpp:FiveQICharacteristics.packetDelayBudget a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics.packetDelayBudget" ;
     rdfs:comment """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
 as specified in TS 23.501 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> ;
+    rdfs:domain subnet3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics/packetErrorRate> a owl:ObjectProperty ;
+subnet3gpp:FiveQICharacteristics.packetErrorRate a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics.packetErrorRate" ;
     rdfs:comment """It indicates the Packet Error Rate of a 5QI,
 as specified in TS 23.501.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> .
+    rdfs:domain subnet3gpp:FiveQICharacteristics ;
+    rdfs:range conf5QIs3gpp:PacketErrorRate .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics/priorityLevel> a rdf:Property ;
+subnet3gpp:FiveQICharacteristics.priorityLevel a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics.priorityLevel" ;
     rdfs:comment """It indicates the Priority Level of a 5QI, as specified
 in TS 23.501.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> ;
+    rdfs:domain subnet3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics/resourceType> a rdf:Property ;
+subnet3gpp:FiveQICharacteristics.resourceType a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:FiveQICharacteristics.resourceType" ;
     rdfs:comment """It indicates the Resource Type of a 5QI, as specified
 in TS 23.501 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/FiveQICharacteristics> ;
+    rdfs:domain subnet3gpp:FiveQICharacteristics ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/HeartbeatControl/heartbeatNtfPeriod> a rdf:Property ;
+subnet3gpp:HeartbeatControl.heartbeatNtfPeriod a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:HeartbeatControl.heartbeatNtfPeriod" ;
     rdfs:comment """Specifies the periodicity of heartbeat notification emission.
 The value of zero has the special meaning of stopping the heartbeat
 notification emission.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/HeartbeatControl> ;
+    rdfs:domain subnet3gpp:HeartbeatControl ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/HeartbeatControl/id> a rdf:Property ;
+subnet3gpp:HeartbeatControl.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:HeartbeatControl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/HeartbeatControl> ;
+    rdfs:domain subnet3gpp:HeartbeatControl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/HeartbeatControl/triggerHeartbeatNtf> a rdf:Property ;
+subnet3gpp:HeartbeatControl.triggerHeartbeatNtf a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:HeartbeatControl.triggerHeartbeatNtf" ;
     rdfs:comment """Setting this attribute to 'true' triggers an immediate
 additional heartbeat notification emission. Setting the value to
@@ -1104,132 +1153,132 @@ The periodicity of notifyHeartbeat emission is not changed.
 
 After triggering the heartbeat the system SHALL set the value
 back to false.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/HeartbeatControl> ;
+    rdfs:domain subnet3gpp:HeartbeatControl ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB/administrativeState> a rdf:Property ;
+subnet3gpp:MWAB.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:MWAB.administrativeState" ;
     rdfs:comment """It indicates the administrative state of the MWAB instance.
 It describes the permission to use or prohibition against using the
 MWAB functionalities, imposed through the OAM services.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB> ;
+    rdfs:domain subnet3gpp:MWAB ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB/allowedArea> a owl:ObjectProperty ;
+subnet3gpp:MWAB.allowedArea a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:MWAB.allowedArea" ;
     rdfs:comment """This specifies the area where the MWAB can act as MWAB-gNB.
 If the OAM indicates that the MWAB can act as MWAB-gNB is allowed areas,
 it acts as MWAB-gNB only on the allowed area only.
 (See sub clause 5.49 TS 28.662).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+    rdfs:domain subnet3gpp:MWAB ;
+    rdfs:range types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB/allowedTime> a owl:ObjectProperty ;
+subnet3gpp:MWAB.allowedTime a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:MWAB.allowedTime" ;
     rdfs:comment """This specifies the time window for which the MWAB can act
 as MWAB-gNB. If the allowed time window/ validity indicates 20th June,
 10 am to 5 pm of the day, the MWAB acts as an MWAB g-NB only during 20th
 June, 10 am to 5 pm of the day, and does not act as MWAB-gNB for any
 other time. (See sub clause 5.49 [11]).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    rdfs:domain subnet3gpp:MWAB ;
+    rdfs:range types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB/currentLocation> a owl:ObjectProperty ;
+subnet3gpp:MWAB.currentLocation a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:MWAB.currentLocation" ;
     rdfs:comment """This parameter specifies the current location
 of mobile NR node (e.g., IAB-node, MWAB-node).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> .
+    rdfs:domain subnet3gpp:MWAB ;
+    rdfs:range types5g3gpp:LocationInfo .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB/id> a rdf:Property ;
+subnet3gpp:MWAB.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:MWAB.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB> ;
+    rdfs:domain subnet3gpp:MWAB ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB/mnrOamIPConfig> a owl:ObjectProperty ;
+subnet3gpp:MWAB.mnrOamIPConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:MWAB.mnrOamIPConfig" ;
     rdfs:comment """It is IP configutation for OAM connectivity used
 by a mobile NR node (e.g., IAB-node, MWAB-node)
 to establish connection with management system as specified
 in TS 28.314[x] clause 6.1.2""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> .
+    rdfs:domain subnet3gpp:MWAB ;
+    rdfs:range types5g3gpp:MnrOamIPConfig .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB/operationalState> a rdf:Property ;
+subnet3gpp:MWAB.operationalState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:MWAB.operationalState" ;
     rdfs:comment """It indicates the operational state of the MWAB instance.
 It describes whether the resource is installed and partially or fully
 operable (Enabled) or the resource is not installed or not
 operable (Disabled).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/MWAB> ;
+    rdfs:domain subnet3gpp:MWAB ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule/eCMRInputMaxValue> a rdf:Property ;
-    rdfs:label "_3gpp-common-subnetwork:NRECMappingRule.eCMRInputMaxValue" ;
+subnet3gpp:NRECMappingRule.ecMRInputMaximumValue a rdf:Property ;
+    rdfs:label "_3gpp-common-subnetwork:NRECMappingRule.ecMRInputMaximumValue" ;
     rdfs:comment """The maximum value of to be applied
 for mapping from this attribute to the energy cost.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule> ;
-    rdfs:range xsd:unsignedByte .
+    rdfs:domain subnet3gpp:NRECMappingRule ;
+    rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule/eCMRInputMinValue> a rdf:Property ;
-    rdfs:label "_3gpp-common-subnetwork:NRECMappingRule.eCMRInputMinValue" ;
+subnet3gpp:NRECMappingRule.ecMRInputMinimumValue a rdf:Property ;
+    rdfs:label "_3gpp-common-subnetwork:NRECMappingRule.ecMRInputMinimumValue" ;
     rdfs:comment """The minimum value of to be applied
 for mapping from this attribute to the energy cost.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule> ;
-    rdfs:range xsd:unsignedByte .
+    rdfs:domain subnet3gpp:NRECMappingRule ;
+    rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule/eCTimeInterval> a rdf:Property ;
-    rdfs:label "_3gpp-common-subnetwork:NRECMappingRule.eCTimeInterval" ;
+subnet3gpp:NRECMappingRule.ecTimeInterval a rdf:Property ;
+    rdfs:label "_3gpp-common-subnetwork:NRECMappingRule.ecTimeInterval" ;
     rdfs:comment """Time interval (in seconds) that
 should be applied for collecting values of mapping
 rule attribute to be used for computing the energy cost.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule> ;
-    rdfs:range xsd:unsignedByte .
+    rdfs:domain subnet3gpp:NRECMappingRule ;
+    rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule/id> a rdf:Property ;
+subnet3gpp:NRECMappingRule.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NRECMappingRule.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NRECMappingRule> ;
+    rdfs:domain subnet3gpp:NRECMappingRule ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList/firstEventTime> a rdf:Property ;
+subnet3gpp:NotificationList.firstEventTime a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NotificationList.firstEventTime" ;
     rdfs:comment """eventTime of first notification available.
 The attribute may be missing if and only if there are no notifications
 in the NotificationList.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList> ;
+    rdfs:domain subnet3gpp:NotificationList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList/id> a rdf:Property ;
+subnet3gpp:NotificationList.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NotificationList.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList> ;
+    rdfs:domain subnet3gpp:NotificationList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList/lastEventTime> a rdf:Property ;
+subnet3gpp:NotificationList.lastEventTime a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NotificationList.lastEventTime" ;
     rdfs:comment """eventTime of latest notification available.
 The attribute may be missing if and only if there are no notifications
 in the NotificationList.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList> ;
+    rdfs:domain subnet3gpp:NotificationList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList/notificationEntries> a owl:ObjectProperty ;
+subnet3gpp:NotificationList.notificationEntries a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:NotificationList.notificationEntries" ;
     rdfs:comment """Representation of the individual notifications.
 The entries shall be ordered based on eventTime of the notification,
 newest first.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-subscription-control/NotificationEntry> .
+    rdfs:domain subnet3gpp:NotificationList ;
+    rdfs:range subscr3gpp:NotificationEntry .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList/notificationFilter> a rdf:Property ;
+subnet3gpp:NotificationList.notificationFilter a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NotificationList.notificationFilter" ;
     rdfs:comment """Filter to be applied to candidate notifications identified
 by the notificationTypes attribute. Only notifications that pass the
@@ -1238,38 +1287,38 @@ The filter can be applied to any field of a notification.
 
 The format of the string shall confrm to a
 JSON expressions (Jex) 'JexConditionsExpr'""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList> ;
+    rdfs:domain subnet3gpp:NotificationList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList/notificationTypes> a rdf:Property ;
+subnet3gpp:NotificationList.notificationTypes a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NotificationList.notificationTypes" ;
     rdfs:comment "List of notification types." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NotificationList> ;
+    rdfs:domain subnet3gpp:NotificationList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl/availabilityStatus> a rdf:Property ;
+subnet3gpp:NtfSubscriptionControl.availabilityStatus a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl.availabilityStatus" ;
     rdfs:comment """The availability status provides additional information
 about the operational state""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> ;
+    rdfs:domain subnet3gpp:NtfSubscriptionControl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl/id> a rdf:Property ;
+subnet3gpp:NtfSubscriptionControl.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> ;
+    rdfs:domain subnet3gpp:NtfSubscriptionControl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl/lastSequenceNo> a rdf:Property ;
+subnet3gpp:NtfSubscriptionControl.lastSequenceNo a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl.lastSequenceNo" ;
     rdfs:comment """The sequence number of the last notification that was sent
 by a 'NtfSubscriptionControl' instance.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> ;
+    rdfs:domain subnet3gpp:NtfSubscriptionControl ;
     rdfs:range xsd:unsignedLong .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl/notificationFilter> a rdf:Property ;
+subnet3gpp:NtfSubscriptionControl.notificationFilter a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl.notificationFilter" ;
     rdfs:comment """Defines a filter to be applied to candidate notifications
 identified by the notificationTypes attribute.
@@ -1280,68 +1329,68 @@ The filter can be applied to any field of a notification.
 
 The format of the string shall confrm to a
 JSON expressions (Jex) 'JexConditionsExpr'""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> ;
+    rdfs:domain subnet3gpp:NtfSubscriptionControl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl/notificationRecipientAddress> a rdf:Property ;
+subnet3gpp:NtfSubscriptionControl.notificationRecipientAddress a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl.notificationRecipientAddress" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> ;
+    rdfs:domain subnet3gpp:NtfSubscriptionControl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl/notificationTypes> a rdf:Property ;
+subnet3gpp:NtfSubscriptionControl.notificationTypes a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl.notificationTypes" ;
     rdfs:comment """Defines the types of notifications that are candidates
 for being forwarded to the notification recipient.
 If the notificationTypes attribute is not supported or not present
 all candidate notifications types are forwarded to the notification;
 discriminated by notificationFilter attribute.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> ;
+    rdfs:domain subnet3gpp:NtfSubscriptionControl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl/operationalState> a rdf:Property ;
+subnet3gpp:NtfSubscriptionControl.operationalState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl.operationalState" ;
     rdfs:comment """Operational state of manged object instance.
 The operational state describes if an object instance is operable
 ('ENABLED') or inoperable ('DISABLED').
 This state is set by the object instance or the MnS producer and
 is hence READ-ONLY.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> ;
+    rdfs:domain subnet3gpp:NtfSubscriptionControl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl/scope> a owl:ObjectProperty ;
+subnet3gpp:NtfSubscriptionControl.scope a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:NtfSubscriptionControl.scope" ;
     rdfs:comment "Scopes (selects) data nodes in an object tree." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/NtfSubscriptionControl> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-subscription-control/Scope> .
+    rdfs:domain subnet3gpp:NtfSubscriptionControl ;
+    rdfs:range subscr3gpp:Scope .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/_linkToFiles> a rdf:Property ;
+subnet3gpp:PerfMetricJob._linkToFiles a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob._linkToFiles" ;
     rdfs:comment "Link to a 'Files' object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/administrativeState> a rdf:Property ;
+subnet3gpp:PerfMetricJob.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.administrativeState" ;
     rdfs:comment "Enable or disables production of the metrics" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/conditionMonitorRef> a owl:ObjectProperty ;
+subnet3gpp:PerfMetricJob.conditionMonitorRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.conditionMonitorRef" ;
     rdfs:comment "Pointer to a ConditionMonitor object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/fileLocation> a rdf:Property ;
+subnet3gpp:PerfMetricJob.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.fileLocation" ;
     rdfs:comment """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/fileReportingPeriod> a rdf:Property ;
+subnet3gpp:PerfMetricJob.fileReportingPeriod a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.fileReportingPeriod" ;
     rdfs:comment """For the file-based reporting method this is the time
 window during which collected measurements are stored into the same
@@ -1349,51 +1398,51 @@ file before the file is closed and a new file is opened.
 The time-period must be a multiple of the granularityPeriod.
 
 Applicable when the file-based reporting method is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/granularityPeriod> a rdf:Property ;
+subnet3gpp:PerfMetricJob.granularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.granularityPeriod" ;
     rdfs:comment """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/id> a rdf:Property ;
+subnet3gpp:PerfMetricJob.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/jobId> a rdf:Property ;
+subnet3gpp:PerfMetricJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.jobId" ;
     rdfs:comment "Id for a PerfMetricJob job." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/notificationRecipientAddress> a rdf:Property ;
+subnet3gpp:PerfMetricJob.notificationRecipientAddress a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.notificationRecipientAddress" ;
     rdfs:comment """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/objectInstances> a owl:ObjectProperty ;
+subnet3gpp:PerfMetricJob.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/operationalState> a rdf:Property ;
+subnet3gpp:PerfMetricJob.operationalState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.operationalState" ;
     rdfs:comment "Indicates whether the PerfMetricJob is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/performanceMetrics> a rdf:Property ;
+subnet3gpp:PerfMetricJob.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -1406,78 +1455,78 @@ the bullet e) of the measurement definition.
 
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/rootObjectInstances> a owl:ObjectProperty ;
+subnet3gpp:PerfMetricJob.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/schedulerRef> a owl:ObjectProperty ;
+subnet3gpp:PerfMetricJob.schedulerRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.schedulerRef" ;
     rdfs:comment "Pointer to a Scheduler object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob/streamTarget> a rdf:Property ;
+subnet3gpp:PerfMetricJob.streamTarget a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:PerfMetricJob.streamTarget" ;
     rdfs:comment """Applicable when stream-based reporting method is
 supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/PerfMetricJob> ;
+    rdfs:domain subnet3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl/administrativeState> a rdf:Property ;
+subnet3gpp:StmCtrl.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:StmCtrl.administrativeState" ;
     rdfs:comment """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl> ;
+    rdfs:domain subnet3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl/id> a rdf:Property ;
+subnet3gpp:StmCtrl.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:StmCtrl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl> ;
+    rdfs:domain subnet3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl/operationalState> a rdf:Property ;
+subnet3gpp:StmCtrl.operationalState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:StmCtrl.operationalState" ;
     rdfs:comment "It is used by STM consumer to report its working state" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl> ;
+    rdfs:domain subnet3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl/reportingNFList> a owl:ObjectProperty ;
+subnet3gpp:StmCtrl.reportingNFList a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:StmCtrl.reportingNFList" ;
     rdfs:comment """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl> ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:StmCtrl ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl/stmTargetUri> a rdf:Property ;
+subnet3gpp:StmCtrl.stmTargetUri a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:StmCtrl.stmTargetUri" ;
     rdfs:comment """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl> ;
+    rdfs:domain subnet3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl/targetInterfaceInfoList> a owl:ObjectProperty ;
+subnet3gpp:StmCtrl.targetInterfaceInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:StmCtrl.targetInterfaceInfoList" ;
     rdfs:comment """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/StmCtrl> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    rdfs:domain subnet3gpp:StmCtrl ;
+    rdfs:range stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+subnet3gpp:SubNetwork.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "SubNetwork.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -1486,29 +1535,29 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups> .
+    rdfs:domain subnet3gpp:SubNetwork ;
+    rdfs:range subnet3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork/dnPrefix> a owl:ObjectProperty ;
+subnet3gpp:SubNetwork.dnPrefix a owl:ObjectProperty ;
     rdfs:label "SubNetwork.dnPrefix" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:SubNetwork ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork/id> a rdf:Property ;
+subnet3gpp:SubNetwork.id a rdf:Property ;
     rdfs:label "SubNetwork.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> ;
+    rdfs:domain subnet3gpp:SubNetwork ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork/priorityLabel> a rdf:Property ;
+subnet3gpp:SubNetwork.priorityLabel a rdf:Property ;
     rdfs:label "SubNetwork.priorityLabel" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> ;
+    rdfs:domain subnet3gpp:SubNetwork ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork/setOfMcc> a rdf:Property ;
+subnet3gpp:SubNetwork.setOfMcc a rdf:Property ;
     rdfs:label "SubNetwork.setOfMcc" ;
     rdfs:comment """Set of Mobile Country Code (MCC).
 The MCC uniquely identifies the country of domicile
@@ -1521,10 +1570,10 @@ See clause 2.3 of 3GPP TS 23.003 for MCC allocation principles.
 
 It shall be supported if there is more than one value in setOfMcc
 of the SubNetwork. Otherwise the support is optional.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> ;
+    rdfs:domain subnet3gpp:SubNetwork ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork/supportedTraceMetrics> a rdf:Property ;
+subnet3gpp:SubNetwork.supportedTraceMetrics a rdf:Property ;
     rdfs:label "SubNetwork.supportedTraceMetrics" ;
     rdfs:comment """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -1535,49 +1584,49 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> ;
+    rdfs:domain subnet3gpp:SubNetwork ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork/userDefinedNetworkType> a rdf:Property ;
+subnet3gpp:SubNetwork.userDefinedNetworkType a rdf:Property ;
     rdfs:label "SubNetwork.userDefinedNetworkType" ;
     rdfs:comment "Textual information indicating network type, e.g. 'UTRAN'." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> ;
+    rdfs:domain subnet3gpp:SubNetwork ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork/userLabel> a rdf:Property ;
+subnet3gpp:SubNetwork.userLabel a rdf:Property ;
     rdfs:label "SubNetwork.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SubNetwork> ;
+    rdfs:domain subnet3gpp:SubNetwork ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedNotifications/id> a rdf:Property ;
+subnet3gpp:SupportedNotifications.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:SupportedNotifications.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedNotifications> ;
+    rdfs:domain subnet3gpp:SupportedNotifications ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedNotifications/notificationProtocols> a rdf:Property ;
+subnet3gpp:SupportedNotifications.notificationProtocols a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:SupportedNotifications.notificationProtocols" ;
     rdfs:comment "List of protocols supported for notifications." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedNotifications> ;
+    rdfs:domain subnet3gpp:SupportedNotifications ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedNotifications/notificationTypes> a rdf:Property ;
+subnet3gpp:SupportedNotifications.notificationTypes a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:SupportedNotifications.notificationTypes" ;
     rdfs:comment "List of notification types supported by the MnS producer" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedNotifications> ;
+    rdfs:domain subnet3gpp:SupportedNotifications ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
+subnet3gpp:SupportedPerfMetricGroups.granularityPeriods a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups> ;
+    rdfs:domain subnet3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
+subnet3gpp:SupportedPerfMetricGroups.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -1592,91 +1641,91 @@ definitions template as the component designated with e).
 
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups> ;
+    rdfs:domain subnet3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
+subnet3gpp:SupportedPerfMetricGroups.reportingMethods a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:SupportedPerfMetricGroups.reportingMethods" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups> ;
+    rdfs:domain subnet3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
+subnet3gpp:SupportedPerfMetricGroups.reportingPeriods a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/SupportedPerfMetricGroups> ;
+    rdfs:domain subnet3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor/administrativeState> a rdf:Property ;
+subnet3gpp:ThresholdMonitor.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:ThresholdMonitor.administrativeState" ;
     rdfs:comment "Enables or disables the ThresholdMonitor." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor> ;
+    rdfs:domain subnet3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor/id> a rdf:Property ;
+subnet3gpp:ThresholdMonitor.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:ThresholdMonitor.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor> ;
+    rdfs:domain subnet3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor/monitorGranularityPeriod> a rdf:Property ;
+subnet3gpp:ThresholdMonitor.monitorGranularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:ThresholdMonitor.monitorGranularityPeriod" ;
     rdfs:comment """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor> ;
+    rdfs:domain subnet3gpp:ThresholdMonitor ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor/objectInstances> a owl:ObjectProperty ;
+subnet3gpp:ThresholdMonitor.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:ThresholdMonitor.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor/operationalState> a rdf:Property ;
+subnet3gpp:ThresholdMonitor.operationalState a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:ThresholdMonitor.operationalState" ;
     rdfs:comment "Indicates whether the ThresholdMonitor is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor> ;
+    rdfs:domain subnet3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor/rootObjectInstances> a owl:ObjectProperty ;
+subnet3gpp:ThresholdMonitor.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:ThresholdMonitor.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain subnet3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor/thresholdInfoList> a owl:ObjectProperty ;
+subnet3gpp:ThresholdMonitor.thresholdInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:ThresholdMonitor.thresholdInfoList" ;
     rdfs:comment "List of threshold info." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/ThresholdMonitor> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    rdfs:domain subnet3gpp:ThresholdMonitor ;
+    rdfs:range meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/id> a rdf:Property ;
+subnet3gpp:TraceJob.id a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
+    rdfs:domain subnet3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/jobId> a rdf:Property ;
+subnet3gpp:TraceJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.jobId" ;
     rdfs:comment "Identifier of a TraceJob" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
+    rdfs:domain subnet3gpp:TraceJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/jobType> a rdf:Property ;
+subnet3gpp:TraceJob.jobType a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.jobType" ;
     rdfs:comment """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
+    rdfs:domain subnet3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/listOfTraceMetrics> a rdf:Property ;
+subnet3gpp:TraceJob.listOfTraceMetrics a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.listOfTraceMetrics" ;
     rdfs:comment """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -1686,10 +1735,10 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
+    rdfs:domain subnet3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/mdtConfig> a owl:ObjectProperty ;
+subnet3gpp:TraceJob.mdtConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.mdtConfig" ;
     rdfs:comment """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
@@ -1712,71 +1761,72 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> .
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
+    rdfs:domain subnet3gpp:TraceJob ;
+    rdfs:range trace3gpp:MdtConfig .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/nPNTarget> a owl:ObjectProperty ;
+subnet3gpp:TraceJob.nPNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.nPNTarget" ;
     rdfs:comment """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
+    rdfs:domain subnet3gpp:TraceJob ;
+    rdfs:range types3gpp:NpnId .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/pLMNTarget> a owl:ObjectProperty ;
+subnet3gpp:TraceJob.pLMNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-subnetwork/pLMNTarget> .
+    rdfs:domain subnet3gpp:TraceJob ;
+    rdfs:range subnet3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/rrcReportType> a rdf:Property ;
+subnet3gpp:TraceJob.rrcReportType a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.rrcReportType" ;
     rdfs:comment "Specifies the RRC reports requested. " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
+    rdfs:domain subnet3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/traceCollectionEntityIPAddress> a rdf:Property ;
+subnet3gpp:TraceJob.traceCollectionEntityIPAddress a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.traceCollectionEntityIPAddress" ;
     rdfs:comment """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
+    rdfs:domain subnet3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/traceConfig> a owl:ObjectProperty ;
+subnet3gpp:TraceJob.traceConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.traceConfig" ;
     rdfs:comment "Trace config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> .
+    rdfs:domain subnet3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceConfig .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/traceReference> a owl:ObjectProperty ;
+subnet3gpp:TraceJob.traceReference a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.traceReference" ;
     rdfs:comment """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
 Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+    rdfs:domain subnet3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceReference .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/traceReportingConsumerUri> a rdf:Property ;
+subnet3gpp:TraceJob.traceReportingConsumerUri a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.traceReportingConsumerUri" ;
     rdfs:comment """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
+    rdfs:domain subnet3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/traceReportingFormat> a rdf:Property ;
+subnet3gpp:TraceJob.traceReportingFormat a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.traceReportingFormat" ;
     rdfs:comment """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
+    rdfs:domain subnet3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/traceTarget> a owl:ObjectProperty ;
+subnet3gpp:TraceJob.traceTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1784,26 +1834,26 @@ Trace, MDT, and 5GC UE level measurements collection.
 In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-subnetwork/traceTarget> .
+    rdfs:domain subnet3gpp:TraceJob ;
+    rdfs:range subnet3gpp:traceTarget .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob/ueCoreMeasConfig> a owl:ObjectProperty ;
+subnet3gpp:TraceJob.ueCoreMeasConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-common-subnetwork:TraceJob.ueCoreMeasConfig" ;
     rdfs:comment "5GC UE level measurements config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> .
+    rdfs:domain subnet3gpp:TraceJob ;
+    rdfs:range trace3gpp:UECoreMeasConfig .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/pLMNTarget/mcc> a rdf:Property ;
+subnet3gpp:pLMNTarget.mcc a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:pLMNTarget.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/pLMNTarget> ;
+    rdfs:domain subnet3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/pLMNTarget/mnc> a rdf:Property ;
+subnet3gpp:pLMNTarget.mnc a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:pLMNTarget.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/pLMNTarget> ;
+    rdfs:domain subnet3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/traceTarget/traceTargetType> a rdf:Property ;
+subnet3gpp:traceTarget.traceTargetType a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:traceTarget.traceTargetType" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1864,13 +1914,13 @@ the targetIdType shall be able to carry the corresponding
 Measured UE Identifier as defined by the bullet g) of the 5GC UE
 level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/traceTarget> ;
+    rdfs:domain subnet3gpp:traceTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-subnetwork/traceTarget/traceTargetValueList> a rdf:Property ;
+subnet3gpp:traceTarget.traceTargetValueList a rdf:Property ;
     rdfs:label "_3gpp-common-subnetwork:traceTarget.traceTargetValueList" ;
     rdfs:comment """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-subnetwork/traceTarget> ;
+    rdfs:domain subnet3gpp:traceTarget ;
     rdfs:range xsd:string .
 

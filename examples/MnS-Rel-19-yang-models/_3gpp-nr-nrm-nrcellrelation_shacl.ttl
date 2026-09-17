@@ -1,42 +1,34 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix nrcellrel3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrcellrelation#> .
+@prefix nrcellrel3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-nrcellrelation#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation> a owl:Ontology ;
-    rdfs:label "_3gpp-nr-nrm-nrcellrelation" ;
-    dcterms:description """Defines the YANG mapping of the NRCellRelation Information
-Object Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
-    dcterms:title "_3gpp-nr-nrm-nrcellrelation" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelationShape> a sh:NodeShape ;
+nrcellrel3gpp-shapes:NRCellRelation a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/id> ],
+            sh:path nrcellrel3gpp:NRCellRelation.id ],
         [ sh:datatype xsd:unsignedLong ;
             sh:description """Target NR Cell Identifier. It consists of NR Cell
 Identifier (NCI) and Physical Cell Identifier of the target NR cell
 (nRPCI).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/nRTCI> ],
+            sh:path nrcellrel3gpp:NRCellRelation.nRTCI ],
         [ sh:datatype xsd:boolean ;
             sh:description "True if the ANR function in the node is allowed to remove this relation." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isRemoveAllowed> ],
+            sh:path nrcellrel3gpp:NRCellRelation.isRemoveAllowed ],
         [ sh:datatype xsd:boolean ;
             sh:description "True if handovers are allowed over this relation." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isHOAllowed> ],
+            sh:path nrcellrel3gpp:NRCellRelation.isHOAllowed ],
         [ sh:description """Indicates whether the adjacent cell
 provides no, partial or full coverage for the parent cell
 instance. Adjacent cells with this attribute equal to FULL are
@@ -48,41 +40,76 @@ cells to take over the coverage when the original cell is about to be
 changed to energy saving state.""" ;
             sh:in ( "FULL" "NO" "PARTIAL" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isESCoveredBy> ],
+            sh:path nrcellrel3gpp:NRCellRelation.isESCoveredBy ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This indicates if EN-DC is allowed or prohibited.
+If TRUE, the target cell is allowed to be used for EN-DC. The target
+cell is referenced by the NRCellRelation that contains this isENDCAllowed.
+If FALSE, EN-DC shall not be allowed.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path nrcellrel3gpp:NRCellRelation.isENDCAllowed ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This indicates if mobility load balancing is allowed or
+prohibited from source cell to target cell.
+If TRUE, load balancing is allowed from source cell to target cell.
+The source cell is identified by the name-containing NRCellCU of the
+NRCellRelation that contains the isMLBAllowed. The target cell is
+referenced by the NRCellRelation that contains this isLBAllowed. In
+case of isHOAllowed is FALSE, mobility load balancing is prohibited by
+handover from source cell to target cell.
+If FALSE, load balancing shall be prohibited from source cell to target
+cell.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path nrcellrel3gpp:NRCellRelation.isMLBAllowed ],
         [ sh:datatype xsd:byte ;
             sh:description "Offset value of rsrpOffsetSSB." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrpOffsetSsb> ],
+            sh:path nrcellrel3gpp:NRCellRelation.rsrpOffsetSsb ],
         [ sh:datatype xsd:byte ;
             sh:description "Offset value of rsrqOffsetSSB." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrqOffsetSsb> ],
+            sh:path nrcellrel3gpp:NRCellRelation.rsrqOffsetSsb ],
         [ sh:datatype xsd:byte ;
             sh:description "Offset value of sinrOffsetSSB." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/sinrOffsetSsb> ],
+            sh:path nrcellrel3gpp:NRCellRelation.sinrOffsetSsb ],
         [ sh:datatype xsd:byte ;
             sh:description "Offset value of rsrpOffsetCSI-RS." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrpOffsetCsiRs> ],
+            sh:path nrcellrel3gpp:NRCellRelation.rsrpOffsetCsiRs ],
         [ sh:datatype xsd:byte ;
             sh:description "Offset value of rsrqOffsetCSI-RS." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrqOffsetCsiRs> ],
+            sh:path nrcellrel3gpp:NRCellRelation.rsrqOffsetCsiRs ],
         [ sh:datatype xsd:byte ;
             sh:description "Offset value of sinrOffsetCSI-RS." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/sinrOffsetCsiRs> ],
+            sh:path nrcellrel3gpp:NRCellRelation.sinrOffsetCsiRs ],
         [ sh:description "Reference to a corresponding NRFreqRelation instance." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/nRFreqRelationRef> ;
+            sh:path nrcellrel3gpp:NRCellRelation.nRFreqRelationRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """Reference to an adjacent NR cell (NRCellCU or
 ExternalNRCellCU).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/adjacentNRCellRef> ;
+            sh:path nrcellrel3gpp:NRCellRelation.adjacentNRCellRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> .
+    sh:targetClass nrcellrel3gpp:NRCellRelation .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrcellrelation> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-nrcellrelation" ;
+    dcterms:description """Defines the YANG mapping of the NRCellRelation Information
+Object Class (IOC) that is part of the NR Network Resource Model (NRM).
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-nrcellrelation" ;
+    owl:versionInfo "revision 2026-05-19 (CR-1702)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-nrcellrelation" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation> .
 

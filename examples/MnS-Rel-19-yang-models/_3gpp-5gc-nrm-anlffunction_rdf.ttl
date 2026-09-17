@@ -1,15 +1,16 @@
+@prefix anlf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-anlffunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> a rdfs:Class ;
+anlf3gpp:AnLFFunction a rdfs:Class ;
     rdfs:label "AnLFFunction" ;
     rdfs:comment "5G Core AnLF contained by NWDAF" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-anlffunction> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-anlffunction" ;
     dcterms:description """This IOC represents the AnLF function in 5GC.
 For more information about the AnLF, see 3GPP TS 23.288.
@@ -19,33 +20,35 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-anlffunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-anlffunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
+anlf3gpp:AnLFFunction.aIMLInferenceFunctionRefList a owl:ObjectProperty ;
     rdfs:label "AnLFFunction.aIMLInferenceFunctionRefList" ;
     rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction
 (See TS 28.105) .""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
-    nrm:isReference true .
+    rdfs:domain anlf3gpp:AnLFFunction ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/activationStatus> a rdf:Property ;
+anlf3gpp:AnLFFunction.activationStatus a rdf:Property ;
     rdfs:label "AnLFFunction.activationStatus" ;
     rdfs:comment "It indicates the activation status of the AnLF" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
+    rdfs:domain anlf3gpp:AnLFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/id> a rdf:Property ;
+anlf3gpp:AnLFFunction.id a rdf:Property ;
     rdfs:label "AnLFFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
+    rdfs:domain anlf3gpp:AnLFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/mLModelRefList> a owl:ObjectProperty ;
+anlf3gpp:AnLFFunction.mLModelRefList a owl:ObjectProperty ;
     rdfs:label "AnLFFunction.mLModelRefList" ;
     rdfs:comment """This attribute holds a DN list of MLModel ¨
 (See TS 28.105).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> ;
-    nrm:isReference true .
+    rdfs:domain anlf3gpp:AnLFFunction ;
+    y2r:isReference true .
 

@@ -1,8 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix inet: <https://semantics.ericsson.com/yang/ietf-inet-types#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/ietf-inet-types> a owl:Ontology ;
     rdfs:label "ietf-inet-types" ;
     dcterms:description """This module contains a collection of generally useful derived
 YANG data types for Internet addresses and related things.
@@ -31,9 +33,11 @@ WG List:  <mailto:netmod@ietf.org>
 
 Editor:   Juergen Schoenwaelder
           <mailto:jschoenwaelder@constructor.university>""" ;
-    owl:versionInfo "revision 2025-06-23 (RFC XXXX: Common YANG Data Types)" .
+    owl:versionInfo "revision 2025-06-23 (RFC XXXX: Common YANG Data Types)" ;
+    y2r:yangModuleName "ietf-inet-types" ;
+    y2r:yangNamespace <urn:ietf:params:xml:ns:yang:ietf-inet-types> .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/as-number> a rdfs:Datatype ;
+inet:as-number a rdfs:Datatype ;
     rdfs:label "as-number" ;
     rdfs:comment """The as-number type represents autonomous system numbers
 which identify an Autonomous System (AS).  An AS is a set
@@ -54,7 +58,7 @@ In the value set and its semantics, this type is equivalent
 to the InetAutonomousSystemNumber textual convention of
 the SMIv2.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/domain-name> a rdfs:Datatype ;
+inet:domain-name a rdfs:Datatype ;
     rdfs:label "domain-name" ;
     rdfs:comment """The domain-name type represents a DNS domain name.  The
 name SHOULD be fully qualified whenever possible. This
@@ -90,7 +94,7 @@ Domain-name values use the US-ASCII encoding.  Their canonical
 format uses lowercase US-ASCII characters.  Internationalized
 domain names MUST be A-labels as per RFC 5890.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/dscp> a rdfs:Datatype ;
+inet:dscp a rdfs:Datatype ;
     rdfs:label "dscp" ;
     rdfs:comment """The dscp type represents a Differentiated Services Code Point
 that may be used for marking packets in a traffic stream.
@@ -98,7 +102,7 @@ that may be used for marking packets in a traffic stream.
 In the value set and its semantics, this type is equivalent
 to the Dscp textual convention of the SMIv2.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/email-address> a rdfs:Datatype ;
+inet:email-address a rdfs:Datatype ;
     rdfs:label "email-address" ;
     rdfs:comment """The email-address type represents an internationalized
 email address.
@@ -116,38 +120,38 @@ The domain part may use both A-labels and U-labels
 uses lowercase characters and U-labels (RFC 5890) where
 applicable.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/host> a rdfs:Datatype ;
+inet:host a rdfs:Datatype ;
     rdfs:label "host" ;
     rdfs:comment """The host type represents either an IP address or a (fully
 qualified) host name.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/host-name> a rdfs:Datatype ;
+inet:host-name a rdfs:Datatype ;
     rdfs:label "host-name" ;
     rdfs:comment """The host-name type represents (fully qualified) host names.
 Host names must be at least two characters long (see RFC 952)
 and they are restricted to labels consisting of letters, digits
 and hyphens separated by dots (see RFC1123 and RFC 952).""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ip-address> a rdfs:Datatype ;
+inet:ip-address a rdfs:Datatype ;
     rdfs:label "ip-address" ;
     rdfs:comment """The ip-address type represents an IP address and is IP
 version neutral.  The format of the textual representation
 implies the IP version.  This type supports scoped addresses
 by allowing zone identifiers in the address format.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ip-address-and-prefix> a rdfs:Datatype ;
+inet:ip-address-and-prefix a rdfs:Datatype ;
     rdfs:label "ip-address-and-prefix" ;
     rdfs:comment """The ip-address-and-prefix type represents an IP address and
 prefix and is IP version neutral.  The format of the textual
 representations implies the IP version.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ip-address-link-local> a rdfs:Datatype ;
+inet:ip-address-link-local a rdfs:Datatype ;
     rdfs:label "ip-address-link-local" ;
     rdfs:comment """The ip-address-link-local type represents a link-local IP
 address and is IP version neutral. The format of the textual
 representation implies the IP version.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ip-address-no-zone> a rdfs:Datatype ;
+inet:ip-address-no-zone a rdfs:Datatype ;
     rdfs:label "ip-address-no-zone" ;
     rdfs:comment """The ip-address-no-zone type represents an IP address and is
 IP version neutral.  The format of the textual representation
@@ -155,20 +159,20 @@ implies the IP version.  This type does not support scoped
 addresses since it does not allow zone identifiers in the
 address format.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ip-prefix> a rdfs:Datatype ;
+inet:ip-prefix a rdfs:Datatype ;
     rdfs:label "ip-prefix" ;
     rdfs:comment """The ip-prefix type represents an IP prefix and is IP
 version neutral.  The format of the textual representations
 implies the IP version.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ip-version> a rdfs:Datatype ;
+inet:ip-version a rdfs:Datatype ;
     rdfs:label "ip-version" ;
     rdfs:comment """This value represents the version of the IP protocol.
 
 In the value set and its semantics, this type is equivalent
 to the InetVersion textual convention of the SMIv2.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv4-address> a rdfs:Datatype ;
+inet:ipv4-address a rdfs:Datatype ;
     rdfs:label "ipv4-address" ;
     rdfs:comment """The ipv4-address type represents an IPv4 address in
 dotted-quad notation.  The IPv4 address may include a zone
@@ -187,7 +191,7 @@ zone of the device will be used.
 The canonical format for the zone index is the numerical
 format""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv4-address-and-prefix> a rdfs:Datatype ;
+inet:ipv4-address-and-prefix a rdfs:Datatype ;
     rdfs:label "ipv4-address-and-prefix" ;
     rdfs:comment """The ipv4-address-and-prefix type represents an IPv4
 address and an associated IPv4 prefix.
@@ -198,19 +202,19 @@ A prefix length value of n corresponds to an IP address
 mask that has n contiguous 1-bits from the most
 significant bit (MSB) and all other bits set to 0.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv4-address-link-local> a rdfs:Datatype ;
+inet:ipv4-address-link-local a rdfs:Datatype ;
     rdfs:label "ipv4-address-link-local" ;
     rdfs:comment """A link-local IPv4 address in the prefix 169.254.0.0/16 as
 defined in section 2.1. of RFC 3927.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv4-address-no-zone> a rdfs:Datatype ;
+inet:ipv4-address-no-zone a rdfs:Datatype ;
     rdfs:label "ipv4-address-no-zone" ;
     rdfs:comment """An IPv4 address without a zone index.  This type, derived
 from the type ipv4-address, may be used in situations where
 the zone is known from the context and no zone index is
 needed.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv4-prefix> a rdfs:Datatype ;
+inet:ipv4-prefix a rdfs:Datatype ;
     rdfs:label "ipv4-prefix" ;
     rdfs:comment """The ipv4-prefix type represents an IPv4 prefix.
 The prefix length is given by the number following the
@@ -230,7 +234,7 @@ which requires non-prefix bits to be set to zero. This means
 that 192.0.2.1/24 must be accepted as a valid value but it
 will be converted into the canonical format 192.0.2.0/24.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv6-address> a rdfs:Datatype ;
+inet:ipv6-address a rdfs:Datatype ;
     rdfs:label "ipv6-address" ;
     rdfs:comment """The ipv6-address type represents an IPv6 address in full,
 mixed, shortened, and shortened-mixed notation.  The IPv6
@@ -251,7 +255,7 @@ representation defined in Section 4 of RFC 5952.  The
 canonical format for the zone index is the numerical
 format as described in Section 11.2 of RFC 4007.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv6-address-and-prefix> a rdfs:Datatype ;
+inet:ipv6-address-and-prefix a rdfs:Datatype ;
     rdfs:label "ipv6-address-and-prefix" ;
     rdfs:comment """The ipv6-address-and-prefix type represents an IPv6
 address and an associated IPv6 prefix.
@@ -265,19 +269,19 @@ significant bit (MSB) and all other bits set to 0.
 The canonical format requires that the IPv6 address is
 represented as defined in Section 4 of RFC 5952.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv6-address-link-local> a rdfs:Datatype ;
+inet:ipv6-address-link-local a rdfs:Datatype ;
     rdfs:label "ipv6-address-link-local" ;
     rdfs:comment """A link-local IPv6 address in the prefix fe80::/10 as defined
 in section 2.5.6. of RFC 4291.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv6-address-no-zone> a rdfs:Datatype ;
+inet:ipv6-address-no-zone a rdfs:Datatype ;
     rdfs:label "ipv6-address-no-zone" ;
     rdfs:comment """An IPv6 address without a zone index.  This type, derived
 from the type ipv6-address, may be used in situations where
 the zone is known from the context and no zone index is
 needed.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv6-flow-label> a rdfs:Datatype ;
+inet:ipv6-flow-label a rdfs:Datatype ;
     rdfs:label "ipv6-flow-label" ;
     rdfs:comment """The ipv6-flow-label type represents the flow identifier or
 Flow Label in an IPv6 packet header that may be used to
@@ -286,7 +290,7 @@ discriminate traffic flows.
 In the value set and its semantics, this type is equivalent
 to the IPv6FlowLabel textual convention of the SMIv2.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/ipv6-prefix> a rdfs:Datatype ;
+inet:ipv6-prefix a rdfs:Datatype ;
     rdfs:label "ipv6-prefix" ;
     rdfs:comment """The ipv6-prefix type represents an IPv6 prefix.
 The prefix length is given by the number following the
@@ -308,7 +312,7 @@ which requires non-prefix bits to be set to zero. This means
 that 2001:db8::1/64 must be accepted as a valid value but it
 will be converted into the canonical format 2001:db8::/64.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/port-number> a rdfs:Datatype ;
+inet:port-number a rdfs:Datatype ;
     rdfs:label "port-number" ;
     rdfs:comment """The port-number type represents a 16-bit port number of an
 Internet transport-layer protocol such as UDP, TCP, DCCP, or
@@ -324,7 +328,7 @@ be excluded by subtyping the port-number type.
 In the value set and its semantics, this type is equivalent
 to the InetPortNumber textual convention of the SMIv2.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/protocol-number> a rdfs:Datatype ;
+inet:protocol-number a rdfs:Datatype ;
     rdfs:label "protocol-number" ;
     rdfs:comment """The protocol-number type represents an 8-bit Internet
 protocol number, carried in the 'protocol' field of the
@@ -334,7 +338,7 @@ header.
 Protocol numbers are assigned by IANA. The current list of
 all assignments is available from <https://www.iana.org/>.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/upper-layer-protocol-number> a rdfs:Datatype ;
+inet:upper-layer-protocol-number a rdfs:Datatype ;
     rdfs:label "upper-layer-protocol-number" ;
     rdfs:comment """The upper-layer-protocol-number represents the upper-layer
 protocol number carried in an IP packet. For IPv6 packets
@@ -342,7 +346,7 @@ with extension headers, this is the protocol number carried
 in the last 'next header' field of the chain of IPv6 extension
 headers.""" .
 
-<urn:ietf:params:xml:ns:yang:ietf-inet-types/uri> a rdfs:Datatype ;
+inet:uri a rdfs:Datatype ;
     rdfs:label "uri" ;
     rdfs:comment """The uri type represents a Uniform Resource Identifier
 (URI) as defined by the rule 'URI' in RFC 3986.

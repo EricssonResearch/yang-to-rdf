@@ -1,42 +1,33 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix operdu3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-operatordu#> .
+@prefix operdu3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-operatordu#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-operatordu> a owl:Ontology ;
-    rdfs:label "_3gpp-nr-nrm-operatordu" ;
-    dcterms:description """Defines the YANG mapping of the OperatorDU Information Object
-Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
-    dcterms:title "_3gpp-nr-nrm-operatordu" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1CShape> a sh:NodeShape ;
+operdu3gpp-shapes:EP_F1C a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1C/id> ],
+            sh:path operdu3gpp:EP_F1C.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1C/userLabel> ],
+            sh:path operdu3gpp:EP_F1C.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1C/farEndEntity> ;
+            sh:path operdu3gpp:EP_F1C.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1C/remoteAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/SupportedPerfMetricGroups> ;
+            sh:path operdu3gpp:EP_F1C.remoteAddress ],
+        [ sh:class operdu3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -44,39 +35,39 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1C/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/localAddress> ;
+            sh:path operdu3gpp:EP_F1C.SupportedPerfMetricGroups ],
+        [ sh:class operdu3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1C/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1C> .
+            sh:path operdu3gpp:EP_F1C.localAddress ] ;
+    sh:targetClass operdu3gpp:EP_F1C .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1UShape> a sh:NodeShape ;
+operdu3gpp-shapes:EP_F1U a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1U/id> ],
+            sh:path operdu3gpp:EP_F1U.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1U/userLabel> ],
+            sh:path operdu3gpp:EP_F1U.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1U/farEndEntity> ;
+            sh:path operdu3gpp:EP_F1U.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1U/remoteAddress> ],
+            sh:path operdu3gpp:EP_F1U.remoteAddress ],
         [ sh:description """This parameter specifies a list of transport level EPs
 associated with the application level EP (i.e. EP_N3 or EP_NgU or
 EP_F1U) or network slice subnet.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1U/epTransportRef> ;
+            sh:path operdu3gpp:EP_F1U.epTransportRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/SupportedPerfMetricGroups> ;
+        [ sh:class operdu3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -84,45 +75,45 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1U/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/localAddress> ;
+            sh:path operdu3gpp:EP_F1U.SupportedPerfMetricGroups ],
+        [ sh:class operdu3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1U/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/EP_F1U> .
+            sh:path operdu3gpp:EP_F1U.localAddress ] ;
+    sh:targetClass operdu3gpp:EP_F1U .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/OperatorDUShape> a sh:NodeShape ;
+operdu3gpp-shapes:OperatorDU a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/OperatorDU/id> ],
+            sh:path operdu3gpp:OperatorDU.id ],
         [ sh:datatype xsd:long ;
             sh:description """Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)
 is part of the NR Cell Identifier (NCI) of the gNB cells.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/OperatorDU/gNBId> ],
+            sh:path operdu3gpp:OperatorDU.gNBId ],
         [ sh:datatype xsd:int ;
             sh:description "Indicates the number of bits for encoding the gNB ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/OperatorDU/gNBIdLength> ],
+            sh:path operdu3gpp:OperatorDU.gNBIdLength ],
         [ sh:description """DN of the Configurable5QISet that the OperatorDU
 supports (is associated to).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/OperatorDU/configurable5QISetRef> ;
+            sh:path operdu3gpp:OperatorDU.configurable5QISetRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """DN of the Dynamic5QISet that the OperatorDU
 supports (is associated to).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/OperatorDU/dynamic5QISetRef> ;
+            sh:path operdu3gpp:OperatorDU.dynamic5QISetRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/OperatorDU> .
+    sh:targetClass operdu3gpp:OperatorDU .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/SupportedPerfMetricGroupsShape> a sh:NodeShape ;
+operdu3gpp-shapes:SupportedPerfMetricGroups a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -138,26 +129,40 @@ definitions template as the component designated with e).
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/SupportedPerfMetricGroups/performanceMetrics> ],
+            sh:path operdu3gpp:SupportedPerfMetricGroups.performanceMetrics ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/SupportedPerfMetricGroups/granularityPeriods> ],
+            sh:path operdu3gpp:SupportedPerfMetricGroups.granularityPeriods ],
         [ sh:in ( "FILE_BASED_LOC_SET_BY_PRODUCER" "FILE_BASED_LOC_SET_BY_CONSUMER" "STREAM_BASED" ) ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/SupportedPerfMetricGroups/reportingMethods> ],
+            sh:path operdu3gpp:SupportedPerfMetricGroups.reportingMethods ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/SupportedPerfMetricGroups/reportingPeriods> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/SupportedPerfMetricGroups> .
+            sh:path operdu3gpp:SupportedPerfMetricGroups.reportingPeriods ] ;
+    sh:targetClass operdu3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/localAddressShape> a sh:NodeShape ;
+operdu3gpp-shapes:localAddress a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/localAddress/ipAddress> ],
+            sh:path operdu3gpp:localAddress.ipAddress ],
         [ sh:datatype xsd:unsignedShort ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/localAddress/vlanId> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu/localAddress> .
+            sh:path operdu3gpp:localAddress.vlanId ] ;
+    sh:targetClass operdu3gpp:localAddress .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-operatordu> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-operatordu" ;
+    dcterms:description """Defines the YANG mapping of the OperatorDU Information Object
+Class (IOC) that is part of the NR Network Resource Model (NRM).
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-operatordu" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-operatordu" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-operatordu> .
 

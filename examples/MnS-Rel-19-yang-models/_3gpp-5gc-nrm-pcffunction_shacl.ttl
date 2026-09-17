@@ -1,29 +1,27 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
+@prefix mnfp3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-managed-nfprofile#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pcf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-pcffunction#> .
+@prefix pcf3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-5gc-nrm-pcffunction#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
+@prefix types5g3gpp: <https://semantics.ericsson.com/yang/_3gpp-5g-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction> a owl:Ontology ;
-    rdfs:label "_3gpp-5gc-nrm-pcffunction" ;
-    dcterms:description """This IOC represents the PCF function in 5GC. For more
-information about the PCF, see 3GPP TS 23.501.
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3gpp SA5" ;
-    dcterms:source "3GPP TS 28.541" ;
-    dcterms:title "_3gpp-5gc-nrm-pcffunction" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/FileShape> a sh:NodeShape ;
+pcf3gpp-shapes:File a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/id> ],
+            sh:path pcf3gpp:File.id ],
         [ sh:datatype xsd:string ;
             sh:description """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -38,140 +36,140 @@ Examples:
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/fileLocation> ;
+            sh:path pcf3gpp:File.fileLocation ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/jobId> ],
+            sh:path pcf3gpp:File.jobId ],
         [ sh:datatype xsd:base64Binary ;
             sh:description """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/fileContent> ],
+            sh:path pcf3gpp:File.fileContent ],
         [ sh:datatype xsd:string ;
             sh:description """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/fileCompression> ],
+            sh:path pcf3gpp:File.fileCompression ],
         [ sh:datatype xsd:unsignedLong ;
             sh:description "Size of the file" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/fileSize> ],
+            sh:path pcf3gpp:File.fileSize ],
         [ sh:description "Type of the management data stored in the file." ;
             sh:in ( "PERFORMANCE" "TRACE" "ANALYTICS" "PROPRIETARY" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/fileDataType> ],
+            sh:path pcf3gpp:File.fileDataType ],
         [ sh:datatype xsd:string ;
             sh:description """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/fileFormat> ],
+            sh:path pcf3gpp:File.fileFormat ],
         [ sh:datatype xsd:string ;
             sh:description """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/fileReadyTime> ;
+            sh:path pcf3gpp:File.fileReadyTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:description "Date and time after which the file may be deleted." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/fileExpirationTime> ;
+            sh:path pcf3gpp:File.fileExpirationTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File/jobRef> ;
+            sh:path pcf3gpp:File.jobRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/File> .
+    sh:targetClass pcf3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/FilesShape> a sh:NodeShape ;
+pcf3gpp-shapes:Files a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/Files/id> ],
+            sh:path pcf3gpp:Files.id ],
         [ sh:datatype xsd:unsignedLong ;
             sh:description "Number of files in a file collection." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/Files/numberOfFiles> ],
+            sh:path pcf3gpp:Files.numberOfFiles ],
         [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/Files/jobRef> ;
+            sh:path pcf3gpp:Files.jobRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/Files/jobId> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/Files> .
+            sh:path pcf3gpp:Files.jobId ] ;
+    sh:targetClass pcf3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFServiceShape> a sh:NodeShape ;
+pcf3gpp-shapes:ManagedNFService a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/id> ],
+            sh:path pcf3gpp:ManagedNFService.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/userLabel> ],
+            sh:path pcf3gpp:ManagedNFService.userLabel ],
         [ sh:datatype xsd:string ;
             sh:description """The type of the managed NF service instance
 The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/nFServiceType> ],
+            sh:path pcf3gpp:ManagedNFService.nFServiceType ],
         [ sh:description "Permission to use or prohibition against using the instance" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/administrativeState> ],
+            sh:path pcf3gpp:ManagedNFService.administrativeState ],
         [ sh:description "Describes whether the resource is installed and working" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/operationalState> ],
+            sh:path pcf3gpp:ManagedNFService.operationalState ],
         [ sh:description """Describes whether the resource is actively in use at a
 specific instant, and if so, whether or not it has spare
 capacity for additional users.""" ;
             sh:in ( "IDLE" "ACTIVE" "BUSY" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/usageState> ],
+            sh:path pcf3gpp:ManagedNFService.usageState ],
         [ sh:in ( "REGISTERED" "DEREGISTERED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/registrationState> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> ;
+            sh:path pcf3gpp:ManagedNFService.registrationState ],
+        [ sh:class types3gpp:SAP ;
             sh:description "The service access point of the managed NF service instance" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/sAP> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+            sh:path pcf3gpp:ManagedNFService.sAP ],
+        [ sh:class mf3gpp:Operation ;
             sh:description """Set of operations supported by the managed NF
 service instance""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService/operations> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ManagedNFService> .
+            sh:path pcf3gpp:ManagedNFService.operations ] ;
+    sh:targetClass pcf3gpp:ManagedNFService .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunctionShape> a sh:NodeShape ;
+pcf3gpp-shapes:PCFFunction a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/id> ],
+            sh:path pcf3gpp:PCFFunction.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/userLabel> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/SupportedPerfMetricGroups> ;
+            sh:path pcf3gpp:PCFFunction.userLabel ],
+        [ sh:class pcf3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -179,39 +177,39 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNIdList> ;
+            sh:path pcf3gpp:PCFFunction.SupportedPerfMetricGroups ],
+        [ sh:class pcf3gpp:pLMNIdList ;
             sh:description """List of at most six entries of PLMN Identifiers, but at
 least one (the primary PLMN Id).
 The PLMN Identifier is composed of a Mobile Country Code (MCC) and a
 Mobile Network Code (MNC).""" ;
             sh:maxCount 6 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/pLMNIdList> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/sNSSAIList> ;
+            sh:path pcf3gpp:PCFFunction.pLMNIdList ],
+        [ sh:class pcf3gpp:sNSSAIList ;
             sh:description """List of S-NSSAIs the managed object is capable of supporting.
 (Single Network Slice Selection Assistance Information)
 An S-NSSAI has an SST (Slice/Service type) and an optional SD
 (Slice Differentiator) field.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/sNSSAIList> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> ;
+            sh:path pcf3gpp:PCFFunction.sNSSAIList ],
+        [ sh:class mnfp3gpp:ManagedNFProfile ;
             sh:description "Profile definition of a Managed NF (See TS 23.501)" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/managedNFProfile> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/commModelList> ;
+            sh:path pcf3gpp:PCFFunction.managedNFProfile ],
+        [ sh:class pcf3gpp:commModelList ;
             sh:description """Specifies a list of commModel. It can be used by NF and
 NF services to interact with each other in 5G Core network """ ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/commModelList> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pcfInfo> ;
+            sh:path pcf3gpp:PCFFunction.commModelList ],
+        [ sh:class pcf3gpp:pcfInfo ;
             sh:description """This attribute represents information of a PCF NF Instance.
 Multiple pcfInfo may be allowed to define different DNN list for each
 supiranges.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/pcfInfo> ],
+            sh:path pcf3gpp:PCFFunction.pcfInfo ],
         [ sh:datatype xsd:unsignedInt ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/priorityLabel> ],
+            sh:path pcf3gpp:PCFFunction.priorityLabel ],
         [ sh:datatype xsd:string ;
             sh:description """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -222,86 +220,86 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/supportedTraceMetrics> ],
+            sh:path pcf3gpp:PCFFunction.supportedTraceMetrics ],
         [ sh:datatype xsd:string ;
             sh:description """The FQDN of the registered NF instance in the service-based
 interface.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/sBIFQDN> ;
+            sh:path pcf3gpp:PCFFunction.sBIFQDN ;
             sh:pattern "((([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.)*([a-zA-Z0-9_]([a-zA-Z0-9\\-_]){0,61})?[a-zA-Z0-9]\\.?)|\\." ],
         [ sh:datatype xsd:string ;
             sh:description """It is used to indicate the list of supported BMOs
 (Bridge Managed Objects) required for integration with TSN system.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/supportedBMOList> ],
+            sh:path pcf3gpp:PCFFunction.supportedBMOList ],
         [ sh:description """DN of the Dynamic5QISet that the PCFFunction supports
 (is associated to).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/dynamic5QISetRef> ;
+            sh:path pcf3gpp:PCFFunction.dynamic5QISetRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """DN of the Configurable5QISet that the PCFFunction supports
 (is associated to).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/configurable5QISetRef> ;
+            sh:path pcf3gpp:PCFFunction.configurable5QISetRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+        [ sh:class mf3gpp:VnfParameters ;
             sh:description """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/vnfParametersList> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+            sh:path pcf3gpp:PCFFunction.vnfParametersList ],
+        [ sh:class mf3gpp:PeeParameters ;
             sh:description """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction/peeParameterslist> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PCFFunction> .
+            sh:path pcf3gpp:PCFFunction.peeParameterslist ] ;
+    sh:targetClass pcf3gpp:PCFFunction .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJobShape> a sh:NodeShape ;
+pcf3gpp-shapes:PerfMetricJob a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/id> ],
+            sh:path pcf3gpp:PerfMetricJob.id ],
         [ sh:description "Enable or disables production of the metrics" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/administrativeState> ],
+            sh:path pcf3gpp:PerfMetricJob.administrativeState ],
         [ sh:datatype xsd:string ;
             sh:description """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/notificationRecipientAddress> ],
+            sh:path pcf3gpp:PerfMetricJob.notificationRecipientAddress ],
         [ sh:datatype xsd:string ;
             sh:description """Applicable when stream-based reporting method is
 supported.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/streamTarget> ],
+            sh:path pcf3gpp:PerfMetricJob.streamTarget ],
         [ sh:datatype xsd:string ;
             sh:description "Link to a 'Files' object." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/_linkToFiles> ],
+            sh:path pcf3gpp:PerfMetricJob._linkToFiles ],
         [ sh:description "Pointer to a Scheduler object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/schedulerRef> ;
+            sh:path pcf3gpp:PerfMetricJob.schedulerRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description "Pointer to a ConditionMonitor object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/conditionMonitorRef> ;
+            sh:path pcf3gpp:PerfMetricJob.conditionMonitorRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description "Indicates whether the PerfMetricJob is working." ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/operationalState> ],
+            sh:path pcf3gpp:PerfMetricJob.operationalState ],
         [ sh:datatype xsd:string ;
             sh:description "Id for a PerfMetricJob job." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/jobId> ],
+            sh:path pcf3gpp:PerfMetricJob.jobId ],
         [ sh:datatype xsd:string ;
             sh:description """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -315,18 +313,18 @@ the bullet e) of the measurement definition.
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/performanceMetrics> ],
+            sh:path pcf3gpp:PerfMetricJob.performanceMetrics ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/granularityPeriod> ],
-        [ sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/objectInstances> ;
+            sh:path pcf3gpp:PerfMetricJob.granularityPeriod ],
+        [ sh:path pcf3gpp:PerfMetricJob.objectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/rootObjectInstances> ;
+            sh:path pcf3gpp:PerfMetricJob.rootObjectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """For the file-based reporting method this is the time
@@ -337,127 +335,127 @@ The time-period must be a multiple of the granularityPeriod.
 Applicable when the file-based reporting method is supported.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/fileReportingPeriod> ],
+            sh:path pcf3gpp:PerfMetricJob.fileReportingPeriod ],
         [ sh:datatype xsd:string ;
             sh:description """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob/fileLocation> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/PerfMetricJob> .
+            sh:path pcf3gpp:PerfMetricJob.fileLocation ] ;
+    sh:targetClass pcf3gpp:PerfMetricJob .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapabilityShape> a sh:NodeShape ;
+pcf3gpp-shapes:ProSeCapability a sh:NodeShape ;
     sh:property [ sh:datatype xsd:boolean ;
             sh:description "Indicates support for ProSe Direct Discovery." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseDirectDiscovery> ],
+            sh:path pcf3gpp:ProSeCapability.proseDirectDiscovery ],
         [ sh:datatype xsd:boolean ;
             sh:description "Indicates support for ProSe Direct Communication." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseDirectCommunication> ],
+            sh:path pcf3gpp:ProSeCapability.proseDirectCommunication ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates support for ProSe Layer-3
 Intermediate Relay.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3IntermRelay> ],
+            sh:path pcf3gpp:ProSeCapability.proseL3IntermRelay ],
         [ sh:datatype xsd:boolean ;
             sh:description "Indicates support for ProSe Layer-3 Multihop Remote." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3MultihopRemote> ],
+            sh:path pcf3gpp:ProSeCapability.proseL3MultihopRemote ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates support for ProSe Layer-3 Network Multihop
 Relay.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3NetMultihopRelay> ],
+            sh:path pcf3gpp:ProSeCapability.proseL3NetMultihopRelay ],
         [ sh:datatype xsd:boolean ;
             sh:description "Indicates support for ProSe Layer-3 UE Multihop Relay." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3UeMultihopRelay> ],
+            sh:path pcf3gpp:ProSeCapability.proseL3UeMultihopRelay ],
         [ sh:datatype xsd:boolean ;
             sh:description "Indicates support for ProSe Layer-3 End UE Multihop." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3EndUeMultihop> ],
+            sh:path pcf3gpp:ProSeCapability.proseL3EndUeMultihop ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates support for ProSe Layer-2
 UE-to-Network Relay..""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL2UetoNetworkRelay> ],
+            sh:path pcf3gpp:ProSeCapability.proseL2UetoNetworkRelay ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates support for ProSe Layer-3
 UE-to-Network Relay.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3UetoNetworkRelay> ],
+            sh:path pcf3gpp:ProSeCapability.proseL3UetoNetworkRelay ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates support for ProSe Layer-2
 Remote UE.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL2RemoteUe> ],
+            sh:path pcf3gpp:ProSeCapability.proseL2RemoteUe ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates support for ProSe Layer-3
 Remote UE.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3RemoteUe> ],
+            sh:path pcf3gpp:ProSeCapability.proseL3RemoteUe ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates support for ProSe Layer-2
 UE-to-UE Relay.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL2UetoUeRelay> ],
+            sh:path pcf3gpp:ProSeCapability.proseL2UetoUeRelay ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates support for ProSe Layer-3
 UE-to-UE Relay.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3UetoUeRelay> ],
+            sh:path pcf3gpp:ProSeCapability.proseL3UetoUeRelay ],
         [ sh:datatype xsd:boolean ;
             sh:description "Indicates support for ProSe Layer-2 End UE." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL2EndUe> ],
+            sh:path pcf3gpp:ProSeCapability.proseL2EndUe ],
         [ sh:datatype xsd:boolean ;
             sh:description "Indicates support for ProSe Layer-3 End UE." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability/proseL3EndUe> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability> .
+            sh:path pcf3gpp:ProSeCapability.proseL3EndUe ] ;
+    sh:targetClass pcf3gpp:ProSeCapability .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/StmCtrlShape> a sh:NodeShape ;
+pcf3gpp-shapes:StmCtrl a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/StmCtrl/id> ],
+            sh:path pcf3gpp:StmCtrl.id ],
         [ sh:description """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/StmCtrl/reportingNFList> ;
+            sh:path pcf3gpp:StmCtrl.reportingNFList ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/StmCtrl/stmTargetUri> ;
+            sh:path pcf3gpp:StmCtrl.stmTargetUri ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:description """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/StmCtrl/administrativeState> ],
+            sh:path pcf3gpp:StmCtrl.administrativeState ],
         [ sh:description "It is used by STM consumer to report its working state" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/StmCtrl/operationalState> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> ;
+            sh:path pcf3gpp:StmCtrl.operationalState ],
+        [ sh:class stm3gpp:NetworkInterface ;
             sh:description """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/StmCtrl/targetInterfaceInfoList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/StmCtrl> .
+            sh:path pcf3gpp:StmCtrl.targetInterfaceInfoList ] ;
+    sh:targetClass pcf3gpp:StmCtrl .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/SupportedPerfMetricGroupsShape> a sh:NodeShape ;
+pcf3gpp-shapes:SupportedPerfMetricGroups a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -473,69 +471,69 @@ definitions template as the component designated with e).
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/SupportedPerfMetricGroups/performanceMetrics> ],
+            sh:path pcf3gpp:SupportedPerfMetricGroups.performanceMetrics ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/SupportedPerfMetricGroups/granularityPeriods> ],
+            sh:path pcf3gpp:SupportedPerfMetricGroups.granularityPeriods ],
         [ sh:in ( "FILE_BASED_LOC_SET_BY_PRODUCER" "FILE_BASED_LOC_SET_BY_CONSUMER" "STREAM_BASED" ) ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/SupportedPerfMetricGroups/reportingMethods> ],
+            sh:path pcf3gpp:SupportedPerfMetricGroups.reportingMethods ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/SupportedPerfMetricGroups/reportingPeriods> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/SupportedPerfMetricGroups> .
+            sh:path pcf3gpp:SupportedPerfMetricGroups.reportingPeriods ] ;
+    sh:targetClass pcf3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitorShape> a sh:NodeShape ;
+pcf3gpp-shapes:ThresholdMonitor a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitor/id> ],
+            sh:path pcf3gpp:ThresholdMonitor.id ],
         [ sh:description "Enables or disables the ThresholdMonitor." ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitor/administrativeState> ],
+            sh:path pcf3gpp:ThresholdMonitor.administrativeState ],
         [ sh:description "Indicates whether the ThresholdMonitor is working." ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitor/operationalState> ],
+            sh:path pcf3gpp:ThresholdMonitor.operationalState ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitor/monitorGranularityPeriod> ],
-        [ sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitor/objectInstances> ;
+            sh:path pcf3gpp:ThresholdMonitor.monitorGranularityPeriod ],
+        [ sh:path pcf3gpp:ThresholdMonitor.objectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitor/rootObjectInstances> ;
+            sh:path pcf3gpp:ThresholdMonitor.rootObjectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> ;
+        [ sh:class meas3gpp:ThresholdInfo ;
             sh:description "List of threshold info." ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitor/thresholdInfoList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ThresholdMonitor> .
+            sh:path pcf3gpp:ThresholdMonitor.thresholdInfoList ] ;
+    sh:targetClass pcf3gpp:ThresholdMonitor .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJobShape> a sh:NodeShape ;
+pcf3gpp-shapes:TraceJob a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/id> ],
+            sh:path pcf3gpp:TraceJob.id ],
         [ sh:description """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
             sh:in ( "IMMEDIATE_MDT_ONLY" "LOGGED_MDT_ONLY" "TRACE_ONLY" "IMMEDIATE_MDT_AND_TRACE" "RLF_REPORT_ONLY" "RCEF_REPORT_ONLY" "LOGGED_MBSFN_MDT" "5GC_UE_LEVEL_MEASUREMENTS_ONLY" "TRACE_AND_5GC_UE_LEVEL_MEASUREMENTS" "IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "TRACE_AND_IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "RRC_REPORT" "IMMEDIATE_MDT_AND_LOGGED_MDT" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/jobType> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/traceTarget> ;
+            sh:path pcf3gpp:TraceJob.jobType ],
+        [ sh:class pcf3gpp:traceTarget ;
             sh:description """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
 Trace, MDT, and 5GC UE level measurements collection.
@@ -543,12 +541,12 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/traceTarget> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> ;
+            sh:path pcf3gpp:TraceJob.traceTarget ],
+        [ sh:class trace3gpp:TraceConfig ;
             sh:description "Trace config" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/traceConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
+            sh:path pcf3gpp:TraceJob.traceConfig ],
+        [ sh:class trace3gpp:MdtConfig ;
             sh:description """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
 The attribute anonymizationOfMdtData specifies the level of
@@ -570,22 +568,23 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/mdtConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> ;
+            sh:path pcf3gpp:TraceJob.mdtConfig ],
+        [ sh:class trace3gpp:UECoreMeasConfig ;
             sh:description "5GC UE level measurements config" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/ueCoreMeasConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
+            sh:path pcf3gpp:TraceJob.ueCoreMeasConfig ],
+        [ sh:class types3gpp:NpnId ;
             sh:description """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/nPNTarget> ],
+            sh:path pcf3gpp:TraceJob.nPNTarget ],
         [ sh:description "Specifies the RRC reports requested. " ;
             sh:in ( "RLF_REPORT" "RCEF_REPORT" "SHR" "SPR" "MHI" "RA_REPORT" ) ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/rrcReportType> ],
+            sh:path pcf3gpp:TraceJob.rrcReportType ],
         [ sh:datatype xsd:string ;
             sh:description """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -595,34 +594,34 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/listOfTraceMetrics> ],
+            sh:path pcf3gpp:TraceJob.listOfTraceMetrics ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/traceCollectionEntityIPAddress> ],
+            sh:path pcf3gpp:TraceJob.traceCollectionEntityIPAddress ],
         [ sh:datatype xsd:string ;
             sh:description """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/traceReportingConsumerUri> ;
+            sh:path pcf3gpp:TraceJob.traceReportingConsumerUri ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a TraceJob" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/jobId> ],
+            sh:path pcf3gpp:TraceJob.jobId ],
         [ sh:description """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
             sh:in ( "FILE_BASED" "STREAMING" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/traceReportingFormat> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNTarget> ;
+            sh:path pcf3gpp:TraceJob.traceReportingFormat ],
+        [ sh:class pcf3gpp:pLMNTarget ;
             sh:description """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/pLMNTarget> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> ;
+            sh:path pcf3gpp:TraceJob.pLMNTarget ],
+        [ sh:class trace3gpp:TraceReference ;
             sh:description """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
@@ -630,95 +629,95 @@ Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob/traceReference> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/TraceJob> .
+            sh:path pcf3gpp:TraceJob.traceReference ] ;
+    sh:targetClass pcf3gpp:TraceJob .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/commModelListShape> a sh:NodeShape ;
+pcf3gpp-shapes:commModelList a sh:NodeShape ;
     sh:property [ sh:datatype xsd:unsignedShort ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/commModelList/groupId> ],
+            sh:path pcf3gpp:commModelList.groupId ],
         [ sh:in ( "DIRECT_COMMUNICATION_WO_NRF" "DIRECT_COMMUNICATION_WITH_NRF" "INDIRECT_COMMUNICATION_WO_DEDICATED_DISCOVERY" "INDIRECT_COMMUNICATION_WITH_DEDICATED_DISCOVERY" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/commModelList/commModelType> ],
-        [ sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/commModelList/targetNFServiceList> ;
+            sh:path pcf3gpp:commModelList.commModelType ],
+        [ sh:path pcf3gpp:commModelList.targetNFServiceList ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/commModelList/commModelConfiguration> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/commModelList> .
+            sh:path pcf3gpp:commModelList.commModelConfiguration ] ;
+    sh:targetClass pcf3gpp:commModelList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNIdListShape> a sh:NodeShape ;
+pcf3gpp-shapes:pLMNIdList a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNIdList/mcc> ;
+            sh:path pcf3gpp:pLMNIdList.mcc ;
             sh:pattern "[02-79][0-9][0-9]" ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNIdList/mnc> ;
+            sh:path pcf3gpp:pLMNIdList.mnc ;
             sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNIdList> .
+    sh:targetClass pcf3gpp:pLMNIdList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNTargetShape> a sh:NodeShape ;
+pcf3gpp-shapes:pLMNTarget a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNTarget/mcc> ;
+            sh:path pcf3gpp:pLMNTarget.mcc ;
             sh:pattern "[02-79][0-9][0-9]" ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNTarget/mnc> ;
+            sh:path pcf3gpp:pLMNTarget.mnc ;
             sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pLMNTarget> .
+    sh:targetClass pcf3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pcfInfoShape> a sh:NodeShape ;
+pcf3gpp-shapes:pcfInfo a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """DNNs supported by the PCF.
 If not provided, the PCF can serve any DNN.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pcfInfo/dnnList> ],
+            sh:path pcf3gpp:pcfInfo.dnnList ],
         [ sh:datatype xsd:string ;
             sh:description """This IE shall be present if the PCF supports Rx interface.
 When present, this IE shall indicate the Diameter host
 of the Rx interface for the PCF.
 Pattern: '^([A-Za-z0-9]+(-[A-Za-z0-9]+).)+[a-z]{2,}$'.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pcfInfo/rxDiamHost> ],
+            sh:path pcf3gpp:pcfInfo.rxDiamHost ],
         [ sh:datatype xsd:string ;
             sh:description """This IE shall be present if the PCF supports Rx interface.
 When present, this IE shall indicate the Diameter realm
 of the Rx interface for the PCF.
 Pattern: '^([A-Za-z0-9]+(-[A-Za-z0-9]+).)+[a-z]{2,}$'.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pcfInfo/rxDiamRealm> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/SupiRange> ;
+            sh:path pcf3gpp:pcfInfo.rxDiamRealm ],
+        [ sh:class types5g3gpp:SupiRange ;
             sh:description """List of ranges of SUPIs that can be served by
 the PCF instance. If not provided, the PCF can serve any SUPI.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pcfInfo/supiRanges> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/ProSeCapability> ;
+            sh:path pcf3gpp:pcfInfo.supiRanges ],
+        [ sh:class pcf3gpp:ProSeCapability ;
             sh:description "It indicates the supported ProSe Capability by the PCF." ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pcfInfo/proseCapability> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/pcfInfo> .
+            sh:path pcf3gpp:pcfInfo.proseCapability ] ;
+    sh:targetClass pcf3gpp:pcfInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/sNSSAIListShape> a sh:NodeShape ;
+pcf3gpp-shapes:sNSSAIList a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/sNSSAIList/sd> ;
+            sh:path pcf3gpp:sNSSAIList.sd ;
             sh:pattern "([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?" ],
         [ sh:datatype xsd:unsignedByte ;
             sh:description """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/sNSSAIList/sst> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/sNSSAIList> .
+            sh:path pcf3gpp:sNSSAIList.sst ] ;
+    sh:targetClass pcf3gpp:sNSSAIList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/traceTargetShape> a sh:NodeShape ;
+pcf3gpp-shapes:traceTarget a sh:NodeShape ;
     sh:property [ sh:description """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
 Trace, MDT, and 5GC UE level measurements collection.
@@ -780,10 +779,24 @@ level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
             sh:in ( "IMSI" "IMEI" "IMEISV" "PUBLIC_ID" "UTRAN_CELL" "E_UTRAN_CELL" "NG_RAN_CELL" "ENB" "RNC" "GNB" "SUPI" "N4_SESSION_ID" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/traceTarget/traceTargetType> ],
+            sh:path pcf3gpp:traceTarget.traceTargetType ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/traceTarget/traceTargetValueList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction/traceTarget> .
+            sh:path pcf3gpp:traceTarget.traceTargetValueList ] ;
+    sh:targetClass pcf3gpp:traceTarget .
+
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-pcffunction> a owl:Ontology ;
+    rdfs:label "_3gpp-5gc-nrm-pcffunction" ;
+    dcterms:description """This IOC represents the PCF function in 5GC. For more
+information about the PCF, see 3GPP TS 23.501.
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3gpp SA5" ;
+    dcterms:source "3GPP TS 28.541" ;
+    dcterms:title "_3gpp-5gc-nrm-pcffunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2026-03-25 (CR-1694)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-pcffunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-pcffunction> .
 

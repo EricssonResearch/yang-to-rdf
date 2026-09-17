@@ -1,15 +1,17 @@
+@prefix danrmanagementfunction3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-danrmanagementfunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> a rdfs:Class ;
+danrmanagementfunction3gpp:DANRManagementFunction a rdfs:Class ;
     rdfs:label "DANRManagementFunction" ;
     rdfs:comment """This IOC contains attributes to support the D-SON function
 of ANR Management (See clause 6.4.1.3 in TS 28.313 .""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-danrmanagementfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-danrmanagementfunction" ;
     dcterms:description """Defines the YANG mapping of the DANRManagementFunction IOC
 that is part of the NR Network Resource Model (NRM).
@@ -19,27 +21,29 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-danrmanagementfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" .
+    owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-danrmanagementfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/id> a rdf:Property ;
+danrmanagementfunction3gpp:DANRManagementFunction.id a rdf:Property ;
     rdfs:label "DANRManagementFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> ;
+    rdfs:domain danrmanagementfunction3gpp:DANRManagementFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/intersystemANRManagementSwitch> a rdf:Property ;
+danrmanagementfunction3gpp:DANRManagementFunction.intersystemANRManagementSwitch a rdf:Property ;
     rdfs:label "DANRManagementFunction.intersystemANRManagementSwitch" ;
     rdfs:comment """This attribute determines whether the inter-system ANR
 function is activated or deactivated.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> ;
+    rdfs:domain danrmanagementfunction3gpp:DANRManagementFunction ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction/intrasystemANRManagementSwitch> a rdf:Property ;
+danrmanagementfunction3gpp:DANRManagementFunction.intrasystemANRManagementSwitch a rdf:Property ;
     rdfs:label "DANRManagementFunction.intrasystemANRManagementSwitch" ;
     rdfs:comment """This attribute determines whether the intra-system ANR
 function is activated or deactivated.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-danrmanagementfunction/DANRManagementFunction> ;
+    rdfs:domain danrmanagementfunction3gpp:DANRManagementFunction ;
     rdfs:range xsd:boolean .
 

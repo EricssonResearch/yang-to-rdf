@@ -1,10 +1,12 @@
+@prefix cpcicf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cpciconfigurationfunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> a rdfs:Class ;
+cpcicf3gpp:CPCIConfigurationFunction a rdfs:Class ;
     rdfs:label "CPCIConfigurationFunction" ;
     rdfs:comment """This IOC contains attributes to support the Cross
 Domain-Centralized SON function of PCI configuration
@@ -14,7 +16,7 @@ levels of the containment tree, the CPCIConfiguration MOI at the lower
 level overrides the CPCIConfiguration MOIs at higher level(s) of the
 same containment tree.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cpciconfigurationfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-cpciconfigurationfunction" ;
     dcterms:description """Represents the CPCIConfigurationFunction Information Object
 Class(IOC) that is part of the NR Network Resource Model.
@@ -24,16 +26,18 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-cpciconfigurationfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-cpciconfigurationfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cPciConfigurationControl> a rdf:Property ;
+cpcicf3gpp:CPCIConfigurationFunction.cPciConfigurationControl a rdf:Property ;
     rdfs:label "CPCIConfigurationFunction.cPciConfigurationControl" ;
     rdfs:comment """This attribute determines whether the Centralized SON
 PCI configuration function is enabled or disabled.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> ;
+    rdfs:domain cpcicf3gpp:CPCIConfigurationFunction ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/cSonPciList> a rdf:Property ;
+cpcicf3gpp:CPCIConfigurationFunction.cSonPciList a rdf:Property ;
     rdfs:label "CPCIConfigurationFunction.cSonPciList" ;
     rdfs:comment """Holds a list of physical cell identities that can be
 assigned to the pci attribute by gNB. The assignment algorithm is not
@@ -41,14 +45,14 @@ specified.
 See TS 38.211 clause 7.4.2.1 for legal values of pci.
 This attribute shall be supported if and only if the C-SON PCI
 configuration is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> ;
+    rdfs:domain cpcicf3gpp:CPCIConfigurationFunction ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction/id> a rdf:Property ;
+cpcicf3gpp:CPCIConfigurationFunction.id a rdf:Property ;
     rdfs:label "CPCIConfigurationFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction> ;
+    rdfs:domain cpcicf3gpp:CPCIConfigurationFunction ;
     rdfs:range xsd:string .
 

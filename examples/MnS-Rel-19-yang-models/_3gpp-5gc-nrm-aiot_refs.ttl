@@ -1,54 +1,58 @@
+@prefix aiot3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix util3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-util#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-aiot" ;
     dcterms:description """Defines the YANG mapping AIOT (Ambient power-enabled Internet
 of Things).
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3GPP SA5" ;
     dcterms:source """3GPP TS 28.541
 3GPP TS 23.369""" ;
     dcterms:title "_3gpp-5gc-nrm-aiot" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-01 (CR-1640)" .
+    owl:versionInfo "revision 2026-03-19 (CR-1695 CR-1694)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-aiot" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/jobRef> nrm:candidate "Job" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:File.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files/jobRef> nrm:candidate "Job" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:Files.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:PerfMetricJob.conditionMonitorRef rdfs:range util3gpp:ConditionMonitor ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:PerfMetricJob.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:PerfMetricJob.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:PerfMetricJob.schedulerRef rdfs:range util3gpp:Scheduler ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:StmCtrl.reportingNFList y2r:candidate "ReportingNF" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:ThresholdMonitor.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiot3gpp:ThresholdMonitor.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

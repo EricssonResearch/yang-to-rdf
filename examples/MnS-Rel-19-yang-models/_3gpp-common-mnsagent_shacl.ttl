@@ -1,10 +1,26 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix magent3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-mnsagent#> .
+@prefix magent3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-common-mnsagent#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-mnsagent> a owl:Ontology ;
+magent3gpp-shapes:MnsAgent a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path magent3gpp:MnsAgent.id ],
+        [ sh:description "Distinguished Name (DN) of a IRPAgent or a MnSAgent." ;
+            sh:maxCount 1 ;
+            sh:path magent3gpp:MnsAgent.systemDN ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass magent3gpp:MnsAgent .
+
+<https://semantics.ericsson.com/yang/_3gpp-common-mnsagent> a owl:Ontology ;
     rdfs:label "_3gpp-common-mnsagent" ;
     dcterms:description """Defines MnsAgent IOCs
 Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -24,18 +40,7 @@ Information Service (IS)
 Umbrella Information Model (UIM)""" ;
     dcterms:title "_3gpp-common-mnsagent" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-0271)" .
-
-<urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgentShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/id> ],
-        [ sh:description "Distinguished Name (DN) of a IRPAgent or a MnSAgent." ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/systemDN> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent> .
+    owl:versionInfo "revision 2023-09-18 (CR-0271)" ;
+    y2r:yangModuleName "_3gpp-common-mnsagent" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-mnsagent> .
 

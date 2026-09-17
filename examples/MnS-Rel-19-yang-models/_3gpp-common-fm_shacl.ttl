@@ -1,210 +1,203 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fm3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-fm#> .
+@prefix fm3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-common-fm#> .
+@prefix me3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-element#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-fm> a owl:Ontology ;
-    rdfs:label "_3gpp-common-fm" ;
-    dcterms:description """Defines a Fault Management model
-Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.111" ;
-    dcterms:title "_3gpp-common-fm" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2026-01-25 (CR-0060)" .
-
-<urn:3gpp:sa5:_3gpp-common-fm/AlarmCommentShape> a sh:NodeShape ;
+fm3gpp-shapes:AlarmComment a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "Date and Time the comment was created." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentTime> ;
+            sh:path fm3gpp:AlarmComment.commentTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:description """It carries the identification of the user who made the
 comment.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentUserId> ],
+            sh:path fm3gpp:AlarmComment.commentUserId ],
         [ sh:datatype xsd:string ;
             sh:description """It carries the identification of the system (
 Management System) from which the comment is made. That system
 supports the user that made the comment.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentSystemId> ],
+            sh:path fm3gpp:AlarmComment.commentSystemId ],
         [ sh:datatype xsd:string ;
             sh:description "It carries the textual comment." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment/commentText> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment> .
+            sh:path fm3gpp:AlarmComment.commentText ] ;
+    sh:targetClass fm3gpp:AlarmComment .
 
-<urn:3gpp:sa5:_3gpp-common-fm/AlarmRecordShape> a sh:NodeShape ;
+fm3gpp-shapes:AlarmRecord a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "Identifies the alarmRecord" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmId> ],
+            sh:path fm3gpp:AlarmRecord.alarmId ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/objectInstance> ;
+            sh:path fm3gpp:AlarmRecord.objectInstance ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:boolean ;
             sh:description """Indicates if an object (the MonitoredEntity) has a back
 up. See definition in ITU-T Recommendation X.733 clause 8.1.2.4.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/backedUpStatus> ],
+            sh:path fm3gpp:AlarmRecord.backedUpStatus ],
         [ sh:description """Backup object of the alarmed object as defined in
 ITU-T Rec. X. 733""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/backUpObject> ;
+            sh:path fm3gpp:AlarmRecord.backUpObject ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """Indicates if some observed condition is getting better,
 worse, or not changing. """ ;
             sh:in ( "MORE_SEVERE" "NO_CHANGE" "LESS_SEVERE" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/trendIndication> ],
+            sh:path fm3gpp:AlarmRecord.trendIndication ],
         [ sh:datatype xsd:string ;
             sh:description """Indicates proposed repair actions. See definition in
 ITU-T Recommendation X.733 clause 8.1.2.12.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/proposedRepairActions> ],
+            sh:path fm3gpp:AlarmRecord.proposedRepairActions ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/additionalText> ],
+            sh:path fm3gpp:AlarmRecord.additionalText ],
         [ sh:datatype xsd:boolean ;
             sh:description """It indicates that this AlarmInformation is the root cause
 of the events captured by the notifications whose identifiers are in
 the related CorrelatedNotification instances.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/rootCauseIndicator> ],
+            sh:path fm3gpp:AlarmRecord.rootCauseIndicator ],
         [ sh:datatype xsd:string ;
             sh:description """It identifies the time when the alarm has been
 acknowledged or unacknowledged the last time, i.e. it registers the
 time when ackState changes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/ackTime> ;
+            sh:path fm3gpp:AlarmRecord.ackTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:description """It identifies the last user who has changed the
 Acknowledgement State.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/ackUserId> ],
+            sh:path fm3gpp:AlarmRecord.ackUserId ],
         [ sh:datatype xsd:string ;
             sh:description """It identifies the system (Management System) that last
 changed the ackState of an alarm, i.e. acknowledged or unacknowledged
 the alarm.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/ackSystemId> ],
+            sh:path fm3gpp:AlarmRecord.ackSystemId ],
         [ sh:in ( "ACKNOWLEDGED" "UNACKNOWLEDGED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/ackState> ],
+            sh:path fm3gpp:AlarmRecord.ackState ],
         [ sh:datatype xsd:int ;
             sh:description "The Id of the last notification updating the AlarmRecord." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/notificationId> ],
+            sh:path fm3gpp:AlarmRecord.notificationId ],
         [ sh:datatype xsd:string ;
             sh:description """Carries the identity of the user who invokes the
 clearAlarms operation.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/clearUserId> ],
+            sh:path fm3gpp:AlarmRecord.clearUserId ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/clearSystemId> ],
+            sh:path fm3gpp:AlarmRecord.clearSystemId ],
         [ sh:datatype xsd:string ;
             sh:description """It identifies the service-user whose request for service
 provided by the serviceProvider led to the generation of the
 security alarm.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/serviceUser> ],
+            sh:path fm3gpp:AlarmRecord.serviceUser ],
         [ sh:datatype xsd:string ;
             sh:description """It identifies the service-provider whose service is
 requested by the serviceUser and the service request provokes the
 generation of the security alarm.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/serviceProvider> ],
+            sh:path fm3gpp:AlarmRecord.serviceProvider ],
         [ sh:datatype xsd:string ;
             sh:description """It carries the identity of the detector of the security
 alarm.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/securityAlarmDetector> ],
+            sh:path fm3gpp:AlarmRecord.securityAlarmDetector ],
         [ sh:description """Indicates whether the alarm needs
 to be cleared manually by the MnS consumer (ADMC)
 or the producer will clear it automatically (ADAC).""" ;
             sh:in ( "AUTOMATIC" "MANUAL" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/clearingType> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing> ;
+            sh:path fm3gpp:AlarmRecord.clearingType ],
+        [ sh:class fm3gpp:ThresholdCrossing ;
             sh:description "Indicates the crossed threshold" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/thresholdInfo> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/stateChangeDefinition> ;
+            sh:path fm3gpp:AlarmRecord.thresholdInfo ],
+        [ sh:class me3gpp:stateChangeDefinition ;
             sh:description """Indicates MO attribute value changes associated with the
 alarm for state attributes of the monitored entity (state transitions).
 The change is reported with the name of the state attribute, the new
 value and an optional old value.
 See definition in ITU-T Recommendation X.733 [4] clause 8.1.2.10.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/stateChangeDefinition> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/monitoredAttributes> ;
+            sh:path fm3gpp:AlarmRecord.stateChangeDefinition ],
+        [ sh:class me3gpp:monitoredAttributes ;
             sh:description """Attributes of the monitored entity and their
 values at the time the alarm occurred that are of interest for the
 alarm report.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/monitoredAttributes> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/additionalInformation> ;
+            sh:path fm3gpp:AlarmRecord.monitoredAttributes ],
+        [ sh:class me3gpp:additionalInformation ;
             sh:description "Vendor specific alarm information in the alarm." ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/additionalInformation> ],
+            sh:path fm3gpp:AlarmRecord.additionalInformation ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmRaisedTime> ;
+            sh:path fm3gpp:AlarmRecord.alarmRaisedTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-fm/AlarmComment> ;
+        [ sh:class fm3gpp:AlarmComment ;
             sh:description "List of comments and data about the comments." ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/comments> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-element/correlatedNotifications> ;
+            sh:path fm3gpp:AlarmRecord.comments ],
+        [ sh:class me3gpp:correlatedNotifications ;
             sh:description "List of correlated notifications" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/correlatedNotifications> ],
+            sh:path fm3gpp:AlarmRecord.correlatedNotifications ],
         [ sh:datatype xsd:string ;
             sh:description "not applicable if related alarm has not changed" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmChangedTime> ;
+            sh:path fm3gpp:AlarmRecord.alarmChangedTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:description "not applicable if related alarm was not cleared" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmClearedTime> ;
+            sh:path fm3gpp:AlarmRecord.alarmClearedTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:description "General category for the alarm." ;
             sh:in ( "OTHER" "COMMUNICATIONS_ALARM" "QUALITY_OF_SERVICE_ALARM" "PROCESSING_ERROR_ALARM" "EQUIPMENT_ALARM" "ENVIRONMENTAL_ALARM" "INTEGRITY_VIOLATION" "OPERATIONAL_VIOLATION" "PHYSICAL_VIOLATION" "SECURITY_SERVICE_OR_MECHANISM_VIOLATION" "TIME_DOMAIN_VIOLATION" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/alarmType> ],
+            sh:path fm3gpp:AlarmRecord.alarmType ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/probableCause> ],
+            sh:path fm3gpp:AlarmRecord.probableCause ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/specificProblem> ],
+            sh:path fm3gpp:AlarmRecord.specificProblem ],
         [ sh:description """This is Writable only if producer supports consumer
 to set perceivedSeverity to CLEARED""" ;
             sh:in ( "CRITICAL" "MAJOR" "MINOR" "WARNING" "INDETERMINATE" "CLEARED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord/perceivedSeverity> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-fm/AlarmRecord> .
+            sh:path fm3gpp:AlarmRecord.perceivedSeverity ] ;
+    sh:targetClass fm3gpp:AlarmRecord .
 
-<urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossingShape> a sh:NodeShape ;
+fm3gpp-shapes:ThresholdCrossing a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """The name of the monitored measurement that crossed the
 threshold and that caused the notification (Rec. ITU-T X. 733 """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing/observedMeasurement> ],
+            sh:path fm3gpp:ThresholdCrossing.observedMeasurement ],
         [ sh:datatype xsd:string ;
             sh:description """The value of the gauge or counter which crossed the
 threshold. This may be different from the threshold value if, for
@@ -214,7 +207,7 @@ Integer values are used for counters and float values for gauges
 both integers and floating point numbers.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing/observedValue> ],
+            sh:path fm3gpp:ThresholdCrossing.observedValue ],
         [ sh:datatype xsd:string ;
             sh:description """For a gauge threshold, the time at which the threshold
 was last re-armed, namely the time after the previous threshold
@@ -225,43 +218,56 @@ at which the threshold offset was last applied, or the time at
 which the counter was last initialized (for resettable counters)
 (Rec. ITU-T X. 733)""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing/armTime> ;
+            sh:path fm3gpp:ThresholdCrossing.armTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd> ;
+        [ sh:class fm3gpp:ThresholdLevelInd ;
             sh:description """In the case of a gauge the threshold level specifies
 a pair of threshold values, the first being the value of the crossed
 threshold and the second, its corresponding hysteresis; in the case
 of a counter the threshold level specifies only the threshold value
 (Rec. ITU-T X. 733).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing/thresholdLevel> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-fm/ThresholdCrossing> .
+            sh:path fm3gpp:ThresholdCrossing.thresholdLevel ] ;
+    sh:targetClass fm3gpp:ThresholdCrossing .
 
-<urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresisShape> a sh:NodeShape ;
+fm3gpp-shapes:ThresholdHysteresis a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Higher value of a threshold with hysteresis, the integer
 type is used for counter thresholds and the float type for gauge
 thresholds.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis/high> ],
+            sh:path fm3gpp:ThresholdHysteresis.high ],
         [ sh:datatype xsd:decimal ;
             sh:description """Lower value of a threshold with hysteresis, applicable
 only to gauge thresholds.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis/low> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> .
+            sh:path fm3gpp:ThresholdHysteresis.low ] ;
+    sh:targetClass fm3gpp:ThresholdHysteresis .
 
-<urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelIndShape> a sh:NodeShape ;
-    sh:property [ sh:class <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> ;
+fm3gpp-shapes:ThresholdLevelInd a sh:NodeShape ;
+    sh:property [ sh:class fm3gpp:ThresholdHysteresis ;
             sh:description """Indicates for counter and gauge thresholds that the
 threshold crossing occurred when going up.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd/up> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-fm/ThresholdHysteresis> ;
+            sh:path fm3gpp:ThresholdLevelInd.up ],
+        [ sh:class fm3gpp:ThresholdHysteresis ;
             sh:description """Indicates for gauge thresholds that the threshold crossing
 occurred when going down, applicable only to gauge thresholds.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd/down> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-fm/ThresholdLevelInd> .
+            sh:path fm3gpp:ThresholdLevelInd.down ] ;
+    sh:targetClass fm3gpp:ThresholdLevelInd .
+
+<https://semantics.ericsson.com/yang/_3gpp-common-fm> a owl:Ontology ;
+    rdfs:label "_3gpp-common-fm" ;
+    dcterms:description """Defines a Fault Management model
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.111" ;
+    dcterms:title "_3gpp-common-fm" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2026-01-25 (CR-0060)" ;
+    y2r:yangModuleName "_3gpp-common-fm" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-fm> .
 

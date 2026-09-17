@@ -1,18 +1,20 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix iab3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-iabfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix types5g3gpp: <https://semantics.ericsson.com/yang/_3gpp-5g-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> a rdfs:Class ;
+iab3gpp:IAB a rdfs:Class ;
     rdfs:label "IAB" ;
     rdfs:comment """IAB-node architecture is specified in TS 38.401.
 This IOC defines the configuration information for the IAB management""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo>,
-        <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> .
+    y2r:hasAttribute types5g3gpp:LocationInfo,
+        types5g3gpp:MnrOamIPConfig .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-iabfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-iabfunction" ;
     dcterms:description """This IOC represents the IAB function defined in 3GPP TS 28.541.
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -22,29 +24,31 @@ TTA, TTC). All rights reserved.""" ;
 IETF RFC 9811""" ;
     dcterms:title "_3gpp-nr-nrm-iabfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-01 (CR-1657)" .
+    owl:versionInfo "revision 2025-11-01 (CR-1657)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-iabfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/currentLocation> a owl:ObjectProperty ;
+iab3gpp:IAB.currentLocation a owl:ObjectProperty ;
     rdfs:label "IAB.currentLocation" ;
     rdfs:comment """This parameter specifies the current location
 of mobile NR node (e.g., IAB-node, MWAB-node).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/LocationInfo> .
+    rdfs:domain iab3gpp:IAB ;
+    rdfs:range types5g3gpp:LocationInfo .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/id> a rdf:Property ;
+iab3gpp:IAB.id a rdf:Property ;
     rdfs:label "IAB.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> ;
+    rdfs:domain iab3gpp:IAB ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB/mnrOamIPConfig> a owl:ObjectProperty ;
+iab3gpp:IAB.mnrOamIPConfig a owl:ObjectProperty ;
     rdfs:label "IAB.mnrOamIPConfig" ;
     rdfs:comment """It is IP configutation for OAM connectivity used
 by a mobile NR node (e.g., IAB-node, MWAB-node)
 to establish connection with management system as specified
 in TS 28.314[x] clause 6.1.2""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-iabfunction/IAB> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/MnrOamIPConfig> .
+    rdfs:domain iab3gpp:IAB ;
+    rdfs:range types5g3gpp:MnrOamIPConfig .
 

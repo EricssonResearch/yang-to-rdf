@@ -1,11 +1,41 @@
+@prefix anlf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-anlffunction#> .
+@prefix anlf3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-5gc-nrm-anlffunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> a owl:Ontology ;
+anlf3gpp-shapes:AnLFFunction a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path anlf3gpp:AnLFFunction.id ],
+        [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path anlf3gpp:AnLFFunction.id ],
+        [ sh:description "It indicates the activation status of the AnLF" ;
+            sh:in ( "ACTIVATED" "DEACTIVATED" ) ;
+            sh:maxCount 1 ;
+            sh:path anlf3gpp:AnLFFunction.activationStatus ],
+        [ sh:description """This attribute holds a DN list of MLModel ¨
+(See TS 28.105).""" ;
+            sh:path anlf3gpp:AnLFFunction.mLModelRefList ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """This attribute holds a DN list of AIMLInferenceFunction
+(See TS 28.105) .""" ;
+            sh:path anlf3gpp:AnLFFunction.aIMLInferenceFunctionRefList ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass anlf3gpp:AnLFFunction .
+
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-anlffunction> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-anlffunction" ;
     dcterms:description """This IOC represents the AnLF function in 5GC.
 For more information about the AnLF, see 3GPP TS 23.288.
@@ -15,32 +45,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-anlffunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunctionShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/id> ],
-        [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/id> ],
-        [ sh:description "It indicates the activation status of the AnLF" ;
-            sh:in ( "ACTIVATED" "DEACTIVATED" ) ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/activationStatus> ],
-        [ sh:description """This attribute holds a DN list of MLModel ¨
-(See TS 28.105).""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/mLModelRefList> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:description """This attribute holds a DN list of AIMLInferenceFunction
-(See TS 28.105) .""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/aIMLInferenceFunctionRefList> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction> .
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-anlffunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> .
 

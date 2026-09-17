@@ -1,11 +1,47 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns3cmn3gpp: <https://semantics.ericsson.com/yang/_3gpp-ns-nrm-common#> .
+@prefix ns3cmn3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-ns-nrm-common#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-common> a owl:Ontology ;
+ns3cmn3gpp-shapes:ServAttrCom a sh:NodeShape ;
+    sh:property [ sh:description """This attribute specifies the category of a service
+requirement/attribute of GST""" ;
+            sh:in ( "character" "scalability" ) ;
+            sh:maxCount 1 ;
+            sh:path ns3cmn3gpp:ServAttrCom.category ],
+        [ sh:description """This attribute specifies the tagging of a service
+requirement/attribute of GST in character category""" ;
+            sh:in ( "performance" "function" "operation" ) ;
+            sh:path ns3cmn3gpp:ServAttrCom.tagging ],
+        [ sh:description """This attribute specifies exposure mode of a service
+requirement/attribute of GST""" ;
+            sh:in ( "API" "KPI" ) ;
+            sh:maxCount 1 ;
+            sh:path ns3cmn3gpp:ServAttrCom.exposure ] ;
+    sh:targetClass ns3cmn3gpp:ServAttrCom .
+
+ns3cmn3gpp-shapes:XLThpt a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedLong ;
+            sh:description "This attribute describes the guaranteed data rate." ;
+            sh:maxCount 1 ;
+            sh:path ns3cmn3gpp:XLThpt.guaThpt ],
+        [ sh:datatype xsd:unsignedLong ;
+            sh:description "This attribute describes the maximum data rate." ;
+            sh:maxCount 1 ;
+            sh:path ns3cmn3gpp:XLThpt.maxThpt ],
+        [ sh:class ns3cmn3gpp:ServAttrCom ;
+            sh:description """This list represents the common properties of service
+requirement related attributes.""" ;
+            sh:maxCount 1 ;
+            sh:path ns3cmn3gpp:XLThpt.servAttrCom ] ;
+    sh:targetClass ns3cmn3gpp:XLThpt .
+
+<https://semantics.ericsson.com/yang/_3gpp-ns-nrm-common> a owl:Ontology ;
     rdfs:label "_3gpp-ns-nrm-common" ;
     dcterms:description """Common network slice definitions
 Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -18,38 +54,7 @@ Information model definitions for network slice NRM (chapter 6)
 """ ;
     dcterms:title "_3gpp-ns-nrm-common" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
-
-<urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrComShape> a sh:NodeShape ;
-    sh:property [ sh:description """This attribute specifies the category of a service
-requirement/attribute of GST""" ;
-            sh:in ( "character" "scalability" ) ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/category> ],
-        [ sh:description """This attribute specifies the tagging of a service
-requirement/attribute of GST in character category""" ;
-            sh:in ( "performance" "function" "operation" ) ;
-            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/tagging> ],
-        [ sh:description """This attribute specifies exposure mode of a service
-requirement/attribute of GST""" ;
-            sh:in ( "API" "KPI" ) ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom/exposure> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> .
-
-<urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThptShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:unsignedLong ;
-            sh:description "This attribute describes the guaranteed data rate." ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/guaThpt> ],
-        [ sh:datatype xsd:unsignedLong ;
-            sh:description "This attribute describes the maximum data rate." ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/maxThpt> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-ns-nrm-common/ServAttrCom> ;
-            sh:description """This list represents the common properties of service
-requirement related attributes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt/servAttrCom> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-ns-nrm-common/XLThpt> .
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-ns-nrm-common" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-ns-nrm-common> .
 

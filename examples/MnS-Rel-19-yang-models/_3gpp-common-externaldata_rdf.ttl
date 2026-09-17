@@ -1,17 +1,19 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix exdata3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-externaldata#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> a rdfs:Class ;
+exdata3gpp:ExternalDataScope a rdfs:Class ;
     rdfs:label "ExternalDataScope" ;
     rdfs:comment """It describes the concrete scope which the external management
 data is applicable.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+    y2r:hasAttribute types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> a rdfs:Class ;
+exdata3gpp:ExternalDataType a rdfs:Class ;
     rdfs:label "ExternalDataType" ;
     rdfs:comment """This IOC specifies a type of external management data and
 the associated meta data.
@@ -57,9 +59,9 @@ can get the schema to parse the external management data.
 
 Attribute externalDataScope is used to describe the concrete scope (e.g.,
 geographical areas) which the external management data is applicable.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> .
+    y2r:hasAttribute exdata3gpp:ExternalDataScope .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-externaldata> a owl:Ontology ;
     rdfs:label "_3gpp-common-externaldata" ;
     dcterms:description """Defines the YANG mapping of the external data.
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -68,69 +70,71 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.623 Generic Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-common-externaldata" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-07-19 (CR-0551)" .
+    owl:versionInfo "revision 2025-07-19 (CR-0551)" ;
+    y2r:yangModuleName "_3gpp-common-externaldata" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-externaldata> .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/geoAreas> a owl:ObjectProperty ;
+exdata3gpp:ExternalDataScope.geoAreas a owl:ObjectProperty ;
     rdfs:label "ExternalDataScope.geoAreas" ;
     rdfs:comment "It describes the concrete geographical area(s)" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+    rdfs:domain exdata3gpp:ExternalDataScope ;
+    rdfs:range types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesExcluded> a owl:ObjectProperty ;
+exdata3gpp:ExternalDataScope.objectInstancesExcluded a owl:ObjectProperty ;
     rdfs:label "ExternalDataScope.objectInstancesExcluded" ;
     rdfs:comment """List of managed object instances which are not considered
 in relation to the described data. Each object instance is identified
 by its DN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> ;
-    nrm:isReference true .
+    rdfs:domain exdata3gpp:ExternalDataScope ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesIncluded> a owl:ObjectProperty ;
+exdata3gpp:ExternalDataScope.objectInstancesIncluded a owl:ObjectProperty ;
     rdfs:label "ExternalDataScope.objectInstancesIncluded" ;
     rdfs:comment """List of managed object instances to which the described
 data are related. Each object instance is identified by its DN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> ;
-    nrm:isReference true .
+    rdfs:domain exdata3gpp:ExternalDataScope ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataScope> a owl:ObjectProperty ;
+exdata3gpp:ExternalDataType.externalDataScope a owl:ObjectProperty ;
     rdfs:label "ExternalDataType.externalDataScope" ;
     rdfs:comment """It describes the concrete scope which the external management
 data is applicable.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope> .
+    rdfs:domain exdata3gpp:ExternalDataType ;
+    rdfs:range exdata3gpp:ExternalDataScope .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataType> a rdf:Property ;
+exdata3gpp:ExternalDataType.externalDataType a rdf:Property ;
     rdfs:label "ExternalDataType.externalDataType" ;
     rdfs:comment """Type of external management data as defined by the
 implementation.
 
 Examples: 'Electronic Map', 'Camara Data', 'UE path', 'Camera Photo',
 'Event Schedule”""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:domain exdata3gpp:ExternalDataType ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/externalDataTypeSchema> a rdf:Property ;
+exdata3gpp:ExternalDataType.externalDataTypeSchema a rdf:Property ;
     rdfs:label "ExternalDataType.externalDataTypeSchema" ;
     rdfs:comment """URI of the schema to parse a type of external management data.
 The detailed schema definition for the different types of external
 management data is out of scope of this specification.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:domain exdata3gpp:ExternalDataType ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/id> a rdf:Property ;
+exdata3gpp:ExternalDataType.id a rdf:Property ;
     rdfs:label "ExternalDataType.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:domain exdata3gpp:ExternalDataType ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType/mediaLocation> a rdf:Property ;
+exdata3gpp:ExternalDataType.mediaLocation a rdf:Property ;
     rdfs:label "ExternalDataType.mediaLocation" ;
     rdfs:comment """URI of the media which includes the transfer protocol.
 
 Examples:
 sftp://companyA.com/datastore/fileName.xml
 https://companyA.com/ManagedElement=1/Files=1/File=1""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataType> ;
+    rdfs:domain exdata3gpp:ExternalDataType ;
     rdfs:range xsd:string .
 

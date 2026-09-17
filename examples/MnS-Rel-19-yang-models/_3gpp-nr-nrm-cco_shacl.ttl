@@ -1,10 +1,182 @@
+@prefix cco3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cco#> .
+@prefix cco3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-cco#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-cco> a owl:Ontology ;
+cco3gpp-shapes:CCOFunction a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path cco3gpp:CCOFunction.id ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This attribute determines whether the centralized
+SON CCO Function is enabled or disabled.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOFunction.cCOControl ] ;
+    sh:targetClass cco3gpp:CCOFunction .
+
+cco3gpp-shapes:CCOOvershootCoverageParameters a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path cco3gpp:CCOOvershootCoverageParameters.id ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """It indicates the coverage shape of specific sites which
+can be selected to optimize radio coverage.""" ;
+            sh:path cco3gpp:CCOOvershootCoverageParameters.coverageShapeList ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOOvershootCoverageParameters.downlinkTransmitPowerRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of antennaTilt to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOOvershootCoverageParameters.antennaTiltRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of antennaAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOOvershootCoverageParameters.antennaAzimuthRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of digitalTilt to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOOvershootCoverageParameters.digitalTiltRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of digitalAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOOvershootCoverageParameters.digitalAzimuthRange ] ;
+    sh:targetClass cco3gpp:CCOOvershootCoverageParameters .
+
+cco3gpp-shapes:CCOPilotPollutionParameters a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path cco3gpp:CCOPilotPollutionParameters.id ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """It indicates the coverage shape of specific sites which
+can be selected to optimize radio coverage.""" ;
+            sh:path cco3gpp:CCOPilotPollutionParameters.coverageShapeList ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOPilotPollutionParameters.downlinkTransmitPowerRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of antennaTilt to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOPilotPollutionParameters.antennaTiltRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of antennaAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOPilotPollutionParameters.antennaAzimuthRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of digitalTilt to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOPilotPollutionParameters.digitalTiltRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of digitalAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOPilotPollutionParameters.digitalAzimuthRange ] ;
+    sh:targetClass cco3gpp:CCOPilotPollutionParameters .
+
+cco3gpp-shapes:CCOWeakCoverageParameters a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path cco3gpp:CCOWeakCoverageParameters.id ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description """It indicates the coverage shape of specific sites which
+can be selected to optimize radio coverage.""" ;
+            sh:path cco3gpp:CCOWeakCoverageParameters.coverageShapeList ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOWeakCoverageParameters.downlinkTransmitPowerRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of antennaTilt to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOWeakCoverageParameters.antennaTiltRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of antennaAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOWeakCoverageParameters.antennaAzimuthRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of digitalTilt to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOWeakCoverageParameters.digitalTiltRange ],
+        [ sh:class cco3gpp:ParameterRange ;
+            sh:description """It indicates adjustment range (including maximum value,
+minimum value) of digitalAzimuth to optimize radio coverage.
+units 0.1 degree""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:CCOWeakCoverageParameters.digitalAzimuthRange ] ;
+    sh:targetClass cco3gpp:CCOWeakCoverageParameters .
+
+cco3gpp-shapes:ParameterRange a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:long ;
+            sh:description "It indicates the maximum value of the parameter." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:ParameterRange.maxValue ],
+        [ sh:datatype xsd:long ;
+            sh:description "It indicates the minimum value of the parameter." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cco3gpp:ParameterRange.minValue ] ;
+    sh:targetClass cco3gpp:ParameterRange .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cco> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-cco" ;
     dcterms:description """Implements support the C-SON function of Capacity and
 Coverage optimization .
@@ -14,174 +186,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-nr-nrm-cco" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-05-24 (CR-1273)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunctionShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction/id> ],
-        [ sh:datatype xsd:boolean ;
-            sh:description """This attribute determines whether the centralized
-SON CCO Function is enabled or disabled.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction/cCOControl> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOFunction> .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParametersShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/id> ],
-        [ sh:datatype xsd:unsignedShort ;
-            sh:description """It indicates the coverage shape of specific sites which
-can be selected to optimize radio coverage.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/coverageShapeList> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/downlinkTransmitPowerRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of antennaTilt to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/antennaTiltRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of antennaAzimuth to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/antennaAzimuthRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of digitalTilt to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/digitalTiltRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of digitalAzimuth to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters/digitalAzimuthRange> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOOvershootCoverageParameters> .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParametersShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/id> ],
-        [ sh:datatype xsd:unsignedShort ;
-            sh:description """It indicates the coverage shape of specific sites which
-can be selected to optimize radio coverage.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/coverageShapeList> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/downlinkTransmitPowerRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of antennaTilt to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/antennaTiltRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of antennaAzimuth to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/antennaAzimuthRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of digitalTilt to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/digitalTiltRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of digitalAzimuth to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters/digitalAzimuthRange> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOPilotPollutionParameters> .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParametersShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/id> ],
-        [ sh:datatype xsd:unsignedShort ;
-            sh:description """It indicates the coverage shape of specific sites which
-can be selected to optimize radio coverage.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/coverageShapeList> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of downlinkTransmitPower to optimize radio coverage.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/downlinkTransmitPowerRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of antennaTilt to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/antennaTiltRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of antennaAzimuth to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/antennaAzimuthRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of digitalTilt to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/digitalTiltRange> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> ;
-            sh:description """It indicates adjustment range (including maximum value,
-minimum value) of digitalAzimuth to optimize radio coverage.
-units 0.1 degree""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters/digitalAzimuthRange> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-cco/CCOWeakCoverageParameters> .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRangeShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:long ;
-            sh:description "It indicates the maximum value of the parameter." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange/maxValue> ],
-        [ sh:datatype xsd:long ;
-            sh:description "It indicates the minimum value of the parameter." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange/minValue> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-cco/ParameterRange> .
+    owl:versionInfo "revision 2024-05-24 (CR-1273)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-cco" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-cco> .
 

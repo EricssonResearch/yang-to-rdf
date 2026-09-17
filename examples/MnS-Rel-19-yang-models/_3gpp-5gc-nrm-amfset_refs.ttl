@@ -1,9 +1,11 @@
+@prefix amfset3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amfset#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix util3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-util#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amfset> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-amfset" ;
     dcterms:description """This IOC represents the AMF Set which consists of some AMFs
 that serve a given area and Network Slice.
@@ -13,45 +15,47 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-5gc-nrm-amfset" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-05-24 (CR-1273)" .
+    owl:versionInfo "revision 2024-05-24 (CR-1273)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-amfset" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-amfset> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/AMFSet/aMFSetMemberList> nrm:candidate "AMFSetMember" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:AMFSet.aMFSetMemberList y2r:candidate "AMFSetMember" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/File/jobRef> nrm:candidate "Job" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:File.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/Files/jobRef> nrm:candidate "Job" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:Files.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:PerfMetricJob.conditionMonitorRef rdfs:range util3gpp:ConditionMonitor ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:PerfMetricJob.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:PerfMetricJob.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:PerfMetricJob.schedulerRef rdfs:range util3gpp:Scheduler ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:StmCtrl.reportingNFList y2r:candidate "ReportingNF" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:ThresholdMonitor.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amfset/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+amfset3gpp:ThresholdMonitor.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

@@ -1,0 +1,62 @@
+@prefix chf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-chffunction#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix util3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-util#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
+
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-chffunction> a owl:Ontology ;
+    rdfs:label "_3gpp-5gc-nrm-chffunction" ;
+    dcterms:description """This IOC represents the CHF function. For more
+information about the CHF, see TS 23.501 and
+TS 32.240.
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS,
+CCSA, ETSI, TSDSI, TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3gpp SA5" ;
+    dcterms:source "3GPP TS 28.541" ;
+    dcterms:title "_3gpp-5gc-nrm-chffunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2025-03-25 (CR-)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-chffunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-chffunction> .
+
+chf3gpp:File.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:Files.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:PerfMetricJob.conditionMonitorRef rdfs:range util3gpp:ConditionMonitor ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:PerfMetricJob.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:PerfMetricJob.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:PerfMetricJob.schedulerRef rdfs:range util3gpp:Scheduler ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:StmCtrl.reportingNFList y2r:candidate "ReportingNF" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:ThresholdMonitor.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:ThresholdMonitor.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
+
+chf3gpp:commModelList.targetNFServiceList y2r:candidate "TargetNFService" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
+

@@ -1,20 +1,21 @@
+@prefix FiveQiDscpM3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-FiveQiDscpMappingSet#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet> a rdfs:Class ;
+FiveQiDscpM3gpp:FiveQiDscpMappingSet a rdfs:Class ;
     rdfs:label "FiveQiDscpMappingSet" ;
     rdfs:comment "Specifies the mapping between 5QIs and DSCPs." ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> .
+    y2r:hasAttribute FiveQiDscpM3gpp:fiveQiDscpMappingList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> a rdfs:Class ;
+FiveQiDscpM3gpp:fiveQiDscpMappingList a rdfs:Class ;
     rdfs:label "fiveQiDscpMappingList" ;
     rdfs:comment "It provides the list of mapping between 5QIs and DSCP." .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-FiveQiDscpMappingSet> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-FiveQiDscpMappingSet" ;
     dcterms:description """ This IOC represents the set of mapping between 5QIs and DSCP.
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -23,30 +24,32 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-FiveQiDscpMappingSet" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
+    owl:versionInfo "revision 2025-07-25 (CR-1558)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-FiveQiDscpMappingSet" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet/fiveQiDscpMappingList> a owl:ObjectProperty ;
+FiveQiDscpM3gpp:FiveQiDscpMappingSet.fiveQiDscpMappingList a owl:ObjectProperty ;
     rdfs:label "FiveQiDscpMappingSet.fiveQiDscpMappingList" ;
     rdfs:comment "It provides the list of mapping between 5QIs and DSCP." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> .
+    rdfs:domain FiveQiDscpM3gpp:FiveQiDscpMappingSet ;
+    rdfs:range FiveQiDscpM3gpp:fiveQiDscpMappingList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet/id> a rdf:Property ;
+FiveQiDscpM3gpp:FiveQiDscpMappingSet.id a rdf:Property ;
     rdfs:label "FiveQiDscpMappingSet.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/FiveQiDscpMappingSet> ;
+    rdfs:domain FiveQiDscpM3gpp:FiveQiDscpMappingSet ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList/dscp> a rdf:Property ;
+FiveQiDscpM3gpp:fiveQiDscpMappingList.dscp a rdf:Property ;
     rdfs:label "fiveQiDscpMappingList.dscp" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> ;
+    rdfs:domain FiveQiDscpM3gpp:fiveQiDscpMappingList ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList/fiveQIValues> a rdf:Property ;
+FiveQiDscpM3gpp:fiveQiDscpMappingList.fiveQIValues a rdf:Property ;
     rdfs:label "fiveQiDscpMappingList.fiveQIValues" ;
     rdfs:comment " Identifies the 5QI values that are mapped to a same DSCP" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-FiveQiDscpMappingSet/fiveQiDscpMappingList> ;
+    rdfs:domain FiveQiDscpM3gpp:fiveQiDscpMappingList ;
     rdfs:range xsd:unsignedInt .
 

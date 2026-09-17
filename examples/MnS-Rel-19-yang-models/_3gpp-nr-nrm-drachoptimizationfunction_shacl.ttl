@@ -1,51 +1,41 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dracho3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-drachoptimizationfunction#> .
+@prefix dracho3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-drachoptimizationfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction> a owl:Ontology ;
-    rdfs:label "_3gpp-nr-nrm-drachoptimizationfunction" ;
-    dcterms:description """Defines the YANG mapping of the DRACHOptimizationFunction
-Information Object Class (IOC) that is part of the NR Network Resource
-Model (NRM).
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
-    dcterms:title "_3gpp-nr-nrm-drachoptimizationfunction" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-03-25 (CR-1504)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunctionShape> a sh:NodeShape ;
+dracho3gpp-shapes:DRACHOptimizationFunction a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/id> ],
+            sh:path dracho3gpp:DRACHOptimizationFunction.id ],
         [ sh:datatype xsd:boolean ;
             sh:description """This attribute determines whether the RACH Optimization
 function is enabled or disabled.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/drachOptimizationControl> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> ;
+            sh:path dracho3gpp:DRACHOptimizationFunction.drachOptimizationControl ],
+        [ sh:class dracho3gpp:NumPreableAccessDelay ;
             sh:description """This is a list of target Access Probability (APn) for the
 RACH optimization function.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/ueAccProbilityDist> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> ;
+            sh:path dracho3gpp:DRACHOptimizationFunction.ueAccProbilityDist ],
+        [ sh:class dracho3gpp:NumPreableAccessDelay ;
             sh:description """This is a list of target Access Delay probability (ADP)
 for the RACH optimization function.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction/ueAccDelayProbilityDist> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction> .
+            sh:path dracho3gpp:DRACHOptimizationFunction.ueAccDelayProbilityDist ] ;
+    sh:targetClass dracho3gpp:DRACHOptimizationFunction .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelayShape> a sh:NodeShape ;
+dracho3gpp-shapes:NumPreableAccessDelay a sh:NodeShape ;
     sh:property [ sh:description "This attribute determines the target Probability." ;
             sh:in ( "25" "50" "75" "90" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay/targetProbability> ],
+            sh:path dracho3gpp:NumPreableAccessDelay.targetProbability ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """This attribute indicates the number of preambles sent
 used to configure a wanted distribution of RACH preambles in a
@@ -56,6 +46,21 @@ are 3, 4, 5, 6, 7, 8, 10, 20, 50, 100, 200 (see 38.331 [54],
 subclause 6.3.2).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay/numberofpreamblessent> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/NumPreableAccessDelay> .
+            sh:path dracho3gpp:NumPreableAccessDelay.numberofpreamblessent ] ;
+    sh:targetClass dracho3gpp:NumPreableAccessDelay .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-drachoptimizationfunction> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-drachoptimizationfunction" ;
+    dcterms:description """Defines the YANG mapping of the DRACHOptimizationFunction
+Information Object Class (IOC) that is part of the NR Network Resource
+Model (NRM).
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-drachoptimizationfunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2025-03-25 (CR-1504)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-drachoptimizationfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction> .
 

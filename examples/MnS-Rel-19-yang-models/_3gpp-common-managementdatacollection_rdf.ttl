@@ -1,18 +1,20 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix mgtdatcol3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managementdatacollection#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> a rdfs:Class ;
+mgtdatcol3gpp:AreaOfInterest a rdfs:Class ;
     rdfs:label "AreaOfInterest" ;
     rdfs:comment """It specifies a location(s) from where the management data
 shall be collected. It is defined in terms of TAI(s).""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+    y2r:hasAttribute mgtdatcol3gpp:GeoAreaToCellMapping,
+        types3gpp:Tai .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping> a rdfs:Class ;
+mgtdatcol3gpp:GeoAreaToCellMapping a rdfs:Class ;
     rdfs:label "GeoAreaToCellMapping" ;
     rdfs:comment """Contains a geographical area and an association threshold.
 The geo-area is defined as a convex polygon using the attribute
@@ -31,9 +33,9 @@ cell overlaps with the specified geographical area.
 
 The mapping of the geographical area to cells is performed at
 instantiation of the IOC.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+    y2r:hasAttribute types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> a rdfs:Class ;
+mgtdatcol3gpp:ManagementDataCollection a rdfs:Class ;
     rdfs:label "ManagementDataCollection" ;
     rdfs:comment """This IOC represents a management data collection request
 job. The requested data is of kind Trace, MDT (Minimization
@@ -134,27 +136,27 @@ and indicates in the attribute resultStateInfo:
 -  FAILED
 -  PARTIALLY_FAILED
 -  CANCELLED""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter>,
-        <urn:3gpp:sa5:_3gpp-common-managementdatacollection/processMonitor>,
-        <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    y2r:hasAttribute mgtdatcol3gpp:NodeFilter,
+        mgtdatcol3gpp:processMonitor,
+        mgtdatcol3gpp:reportingCtrl,
+        types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> a rdfs:Class ;
+mgtdatcol3gpp:NodeFilter a rdfs:Class ;
     rdfs:label "NodeFilter" ;
     rdfs:comment """Set of information to target the Object Instance to collect
 the measurements from.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> .
+    y2r:hasAttribute mgtdatcol3gpp:AreaOfInterest .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/processMonitor> a rdfs:Class ;
+mgtdatcol3gpp:processMonitor a rdfs:Class ;
     rdfs:label "processMonitor" ;
     rdfs:comment "Indicates the process of the ManagementDataCollection MOI." .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl> a rdfs:Class ;
+mgtdatcol3gpp:reportingCtrl a rdfs:Class ;
     rdfs:label "reportingCtrl" ;
     rdfs:comment """Selecting the reporting method and defining associated
 control parameters.""" .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-managementdatacollection> a owl:Ontology ;
     rdfs:label "_3gpp-common-managementdatacollection" ;
     dcterms:description """Handling management data collection
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -171,15 +173,17 @@ Integration Reference Point (IRP);
 Information Service (IS)""" ;
     dcterms:title "_3gpp-common-managementdatacollection" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-07-19 (CR-0551)" .
+    owl:versionInfo "revision 2025-07-19 (CR-0551)" ;
+    y2r:yangModuleName "_3gpp-common-managementdatacollection" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-managementdatacollection> .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/eutraCellIdList> a rdf:Property ;
+mgtdatcol3gpp:AreaOfInterest.eutraCellIdList a rdf:Property ;
     rdfs:label "AreaOfInterest.eutraCellIdList" ;
     rdfs:comment "List of E-UTRAN cells identified by E-UTRAN-CGI" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> ;
+    rdfs:domain mgtdatcol3gpp:AreaOfInterest ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/geoAreaToCellMapping> a owl:ObjectProperty ;
+mgtdatcol3gpp:AreaOfInterest.geoAreaToCellMapping a owl:ObjectProperty ;
     rdfs:label "AreaOfInterest.geoAreaToCellMapping" ;
     rdfs:comment """Contains a geographical area and an association threshold.
 The geo-area is defined as a convex polygon using the attribute
@@ -198,28 +202,28 @@ cell overlaps with the specified geographical area.
 
 The mapping of the geographical area to cells is performed at
 instantiation of the IOC.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping> .
+    rdfs:domain mgtdatcol3gpp:AreaOfInterest ;
+    rdfs:range mgtdatcol3gpp:GeoAreaToCellMapping .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/nrCellIdList> a rdf:Property ;
+mgtdatcol3gpp:AreaOfInterest.nrCellIdList a rdf:Property ;
     rdfs:label "AreaOfInterest.nrCellIdList" ;
     rdfs:comment "List of NR cells identified by NG-RAN CGI" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> ;
+    rdfs:domain mgtdatcol3gpp:AreaOfInterest ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/taiList> a owl:ObjectProperty ;
+mgtdatcol3gpp:AreaOfInterest.taiList a owl:ObjectProperty ;
     rdfs:label "AreaOfInterest.taiList" ;
     rdfs:comment "Tracking Area Identity list" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+    rdfs:domain mgtdatcol3gpp:AreaOfInterest ;
+    rdfs:range types3gpp:Tai .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest/utraCellIdList> a rdf:Property ;
+mgtdatcol3gpp:AreaOfInterest.utraCellIdList a rdf:Property ;
     rdfs:label "AreaOfInterest.utraCellIdList" ;
     rdfs:comment "List of UTRAN cells identified by UTRAN CGI" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> ;
+    rdfs:domain mgtdatcol3gpp:AreaOfInterest ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping/associationThreshold> a rdf:Property ;
+mgtdatcol3gpp:GeoAreaToCellMapping.associationThreshold a rdf:Property ;
     rdfs:label "GeoAreaToCellMapping.associationThreshold" ;
     rdfs:comment """It specifies the threshold of coverage area in
 percentage whether a cell belongs to the geographical area or not.
@@ -227,18 +231,18 @@ percentage whether a cell belongs to the geographical area or not.
 If this attribute is absent, the location of the base station
 antenna determines whether a cell belongs to the geographical
 area or not.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping> ;
+    rdfs:domain mgtdatcol3gpp:GeoAreaToCellMapping ;
     rdfs:range xsd:unsignedByte ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping/geoArea> a owl:ObjectProperty ;
+mgtdatcol3gpp:GeoAreaToCellMapping.geoArea a owl:ObjectProperty ;
     rdfs:label "GeoAreaToCellMapping.geoArea" ;
     rdfs:comment """It specifies the geographical area using the cordinates of
 the corners of a convex polygon.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/GeoAreaToCellMapping> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+    rdfs:domain mgtdatcol3gpp:GeoAreaToCellMapping ;
+    rdfs:range types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/category> a rdf:Property ;
+mgtdatcol3gpp:ManagementDataCollection.category a rdf:Property ;
     rdfs:label "ManagementDataCollection.category" ;
     rdfs:comment """This attributes defines the type of management data that
 are requested.
@@ -265,17 +269,17 @@ related to Layer 1 Measurement).
 
 - The ACCESSIBILITY category will map to measurement family CE
 (measurements related to Connection Establishment).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/collectionTimeWindow> a owl:ObjectProperty ;
+mgtdatcol3gpp:ManagementDataCollection.collectionTimeWindow a owl:ObjectProperty ;
     rdfs:label "ManagementDataCollection.collectionTimeWindow" ;
     rdfs:comment """Collection time window for which the management data
 should be reported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
+    rdfs:range types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/condition> a rdf:Property ;
+mgtdatcol3gpp:ManagementDataCollection.condition a rdf:Property ;
     rdfs:label "ManagementDataCollection.condition" ;
     rdfs:comment """Logical expression of one or several condition(s).
 
@@ -290,41 +294,41 @@ expression of attribute existence or attribute value comparison
 ('equal to X, less than Y' etc.).
 
 An empty string is not allowed.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/consolidateOutput> a rdf:Property ;
+mgtdatcol3gpp:ManagementDataCollection.consolidateOutput a rdf:Property ;
     rdfs:label "ManagementDataCollection.consolidateOutput" ;
     rdfs:comment """Indicates whether the management data collection output will
 be consolidated into a single file per reporting period.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
     rdfs:range xsd:boolean ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/dataScope> a rdf:Property ;
+mgtdatcol3gpp:ManagementDataCollection.dataScope a rdf:Property ;
     rdfs:label "ManagementDataCollection.dataScope" ;
     rdfs:comment """It specifies whether the required data is reported per
 S-NSSAI or per 5QI.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/id> a rdf:Property ;
+mgtdatcol3gpp:ManagementDataCollection.id a rdf:Property ;
     rdfs:label "ManagementDataCollection.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/jobId> a rdf:Property ;
+mgtdatcol3gpp:ManagementDataCollection.jobId a rdf:Property ;
     rdfs:label "ManagementDataCollection.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob, a TraceJob or a QMCJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/name> a rdf:Property ;
+mgtdatcol3gpp:ManagementDataCollection.name a rdf:Property ;
     rdfs:label "ManagementDataCollection.name" ;
     rdfs:comment """List of management data identified by name.
 
@@ -345,80 +349,80 @@ defined in clause 10 of TS 32.422.
 
 For non-3GPP specified managment data the name is defined
 elsewhere.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/processMonitor> a owl:ObjectProperty ;
+mgtdatcol3gpp:ManagementDataCollection.processMonitor a owl:ObjectProperty ;
     rdfs:label "ManagementDataCollection.processMonitor" ;
     rdfs:comment "Indicates the process of the ManagementDataCollection MOI." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managementdatacollection/processMonitor> .
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
+    rdfs:range mgtdatcol3gpp:processMonitor .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/reportingCtrl> a owl:ObjectProperty ;
+mgtdatcol3gpp:ManagementDataCollection.reportingCtrl a owl:ObjectProperty ;
     rdfs:label "ManagementDataCollection.reportingCtrl" ;
     rdfs:comment """Selecting the reporting method and defining associated
 control parameters.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl> .
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
+    rdfs:range mgtdatcol3gpp:reportingCtrl .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection/targetNodeFilter> a owl:ObjectProperty ;
+mgtdatcol3gpp:ManagementDataCollection.targetNodeFilter a owl:ObjectProperty ;
     rdfs:label "ManagementDataCollection.targetNodeFilter" ;
     rdfs:comment """Set of information to target the Object Instance to collect
 the measurements from.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/ManagementDataCollection> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> .
+    rdfs:domain mgtdatcol3gpp:ManagementDataCollection ;
+    rdfs:range mgtdatcol3gpp:NodeFilter .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/areaOfInterest> a owl:ObjectProperty ;
+mgtdatcol3gpp:NodeFilter.areaOfInterest a owl:ObjectProperty ;
     rdfs:label "NodeFilter.areaOfInterest" ;
     rdfs:comment """It specifies a location(s) from where the management data
 shall be collected. It is defined in terms of TAI(s).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managementdatacollection/AreaOfInterest> .
+    rdfs:domain mgtdatcol3gpp:NodeFilter ;
+    rdfs:range mgtdatcol3gpp:AreaOfInterest .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/cpUpType> a rdf:Property ;
+mgtdatcol3gpp:NodeFilter.cpUpType a rdf:Property ;
     rdfs:label "NodeFilter.cpUpType" ;
     rdfs:comment """It specifies the traffic type of the target node. This will
 also result in collecting appropriate management data from the nodes
 handling the specified traffic (e.g AMF for CP and UPF for UP).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> ;
+    rdfs:domain mgtdatcol3gpp:NodeFilter ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/networkDomain> a rdf:Property ;
+mgtdatcol3gpp:NodeFilter.networkDomain a rdf:Property ;
     rdfs:label "NodeFilter.networkDomain" ;
     rdfs:comment """It specifies the network domain of the target node. This
 will also result in collecting appropriate management data from the
 nodes belonging to the specified domain.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> ;
+    rdfs:domain mgtdatcol3gpp:NodeFilter ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/objectInstances> a owl:ObjectProperty ;
+mgtdatcol3gpp:NodeFilter.objectInstances a owl:ObjectProperty ;
     rdfs:label "NodeFilter.objectInstances" ;
     rdfs:comment """List of managed object instances. Each object instance is
 identified by its DN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain mgtdatcol3gpp:NodeFilter ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter/sst> a rdf:Property ;
+mgtdatcol3gpp:NodeFilter.sst a rdf:Property ;
     rdfs:label "NodeFilter.sst" ;
     rdfs:comment """It specifies the slice service type (SST) of which the slice
 subnet should be targeted. Please refer to 3GPP TS 23.501: 'System
 Architecture for the 5G System'""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/NodeFilter> ;
+    rdfs:domain mgtdatcol3gpp:NodeFilter ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/mgtDataCategoryType> a rdfs:Datatype ;
+mgtdatcol3gpp:mgtDataCategoryType a rdfs:Datatype ;
     rdfs:label "mgtDataCategoryType" .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl/fileLocation> a rdf:Property ;
+mgtdatcol3gpp:reportingCtrl.fileLocation a rdf:Property ;
     rdfs:label "reportingCtrl.fileLocation" ;
     rdfs:comment """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl> ;
+    rdfs:domain mgtdatcol3gpp:reportingCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl/fileReportingPeriod> a rdf:Property ;
+mgtdatcol3gpp:reportingCtrl.fileReportingPeriod a rdf:Property ;
     rdfs:label "reportingCtrl.fileReportingPeriod" ;
     rdfs:comment """For the file-based reporting method this is the time
 window during which collected measurements are stored into the same
@@ -426,21 +430,21 @@ file before the file is closed and a new file is opened.
 The time-period must be a multiple of the granularityPeriod.
 
 Applicable when the file-based reporting method is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl> ;
+    rdfs:domain mgtdatcol3gpp:reportingCtrl ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl/notificationRecipientAddress> a rdf:Property ;
+mgtdatcol3gpp:reportingCtrl.notificationRecipientAddress a rdf:Property ;
     rdfs:label "reportingCtrl.notificationRecipientAddress" ;
     rdfs:comment """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl> ;
+    rdfs:domain mgtdatcol3gpp:reportingCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl/streamTarget> a rdf:Property ;
+mgtdatcol3gpp:reportingCtrl.streamTarget a rdf:Property ;
     rdfs:label "reportingCtrl.streamTarget" ;
     rdfs:comment """Applicable when stream-based reporting method is
 supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managementdatacollection/reportingCtrl> ;
+    rdfs:domain mgtdatcol3gpp:reportingCtrl ;
     rdfs:range xsd:string .
 

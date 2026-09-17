@@ -1,38 +1,35 @@
+@prefix conf5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-configurable5qiset#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gnbdu3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-gnbdufunction#> .
+@prefix gnbdu3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-gnbdufunction#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction> a owl:Ontology ;
-    rdfs:label "_3gpp-nr-nrm-gnbdufunction" ;
-    dcterms:description """Defines the YANG mapping of the GNBDUFunction Information
-Object Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
-    dcterms:title "_3gpp-nr-nrm-gnbdufunction" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-08-15 (CR-1598 CR-1558)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Configurable5QISetShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:Configurable5QISet a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Configurable5QISet/id> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Configurable5QISet> .
+            sh:path gnbdu3gpp:Configurable5QISet.id ] ;
+    sh:targetClass gnbdu3gpp:Configurable5QISet .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FileShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:File a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/id> ],
+            sh:path gnbdu3gpp:File.id ],
         [ sh:datatype xsd:string ;
             sh:description """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -47,169 +44,169 @@ Examples:
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/fileLocation> ;
+            sh:path gnbdu3gpp:File.fileLocation ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/jobId> ],
+            sh:path gnbdu3gpp:File.jobId ],
         [ sh:datatype xsd:base64Binary ;
             sh:description """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/fileContent> ],
+            sh:path gnbdu3gpp:File.fileContent ],
         [ sh:datatype xsd:string ;
             sh:description """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/fileCompression> ],
+            sh:path gnbdu3gpp:File.fileCompression ],
         [ sh:datatype xsd:unsignedLong ;
             sh:description "Size of the file" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/fileSize> ],
+            sh:path gnbdu3gpp:File.fileSize ],
         [ sh:description "Type of the management data stored in the file." ;
             sh:in ( "PERFORMANCE" "TRACE" "ANALYTICS" "PROPRIETARY" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/fileDataType> ],
+            sh:path gnbdu3gpp:File.fileDataType ],
         [ sh:datatype xsd:string ;
             sh:description """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/fileFormat> ],
+            sh:path gnbdu3gpp:File.fileFormat ],
         [ sh:datatype xsd:string ;
             sh:description """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/fileReadyTime> ;
+            sh:path gnbdu3gpp:File.fileReadyTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:description "Date and time after which the file may be deleted." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/fileExpirationTime> ;
+            sh:path gnbdu3gpp:File.fileExpirationTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File/jobRef> ;
+            sh:path gnbdu3gpp:File.jobRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/File> .
+    sh:targetClass gnbdu3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FilesShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:Files a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Files/id> ],
+            sh:path gnbdu3gpp:Files.id ],
         [ sh:datatype xsd:unsignedLong ;
             sh:description "Number of files in a file collection." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Files/numberOfFiles> ],
+            sh:path gnbdu3gpp:Files.numberOfFiles ],
         [ sh:description """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Files/jobRef> ;
+            sh:path gnbdu3gpp:Files.jobRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a PerfMetricJob job or a TraceJob." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Files/jobId> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/Files> .
+            sh:path gnbdu3gpp:Files.jobId ] ;
+    sh:targetClass gnbdu3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristicsShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:FiveQICharacteristics a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics/id> ],
+            sh:path gnbdu3gpp:FiveQICharacteristics.id ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description "Identifies the 5QI value." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics/fiveQIValue> ],
+            sh:path gnbdu3gpp:FiveQICharacteristics.fiveQIValue ],
         [ sh:description """It indicates the Resource Type of a 5QI, as specified
 in TS 23.501 """ ;
             sh:in ( "GBR" "NON_GBR" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics/resourceType> ],
+            sh:path gnbdu3gpp:FiveQICharacteristics.resourceType ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """It indicates the Priority Level of a 5QI, as specified
 in TS 23.501.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics/priorityLevel> ],
+            sh:path gnbdu3gpp:FiveQICharacteristics.priorityLevel ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
 as specified in TS 23.501 """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics/packetDelayBudget> ],
+            sh:path gnbdu3gpp:FiveQICharacteristics.packetDelayBudget ],
         [ sh:datatype xsd:unsignedInt ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics/averagingWindow> ],
+            sh:path gnbdu3gpp:FiveQICharacteristics.averagingWindow ],
         [ sh:datatype xsd:unsignedInt ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics/maximumDataBurstVolume> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> ;
+            sh:path gnbdu3gpp:FiveQICharacteristics.maximumDataBurstVolume ],
+        [ sh:class conf5QIs3gpp:PacketErrorRate ;
             sh:description """It indicates the Packet Error Rate of a 5QI,
 as specified in TS 23.501.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics/packetErrorRate> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/FiveQICharacteristics> .
+            sh:path gnbdu3gpp:FiveQICharacteristics.packetErrorRate ] ;
+    sh:targetClass gnbdu3gpp:FiveQICharacteristics .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunctionShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:GNBDUFunction a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/id> ],
+            sh:path gnbdu3gpp:GNBDUFunction.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/userLabel> ],
+            sh:path gnbdu3gpp:GNBDUFunction.userLabel ],
         [ sh:description """DN of the Configurable5QISet that the GNBDUFunction supports
 (is associated to).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/configurable5QISetRef> ;
+            sh:path gnbdu3gpp:GNBDUFunction.configurable5QISetRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """DN of the Dynamic5QISet that the GNBDUFunction supports
 (is associated to).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/dynamic5QISetRef> ;
+            sh:path gnbdu3gpp:GNBDUFunction.dynamic5QISetRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """DN of a NRECMappingRule.  An empty value indicates the
 NRECMappingRule contained by parent, e.g. ManagedElement or
 SubNetwork, applies.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/nRECMappingRuleRef> ;
+            sh:path gnbdu3gpp:GNBDUFunction.nRECMappingRuleRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description "DN of the referenced IAB." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/iABRef> ;
+            sh:path gnbdu3gpp:GNBDUFunction.iABRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+        [ sh:class mf3gpp:VnfParameters ;
             sh:description """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/vnfParametersList> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+            sh:path gnbdu3gpp:GNBDUFunction.vnfParametersList ],
+        [ sh:class mf3gpp:PeeParameters ;
             sh:description """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/peeParameterslist> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/SupportedPerfMetricGroups> ;
+            sh:path gnbdu3gpp:GNBDUFunction.peeParameterslist ],
+        [ sh:class gnbdu3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -217,16 +214,16 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportConf> ;
+            sh:path gnbdu3gpp:GNBDUFunction.SupportedPerfMetricGroups ],
+        [ sh:class gnbdu3gpp:RimRSReportConf ;
             sh:description """Used to configure gNBs to report the all necessary
 information derived from the detected RIM-RS to OAM.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/rimRSReportConf> ],
+            sh:path gnbdu3gpp:GNBDUFunction.rimRSReportConf ],
         [ sh:datatype xsd:unsignedInt ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/priorityLabel> ],
+            sh:path gnbdu3gpp:GNBDUFunction.priorityLabel ],
         [ sh:datatype xsd:string ;
             sh:description """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -237,133 +234,133 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/supportedTraceMetrics> ],
+            sh:path gnbdu3gpp:GNBDUFunction.supportedTraceMetrics ],
         [ sh:datatype xsd:long ;
             sh:description """Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)
 is part of the NR Cell Identifier (NCI) of the gNB cells.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/gNBId> ],
+            sh:path gnbdu3gpp:GNBDUFunction.gNBId ],
         [ sh:datatype xsd:int ;
             sh:description "Indicates the number of bits for encoding the gNB ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/gNBIdLength> ],
+            sh:path gnbdu3gpp:GNBDUFunction.gNBIdLength ],
         [ sh:datatype xsd:long ;
             sh:description "Uniquely identifies the DU at least within a gNB." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/gNBDUId> ],
+            sh:path gnbdu3gpp:GNBDUFunction.gNBDUId ],
         [ sh:datatype xsd:string ;
             sh:description "Identifies the Distributed Unit of an NR node" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/gNBDUName> ],
+            sh:path gnbdu3gpp:GNBDUFunction.gNBDUName ],
         [ sh:datatype xsd:boolean ;
             sh:description """This attribute indicates whether the function is
 on board the satellite.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/isOnboardSatellite> ],
+            sh:path gnbdu3gpp:GNBDUFunction.isOnboardSatellite ],
         [ sh:datatype xsd:string ;
             sh:description """This attribute indicates the onboard satellite Id.
 It shall be formatted as a fixed 5-digit string, padding with
 leading digits '0' to complete a 5-digit length.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction/onboardSatelliteId> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/GNBDUFunction> .
+            sh:path gnbdu3gpp:GNBDUFunction.onboardSatelliteId ] ;
+    sh:targetClass gnbdu3gpp:GNBDUFunction .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFServiceShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:ManagedNFService a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/id> ],
+            sh:path gnbdu3gpp:ManagedNFService.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/userLabel> ],
+            sh:path gnbdu3gpp:ManagedNFService.userLabel ],
         [ sh:datatype xsd:string ;
             sh:description """The type of the managed NF service instance
 The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/nFServiceType> ],
+            sh:path gnbdu3gpp:ManagedNFService.nFServiceType ],
         [ sh:description "Permission to use or prohibition against using the instance" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/administrativeState> ],
+            sh:path gnbdu3gpp:ManagedNFService.administrativeState ],
         [ sh:description "Describes whether the resource is installed and working" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/operationalState> ],
+            sh:path gnbdu3gpp:ManagedNFService.operationalState ],
         [ sh:description """Describes whether the resource is actively in use at a
 specific instant, and if so, whether or not it has spare
 capacity for additional users.""" ;
             sh:in ( "IDLE" "ACTIVE" "BUSY" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/usageState> ],
+            sh:path gnbdu3gpp:ManagedNFService.usageState ],
         [ sh:in ( "REGISTERED" "DEREGISTERED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/registrationState> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> ;
+            sh:path gnbdu3gpp:ManagedNFService.registrationState ],
+        [ sh:class types3gpp:SAP ;
             sh:description "The service access point of the managed NF service instance" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/sAP> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+            sh:path gnbdu3gpp:ManagedNFService.sAP ],
+        [ sh:class mf3gpp:Operation ;
             sh:description """Set of operations supported by the managed NF
 service instance""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService/operations> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ManagedNFService> .
+            sh:path gnbdu3gpp:ManagedNFService.operations ] ;
+    sh:targetClass gnbdu3gpp:ManagedNFService .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJobShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:PerfMetricJob a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/id> ],
+            sh:path gnbdu3gpp:PerfMetricJob.id ],
         [ sh:description "Enable or disables production of the metrics" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/administrativeState> ],
+            sh:path gnbdu3gpp:PerfMetricJob.administrativeState ],
         [ sh:datatype xsd:string ;
             sh:description """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/notificationRecipientAddress> ],
+            sh:path gnbdu3gpp:PerfMetricJob.notificationRecipientAddress ],
         [ sh:datatype xsd:string ;
             sh:description """Applicable when stream-based reporting method is
 supported.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/streamTarget> ],
+            sh:path gnbdu3gpp:PerfMetricJob.streamTarget ],
         [ sh:datatype xsd:string ;
             sh:description "Link to a 'Files' object." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/_linkToFiles> ],
+            sh:path gnbdu3gpp:PerfMetricJob._linkToFiles ],
         [ sh:description "Pointer to a Scheduler object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/schedulerRef> ;
+            sh:path gnbdu3gpp:PerfMetricJob.schedulerRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description "Pointer to a ConditionMonitor object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/conditionMonitorRef> ;
+            sh:path gnbdu3gpp:PerfMetricJob.conditionMonitorRef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description "Indicates whether the PerfMetricJob is working." ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/operationalState> ],
+            sh:path gnbdu3gpp:PerfMetricJob.operationalState ],
         [ sh:datatype xsd:string ;
             sh:description "Id for a PerfMetricJob job." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/jobId> ],
+            sh:path gnbdu3gpp:PerfMetricJob.jobId ],
         [ sh:datatype xsd:string ;
             sh:description """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -377,18 +374,18 @@ the bullet e) of the measurement definition.
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/performanceMetrics> ],
+            sh:path gnbdu3gpp:PerfMetricJob.performanceMetrics ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/granularityPeriod> ],
-        [ sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/objectInstances> ;
+            sh:path gnbdu3gpp:PerfMetricJob.granularityPeriod ],
+        [ sh:path gnbdu3gpp:PerfMetricJob.objectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/rootObjectInstances> ;
+            sh:path gnbdu3gpp:PerfMetricJob.rootObjectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """For the file-based reporting method this is the time
@@ -399,34 +396,34 @@ The time-period must be a multiple of the granularityPeriod.
 Applicable when the file-based reporting method is supported.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/fileReportingPeriod> ],
+            sh:path gnbdu3gpp:PerfMetricJob.fileReportingPeriod ],
         [ sh:datatype xsd:string ;
             sh:description """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob/fileLocation> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/PerfMetricJob> .
+            sh:path gnbdu3gpp:PerfMetricJob.fileLocation ] ;
+    sh:targetClass gnbdu3gpp:PerfMetricJob .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportConfShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:RimRSReportConf a sh:NodeShape ;
     sh:property [ sh:description """Used to enable or disable the RS report on a gNB.
 If the indication is 'enable', the gNB starts to periodically report
 necessary information derived from the detected RIM-RS to OAM.
 If the indication is 'disable', the gNB stops reporting.""" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportConf/reportIndicator> ],
+            sh:path gnbdu3gpp:RimRSReportConf.reportIndicator ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description "Used to define reporting interval of a gNB in ms." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportConf/reportInterval> ],
+            sh:path gnbdu3gpp:RimRSReportConf.reportInterval ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Used to define the maximum number of RIMRSReportInfo in
 a single report.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportConf/nrofRIMRSReportInfo> ],
+            sh:path gnbdu3gpp:RimRSReportConf.nrofRIMRSReportInfo ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Used to define the maximum reported OFDM symbol number for
 the propagation delay of the detected RIM-RS in each RIMRSReportInfo.
@@ -434,25 +431,25 @@ the propagation delay of the detected RIM-RS in each RIMRSReportInfo.
 allowedValues: 0, 1..20**2*maxNrofSymbols-1, where maxNrofSymbols=14.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportConf/maxPropagationDelay> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportInfo> ;
+            sh:path gnbdu3gpp:RimRSReportConf.maxPropagationDelay ],
+        [ sh:class gnbdu3gpp:RimRSReportInfo ;
             sh:description """Represents a list (the length of the list is
 nrofRIMRSReportInfo) of necessary information derived from the
 detected RIM-RS.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportConf/RimRSReportInfoList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportConf> .
+            sh:path gnbdu3gpp:RimRSReportConf.RimRSReportInfoList ] ;
+    sh:targetClass gnbdu3gpp:RimRSReportConf .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportInfoShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:RimRSReportInfo a sh:NodeShape ;
     sh:property [ sh:datatype xsd:unsignedInt ;
             sh:description """Set ID of the detected RIM-RS
 allowedValues: 0,1...max{totalnrofSetIdofRS1, totalnrofSetIdofRS2}""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportInfo/detectedSetID> ],
+            sh:path gnbdu3gpp:RimRSReportInfo.detectedSetID ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """This attribute indicates the propagation delay of the
 detected RIM-RS, in number of OFDM symbol.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportInfo/propagationDelay> ],
+            sh:path gnbdu3gpp:RimRSReportInfo.propagationDelay ],
         [ sh:description """Indicates the functionality of the detected RIM-RS.
 If the indication of enableEnoughNotEnoughIndication is 'enabled',
 valid values are {RS2, RS1forEnoughMitigation,
@@ -467,50 +464,50 @@ RS1forNotEnoughMitigation means RIM-RS type 1 is used to indicate
             sh:in ( "RS1" "RS2" "RS1_FOR_ENOUGH_MITIGATION" "RS1_FOR_NOT_ENOUGH_MITIGATION" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportInfo/functionalityOfRIMRS> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/RimRSReportInfo> .
+            sh:path gnbdu3gpp:RimRSReportInfo.functionalityOfRIMRS ] ;
+    sh:targetClass gnbdu3gpp:RimRSReportInfo .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrlShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:StmCtrl a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrl/id> ],
+            sh:path gnbdu3gpp:StmCtrl.id ],
         [ sh:description """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrl/reportingNFList> ;
+            sh:path gnbdu3gpp:StmCtrl.reportingNFList ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrl/stmTargetUri> ;
+            sh:path gnbdu3gpp:StmCtrl.stmTargetUri ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:description """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrl/administrativeState> ],
+            sh:path gnbdu3gpp:StmCtrl.administrativeState ],
         [ sh:description "It is used by STM consumer to report its working state" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrl/operationalState> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> ;
+            sh:path gnbdu3gpp:StmCtrl.operationalState ],
+        [ sh:class stm3gpp:NetworkInterface ;
             sh:description """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrl/targetInterfaceInfoList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/StmCtrl> .
+            sh:path gnbdu3gpp:StmCtrl.targetInterfaceInfoList ] ;
+    sh:targetClass gnbdu3gpp:StmCtrl .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/SupportedPerfMetricGroupsShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:SupportedPerfMetricGroups a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -526,69 +523,69 @@ definitions template as the component designated with e).
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/SupportedPerfMetricGroups/performanceMetrics> ],
+            sh:path gnbdu3gpp:SupportedPerfMetricGroups.performanceMetrics ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/SupportedPerfMetricGroups/granularityPeriods> ],
+            sh:path gnbdu3gpp:SupportedPerfMetricGroups.granularityPeriods ],
         [ sh:in ( "FILE_BASED_LOC_SET_BY_PRODUCER" "FILE_BASED_LOC_SET_BY_CONSUMER" "STREAM_BASED" ) ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/SupportedPerfMetricGroups/reportingMethods> ],
+            sh:path gnbdu3gpp:SupportedPerfMetricGroups.reportingMethods ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/SupportedPerfMetricGroups/reportingPeriods> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/SupportedPerfMetricGroups> .
+            sh:path gnbdu3gpp:SupportedPerfMetricGroups.reportingPeriods ] ;
+    sh:targetClass gnbdu3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitorShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:ThresholdMonitor a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/id> ],
+            sh:path gnbdu3gpp:ThresholdMonitor.id ],
         [ sh:description "Enables or disables the ThresholdMonitor." ;
             sh:in ( "LOCKED" "UNLOCKED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/administrativeState> ],
+            sh:path gnbdu3gpp:ThresholdMonitor.administrativeState ],
         [ sh:description "Indicates whether the ThresholdMonitor is working." ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/operationalState> ],
+            sh:path gnbdu3gpp:ThresholdMonitor.operationalState ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/monitorGranularityPeriod> ],
-        [ sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/objectInstances> ;
+            sh:path gnbdu3gpp:ThresholdMonitor.monitorGranularityPeriod ],
+        [ sh:path gnbdu3gpp:ThresholdMonitor.objectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:description """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/rootObjectInstances> ;
+            sh:path gnbdu3gpp:ThresholdMonitor.rootObjectInstances ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> ;
+        [ sh:class meas3gpp:ThresholdInfo ;
             sh:description "List of threshold info." ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor/thresholdInfoList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/ThresholdMonitor> .
+            sh:path gnbdu3gpp:ThresholdMonitor.thresholdInfoList ] ;
+    sh:targetClass gnbdu3gpp:ThresholdMonitor .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJobShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:TraceJob a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/id> ],
+            sh:path gnbdu3gpp:TraceJob.id ],
         [ sh:description """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
             sh:in ( "IMMEDIATE_MDT_ONLY" "LOGGED_MDT_ONLY" "TRACE_ONLY" "IMMEDIATE_MDT_AND_TRACE" "RLF_REPORT_ONLY" "RCEF_REPORT_ONLY" "LOGGED_MBSFN_MDT" "5GC_UE_LEVEL_MEASUREMENTS_ONLY" "TRACE_AND_5GC_UE_LEVEL_MEASUREMENTS" "IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "TRACE_AND_IMMEDIATE_MDT_AND_5GC_UE_LEVEL_MEASUREMENTS" "RRC_REPORT" "IMMEDIATE_MDT_AND_LOGGED_MDT" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/jobType> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/traceTarget> ;
+            sh:path gnbdu3gpp:TraceJob.jobType ],
+        [ sh:class gnbdu3gpp:traceTarget ;
             sh:description """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
 Trace, MDT, and 5GC UE level measurements collection.
@@ -596,12 +593,12 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/traceTarget> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> ;
+            sh:path gnbdu3gpp:TraceJob.traceTarget ],
+        [ sh:class trace3gpp:TraceConfig ;
             sh:description "Trace config" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/traceConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> ;
+            sh:path gnbdu3gpp:TraceJob.traceConfig ],
+        [ sh:class trace3gpp:MdtConfig ;
             sh:description """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
 The attribute anonymizationOfMdtData specifies the level of
@@ -623,22 +620,23 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/mdtConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> ;
+            sh:path gnbdu3gpp:TraceJob.mdtConfig ],
+        [ sh:class trace3gpp:UECoreMeasConfig ;
             sh:description "5GC UE level measurements config" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/ueCoreMeasConfig> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
+            sh:path gnbdu3gpp:TraceJob.ueCoreMeasConfig ],
+        [ sh:class types3gpp:NpnId ;
             sh:description """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/nPNTarget> ],
+            sh:path gnbdu3gpp:TraceJob.nPNTarget ],
         [ sh:description "Specifies the RRC reports requested. " ;
             sh:in ( "RLF_REPORT" "RCEF_REPORT" "SHR" "SPR" "MHI" "RA_REPORT" ) ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/rrcReportType> ],
+            sh:path gnbdu3gpp:TraceJob.rrcReportType ],
         [ sh:datatype xsd:string ;
             sh:description """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -648,34 +646,34 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/listOfTraceMetrics> ],
+            sh:path gnbdu3gpp:TraceJob.listOfTraceMetrics ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/traceCollectionEntityIPAddress> ],
+            sh:path gnbdu3gpp:TraceJob.traceCollectionEntityIPAddress ],
         [ sh:datatype xsd:string ;
             sh:description """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/traceReportingConsumerUri> ;
+            sh:path gnbdu3gpp:TraceJob.traceReportingConsumerUri ;
             sh:pattern "[a-z][a-z0-9+.-]*:.*" ],
         [ sh:datatype xsd:string ;
             sh:description "Identifier of a TraceJob" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/jobId> ],
+            sh:path gnbdu3gpp:TraceJob.jobId ],
         [ sh:description """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
             sh:in ( "FILE_BASED" "STREAMING" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/traceReportingFormat> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/pLMNTarget> ;
+            sh:path gnbdu3gpp:TraceJob.traceReportingFormat ],
+        [ sh:class gnbdu3gpp:pLMNTarget ;
             sh:description """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/pLMNTarget> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> ;
+            sh:path gnbdu3gpp:TraceJob.pLMNTarget ],
+        [ sh:class trace3gpp:TraceReference ;
             sh:description """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
@@ -683,23 +681,23 @@ Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob/traceReference> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/TraceJob> .
+            sh:path gnbdu3gpp:TraceJob.traceReference ] ;
+    sh:targetClass gnbdu3gpp:TraceJob .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/pLMNTargetShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:pLMNTarget a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/pLMNTarget/mcc> ;
+            sh:path gnbdu3gpp:pLMNTarget.mcc ;
             sh:pattern "[02-79][0-9][0-9]" ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/pLMNTarget/mnc> ;
+            sh:path gnbdu3gpp:pLMNTarget.mnc ;
             sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/pLMNTarget> .
+    sh:targetClass gnbdu3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/traceTargetShape> a sh:NodeShape ;
+gnbdu3gpp-shapes:traceTarget a sh:NodeShape ;
     sh:property [ sh:description """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
 Trace, MDT, and 5GC UE level measurements collection.
@@ -761,10 +759,24 @@ level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
             sh:in ( "IMSI" "IMEI" "IMEISV" "PUBLIC_ID" "UTRAN_CELL" "E_UTRAN_CELL" "NG_RAN_CELL" "ENB" "RNC" "GNB" "SUPI" "N4_SESSION_ID" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/traceTarget/traceTargetType> ],
+            sh:path gnbdu3gpp:traceTarget.traceTargetType ],
         [ sh:datatype xsd:string ;
             sh:description """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/traceTarget/traceTargetValueList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction/traceTarget> .
+            sh:path gnbdu3gpp:traceTarget.traceTargetValueList ] ;
+    sh:targetClass gnbdu3gpp:traceTarget .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-gnbdufunction> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-gnbdufunction" ;
+    dcterms:description """Defines the YANG mapping of the GNBDUFunction Information
+Object Class (IOC) that is part of the NR Network Resource Model (NRM).
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-gnbdufunction" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2025-08-15 (CR-1598 CR-1558)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-gnbdufunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction> .
 

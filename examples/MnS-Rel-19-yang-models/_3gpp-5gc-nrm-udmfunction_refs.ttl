@@ -1,57 +1,61 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix udm3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-udmfunction#> .
+@prefix util3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-util#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-udmfunction> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-udmfunction" ;
     dcterms:description """This IOC represents the UDM function in 5GC. For more
 information about the UDM, see 3GPP TS 23.501.
-Copyright 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3gpp SA5" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-udmfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
+    owl:versionInfo "revision 2026-03-25 (CR-1694)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-udmfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/File/jobRef> nrm:candidate "Job" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:File.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/Files/jobRef> nrm:candidate "Job" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:Files.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:PerfMetricJob.conditionMonitorRef rdfs:range util3gpp:ConditionMonitor ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:PerfMetricJob.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:PerfMetricJob.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:PerfMetricJob.schedulerRef rdfs:range util3gpp:Scheduler ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:StmCtrl.reportingNFList y2r:candidate "ReportingNF" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:ThresholdMonitor.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:ThresholdMonitor.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udmfunction/commModelList/targetNFServiceList> nrm:candidate "TargetNFService" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+udm3gpp:commModelList.targetNFServiceList y2r:candidate "TargetNFService" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

@@ -1,25 +1,31 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix eutranfreqrel3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-eutranfreqrelation#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> a rdfs:Class ;
+eutranfreqrel3gpp:EUtranFreqRelation a rdfs:Class ;
     rdfs:label "EUtranFreqRelation" ;
     rdfs:comment """Represents a frequency relation between an NR cell and an
 E-UTRAN cell.""" ;
-    rdfs:subClassOf nrm:ManagedFunction ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> .
+    rdfs:subClassOf y2r:ManagedFunction ;
+    y2r:hasAttribute mf3gpp:PeeParameters,
+        mf3gpp:VnfParameters,
+        eutranfreqrel3gpp:SupportedPerfMetricGroups ;
+    y2r:nameContains eutranfreqrel3gpp:ManagedNFService,
+        eutranfreqrel3gpp:PerfMetricJob,
+        eutranfreqrel3gpp:StmCtrl,
+        eutranfreqrel3gpp:ThresholdMonitor,
+        eutranfreqrel3gpp:TraceJob .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> a rdfs:Class ;
+eutranfreqrel3gpp:File a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File" ;
     rdfs:comment """Represents a file. It is name-contained by 'Files'.
 
@@ -94,7 +100,7 @@ clause 11.6.1.1.1. Note that to receive 'notifyFilePreparationError'
 in that case the notification subscription needs to include these
 objects in its scope.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files> a rdfs:Class ;
+eutranfreqrel3gpp:Files a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:Files" ;
     rdfs:comment """This IOC represents a collection of files. It can be
 name-contained by 'SubNetwork', 'ManagedElement', 'PerfMetricJob' or
@@ -141,15 +147,15 @@ In addition, the attribute '_linkToFiles' allows for simple
 deployments not relying on notifications for reporting the
 availability of new files, where the MnS consumer polls regularly
 for new files under 'Files'.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> .
+    y2r:nameContains eutranfreqrel3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> a rdfs:Class ;
+eutranfreqrel3gpp:ManagedNFService a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService" ;
     rdfs:comment "Represents a Network Function (NF)" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-function/Operation>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    y2r:hasAttribute mf3gpp:Operation,
+        types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> a rdfs:Class ;
+eutranfreqrel3gpp:PerfMetricJob a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob" ;
     rdfs:comment """This IOC represents a performance metric production job. It
 can be name-contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -232,16 +238,16 @@ by the MnS producer.
 Creation and deletion of PerfMetricJob instances by MnS consumers is
 optional; when not supported, PerfMetricJob instances may be created and
 deleted by the system or be pre-installed.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files> .
+    y2r:nameContains eutranfreqrel3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl> a rdfs:Class ;
+eutranfreqrel3gpp:StmCtrl a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:StmCtrl" ;
     rdfs:comment """This IOC represents the STM Control and Configuration
 parameters of a particular STM controlling. It can be
 name-contained by SubNetwork, ManagedElement, or ManagedFunction.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    y2r:hasAttribute stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups> a rdfs:Class ;
+eutranfreqrel3gpp:SupportedPerfMetricGroups a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -251,7 +257,7 @@ under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor> a rdfs:Class ;
+eutranfreqrel3gpp:ThresholdMonitor a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ThresholdMonitor" ;
     rdfs:comment """Represents a threshold monitor for performance metrics.
 It can be contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -325,14 +331,15 @@ monitored are not produced by a PerfMetricJob.
 Creation and deletion of ThresholdMonitor instances by MnS consumers is
 optional; when not supported, ThresholdMonitor instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    y2r:hasAttribute meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> a rdfs:Class ;
+eutranfreqrel3gpp:TraceJob a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob" ;
     rdfs:comment """A TraceJob instance represents the Trace Control and
 Configuration parameters of a particular Trace Job (see TS 32.421 and
 TS 32.422 for details). It can be name-contained by SubNetwork,
-ManagedElement, ManagedFunction.
+ManagedElement, ManagedFunction. In case of signalling based trace
+activation, it shall be name-contained by the UDMFunction, see TS 28.541.
 
 To activate Trace Jobs, a MnS consumer has to create TraceJob object
 instances on the MnS producer. A MnS consumer can activate a Trace Job
@@ -344,15 +351,14 @@ For the details of Trace Job activation see clauses 4.1.1.1.2 and
 4.1.2.1.2 of TS 32.422.
 
 When a MnS consumer wishes to deactivate a Trace Job, the MnS consumer
-shall delete the corresponding TraceJob instance.
-
-For details of management Trace Job activation/deactivation see clause
-4.1.1.1.2 of TS 32.422.
+shall delete the corresponding TraceJob instance. For details of
+management Trace Job deactivation see clauses 4.1.3.8 to 4.1.3.11 a
+nd 4.1.4.10 to 4.1.4.13  of TS 32.422
 
 The attribute traceReference specifies a globally unique ID and
 identifies a Trace session. One Trace Session may be activated to
 multiple Network Elements. The traceReference is populated by the
-consumer that makes the request for a Trace Session.
+consumer that makes the request for a Trace Session, TS 32.422.
 
 The jobId attribute presents the job identifier of a TraceJob instance.
 The jobId can be used to associate  multiple TraceJob instances.
@@ -368,14 +374,15 @@ which the trace records shall be transferred, while in case of
 stream-based reporting the attribute traceReportingConsumerUri
 specifies the streaming target.
 
-The mandatory attribute traceTarget determines the target object of
-the TraceJob. Dependent on the network element to which the Trace
-Session is activated different types of the target object are possible.
+The attribute traceTarget determines the target object of the
+TraceJob. Dependent on the network element to which the Trace Session
+is activated different types of the target object are possible.
+
 The attribute pLMNTarget defines the PLMN for which sessions shall be
 selected in the Trace Session in case of management based activation
-when several PLMNs are supported in the RAN.The MDT configuration may
-include area scope defined by network slice, in which case
-the attribute pLMNTarget is not applicable.
+when several PLMNs are supported in the RAN.  The MDT configuration
+may include area scope defined by network slice, in which case the
+attribute pLMNTarget is not applicable.
 
 The attribute listOfTraceMetrics allows configuraton of which metrics
 shall be recorded.
@@ -394,21 +401,21 @@ be present. The rrcReportType allows the tracing of RRC reports.
 Creation and deletion of TraceJob instances by MnS consumers is
 optional; when not supported, the TraceJob instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceReference>,
-        <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/pLMNTarget>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/traceTarget> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files> .
+    y2r:hasAttribute trace3gpp:MdtConfig,
+        trace3gpp:TraceConfig,
+        trace3gpp:TraceReference,
+        trace3gpp:UECoreMeasConfig,
+        types3gpp:NpnId,
+        eutranfreqrel3gpp:pLMNTarget,
+        eutranfreqrel3gpp:traceTarget ;
+    y2r:nameContains eutranfreqrel3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/pLMNTarget> a rdfs:Class ;
+eutranfreqrel3gpp:pLMNTarget a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/traceTarget> a rdfs:Class ;
+eutranfreqrel3gpp:traceTarget a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -417,7 +424,7 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-eutranfreqrelation> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation" ;
     dcterms:description """Defines the YANG mapping of the EUtranFreqRelation Information
 Object Class (IOC) that is part of the NR Network Resource Model (NRM).
@@ -427,9 +434,11 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-eutranfreqrelation" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-01-25 (CR-1442)" .
+    owl:versionInfo "revision 2025-01-25 (CR-1442)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-eutranfreqrelation" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+eutranfreqrel3gpp:EUtranFreqRelation.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EUtranFreqRelation.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -438,110 +447,110 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups> .
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
+    rdfs:range eutranfreqrel3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/blockListEntry> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.blockListEntry a rdf:Property ;
     rdfs:label "EUtranFreqRelation.blockListEntry" ;
     rdfs:comment """A list of Physical Cell Identities (PCIs) that are
 blocklisted in E-UTRAN measurements.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/blockListEntryIdleMode> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.blockListEntryIdleMode a rdf:Property ;
     rdfs:label "EUtranFreqRelation.blockListEntryIdleMode" ;
     rdfs:comment """A list of Physical Cell Identities (PCIs) that are
 blocklisted in SIB4 and SIB5.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/cellIndividualOffset> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.cellIndividualOffset a rdf:Property ;
     rdfs:label "EUtranFreqRelation.cellIndividualOffset" ;
     rdfs:comment """Offset applicable to a neighbouring cell. Used for
 evaluating the neighbouring cell for handover in connected mode.
 Used by the HandOver parameter Optimization (HOO) function or
 Load Balancing Optimization (LBO) function.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/cellReselectionPriority> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.cellReselectionPriority a rdf:Property ;
     rdfs:label "EUtranFreqRelation.cellReselectionPriority" ;
     rdfs:comment """The absolute priority of the carrier frequency used by the
 cell reselection procedure. Value 0 means lowest priority. The value
 must not already used by other RAT, i.e. equal priorities between RATs
 are not supported. The UE behaviour when no value is entered is
 specified in subclause 5.2.4.1 of 3GPP TS 38.304.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/cellReselectionSubPriority> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.cellReselectionSubPriority a rdf:Property ;
     rdfs:label "EUtranFreqRelation.cellReselectionSubPriority" ;
     rdfs:comment """Indicates a fractional value to be added to the value of
 cellReselectionPriority to obtain the absolute priority of the
 concerned carrier frequency for E-UTRA and NR.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/eUtranFrequencyRef> a owl:ObjectProperty ;
+eutranfreqrel3gpp:EUtranFreqRelation.eUtranFrequencyRef a owl:ObjectProperty ;
     rdfs:label "EUtranFreqRelation.eUtranFrequencyRef" ;
     rdfs:comment "Reference to a corresponding EUtranFrequency instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/id> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.id a rdf:Property ;
     rdfs:label "EUtranFreqRelation.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/pMax> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.pMax a rdf:Property ;
     rdfs:label "EUtranFreqRelation.pMax" ;
     rdfs:comment """Used for calculation of the parameter Pcompensation
 (defined in 3GPP TS 38.304), at cell reselection to a cell.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/peeParameterslist> a owl:ObjectProperty ;
+eutranfreqrel3gpp:EUtranFreqRelation.peeParameterslist a owl:ObjectProperty ;
     rdfs:label "EUtranFreqRelation.peeParameterslist" ;
     rdfs:comment """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> .
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
+    rdfs:range mf3gpp:PeeParameters .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/priorityLabel> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.priorityLabel a rdf:Property ;
     rdfs:label "EUtranFreqRelation.priorityLabel" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/qOffsetFreq> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.qOffsetFreq a rdf:Property ;
     rdfs:label "EUtranFreqRelation.qOffsetFreq" ;
     rdfs:comment """The frequency specific offset applied when evaluating
 candidates for cell reselection.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/qQualMin> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.qQualMin a rdf:Property ;
     rdfs:label "EUtranFreqRelation.qQualMin" ;
     rdfs:comment """Indicates the minimum required quality level in the cell.
 Value 0 means that it is not sent and UE applies in such case the
 (default) value of negative infinity for Qqualmin. Sent in SIB3 or
 SIB5.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/qRxLevMin> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.qRxLevMin a rdf:Property ;
     rdfs:label "EUtranFreqRelation.qRxLevMin" ;
     rdfs:comment """Indicates the required minimum received Reference Symbol
 Received Power (RSRP) level in the (E-UTRA) frequency for cell
 reselection. Broadcast in SIB3 or SIB5, depending on whether the
 related frequency is intra- or inter-frequency. Resolution is 2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/supportedTraceMetrics> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.supportedTraceMetrics a rdf:Property ;
     rdfs:label "EUtranFreqRelation.supportedTraceMetrics" ;
     rdfs:comment """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -552,125 +561,125 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/tReselectionEutra> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.tReselectionEutra a rdf:Property ;
     rdfs:label "EUtranFreqRelation.tReselectionEutra" ;
     rdfs:comment """Cell reselection timer for intra frequency E-UTRA cell
 reselection. May be used for Mobility Robustness Optimization.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/tReselectionEutraSfHigh> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.tReselectionEutraSfHigh a rdf:Property ;
     rdfs:label "EUtranFreqRelation.tReselectionEutraSfHigh" ;
     rdfs:comment """The attribute tReselectionEutra (parameter TreselectionEUTRA
 in 3GPP TS 38.304) multiplied with this scaling factor if the UE is in
 high mobility state.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/tReselectionEutraSfMedium> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.tReselectionEutraSfMedium a rdf:Property ;
     rdfs:label "EUtranFreqRelation.tReselectionEutraSfMedium" ;
     rdfs:comment """The attribute tReselectionEutra (parameter TreselectionEUTRA
 in 3GPP TS 38.304) multiplied with this scaling factor if the UE is in
 medium mobility state.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/threshXHighP> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.threshXHighP a rdf:Property ;
     rdfs:label "EUtranFreqRelation.threshXHighP" ;
     rdfs:comment """Specifies the Srxlev threshold used by the UE when
 reselecting towards a higher priority RAT/frequency than the current
 serving frequency. Each frequency of NR and E-UTRAN might have a
 specific threshold. Resolution is 2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/threshXHighQ> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.threshXHighQ a rdf:Property ;
     rdfs:label "EUtranFreqRelation.threshXHighQ" ;
     rdfs:comment """Specifies the Squal threshold used by the UE when
 reselecting towards a higher priority RAT/frequency than the current
 serving frequency. Each frequency of NR and E-UTRAN might have a
 specific threshold.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/threshXLowP> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.threshXLowP a rdf:Property ;
     rdfs:label "EUtranFreqRelation.threshXLowP" ;
     rdfs:comment """Specifies the Srxlev threshold used by the UE when
 reselecting towards a lower priority RAT/frequency than the current
 serving frequency. Each frequency of NR and E-UTRAN might have a
 specific threshold. Resolution is 2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/threshXLowQ> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.threshXLowQ a rdf:Property ;
     rdfs:label "EUtranFreqRelation.threshXLowQ" ;
     rdfs:comment """Specifies the Squal threshold used by the UE when
 reselecting towards a lower priority RAT/frequency than the current
 serving frequency. Each frequency of NR and E-UTRAN might have a
 specific threshold.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/userLabel> a rdf:Property ;
+eutranfreqrel3gpp:EUtranFreqRelation.userLabel a rdf:Property ;
     rdfs:label "EUtranFreqRelation.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation/vnfParametersList> a owl:ObjectProperty ;
+eutranfreqrel3gpp:EUtranFreqRelation.vnfParametersList a owl:ObjectProperty ;
     rdfs:label "EUtranFreqRelation.vnfParametersList" ;
     rdfs:comment """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/EUtranFreqRelation> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> .
+    rdfs:domain eutranfreqrel3gpp:EUtranFreqRelation ;
+    rdfs:range mf3gpp:VnfParameters .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/fileCompression> a rdf:Property ;
+eutranfreqrel3gpp:File.fileCompression a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.fileCompression" ;
     rdfs:comment """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/fileContent> a rdf:Property ;
+eutranfreqrel3gpp:File.fileContent a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.fileContent" ;
     rdfs:comment """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:base64Binary ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/fileDataType> a rdf:Property ;
+eutranfreqrel3gpp:File.fileDataType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.fileDataType" ;
     rdfs:comment "Type of the management data stored in the file." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/fileExpirationTime> a rdf:Property ;
+eutranfreqrel3gpp:File.fileExpirationTime a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.fileExpirationTime" ;
     rdfs:comment "Date and time after which the file may be deleted." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/fileFormat> a rdf:Property ;
+eutranfreqrel3gpp:File.fileFormat a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.fileFormat" ;
     rdfs:comment """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/fileLocation> a rdf:Property ;
+eutranfreqrel3gpp:File.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.fileLocation" ;
     rdfs:comment """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -684,166 +693,166 @@ Examples:
 'sftp://companyA.com/datastore/fileName.xml',
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/fileReadyTime> a rdf:Property ;
+eutranfreqrel3gpp:File.fileReadyTime a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.fileReadyTime" ;
     rdfs:comment """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/fileSize> a rdf:Property ;
+eutranfreqrel3gpp:File.fileSize a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.fileSize" ;
     rdfs:comment "Size of the file" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:unsignedLong ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/id> a rdf:Property ;
+eutranfreqrel3gpp:File.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/jobId> a rdf:Property ;
+eutranfreqrel3gpp:File.jobId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
+    rdfs:domain eutranfreqrel3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File/jobRef> a owl:ObjectProperty ;
+eutranfreqrel3gpp:File.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:File.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/File> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:File ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files/id> a rdf:Property ;
+eutranfreqrel3gpp:Files.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:Files.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files> ;
+    rdfs:domain eutranfreqrel3gpp:Files ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files/jobId> a rdf:Property ;
+eutranfreqrel3gpp:Files.jobId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:Files.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files> ;
+    rdfs:domain eutranfreqrel3gpp:Files ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files/jobRef> a owl:ObjectProperty ;
+eutranfreqrel3gpp:Files.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:Files.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:Files ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files/numberOfFiles> a rdf:Property ;
+eutranfreqrel3gpp:Files.numberOfFiles a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:Files.numberOfFiles" ;
     rdfs:comment "Number of files in a file collection." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/Files> ;
+    rdfs:domain eutranfreqrel3gpp:Files ;
     rdfs:range xsd:unsignedLong .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/administrativeState> a rdf:Property ;
+eutranfreqrel3gpp:ManagedNFService.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.administrativeState" ;
     rdfs:comment "Permission to use or prohibition against using the instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/id> a rdf:Property ;
+eutranfreqrel3gpp:ManagedNFService.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/nFServiceType> a rdf:Property ;
+eutranfreqrel3gpp:ManagedNFService.nFServiceType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.nFServiceType" ;
     rdfs:comment """The type of the managed NF service instance
 The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/operationalState> a rdf:Property ;
+eutranfreqrel3gpp:ManagedNFService.operationalState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.operationalState" ;
     rdfs:comment "Describes whether the resource is installed and working" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/operations> a owl:ObjectProperty ;
+eutranfreqrel3gpp:ManagedNFService.operations a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.operations" ;
     rdfs:comment """Set of operations supported by the managed NF
 service instance""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> .
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
+    rdfs:range mf3gpp:Operation .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/registrationState> a rdf:Property ;
+eutranfreqrel3gpp:ManagedNFService.registrationState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.registrationState" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/sAP> a owl:ObjectProperty ;
+eutranfreqrel3gpp:ManagedNFService.sAP a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.sAP" ;
     rdfs:comment "The service access point of the managed NF service instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
+    rdfs:range types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/usageState> a rdf:Property ;
+eutranfreqrel3gpp:ManagedNFService.usageState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.usageState" ;
     rdfs:comment """Describes whether the resource is actively in use at a
 specific instant, and if so, whether or not it has spare
 capacity for additional users.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService/userLabel> a rdf:Property ;
+eutranfreqrel3gpp:ManagedNFService.userLabel a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ManagedNFService.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ManagedNFService> ;
+    rdfs:domain eutranfreqrel3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/_linkToFiles> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob._linkToFiles a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob._linkToFiles" ;
     rdfs:comment "Link to a 'Files' object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/administrativeState> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.administrativeState" ;
     rdfs:comment "Enable or disables production of the metrics" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/conditionMonitorRef> a owl:ObjectProperty ;
+eutranfreqrel3gpp:PerfMetricJob.conditionMonitorRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.conditionMonitorRef" ;
     rdfs:comment "Pointer to a ConditionMonitor object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/fileLocation> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.fileLocation" ;
     rdfs:comment """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/fileReportingPeriod> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.fileReportingPeriod a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.fileReportingPeriod" ;
     rdfs:comment """For the file-based reporting method this is the time
 window during which collected measurements are stored into the same
@@ -851,51 +860,51 @@ file before the file is closed and a new file is opened.
 The time-period must be a multiple of the granularityPeriod.
 
 Applicable when the file-based reporting method is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/granularityPeriod> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.granularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.granularityPeriod" ;
     rdfs:comment """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/id> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/jobId> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.jobId" ;
     rdfs:comment "Id for a PerfMetricJob job." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/notificationRecipientAddress> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.notificationRecipientAddress a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.notificationRecipientAddress" ;
     rdfs:comment """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/objectInstances> a owl:ObjectProperty ;
+eutranfreqrel3gpp:PerfMetricJob.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/operationalState> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.operationalState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.operationalState" ;
     rdfs:comment "Indicates whether the PerfMetricJob is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/performanceMetrics> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -908,85 +917,85 @@ the bullet e) of the measurement definition.
 
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/rootObjectInstances> a owl:ObjectProperty ;
+eutranfreqrel3gpp:PerfMetricJob.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/schedulerRef> a owl:ObjectProperty ;
+eutranfreqrel3gpp:PerfMetricJob.schedulerRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.schedulerRef" ;
     rdfs:comment "Pointer to a Scheduler object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob/streamTarget> a rdf:Property ;
+eutranfreqrel3gpp:PerfMetricJob.streamTarget a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:PerfMetricJob.streamTarget" ;
     rdfs:comment """Applicable when stream-based reporting method is
 supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/PerfMetricJob> ;
+    rdfs:domain eutranfreqrel3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl/administrativeState> a rdf:Property ;
+eutranfreqrel3gpp:StmCtrl.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:StmCtrl.administrativeState" ;
     rdfs:comment """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl> ;
+    rdfs:domain eutranfreqrel3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl/id> a rdf:Property ;
+eutranfreqrel3gpp:StmCtrl.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:StmCtrl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl> ;
+    rdfs:domain eutranfreqrel3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl/operationalState> a rdf:Property ;
+eutranfreqrel3gpp:StmCtrl.operationalState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:StmCtrl.operationalState" ;
     rdfs:comment "It is used by STM consumer to report its working state" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl> ;
+    rdfs:domain eutranfreqrel3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl/reportingNFList> a owl:ObjectProperty ;
+eutranfreqrel3gpp:StmCtrl.reportingNFList a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:StmCtrl.reportingNFList" ;
     rdfs:comment """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl> ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:StmCtrl ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl/stmTargetUri> a rdf:Property ;
+eutranfreqrel3gpp:StmCtrl.stmTargetUri a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:StmCtrl.stmTargetUri" ;
     rdfs:comment """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl> ;
+    rdfs:domain eutranfreqrel3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl/targetInterfaceInfoList> a owl:ObjectProperty ;
+eutranfreqrel3gpp:StmCtrl.targetInterfaceInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:StmCtrl.targetInterfaceInfoList" ;
     rdfs:comment """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/StmCtrl> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    rdfs:domain eutranfreqrel3gpp:StmCtrl ;
+    rdfs:range stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
+eutranfreqrel3gpp:SupportedPerfMetricGroups.granularityPeriods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups> ;
+    rdfs:domain eutranfreqrel3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
+eutranfreqrel3gpp:SupportedPerfMetricGroups.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -1001,91 +1010,91 @@ definitions template as the component designated with e).
 
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups> ;
+    rdfs:domain eutranfreqrel3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
+eutranfreqrel3gpp:SupportedPerfMetricGroups.reportingMethods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:SupportedPerfMetricGroups.reportingMethods" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups> ;
+    rdfs:domain eutranfreqrel3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
+eutranfreqrel3gpp:SupportedPerfMetricGroups.reportingPeriods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/SupportedPerfMetricGroups> ;
+    rdfs:domain eutranfreqrel3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor/administrativeState> a rdf:Property ;
+eutranfreqrel3gpp:ThresholdMonitor.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ThresholdMonitor.administrativeState" ;
     rdfs:comment "Enables or disables the ThresholdMonitor." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor> ;
+    rdfs:domain eutranfreqrel3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor/id> a rdf:Property ;
+eutranfreqrel3gpp:ThresholdMonitor.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ThresholdMonitor.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor> ;
+    rdfs:domain eutranfreqrel3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor/monitorGranularityPeriod> a rdf:Property ;
+eutranfreqrel3gpp:ThresholdMonitor.monitorGranularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ThresholdMonitor.monitorGranularityPeriod" ;
     rdfs:comment """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor> ;
+    rdfs:domain eutranfreqrel3gpp:ThresholdMonitor ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor/objectInstances> a owl:ObjectProperty ;
+eutranfreqrel3gpp:ThresholdMonitor.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ThresholdMonitor.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor/operationalState> a rdf:Property ;
+eutranfreqrel3gpp:ThresholdMonitor.operationalState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ThresholdMonitor.operationalState" ;
     rdfs:comment "Indicates whether the ThresholdMonitor is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor> ;
+    rdfs:domain eutranfreqrel3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor/rootObjectInstances> a owl:ObjectProperty ;
+eutranfreqrel3gpp:ThresholdMonitor.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ThresholdMonitor.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain eutranfreqrel3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor/thresholdInfoList> a owl:ObjectProperty ;
+eutranfreqrel3gpp:ThresholdMonitor.thresholdInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:ThresholdMonitor.thresholdInfoList" ;
     rdfs:comment "List of threshold info." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/ThresholdMonitor> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    rdfs:domain eutranfreqrel3gpp:ThresholdMonitor ;
+    rdfs:range meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/id> a rdf:Property ;
+eutranfreqrel3gpp:TraceJob.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/jobId> a rdf:Property ;
+eutranfreqrel3gpp:TraceJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.jobId" ;
     rdfs:comment "Identifier of a TraceJob" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/jobType> a rdf:Property ;
+eutranfreqrel3gpp:TraceJob.jobType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.jobType" ;
     rdfs:comment """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/listOfTraceMetrics> a rdf:Property ;
+eutranfreqrel3gpp:TraceJob.listOfTraceMetrics a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.listOfTraceMetrics" ;
     rdfs:comment """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -1095,10 +1104,10 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/mdtConfig> a owl:ObjectProperty ;
+eutranfreqrel3gpp:TraceJob.mdtConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.mdtConfig" ;
     rdfs:comment """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
@@ -1121,71 +1130,72 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> .
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
+    rdfs:range trace3gpp:MdtConfig .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/nPNTarget> a owl:ObjectProperty ;
+eutranfreqrel3gpp:TraceJob.nPNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.nPNTarget" ;
     rdfs:comment """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
+    rdfs:range types3gpp:NpnId .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/pLMNTarget> a owl:ObjectProperty ;
+eutranfreqrel3gpp:TraceJob.pLMNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/pLMNTarget> .
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
+    rdfs:range eutranfreqrel3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/rrcReportType> a rdf:Property ;
+eutranfreqrel3gpp:TraceJob.rrcReportType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.rrcReportType" ;
     rdfs:comment "Specifies the RRC reports requested. " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/traceCollectionEntityIPAddress> a rdf:Property ;
+eutranfreqrel3gpp:TraceJob.traceCollectionEntityIPAddress a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.traceCollectionEntityIPAddress" ;
     rdfs:comment """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/traceConfig> a owl:ObjectProperty ;
+eutranfreqrel3gpp:TraceJob.traceConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.traceConfig" ;
     rdfs:comment "Trace config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> .
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceConfig .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/traceReference> a owl:ObjectProperty ;
+eutranfreqrel3gpp:TraceJob.traceReference a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.traceReference" ;
     rdfs:comment """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
 Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceReference .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/traceReportingConsumerUri> a rdf:Property ;
+eutranfreqrel3gpp:TraceJob.traceReportingConsumerUri a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.traceReportingConsumerUri" ;
     rdfs:comment """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/traceReportingFormat> a rdf:Property ;
+eutranfreqrel3gpp:TraceJob.traceReportingFormat a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.traceReportingFormat" ;
     rdfs:comment """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/traceTarget> a owl:ObjectProperty ;
+eutranfreqrel3gpp:TraceJob.traceTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1193,26 +1203,26 @@ Trace, MDT, and 5GC UE level measurements collection.
 In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/traceTarget> .
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
+    rdfs:range eutranfreqrel3gpp:traceTarget .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob/ueCoreMeasConfig> a owl:ObjectProperty ;
+eutranfreqrel3gpp:TraceJob.ueCoreMeasConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:TraceJob.ueCoreMeasConfig" ;
     rdfs:comment "5GC UE level measurements config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> .
+    rdfs:domain eutranfreqrel3gpp:TraceJob ;
+    rdfs:range trace3gpp:UECoreMeasConfig .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/pLMNTarget/mcc> a rdf:Property ;
+eutranfreqrel3gpp:pLMNTarget.mcc a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:pLMNTarget.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/pLMNTarget> ;
+    rdfs:domain eutranfreqrel3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/pLMNTarget/mnc> a rdf:Property ;
+eutranfreqrel3gpp:pLMNTarget.mnc a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:pLMNTarget.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/pLMNTarget> ;
+    rdfs:domain eutranfreqrel3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/traceTarget/traceTargetType> a rdf:Property ;
+eutranfreqrel3gpp:traceTarget.traceTargetType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:traceTarget.traceTargetType" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1273,13 +1283,13 @@ the targetIdType shall be able to carry the corresponding
 Measured UE Identifier as defined by the bullet g) of the 5GC UE
 level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/traceTarget> ;
+    rdfs:domain eutranfreqrel3gpp:traceTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/traceTarget/traceTargetValueList> a rdf:Property ;
+eutranfreqrel3gpp:traceTarget.traceTargetValueList a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-eutranfreqrelation:traceTarget.traceTargetValueList" ;
     rdfs:comment """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfreqrelation/traceTarget> ;
+    rdfs:domain eutranfreqrel3gpp:traceTarget ;
     rdfs:range xsd:string .
 

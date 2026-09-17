@@ -2,28 +2,19 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rrsset3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-rimrsset#> .
+@prefix rrsset3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-rimrsset#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset> a owl:Ontology ;
-    rdfs:label "_3gpp-nr-nrm-rimrsset" ;
-    dcterms:description """Defines the YANG mapping of the RimRSSet Information Object
-Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
-    dcterms:title "_3gpp-nr-nrm-rimrsset" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainParaShape> a sh:NodeShape ;
+rrsset3gpp-shapes:FrequencyDomainPara a sh:NodeShape ;
     sh:property [ sh:datatype xsd:unsignedByte ;
             sh:description """It is the subcarrier spacing configuration (u) for the RIM-RS.
 Subcarrier spacing delta-f=2^u*15 kHz. (see 38.211 subclause 5.3.3).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/rimRSSubcarrierSpacing> ],
+            sh:path rrsset3gpp:FrequencyDomainPara.rimRSSubcarrierSpacing ],
         [ sh:datatype xsd:unsignedByte ;
             sh:description """It is the bandwidth of the RIM-RS in resource blocks
 (see 38.211 subclause 5.3.3).
@@ -38,15 +29,20 @@ Minimum of {48, bandwidth of downlink carrier in number of PRBs } if
 subcarrier spacing is 30kHz""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/rIMRSBandwidth> ],
+            sh:path rrsset3gpp:FrequencyDomainPara.rIMRSBandwidth ],
         [ sh:datatype xsd:unsignedByte ;
             sh:description """The number of candidate frequency resources in the whole
 network (N_f^RIM ) (see 38.211 subclause 7.4.1.6).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/nrofGlobalRIMRSFrequencyCandidates> ],
+            sh:path rrsset3gpp:FrequencyDomainPara.nrofGlobalRIMRSFrequencyCandidates ],
         [ sh:datatype xsd:int ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/rimRSCommonCarrierReferencePoint> ],
+            sh:description """This attribute is used to configure the common reference
+point for RIM RS. Where represents the frequency-location of point A
+expressed as in ARFCN. See 3GPP TS 38.211 subclause 4.4.4.2""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path rrsset3gpp:FrequencyDomainPara.rimRSCommonCarrierReferencePoint ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """List of configured frequency offsets in units of resource
 blocks, where each element is the frequency offset relative to a
@@ -57,44 +53,43 @@ have no overlapping bandwidth.  (see 38.211 subclause 7.4.1.6).
 
 allowedValues: 0..maxNrofPhysicalResourceBlocks-1 where
 maxNrofPhysicalResourceBlocks = 550""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/rimRSStartingFrequencyOffsetIdList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> .
+            sh:path rrsset3gpp:FrequencyDomainPara.rimRSStartingFrequencyOffsetIdList ] ;
+    sh:targetClass rrsset3gpp:FrequencyDomainPara .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobalShape> a sh:NodeShape ;
+rrsset3gpp-shapes:RimRSGlobal a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal/id> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> ;
+            sh:path rrsset3gpp:RimRSGlobal.id ],
+        [ sh:class rrsset3gpp:FrequencyDomainPara ;
             sh:description """Configuration parameters of frequency domain resource to
 support RIM RS. """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal/frequencyDomainPara> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> ;
+            sh:path rrsset3gpp:RimRSGlobal.frequencyDomainPara ],
+        [ sh:class rrsset3gpp:SequenceDomainPara ;
             sh:description """Configuration parameters of sequence domain resource to
 support RIM RS. """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal/sequenceDomainPara> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+            sh:path rrsset3gpp:RimRSGlobal.sequenceDomainPara ],
+        [ sh:class rrsset3gpp:TimeDomainPara ;
             sh:description """Configuration parameters of time domain resource to
 support RIM RS. """ ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal/timeDomainPara> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal> .
+            sh:path rrsset3gpp:RimRSGlobal.timeDomainPara ] ;
+    sh:targetClass rrsset3gpp:RimRSGlobal .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSetShape> a sh:NodeShape ;
+rrsset3gpp-shapes:RimRSSet a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet/id> ],
+            sh:path rrsset3gpp:RimRSSet.id ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """This specifies the set ID of a victim Set (RIM-RS1 Set) or
 aggressor Set (RIM-RS2 set). (See subclause 7.4.1.6 in TS 38.211).
@@ -102,7 +97,7 @@ aggressor Set (RIM-RS2 set). (See subclause 7.4.1.6 in TS 38.211).
 allowedValues: The bit length of the set ID is maximum 22bit.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet/setId> ],
+            sh:path rrsset3gpp:RimRSSet.setId ],
         [ sh:description """The attribute specifies type of a RIM-RS Set .
 RIM RS1 is generated and transmitted by victim to indicate its suffering
 remote interference, and RIM RS2 is generated and transmitted by
@@ -113,37 +108,37 @@ If the attribute value is 'RS2', the RIM-RS Set is aggressor set.""" ;
             sh:in ( "RS1" "RS2" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet/setType> ],
+            sh:path rrsset3gpp:RimRSSet.setType ],
         [ sh:description "This attribute contains the DN of a NR Cell (NRCellDU)" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet/nRCellDURef> ;
+            sh:path rrsset3gpp:RimRSSet.nRCellDURef ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet> .
+    sh:targetClass rrsset3gpp:RimRSSet .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainParaShape> a sh:NodeShape ;
+rrsset3gpp-shapes:SequenceDomainPara a sh:NodeShape ;
     sh:property [ sh:datatype xsd:unsignedByte ;
             sh:description """The number of candidate sequences assigned for RIM RS-1
 (N_s^RIM,1) (see 38.211 [subclause 7.4.1.6). It should be even when
 enableEnoughNotEnoughIndication for RS-1 is ON""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/nrofRIMRSSequenceCandidatesofRS1> ],
+            sh:path rrsset3gpp:SequenceDomainPara.nrofRIMRSSequenceCandidatesofRS1 ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """List of configured scrambling identities for RIM RS-1 (
 see 38.211 [subclause 7.4.1.6). The size of the list is
 nrofRIMRSSequenceCandidatesofRS1.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/rimRSScrambleIdListofRS1> ],
+            sh:path rrsset3gpp:SequenceDomainPara.rimRSScrambleIdListofRS1 ],
         [ sh:datatype xsd:unsignedByte ;
             sh:description """The number of candidate sequences assigned for RIM RS-2
 (N_s^RIM,2) (see 38.211 subclause 7.4.1.6).""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/nrofRIMRSSequenceCandidatesofRS2> ],
+            sh:path rrsset3gpp:SequenceDomainPara.nrofRIMRSSequenceCandidatesofRS2 ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """List of configured scrambling identities for RIM RS-2 (
 see 38.211 subclause 7.4.1.6).
 The size of the list is nrofRIMRSSequenceCandidatesofRS2.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/rimRSScrambleIdListofRS2> ],
+            sh:path rrsset3gpp:SequenceDomainPara.rimRSScrambleIdListofRS2 ],
         [ sh:description """It is indication of whether 'Enough'/'Not enough' indication
 functionality is enabled for RIM RS-1 (see 38.211 subclause 7.4.1.6).
 
@@ -161,7 +156,7 @@ enableEnoughNotEnoughIndication is equivalent to EnoughIndication
 (see 38.211 subclause 7.4.1.6)""" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/enableEnoughNotEnoughIndication> ],
+            sh:path rrsset3gpp:SequenceDomainPara.enableEnoughNotEnoughIndication ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """It is parameter multiplier factor gamma for initialization
 seed of the pseudo-random sequence c~(i)
@@ -169,17 +164,17 @@ seed of the pseudo-random sequence c~(i)
 allowedValues:  0,1...2^31-1""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/RIMRSScrambleTimerMultiplier> ],
+            sh:path rrsset3gpp:SequenceDomainPara.rIMRSScrambleTimerMultiplier ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """It is parameter offset delta for initialization seed of
 the pseudo-random sequence c~(i) (see 38.211 subclause 7.4.1.6.2).
 allowedValues: 0,1...2^31-1""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/RIMRSScrambleTimerOffset> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> .
+            sh:path rrsset3gpp:SequenceDomainPara.rIMRSScrambleTimerOffset ] ;
+    sh:targetClass rrsset3gpp:SequenceDomainPara .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainParaShape> a sh:NodeShape ;
+rrsset3gpp-shapes:TimeDomainPara a sh:NodeShape ;
     sh:property [ sh:description """This attribute is used to configure the first uplink-downlink
 switching period (P1) for RIM RS transmission in the network, where one
 RIM RS is configured in one uplink-downlink switching period.
@@ -209,7 +204,7 @@ if two uplink-downlink periods are configured for RIM-RS purposes.""" ;
             sh:in ( "MS0P5" "MS0P625" "MS1" "MS1P25" "MS2" "MS2P5" "MS3" "MS4" "MS5" "MS10" "MS20" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/dlULSwitchingPeriod1> ],
+            sh:path rrsset3gpp:TimeDomainPara.dlULSwitchingPeriod1 ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """This attribute is used to configure the reference point in
 the first uplink-downlink switching period, which is the symbols offset
@@ -233,7 +228,7 @@ transmission boundary of the first TDD-UL-DL-Pattern.
 allowedValues: 2, 3..20*2*maxNrofSymbols-1, where maxNrofSymbols=14""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/symbolOffsetOfReferencePoint1> ],
+            sh:path rrsset3gpp:TimeDomainPara.symbolOffsetOfReferencePoint1 ],
         [ sh:description """It is indication of whether near-far functionality is enabled
 for RIM RS1.
 
@@ -244,7 +239,7 @@ the second half of R1 consecutive uplink-downlink switching period is
 for 'Far' indication with R1/2 repetitions.""" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/enablenearfarIndicationRS1> ],
+            sh:path rrsset3gpp:TimeDomainPara.enablenearfarIndicationRS1 ],
         [ sh:description """It is indication of whether near-far functionality is enabled
 for RIM RS2.
 
@@ -255,7 +250,7 @@ the second half of R2 consecutive uplink-downlink switching period is
 for 'Far' indication with R2/2 repetitions.""" ;
             sh:in ( "DISABLED" "ENABLED" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/enablenearfarIndicationRS2> ],
+            sh:path rrsset3gpp:TimeDomainPara.enablenearfarIndicationRS2 ],
         [ sh:description """Used to configure the second uplink-downlink switching
 period (P2) for RIM RS transmission in the network, where one RIM RS is
 configured in one uplink-downlink switching period
@@ -274,7 +269,7 @@ P2 is equivalent to T_(per,2)^RIM  (see 38.211 subclause 7.4.1.6)""" ;
             sh:in ( "MS0P5" "MS0P625" "MS1" "MS1P25" "MS2" "MS2P5" "MS3" "MS4" "MS5" "MS10" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/dlULSwitchingPeriod2> ],
+            sh:path rrsset3gpp:TimeDomainPara.dlULSwitchingPeriod2 ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """This attribute is used to configure the reference point in
 the second uplink-downlink switching period, which is the symbol offset
@@ -289,7 +284,7 @@ DL transmission boundary of the second TDD-UL-DL-Pattern.
 allowedValues: 2, 3..20*2*maxNrofSymbols-1, where maxNrofSymbols=14""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/symbolOffsetOfReferencePoint2> ],
+            sh:path rrsset3gpp:TimeDomainPara.symbolOffsetOfReferencePoint2 ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """It is the total number of set IDs for RIM RS-1
 (N_setID ^RIM,1) (see 38.211 subclause 7.4.1.6).
@@ -297,7 +292,7 @@ allowedValues: 2, 3..20*2*maxNrofSymbols-1, where maxNrofSymbols=14""" ;
 allowedValues: 0,1...2^22-1""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/totalnrofSetIdofRS1> ],
+            sh:path rrsset3gpp:TimeDomainPara.totalnrofSetIdofRS1 ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """It is the total number of set IDs for RIM RS-2
 (N_setID^RIM,2) (see 38.211 subclause 7.4.1.6).
@@ -305,7 +300,7 @@ allowedValues: 0,1...2^22-1""" ;
 allowedValues: 0,1...2^22""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/totalnrofSetIdofRS2> ],
+            sh:path rrsset3gpp:TimeDomainPara.totalnrofSetIdofRS2 ],
         [ sh:datatype xsd:unsignedByte ;
             sh:description """It is the number of consecutive uplink-downlink switching
 periods for RS-1 (R1) for repetition/near-far indication:.
@@ -314,7 +309,7 @@ periods for RS-1 (R1) for repetition/near-far indication:.
 allowedValues: 1,2,4,8""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/nrofConsecutiveRIMRS1> ],
+            sh:path rrsset3gpp:TimeDomainPara.nrofConsecutiveRIMRS1 ],
         [ sh:datatype xsd:unsignedByte ;
             sh:description """It is the number of consecutive uplink-downlink switching
 periods for RS-2 (R2) for repetition/near-far indication.
@@ -323,7 +318,7 @@ periods for RS-2 (R2) for repetition/near-far indication.
 allowedValues: 1,2,4,8""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/nrofConsecutiveRIMRS2> ],
+            sh:path rrsset3gpp:TimeDomainPara.nrofConsecutiveRIMRS2 ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """It is used to configure the OFDM symbol position(s) of RIM
 RS-1 within the uplink-downlink switching period. It is a list of symbol
@@ -334,7 +329,7 @@ The resulting RIM RS-1 symbols and its reference point shall belong to
 the same 10ms frame.
 
 allowedValues: 2,3..20*2**maxNrofSymbols-1, where maxNrofSymbols=14""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/consecutiveRIMRS1List> ],
+            sh:path rrsset3gpp:TimeDomainPara.consecutiveRIMRS1List ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """It is used to configure the OFDM symbol position(s) of
 RIM RS-2 within the uplink-downlink switching period. It is a list of
@@ -345,6 +340,20 @@ The resulting RIM RS-2 symbols and its reference point shall belong to
 the same 10ms frame.
 
 allowedValues: 2,3..20*2**maxNrofSymbols-1, where maxNrofSymbols=14""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/consecutiveRIMRS2List> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> .
+            sh:path rrsset3gpp:TimeDomainPara.consecutiveRIMRS2List ] ;
+    sh:targetClass rrsset3gpp:TimeDomainPara .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-rimrsset> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-rimrsset" ;
+    dcterms:description """Defines the YANG mapping of the RimRSSet Information Object
+Class (IOC) that is part of the NR Network Resource Model (NRM).
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-rimrsset" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2026-05-19 (CR-1702 CR-1703)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-rimrsset" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset> .
 

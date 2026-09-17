@@ -1,10 +1,38 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dpcicf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dpciconfigurationfunction#> .
+@prefix dpcicf3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-dpciconfigurationfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction> a owl:Ontology ;
+dpcicf3gpp-shapes:DPCIConfigurationFunction a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path dpcicf3gpp:DPCIConfigurationFunction.id ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This attribute determines whether the Distributed SON PCI
+configuration Function is enabled or disabled.""" ;
+            sh:maxCount 1 ;
+            sh:path dpcicf3gpp:DPCIConfigurationFunction.dPciConfigurationControl ],
+        [ sh:class dpcicf3gpp:nRPciList ;
+            sh:description """This holds a list of physical cell identities that can be
+assigned to the NR cells. This attribute shall be supported if D-SON
+PCI configuration function is supported.""" ;
+            sh:path dpcicf3gpp:DPCIConfigurationFunction.nRPciList ] ;
+    sh:targetClass dpcicf3gpp:DPCIConfigurationFunction .
+
+dpcicf3gpp-shapes:nRPciList a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:path dpcicf3gpp:nRPciList.NRPci ] ;
+    sh:targetClass dpcicf3gpp:nRPciList .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dpciconfigurationfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-dpciconfigurationfunction" ;
     dcterms:description """Defines the YANG mapping of the DPCIConfigurationFunction
 Information Object Class (IOC) that is part of the NR Network Resource
@@ -15,30 +43,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-dpciconfigurationfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunctionShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/id> ],
-        [ sh:datatype xsd:boolean ;
-            sh:description """This attribute determines whether the Distributed SON PCI
-configuration Function is enabled or disabled.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/dPciConfigurationControl> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> ;
-            sh:description """This holds a list of physical cell identities that can be
-assigned to the NR cells. This attribute shall be supported if D-SON
-PCI configuration function is supported.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/nRPciList> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciListShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList/NRPci> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> .
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-dpciconfigurationfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction> .
 

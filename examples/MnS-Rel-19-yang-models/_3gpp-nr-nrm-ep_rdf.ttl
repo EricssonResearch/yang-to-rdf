@@ -1,32 +1,33 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix ep3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-ep#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1> a rdfs:Class ;
+ep3gpp:EP_E1 a rdfs:Class ;
     rdfs:label "EP_E1" ;
     rdfs:comment """Represents the local end point of the logical link,
 supporting E1 interface between gNB-CU-CP and gNB-CU-UP.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C> a rdfs:Class ;
+ep3gpp:EP_F1C a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1C" ;
     rdfs:comment """Represents the local end point of the control plane
 interface (F1-C) between the gNB-DU and gNB-CU or gNB-CU-CP.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U> a rdfs:Class ;
+ep3gpp:EP_F1U a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1U" ;
     rdfs:comment """Represents the local end point of the user plane
 interface (F1-U) between the gNB-DU and gNB-CU or gNB-CU-UP.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC> a rdfs:Class ;
+ep3gpp:EP_NgC a rdfs:Class ;
     rdfs:label "EP_NgC" ;
     rdfs:comment """This IOC represents the local end point of the control
 plane interface (NG-C) between the gNB and AMF or the gNB and AIOTF.
@@ -39,56 +40,56 @@ The application layer signalling protocol is referred to as NG-AP
 visible to other logical nodes as a gNB or an en-gNB where the gNB
 terminates the Xn and the NG interfaces, and the en-gNB terminates
 the X2 and the S1-U interfaces'.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU> a rdfs:Class ;
+ep3gpp:EP_NgU a rdfs:Class ;
     rdfs:label "EP_NgU" ;
     rdfs:comment """Represents the local end point of the NG user plane
 (NG-U) interface between the gNB and UPF.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U> a rdfs:Class ;
+ep3gpp:EP_S1U a rdfs:Class ;
     rdfs:label "EP_S1U" ;
     rdfs:comment """Represents the local end point of the logical link,
 supporting S1-U interface towards a S-GW node.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C> a rdfs:Class ;
+ep3gpp:EP_X2C a rdfs:Class ;
     rdfs:label "EP_X2C" ;
     rdfs:comment """Represents the local end point of the logical link,
 supporting X2-C application protocols used in EN-DC, to a neighbour
 eNB or en-gNB node.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U> a rdfs:Class ;
+ep3gpp:EP_X2U a rdfs:Class ;
     rdfs:label "EP_X2U" ;
     rdfs:comment """Represents the local end-point of a logical link supporting
 the X2 user plane (X2-U) interface used in EN-DC.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC> a rdfs:Class ;
+ep3gpp:EP_XnC a rdfs:Class ;
     rdfs:label "EP_XnC" ;
     rdfs:comment """Represents the local gNB node end point of the logical
 link, supporting Xn application protocols, to a neighbour NG-RAN node
 (including gNB and ng-eNB). The Xn Application PDUs are carried over
 SCTP/IP/Data link layer/Physical layer stack.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU> a rdfs:Class ;
+ep3gpp:EP_XnU a rdfs:Class ;
     rdfs:label "EP_XnU" ;
     rdfs:comment """Represents the one end-point of a logical link supporting
 the Xn user plane (Xn-U) interface. The Xn-U interface provides
 non-guaranteed delivery of user plane PDUs between two NG-RAN nodes.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    y2r:hasAttribute ep3gpp:SupportedPerfMetricGroups,
+        ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> a rdfs:Class ;
+ep3gpp:SupportedPerfMetricGroups a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-ep:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -98,11 +99,11 @@ under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> a rdfs:Class ;
+ep3gpp:localAddress a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-ep:localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-ep> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-ep" ;
     dcterms:description """Defines the YANG mapping of the NR related endpoint
 Information Object Classes (IOCs) that are part of the NR Network
@@ -113,9 +114,11 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-ep" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-07 (CR-1640 CR-1643)" .
+    owl:versionInfo "revision 2025-11-07 (CR-1640 CR-1643)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-ep" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-ep> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_E1.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EP_E1.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -124,41 +127,41 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_E1 ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_E1.farEndEntity a owl:ObjectProperty ;
     rdfs:label "EP_E1.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_E1 ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1/id> a rdf:Property ;
+ep3gpp:EP_E1.id a rdf:Property ;
     rdfs:label "EP_E1.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1> ;
+    rdfs:domain ep3gpp:EP_E1 ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_E1.localAddress a owl:ObjectProperty ;
     rdfs:label "EP_E1.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_E1 ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1/remoteAddress> a rdf:Property ;
+ep3gpp:EP_E1.remoteAddress a rdf:Property ;
     rdfs:label "EP_E1.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1> ;
+    rdfs:domain ep3gpp:EP_E1 ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1/userLabel> a rdf:Property ;
+ep3gpp:EP_E1.userLabel a rdf:Property ;
     rdfs:label "EP_E1.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1> ;
+    rdfs:domain ep3gpp:EP_E1 ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_F1C.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1C.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -167,41 +170,41 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_F1C ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_F1C.farEndEntity a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1C.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_F1C ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C/id> a rdf:Property ;
+ep3gpp:EP_F1C.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1C.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C> ;
+    rdfs:domain ep3gpp:EP_F1C ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_F1C.localAddress a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1C.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_F1C ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C/remoteAddress> a rdf:Property ;
+ep3gpp:EP_F1C.remoteAddress a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1C.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C> ;
+    rdfs:domain ep3gpp:EP_F1C ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C/userLabel> a rdf:Property ;
+ep3gpp:EP_F1C.userLabel a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1C.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C> ;
+    rdfs:domain ep3gpp:EP_F1C ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_F1U.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1U.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -210,49 +213,49 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_F1U ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/epTransportRef> a owl:ObjectProperty ;
+ep3gpp:EP_F1U.epTransportRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1U.epTransportRef" ;
     rdfs:comment """This parameter specifies a list of transport level EPs
 associated with the application level EP (i.e. EP_N3 or EP_NgU or
 EP_F1U) or network slice subnet.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_F1U ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_F1U.farEndEntity a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1U.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_F1U ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/id> a rdf:Property ;
+ep3gpp:EP_F1U.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1U.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U> ;
+    rdfs:domain ep3gpp:EP_F1U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_F1U.localAddress a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1U.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_F1U ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/remoteAddress> a rdf:Property ;
+ep3gpp:EP_F1U.remoteAddress a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1U.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U> ;
+    rdfs:domain ep3gpp:EP_F1U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/userLabel> a rdf:Property ;
+ep3gpp:EP_F1U.userLabel a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:EP_F1U.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U> ;
+    rdfs:domain ep3gpp:EP_F1U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_NgC.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EP_NgC.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -261,41 +264,41 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_NgC ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_NgC.farEndEntity a owl:ObjectProperty ;
     rdfs:label "EP_NgC.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_NgC ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC/id> a rdf:Property ;
+ep3gpp:EP_NgC.id a rdf:Property ;
     rdfs:label "EP_NgC.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC> ;
+    rdfs:domain ep3gpp:EP_NgC ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_NgC.localAddress a owl:ObjectProperty ;
     rdfs:label "EP_NgC.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_NgC ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC/remoteAddress> a rdf:Property ;
+ep3gpp:EP_NgC.remoteAddress a rdf:Property ;
     rdfs:label "EP_NgC.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC> ;
+    rdfs:domain ep3gpp:EP_NgC ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC/userLabel> a rdf:Property ;
+ep3gpp:EP_NgC.userLabel a rdf:Property ;
     rdfs:label "EP_NgC.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC> ;
+    rdfs:domain ep3gpp:EP_NgC ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_NgU.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EP_NgU.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -304,41 +307,41 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_NgU ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_NgU.farEndEntity a owl:ObjectProperty ;
     rdfs:label "EP_NgU.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_NgU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU/id> a rdf:Property ;
+ep3gpp:EP_NgU.id a rdf:Property ;
     rdfs:label "EP_NgU.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU> ;
+    rdfs:domain ep3gpp:EP_NgU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_NgU.localAddress a owl:ObjectProperty ;
     rdfs:label "EP_NgU.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_NgU ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU/remoteAddress> a rdf:Property ;
+ep3gpp:EP_NgU.remoteAddress a rdf:Property ;
     rdfs:label "EP_NgU.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU> ;
+    rdfs:domain ep3gpp:EP_NgU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU/userLabel> a rdf:Property ;
+ep3gpp:EP_NgU.userLabel a rdf:Property ;
     rdfs:label "EP_NgU.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU> ;
+    rdfs:domain ep3gpp:EP_NgU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_S1U.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EP_S1U.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -347,41 +350,41 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_S1U ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_S1U.farEndEntity a owl:ObjectProperty ;
     rdfs:label "EP_S1U.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_S1U ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U/id> a rdf:Property ;
+ep3gpp:EP_S1U.id a rdf:Property ;
     rdfs:label "EP_S1U.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U> ;
+    rdfs:domain ep3gpp:EP_S1U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_S1U.localAddress a owl:ObjectProperty ;
     rdfs:label "EP_S1U.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_S1U ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U/remoteAddress> a rdf:Property ;
+ep3gpp:EP_S1U.remoteAddress a rdf:Property ;
     rdfs:label "EP_S1U.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U> ;
+    rdfs:domain ep3gpp:EP_S1U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U/userLabel> a rdf:Property ;
+ep3gpp:EP_S1U.userLabel a rdf:Property ;
     rdfs:label "EP_S1U.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U> ;
+    rdfs:domain ep3gpp:EP_S1U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_X2C.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EP_X2C.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -390,41 +393,41 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_X2C ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_X2C.farEndEntity a owl:ObjectProperty ;
     rdfs:label "EP_X2C.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_X2C ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C/id> a rdf:Property ;
+ep3gpp:EP_X2C.id a rdf:Property ;
     rdfs:label "EP_X2C.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C> ;
+    rdfs:domain ep3gpp:EP_X2C ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_X2C.localAddress a owl:ObjectProperty ;
     rdfs:label "EP_X2C.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_X2C ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C/remoteAddress> a rdf:Property ;
+ep3gpp:EP_X2C.remoteAddress a rdf:Property ;
     rdfs:label "EP_X2C.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C> ;
+    rdfs:domain ep3gpp:EP_X2C ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C/userLabel> a rdf:Property ;
+ep3gpp:EP_X2C.userLabel a rdf:Property ;
     rdfs:label "EP_X2C.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C> ;
+    rdfs:domain ep3gpp:EP_X2C ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_X2U.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EP_X2U.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -433,41 +436,41 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_X2U ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_X2U.farEndEntity a owl:ObjectProperty ;
     rdfs:label "EP_X2U.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_X2U ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U/id> a rdf:Property ;
+ep3gpp:EP_X2U.id a rdf:Property ;
     rdfs:label "EP_X2U.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U> ;
+    rdfs:domain ep3gpp:EP_X2U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_X2U.localAddress a owl:ObjectProperty ;
     rdfs:label "EP_X2U.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_X2U ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U/remoteAddress> a rdf:Property ;
+ep3gpp:EP_X2U.remoteAddress a rdf:Property ;
     rdfs:label "EP_X2U.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U> ;
+    rdfs:domain ep3gpp:EP_X2U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U/userLabel> a rdf:Property ;
+ep3gpp:EP_X2U.userLabel a rdf:Property ;
     rdfs:label "EP_X2U.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U> ;
+    rdfs:domain ep3gpp:EP_X2U ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_XnC.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EP_XnC.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -476,41 +479,41 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_XnC ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_XnC.farEndEntity a owl:ObjectProperty ;
     rdfs:label "EP_XnC.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_XnC ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC/id> a rdf:Property ;
+ep3gpp:EP_XnC.id a rdf:Property ;
     rdfs:label "EP_XnC.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC> ;
+    rdfs:domain ep3gpp:EP_XnC ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_XnC.localAddress a owl:ObjectProperty ;
     rdfs:label "EP_XnC.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_XnC ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC/remoteAddress> a rdf:Property ;
+ep3gpp:EP_XnC.remoteAddress a rdf:Property ;
     rdfs:label "EP_XnC.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC> ;
+    rdfs:domain ep3gpp:EP_XnC ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC/userLabel> a rdf:Property ;
+ep3gpp:EP_XnC.userLabel a rdf:Property ;
     rdfs:label "EP_XnC.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC> ;
+    rdfs:domain ep3gpp:EP_XnC ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+ep3gpp:EP_XnU.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "EP_XnU.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -519,48 +522,48 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> .
+    rdfs:domain ep3gpp:EP_XnU ;
+    rdfs:range ep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU/farEndEntity> a owl:ObjectProperty ;
+ep3gpp:EP_XnU.farEndEntity a owl:ObjectProperty ;
     rdfs:label "EP_XnU.farEndEntity" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU> ;
-    nrm:isReference true .
+    rdfs:domain ep3gpp:EP_XnU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU/id> a rdf:Property ;
+ep3gpp:EP_XnU.id a rdf:Property ;
     rdfs:label "EP_XnU.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU> ;
+    rdfs:domain ep3gpp:EP_XnU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU/localAddress> a owl:ObjectProperty ;
+ep3gpp:EP_XnU.localAddress a owl:ObjectProperty ;
     rdfs:label "EP_XnU.localAddress" ;
     rdfs:comment "Local IP address and VLAN ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> .
+    rdfs:domain ep3gpp:EP_XnU ;
+    rdfs:range ep3gpp:localAddress .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU/remoteAddress> a rdf:Property ;
+ep3gpp:EP_XnU.remoteAddress a rdf:Property ;
     rdfs:label "EP_XnU.remoteAddress" ;
     rdfs:comment "Remote IP address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU> ;
+    rdfs:domain ep3gpp:EP_XnU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU/userLabel> a rdf:Property ;
+ep3gpp:EP_XnU.userLabel a rdf:Property ;
     rdfs:label "EP_XnU.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU> ;
+    rdfs:domain ep3gpp:EP_XnU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
+ep3gpp:SupportedPerfMetricGroups.granularityPeriods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> ;
+    rdfs:domain ep3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
+ep3gpp:SupportedPerfMetricGroups.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -575,28 +578,28 @@ definitions template as the component designated with e).
 
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> ;
+    rdfs:domain ep3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
+ep3gpp:SupportedPerfMetricGroups.reportingMethods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:SupportedPerfMetricGroups.reportingMethods" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> ;
+    rdfs:domain ep3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
+ep3gpp:SupportedPerfMetricGroups.reportingPeriods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/SupportedPerfMetricGroups> ;
+    rdfs:domain ep3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress/ipAddress> a rdf:Property ;
+ep3gpp:localAddress.ipAddress a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:localAddress.ipAddress" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> ;
+    rdfs:domain ep3gpp:localAddress ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress/vlanId> a rdf:Property ;
+ep3gpp:localAddress.vlanId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-ep:localAddress.vlanId" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-ep/localAddress> ;
+    rdfs:domain ep3gpp:localAddress ;
     rdfs:range xsd:unsignedShort .
 

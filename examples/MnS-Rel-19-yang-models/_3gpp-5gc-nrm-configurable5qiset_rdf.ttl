@@ -1,15 +1,17 @@
+@prefix conf5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-configurable5qiset#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> a rdfs:Class ;
+conf5QIs3gpp:PacketErrorRate a rdfs:Class ;
     rdfs:label "PacketErrorRate" ;
     rdfs:comment """It indicates the Packet Error Rate of a 5QI,
 as specified in TS 23.501.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-configurable5qiset> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-configurable5qiset" ;
     dcterms:description """This IOC represents the configurable 5QIs, including
 their QoS characteristics, that need to be pre-configured
@@ -26,19 +28,21 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-configurable5qiset" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-configurable5qiset" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate/exponent> a rdf:Property ;
+conf5QIs3gpp:PacketErrorRate.exponent a rdf:Property ;
     rdfs:label "PacketErrorRate.exponent" ;
     rdfs:comment """The Packet Error Rate of a 5QI expressed as Scalar x 10-k,
 where k is the Exponent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> ;
+    rdfs:domain conf5QIs3gpp:PacketErrorRate ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate/scalar> a rdf:Property ;
+conf5QIs3gpp:PacketErrorRate.scalar a rdf:Property ;
     rdfs:label "PacketErrorRate.scalar" ;
     rdfs:comment """The Packet Error Rate of a 5QI expressed as Scalar x 10-k
 where k is the Exponent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> ;
+    rdfs:domain conf5QIs3gpp:PacketErrorRate ;
     rdfs:range xsd:unsignedInt .
 

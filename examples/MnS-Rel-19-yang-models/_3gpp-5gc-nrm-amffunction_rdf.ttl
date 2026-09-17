@@ -1,11 +1,22 @@
+@prefix aiotep3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot-ep#> .
+@prefix amf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amffunction#> .
+@prefix cep3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-ep#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
+@prefix mnfp3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-managed-nfprofile#> .
+@prefix ntn3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-ntnfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
+@prefix types5g3gpp: <https://semantics.ericsson.com/yang/_3gpp-5g-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> a rdfs:Class ;
+amf3gpp:AMFFunction a rdfs:Class ;
     rdfs:label "AMFFunction" ;
     rdfs:comment """This IOC represents the AMF functionality in 5GC.
 For more information about the AMF, see 3GPP TS 23.501.
@@ -14,58 +25,63 @@ The attribute sliceExpiryInfo is used when the validity information of
 a network slice need to be configured. The attribute
 sliceExpiryInfo.pLMNInfo indicates the network slice to which the
 validity information applies.""" ;
-    rdfs:subClassOf nrm:ManagedFunction ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/MappedCellIdInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNPLMNRestrictionsInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteCoverageInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SliceExpiryInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N11>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N12>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N14>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N15>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N17>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N2>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N20>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N22>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N26>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_N8>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NL2>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-ep/EP_NLS> .
+    rdfs:subClassOf y2r:ManagedFunction ;
+    y2r:hasAttribute amf3gpp:AmfInfo,
+        amf3gpp:MappedCellIdInfo,
+        amf3gpp:NTNPLMNRestrictionsInfo,
+        amf3gpp:NTNTimeBasedConfig,
+        amf3gpp:SatelliteBackhaulInfo,
+        amf3gpp:SatelliteCoverageInfo,
+        amf3gpp:SliceExpiryInfo,
+        amf3gpp:SupportedPerfMetricGroups,
+        amf3gpp:aMFIdentifier,
+        amf3gpp:commModelList,
+        amf3gpp:pLMNInfoList,
+        mnfp3gpp:ManagedNFProfile,
+        mf3gpp:PeeParameters,
+        mf3gpp:VnfParameters ;
+    y2r:nameContains aiotep3gpp:EP_AIOT2,
+        amf3gpp:ManagedNFService,
+        amf3gpp:PerfMetricJob,
+        amf3gpp:StmCtrl,
+        amf3gpp:ThresholdMonitor,
+        amf3gpp:TraceJob,
+        cep3gpp:EP_N11,
+        cep3gpp:EP_N11mb,
+        cep3gpp:EP_N12,
+        cep3gpp:EP_N14,
+        cep3gpp:EP_N15,
+        cep3gpp:EP_N17,
+        cep3gpp:EP_N2,
+        cep3gpp:EP_N20,
+        cep3gpp:EP_N22,
+        cep3gpp:EP_N26,
+        cep3gpp:EP_N41,
+        cep3gpp:EP_N42,
+        cep3gpp:EP_N60,
+        cep3gpp:EP_N8,
+        cep3gpp:EP_N89,
+        cep3gpp:EP_NL1,
+        cep3gpp:EP_NL2 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> a rdfs:Class ;
+amf3gpp:AmfInfo a rdfs:Class ;
     rdfs:label "AmfInfo" ;
     rdfs:comment """This attribute represents information of an AMF
 NF Instance.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5g-common-yang-types/TaiRange>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+    y2r:hasAttribute types5g3gpp:TaiRange,
+        amf3gpp:GUAMInfo,
+        amf3gpp:N2InterfaceAmfInfo,
+        types3gpp:Tai .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo> a rdfs:Class ;
+amf3gpp:BlockedLocationInfo a rdfs:Class ;
     rdfs:label "BlockedLocationInfo" ;
     rdfs:comment """This defines the information related with the location
 for which the access restrictions are to be applied in case of NTN.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedLocation>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedSlice>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    y2r:hasAttribute amf3gpp:blockedLocation,
+        amf3gpp:blockedSlice,
+        types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> a rdfs:Class ;
+amf3gpp:File a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File" ;
     rdfs:comment """Represents a file. It is name-contained by 'Files'.
 
@@ -140,7 +156,7 @@ clause 11.6.1.1.1. Note that to receive 'notifyFilePreparationError'
 in that case the notification subscription needs to include these
 objects in its scope.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files> a rdfs:Class ;
+amf3gpp:Files a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:Files" ;
     rdfs:comment """This IOC represents a collection of files. It can be
 name-contained by 'SubNetwork', 'ManagedElement', 'PerfMetricJob' or
@@ -187,58 +203,58 @@ In addition, the attribute '_linkToFiles' allows for simple
 deployments not relying on notifications for reporting the
 availability of new files, where the MnS consumer polls regularly
 for new files under 'Files'.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> .
+    y2r:nameContains amf3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo> a rdfs:Class ;
+amf3gpp:GUAMInfo a rdfs:Class ;
     rdfs:label "GUAMInfo" ;
     rdfs:comment "List of supported Globally Unique AMF Ids (GUAMIs)." ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> .
+    y2r:hasAttribute amf3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> a rdfs:Class ;
+amf3gpp:ManagedNFService a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService" ;
     rdfs:comment "Represents a Network Function (NF)" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-function/Operation>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    y2r:hasAttribute mf3gpp:Operation,
+        types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/MappedCellIdInfo> a rdfs:Class ;
+amf3gpp:MappedCellIdInfo a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:MappedCellIdInfo" ;
     rdfs:comment """It provides the list of mapping between GEO area and
 Mapped Cell ID.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5g-common-yang-types/Ncgi>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+    y2r:hasAttribute types5g3gpp:Ncgi,
+        types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo> a rdfs:Class ;
+amf3gpp:N2InterfaceAmfInfo a rdfs:Class ;
     rdfs:label "N2InterfaceAmfInfo" ;
     rdfs:comment """This attribute represents the N2 interface information of
 the AMF. """ .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> a rdfs:Class ;
+amf3gpp:NTNGlobalRanNodeID a rdfs:Class ;
     rdfs:label "NTNGlobalRanNodeID" ;
     rdfs:comment "Unique identifier of an NG-RAN node." ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> .
+    y2r:hasAttribute amf3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNPLMNRestrictionsInfo> a rdfs:Class ;
+amf3gpp:NTNPLMNRestrictionsInfo a rdfs:Class ;
     rdfs:label "NTNPLMNRestrictionsInfo" ;
     rdfs:comment """This attribute defines the location restrictions per PLMN
 that relates to non-terrestrial network access.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> .
+    y2r:hasAttribute amf3gpp:BlockedLocationInfo,
+        amf3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig> a rdfs:Class ;
+amf3gpp:NTNTimeBasedConfig a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:NTNTimeBasedConfig" ;
     rdfs:comment "This is the NTN time-based configuration." ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNEntityConfig> .
+    y2r:hasAttribute types3gpp:TimeWindow,
+        ntn3gpp:NTNEntityConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo> a rdfs:Class ;
+amf3gpp:NtnLocationInfo a rdfs:Class ;
     rdfs:label "NtnLocationInfo" ;
     rdfs:comment """This attribute defines the information about location and
 corresponding time windows for which the satellite coverage will be
 available or unavailable.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    y2r:hasAttribute types3gpp:GeoArea,
+        types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> a rdfs:Class ;
+amf3gpp:PerfMetricJob a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob" ;
     rdfs:comment """This IOC represents a performance metric production job. It
 can be name-contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -321,34 +337,34 @@ by the MnS producer.
 Creation and deletion of PerfMetricJob instances by MnS consumers is
 optional; when not supported, PerfMetricJob instances may be created and
 deleted by the system or be pre-installed.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files> .
+    y2r:nameContains amf3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo> a rdfs:Class ;
+amf3gpp:SatelliteBackhaulInfo a rdfs:Class ;
     rdfs:label "SatelliteBackhaulInfo" ;
     rdfs:comment """Specifies a list of satellite backhaul information. It can be
 used by NF and NF services.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> .
+    y2r:hasAttribute amf3gpp:NTNGlobalRanNodeID .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteCoverageInfo> a rdfs:Class ;
+amf3gpp:SatelliteCoverageInfo a rdfs:Class ;
     rdfs:label "SatelliteCoverageInfo" ;
     rdfs:comment """This attribute defines the information related to NR
 Satellite RAT type and corresponding information of satellite coverage""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo> .
+    y2r:hasAttribute amf3gpp:NtnLocationInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SliceExpiryInfo> a rdfs:Class ;
+amf3gpp:SliceExpiryInfo a rdfs:Class ;
     rdfs:label "SliceExpiryInfo" ;
     rdfs:comment """This provides information related to a network slice
 validity.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo> .
+    y2r:hasAttribute amf3gpp:pLMNInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl> a rdfs:Class ;
+amf3gpp:StmCtrl a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:StmCtrl" ;
     rdfs:comment """This IOC represents the STM Control and Configuration
 parameters of a particular STM controlling. It can be
 name-contained by SubNetwork, ManagedElement, or ManagedFunction.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    y2r:hasAttribute stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups> a rdfs:Class ;
+amf3gpp:SupportedPerfMetricGroups a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -358,7 +374,7 @@ under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor> a rdfs:Class ;
+amf3gpp:ThresholdMonitor a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ThresholdMonitor" ;
     rdfs:comment """Represents a threshold monitor for performance metrics.
 It can be contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -432,14 +448,15 @@ monitored are not produced by a PerfMetricJob.
 Creation and deletion of ThresholdMonitor instances by MnS consumers is
 optional; when not supported, ThresholdMonitor instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    y2r:hasAttribute meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> a rdfs:Class ;
+amf3gpp:TraceJob a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob" ;
     rdfs:comment """A TraceJob instance represents the Trace Control and
 Configuration parameters of a particular Trace Job (see TS 32.421 and
 TS 32.422 for details). It can be name-contained by SubNetwork,
-ManagedElement, ManagedFunction.
+ManagedElement, ManagedFunction. In case of signalling based trace
+activation, it shall be name-contained by the UDMFunction, see TS 28.541.
 
 To activate Trace Jobs, a MnS consumer has to create TraceJob object
 instances on the MnS producer. A MnS consumer can activate a Trace Job
@@ -451,15 +468,14 @@ For the details of Trace Job activation see clauses 4.1.1.1.2 and
 4.1.2.1.2 of TS 32.422.
 
 When a MnS consumer wishes to deactivate a Trace Job, the MnS consumer
-shall delete the corresponding TraceJob instance.
-
-For details of management Trace Job activation/deactivation see clause
-4.1.1.1.2 of TS 32.422.
+shall delete the corresponding TraceJob instance. For details of
+management Trace Job deactivation see clauses 4.1.3.8 to 4.1.3.11 a
+nd 4.1.4.10 to 4.1.4.13  of TS 32.422
 
 The attribute traceReference specifies a globally unique ID and
 identifies a Trace session. One Trace Session may be activated to
 multiple Network Elements. The traceReference is populated by the
-consumer that makes the request for a Trace Session.
+consumer that makes the request for a Trace Session, TS 32.422.
 
 The jobId attribute presents the job identifier of a TraceJob instance.
 The jobId can be used to associate  multiple TraceJob instances.
@@ -475,14 +491,15 @@ which the trace records shall be transferred, while in case of
 stream-based reporting the attribute traceReportingConsumerUri
 specifies the streaming target.
 
-The mandatory attribute traceTarget determines the target object of
-the TraceJob. Dependent on the network element to which the Trace
-Session is activated different types of the target object are possible.
+The attribute traceTarget determines the target object of the
+TraceJob. Dependent on the network element to which the Trace Session
+is activated different types of the target object are possible.
+
 The attribute pLMNTarget defines the PLMN for which sessions shall be
 selected in the Trace Session in case of management based activation
-when several PLMNs are supported in the RAN.The MDT configuration may
-include area scope defined by network slice, in which case
-the attribute pLMNTarget is not applicable.
+when several PLMNs are supported in the RAN.  The MDT configuration
+may include area scope defined by network slice, in which case the
+attribute pLMNTarget is not applicable.
 
 The attribute listOfTraceMetrics allows configuraton of which metrics
 shall be recorded.
@@ -501,57 +518,57 @@ be present. The rrcReportType allows the tracing of RRC reports.
 Creation and deletion of TraceJob instances by MnS consumers is
 optional; when not supported, the TraceJob instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNTarget>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/traceTarget>,
-        <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceReference>,
-        <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files> .
+    y2r:hasAttribute amf3gpp:pLMNTarget,
+        amf3gpp:traceTarget,
+        trace3gpp:MdtConfig,
+        trace3gpp:TraceConfig,
+        trace3gpp:TraceReference,
+        trace3gpp:UECoreMeasConfig,
+        types3gpp:NpnId ;
+    y2r:nameContains amf3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier> a rdfs:Class ;
+amf3gpp:aMFIdentifier a rdfs:Class ;
     rdfs:label "aMFIdentifier" ;
     rdfs:comment """An AMF identifier, comprising an AMF Region ID, an
 AMF Set ID and an AMF Pointer.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedLocation> a rdfs:Class ;
+amf3gpp:blockedLocation a rdfs:Class ;
     rdfs:label "blockedLocation" ;
     rdfs:comment """This provides the geographical location at which the PLMN
 are not allowed in case of NTN.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedSlice> a rdfs:Class ;
+amf3gpp:blockedSlice a rdfs:Class ;
     rdfs:label "blockedSlice" ;
     rdfs:comment """This provides the slice for which the access is
 not allowed at a given location in case of NTN. """ .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList> a rdfs:Class ;
+amf3gpp:commModelList a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:commModelList" ;
     rdfs:comment """Specifies a list of commModel. It can be used by NF and
 NF services to interact with each other in 5G Core network """ .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> a rdfs:Class ;
+amf3gpp:pLMNId a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNId" ;
     rdfs:comment "This attribute represents a PLMN Identity." .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo> a rdfs:Class ;
-    rdfs:label "pLMNInfo" ;
+amf3gpp:pLMNInfo a rdfs:Class ;
+    rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfo" ;
     rdfs:comment "It defines the PLMN(s) of a Network Function. " .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList> a rdfs:Class ;
+amf3gpp:pLMNInfoList a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfoList" ;
     rdfs:comment "It defines the PLMN(s) of a Network Function. " .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNTarget> a rdfs:Class ;
+amf3gpp:pLMNTarget a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/plmnId> a rdfs:Class ;
+amf3gpp:plmnId a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:plmnId" ;
     rdfs:comment "This attribute represents a PLMN Identity." .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/traceTarget> a rdfs:Class ;
+amf3gpp:traceTarget a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -560,24 +577,26 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amffunction> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-amffunction" ;
     dcterms:description """AMFFunction derived from basic ManagedFunction.
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3gpp SA5" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-5gc-nrm-amffunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
+    owl:versionInfo "revision 2026-05-25 (CR-1702)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-amffunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/NTNTimeBasedConfig> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.NTNTimeBasedConfig a owl:ObjectProperty ;
     rdfs:label "AMFFunction.NTNTimeBasedConfig" ;
     rdfs:comment "This is the NTN time-based configuration." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:NTNTimeBasedConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "AMFFunction.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -586,30 +605,30 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/aMFIdentifier> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.aMFIdentifier a owl:ObjectProperty ;
     rdfs:label "AMFFunction.aMFIdentifier" ;
     rdfs:comment """An AMF identifier, comprising an AMF Region ID, an
 AMF Set ID and an AMF Pointer.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:aMFIdentifier .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/aMFSetRef> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.aMFSetRef a owl:ObjectProperty ;
     rdfs:label "AMFFunction.aMFSetRef" ;
     rdfs:comment "This is the DN of AMFSet" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:AMFFunction ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/amfInfo> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.amfInfo a owl:ObjectProperty ;
     rdfs:label "AMFFunction.amfInfo" ;
     rdfs:comment """This attribute represents information of an AMF
 NF Instance.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:AmfInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/cNSIIdList> a rdf:Property ;
+amf3gpp:AMFFunction.cNSIIdList a rdf:Property ;
     rdfs:label "AMFFunction.cNSIIdList" ;
     rdfs:comment """It is a set of NSI ID. NSI ID is an identifier for
 identifying the Core Network part of a Network Slice instance when
@@ -617,100 +636,100 @@ multiple Network Slice instances of the same Network Slice are deployed,
 and there is a need to differentiate between them in the 5GC.
 See NSI ID definition in clause 3.1 of TS 23.501 and
 subclause 6.1.6.2.7 of  TS 29.531""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
+    rdfs:domain amf3gpp:AMFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/commModelList> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.commModelList a owl:ObjectProperty ;
     rdfs:label "AMFFunction.commModelList" ;
     rdfs:comment """Specifies a list of commModel. It can be used by NF and
 NF services to interact with each other in 5G Core network """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:commModelList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/id> a rdf:Property ;
+amf3gpp:AMFFunction.id a rdf:Property ;
     rdfs:label "AMFFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
+    rdfs:domain amf3gpp:AMFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/managedNFProfile> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.managedNFProfile a owl:ObjectProperty ;
     rdfs:label "AMFFunction.managedNFProfile" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range mnfp3gpp:ManagedNFProfile .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/mappedCellIdInfoList> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.mappedCellIdInfoList a owl:ObjectProperty ;
     rdfs:label "AMFFunction.mappedCellIdInfoList" ;
     rdfs:comment """It provides the list of mapping between GEO area and
 Mapped Cell ID.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/MappedCellIdInfo> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:MappedCellIdInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/mdtUserConsentReqList> a rdf:Property ;
+amf3gpp:AMFFunction.mdtUserConsentReqList a rdf:Property ;
     rdfs:label "AMFFunction.mdtUserConsentReqList" ;
     rdfs:comment """represents a list of MDT measurement names that are
 subject to user consent at MDT activation.
 Any MDT measurement, whose name is not specified in this list, is not
 subject to user consent at MDT activation.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
+    rdfs:domain amf3gpp:AMFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/nTNPLMNRestrictionsList> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.nTNPLMNRestrictionsList a owl:ObjectProperty ;
     rdfs:label "AMFFunction.nTNPLMNRestrictionsList" ;
     rdfs:comment """This attribute defines the location restrictions per PLMN
 that relates to non-terrestrial network access.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNPLMNRestrictionsInfo> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:NTNPLMNRestrictionsInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/pLMNInfoList> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.pLMNInfoList a owl:ObjectProperty ;
     rdfs:label "AMFFunction.pLMNInfoList" ;
     rdfs:comment "It defines the PLMN(s) of a Network Function. " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:pLMNInfoList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/peeParameterslist> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.peeParameterslist a owl:ObjectProperty ;
     rdfs:label "AMFFunction.peeParameterslist" ;
     rdfs:comment """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range mf3gpp:PeeParameters .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/priorityLabel> a rdf:Property ;
+amf3gpp:AMFFunction.priorityLabel a rdf:Property ;
     rdfs:label "AMFFunction.priorityLabel" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
+    rdfs:domain amf3gpp:AMFFunction ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/sBIFQDN> a rdf:Property ;
+amf3gpp:AMFFunction.sBIFQDN a rdf:Property ;
     rdfs:label "AMFFunction.sBIFQDN" ;
     rdfs:comment """The FQDN of the registered NF instance in the
 service-based interface.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
+    rdfs:domain amf3gpp:AMFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/satelliteBackhaulInfoList> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.satelliteBackhaulInfoList a owl:ObjectProperty ;
     rdfs:label "AMFFunction.satelliteBackhaulInfoList" ;
     rdfs:comment """Specifies a list of satellite backhaul information. It can be
 used by NF and NF services.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:SatelliteBackhaulInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/satelliteCoverageInfoList> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.satelliteCoverageInfoList a owl:ObjectProperty ;
     rdfs:label "AMFFunction.satelliteCoverageInfoList" ;
     rdfs:comment """This attribute defines the information related to NR
 Satellite RAT type and corresponding information of satellite coverage""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteCoverageInfo> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:SatelliteCoverageInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/sliceExpiryInfo> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.sliceExpiryInfo a owl:ObjectProperty ;
     rdfs:label "AMFFunction.sliceExpiryInfo" ;
     rdfs:comment """This provides information related to a network slice
 validity.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SliceExpiryInfo> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range amf3gpp:SliceExpiryInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/supportedTraceMetrics> a rdf:Property ;
+amf3gpp:AMFFunction.supportedTraceMetrics a rdf:Property ;
     rdfs:label "AMFFunction.supportedTraceMetrics" ;
     rdfs:comment """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -721,70 +740,70 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
+    rdfs:domain amf3gpp:AMFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/userLabel> a rdf:Property ;
+amf3gpp:AMFFunction.userLabel a rdf:Property ;
     rdfs:label "AMFFunction.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
+    rdfs:domain amf3gpp:AMFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction/vnfParametersList> a owl:ObjectProperty ;
+amf3gpp:AMFFunction.vnfParametersList a owl:ObjectProperty ;
     rdfs:label "AMFFunction.vnfParametersList" ;
     rdfs:comment """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> .
+    rdfs:domain amf3gpp:AMFFunction ;
+    rdfs:range mf3gpp:VnfParameters .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/amfOnboardingCapability> a rdf:Property ;
+amf3gpp:AmfInfo.aMFRegionId a rdf:Property ;
+    rdfs:label "AmfInfo.aMFRegionId" ;
+    rdfs:comment """It represents the AMF Region ID, which identifies the
+region. AllowedValues: defined in subclause 2.10.1 of 3GPP TS 23.003 """ ;
+    rdfs:domain amf3gpp:AmfInfo ;
+    rdfs:range xsd:long .
+
+amf3gpp:AmfInfo.aMFSetId a rdf:Property ;
+    rdfs:label "AmfInfo.aMFSetId" ;
+    rdfs:comment """It represents the AMF Set ID, which is uniquely identifies
+the AMF Set within the AMF Region.
+allowedValues: defined in subclause 2.10.1 of 3GPP TS 23.003""" ;
+    rdfs:domain amf3gpp:AmfInfo ;
+    rdfs:range xsd:long .
+
+amf3gpp:AmfInfo.amfOnboardingCapability a rdf:Property ;
     rdfs:label "AmfInfo.amfOnboardingCapability" ;
     rdfs:comment """This attribute indicates the AMF supports SNPN Onboarding
 capability. This is used for the case of Onboarding of UEs for SNPNs
 (see TS 23.501, clause 5.30.2.10).
 - FALSE: AMF does not support SNPN Onboarding;
 - TRUE: AMF supports SNPN Onboarding.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
+    rdfs:domain amf3gpp:AmfInfo ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/amfRegionId> a rdf:Property ;
-    rdfs:label "AmfInfo.amfRegionId" ;
-    rdfs:comment """It represents the AMF Region ID, which identifies the
-region. AllowedValues: defined in subclause 2.10.1 of 3GPP TS 23.003 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
-    rdfs:range xsd:long .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/amfSetId> a rdf:Property ;
-    rdfs:label "AmfInfo.amfSetId" ;
-    rdfs:comment """It represents the AMF Set ID, which is uniquely identifies
-the AMF Set within the AMF Region.
-allowedValues: defined in subclause 2.10.1 of 3GPP TS 23.003""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
-    rdfs:range xsd:long .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/backupInfoAmfFailure> a owl:ObjectProperty ;
+amf3gpp:AmfInfo.backupInfoAmfFailure a owl:ObjectProperty ;
     rdfs:label "AmfInfo.backupInfoAmfFailure" ;
     rdfs:comment """List of GUAMIs for which the AMF acts as a backup for AMF
 failure.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo> .
+    rdfs:domain amf3gpp:AmfInfo ;
+    rdfs:range amf3gpp:GUAMInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/backupInfoAmfRemoval> a owl:ObjectProperty ;
+amf3gpp:AmfInfo.backupInfoAmfRemoval a owl:ObjectProperty ;
     rdfs:label "AmfInfo.backupInfoAmfRemoval" ;
     rdfs:comment """List of GUAMIs for which the AMF acts as a backup for
 planned AMF removal.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo> .
+    rdfs:domain amf3gpp:AmfInfo ;
+    rdfs:range amf3gpp:GUAMInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/gUAMIdList> a owl:ObjectProperty ;
+amf3gpp:AmfInfo.gUAMIdList a owl:ObjectProperty ;
     rdfs:label "AmfInfo.gUAMIdList" ;
     rdfs:comment "List of supported Globally Unique AMF Ids (GUAMIs)." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo> .
+    rdfs:domain amf3gpp:AmfInfo ;
+    rdfs:range amf3gpp:GUAMInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/highLatencyCom> a rdf:Property ;
+amf3gpp:AmfInfo.highLatencyCom a rdf:Property ;
     rdfs:label "AmfInfo.highLatencyCom" ;
     rdfs:comment """This attribute indicates whether the AMF supports High
 Latency communication (e.g. for NR RedCap UE). This is used for CP NF
@@ -793,91 +812,91 @@ clause 6.3.5).
 - FALSE: AMF does not support High Latency communication e.g. for
 NR RedCap UE;
 - TRUE: AMF supports High Latency communication e.g. for NR RedCap UE;""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
+    rdfs:domain amf3gpp:AmfInfo ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/n2InterfaceAmfInfo> a owl:ObjectProperty ;
+amf3gpp:AmfInfo.n2InterfaceAmfInfo a owl:ObjectProperty ;
     rdfs:label "AmfInfo.n2InterfaceAmfInfo" ;
     rdfs:comment """This attribute represents the N2 interface information of
 the AMF. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo> .
+    rdfs:domain amf3gpp:AmfInfo ;
+    rdfs:range amf3gpp:N2InterfaceAmfInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/taiList> a owl:ObjectProperty ;
+amf3gpp:AmfInfo.taiList a owl:ObjectProperty ;
     rdfs:label "AmfInfo.taiList" ;
     rdfs:comment "The list of TAIs." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+    rdfs:domain amf3gpp:AmfInfo ;
+    rdfs:range types3gpp:Tai .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo/taiRangeList> a owl:ObjectProperty ;
+amf3gpp:AmfInfo.taiRangeList a owl:ObjectProperty ;
     rdfs:label "AmfInfo.taiRangeList" ;
     rdfs:comment "The range of TAIs." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AmfInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/TaiRange> .
+    rdfs:domain amf3gpp:AmfInfo ;
+    rdfs:range types5g3gpp:TaiRange .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo/blockedDurWindow> a owl:ObjectProperty ;
+amf3gpp:BlockedLocationInfo.blockedDurWindow a owl:ObjectProperty ;
     rdfs:label "BlockedLocationInfo.blockedDurWindow" ;
     rdfs:comment """This provides the time durations for which the PLMN are
 not allowed at a given location in case of NTN""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    rdfs:domain amf3gpp:BlockedLocationInfo ;
+    rdfs:range types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo/blockedLocation> a owl:ObjectProperty ;
+amf3gpp:BlockedLocationInfo.blockedLocation a owl:ObjectProperty ;
     rdfs:label "BlockedLocationInfo.blockedLocation" ;
     rdfs:comment """This provides the geographical location at which the PLMN
 are not allowed in case of NTN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedLocation> .
+    rdfs:domain amf3gpp:BlockedLocationInfo ;
+    rdfs:range amf3gpp:blockedLocation .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo/blockedSlice> a owl:ObjectProperty ;
+amf3gpp:BlockedLocationInfo.blockedSlice a owl:ObjectProperty ;
     rdfs:label "BlockedLocationInfo.blockedSlice" ;
     rdfs:comment """This provides the slice for which the access is
 not allowed at a given location in case of NTN. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedSlice> .
+    rdfs:domain amf3gpp:BlockedLocationInfo ;
+    rdfs:range amf3gpp:blockedSlice .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/fileCompression> a rdf:Property ;
+amf3gpp:File.fileCompression a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.fileCompression" ;
     rdfs:comment """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/fileContent> a rdf:Property ;
+amf3gpp:File.fileContent a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.fileContent" ;
     rdfs:comment """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:base64Binary ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/fileDataType> a rdf:Property ;
+amf3gpp:File.fileDataType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.fileDataType" ;
     rdfs:comment "Type of the management data stored in the file." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/fileExpirationTime> a rdf:Property ;
+amf3gpp:File.fileExpirationTime a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.fileExpirationTime" ;
     rdfs:comment "Date and time after which the file may be deleted." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/fileFormat> a rdf:Property ;
+amf3gpp:File.fileFormat a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.fileFormat" ;
     rdfs:comment """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/fileLocation> a rdf:Property ;
+amf3gpp:File.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.fileLocation" ;
     rdfs:comment """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -891,337 +910,337 @@ Examples:
 'sftp://companyA.com/datastore/fileName.xml',
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/fileReadyTime> a rdf:Property ;
+amf3gpp:File.fileReadyTime a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.fileReadyTime" ;
     rdfs:comment """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/fileSize> a rdf:Property ;
+amf3gpp:File.fileSize a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.fileSize" ;
     rdfs:comment "Size of the file" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:unsignedLong ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/id> a rdf:Property ;
+amf3gpp:File.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/jobId> a rdf:Property ;
+amf3gpp:File.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
+    rdfs:domain amf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File/jobRef> a owl:ObjectProperty ;
+amf3gpp:File.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:File.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/File> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:File ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files/id> a rdf:Property ;
+amf3gpp:Files.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:Files.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files> ;
+    rdfs:domain amf3gpp:Files ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files/jobId> a rdf:Property ;
+amf3gpp:Files.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:Files.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files> ;
+    rdfs:domain amf3gpp:Files ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files/jobRef> a owl:ObjectProperty ;
+amf3gpp:Files.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:Files.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:Files ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files/numberOfFiles> a rdf:Property ;
+amf3gpp:Files.numberOfFiles a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:Files.numberOfFiles" ;
     rdfs:comment "Number of files in a file collection." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/Files> ;
+    rdfs:domain amf3gpp:Files ;
     rdfs:range xsd:unsignedLong .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo/aMFIdentifier> a rdf:Property ;
+amf3gpp:GUAMInfo.aMFIdentifier a rdf:Property ;
     rdfs:label "GUAMInfo.aMFIdentifier" ;
     rdfs:comment """The AMFI is constructed from an AMF Region ID, an
 AMF Set ID and an AMF Pointer. The AMF Region ID identifies the region,
 the AMF Set ID uniquely identifies the AMF Set within the AMF Region,
 and the AMF Pointer uniquely identifies the AMF within the AMF Set.
 (Ref. 3GPP TS 23.003)""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo> ;
+    rdfs:domain amf3gpp:GUAMInfo ;
     rdfs:range xsd:long .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo/pLMNId> a owl:ObjectProperty ;
+amf3gpp:GUAMInfo.pLMNId a owl:ObjectProperty ;
     rdfs:label "GUAMInfo.pLMNId" ;
     rdfs:comment "This attribute represents a PLMN Identity." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/GUAMInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> .
+    rdfs:domain amf3gpp:GUAMInfo ;
+    rdfs:range amf3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/administrativeState> a rdf:Property ;
+amf3gpp:ManagedNFService.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.administrativeState" ;
     rdfs:comment "Permission to use or prohibition against using the instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
+    rdfs:domain amf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/id> a rdf:Property ;
+amf3gpp:ManagedNFService.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
+    rdfs:domain amf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/nFServiceType> a rdf:Property ;
+amf3gpp:ManagedNFService.nFServiceType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.nFServiceType" ;
     rdfs:comment """The type of the managed NF service instance
 The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
+    rdfs:domain amf3gpp:ManagedNFService ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/operationalState> a rdf:Property ;
+amf3gpp:ManagedNFService.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.operationalState" ;
     rdfs:comment "Describes whether the resource is installed and working" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
+    rdfs:domain amf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/operations> a owl:ObjectProperty ;
+amf3gpp:ManagedNFService.operations a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.operations" ;
     rdfs:comment """Set of operations supported by the managed NF
 service instance""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> .
+    rdfs:domain amf3gpp:ManagedNFService ;
+    rdfs:range mf3gpp:Operation .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/registrationState> a rdf:Property ;
+amf3gpp:ManagedNFService.registrationState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.registrationState" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
+    rdfs:domain amf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/sAP> a owl:ObjectProperty ;
+amf3gpp:ManagedNFService.sAP a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.sAP" ;
     rdfs:comment "The service access point of the managed NF service instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    rdfs:domain amf3gpp:ManagedNFService ;
+    rdfs:range types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/usageState> a rdf:Property ;
+amf3gpp:ManagedNFService.usageState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.usageState" ;
     rdfs:comment """Describes whether the resource is actively in use at a
 specific instant, and if so, whether or not it has spare
 capacity for additional users.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
+    rdfs:domain amf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService/userLabel> a rdf:Property ;
+amf3gpp:ManagedNFService.userLabel a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ManagedNFService.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ManagedNFService> ;
+    rdfs:domain amf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/MappedCellIdInfo/mappedCellId> a owl:ObjectProperty ;
+amf3gpp:MappedCellIdInfo.mappedCellId a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:MappedCellIdInfo.mappedCellId" ;
     rdfs:comment """This attribute is in format of NCGI to indicate a fixed
 geographical area (See subclause 16.14.5 in TS 38.300""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/MappedCellIdInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5g-common-yang-types/Ncgi> .
+    rdfs:domain amf3gpp:MappedCellIdInfo ;
+    rdfs:range types5g3gpp:Ncgi .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/MappedCellIdInfo/ntnGeoArea> a owl:ObjectProperty ;
+amf3gpp:MappedCellIdInfo.ntnGeoArea a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:MappedCellIdInfo.ntnGeoArea" ;
     rdfs:comment """This attribute indicates a specific geographical location
 mapped to Mapped Cell ID(s).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/MappedCellIdInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+    rdfs:domain amf3gpp:MappedCellIdInfo ;
+    rdfs:range types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo/amfName> a rdf:Property ;
+amf3gpp:N2InterfaceAmfInfo.amfName a rdf:Property ;
     rdfs:label "N2InterfaceAmfInfo.amfName" ;
     rdfs:comment """This attribute represents AMF Name FQDN as defined in
 clause 28.3.2.5 of TS 23.003.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo> ;
+    rdfs:domain amf3gpp:N2InterfaceAmfInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo/ipv4EndpointAddress> a rdf:Property ;
+amf3gpp:N2InterfaceAmfInfo.ipv4EndpointAddress a rdf:Property ;
     rdfs:label "N2InterfaceAmfInfo.ipv4EndpointAddress" ;
     rdfs:comment """This attribute represents available AMF endpoint
 IPv4 address(es) for N2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo> ;
+    rdfs:domain amf3gpp:N2InterfaceAmfInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo/ipv6EndpointAddress> a rdf:Property ;
+amf3gpp:N2InterfaceAmfInfo.ipv6EndpointAddress a rdf:Property ;
     rdfs:label "N2InterfaceAmfInfo.ipv6EndpointAddress" ;
     rdfs:comment """This attribute represents available AMF endpoint
 IPv6 address(es) for N2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/N2InterfaceAmfInfo> ;
+    rdfs:domain amf3gpp:N2InterfaceAmfInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID/GlobalRanNodeIDValue> a rdf:Property ;
+amf3gpp:NTNGlobalRanNodeID.GlobalRanNodeIDValue a rdf:Property ;
     rdfs:label "NTNGlobalRanNodeID.GlobalRanNodeIDValue" ;
     rdfs:comment "this relies on the choice of GlobalRanNodeID" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> ;
+    rdfs:domain amf3gpp:NTNGlobalRanNodeID ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID/GlobalgNBID> a rdf:Property ;
+amf3gpp:NTNGlobalRanNodeID.GlobalgNBID a rdf:Property ;
     rdfs:label "NTNGlobalRanNodeID.GlobalgNBID" ;
     rdfs:comment "Unique identifier of a gNB." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> ;
+    rdfs:domain amf3gpp:NTNGlobalRanNodeID ;
     rdfs:range xsd:long .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID/Globalng-eNBID> a rdf:Property ;
+amf3gpp:NTNGlobalRanNodeID.Globalng-eNBID a rdf:Property ;
     rdfs:label "NTNGlobalRanNodeID.Globalng-eNBID" ;
     rdfs:comment """This represents the identifier of
 the ng-eNB ID as specified in
 clause 9.3.1.8 of 3GPP TS 38.413.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> ;
+    rdfs:domain amf3gpp:NTNGlobalRanNodeID ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID/N3IWFID> a rdf:Property ;
+amf3gpp:NTNGlobalRanNodeID.N3IWFID a rdf:Property ;
     rdfs:label "NTNGlobalRanNodeID.N3IWFID" ;
     rdfs:comment """This IE shall contain the N3IWF
 identifier received over NGAP and
 shall be encoded as a string of
 hexadecimal characters.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> ;
+    rdfs:domain amf3gpp:NTNGlobalRanNodeID ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID/TNGFID> a rdf:Property ;
+amf3gpp:NTNGlobalRanNodeID.TNGFID a rdf:Property ;
     rdfs:label "NTNGlobalRanNodeID.TNGFID" ;
     rdfs:comment """This represents the identifier of
 the TNGF ID as specified in clause
 9.3.1.161 of 3GPP TS 38.413 in hexadecimal
 representation.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> ;
+    rdfs:domain amf3gpp:NTNGlobalRanNodeID ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID/TWIFID> a rdf:Property ;
+amf3gpp:NTNGlobalRanNodeID.TWIFID a rdf:Property ;
     rdfs:label "NTNGlobalRanNodeID.TWIFID" ;
     rdfs:comment """This represents the TWIF identification
 as specified in clause
 9.3.1.163 of TS 38.413""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> ;
+    rdfs:domain amf3gpp:NTNGlobalRanNodeID ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID/W-AGFID> a rdf:Property ;
+amf3gpp:NTNGlobalRanNodeID.W-AGFID a rdf:Property ;
     rdfs:label "NTNGlobalRanNodeID.W-AGFID" ;
     rdfs:comment """This represents the identifier of
 the W-AGF ID as specified in
 clause 9.3.1.162 of 3GPP TS 38.413
 in hexadecimal representation.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> ;
+    rdfs:domain amf3gpp:NTNGlobalRanNodeID ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID/pLMNId> a owl:ObjectProperty ;
+amf3gpp:NTNGlobalRanNodeID.pLMNId a owl:ObjectProperty ;
     rdfs:label "NTNGlobalRanNodeID.pLMNId" ;
     rdfs:comment """The PLMN Identifier is composed of
 a Mobile Country Code (MCC) and
 a Mobile Network Code (MNC).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> .
+    rdfs:domain amf3gpp:NTNGlobalRanNodeID ;
+    rdfs:range amf3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNPLMNRestrictionsInfo/blockedLocationInfoList> a owl:ObjectProperty ;
+amf3gpp:NTNPLMNRestrictionsInfo.blockedLocationInfoList a owl:ObjectProperty ;
     rdfs:label "NTNPLMNRestrictionsInfo.blockedLocationInfoList" ;
     rdfs:comment """This defines the information related with the location
 for which the access restrictions are to be applied in case of NTN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNPLMNRestrictionsInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/BlockedLocationInfo> .
+    rdfs:domain amf3gpp:NTNPLMNRestrictionsInfo ;
+    rdfs:range amf3gpp:BlockedLocationInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNPLMNRestrictionsInfo/pLMNId> a owl:ObjectProperty ;
+amf3gpp:NTNPLMNRestrictionsInfo.pLMNId a owl:ObjectProperty ;
     rdfs:label "NTNPLMNRestrictionsInfo.pLMNId" ;
     rdfs:comment "This attribute represents a PLMN Identity." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNPLMNRestrictionsInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> .
+    rdfs:domain amf3gpp:NTNPLMNRestrictionsInfo ;
+    rdfs:range amf3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig/id> a rdf:Property ;
+amf3gpp:NTNTimeBasedConfig.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:NTNTimeBasedConfig.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig> ;
+    rdfs:domain amf3gpp:NTNTimeBasedConfig ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig/nTNEntityConfigList> a owl:ObjectProperty ;
+amf3gpp:NTNTimeBasedConfig.nTNEntityConfigList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:NTNTimeBasedConfig.nTNEntityConfigList" ;
     rdfs:comment """It contains a list of configuration
 updates to be applied to specified NTN entities.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNEntityConfig> .
+    rdfs:domain amf3gpp:NTNTimeBasedConfig ;
+    rdfs:range ntn3gpp:NTNEntityConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig/timeWindow> a owl:ObjectProperty ;
+amf3gpp:NTNTimeBasedConfig.timeWindow a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:NTNTimeBasedConfig.timeWindow" ;
     rdfs:comment "It defines the time window." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNTimeBasedConfig> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    rdfs:domain amf3gpp:NTNTimeBasedConfig ;
+    rdfs:range types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo/availabilityWindows> a owl:ObjectProperty ;
+amf3gpp:NtnLocationInfo.availabilityWindows a owl:ObjectProperty ;
     rdfs:label "NtnLocationInfo.availabilityWindows" ;
     rdfs:comment """This attribute defines the list of time windows at which
 the satellite coverage will be available for this location.
 Either availabilityWindows or nonAvailabilityWindows shall be present.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    rdfs:domain amf3gpp:NtnLocationInfo ;
+    rdfs:range types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo/location> a owl:ObjectProperty ;
+amf3gpp:NtnLocationInfo.location a owl:ObjectProperty ;
     rdfs:label "NtnLocationInfo.location" ;
     rdfs:comment """This defines the Location (geographical area) under
 consideration to which the satellite coverage info belongs""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+    rdfs:domain amf3gpp:NtnLocationInfo ;
+    rdfs:range types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo/nonAvailabilityWindows> a owl:ObjectProperty ;
+amf3gpp:NtnLocationInfo.nonAvailabilityWindows a owl:ObjectProperty ;
     rdfs:label "NtnLocationInfo.nonAvailabilityWindows" ;
     rdfs:comment """This attribute defines the list of time windows at which
 the satellite coverage will not be available for this location.
 Either availabilityWindows or nonAvailabilityWindows shall be present.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    rdfs:domain amf3gpp:NtnLocationInfo ;
+    rdfs:range types3gpp:TimeWindow .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/_linkToFiles> a rdf:Property ;
+amf3gpp:PerfMetricJob._linkToFiles a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob._linkToFiles" ;
     rdfs:comment "Link to a 'Files' object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/administrativeState> a rdf:Property ;
+amf3gpp:PerfMetricJob.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.administrativeState" ;
     rdfs:comment "Enable or disables production of the metrics" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/conditionMonitorRef> a owl:ObjectProperty ;
+amf3gpp:PerfMetricJob.conditionMonitorRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.conditionMonitorRef" ;
     rdfs:comment "Pointer to a ConditionMonitor object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/fileLocation> a rdf:Property ;
+amf3gpp:PerfMetricJob.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.fileLocation" ;
     rdfs:comment """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/fileReportingPeriod> a rdf:Property ;
+amf3gpp:PerfMetricJob.fileReportingPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.fileReportingPeriod" ;
     rdfs:comment """For the file-based reporting method this is the time
 window during which collected measurements are stored into the same
@@ -1229,51 +1248,51 @@ file before the file is closed and a new file is opened.
 The time-period must be a multiple of the granularityPeriod.
 
 Applicable when the file-based reporting method is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/granularityPeriod> a rdf:Property ;
+amf3gpp:PerfMetricJob.granularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.granularityPeriod" ;
     rdfs:comment """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/id> a rdf:Property ;
+amf3gpp:PerfMetricJob.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/jobId> a rdf:Property ;
+amf3gpp:PerfMetricJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.jobId" ;
     rdfs:comment "Id for a PerfMetricJob job." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/notificationRecipientAddress> a rdf:Property ;
+amf3gpp:PerfMetricJob.notificationRecipientAddress a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.notificationRecipientAddress" ;
     rdfs:comment """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/objectInstances> a owl:ObjectProperty ;
+amf3gpp:PerfMetricJob.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/operationalState> a rdf:Property ;
+amf3gpp:PerfMetricJob.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.operationalState" ;
     rdfs:comment "Indicates whether the PerfMetricJob is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/performanceMetrics> a rdf:Property ;
+amf3gpp:PerfMetricJob.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -1286,142 +1305,142 @@ the bullet e) of the measurement definition.
 
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/rootObjectInstances> a owl:ObjectProperty ;
+amf3gpp:PerfMetricJob.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/schedulerRef> a owl:ObjectProperty ;
+amf3gpp:PerfMetricJob.schedulerRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.schedulerRef" ;
     rdfs:comment "Pointer to a Scheduler object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob/streamTarget> a rdf:Property ;
+amf3gpp:PerfMetricJob.streamTarget a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:PerfMetricJob.streamTarget" ;
     rdfs:comment """Applicable when stream-based reporting method is
 supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/PerfMetricJob> ;
+    rdfs:domain amf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo/GlobalRanNodeIDValue> a rdf:Property ;
+amf3gpp:SatelliteBackhaulInfo.GlobalRanNodeIDValue a rdf:Property ;
     rdfs:label "SatelliteBackhaulInfo.GlobalRanNodeIDValue" ;
     rdfs:comment "this relies on the choice of GlobalRanNodeID" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo> ;
+    rdfs:domain amf3gpp:SatelliteBackhaulInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo/geoSatelliteId> a rdf:Property ;
+amf3gpp:SatelliteBackhaulInfo.geoSatelliteId a rdf:Property ;
     rdfs:label "SatelliteBackhaulInfo.geoSatelliteId" ;
     rdfs:comment "Unique identifier of a GEO satellite." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo> ;
+    rdfs:domain amf3gpp:SatelliteBackhaulInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo/nTNGlobalRanNodeID> a owl:ObjectProperty ;
+amf3gpp:SatelliteBackhaulInfo.nTNGlobalRanNodeID a owl:ObjectProperty ;
     rdfs:label "SatelliteBackhaulInfo.nTNGlobalRanNodeID" ;
     rdfs:comment "Unique identifier of an NG-RAN node." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NTNGlobalRanNodeID> .
+    rdfs:domain amf3gpp:SatelliteBackhaulInfo ;
+    rdfs:range amf3gpp:NTNGlobalRanNodeID .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo/satelliteBackhaulCategory> a rdf:Property ;
+amf3gpp:SatelliteBackhaulInfo.satelliteBackhaulCategory a rdf:Property ;
     rdfs:label "SatelliteBackhaulInfo.satelliteBackhaulCategory" ;
     rdfs:comment """Satellite backhaul category refers to the type of the
 satellite used in the backhaul. Only a single backhaul category
 can be indicated.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteBackhaulInfo> ;
+    rdfs:domain amf3gpp:SatelliteBackhaulInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteCoverageInfo/locationInfo> a owl:ObjectProperty ;
+amf3gpp:SatelliteCoverageInfo.locationInfo a owl:ObjectProperty ;
     rdfs:label "SatelliteCoverageInfo.locationInfo" ;
     rdfs:comment """This attribute defines the information about location and
 corresponding time windows for which the satellite coverage will be
 available or unavailable.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteCoverageInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/NtnLocationInfo> .
+    rdfs:domain amf3gpp:SatelliteCoverageInfo ;
+    rdfs:range amf3gpp:NtnLocationInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteCoverageInfo/nRSatelliteRATtype> a rdf:Property ;
+amf3gpp:SatelliteCoverageInfo.nRSatelliteRATtype a rdf:Property ;
     rdfs:label "SatelliteCoverageInfo.nRSatelliteRATtype" ;
     rdfs:comment """This attribute defines the RAT Type for NR satellite
 access.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SatelliteCoverageInfo> ;
+    rdfs:domain amf3gpp:SatelliteCoverageInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SliceExpiryInfo/expiryTime> a rdf:Property ;
+amf3gpp:SliceExpiryInfo.expiryTime a rdf:Property ;
     rdfs:label "SliceExpiryInfo.expiryTime" ;
     rdfs:comment """This attribute provides information about the time at
 which the slice is scheduled to be expired as it is not required
 anymore.
 This attribute will be set based on the sliceAvailability coming as
 part of ServiceProfile.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SliceExpiryInfo> ;
+    rdfs:domain amf3gpp:SliceExpiryInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SliceExpiryInfo/pLMNInfo> a owl:ObjectProperty ;
+amf3gpp:SliceExpiryInfo.pLMNInfo a owl:ObjectProperty ;
     rdfs:label "SliceExpiryInfo.pLMNInfo" ;
     rdfs:comment "It defines the PLMN(s) of a Network Function. " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SliceExpiryInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo> .
+    rdfs:domain amf3gpp:SliceExpiryInfo ;
+    rdfs:range amf3gpp:pLMNInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl/administrativeState> a rdf:Property ;
+amf3gpp:StmCtrl.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:StmCtrl.administrativeState" ;
     rdfs:comment """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl> ;
+    rdfs:domain amf3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl/id> a rdf:Property ;
+amf3gpp:StmCtrl.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:StmCtrl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl> ;
+    rdfs:domain amf3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl/operationalState> a rdf:Property ;
+amf3gpp:StmCtrl.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:StmCtrl.operationalState" ;
     rdfs:comment "It is used by STM consumer to report its working state" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl> ;
+    rdfs:domain amf3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl/reportingNFList> a owl:ObjectProperty ;
+amf3gpp:StmCtrl.reportingNFList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:StmCtrl.reportingNFList" ;
     rdfs:comment """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:StmCtrl ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl/stmTargetUri> a rdf:Property ;
+amf3gpp:StmCtrl.stmTargetUri a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:StmCtrl.stmTargetUri" ;
     rdfs:comment """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl> ;
+    rdfs:domain amf3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl/targetInterfaceInfoList> a owl:ObjectProperty ;
+amf3gpp:StmCtrl.targetInterfaceInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:StmCtrl.targetInterfaceInfoList" ;
     rdfs:comment """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/StmCtrl> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    rdfs:domain amf3gpp:StmCtrl ;
+    rdfs:range stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
+amf3gpp:SupportedPerfMetricGroups.granularityPeriods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups> ;
+    rdfs:domain amf3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
+amf3gpp:SupportedPerfMetricGroups.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -1436,91 +1455,91 @@ definitions template as the component designated with e).
 
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups> ;
+    rdfs:domain amf3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
+amf3gpp:SupportedPerfMetricGroups.reportingMethods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:SupportedPerfMetricGroups.reportingMethods" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups> ;
+    rdfs:domain amf3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
+amf3gpp:SupportedPerfMetricGroups.reportingPeriods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/SupportedPerfMetricGroups> ;
+    rdfs:domain amf3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor/administrativeState> a rdf:Property ;
+amf3gpp:ThresholdMonitor.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ThresholdMonitor.administrativeState" ;
     rdfs:comment "Enables or disables the ThresholdMonitor." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor> ;
+    rdfs:domain amf3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor/id> a rdf:Property ;
+amf3gpp:ThresholdMonitor.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ThresholdMonitor.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor> ;
+    rdfs:domain amf3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor/monitorGranularityPeriod> a rdf:Property ;
+amf3gpp:ThresholdMonitor.monitorGranularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ThresholdMonitor.monitorGranularityPeriod" ;
     rdfs:comment """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor> ;
+    rdfs:domain amf3gpp:ThresholdMonitor ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor/objectInstances> a owl:ObjectProperty ;
+amf3gpp:ThresholdMonitor.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ThresholdMonitor.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor/operationalState> a rdf:Property ;
+amf3gpp:ThresholdMonitor.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ThresholdMonitor.operationalState" ;
     rdfs:comment "Indicates whether the ThresholdMonitor is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor> ;
+    rdfs:domain amf3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor/rootObjectInstances> a owl:ObjectProperty ;
+amf3gpp:ThresholdMonitor.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ThresholdMonitor.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor/thresholdInfoList> a owl:ObjectProperty ;
+amf3gpp:ThresholdMonitor.thresholdInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:ThresholdMonitor.thresholdInfoList" ;
     rdfs:comment "List of threshold info." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/ThresholdMonitor> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    rdfs:domain amf3gpp:ThresholdMonitor ;
+    rdfs:range meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/id> a rdf:Property ;
+amf3gpp:TraceJob.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
+    rdfs:domain amf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/jobId> a rdf:Property ;
+amf3gpp:TraceJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.jobId" ;
     rdfs:comment "Identifier of a TraceJob" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
+    rdfs:domain amf3gpp:TraceJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/jobType> a rdf:Property ;
+amf3gpp:TraceJob.jobType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.jobType" ;
     rdfs:comment """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
+    rdfs:domain amf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/listOfTraceMetrics> a rdf:Property ;
+amf3gpp:TraceJob.listOfTraceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.listOfTraceMetrics" ;
     rdfs:comment """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -1530,10 +1549,10 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
+    rdfs:domain amf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/mdtConfig> a owl:ObjectProperty ;
+amf3gpp:TraceJob.mdtConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.mdtConfig" ;
     rdfs:comment """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
@@ -1556,71 +1575,72 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> .
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
+    rdfs:domain amf3gpp:TraceJob ;
+    rdfs:range trace3gpp:MdtConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/nPNTarget> a owl:ObjectProperty ;
+amf3gpp:TraceJob.nPNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.nPNTarget" ;
     rdfs:comment """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
+    rdfs:domain amf3gpp:TraceJob ;
+    rdfs:range types3gpp:NpnId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/pLMNTarget> a owl:ObjectProperty ;
+amf3gpp:TraceJob.pLMNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNTarget> .
+    rdfs:domain amf3gpp:TraceJob ;
+    rdfs:range amf3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/rrcReportType> a rdf:Property ;
+amf3gpp:TraceJob.rrcReportType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.rrcReportType" ;
     rdfs:comment "Specifies the RRC reports requested. " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
+    rdfs:domain amf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/traceCollectionEntityIPAddress> a rdf:Property ;
+amf3gpp:TraceJob.traceCollectionEntityIPAddress a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.traceCollectionEntityIPAddress" ;
     rdfs:comment """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
+    rdfs:domain amf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/traceConfig> a owl:ObjectProperty ;
+amf3gpp:TraceJob.traceConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.traceConfig" ;
     rdfs:comment "Trace config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> .
+    rdfs:domain amf3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/traceReference> a owl:ObjectProperty ;
+amf3gpp:TraceJob.traceReference a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.traceReference" ;
     rdfs:comment """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
 Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+    rdfs:domain amf3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceReference .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/traceReportingConsumerUri> a rdf:Property ;
+amf3gpp:TraceJob.traceReportingConsumerUri a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.traceReportingConsumerUri" ;
     rdfs:comment """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
+    rdfs:domain amf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/traceReportingFormat> a rdf:Property ;
+amf3gpp:TraceJob.traceReportingFormat a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.traceReportingFormat" ;
     rdfs:comment """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
+    rdfs:domain amf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/traceTarget> a owl:ObjectProperty ;
+amf3gpp:TraceJob.traceTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1628,156 +1648,156 @@ Trace, MDT, and 5GC UE level measurements collection.
 In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/traceTarget> .
+    rdfs:domain amf3gpp:TraceJob ;
+    rdfs:range amf3gpp:traceTarget .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob/ueCoreMeasConfig> a owl:ObjectProperty ;
+amf3gpp:TraceJob.ueCoreMeasConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:TraceJob.ueCoreMeasConfig" ;
     rdfs:comment "5GC UE level measurements config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> .
+    rdfs:domain amf3gpp:TraceJob ;
+    rdfs:range trace3gpp:UECoreMeasConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier/amfPointer> a rdf:Property ;
+amf3gpp:aMFIdentifier.amfPointer a rdf:Property ;
     rdfs:label "aMFIdentifier.amfPointer" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier> ;
+    rdfs:domain amf3gpp:aMFIdentifier ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier/amfRegionId> a rdf:Property ;
+amf3gpp:aMFIdentifier.amfRegionId a rdf:Property ;
     rdfs:label "aMFIdentifier.amfRegionId" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier> ;
+    rdfs:domain amf3gpp:aMFIdentifier ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier/amfSetId> a rdf:Property ;
+amf3gpp:aMFIdentifier.amfSetId a rdf:Property ;
     rdfs:label "aMFIdentifier.amfSetId" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/aMFIdentifier> ;
+    rdfs:domain amf3gpp:aMFIdentifier ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedLocation/mcc> a rdf:Property ;
+amf3gpp:blockedLocation.mcc a rdf:Property ;
     rdfs:label "blockedLocation.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedLocation> ;
+    rdfs:domain amf3gpp:blockedLocation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedLocation/mnc> a rdf:Property ;
+amf3gpp:blockedLocation.mnc a rdf:Property ;
     rdfs:label "blockedLocation.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedLocation> ;
+    rdfs:domain amf3gpp:blockedLocation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedSlice/sd> a rdf:Property ;
+amf3gpp:blockedSlice.sd a rdf:Property ;
     rdfs:label "blockedSlice.sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedSlice> ;
+    rdfs:domain amf3gpp:blockedSlice ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedSlice/sst> a rdf:Property ;
+amf3gpp:blockedSlice.sst a rdf:Property ;
     rdfs:label "blockedSlice.sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/blockedSlice> ;
+    rdfs:domain amf3gpp:blockedSlice ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList/commModelConfiguration> a rdf:Property ;
+amf3gpp:commModelList.commModelConfiguration a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:commModelList.commModelConfiguration" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList> ;
+    rdfs:domain amf3gpp:commModelList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList/commModelType> a rdf:Property ;
+amf3gpp:commModelList.commModelType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:commModelList.commModelType" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList> ;
+    rdfs:domain amf3gpp:commModelList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList/groupId> a rdf:Property ;
+amf3gpp:commModelList.groupId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:commModelList.groupId" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList> ;
+    rdfs:domain amf3gpp:commModelList ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList/targetNFServiceList> a owl:ObjectProperty ;
+amf3gpp:commModelList.targetNFServiceList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:commModelList.targetNFServiceList" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/commModelList> ;
-    nrm:isReference true .
+    rdfs:domain amf3gpp:commModelList ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId/mcc> a rdf:Property ;
+amf3gpp:pLMNId.mcc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNId.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> ;
+    rdfs:domain amf3gpp:pLMNId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId/mnc> a rdf:Property ;
+amf3gpp:pLMNId.mnc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNId.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNId> ;
+    rdfs:domain amf3gpp:pLMNId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo/mcc> a rdf:Property ;
-    rdfs:label "pLMNInfo.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo> ;
+amf3gpp:pLMNInfo.mcc a rdf:Property ;
+    rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfo.mcc" ;
+    rdfs:domain amf3gpp:pLMNInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo/mnc> a rdf:Property ;
-    rdfs:label "pLMNInfo.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo> ;
+amf3gpp:pLMNInfo.mnc a rdf:Property ;
+    rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfo.mnc" ;
+    rdfs:domain amf3gpp:pLMNInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo/sd> a rdf:Property ;
-    rdfs:label "pLMNInfo.sd" ;
+amf3gpp:pLMNInfo.sd a rdf:Property ;
+    rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfo.sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo> ;
+    rdfs:domain amf3gpp:pLMNInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo/sst> a rdf:Property ;
-    rdfs:label "pLMNInfo.sst" ;
+amf3gpp:pLMNInfo.sst a rdf:Property ;
+    rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfo.sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfo> ;
+    rdfs:domain amf3gpp:pLMNInfo ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList/mcc> a rdf:Property ;
+amf3gpp:pLMNInfoList.mcc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfoList.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList> ;
+    rdfs:domain amf3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList/mnc> a rdf:Property ;
+amf3gpp:pLMNInfoList.mnc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfoList.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList> ;
+    rdfs:domain amf3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList/sd> a rdf:Property ;
+amf3gpp:pLMNInfoList.sd a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfoList.sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList> ;
+    rdfs:domain amf3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList/sst> a rdf:Property ;
+amf3gpp:pLMNInfoList.sst a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNInfoList.sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNInfoList> ;
+    rdfs:domain amf3gpp:pLMNInfoList ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNTarget/mcc> a rdf:Property ;
+amf3gpp:pLMNTarget.mcc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNTarget.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNTarget> ;
+    rdfs:domain amf3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNTarget/mnc> a rdf:Property ;
+amf3gpp:pLMNTarget.mnc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:pLMNTarget.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/pLMNTarget> ;
+    rdfs:domain amf3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/plmnId/mcc> a rdf:Property ;
+amf3gpp:plmnId.mcc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:plmnId.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/plmnId> ;
+    rdfs:domain amf3gpp:plmnId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/plmnId/mnc> a rdf:Property ;
+amf3gpp:plmnId.mnc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:plmnId.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/plmnId> ;
+    rdfs:domain amf3gpp:plmnId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/traceTarget/traceTargetType> a rdf:Property ;
+amf3gpp:traceTarget.traceTargetType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:traceTarget.traceTargetType" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1838,13 +1858,13 @@ the targetIdType shall be able to carry the corresponding
 Measured UE Identifier as defined by the bullet g) of the 5GC UE
 level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/traceTarget> ;
+    rdfs:domain amf3gpp:traceTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/traceTarget/traceTargetValueList> a rdf:Property ;
+amf3gpp:traceTarget.traceTargetValueList a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-amffunction:traceTarget.traceTargetValueList" ;
     rdfs:comment """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/traceTarget> ;
+    rdfs:domain amf3gpp:traceTarget ;
     rdfs:range xsd:string .
 

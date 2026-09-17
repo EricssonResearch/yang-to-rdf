@@ -1,11 +1,12 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix mectx3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-mecontext#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-mecontext/MeContext> a rdfs:Class ;
+mectx3gpp:MeContext a rdfs:Class ;
     rdfs:label "MeContext" ;
     rdfs:comment """This IOC is introduced for naming purposes. It may support
 creation of unique DNs in scenarios when some MEs have the same RDNs due
@@ -34,7 +35,7 @@ MeContext have 0..N instances. It may exist even if no SubNetwork exists.
 Every instance of MeContext contains exactly one ManagedElement during
 steady-state operations.""" .
 
-<urn:3gpp:sa5:_3gpp-common-mecontext> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-mecontext> a owl:Ontology ;
     rdfs:label "_3gpp-common-mecontext" ;
     dcterms:description """Defines basic MeContext which will be augmented by other IOCs
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -51,22 +52,24 @@ Integration Reference Point (IRP);
 Information Service (IS)""" ;
     dcterms:title "_3gpp-common-mecontext" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-03-25 (CR-00525)" .
+    owl:versionInfo "revision 2025-03-25 (CR-00525)" ;
+    y2r:yangModuleName "_3gpp-common-mecontext" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-mecontext> .
 
-<urn:3gpp:sa5:_3gpp-common-mecontext/MeContext/dnPrefix> a owl:ObjectProperty ;
+mectx3gpp:MeContext.dnPrefix a owl:ObjectProperty ;
     rdfs:label "MeContext.dnPrefix" ;
     rdfs:comment """It carries the DN Prefix information or no information.
 The instance of MeContext is the local root instance of the MIB.
 Otherwise the attribute shall be absent or carry no information.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-mecontext/MeContext> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain mectx3gpp:MeContext ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-common-mecontext/MeContext/id> a rdf:Property ;
+mectx3gpp:MeContext.id a rdf:Property ;
     rdfs:label "MeContext.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-mecontext/MeContext> ;
+    rdfs:domain mectx3gpp:MeContext ;
     rdfs:range xsd:string .
 

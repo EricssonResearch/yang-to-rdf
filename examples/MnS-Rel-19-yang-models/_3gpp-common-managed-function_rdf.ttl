@@ -1,29 +1,30 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/Operation> a rdfs:Class ;
+mf3gpp:Operation a rdfs:Class ;
     rdfs:label "Operation" ;
     rdfs:comment """Set of operations supported by the managed NF
 service instance""" .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> a rdfs:Class ;
+mf3gpp:PeeParameters a rdfs:Class ;
     rdfs:label "PeeParameters" ;
     rdfs:comment """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> a rdfs:Class ;
+mf3gpp:VnfParameters a rdfs:Class ;
     rdfs:label "VnfParameters" ;
     rdfs:comment """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-managed-function> a owl:Ontology ;
     rdfs:label "_3gpp-common-managed-function" ;
     dcterms:description """The module defines a base class/grouping for major 3GPP
 functions.
@@ -39,72 +40,74 @@ Information Service (IS)
 Umbrella Information Model (UIM)""" ;
     dcterms:title "_3gpp-common-managed-function" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-08-13 (CR-0551)" .
+    owl:versionInfo "revision 2025-08-13 (CR-0551)" ;
+    y2r:yangModuleName "_3gpp-common-managed-function" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-managed-function> .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/Operation/allowedNFTypes> a rdf:Property ;
+mf3gpp:Operation.allowedNFTypes a rdf:Property ;
     rdfs:label "Operation.allowedNFTypes" ;
     rdfs:comment """The type of the managed NF service instance
 The specifc values allowed are described in TS 23.501""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+    rdfs:domain mf3gpp:Operation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/Operation/name> a rdf:Property ;
+mf3gpp:Operation.name a rdf:Property ;
     rdfs:label "Operation.name" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+    rdfs:domain mf3gpp:Operation ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/Operation/operationSemantics> a rdf:Property ;
+mf3gpp:Operation.operationSemantics a rdf:Property ;
     rdfs:label "Operation.operationSemantics" ;
     rdfs:comment "Semantics type of the operation." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> ;
+    rdfs:domain mf3gpp:Operation ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/environmentType> a rdf:Property ;
+mf3gpp:PeeParameters.environmentType a rdf:Property ;
     rdfs:label "PeeParameters.environmentType" ;
     rdfs:comment """The type of environment where the managedFunction
 instance resides.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:domain mf3gpp:PeeParameters ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/equipmentType> a rdf:Property ;
+mf3gpp:PeeParameters.equipmentType a rdf:Property ;
     rdfs:label "PeeParameters.equipmentType" ;
     rdfs:comment """The type of equipment where the managedFunction
 instance resides.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:domain mf3gpp:PeeParameters ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/powerInterface> a rdf:Property ;
+mf3gpp:PeeParameters.powerInterface a rdf:Property ;
     rdfs:label "PeeParameters.powerInterface" ;
     rdfs:comment "The type of power." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:domain mf3gpp:PeeParameters ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteAltitude> a rdf:Property ;
+mf3gpp:PeeParameters.siteAltitude a rdf:Property ;
     rdfs:label "PeeParameters.siteAltitude" ;
     rdfs:comment """The altitude of the site where the ManagedFunction
 instance resides, in the unit of meter. This attribute is
 optional for BTSFunction, RNCFunction, GNBDUFunction and
 NRSectorCarrier instance(s).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:domain mf3gpp:PeeParameters ;
     rdfs:range xsd:decimal .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteDescription> a rdf:Property ;
+mf3gpp:PeeParameters.siteDescription a rdf:Property ;
     rdfs:label "PeeParameters.siteDescription" ;
     rdfs:comment """An operator defined description of the site where
 the ManagedFunction instance resides.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:domain mf3gpp:PeeParameters ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteIdentification> a rdf:Property ;
+mf3gpp:PeeParameters.siteIdentification a rdf:Property ;
     rdfs:label "PeeParameters.siteIdentification" ;
     rdfs:comment """The identification of the site where the
 ManagedFunction resides.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:domain mf3gpp:PeeParameters ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteLatitude> a rdf:Property ;
+mf3gpp:PeeParameters.siteLatitude a rdf:Property ;
     rdfs:label "PeeParameters.siteLatitude" ;
     rdfs:comment """The latitude of the site where the ManagedFunction
 instance resides, based on World Geodetic System (1984 version)
@@ -112,10 +115,10 @@ global reference frame (WGS 84). Positive values correspond to
 the northern hemisphere. This attribute is optional
 for BTSFunction, RNCFunction, GNBDUFunction and
 NRSectorCarrier instance(s).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:domain mf3gpp:PeeParameters ;
     rdfs:range xsd:decimal .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters/siteLongitude> a rdf:Property ;
+mf3gpp:PeeParameters.siteLongitude a rdf:Property ;
     rdfs:label "PeeParameters.siteLongitude" ;
     rdfs:comment """The longitude of the site where the ManagedFunction
 instance resides, based on World Geodetic System (1984 version)
@@ -124,35 +127,35 @@ degrees east of 0 degrees longitude. This attribute is optional
 for BTSFunction, RNCFunction, GNBDUFunction and
 NRSectorCarrier
 instance(s).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> ;
+    rdfs:domain mf3gpp:PeeParameters ;
     rdfs:range xsd:decimal .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/autoScalable> a rdf:Property ;
+mf3gpp:VnfParameters.autoScalable a rdf:Property ;
     rdfs:label "VnfParameters.autoScalable" ;
     rdfs:comment """Indicator of whether the auto-scaling of this
 VNF instance is enabled or disabled.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+    rdfs:domain mf3gpp:VnfParameters ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/flavourId> a rdf:Property ;
+mf3gpp:VnfParameters.flavourId a rdf:Property ;
     rdfs:label "VnfParameters.flavourId" ;
     rdfs:comment """Identifier of the VNF Deployment Flavour applied to this
 VNF instance.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+    rdfs:domain mf3gpp:VnfParameters ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/vnfInstanceId> a rdf:Property ;
+mf3gpp:VnfParameters.vnfInstanceId a rdf:Property ;
     rdfs:label "VnfParameters.vnfInstanceId" ;
     rdfs:comment "VNF instance identifier" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+    rdfs:domain mf3gpp:VnfParameters ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters/vnfdId> a rdf:Property ;
+mf3gpp:VnfParameters.vnfdId a rdf:Property ;
     rdfs:label "VnfParameters.vnfdId" ;
     rdfs:comment """Identifier of the VNFD on which the VNF instance is based.
 The absence of the leaf or a string length of zero for vnfInstanceId
 means the VNF instance(s) does not exist (e.g. has not been
 instantiated yet, has already been terminated).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
+    rdfs:domain mf3gpp:VnfParameters ;
     rdfs:range xsd:string .
 

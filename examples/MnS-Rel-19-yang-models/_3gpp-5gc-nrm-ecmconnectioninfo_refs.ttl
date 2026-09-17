@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix econn3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-ecmconnectioninfo#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-ecmconnectioninfo> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-ecmconnectioninfo" ;
     dcterms:description """Defines the YANG mapping of the EcmConnectionInfo Information
 Object Class (IOC) that is part of the NR Network Resource Model (NRM).
@@ -13,13 +14,15 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-5gc-nrm-ecmconnectioninfo" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-01-29 (CR-1166)" .
+    owl:versionInfo "revision 2024-01-29 (CR-1166)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-ecmconnectioninfo" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/UPFConnInfo/uPFRef> nrm:candidate "UPF" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+econn3gpp:UPFConnInfo.uPFRef y2r:candidate "UPF" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-ecmconnectioninfo/_5GCNfConnEcmInfo/_5GCNFRef> nrm:candidate "_5GCNF" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+econn3gpp:_5GCNfConnEcmInfo._5GCNFRef y2r:candidate "_5GCNF" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

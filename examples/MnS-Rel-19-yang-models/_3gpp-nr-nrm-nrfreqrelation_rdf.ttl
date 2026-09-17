@@ -1,205 +1,209 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix nrfreqrel3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrfreqrelation#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix redcap3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-redcapaccess#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> a rdfs:Class ;
+nrfreqrel3gpp:NRFreqRelation a rdfs:Class ;
     rdfs:label "NRFreqRelation" ;
     rdfs:comment """Together with the target NRFrequency, it represents the
 frequency properties applicable to the referencing NRFreqRelation.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap> .
+    y2r:hasAttribute redcap3gpp:CellReselectionRedcap .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrfreqrelation> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-nrfreqrelation" ;
     dcterms:description """Defines the YANG mapping of the NRFreqRelation Information
 Object Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3GPP SA5" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-nrfreqrelation" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-07 (CR-1640)" .
+    owl:versionInfo "revision 2026-05-19 (CR-1702)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-nrfreqrelation" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/blockListEntry> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.blockListEntry a rdf:Property ;
     rdfs:label "NRFreqRelation.blockListEntry" ;
     rdfs:comment """A list of Physical Cell Identities (PCIs) that are
 blocklisted in NR measurements.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/blockListEntryIdleMode> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.blockListEntryIdleMode a rdf:Property ;
     rdfs:label "NRFreqRelation.blockListEntryIdleMode" ;
     rdfs:comment """A list of Physical Cell Identities (PCIs) that are
 blocklisted in SIB4 and SIB5.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/cellReselectionPriority> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.cellReselectionPriority a rdf:Property ;
     rdfs:label "NRFreqRelation.cellReselectionPriority" ;
     rdfs:comment """The absolute priority of the carrier frequency used by the
 cell reselection procedure. Value 0 means lowest priority. The value
 must not already used by other RAT, i.e. equal priorities between RATs
 are not supported. The UE behaviour when no value is entered is
 specified in subclause 5.2.4.1 of 3GPP TS 38.304.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/cellReselectionRedcap> a owl:ObjectProperty ;
+nrfreqrel3gpp:NRFreqRelation.cellReselectionRedcap a owl:ObjectProperty ;
     rdfs:label "NRFreqRelation.cellReselectionRedcap" ;
     rdfs:comment """This attribute indicates the configuration parameters
 to allow relaxation of RRM measurement requirements for redcap UE
 cell reselection""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap> .
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
+    rdfs:range redcap3gpp:CellReselectionRedcap .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/cellReselectionSubPriority> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.cellReselectionSubPriority a rdf:Property ;
     rdfs:label "NRFreqRelation.cellReselectionSubPriority" ;
     rdfs:comment """Indicates a fractional value to be added to the value of
 cellReselectionPriority to obtain the absolute priority of the
 concerned carrier frequency for E-UTRA and NR.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/id> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.id a rdf:Property ;
     rdfs:label "NRFreqRelation.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/nRFrequencyRef> a owl:ObjectProperty ;
+nrfreqrel3gpp:NRFreqRelation.nRFrequencyRef a owl:ObjectProperty ;
     rdfs:label "NRFreqRelation.nRFrequencyRef" ;
     rdfs:comment "Reference to a corresponding NRFrequency instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
-    nrm:isReference true .
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/pMax> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.pMax a rdf:Property ;
     rdfs:label "NRFreqRelation.pMax" ;
     rdfs:comment """Used for calculation of the parameter Pcompensation
 (defined in 3GPP TS 38.304), at cell reselection to a cell.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/qOffsetFreq> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.qOffsetFreq a rdf:Property ;
     rdfs:label "NRFreqRelation.qOffsetFreq" ;
     rdfs:comment """The frequency specific offset applied when evaluating
 candidates for cell reselection.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/qQualMin> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.qQualMin a rdf:Property ;
     rdfs:label "NRFreqRelation.qQualMin" ;
     rdfs:comment """Indicates the minimum required quality level in the cell.
 Value 0 means that it is not sent and UE applies in such case the
 (default) value of negative infinity for Qqualmin. Sent in SIB3 or
 SIB5.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/qRxLevMin> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.qRxLevMin a rdf:Property ;
     rdfs:label "NRFreqRelation.qRxLevMin" ;
     rdfs:comment """Indicates the required minimum received Reference Symbol
 Received Power (RSRP) level in the NR frequency for cell reselection.
 Broadcast in SIB3 or SIB5, depending on whether the related frequency
 is intra- or inter-frequency. Resolution is 2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/rsrpOffsetCsiRs> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.rsrpOffsetCsiRs a rdf:Property ;
     rdfs:label "NRFreqRelation.rsrpOffsetCsiRs" ;
     rdfs:comment "Offset value of rsrpOffsetCSI-RS." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/rsrpOffsetSsb> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.rsrpOffsetSsb a rdf:Property ;
     rdfs:label "NRFreqRelation.rsrpOffsetSsb" ;
     rdfs:comment "Offset value of rsrpOffsetSSB." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/rsrqOffsetCsiRs> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.rsrqOffsetCsiRs a rdf:Property ;
     rdfs:label "NRFreqRelation.rsrqOffsetCsiRs" ;
     rdfs:comment "Offset value of rsrqOffsetCSI-RS." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/rsrqOffsetSsb> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.rsrqOffsetSsb a rdf:Property ;
     rdfs:label "NRFreqRelation.rsrqOffsetSsb" ;
     rdfs:comment "Offset value of rsrqOffsetSSB." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/sinrOffsetCsiRs> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.sinrOffsetCsiRs a rdf:Property ;
     rdfs:label "NRFreqRelation.sinrOffsetCsiRs" ;
     rdfs:comment "Offset value of sinrOffsetCSI-RS." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/sinrOffsetSsb> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.sinrOffsetSsb a rdf:Property ;
     rdfs:label "NRFreqRelation.sinrOffsetSsb" ;
     rdfs:comment "Offset value of sinrOffsetSSB." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/tReselectionNR> a rdf:Property ;
-    rdfs:label "NRFreqRelation.tReselectionNR" ;
-    rdfs:comment "Cell reselection timer for NR." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
-    rdfs:range xsd:int .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/tReselectionNRSfHigh> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.tReselectionNRSfHigh a rdf:Property ;
     rdfs:label "NRFreqRelation.tReselectionNRSfHigh" ;
     rdfs:comment """The attribute tReselectionNr (parameter TreselectionNR in
 3GPP TS 38.304) is multiplied with this scaling factor if the UE is
 in high mobility state.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/tReselectionNRSfMedium> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.tReselectionNRSfMedium a rdf:Property ;
     rdfs:label "NRFreqRelation.tReselectionNRSfMedium" ;
     rdfs:comment """The attribute tReselectionNr (parameter TreselectionNR in
 3GPP TS 38.304) multiplied with this scaling factor if the UE is in
 medium mobility state.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/threshXHighP> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.tReselectionNr a rdf:Property ;
+    rdfs:label "NRFreqRelation.tReselectionNr" ;
+    rdfs:comment "Cell reselection timer for NR." ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
+    rdfs:range xsd:int .
+
+nrfreqrel3gpp:NRFreqRelation.threshXHighP a rdf:Property ;
     rdfs:label "NRFreqRelation.threshXHighP" ;
     rdfs:comment """Specifies the Srxlev threshold used by the UE when
 reselecting towards a higher priority RAT/frequency than the current
 serving frequency. Each frequency of NR and E-UTRAN might have a
 specific threshold. Resolution is 2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/threshXHighQ> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.threshXHighQ a rdf:Property ;
     rdfs:label "NRFreqRelation.threshXHighQ" ;
     rdfs:comment """Specifies the Squal threshold used by the UE when
 reselecting towards a higher priority RAT/frequency than the current
 serving frequency. Each frequency of NR and E-UTRAN might have a
 specific threshold.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/threshXLowP> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.threshXLowP a rdf:Property ;
     rdfs:label "NRFreqRelation.threshXLowP" ;
     rdfs:comment """Specifies the Srxlev threshold used by the UE when
 reselecting towards a lower priority RAT/frequency than the current
 serving frequency. Each frequency of NR and E-UTRAN might have a
 specific threshold. Resolution is 2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation/threshXLowQ> a rdf:Property ;
+nrfreqrel3gpp:NRFreqRelation.threshXLowQ a rdf:Property ;
     rdfs:label "NRFreqRelation.threshXLowQ" ;
     rdfs:comment """Specifies the Squal threshold used by the UE when
 reselecting towards a lower priority RAT/frequency than the current
 serving frequency. Each frequency of NR and E-UTRAN might have a
 specific threshold.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrfreqrelation/NRFreqRelation> ;
+    rdfs:domain nrfreqrel3gpp:NRFreqRelation ;
     rdfs:range xsd:int .
 

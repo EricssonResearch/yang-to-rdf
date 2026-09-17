@@ -1,16 +1,17 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix nropcelld3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nroperatorcelldu#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> a rdfs:Class ;
+nropcelld3gpp:NROperatorCellDU a rdfs:Class ;
     rdfs:label "NROperatorCellDU" ;
     rdfs:comment "Contains attributes to support 5G MOCN network sharing." ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList> .
+    y2r:hasAttribute nropcelld3gpp:pLMNInfoList .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList> a rdfs:Class ;
+nropcelld3gpp:pLMNInfoList a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nroperatorcelldu:pLMNInfoList" ;
     rdfs:comment """The PLMNInfoList is a list of PLMNInfo data type. It
 defines which PLMNs that can be served by the NR cell, and which
@@ -19,7 +20,7 @@ in case of network slicing feature is supported. The plMNId of the
 first entry of the list is the PLMNId used to construct the nCGI for
 the NR cell.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nroperatorcelldu> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-nroperatorcelldu" ;
     dcterms:description """Defines the YANG mapping of the OperatorDU Information Object
 Class (IOC) that is part of the NR Network Resource Model (NRM).
@@ -29,71 +30,73 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-nroperatorcelldu" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" .
+    owl:versionInfo "revision 2025-05-06 (CR-1526 CR-1527)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-nroperatorcelldu" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/administrativeState> a rdf:Property ;
+nropcelld3gpp:NROperatorCellDU.administrativeState a rdf:Property ;
     rdfs:label "NROperatorCellDU.administrativeState" ;
     rdfs:comment """Administrative state of the NROperatorCellDU. Indicates the
 permission to use or prohibition against using the cell, imposed
 through the OAM services.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/cellLocalId> a rdf:Property ;
+nropcelld3gpp:NROperatorCellDU.cellLocalId a rdf:Property ;
     rdfs:label "NROperatorCellDU.cellLocalId" ;
     rdfs:comment """Identifies an NR cell of a gNB. Together with the
 corresponding gNB identifier in forms the NR Cell Identity (NCI).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/configurable5QISetRef> a owl:ObjectProperty ;
+nropcelld3gpp:NROperatorCellDU.configurable5QISetRef a owl:ObjectProperty ;
     rdfs:label "NROperatorCellDU.configurable5QISetRef" ;
     rdfs:comment """DN of the Configurable5QISet that the OperatorDU
 supports (is associated to).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/dynamic5QISetRef> a owl:ObjectProperty ;
+nropcelld3gpp:NROperatorCellDU.dynamic5QISetRef a owl:ObjectProperty ;
     rdfs:label "NROperatorCellDU.dynamic5QISetRef" ;
     rdfs:comment """DN of the Dynamic5QISet that the OperatorDU
 supports (is associated to).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/gNBId> a rdf:Property ;
+nropcelld3gpp:NROperatorCellDU.gNBId a rdf:Property ;
     rdfs:label "NROperatorCellDU.gNBId" ;
     rdfs:comment """Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)
 is part of the NR Cell Identifier (NCI) of the gNB cells.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
     rdfs:range xsd:long .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/gNBIdLength> a rdf:Property ;
+nropcelld3gpp:NROperatorCellDU.gNBIdLength a rdf:Property ;
     rdfs:label "NROperatorCellDU.gNBIdLength" ;
     rdfs:comment "Indicates the number of bits for encoding the gNB ID." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/id> a rdf:Property ;
+nropcelld3gpp:NROperatorCellDU.id a rdf:Property ;
     rdfs:label "NROperatorCellDU.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/nRCellDURef> a owl:ObjectProperty ;
+nropcelld3gpp:NROperatorCellDU.nRCellDURef a owl:ObjectProperty ;
     rdfs:label "NROperatorCellDU.nRCellDURef" ;
     rdfs:comment "Reference to corresponding NRCellDU instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/nRTAC> a rdf:Property ;
+nropcelld3gpp:NROperatorCellDU.nRTAC a rdf:Property ;
     rdfs:label "NROperatorCellDU.nRTAC" ;
     rdfs:comment "The common 5GS Tracking Area Code for the PLMNs." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU/pLMNInfoList> a owl:ObjectProperty ;
+nropcelld3gpp:NROperatorCellDU.pLMNInfoList a owl:ObjectProperty ;
     rdfs:label "NROperatorCellDU.pLMNInfoList" ;
     rdfs:comment """The PLMNInfoList is a list of PLMNInfo data type. It
 defines which PLMNs that can be served by the NR cell, and which
@@ -101,31 +104,31 @@ S-NSSAIs that can be supported by the NR cell for corresponding PLMN
 in case of network slicing feature is supported. The plMNId of the
 first entry of the list is the PLMNId used to construct the nCGI for
 the NR cell.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/NROperatorCellDU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList> .
+    rdfs:domain nropcelld3gpp:NROperatorCellDU ;
+    rdfs:range nropcelld3gpp:pLMNInfoList .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList/mcc> a rdf:Property ;
+nropcelld3gpp:pLMNInfoList.mcc a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nroperatorcelldu:pLMNInfoList.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList> ;
+    rdfs:domain nropcelld3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList/mnc> a rdf:Property ;
+nropcelld3gpp:pLMNInfoList.mnc a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nroperatorcelldu:pLMNInfoList.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList> ;
+    rdfs:domain nropcelld3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList/sd> a rdf:Property ;
+nropcelld3gpp:pLMNInfoList.sd a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nroperatorcelldu:pLMNInfoList.sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList> ;
+    rdfs:domain nropcelld3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList/sst> a rdf:Property ;
+nropcelld3gpp:pLMNInfoList.sst a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nroperatorcelldu:pLMNInfoList.sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nroperatorcelldu/pLMNInfoList> ;
+    rdfs:domain nropcelld3gpp:pLMNInfoList ;
     rdfs:range xsd:unsignedByte .
 

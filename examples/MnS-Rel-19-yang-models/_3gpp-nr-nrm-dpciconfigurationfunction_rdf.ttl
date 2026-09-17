@@ -1,11 +1,12 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix dpcicf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dpciconfigurationfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> a rdfs:Class ;
+dpcicf3gpp:DPCIConfigurationFunction a rdfs:Class ;
     rdfs:label "DPCIConfigurationFunction" ;
     rdfs:comment """This IOC contains attributes to support the Distributed SON
 function of PCI configuration.
@@ -14,15 +15,15 @@ In the case where multiple DPCIConfiguration MOIs exist at different
 levels of the containment tree, the DPCIConfiguration MOI at the lower
 level overrides the DPCIConfiguration MOIs at higher level(s) of the
 same containment tree.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> .
+    y2r:hasAttribute dpcicf3gpp:nRPciList .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> a rdfs:Class ;
+dpcicf3gpp:nRPciList a rdfs:Class ;
     rdfs:label "nRPciList" ;
     rdfs:comment """This holds a list of physical cell identities that can be
 assigned to the NR cells. This attribute shall be supported if D-SON
 PCI configuration function is supported.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dpciconfigurationfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-dpciconfigurationfunction" ;
     dcterms:description """Defines the YANG mapping of the DPCIConfigurationFunction
 Information Object Class (IOC) that is part of the NR Network Resource
@@ -33,33 +34,35 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-dpciconfigurationfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-dpciconfigurationfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/dPciConfigurationControl> a rdf:Property ;
+dpcicf3gpp:DPCIConfigurationFunction.dPciConfigurationControl a rdf:Property ;
     rdfs:label "DPCIConfigurationFunction.dPciConfigurationControl" ;
     rdfs:comment """This attribute determines whether the Distributed SON PCI
 configuration Function is enabled or disabled.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> ;
+    rdfs:domain dpcicf3gpp:DPCIConfigurationFunction ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/id> a rdf:Property ;
+dpcicf3gpp:DPCIConfigurationFunction.id a rdf:Property ;
     rdfs:label "DPCIConfigurationFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> ;
+    rdfs:domain dpcicf3gpp:DPCIConfigurationFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction/nRPciList> a owl:ObjectProperty ;
+dpcicf3gpp:DPCIConfigurationFunction.nRPciList a owl:ObjectProperty ;
     rdfs:label "DPCIConfigurationFunction.nRPciList" ;
     rdfs:comment """This holds a list of physical cell identities that can be
 assigned to the NR cells. This attribute shall be supported if D-SON
 PCI configuration function is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/DPCIConfigurationFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> .
+    rdfs:domain dpcicf3gpp:DPCIConfigurationFunction ;
+    rdfs:range dpcicf3gpp:nRPciList .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList/NRPci> a rdf:Property ;
+dpcicf3gpp:nRPciList.NRPci a rdf:Property ;
     rdfs:label "nRPciList.NRPci" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dpciconfigurationfunction/nRPciList> ;
+    rdfs:domain dpcicf3gpp:nRPciList ;
     rdfs:range xsd:unsignedInt .
 

@@ -1,46 +1,58 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix nrcellrel3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrcellrelation#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> a rdfs:Class ;
+nrcellrel3gpp:NRCellRelation a rdfs:Class ;
     rdfs:label "NRCellRelation" ;
     rdfs:comment """Represents a neighbour cell relation from a source cell
 to a target cell, where the target cell is an NRCellCU or
 ExternalNRCellCU instance.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrcellrelation> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-nrcellrelation" ;
     dcterms:description """Defines the YANG mapping of the NRCellRelation Information
 Object Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3GPP SA5" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-nrcellrelation" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
+    owl:versionInfo "revision 2026-05-19 (CR-1702)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-nrcellrelation" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/EnergySavingCoverage> a rdfs:Datatype ;
+nrcellrel3gpp:EnergySavingCoverage a rdfs:Datatype ;
     rdfs:label "_3gpp-nr-nrm-nrcellrelation:EnergySavingCoverage" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/adjacentNRCellRef> a owl:ObjectProperty ;
+nrcellrel3gpp:NRCellRelation.adjacentNRCellRef a owl:ObjectProperty ;
     rdfs:label "NRCellRelation.adjacentNRCellRef" ;
     rdfs:comment """Reference to an adjacent NR cell (NRCellCU or
 ExternalNRCellCU).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
-    nrm:isReference true .
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/id> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.id a rdf:Property ;
     rdfs:label "NRCellRelation.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isESCoveredBy> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.isENDCAllowed a rdf:Property ;
+    rdfs:label "NRCellRelation.isENDCAllowed" ;
+    rdfs:comment """This indicates if EN-DC is allowed or prohibited.
+If TRUE, the target cell is allowed to be used for EN-DC. The target
+cell is referenced by the NRCellRelation that contains this isENDCAllowed.
+If FALSE, EN-DC shall not be allowed.""" ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
+    rdfs:range xsd:boolean .
+
+nrcellrel3gpp:NRCellRelation.isESCoveredBy a rdf:Property ;
     rdfs:label "NRCellRelation.isESCoveredBy" ;
     rdfs:comment """Indicates whether the adjacent cell
 provides no, partial or full coverage for the parent cell
@@ -51,68 +63,83 @@ saving state. All adjacent cells with this property equal
 to PARTIAL are recommended to be considered as entirety of candidate
 cells to take over the coverage when the original cell is about to be
 changed to energy saving state.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isHOAllowed> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.isHOAllowed a rdf:Property ;
     rdfs:label "NRCellRelation.isHOAllowed" ;
     rdfs:comment "True if handovers are allowed over this relation." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/isRemoveAllowed> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.isMLBAllowed a rdf:Property ;
+    rdfs:label "NRCellRelation.isMLBAllowed" ;
+    rdfs:comment """This indicates if mobility load balancing is allowed or
+prohibited from source cell to target cell.
+If TRUE, load balancing is allowed from source cell to target cell.
+The source cell is identified by the name-containing NRCellCU of the
+NRCellRelation that contains the isMLBAllowed. The target cell is
+referenced by the NRCellRelation that contains this isLBAllowed. In
+case of isHOAllowed is FALSE, mobility load balancing is prohibited by
+handover from source cell to target cell.
+If FALSE, load balancing shall be prohibited from source cell to target
+cell.""" ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
+    rdfs:range xsd:boolean .
+
+nrcellrel3gpp:NRCellRelation.isRemoveAllowed a rdf:Property ;
     rdfs:label "NRCellRelation.isRemoveAllowed" ;
     rdfs:comment "True if the ANR function in the node is allowed to remove this relation." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/nRFreqRelationRef> a owl:ObjectProperty ;
+nrcellrel3gpp:NRCellRelation.nRFreqRelationRef a owl:ObjectProperty ;
     rdfs:label "NRCellRelation.nRFreqRelationRef" ;
     rdfs:comment "Reference to a corresponding NRFreqRelation instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
-    nrm:isReference true .
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/nRTCI> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.nRTCI a rdf:Property ;
     rdfs:label "NRCellRelation.nRTCI" ;
     rdfs:comment """Target NR Cell Identifier. It consists of NR Cell
 Identifier (NCI) and Physical Cell Identifier of the target NR cell
 (nRPCI).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:unsignedLong .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrpOffsetCsiRs> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.rsrpOffsetCsiRs a rdf:Property ;
     rdfs:label "NRCellRelation.rsrpOffsetCsiRs" ;
     rdfs:comment "Offset value of rsrpOffsetCSI-RS." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrpOffsetSsb> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.rsrpOffsetSsb a rdf:Property ;
     rdfs:label "NRCellRelation.rsrpOffsetSsb" ;
     rdfs:comment "Offset value of rsrpOffsetSSB." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrqOffsetCsiRs> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.rsrqOffsetCsiRs a rdf:Property ;
     rdfs:label "NRCellRelation.rsrqOffsetCsiRs" ;
     rdfs:comment "Offset value of rsrqOffsetCSI-RS." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/rsrqOffsetSsb> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.rsrqOffsetSsb a rdf:Property ;
     rdfs:label "NRCellRelation.rsrqOffsetSsb" ;
     rdfs:comment "Offset value of rsrqOffsetSSB." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/sinrOffsetCsiRs> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.sinrOffsetCsiRs a rdf:Property ;
     rdfs:label "NRCellRelation.sinrOffsetCsiRs" ;
     rdfs:comment "Offset value of sinrOffsetCSI-RS." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:byte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation/sinrOffsetSsb> a rdf:Property ;
+nrcellrel3gpp:NRCellRelation.sinrOffsetSsb a rdf:Property ;
     rdfs:label "NRCellRelation.sinrOffsetSsb" ;
     rdfs:comment "Offset value of sinrOffsetSSB." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcellrelation/NRCellRelation> ;
+    rdfs:domain nrcellrel3gpp:NRCellRelation ;
     rdfs:range xsd:byte .
 

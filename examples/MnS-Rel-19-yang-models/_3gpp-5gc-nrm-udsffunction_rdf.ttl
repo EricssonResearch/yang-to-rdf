@@ -1,11 +1,18 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
+@prefix mnfp3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-managed-nfprofile#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
+@prefix udsf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-udsffunction#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> a rdfs:Class ;
+udsf3gpp:File a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File" ;
     rdfs:comment """Represents a file. It is name-contained by 'Files'.
 
@@ -80,7 +87,7 @@ clause 11.6.1.1.1. Note that to receive 'notifyFilePreparationError'
 in that case the notification subscription needs to include these
 objects in its scope.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files> a rdfs:Class ;
+udsf3gpp:Files a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:Files" ;
     rdfs:comment """This IOC represents a collection of files. It can be
 name-contained by 'SubNetwork', 'ManagedElement', 'PerfMetricJob' or
@@ -127,15 +134,15 @@ In addition, the attribute '_linkToFiles' allows for simple
 deployments not relying on notifications for reporting the
 availability of new files, where the MnS consumer polls regularly
 for new files under 'Files'.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> .
+    y2r:nameContains udsf3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> a rdfs:Class ;
+udsf3gpp:ManagedNFService a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService" ;
     rdfs:comment "Represents a Network Function (NF)" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-function/Operation>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    y2r:hasAttribute mf3gpp:Operation,
+        types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> a rdfs:Class ;
+udsf3gpp:PerfMetricJob a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob" ;
     rdfs:comment """This IOC represents a performance metric production job. It
 can be name-contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -218,16 +225,16 @@ by the MnS producer.
 Creation and deletion of PerfMetricJob instances by MnS consumers is
 optional; when not supported, PerfMetricJob instances may be created and
 deleted by the system or be pre-installed.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files> .
+    y2r:nameContains udsf3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl> a rdfs:Class ;
+udsf3gpp:StmCtrl a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:StmCtrl" ;
     rdfs:comment """This IOC represents the STM Control and Configuration
 parameters of a particular STM controlling. It can be
 name-contained by SubNetwork, ManagedElement, or ManagedFunction.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    y2r:hasAttribute stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups> a rdfs:Class ;
+udsf3gpp:SupportedPerfMetricGroups a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -237,7 +244,7 @@ under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor> a rdfs:Class ;
+udsf3gpp:ThresholdMonitor a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ThresholdMonitor" ;
     rdfs:comment """Represents a threshold monitor for performance metrics.
 It can be contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -311,14 +318,15 @@ monitored are not produced by a PerfMetricJob.
 Creation and deletion of ThresholdMonitor instances by MnS consumers is
 optional; when not supported, ThresholdMonitor instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    y2r:hasAttribute meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> a rdfs:Class ;
+udsf3gpp:TraceJob a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob" ;
     rdfs:comment """A TraceJob instance represents the Trace Control and
 Configuration parameters of a particular Trace Job (see TS 32.421 and
 TS 32.422 for details). It can be name-contained by SubNetwork,
-ManagedElement, ManagedFunction.
+ManagedElement, ManagedFunction. In case of signalling based trace
+activation, it shall be name-contained by the UDMFunction, see TS 28.541.
 
 To activate Trace Jobs, a MnS consumer has to create TraceJob object
 instances on the MnS producer. A MnS consumer can activate a Trace Job
@@ -330,15 +338,14 @@ For the details of Trace Job activation see clauses 4.1.1.1.2 and
 4.1.2.1.2 of TS 32.422.
 
 When a MnS consumer wishes to deactivate a Trace Job, the MnS consumer
-shall delete the corresponding TraceJob instance.
-
-For details of management Trace Job activation/deactivation see clause
-4.1.1.1.2 of TS 32.422.
+shall delete the corresponding TraceJob instance. For details of
+management Trace Job deactivation see clauses 4.1.3.8 to 4.1.3.11 a
+nd 4.1.4.10 to 4.1.4.13  of TS 32.422
 
 The attribute traceReference specifies a globally unique ID and
 identifies a Trace session. One Trace Session may be activated to
 multiple Network Elements. The traceReference is populated by the
-consumer that makes the request for a Trace Session.
+consumer that makes the request for a Trace Session, TS 32.422.
 
 The jobId attribute presents the job identifier of a TraceJob instance.
 The jobId can be used to associate  multiple TraceJob instances.
@@ -354,14 +361,15 @@ which the trace records shall be transferred, while in case of
 stream-based reporting the attribute traceReportingConsumerUri
 specifies the streaming target.
 
-The mandatory attribute traceTarget determines the target object of
-the TraceJob. Dependent on the network element to which the Trace
-Session is activated different types of the target object are possible.
+The attribute traceTarget determines the target object of the
+TraceJob. Dependent on the network element to which the Trace Session
+is activated different types of the target object are possible.
+
 The attribute pLMNTarget defines the PLMN for which sessions shall be
 selected in the Trace Session in case of management based activation
-when several PLMNs are supported in the RAN.The MDT configuration may
-include area scope defined by network slice, in which case
-the attribute pLMNTarget is not applicable.
+when several PLMNs are supported in the RAN.  The MDT configuration
+may include area scope defined by network slice, in which case the
+attribute pLMNTarget is not applicable.
 
 The attribute listOfTraceMetrics allows configuraton of which metrics
 shall be recorded.
@@ -380,51 +388,51 @@ be present. The rrcReportType allows the tracing of RRC reports.
 Creation and deletion of TraceJob instances by MnS consumers is
 optional; when not supported, the TraceJob instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNTarget>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/traceTarget>,
-        <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceReference>,
-        <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files> .
+    y2r:hasAttribute udsf3gpp:pLMNTarget,
+        udsf3gpp:traceTarget,
+        trace3gpp:MdtConfig,
+        trace3gpp:TraceConfig,
+        trace3gpp:TraceReference,
+        trace3gpp:UECoreMeasConfig,
+        types3gpp:NpnId ;
+    y2r:nameContains udsf3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> a rdfs:Class ;
+udsf3gpp:UDSFFunction a rdfs:Class ;
     rdfs:label "UDSFFunction" ;
     rdfs:comment "5G Core UDSF Function" ;
-    rdfs:subClassOf nrm:ManagedFunction ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNIdList>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/sNSSAIList>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> .
+    rdfs:subClassOf y2r:ManagedFunction ;
+    y2r:hasAttribute mnfp3gpp:ManagedNFProfile,
+        udsf3gpp:SupportedPerfMetricGroups,
+        udsf3gpp:pLMNIdList,
+        udsf3gpp:sNSSAIList,
+        mf3gpp:PeeParameters,
+        mf3gpp:VnfParameters ;
+    y2r:nameContains udsf3gpp:ManagedNFService,
+        udsf3gpp:PerfMetricJob,
+        udsf3gpp:StmCtrl,
+        udsf3gpp:ThresholdMonitor,
+        udsf3gpp:TraceJob .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNIdList> a rdfs:Class ;
+udsf3gpp:pLMNIdList a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:pLMNIdList" ;
     rdfs:comment """List of at most six entries of PLMN Identifiers, but at
 least one (the primary PLMN Id).
 The PLMN Identifier is composed of a Mobile Country Code (MCC) and a
 Mobile Network Code (MNC).""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNTarget> a rdfs:Class ;
+udsf3gpp:pLMNTarget a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/sNSSAIList> a rdfs:Class ;
+udsf3gpp:sNSSAIList a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:sNSSAIList" ;
     rdfs:comment """List of S-NSSAIs the managed object is capable of supporting.
 (Single Network Slice Selection Assistance Information)
 An S-NSSAI has an SST (Slice/Service type) and an optional SD
 (Slice Differentiator) field.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/traceTarget> a rdfs:Class ;
+udsf3gpp:traceTarget a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -433,7 +441,7 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-udsffunction> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction" ;
     dcterms:description """This IOC represents the UDSF function which can be interacted
 with any other 5GC NF defined in 3GPP TS 23.501.
@@ -443,50 +451,52 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-udsffunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-07-25 (CR-1558)" .
+    owl:versionInfo "revision 2025-07-25 (CR-1558)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-udsffunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/fileCompression> a rdf:Property ;
+udsf3gpp:File.fileCompression a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.fileCompression" ;
     rdfs:comment """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/fileContent> a rdf:Property ;
+udsf3gpp:File.fileContent a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.fileContent" ;
     rdfs:comment """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:base64Binary ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/fileDataType> a rdf:Property ;
+udsf3gpp:File.fileDataType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.fileDataType" ;
     rdfs:comment "Type of the management data stored in the file." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/fileExpirationTime> a rdf:Property ;
+udsf3gpp:File.fileExpirationTime a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.fileExpirationTime" ;
     rdfs:comment "Date and time after which the file may be deleted." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/fileFormat> a rdf:Property ;
+udsf3gpp:File.fileFormat a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.fileFormat" ;
     rdfs:comment """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/fileLocation> a rdf:Property ;
+udsf3gpp:File.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.fileLocation" ;
     rdfs:comment """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -500,166 +510,166 @@ Examples:
 'sftp://companyA.com/datastore/fileName.xml',
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/fileReadyTime> a rdf:Property ;
+udsf3gpp:File.fileReadyTime a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.fileReadyTime" ;
     rdfs:comment """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/fileSize> a rdf:Property ;
+udsf3gpp:File.fileSize a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.fileSize" ;
     rdfs:comment "Size of the file" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:unsignedLong ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/id> a rdf:Property ;
+udsf3gpp:File.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/jobId> a rdf:Property ;
+udsf3gpp:File.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
+    rdfs:domain udsf3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File/jobRef> a owl:ObjectProperty ;
+udsf3gpp:File.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:File.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/File> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:File ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files/id> a rdf:Property ;
+udsf3gpp:Files.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:Files.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files> ;
+    rdfs:domain udsf3gpp:Files ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files/jobId> a rdf:Property ;
+udsf3gpp:Files.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:Files.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files> ;
+    rdfs:domain udsf3gpp:Files ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files/jobRef> a owl:ObjectProperty ;
+udsf3gpp:Files.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:Files.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:Files ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files/numberOfFiles> a rdf:Property ;
+udsf3gpp:Files.numberOfFiles a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:Files.numberOfFiles" ;
     rdfs:comment "Number of files in a file collection." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/Files> ;
+    rdfs:domain udsf3gpp:Files ;
     rdfs:range xsd:unsignedLong .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/administrativeState> a rdf:Property ;
+udsf3gpp:ManagedNFService.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.administrativeState" ;
     rdfs:comment "Permission to use or prohibition against using the instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
+    rdfs:domain udsf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/id> a rdf:Property ;
+udsf3gpp:ManagedNFService.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
+    rdfs:domain udsf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/nFServiceType> a rdf:Property ;
+udsf3gpp:ManagedNFService.nFServiceType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.nFServiceType" ;
     rdfs:comment """The type of the managed NF service instance
 The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
+    rdfs:domain udsf3gpp:ManagedNFService ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/operationalState> a rdf:Property ;
+udsf3gpp:ManagedNFService.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.operationalState" ;
     rdfs:comment "Describes whether the resource is installed and working" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
+    rdfs:domain udsf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/operations> a owl:ObjectProperty ;
+udsf3gpp:ManagedNFService.operations a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.operations" ;
     rdfs:comment """Set of operations supported by the managed NF
 service instance""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> .
+    rdfs:domain udsf3gpp:ManagedNFService ;
+    rdfs:range mf3gpp:Operation .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/registrationState> a rdf:Property ;
+udsf3gpp:ManagedNFService.registrationState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.registrationState" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
+    rdfs:domain udsf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/sAP> a owl:ObjectProperty ;
+udsf3gpp:ManagedNFService.sAP a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.sAP" ;
     rdfs:comment "The service access point of the managed NF service instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    rdfs:domain udsf3gpp:ManagedNFService ;
+    rdfs:range types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/usageState> a rdf:Property ;
+udsf3gpp:ManagedNFService.usageState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.usageState" ;
     rdfs:comment """Describes whether the resource is actively in use at a
 specific instant, and if so, whether or not it has spare
 capacity for additional users.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
+    rdfs:domain udsf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService/userLabel> a rdf:Property ;
+udsf3gpp:ManagedNFService.userLabel a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ManagedNFService.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ManagedNFService> ;
+    rdfs:domain udsf3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/_linkToFiles> a rdf:Property ;
+udsf3gpp:PerfMetricJob._linkToFiles a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob._linkToFiles" ;
     rdfs:comment "Link to a 'Files' object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/administrativeState> a rdf:Property ;
+udsf3gpp:PerfMetricJob.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.administrativeState" ;
     rdfs:comment "Enable or disables production of the metrics" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/conditionMonitorRef> a owl:ObjectProperty ;
+udsf3gpp:PerfMetricJob.conditionMonitorRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.conditionMonitorRef" ;
     rdfs:comment "Pointer to a ConditionMonitor object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/fileLocation> a rdf:Property ;
+udsf3gpp:PerfMetricJob.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.fileLocation" ;
     rdfs:comment """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/fileReportingPeriod> a rdf:Property ;
+udsf3gpp:PerfMetricJob.fileReportingPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.fileReportingPeriod" ;
     rdfs:comment """For the file-based reporting method this is the time
 window during which collected measurements are stored into the same
@@ -667,51 +677,51 @@ file before the file is closed and a new file is opened.
 The time-period must be a multiple of the granularityPeriod.
 
 Applicable when the file-based reporting method is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/granularityPeriod> a rdf:Property ;
+udsf3gpp:PerfMetricJob.granularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.granularityPeriod" ;
     rdfs:comment """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/id> a rdf:Property ;
+udsf3gpp:PerfMetricJob.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/jobId> a rdf:Property ;
+udsf3gpp:PerfMetricJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.jobId" ;
     rdfs:comment "Id for a PerfMetricJob job." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/notificationRecipientAddress> a rdf:Property ;
+udsf3gpp:PerfMetricJob.notificationRecipientAddress a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.notificationRecipientAddress" ;
     rdfs:comment """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/objectInstances> a owl:ObjectProperty ;
+udsf3gpp:PerfMetricJob.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/operationalState> a rdf:Property ;
+udsf3gpp:PerfMetricJob.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.operationalState" ;
     rdfs:comment "Indicates whether the PerfMetricJob is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/performanceMetrics> a rdf:Property ;
+udsf3gpp:PerfMetricJob.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -724,85 +734,85 @@ the bullet e) of the measurement definition.
 
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/rootObjectInstances> a owl:ObjectProperty ;
+udsf3gpp:PerfMetricJob.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/schedulerRef> a owl:ObjectProperty ;
+udsf3gpp:PerfMetricJob.schedulerRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.schedulerRef" ;
     rdfs:comment "Pointer to a Scheduler object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob/streamTarget> a rdf:Property ;
+udsf3gpp:PerfMetricJob.streamTarget a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:PerfMetricJob.streamTarget" ;
     rdfs:comment """Applicable when stream-based reporting method is
 supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/PerfMetricJob> ;
+    rdfs:domain udsf3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl/administrativeState> a rdf:Property ;
+udsf3gpp:StmCtrl.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:StmCtrl.administrativeState" ;
     rdfs:comment """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl> ;
+    rdfs:domain udsf3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl/id> a rdf:Property ;
+udsf3gpp:StmCtrl.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:StmCtrl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl> ;
+    rdfs:domain udsf3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl/operationalState> a rdf:Property ;
+udsf3gpp:StmCtrl.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:StmCtrl.operationalState" ;
     rdfs:comment "It is used by STM consumer to report its working state" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl> ;
+    rdfs:domain udsf3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl/reportingNFList> a owl:ObjectProperty ;
+udsf3gpp:StmCtrl.reportingNFList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:StmCtrl.reportingNFList" ;
     rdfs:comment """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl> ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:StmCtrl ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl/stmTargetUri> a rdf:Property ;
+udsf3gpp:StmCtrl.stmTargetUri a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:StmCtrl.stmTargetUri" ;
     rdfs:comment """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl> ;
+    rdfs:domain udsf3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl/targetInterfaceInfoList> a owl:ObjectProperty ;
+udsf3gpp:StmCtrl.targetInterfaceInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:StmCtrl.targetInterfaceInfoList" ;
     rdfs:comment """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/StmCtrl> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    rdfs:domain udsf3gpp:StmCtrl ;
+    rdfs:range stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
+udsf3gpp:SupportedPerfMetricGroups.granularityPeriods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups> ;
+    rdfs:domain udsf3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
+udsf3gpp:SupportedPerfMetricGroups.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -817,91 +827,91 @@ definitions template as the component designated with e).
 
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups> ;
+    rdfs:domain udsf3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
+udsf3gpp:SupportedPerfMetricGroups.reportingMethods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:SupportedPerfMetricGroups.reportingMethods" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups> ;
+    rdfs:domain udsf3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
+udsf3gpp:SupportedPerfMetricGroups.reportingPeriods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups> ;
+    rdfs:domain udsf3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor/administrativeState> a rdf:Property ;
+udsf3gpp:ThresholdMonitor.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ThresholdMonitor.administrativeState" ;
     rdfs:comment "Enables or disables the ThresholdMonitor." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor> ;
+    rdfs:domain udsf3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor/id> a rdf:Property ;
+udsf3gpp:ThresholdMonitor.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ThresholdMonitor.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor> ;
+    rdfs:domain udsf3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor/monitorGranularityPeriod> a rdf:Property ;
+udsf3gpp:ThresholdMonitor.monitorGranularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ThresholdMonitor.monitorGranularityPeriod" ;
     rdfs:comment """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor> ;
+    rdfs:domain udsf3gpp:ThresholdMonitor ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor/objectInstances> a owl:ObjectProperty ;
+udsf3gpp:ThresholdMonitor.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ThresholdMonitor.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor/operationalState> a rdf:Property ;
+udsf3gpp:ThresholdMonitor.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ThresholdMonitor.operationalState" ;
     rdfs:comment "Indicates whether the ThresholdMonitor is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor> ;
+    rdfs:domain udsf3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor/rootObjectInstances> a owl:ObjectProperty ;
+udsf3gpp:ThresholdMonitor.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ThresholdMonitor.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain udsf3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor/thresholdInfoList> a owl:ObjectProperty ;
+udsf3gpp:ThresholdMonitor.thresholdInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:ThresholdMonitor.thresholdInfoList" ;
     rdfs:comment "List of threshold info." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/ThresholdMonitor> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    rdfs:domain udsf3gpp:ThresholdMonitor ;
+    rdfs:range meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/id> a rdf:Property ;
+udsf3gpp:TraceJob.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
+    rdfs:domain udsf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/jobId> a rdf:Property ;
+udsf3gpp:TraceJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.jobId" ;
     rdfs:comment "Identifier of a TraceJob" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
+    rdfs:domain udsf3gpp:TraceJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/jobType> a rdf:Property ;
+udsf3gpp:TraceJob.jobType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.jobType" ;
     rdfs:comment """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
+    rdfs:domain udsf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/listOfTraceMetrics> a rdf:Property ;
+udsf3gpp:TraceJob.listOfTraceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.listOfTraceMetrics" ;
     rdfs:comment """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -911,10 +921,10 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
+    rdfs:domain udsf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/mdtConfig> a owl:ObjectProperty ;
+udsf3gpp:TraceJob.mdtConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.mdtConfig" ;
     rdfs:comment """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
@@ -937,71 +947,72 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> .
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
+    rdfs:domain udsf3gpp:TraceJob ;
+    rdfs:range trace3gpp:MdtConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/nPNTarget> a owl:ObjectProperty ;
+udsf3gpp:TraceJob.nPNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.nPNTarget" ;
     rdfs:comment """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
+    rdfs:domain udsf3gpp:TraceJob ;
+    rdfs:range types3gpp:NpnId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/pLMNTarget> a owl:ObjectProperty ;
+udsf3gpp:TraceJob.pLMNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNTarget> .
+    rdfs:domain udsf3gpp:TraceJob ;
+    rdfs:range udsf3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/rrcReportType> a rdf:Property ;
+udsf3gpp:TraceJob.rrcReportType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.rrcReportType" ;
     rdfs:comment "Specifies the RRC reports requested. " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
+    rdfs:domain udsf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/traceCollectionEntityIPAddress> a rdf:Property ;
+udsf3gpp:TraceJob.traceCollectionEntityIPAddress a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.traceCollectionEntityIPAddress" ;
     rdfs:comment """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
+    rdfs:domain udsf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/traceConfig> a owl:ObjectProperty ;
+udsf3gpp:TraceJob.traceConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.traceConfig" ;
     rdfs:comment "Trace config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> .
+    rdfs:domain udsf3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/traceReference> a owl:ObjectProperty ;
+udsf3gpp:TraceJob.traceReference a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.traceReference" ;
     rdfs:comment """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
 Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+    rdfs:domain udsf3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceReference .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/traceReportingConsumerUri> a rdf:Property ;
+udsf3gpp:TraceJob.traceReportingConsumerUri a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.traceReportingConsumerUri" ;
     rdfs:comment """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
+    rdfs:domain udsf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/traceReportingFormat> a rdf:Property ;
+udsf3gpp:TraceJob.traceReportingFormat a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.traceReportingFormat" ;
     rdfs:comment """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
+    rdfs:domain udsf3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/traceTarget> a owl:ObjectProperty ;
+udsf3gpp:TraceJob.traceTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1009,16 +1020,16 @@ Trace, MDT, and 5GC UE level measurements collection.
 In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/traceTarget> .
+    rdfs:domain udsf3gpp:TraceJob ;
+    rdfs:range udsf3gpp:traceTarget .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob/ueCoreMeasConfig> a owl:ObjectProperty ;
+udsf3gpp:TraceJob.ueCoreMeasConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:TraceJob.ueCoreMeasConfig" ;
     rdfs:comment "5GC UE level measurements config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> .
+    rdfs:domain udsf3gpp:TraceJob ;
+    rdfs:range trace3gpp:UECoreMeasConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+udsf3gpp:UDSFFunction.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "UDSFFunction.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -1027,62 +1038,62 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/SupportedPerfMetricGroups> .
+    rdfs:domain udsf3gpp:UDSFFunction ;
+    rdfs:range udsf3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/id> a rdf:Property ;
+udsf3gpp:UDSFFunction.id a rdf:Property ;
     rdfs:label "UDSFFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
+    rdfs:domain udsf3gpp:UDSFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/managedNFProfile> a owl:ObjectProperty ;
+udsf3gpp:UDSFFunction.managedNFProfile a owl:ObjectProperty ;
     rdfs:label "UDSFFunction.managedNFProfile" ;
     rdfs:comment "Managed Network Function profile" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> .
+    rdfs:domain udsf3gpp:UDSFFunction ;
+    rdfs:range mnfp3gpp:ManagedNFProfile .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/pLMNIdList> a owl:ObjectProperty ;
+udsf3gpp:UDSFFunction.pLMNIdList a owl:ObjectProperty ;
     rdfs:label "UDSFFunction.pLMNIdList" ;
     rdfs:comment """List of at most six entries of PLMN Identifiers, but at
 least one (the primary PLMN Id).
 The PLMN Identifier is composed of a Mobile Country Code (MCC) and a
 Mobile Network Code (MNC).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNIdList> .
+    rdfs:domain udsf3gpp:UDSFFunction ;
+    rdfs:range udsf3gpp:pLMNIdList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/peeParameterslist> a owl:ObjectProperty ;
+udsf3gpp:UDSFFunction.peeParameterslist a owl:ObjectProperty ;
     rdfs:label "UDSFFunction.peeParameterslist" ;
     rdfs:comment """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> .
+    rdfs:domain udsf3gpp:UDSFFunction ;
+    rdfs:range mf3gpp:PeeParameters .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/priorityLabel> a rdf:Property ;
+udsf3gpp:UDSFFunction.priorityLabel a rdf:Property ;
     rdfs:label "UDSFFunction.priorityLabel" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
+    rdfs:domain udsf3gpp:UDSFFunction ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/sBIFQDN> a rdf:Property ;
+udsf3gpp:UDSFFunction.sBIFQDN a rdf:Property ;
     rdfs:label "UDSFFunction.sBIFQDN" ;
     rdfs:comment """The FQDN of the registered NF instance in the
 service-based interface.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
+    rdfs:domain udsf3gpp:UDSFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/sNSSAIList> a owl:ObjectProperty ;
+udsf3gpp:UDSFFunction.sNSSAIList a owl:ObjectProperty ;
     rdfs:label "UDSFFunction.sNSSAIList" ;
     rdfs:comment """List of S-NSSAIs the managed object is capable of supporting.
 (Single Network Slice Selection Assistance Information)
 An S-NSSAI has an SST (Slice/Service type) and an optional SD
 (Slice Differentiator) field.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/sNSSAIList> .
+    rdfs:domain udsf3gpp:UDSFFunction ;
+    rdfs:range udsf3gpp:sNSSAIList .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/supportedTraceMetrics> a rdf:Property ;
+udsf3gpp:UDSFFunction.supportedTraceMetrics a rdf:Property ;
     rdfs:label "UDSFFunction.supportedTraceMetrics" ;
     rdfs:comment """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -1093,60 +1104,60 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
+    rdfs:domain udsf3gpp:UDSFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/userLabel> a rdf:Property ;
+udsf3gpp:UDSFFunction.userLabel a rdf:Property ;
     rdfs:label "UDSFFunction.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
+    rdfs:domain udsf3gpp:UDSFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction/vnfParametersList> a owl:ObjectProperty ;
+udsf3gpp:UDSFFunction.vnfParametersList a owl:ObjectProperty ;
     rdfs:label "UDSFFunction.vnfParametersList" ;
     rdfs:comment """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/UDSFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> .
+    rdfs:domain udsf3gpp:UDSFFunction ;
+    rdfs:range mf3gpp:VnfParameters .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNIdList/mcc> a rdf:Property ;
+udsf3gpp:pLMNIdList.mcc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:pLMNIdList.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNIdList> ;
+    rdfs:domain udsf3gpp:pLMNIdList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNIdList/mnc> a rdf:Property ;
+udsf3gpp:pLMNIdList.mnc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:pLMNIdList.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNIdList> ;
+    rdfs:domain udsf3gpp:pLMNIdList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNTarget/mcc> a rdf:Property ;
+udsf3gpp:pLMNTarget.mcc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:pLMNTarget.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNTarget> ;
+    rdfs:domain udsf3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNTarget/mnc> a rdf:Property ;
+udsf3gpp:pLMNTarget.mnc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:pLMNTarget.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/pLMNTarget> ;
+    rdfs:domain udsf3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/sNSSAIList/sd> a rdf:Property ;
+udsf3gpp:sNSSAIList.sd a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:sNSSAIList.sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/sNSSAIList> ;
+    rdfs:domain udsf3gpp:sNSSAIList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/sNSSAIList/sst> a rdf:Property ;
+udsf3gpp:sNSSAIList.sst a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:sNSSAIList.sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/sNSSAIList> ;
+    rdfs:domain udsf3gpp:sNSSAIList ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/traceTarget/traceTargetType> a rdf:Property ;
+udsf3gpp:traceTarget.traceTargetType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:traceTarget.traceTargetType" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1207,13 +1218,13 @@ the targetIdType shall be able to carry the corresponding
 Measured UE Identifier as defined by the bullet g) of the 5GC UE
 level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/traceTarget> ;
+    rdfs:domain udsf3gpp:traceTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/traceTarget/traceTargetValueList> a rdf:Property ;
+udsf3gpp:traceTarget.traceTargetValueList a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-udsffunction:traceTarget.traceTargetValueList" ;
     rdfs:comment """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-udsffunction/traceTarget> ;
+    rdfs:domain udsf3gpp:traceTarget ;
     rdfs:range xsd:string .
 

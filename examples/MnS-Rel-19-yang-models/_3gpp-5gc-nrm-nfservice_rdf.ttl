@@ -1,245 +1,558 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix nfs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-nfservice#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix smf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-smffunction#> .
+@prefix types5g3gpp: <https://semantics.ericsson.com/yang/_3gpp-5g-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> a rdfs:Class ;
+nfs3gpp:CallbackUriPrefixItem a rdfs:Class ;
+    rdfs:label "CallbackUriPrefixItem" ;
+    rdfs:comment """It indicates the optional path segment(s) used to construct
+the prefix of the Callback URIs during the reselection of an NF
+service consumer.""" .
+
+nfs3gpp:ConditionItem a rdfs:Class ;
+    rdfs:label "ConditionItem" ;
+    rdfs:comment """It represent a single condition item that shall be
+evaluated to determine whether a discovered NF (Service) Instance
+shall be selected.""" ;
+    y2r:hasAttribute types5g3gpp:IdentityRange,
+        types5g3gpp:SupiRange,
+        types5g3gpp:TaiRange .
+
+nfs3gpp:NFService a rdfs:Class ;
     rdfs:label "NFService" ;
     rdfs:comment """List of NF Service Instances. It shall include
-the services produced by the NF that can be
-discovered by other NFs.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedNSSAI>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedPLMNs>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedSnpns>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/defaultNotificationSubscriptions>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/ipEndPoints>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/versions> .
+the services produced by the NF that can be discovered by
+other NFs.""" ;
+    y2r:hasAttribute types5g3gpp:RuleSet,
+        nfs3gpp:CallbackUriPrefixItem,
+        nfs3gpp:PlmnOauth2,
+        nfs3gpp:SelectionConditions,
+        smf3gpp:allowedNSSAIs,
+        smf3gpp:allowedPLMNs,
+        smf3gpp:allowedSnpns,
+        smf3gpp:defaultNotificationSubscriptions,
+        smf3gpp:ipEndPoints,
+        smf3gpp:perPlmnSnssaiList,
+        smf3gpp:sNssais,
+        smf3gpp:supportedVendorSpecificFeatures,
+        smf3gpp:versions .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> a rdfs:Class ;
+nfs3gpp:PlmnOauth2 a rdfs:Class ;
+    rdfs:label "PlmnOauth2" ;
+    rdfs:comment """This attribute includes the Oauth2-based authorization
+requirement supported by the NF Service Instance per PLMN of the
+NF Service Consumer. This attribute may be included when the
+Oauth2.0 authorization requirement supported by the NF Service
+Instance for different PLMN is different. When the requester
+PLMN Id is available in perPlmnOauth2ReqList IE, this IE shall
+override the oauth2Required IE. If the requester PLMN ID is not
+present in perPlmnOauth2ReqList IE, then the value of
+oauth2Required IE shall be applicable if available.""" ;
+    y2r:hasAttribute smf3gpp:oauth2NotRequiredPlmnIdList,
+        smf3gpp:oauth2RequiredPlmnIdList .
+
+nfs3gpp:SNPNId a rdfs:Class ;
     rdfs:label "SNPNId" ;
     rdfs:comment """SNPNs allowed to access the NF instance.
 The absence of this attribute in the NF profile indicates that no SNPN,
 other than the SNPN(s) registered in the snpnList attribute of the
 NF Profile, is allowed to access the service instance""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice> a owl:Ontology ;
+nfs3gpp:SelectionConditions a rdfs:Class ;
+    rdfs:label "SelectionConditions" ;
+    rdfs:comment """This attribute includes the conditions under which an NF
+Instance with an NFStatus value set to CANARY_RELEASE, or with a
+canaryRelease attribute set to true, shall be selected by an NF
+Service Consumer.""" ;
+    y2r:hasAttribute nfs3gpp:ConditionItem,
+        smf3gpp:conditionGroup .
+
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-nfservice> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-nfservice" ;
-    dcterms:description """NF service class.
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+    dcterms:description """NF service dataType.
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3gpp SA5" ;
     dcterms:source "3GPP TS 29.510" ;
     dcterms:title "_3gpp-5gc-nrm-nfservice" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-01-25 (CR-1442)" .
+    owl:versionInfo "revision 2026-05-25 (CR-1702)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-nfservice" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNSSAI> a owl:ObjectProperty ;
-    rdfs:label "NFService.allowedNSSAI" ;
+nfs3gpp:CallbackUriPrefixItem.callbackUriPrefix a rdf:Property ;
+    rdfs:label "CallbackUriPrefixItem.callbackUriPrefix" ;
+    rdfs:comment """It indicates the optional path segment(s) used to
+construct the prefix of the Callback URIs during the reselection
+of an NF service consumer.""" ;
+    rdfs:domain nfs3gpp:CallbackUriPrefixItem ;
+    rdfs:range xsd:string .
+
+nfs3gpp:CallbackUriPrefixItem.notificationTypes a rdf:Property ;
+    rdfs:label "CallbackUriPrefixItem.notificationTypes" ;
+    rdfs:comment """List of notification type values using the callback
+URI prefix of the callbackUriPrefix.""" ;
+    rdfs:domain nfs3gpp:CallbackUriPrefixItem ;
+    rdfs:range xsd:string .
+
+nfs3gpp:ConditionItem.consumerNfTypes a rdf:Property ;
+    rdfs:label "ConditionItem.consumerNfTypes" ;
+    rdfs:comment """It represents the NF types of the consumers for which
+the conditions included in this ConditionItem apply. If this
+attribute is absent, the conditions are applicable to all NF
+consumer types.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range xsd:string .
+
+nfs3gpp:ConditionItem.dnnList a rdf:Property ;
+    rdfs:label "ConditionItem.dnnList" ;
+    rdfs:comment """It represents a set of DNNs where the NF (Service)
+instance under CANARY_RELEASE status shall be selected.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range xsd:string .
+
+nfs3gpp:ConditionItem.gpsiRangeList a owl:ObjectProperty ;
+    rdfs:label "ConditionItem.gpsiRangeList" ;
+    rdfs:comment """It represents a set of GPSIs for which the NF (Service)
+instance under CANARY_RELEASE status shall be selected.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range types5g3gpp:IdentityRange .
+
+nfs3gpp:ConditionItem.id a rdf:Property ;
+    rdfs:label "ConditionItem.id" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range xsd:string .
+
+nfs3gpp:ConditionItem.impiRangeList a owl:ObjectProperty ;
+    rdfs:label "ConditionItem.impiRangeList" ;
+    rdfs:comment """It represents a set of IMS Private Identities for which
+the NF (Service) instance under CANARY_RELEASE status shall be
+selected.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range types5g3gpp:IdentityRange .
+
+nfs3gpp:ConditionItem.impuRangeList a owl:ObjectProperty ;
+    rdfs:label "ConditionItem.impuRangeList" ;
+    rdfs:comment """It represents a set of IMS Public Identities for which
+the NF (Service) instance under CANARY_RELEASE status shall be
+selected.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range types5g3gpp:IdentityRange .
+
+nfs3gpp:ConditionItem.peiList a rdf:Property ;
+    rdfs:label "ConditionItem.peiList" ;
+    rdfs:comment """It represents a set of PEIs of the UEs for which the
+NF (Service) instance under CANARY_RELEASE status shall be
+selected.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range xsd:string .
+
+nfs3gpp:ConditionItem.serviceFeature a rdf:Property ;
+    rdfs:label "ConditionItem.serviceFeature" ;
+    rdfs:comment """It represents a feature number of that NF Service
+Instance, under CANARY_RELEASE status.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range xsd:unsignedInt .
+
+nfs3gpp:ConditionItem.supiRangeList a owl:ObjectProperty ;
+    rdfs:label "ConditionItem.supiRangeList" ;
+    rdfs:comment """It represents a set of SUPIs for which the NF (Service)
+instance under CANARY_RELEASE status shall be selected.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range types5g3gpp:SupiRange .
+
+nfs3gpp:ConditionItem.taiRangeList a owl:ObjectProperty ;
+    rdfs:label "ConditionItem.taiRangeList" ;
+    rdfs:comment """It represents a set of TAIs where the NF (Service)
+instance under CANARY_RELEASE status shall be selected for a
+certain UE.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range types5g3gpp:TaiRange .
+
+nfs3gpp:ConditionItem.vsServiceFeature a rdf:Property ;
+    rdfs:label "ConditionItem.vsServiceFeature" ;
+    rdfs:comment """It represents a Vendor-Specific feature number of that
+NF Service Instance, under CANARY_RELEASE status.""" ;
+    rdfs:domain nfs3gpp:ConditionItem ;
+    rdfs:range xsd:unsignedInt .
+
+nfs3gpp:NFService.allowedNSSAIs a owl:ObjectProperty ;
+    rdfs:label "NFService.allowedNSSAIs" ;
     rdfs:comment """S-NSSAI of the allowed slices to access the service
 instance. The absence of this attribute indicates that any slice
 is allowed to access the service instance.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedNSSAI> .
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:allowedNSSAIs .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNfDomains> a rdf:Property ;
+nfs3gpp:NFService.allowedNfDomains a rdf:Property ;
     rdfs:label "NFService.allowedNfDomains" ;
     rdfs:comment """Pattern representing the NF domain names allowed to
 access the service instance.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedNfTypes> a rdf:Property ;
+nfs3gpp:NFService.allowedNfTypes a rdf:Property ;
     rdfs:label "NFService.allowedNfTypes" ;
     rdfs:comment "SNPNs allowed to access the NF instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfInstance> a rdf:Property ;
+nfs3gpp:NFService.allowedOperationsPerNfInstance a rdf:Property ;
     rdfs:label "NFService.allowedOperationsPerNfInstance" ;
     rdfs:comment """It indicates the allowed operations on resources for
 a given NF Instance; the key of the map is the NF Instance Id, and
 the value is an array of scopes""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfInstanceOverrides> a rdf:Property ;
+nfs3gpp:NFService.allowedOperationsPerNfInstanceOverrides a rdf:Property ;
     rdfs:label "NFService.allowedOperationsPerNfInstanceOverrides" ;
     rdfs:comment """When it is present and set to true, indicates that
 the scopes defined in attribute allowedOperationsPerNfInstance
 for a given NF Instance ID take precedence over the scopes defined
 in attribute allowedOperationsPerNfType for the corresponding
 NF type of the NF Instance associated to such NF Instance ID..""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedOperationsPerNfType> a rdf:Property ;
+nfs3gpp:NFService.allowedOperationsPerNfType a rdf:Property ;
     rdfs:label "NFService.allowedOperationsPerNfType" ;
     rdfs:comment """It indicates the allowed operations on resources for
 each type of NF; the key of the map is the NF Type, and the value
 is an array of scopes""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedPLMNs> a owl:ObjectProperty ;
+nfs3gpp:NFService.allowedPLMNs a owl:ObjectProperty ;
     rdfs:label "NFService.allowedPLMNs" ;
     rdfs:comment """PLMNs allowed to access the service instance.
 The absence of this attribute indicates that any PLMN is allowed to
 access the service instance.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedPLMNs> .
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:allowedPLMNs .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/allowedSnpns> a owl:ObjectProperty ;
+nfs3gpp:NFService.allowedScopesRuleSet a owl:ObjectProperty ;
+    rdfs:label "NFService.allowedScopesRuleSet" ;
+    rdfs:comment """It represents map of rules specifying scopes allowed or
+denied for NF-Consumers. This attribute may be present when the
+NF-Producer and the NRF support Allowed-ruleset feature as specified
+in clause 6.1.9 in TS 29.510.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range types5g3gpp:RuleSet .
+
+nfs3gpp:NFService.allowedSnpns a owl:ObjectProperty ;
     rdfs:label "NFService.allowedSnpns" ;
     rdfs:comment """PLMNs allowed to access the service instance.
 The absence of this attribute indicates that any PLMN is allowed to
 access the service instance.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/allowedSnpns> .
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:allowedSnpns .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/apiPrefix> a rdf:Property ;
+nfs3gpp:NFService.apiPrefix a rdf:Property ;
     rdfs:label "NFService.apiPrefix" ;
     rdfs:comment """Optional path segment(s) used to construct the {apiRoot}
 variable of the different API URIs.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/capacity> a rdf:Property ;
+nfs3gpp:NFService.callbackUriPrefixList a owl:ObjectProperty ;
+    rdfs:label "NFService.callbackUriPrefixList" ;
+    rdfs:comment """It indicates the optional path segment(s) used to construct
+the prefix of the Callback URIs during the reselection of an NF
+service consumer.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range nfs3gpp:CallbackUriPrefixItem .
+
+nfs3gpp:NFService.canaryPrecedenceOverPreferred a rdf:Property ;
+    rdfs:label "NFService.canaryPrecedenceOverPreferred" ;
+    rdfs:comment """This attribute indicates whether the NRF shall prioritize
+the NF Service Producer in Canary Release condition over the
+preferences (preferred-xxx, ext-preferred-xxx) present in NF
+discovery requests.
+True: NRF shall prioritize NF Service Producers in Canary Release
+condition at NF discovery requests.
+False: NRF shall prioritize the NF Service Producers according to
+preferred-xxx and/or ext-preferred-xxx.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range xsd:boolean .
+
+nfs3gpp:NFService.canaryRelease a rdf:Property ;
+    rdfs:label "NFService.canaryRelease" ;
+    rdfs:comment """This attribute indicates whether an NF instance whose
+nfStatus is set to REGISTERED is in Canary Release condition, i.e.
+it should only be selected by NF Service Consumers under the
+conditions indicated by the selectionConditions attribute.
+True: the NF is under Canary Release condition, even if the
+nfStatus is set to REGISTERED.
+False: the NF instance indicates its Canary Release condition
+via the nfStatus attribute.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range xsd:boolean .
+
+nfs3gpp:NFService.capacity a rdf:Property ;
     rdfs:label "NFService.capacity" ;
     rdfs:comment """Static capacity information in the range of 0-65535,
 expressed as a weight relative to other services of the same type.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/defaultNotificationSubscriptions> a owl:ObjectProperty ;
+nfs3gpp:NFService.defaultNotificationSubscriptions a owl:ObjectProperty ;
     rdfs:label "NFService.defaultNotificationSubscriptions" ;
     rdfs:comment "Notification endpoints for different notification types." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/defaultNotificationSubscriptions> .
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:defaultNotificationSubscriptions .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/fqdn> a rdf:Property ;
+nfs3gpp:NFService.exclusiveCanaryReleaseSelection a rdf:Property ;
+    rdfs:label "NFService.exclusiveCanaryReleaseSelection" ;
+    rdfs:comment """This attribute indicates whether an NF Service Consumer
+should only select an NF Service Producer in Canary Release condition.
+True: the consumer shall only select producers in Canary Release
+condition.
+False: the consumer may select producers not in Canary Release
+condition.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range xsd:boolean .
+
+nfs3gpp:NFService.fqdn a rdf:Property ;
     rdfs:label "NFService.fqdn" ;
     rdfs:comment "FQDN of the NF Service Instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/interPlmnFqdn> a rdf:Property ;
+nfs3gpp:NFService.interPlmnFqdn a rdf:Property ;
     rdfs:label "NFService.interPlmnFqdn" ;
     rdfs:comment """If the NF service needs to be discoverable by other NFs in a
 different PLMN, then an FQDN that is used for inter PLMN routing.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/ipEndPoints> a owl:ObjectProperty ;
+nfs3gpp:NFService.ipEndPoints a owl:ObjectProperty ;
     rdfs:label "NFService.ipEndPoints" ;
     rdfs:comment """IP address(es) and port information of the Network Function
 (including IPv4 and/or IPv6 address)where the service is listening
 for incoming service requests.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/ipEndPoints> .
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:ipEndPoints .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/nfServiceStatus> a rdf:Property ;
-    rdfs:label "NFService.nfServiceStatus" ;
-    rdfs:comment "Status of the NF Service Instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+nfs3gpp:NFService.load a rdf:Property ;
+    rdfs:label "NFService.load" ;
+    rdfs:comment "Latest known load information of the NF, percentage." ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range xsd:unsignedByte .
+
+nfs3gpp:NFService.loadTimeStamp a rdf:Property ;
+    rdfs:label "NFService.loadTimeStamp" ;
+    rdfs:comment "Timestamp of the reported load information." ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/oauth2Required> a rdf:Property ;
+nfs3gpp:NFService.nfServiceSetIdList a rdf:Property ;
+    rdfs:label "NFService.nfServiceSetIdList" ;
+    rdfs:comment """This attribute represents a list of NF Service Set ID.
+At most one NF Service Set ID shall be indicated per PLMN-ID or
+SNPN of the NF.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range xsd:string .
+
+nfs3gpp:NFService.nfServiceStatus a rdf:Property ;
+    rdfs:label "NFService.nfServiceStatus" ;
+    rdfs:comment "Status of the NF Service Instance." ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range xsd:string .
+
+nfs3gpp:NFService.oauth2Required a rdf:Property ;
     rdfs:label "NFService.oauth2Required" ;
     rdfs:comment """It indicates whether the NF Service Instance requires
-Oauth2-based authorization""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+Oauth2-based authorization.""" ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/priority> a rdf:Property ;
+nfs3gpp:NFService.perPlmnOauth2ReqList a owl:ObjectProperty ;
+    rdfs:label "NFService.perPlmnOauth2ReqList" ;
+    rdfs:comment """This attribute includes the Oauth2-based authorization
+requirement supported by the NF Service Instance per PLMN of the
+NF Service Consumer. This attribute may be included when the
+Oauth2.0 authorization requirement supported by the NF Service
+Instance for different PLMN is different. When the requester
+PLMN Id is available in perPlmnOauth2ReqList IE, this IE shall
+override the oauth2Required IE. If the requester PLMN ID is not
+present in perPlmnOauth2ReqList IE, then the value of
+oauth2Required IE shall be applicable if available.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range nfs3gpp:PlmnOauth2 .
+
+nfs3gpp:NFService.perPlmnSnssaiList a owl:ObjectProperty ;
+    rdfs:label "NFService.perPlmnSnssaiList" ;
+    rdfs:comment """It includes the S-NSSAIs supported by the Network Function
+for each PLMN supported by the Network Function. When present, it
+shall override sNssais IE.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:perPlmnSnssaiList .
+
+nfs3gpp:NFService.priority a rdf:Property ;
     rdfs:label "NFService.priority" ;
     rdfs:comment """Priority (relative to other services of the same type)
 in the range of 0-65535, to be used for NF Service selection; lower
 values indicate a higher priority.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/recoveryTime> a rdf:Property ;
+nfs3gpp:NFService.recoveryTime a rdf:Property ;
     rdfs:label "NFService.recoveryTime" ;
     rdfs:comment "Timestamp when the NF was (re)started." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/scheme> a rdf:Property ;
-    rdfs:label "NFService.scheme" ;
+nfs3gpp:NFService.sNssais a owl:ObjectProperty ;
+    rdfs:label "NFService.sNssais" ;
+    rdfs:comment """S-NSSAIs of the Network Function. If not
+provided, the NF can serve any S-NSSAI. When present
+this IE represents the list of S-NSSAIs supported in
+all the PLMNs listed in the plmnList IE.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:sNssais .
+
+nfs3gpp:NFService.schema a rdf:Property ;
+    rdfs:label "NFService.schema" ;
     rdfs:comment "URI scheme (e.g. 'http', 'https')." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/serviceInstanceID> a rdf:Property ;
-    rdfs:label "NFService.serviceInstanceID" ;
+nfs3gpp:NFService.selectionConditions a owl:ObjectProperty ;
+    rdfs:label "NFService.selectionConditions" ;
+    rdfs:comment """This attribute includes the conditions under which an NF
+Instance with an NFStatus value set to CANARY_RELEASE, or with a
+canaryRelease attribute set to true, shall be selected by an NF
+Service Consumer.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range nfs3gpp:SelectionConditions .
+
+nfs3gpp:NFService.serviceInstanceId a rdf:Property ;
+    rdfs:label "NFService.serviceInstanceId" ;
     rdfs:comment "Unique ID of the service instance within a given NF Instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/serviceName> a rdf:Property ;
+nfs3gpp:NFService.serviceName a rdf:Property ;
     rdfs:label "NFService.serviceName" ;
     rdfs:comment "Name of the service instance (e.g. 'nudm-sdm')." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/sharedServiceDataId> a rdf:Property ;
+nfs3gpp:NFService.sharedServiceDataId a rdf:Property ;
     rdfs:label "NFService.sharedServiceDataId" ;
     rdfs:comment """String uniquely identifying SharedServiceData. The format
 of the sharedServiceDataId shall be a Universally Unique Identifier
 (UUID) version 4, as described in IETF RFC 4122 [44]. The hexadecimal
 letters should be formatted as lower-case characters by the sender,
 and they shall be handled as case-insensitive by the receiver.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/vendorId> a rdf:Property ;
+nfs3gpp:NFService.shutdownTime a rdf:Property ;
+    rdfs:label "NFService.shutdownTime" ;
+    rdfs:comment """This attribute may be present if the nfStatus is set to
+UNDISCOVERABLE due to scheduled shutdown. When present, it shall
+indicate the timestamp when the NF Instance is planned to be
+shut down.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range xsd:string .
+
+nfs3gpp:NFService.supportedFeatures a rdf:Property ;
+    rdfs:label "NFService.supportedFeatures" ;
+    rdfs:comment """It is a string, which indicates the features of the service
+corresponding to the subscribed default notification, which are supported
+by the NF (Service) instance acting as NF service consumer.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range xsd:string .
+
+nfs3gpp:NFService.supportedVendorSpecificFeatures a owl:ObjectProperty ;
+    rdfs:label "NFService.supportedVendorSpecificFeatures" ;
+    rdfs:comment """It indicates a map of Vendor-Specific features, where the
+key of the map is the IANA-assigned SMI Network Management Private
+Enterprise Codes and the value of each entry of the map shall be
+a list (array) of VendorSpecificFeature objects as defined
+in the clause 5.3.247.""" ;
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:supportedVendorSpecificFeatures .
+
+nfs3gpp:NFService.vendorId a rdf:Property ;
     rdfs:label "NFService.vendorId" ;
     rdfs:comment "Vendor ID of the NF instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
+    rdfs:domain nfs3gpp:NFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService/versions> a owl:ObjectProperty ;
+nfs3gpp:NFService.versions a owl:ObjectProperty ;
     rdfs:label "NFService.versions" ;
     rdfs:comment """API versions supported by the NF Service and if available,
 the corresponding retirement date of the NF Service.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/versions> .
+    rdfs:domain nfs3gpp:NFService ;
+    rdfs:range smf3gpp:versions .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/NFServiceStatus> a rdfs:Datatype ;
+nfs3gpp:NFServiceStatus a rdfs:Datatype ;
     rdfs:label "NFServiceStatus" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/mCC> a rdf:Property ;
+nfs3gpp:PlmnOauth2.oauth2NotRequiredPlmnIdList a owl:ObjectProperty ;
+    rdfs:label "PlmnOauth2.oauth2NotRequiredPlmnIdList" ;
+    rdfs:comment """List of PLMN IDs for which Oauth2.0 authorization is
+not required.""" ;
+    rdfs:domain nfs3gpp:PlmnOauth2 ;
+    rdfs:range smf3gpp:oauth2NotRequiredPlmnIdList .
+
+nfs3gpp:PlmnOauth2.oauth2RequiredPlmnIdList a owl:ObjectProperty ;
+    rdfs:label "PlmnOauth2.oauth2RequiredPlmnIdList" ;
+    rdfs:comment """List of PLMN IDs for which Oauth2.0 authorization is
+required.""" ;
+    rdfs:domain nfs3gpp:PlmnOauth2 ;
+    rdfs:range smf3gpp:oauth2RequiredPlmnIdList .
+
+nfs3gpp:SNPNId.mCC a rdf:Property ;
     rdfs:label "SNPNId.mCC" ;
     rdfs:comment """This is the Mobile Country Code (MCC) of the PLMN
 identifier. See TS 23.003 [13] subclause 2.2 and 12.1""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> ;
+    rdfs:domain nfs3gpp:SNPNId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/mNC> a rdf:Property ;
+nfs3gpp:SNPNId.mNC a rdf:Property ;
     rdfs:label "SNPNId.mNC" ;
     rdfs:comment """This is the Mobile Network Code (MNC) of the PLMN
 identifier. See TS 23.003 [13] subclause 2.2 and 12.1.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> ;
+    rdfs:domain nfs3gpp:SNPNId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId/nId> a rdf:Property ;
+nfs3gpp:SNPNId.nId a rdf:Property ;
     rdfs:label "SNPNId.nId" ;
     rdfs:comment """Network Identity; Shall be present if PlmnIdNid
 identifies an SNPN""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SNPNId> ;
+    rdfs:domain nfs3gpp:SNPNId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/ServiceName> a rdfs:Datatype ;
+nfs3gpp:SelectionConditions.conditionGroup a owl:ObjectProperty ;
+    rdfs:label "SelectionConditions.conditionGroup" ;
+    rdfs:comment """It represents a group of conditions that shall be
+evaluated.""" ;
+    rdfs:domain nfs3gpp:SelectionConditions ;
+    rdfs:range smf3gpp:conditionGroup .
+
+nfs3gpp:SelectionConditions.conditionItem a owl:ObjectProperty ;
+    rdfs:label "SelectionConditions.conditionItem" ;
+    rdfs:comment """It represent a single condition item that shall be
+evaluated to determine whether a discovered NF (Service) Instance
+shall be selected.""" ;
+    rdfs:domain nfs3gpp:SelectionConditions ;
+    rdfs:range nfs3gpp:ConditionItem .
+
+nfs3gpp:ServiceName a rdfs:Datatype ;
     rdfs:label "ServiceName" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/SupportedFeatures> a rdfs:Datatype ;
-    rdfs:label "SupportedFeatures" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/TransportProtocol> a rdfs:Datatype ;
+nfs3gpp:TransportProtocol a rdfs:Datatype ;
     rdfs:label "TransportProtocol" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-nfservice/UriScheme> a rdfs:Datatype ;
-    rdfs:label "UriScheme" .
+nfs3gpp:UriSchema a rdfs:Datatype ;
+    rdfs:label "UriSchema" .
 

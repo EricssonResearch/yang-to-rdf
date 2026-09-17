@@ -1,9 +1,11 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix extenb3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-externalenbfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix util3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-util#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-externalenbfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-externalenbfunction" ;
     dcterms:description """Defines the YANG mapping of the ExternalENBFunction
 Information Object Class (IOC) that is part of the NR Network Resource
@@ -15,41 +17,43 @@ TTA, TTC). All rights reserved.""" ;
 3GPP TS 28.658 (E-UTRAN) Network Resource Model (NRM)""" ;
     dcterms:title "_3gpp-nr-nrm-externalenbfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" .
+    owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-externalenbfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/File/jobRef> nrm:candidate "Job" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:File.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/Files/jobRef> nrm:candidate "Job" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:Files.jobRef y2r:candidate "Job" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/PerfMetricJob/conditionMonitorRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/ConditionMonitor> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:PerfMetricJob.conditionMonitorRef rdfs:range util3gpp:ConditionMonitor ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/PerfMetricJob/objectInstances> nrm:candidate "ObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:PerfMetricJob.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/PerfMetricJob/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:PerfMetricJob.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/PerfMetricJob/schedulerRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-util/Scheduler> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:PerfMetricJob.schedulerRef rdfs:range util3gpp:Scheduler ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/StmCtrl/reportingNFList> nrm:candidate "ReportingNF" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:StmCtrl.reportingNFList y2r:candidate "ReportingNF" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/ThresholdMonitor/objectInstances> nrm:candidate "ObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:ThresholdMonitor.objectInstances y2r:candidate "ObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-externalenbfunction/ThresholdMonitor/rootObjectInstances> nrm:candidate "RootObjectInstances" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+extenb3gpp:ThresholdMonitor.rootObjectInstances y2r:candidate "RootObjectInstances" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

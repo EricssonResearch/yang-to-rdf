@@ -1,41 +1,33 @@
+@prefix aiotep3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot-ep#> .
+@prefix aiotep3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-5gc-nrm-aiot-ep#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep> a owl:Ontology ;
-    rdfs:label "_3gpp-5gc-nrm-aiot-ep" ;
-    dcterms:description """Defines AIOT related endpoint Classes (IOCs).
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541" ;
-    dcterms:title "_3gpp-5gc-nrm-aiot-ep" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-01 (CR-1640)" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2Shape> a sh:NodeShape ;
+aiotep3gpp-shapes:EP_AIOT2 a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/id> ],
+            sh:path aiotep3gpp:EP_AIOT2.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/userLabel> ],
+            sh:path aiotep3gpp:EP_AIOT2.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/farEndEntity> ;
+            sh:path aiotep3gpp:EP_AIOT2.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/remoteAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
+            sh:path aiotep3gpp:EP_AIOT2.remoteAddress ],
+        [ sh:class aiotep3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -43,34 +35,34 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
+            sh:path aiotep3gpp:EP_AIOT2.SupportedPerfMetricGroups ],
+        [ sh:class aiotep3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT2> .
+            sh:path aiotep3gpp:EP_AIOT2.localAddress ] ;
+    sh:targetClass aiotep3gpp:EP_AIOT2 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3Shape> a sh:NodeShape ;
+aiotep3gpp-shapes:EP_AIOT3 a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/id> ],
+            sh:path aiotep3gpp:EP_AIOT3.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/userLabel> ],
+            sh:path aiotep3gpp:EP_AIOT3.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/farEndEntity> ;
+            sh:path aiotep3gpp:EP_AIOT3.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/remoteAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
+            sh:path aiotep3gpp:EP_AIOT3.remoteAddress ],
+        [ sh:class aiotep3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -78,34 +70,34 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
+            sh:path aiotep3gpp:EP_AIOT3.SupportedPerfMetricGroups ],
+        [ sh:class aiotep3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3> .
+            sh:path aiotep3gpp:EP_AIOT3.localAddress ] ;
+    sh:targetClass aiotep3gpp:EP_AIOT3 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4Shape> a sh:NodeShape ;
+aiotep3gpp-shapes:EP_AIOT4 a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/id> ],
+            sh:path aiotep3gpp:EP_AIOT4.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/userLabel> ],
+            sh:path aiotep3gpp:EP_AIOT4.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/farEndEntity> ;
+            sh:path aiotep3gpp:EP_AIOT4.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/remoteAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
+            sh:path aiotep3gpp:EP_AIOT4.remoteAddress ],
+        [ sh:class aiotep3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -113,34 +105,34 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
+            sh:path aiotep3gpp:EP_AIOT4.SupportedPerfMetricGroups ],
+        [ sh:class aiotep3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4> .
+            sh:path aiotep3gpp:EP_AIOT4.localAddress ] ;
+    sh:targetClass aiotep3gpp:EP_AIOT4 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5Shape> a sh:NodeShape ;
+aiotep3gpp-shapes:EP_AIOT5 a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/id> ],
+            sh:path aiotep3gpp:EP_AIOT5.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/userLabel> ],
+            sh:path aiotep3gpp:EP_AIOT5.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/farEndEntity> ;
+            sh:path aiotep3gpp:EP_AIOT5.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/remoteAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
+            sh:path aiotep3gpp:EP_AIOT5.remoteAddress ],
+        [ sh:class aiotep3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -148,34 +140,34 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
+            sh:path aiotep3gpp:EP_AIOT5.SupportedPerfMetricGroups ],
+        [ sh:class aiotep3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5> .
+            sh:path aiotep3gpp:EP_AIOT5.localAddress ] ;
+    sh:targetClass aiotep3gpp:EP_AIOT5 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6Shape> a sh:NodeShape ;
+aiotep3gpp-shapes:EP_AIOT6 a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/id> ],
+            sh:path aiotep3gpp:EP_AIOT6.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/userLabel> ],
+            sh:path aiotep3gpp:EP_AIOT6.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/farEndEntity> ;
+            sh:path aiotep3gpp:EP_AIOT6.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/remoteAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
+            sh:path aiotep3gpp:EP_AIOT6.remoteAddress ],
+        [ sh:class aiotep3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -183,34 +175,34 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
+            sh:path aiotep3gpp:EP_AIOT6.SupportedPerfMetricGroups ],
+        [ sh:class aiotep3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6> .
+            sh:path aiotep3gpp:EP_AIOT6.localAddress ] ;
+    sh:targetClass aiotep3gpp:EP_AIOT6 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7Shape> a sh:NodeShape ;
+aiotep3gpp-shapes:EP_AIOT7 a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/id> ],
+            sh:path aiotep3gpp:EP_AIOT7.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/userLabel> ],
+            sh:path aiotep3gpp:EP_AIOT7.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/farEndEntity> ;
+            sh:path aiotep3gpp:EP_AIOT7.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/remoteAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
+            sh:path aiotep3gpp:EP_AIOT7.remoteAddress ],
+        [ sh:class aiotep3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -218,34 +210,34 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
+            sh:path aiotep3gpp:EP_AIOT7.SupportedPerfMetricGroups ],
+        [ sh:class aiotep3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7> .
+            sh:path aiotep3gpp:EP_AIOT7.localAddress ] ;
+    sh:targetClass aiotep3gpp:EP_AIOT7 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8Shape> a sh:NodeShape ;
+aiotep3gpp-shapes:EP_AIOT8 a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/id> ],
+            sh:path aiotep3gpp:EP_AIOT8.id ],
         [ sh:datatype xsd:string ;
             sh:description "A user-friendly (and user assignable) name of this object." ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/userLabel> ],
+            sh:path aiotep3gpp:EP_AIOT8.userLabel ],
         [ sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/farEndEntity> ;
+            sh:path aiotep3gpp:EP_AIOT8.farEndEntity ;
             sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
         [ sh:datatype xsd:string ;
             sh:description "Remote IP address." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/remoteAddress> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> ;
+            sh:path aiotep3gpp:EP_AIOT8.remoteAddress ],
+        [ sh:class aiotep3gpp:SupportedPerfMetricGroups ;
             sh:description """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
 A SupportedPerfMetricGroup attribute which is part of an MOI may
@@ -253,15 +245,15 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/SupportedPerfMetricGroups> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> ;
+            sh:path aiotep3gpp:EP_AIOT8.SupportedPerfMetricGroups ],
+        [ sh:class aiotep3gpp:localAddress ;
             sh:description "Local IP address and VLAN ID." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8/localAddress> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8> .
+            sh:path aiotep3gpp:EP_AIOT8.localAddress ] ;
+    sh:targetClass aiotep3gpp:EP_AIOT8 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroupsShape> a sh:NodeShape ;
+aiotep3gpp-shapes:SupportedPerfMetricGroups a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -277,26 +269,39 @@ definitions template as the component designated with e).
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups/performanceMetrics> ],
+            sh:path aiotep3gpp:SupportedPerfMetricGroups.performanceMetrics ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups/granularityPeriods> ],
+            sh:path aiotep3gpp:SupportedPerfMetricGroups.granularityPeriods ],
         [ sh:in ( "FILE_BASED_LOC_SET_BY_PRODUCER" "FILE_BASED_LOC_SET_BY_CONSUMER" "STREAM_BASED" ) ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups/reportingMethods> ],
+            sh:path aiotep3gpp:SupportedPerfMetricGroups.reportingMethods ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups/reportingPeriods> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/SupportedPerfMetricGroups> .
+            sh:path aiotep3gpp:SupportedPerfMetricGroups.reportingPeriods ] ;
+    sh:targetClass aiotep3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddressShape> a sh:NodeShape ;
+aiotep3gpp-shapes:localAddress a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress/ipAddress> ],
+            sh:path aiotep3gpp:localAddress.ipAddress ],
         [ sh:datatype xsd:unsignedShort ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress/vlanId> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/localAddress> .
+            sh:path aiotep3gpp:localAddress.vlanId ] ;
+    sh:targetClass aiotep3gpp:localAddress .
+
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot-ep> a owl:Ontology ;
+    rdfs:label "_3gpp-5gc-nrm-aiot-ep" ;
+    dcterms:description """Defines AIOT related endpoint Classes (IOCs).
+Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541" ;
+    dcterms:title "_3gpp-5gc-nrm-aiot-ep" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2025-11-01 (CR-1640)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-aiot-ep" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep> .
 

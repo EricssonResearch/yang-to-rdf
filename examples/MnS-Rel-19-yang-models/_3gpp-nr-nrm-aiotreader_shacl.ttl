@@ -1,11 +1,79 @@
+@prefix aiot3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot#> .
+@prefix aiotread3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-aiotreader#> .
+@prefix aiotread3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-aiotreader#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader> a owl:Ontology ;
+aiotread3gpp-shapes:AIOTReader a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path aiotread3gpp:AIOTReader.id ],
+        [ sh:datatype xsd:int ;
+            sh:description """It defines the reader identifier to uniquely identify a
+reader within a gNB.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path aiotread3gpp:AIOTReader.readerId ],
+        [ sh:description """It indicates the administrative state of the AIOTReader.
+It describes the permission to use or prohibition against using the
+AIOT reader, imposed through the OAM services.""" ;
+            sh:in ( "LOCKED" "UNLOCKED" ) ;
+            sh:maxCount 1 ;
+            sh:path aiotread3gpp:AIOTReader.administrativeState ],
+        [ sh:description """It indicates the supported AIOT service type for an
+AIOT reader.""" ;
+            sh:in ( "INVENTORY" "COMMAND" ) ;
+            sh:minCount 1 ;
+            sh:path aiotread3gpp:AIOTReader.supportedAIOTServices ],
+        [ sh:datatype xsd:string ;
+            sh:description """This specifies the geographical location of a A-IoT reader.
+Reader Location may represent any of latitude/longitude, or any
+geographical location/coordinate/area polygon.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path aiotread3gpp:AIOTReader.readerLocation ],
+        [ sh:description """This attribute contains the DN of the referenced
+NRSectorCarrier.""" ;
+            sh:path aiotread3gpp:AIOTReader.nRSectorCarrierRef ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:class aiotread3gpp:pLMNId ;
+            sh:description "Defines which PLMN that can be served by the AIOT reader." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path aiotread3gpp:AIOTReader.pLMNId ],
+        [ sh:class aiot3gpp:ServedAIOTAreaID ;
+            sh:description """This attribute is used to specify the A-IoT areas supported
+by the A-IoT reader. It contains one or multiple A-IoT Area ID, which
+is used to uniquely identify an A-IoT Area.
+
+A-IoT Area ID = PLMN ID +NID (optional) + A-IoT Area Code
+(OCTET STRING (SIZE(3))), which is defined in TS 38.413.""" ;
+            sh:minCount 1 ;
+            sh:path aiotread3gpp:AIOTReader.servedAIOTAreas ] ;
+    sh:targetClass aiotread3gpp:AIOTReader .
+
+aiotread3gpp-shapes:pLMNId a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path aiotread3gpp:pLMNId.mcc ;
+            sh:pattern "[02-79][0-9][0-9]" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path aiotread3gpp:pLMNId.mnc ;
+            sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
+    sh:targetClass aiotread3gpp:pLMNId .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-aiotreader> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-aiotreader" ;
     dcterms:description """Defines the YANG mapping the AIoT Reader.
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -14,69 +82,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-nr-nrm-aiotreader" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-07 (CR-1640)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReaderShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/id> ],
-        [ sh:datatype xsd:int ;
-            sh:description """It defines the reader identifier to uniquely identify a
-reader within a gNB.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/readerId> ],
-        [ sh:description """It indicates the administrative state of the AIOTReader.
-It describes the permission to use or prohibition against using the
-AIOT reader, imposed through the OAM services.""" ;
-            sh:in ( "LOCKED" "UNLOCKED" ) ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/administrativeState> ],
-        [ sh:description """It indicates the supported AIOT service type for an
-AIOT reader.""" ;
-            sh:in ( "INVENTORY" "COMMAND" ) ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/supportedAIOTServices> ],
-        [ sh:datatype xsd:string ;
-            sh:description """This specifies the geographical location of a A-IoT reader.
-Reader Location may represent any of latitude/longitude, or any
-geographical location/coordinate/area polygon.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/readerLocation> ],
-        [ sh:description """This attribute contains the DN of the referenced
-NRSectorCarrier.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/nRSectorCarrierRef> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId> ;
-            sh:description "Defines which PLMN that can be served by the AIOT reader." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/pLMNId> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID> ;
-            sh:description """This attribute is used to specify the A-IoT areas supported
-by the A-IoT reader. It contains one or multiple A-IoT Area ID, which
-is used to uniquely identify an A-IoT Area.
-
-A-IoT Area ID = PLMN ID +NID (optional) + A-IoT Area Code
-(OCTET STRING (SIZE(3))), which is defined in TS 38.413.""" ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/servedAIOTAreas> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader> .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNIdShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId/mcc> ;
-            sh:pattern "[02-79][0-9][0-9]" ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId/mnc> ;
-            sh:pattern "[0-9][0-9][0-9]|[0-9][0-9]" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/pLMNId> .
+    owl:versionInfo "revision 2025-11-07 (CR-1640)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-aiotreader" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader> .
 

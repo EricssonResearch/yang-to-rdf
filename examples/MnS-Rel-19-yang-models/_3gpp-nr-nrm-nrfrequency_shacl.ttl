@@ -1,46 +1,51 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix nrfreq3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrfrequency#> .
+@prefix nrfreq3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-nrfrequency#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency> a owl:Ontology ;
-    rdfs:label "_3gpp-nr-nrm-nrfrequency" ;
-    dcterms:description """Defines the YANG mapping of the NRFrequency Information Object
-Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
-    dcterms:title "_3gpp-nr-nrm-nrfrequency" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequencyShape> a sh:NodeShape ;
+nrfreq3gpp-shapes:NRFrequency a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/id> ],
+            sh:path nrfreq3gpp:NRFrequency.id ],
         [ sh:datatype xsd:unsignedInt ;
             sh:description """The absolute frequency applicable for a downlink NR carrier
 frequency associated with the SSB, in terms of NR-ARFCN.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/absoluteFrequencySSB> ],
+            sh:path nrfreq3gpp:NRFrequency.absoluteFrequencySSB ],
         [ sh:datatype xsd:unsignedByte ;
             sh:description """Sub-carrier spacing of the SSB.
 Note that the allowed values of SSB used for representing data,
 by e.g. a BWP, are: 15, 30, 60 and 120 in units of kHz.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/ssBSubCarrierSpacing> ],
+            sh:path nrfreq3gpp:NRFrequency.ssbSubCarrierSpacing ],
         [ sh:datatype xsd:unsignedShort ;
             sh:description """List of additional frequency bands the frequency belongs to.
 The list is automatically set by the gNB.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency/multiFrequencyBandListNR> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency/NRFrequency> .
+            sh:path nrfreq3gpp:NRFrequency.multiFrequencyBandListNR ] ;
+    sh:targetClass nrfreq3gpp:NRFrequency .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrfrequency> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-nrfrequency" ;
+    dcterms:description """Defines the YANG mapping of the NRFrequency Information Object
+Class (IOC) that is part of the NR Network Resource Model (NRM).
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-nrfrequency" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2026-05-19 (CR-1702 CR-1703)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-nrfrequency" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-nrfrequency> .
 

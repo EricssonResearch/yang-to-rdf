@@ -1,57 +1,72 @@
+@prefix aiot3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot#> .
+@prefix aiotep3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot-ep#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
+@prefix mnfp3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-managed-nfprofile#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> a rdfs:Class ;
+aiot3gpp:ADMFunction a rdfs:Class ;
     rdfs:label "ADMFunction" ;
     rdfs:comment "This IOC represents the ADM function defined in TS 23.369" ;
-    rdfs:subClassOf nrm:ManagedFunction ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT7>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT8>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> .
+    rdfs:subClassOf y2r:ManagedFunction ;
+    y2r:hasAttribute aiot3gpp:AdmInfo,
+        aiot3gpp:SupportedPerfMetricGroups,
+        aiot3gpp:pLMNId,
+        mnfp3gpp:ManagedNFProfile,
+        mf3gpp:PeeParameters,
+        mf3gpp:VnfParameters ;
+    y2r:nameContains aiot3gpp:ManagedNFService,
+        aiot3gpp:PerfMetricJob,
+        aiot3gpp:StmCtrl,
+        aiot3gpp:ThresholdMonitor,
+        aiot3gpp:TraceJob,
+        aiotep3gpp:EP_AIOT6,
+        aiotep3gpp:EP_AIOT7,
+        aiotep3gpp:EP_AIOT8 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> a rdfs:Class ;
+aiot3gpp:AIOTFFunction a rdfs:Class ;
     rdfs:label "AIOTFFunction" ;
     rdfs:comment "This IOC represents the AIOTF function defined in TS 23.369" ;
-    rdfs:subClassOf nrm:ManagedFunction ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIoTgNBInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT3>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT4>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT5>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot-ep/EP_AIOT6>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> .
+    rdfs:subClassOf y2r:ManagedFunction ;
+    y2r:hasAttribute aiot3gpp:AIoTgNBInfo,
+        aiot3gpp:SupportedPerfMetricGroups,
+        aiot3gpp:pLMNId,
+        mnfp3gpp:ManagedNFProfile,
+        mf3gpp:PeeParameters,
+        mf3gpp:VnfParameters ;
+    y2r:nameContains aiot3gpp:ManagedNFService,
+        aiot3gpp:PerfMetricJob,
+        aiot3gpp:StmCtrl,
+        aiot3gpp:ThresholdMonitor,
+        aiot3gpp:TraceJob,
+        aiotep3gpp:EP_AIOT3,
+        aiotep3gpp:EP_AIOT4,
+        aiotep3gpp:EP_AIOT5,
+        aiotep3gpp:EP_AIOT6 .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIoTgNBInfo> a rdfs:Class ;
+aiot3gpp:AIoTgNBInfo a rdfs:Class ;
     rdfs:label "AIoTgNBInfo" ;
     rdfs:comment """It represents the information that a AIOTF needs for
 selecting the NG-RAN i.e.of gNB supporting Ambient-IoT service,
 which includes gNB ID, served NG-RAN A-IoT area and the information
 of served Readers of the gNB.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo> .
+    y2r:hasAttribute aiot3gpp:ServedReaderInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> a rdfs:Class ;
+aiot3gpp:AdmInfo a rdfs:Class ;
+    rdfs:label "AdmInfo" ;
+    rdfs:comment """This attribute represents ADM-specific information for
+management purposes. The information carried by this attribute is
+aligned with the ADM-related information defined in TS 29.510.""" .
+
+aiot3gpp:File a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File" ;
     rdfs:comment """Represents a file. It is name-contained by 'Files'.
 
@@ -126,7 +141,7 @@ clause 11.6.1.1.1. Note that to receive 'notifyFilePreparationError'
 in that case the notification subscription needs to include these
 objects in its scope.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files> a rdfs:Class ;
+aiot3gpp:Files a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:Files" ;
     rdfs:comment """This IOC represents a collection of files. It can be
 name-contained by 'SubNetwork', 'ManagedElement', 'PerfMetricJob' or
@@ -173,15 +188,15 @@ In addition, the attribute '_linkToFiles' allows for simple
 deployments not relying on notifications for reporting the
 availability of new files, where the MnS consumer polls regularly
 for new files under 'Files'.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> .
+    y2r:nameContains aiot3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> a rdfs:Class ;
+aiot3gpp:ManagedNFService a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService" ;
     rdfs:comment "Represents a Network Function (NF)" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-function/Operation>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    y2r:hasAttribute mf3gpp:Operation,
+        types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> a rdfs:Class ;
+aiot3gpp:PerfMetricJob a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob" ;
     rdfs:comment """This IOC represents a performance metric production job. It
 can be name-contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -264,9 +279,9 @@ by the MnS producer.
 Creation and deletion of PerfMetricJob instances by MnS consumers is
 optional; when not supported, PerfMetricJob instances may be created and
 deleted by the system or be pre-installed.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files> .
+    y2r:nameContains aiot3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID> a rdfs:Class ;
+aiot3gpp:ServedAIOTAreaID a rdfs:Class ;
     rdfs:label "ServedAIOTAreaID" ;
     rdfs:comment """This attribute is used to specify the A-IoT areas supported
 by the A-IoT reader. It contains one or multiple A-IoT Area ID, which
@@ -274,23 +289,23 @@ is used to uniquely identify an A-IoT Area.
 
 A-IoT Area ID = PLMN ID +NID (optional) + A-IoT Area Code
 (OCTET STRING (SIZE(3))), which is defined in TS 38.413.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId> .
+    y2r:hasAttribute aiot3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo> a rdfs:Class ;
+aiot3gpp:ServedReaderInfo a rdfs:Class ;
     rdfs:label "ServedReaderInfo" ;
     rdfs:comment """Represents the information of served Readers of a gNB,
 which includes the reader ID (indexes), served A-IoT areas of the RAN
 and Reader and optionally the Reader location.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID> .
+    y2r:hasAttribute aiot3gpp:ServedAIOTAreaID .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl> a rdfs:Class ;
+aiot3gpp:StmCtrl a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:StmCtrl" ;
     rdfs:comment """This IOC represents the STM Control and Configuration
 parameters of a particular STM controlling. It can be
 name-contained by SubNetwork, ManagedElement, or ManagedFunction.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    y2r:hasAttribute stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups> a rdfs:Class ;
+aiot3gpp:SupportedPerfMetricGroups a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -300,7 +315,7 @@ under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor> a rdfs:Class ;
+aiot3gpp:ThresholdMonitor a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ThresholdMonitor" ;
     rdfs:comment """Represents a threshold monitor for performance metrics.
 It can be contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -374,14 +389,15 @@ monitored are not produced by a PerfMetricJob.
 Creation and deletion of ThresholdMonitor instances by MnS consumers is
 optional; when not supported, ThresholdMonitor instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    y2r:hasAttribute meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> a rdfs:Class ;
+aiot3gpp:TraceJob a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob" ;
     rdfs:comment """A TraceJob instance represents the Trace Control and
 Configuration parameters of a particular Trace Job (see TS 32.421 and
 TS 32.422 for details). It can be name-contained by SubNetwork,
-ManagedElement, ManagedFunction.
+ManagedElement, ManagedFunction. In case of signalling based trace
+activation, it shall be name-contained by the UDMFunction, see TS 28.541.
 
 To activate Trace Jobs, a MnS consumer has to create TraceJob object
 instances on the MnS producer. A MnS consumer can activate a Trace Job
@@ -393,15 +409,14 @@ For the details of Trace Job activation see clauses 4.1.1.1.2 and
 4.1.2.1.2 of TS 32.422.
 
 When a MnS consumer wishes to deactivate a Trace Job, the MnS consumer
-shall delete the corresponding TraceJob instance.
-
-For details of management Trace Job activation/deactivation see clause
-4.1.1.1.2 of TS 32.422.
+shall delete the corresponding TraceJob instance. For details of
+management Trace Job deactivation see clauses 4.1.3.8 to 4.1.3.11 a
+nd 4.1.4.10 to 4.1.4.13  of TS 32.422
 
 The attribute traceReference specifies a globally unique ID and
 identifies a Trace session. One Trace Session may be activated to
 multiple Network Elements. The traceReference is populated by the
-consumer that makes the request for a Trace Session.
+consumer that makes the request for a Trace Session, TS 32.422.
 
 The jobId attribute presents the job identifier of a TraceJob instance.
 The jobId can be used to associate  multiple TraceJob instances.
@@ -417,14 +432,15 @@ which the trace records shall be transferred, while in case of
 stream-based reporting the attribute traceReportingConsumerUri
 specifies the streaming target.
 
-The mandatory attribute traceTarget determines the target object of
-the TraceJob. Dependent on the network element to which the Trace
-Session is activated different types of the target object are possible.
+The attribute traceTarget determines the target object of the
+TraceJob. Dependent on the network element to which the Trace Session
+is activated different types of the target object are possible.
+
 The attribute pLMNTarget defines the PLMN for which sessions shall be
 selected in the Trace Session in case of management based activation
-when several PLMNs are supported in the RAN.The MDT configuration may
-include area scope defined by network slice, in which case
-the attribute pLMNTarget is not applicable.
+when several PLMNs are supported in the RAN.  The MDT configuration
+may include area scope defined by network slice, in which case the
+attribute pLMNTarget is not applicable.
 
 The attribute listOfTraceMetrics allows configuraton of which metrics
 shall be recorded.
@@ -443,25 +459,25 @@ be present. The rrcReportType allows the tracing of RRC reports.
 Creation and deletion of TraceJob instances by MnS consumers is
 optional; when not supported, the TraceJob instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNTarget>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/traceTarget>,
-        <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceReference>,
-        <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files> .
+    y2r:hasAttribute aiot3gpp:pLMNTarget,
+        aiot3gpp:traceTarget,
+        trace3gpp:MdtConfig,
+        trace3gpp:TraceConfig,
+        trace3gpp:TraceReference,
+        trace3gpp:UECoreMeasConfig,
+        types3gpp:NpnId ;
+    y2r:nameContains aiot3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId> a rdfs:Class ;
+aiot3gpp:pLMNId a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:pLMNId" ;
     rdfs:comment "Represents a PLMN Identity." .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNTarget> a rdfs:Class ;
+aiot3gpp:pLMNTarget a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/traceTarget> a rdfs:Class ;
+aiot3gpp:traceTarget a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-aiot:traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -470,20 +486,22 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-aiot> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-aiot" ;
     dcterms:description """Defines the YANG mapping AIOT (Ambient power-enabled Internet
 of Things).
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3GPP SA5" ;
     dcterms:source """3GPP TS 28.541
 3GPP TS 23.369""" ;
     dcterms:title "_3gpp-5gc-nrm-aiot" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-01 (CR-1640)" .
+    owl:versionInfo "revision 2026-03-19 (CR-1695 CR-1694)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-aiot" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+aiot3gpp:ADMFunction.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "ADMFunction.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -492,51 +510,59 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups> .
+    rdfs:domain aiot3gpp:ADMFunction ;
+    rdfs:range aiot3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/id> a rdf:Property ;
+aiot3gpp:ADMFunction.admInfo a owl:ObjectProperty ;
+    rdfs:label "ADMFunction.admInfo" ;
+    rdfs:comment """This attribute represents ADM-specific information for
+management purposes. The information carried by this attribute is
+aligned with the ADM-related information defined in TS 29.510.""" ;
+    rdfs:domain aiot3gpp:ADMFunction ;
+    rdfs:range aiot3gpp:AdmInfo .
+
+aiot3gpp:ADMFunction.id a rdf:Property ;
     rdfs:label "ADMFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
+    rdfs:domain aiot3gpp:ADMFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/managedNFProfile> a owl:ObjectProperty ;
+aiot3gpp:ADMFunction.managedNFProfile a owl:ObjectProperty ;
     rdfs:label "ADMFunction.managedNFProfile" ;
     rdfs:comment "This parameter defines profile for managed NF" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> .
+    rdfs:domain aiot3gpp:ADMFunction ;
+    rdfs:range mnfp3gpp:ManagedNFProfile .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/pLMNId> a owl:ObjectProperty ;
+aiot3gpp:ADMFunction.pLMNId a owl:ObjectProperty ;
     rdfs:label "ADMFunction.pLMNId" ;
     rdfs:comment "Represents a PLMN Identity." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId> .
+    rdfs:domain aiot3gpp:ADMFunction ;
+    rdfs:range aiot3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/peeParameterslist> a owl:ObjectProperty ;
+aiot3gpp:ADMFunction.peeParameterslist a owl:ObjectProperty ;
     rdfs:label "ADMFunction.peeParameterslist" ;
     rdfs:comment """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> .
+    rdfs:domain aiot3gpp:ADMFunction ;
+    rdfs:range mf3gpp:PeeParameters .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/priorityLabel> a rdf:Property ;
+aiot3gpp:ADMFunction.priorityLabel a rdf:Property ;
     rdfs:label "ADMFunction.priorityLabel" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
+    rdfs:domain aiot3gpp:ADMFunction ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/sBIFQDN> a rdf:Property ;
+aiot3gpp:ADMFunction.sBIFQDN a rdf:Property ;
     rdfs:label "ADMFunction.sBIFQDN" ;
     rdfs:comment """It is used to indicate the FQDN of the registered NF instance
 in service-based interface, for example, NF instance FQDN structure is:
 nftype<nfnum>.slicetype<sliceid>.mnc<MNC>.mcc<MCC>.3gppnetwork.org""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
+    rdfs:domain aiot3gpp:ADMFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/supportedTraceMetrics> a rdf:Property ;
+aiot3gpp:ADMFunction.supportedTraceMetrics a rdf:Property ;
     rdfs:label "ADMFunction.supportedTraceMetrics" ;
     rdfs:comment """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -547,25 +573,25 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
+    rdfs:domain aiot3gpp:ADMFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/userLabel> a rdf:Property ;
+aiot3gpp:ADMFunction.userLabel a rdf:Property ;
     rdfs:label "ADMFunction.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
+    rdfs:domain aiot3gpp:ADMFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction/vnfParametersList> a owl:ObjectProperty ;
+aiot3gpp:ADMFunction.vnfParametersList a owl:ObjectProperty ;
     rdfs:label "ADMFunction.vnfParametersList" ;
     rdfs:comment """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ADMFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> .
+    rdfs:domain aiot3gpp:ADMFunction ;
+    rdfs:range mf3gpp:VnfParameters .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+aiot3gpp:AIOTFFunction.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "AIOTFFunction.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -574,60 +600,60 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups> .
+    rdfs:domain aiot3gpp:AIOTFFunction ;
+    rdfs:range aiot3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/aIOTgNBInfo> a owl:ObjectProperty ;
+aiot3gpp:AIOTFFunction.aIOTgNBInfo a owl:ObjectProperty ;
     rdfs:label "AIOTFFunction.aIOTgNBInfo" ;
     rdfs:comment """It represents the information that a AIOTF needs for
 selecting the NG-RAN i.e.of gNB supporting Ambient-IoT service,
 which includes gNB ID, served NG-RAN A-IoT area and the information
 of served Readers of the gNB.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIoTgNBInfo> .
+    rdfs:domain aiot3gpp:AIOTFFunction ;
+    rdfs:range aiot3gpp:AIoTgNBInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/id> a rdf:Property ;
+aiot3gpp:AIOTFFunction.id a rdf:Property ;
     rdfs:label "AIOTFFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
+    rdfs:domain aiot3gpp:AIOTFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/managedNFProfile> a owl:ObjectProperty ;
+aiot3gpp:AIOTFFunction.managedNFProfile a owl:ObjectProperty ;
     rdfs:label "AIOTFFunction.managedNFProfile" ;
     rdfs:comment "This parameter defines profile for managed NF" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-managed-nfprofile/ManagedNFProfile> .
+    rdfs:domain aiot3gpp:AIOTFFunction ;
+    rdfs:range mnfp3gpp:ManagedNFProfile .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/pLMNId> a owl:ObjectProperty ;
+aiot3gpp:AIOTFFunction.pLMNId a owl:ObjectProperty ;
     rdfs:label "AIOTFFunction.pLMNId" ;
     rdfs:comment "Represents a PLMN Identity." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId> .
+    rdfs:domain aiot3gpp:AIOTFFunction ;
+    rdfs:range aiot3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/peeParameterslist> a owl:ObjectProperty ;
+aiot3gpp:AIOTFFunction.peeParameterslist a owl:ObjectProperty ;
     rdfs:label "AIOTFFunction.peeParameterslist" ;
     rdfs:comment """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> .
+    rdfs:domain aiot3gpp:AIOTFFunction ;
+    rdfs:range mf3gpp:PeeParameters .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/priorityLabel> a rdf:Property ;
+aiot3gpp:AIOTFFunction.priorityLabel a rdf:Property ;
     rdfs:label "AIOTFFunction.priorityLabel" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
+    rdfs:domain aiot3gpp:AIOTFFunction ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/sBIFQDN> a rdf:Property ;
+aiot3gpp:AIOTFFunction.sBIFQDN a rdf:Property ;
     rdfs:label "AIOTFFunction.sBIFQDN" ;
     rdfs:comment """It is used to indicate the FQDN of the registered NF instance
 in service-based interface, for example, NF instance FQDN structure is:
 nftype<nfnum>.slicetype<sliceid>.mnc<MNC>.mcc<MCC>.3gppnetwork.org""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
+    rdfs:domain aiot3gpp:AIOTFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/supportedTraceMetrics> a rdf:Property ;
+aiot3gpp:AIOTFFunction.supportedTraceMetrics a rdf:Property ;
     rdfs:label "AIOTFFunction.supportedTraceMetrics" ;
     rdfs:comment """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -638,80 +664,103 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
+    rdfs:domain aiot3gpp:AIOTFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/userLabel> a rdf:Property ;
+aiot3gpp:AIOTFFunction.userLabel a rdf:Property ;
     rdfs:label "AIOTFFunction.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
+    rdfs:domain aiot3gpp:AIOTFFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction/vnfParametersList> a owl:ObjectProperty ;
+aiot3gpp:AIOTFFunction.vnfParametersList a owl:ObjectProperty ;
     rdfs:label "AIOTFFunction.vnfParametersList" ;
     rdfs:comment """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIOTFFunction> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> .
+    rdfs:domain aiot3gpp:AIOTFFunction ;
+    rdfs:range mf3gpp:VnfParameters .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIoTgNBInfo/gNBId> a rdf:Property ;
+aiot3gpp:AIoTgNBInfo.gNBId a rdf:Property ;
     rdfs:label "AIoTgNBInfo.gNBId" ;
     rdfs:comment "It identifies a gNB within a PLMN" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIoTgNBInfo> ;
+    rdfs:domain aiot3gpp:AIoTgNBInfo ;
     rdfs:range xsd:long .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIoTgNBInfo/servedReaderInfoList> a owl:ObjectProperty ;
+aiot3gpp:AIoTgNBInfo.servedReaderInfoList a owl:ObjectProperty ;
     rdfs:label "AIoTgNBInfo.servedReaderInfoList" ;
     rdfs:comment """Represents the information of served Readers of a gNB,
 which includes the reader ID (indexes), served A-IoT areas of the RAN
 and Reader and optionally the Reader location.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/AIoTgNBInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo> .
+    rdfs:domain aiot3gpp:AIoTgNBInfo ;
+    rdfs:range aiot3gpp:ServedReaderInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/fileCompression> a rdf:Property ;
+aiot3gpp:AdmInfo.afIdList a rdf:Property ;
+    rdfs:label "AdmInfo.afIdList" ;
+    rdfs:comment """This attribute represents a list of AF IDs served by ADM as
+defined in TS 29.510.""" ;
+    rdfs:domain aiot3gpp:AdmInfo ;
+    rdfs:range xsd:string .
+
+aiot3gpp:AdmInfo.devIdRegEx a rdf:Property ;
+    rdfs:label "AdmInfo.devIdRegEx" ;
+    rdfs:comment """This attribute represents a regular expression (according to
+the ECMA-262 dialect) identifying the set of device IDs served by
+the ADM as defined in TS 29.510.""" ;
+    rdfs:domain aiot3gpp:AdmInfo ;
+    rdfs:range xsd:string .
+
+aiot3gpp:AdmInfo.deviceIdList a rdf:Property ;
+    rdfs:label "AdmInfo.deviceIdList" ;
+    rdfs:comment """This attribute represents a list of device IDs served by
+ADM as defined in TS 29.510 [23]. The format of String is specified
+in TS 29.510.""" ;
+    rdfs:domain aiot3gpp:AdmInfo ;
+    rdfs:range xsd:string .
+
+aiot3gpp:File.fileCompression a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.fileCompression" ;
     rdfs:comment """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/fileContent> a rdf:Property ;
+aiot3gpp:File.fileContent a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.fileContent" ;
     rdfs:comment """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:base64Binary ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/fileDataType> a rdf:Property ;
+aiot3gpp:File.fileDataType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.fileDataType" ;
     rdfs:comment "Type of the management data stored in the file." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/fileExpirationTime> a rdf:Property ;
+aiot3gpp:File.fileExpirationTime a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.fileExpirationTime" ;
     rdfs:comment "Date and time after which the file may be deleted." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/fileFormat> a rdf:Property ;
+aiot3gpp:File.fileFormat a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.fileFormat" ;
     rdfs:comment """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/fileLocation> a rdf:Property ;
+aiot3gpp:File.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.fileLocation" ;
     rdfs:comment """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -725,166 +774,166 @@ Examples:
 'sftp://companyA.com/datastore/fileName.xml',
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/fileReadyTime> a rdf:Property ;
+aiot3gpp:File.fileReadyTime a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.fileReadyTime" ;
     rdfs:comment """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/fileSize> a rdf:Property ;
+aiot3gpp:File.fileSize a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.fileSize" ;
     rdfs:comment "Size of the file" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:unsignedLong ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/id> a rdf:Property ;
+aiot3gpp:File.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/jobId> a rdf:Property ;
+aiot3gpp:File.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
+    rdfs:domain aiot3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File/jobRef> a owl:ObjectProperty ;
+aiot3gpp:File.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:File.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/File> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:File ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files/id> a rdf:Property ;
+aiot3gpp:Files.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:Files.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files> ;
+    rdfs:domain aiot3gpp:Files ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files/jobId> a rdf:Property ;
+aiot3gpp:Files.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:Files.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files> ;
+    rdfs:domain aiot3gpp:Files ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files/jobRef> a owl:ObjectProperty ;
+aiot3gpp:Files.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:Files.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:Files ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files/numberOfFiles> a rdf:Property ;
+aiot3gpp:Files.numberOfFiles a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:Files.numberOfFiles" ;
     rdfs:comment "Number of files in a file collection." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/Files> ;
+    rdfs:domain aiot3gpp:Files ;
     rdfs:range xsd:unsignedLong .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/administrativeState> a rdf:Property ;
+aiot3gpp:ManagedNFService.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.administrativeState" ;
     rdfs:comment "Permission to use or prohibition against using the instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
+    rdfs:domain aiot3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/id> a rdf:Property ;
+aiot3gpp:ManagedNFService.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
+    rdfs:domain aiot3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/nFServiceType> a rdf:Property ;
+aiot3gpp:ManagedNFService.nFServiceType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.nFServiceType" ;
     rdfs:comment """The type of the managed NF service instance
 The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
+    rdfs:domain aiot3gpp:ManagedNFService ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/operationalState> a rdf:Property ;
+aiot3gpp:ManagedNFService.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.operationalState" ;
     rdfs:comment "Describes whether the resource is installed and working" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
+    rdfs:domain aiot3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/operations> a owl:ObjectProperty ;
+aiot3gpp:ManagedNFService.operations a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.operations" ;
     rdfs:comment """Set of operations supported by the managed NF
 service instance""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> .
+    rdfs:domain aiot3gpp:ManagedNFService ;
+    rdfs:range mf3gpp:Operation .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/registrationState> a rdf:Property ;
+aiot3gpp:ManagedNFService.registrationState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.registrationState" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
+    rdfs:domain aiot3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/sAP> a owl:ObjectProperty ;
+aiot3gpp:ManagedNFService.sAP a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.sAP" ;
     rdfs:comment "The service access point of the managed NF service instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    rdfs:domain aiot3gpp:ManagedNFService ;
+    rdfs:range types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/usageState> a rdf:Property ;
+aiot3gpp:ManagedNFService.usageState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.usageState" ;
     rdfs:comment """Describes whether the resource is actively in use at a
 specific instant, and if so, whether or not it has spare
 capacity for additional users.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
+    rdfs:domain aiot3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService/userLabel> a rdf:Property ;
+aiot3gpp:ManagedNFService.userLabel a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ManagedNFService.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ManagedNFService> ;
+    rdfs:domain aiot3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/_linkToFiles> a rdf:Property ;
+aiot3gpp:PerfMetricJob._linkToFiles a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob._linkToFiles" ;
     rdfs:comment "Link to a 'Files' object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/administrativeState> a rdf:Property ;
+aiot3gpp:PerfMetricJob.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.administrativeState" ;
     rdfs:comment "Enable or disables production of the metrics" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/conditionMonitorRef> a owl:ObjectProperty ;
+aiot3gpp:PerfMetricJob.conditionMonitorRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.conditionMonitorRef" ;
     rdfs:comment "Pointer to a ConditionMonitor object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/fileLocation> a rdf:Property ;
+aiot3gpp:PerfMetricJob.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.fileLocation" ;
     rdfs:comment """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/fileReportingPeriod> a rdf:Property ;
+aiot3gpp:PerfMetricJob.fileReportingPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.fileReportingPeriod" ;
     rdfs:comment """For the file-based reporting method this is the time
 window during which collected measurements are stored into the same
@@ -892,51 +941,51 @@ file before the file is closed and a new file is opened.
 The time-period must be a multiple of the granularityPeriod.
 
 Applicable when the file-based reporting method is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/granularityPeriod> a rdf:Property ;
+aiot3gpp:PerfMetricJob.granularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.granularityPeriod" ;
     rdfs:comment """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/id> a rdf:Property ;
+aiot3gpp:PerfMetricJob.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/jobId> a rdf:Property ;
+aiot3gpp:PerfMetricJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.jobId" ;
     rdfs:comment "Id for a PerfMetricJob job." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/notificationRecipientAddress> a rdf:Property ;
+aiot3gpp:PerfMetricJob.notificationRecipientAddress a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.notificationRecipientAddress" ;
     rdfs:comment """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/objectInstances> a owl:ObjectProperty ;
+aiot3gpp:PerfMetricJob.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/operationalState> a rdf:Property ;
+aiot3gpp:PerfMetricJob.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.operationalState" ;
     rdfs:comment "Indicates whether the PerfMetricJob is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/performanceMetrics> a rdf:Property ;
+aiot3gpp:PerfMetricJob.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -949,67 +998,67 @@ the bullet e) of the measurement definition.
 
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/rootObjectInstances> a owl:ObjectProperty ;
+aiot3gpp:PerfMetricJob.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/schedulerRef> a owl:ObjectProperty ;
+aiot3gpp:PerfMetricJob.schedulerRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.schedulerRef" ;
     rdfs:comment "Pointer to a Scheduler object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob/streamTarget> a rdf:Property ;
+aiot3gpp:PerfMetricJob.streamTarget a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:PerfMetricJob.streamTarget" ;
     rdfs:comment """Applicable when stream-based reporting method is
 supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/PerfMetricJob> ;
+    rdfs:domain aiot3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID/aIotAreaCode> a rdf:Property ;
+aiot3gpp:ServedAIOTAreaID.aIotAreaCode a rdf:Property ;
     rdfs:label "ServedAIOTAreaID.aIotAreaCode" ;
     rdfs:comment """This specifies the identity of the A-IoT Area Code which is
 one of the components of A-IoT Area ID. It's a 3-octet string defined
 in TS 38.413.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID> ;
+    rdfs:domain aiot3gpp:ServedAIOTAreaID ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID/nID> a rdf:Property ;
+aiot3gpp:ServedAIOTAreaID.nID a rdf:Property ;
     rdfs:label "ServedAIOTAreaID.nID" ;
     rdfs:comment """Network Identity; Shall be present if PlmnIdNid identifies
 an SNPN (see clauses 5.30.2.3, 5.30.2.9, 6.3.4, and 6.3.8 in 3GPP
 TS 23.501""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID> ;
+    rdfs:domain aiot3gpp:ServedAIOTAreaID ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID/pLMNId> a owl:ObjectProperty ;
+aiot3gpp:ServedAIOTAreaID.pLMNId a owl:ObjectProperty ;
     rdfs:label "ServedAIOTAreaID.pLMNId" ;
     rdfs:comment "It defines which PLMN that can be served by the AIOT reader." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId> .
+    rdfs:domain aiot3gpp:ServedAIOTAreaID ;
+    rdfs:range aiot3gpp:pLMNId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo/readerId> a rdf:Property ;
+aiot3gpp:ServedReaderInfo.readerId a rdf:Property ;
     rdfs:label "ServedReaderInfo.readerId" ;
     rdfs:comment """It defines the reader identifier to uniquely identify a
 reader within a gNB.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo> ;
+    rdfs:domain aiot3gpp:ServedReaderInfo ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo/readerLocation> a rdf:Property ;
+aiot3gpp:ServedReaderInfo.readerLocation a rdf:Property ;
     rdfs:label "ServedReaderInfo.readerLocation" ;
     rdfs:comment """This specifies the geographical location of a A-IoT reader.
 Reader Location may represent any of latitude/longitude, or any
 geographical location/coordinate/area polygon.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo> ;
+    rdfs:domain aiot3gpp:ServedReaderInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo/servedAIOTAreas> a owl:ObjectProperty ;
+aiot3gpp:ServedReaderInfo.servedAIOTAreas a owl:ObjectProperty ;
     rdfs:label "ServedReaderInfo.servedAIOTAreas" ;
     rdfs:comment """This attribute is used to specify the A-IoT areas supported
 by the A-IoT reader. It contains one or multiple A-IoT Area ID, which
@@ -1017,65 +1066,65 @@ is used to uniquely identify an A-IoT Area.
 
 A-IoT Area ID = PLMN ID +NID (optional) + A-IoT Area Code
 (OCTET STRING (SIZE(3))), which is defined in TS 38.413.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedReaderInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ServedAIOTAreaID> .
+    rdfs:domain aiot3gpp:ServedReaderInfo ;
+    rdfs:range aiot3gpp:ServedAIOTAreaID .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl/administrativeState> a rdf:Property ;
+aiot3gpp:StmCtrl.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:StmCtrl.administrativeState" ;
     rdfs:comment """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl> ;
+    rdfs:domain aiot3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl/id> a rdf:Property ;
+aiot3gpp:StmCtrl.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:StmCtrl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl> ;
+    rdfs:domain aiot3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl/operationalState> a rdf:Property ;
+aiot3gpp:StmCtrl.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:StmCtrl.operationalState" ;
     rdfs:comment "It is used by STM consumer to report its working state" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl> ;
+    rdfs:domain aiot3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl/reportingNFList> a owl:ObjectProperty ;
+aiot3gpp:StmCtrl.reportingNFList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:StmCtrl.reportingNFList" ;
     rdfs:comment """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl> ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:StmCtrl ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl/stmTargetUri> a rdf:Property ;
+aiot3gpp:StmCtrl.stmTargetUri a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:StmCtrl.stmTargetUri" ;
     rdfs:comment """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl> ;
+    rdfs:domain aiot3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl/targetInterfaceInfoList> a owl:ObjectProperty ;
+aiot3gpp:StmCtrl.targetInterfaceInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:StmCtrl.targetInterfaceInfoList" ;
     rdfs:comment """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/StmCtrl> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    rdfs:domain aiot3gpp:StmCtrl ;
+    rdfs:range stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
+aiot3gpp:SupportedPerfMetricGroups.granularityPeriods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups> ;
+    rdfs:domain aiot3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
+aiot3gpp:SupportedPerfMetricGroups.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -1090,91 +1139,91 @@ definitions template as the component designated with e).
 
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups> ;
+    rdfs:domain aiot3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
+aiot3gpp:SupportedPerfMetricGroups.reportingMethods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:SupportedPerfMetricGroups.reportingMethods" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups> ;
+    rdfs:domain aiot3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
+aiot3gpp:SupportedPerfMetricGroups.reportingPeriods a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/SupportedPerfMetricGroups> ;
+    rdfs:domain aiot3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/administrativeState> a rdf:Property ;
+aiot3gpp:ThresholdMonitor.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ThresholdMonitor.administrativeState" ;
     rdfs:comment "Enables or disables the ThresholdMonitor." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor> ;
+    rdfs:domain aiot3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/id> a rdf:Property ;
+aiot3gpp:ThresholdMonitor.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ThresholdMonitor.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor> ;
+    rdfs:domain aiot3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/monitorGranularityPeriod> a rdf:Property ;
+aiot3gpp:ThresholdMonitor.monitorGranularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ThresholdMonitor.monitorGranularityPeriod" ;
     rdfs:comment """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor> ;
+    rdfs:domain aiot3gpp:ThresholdMonitor ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/objectInstances> a owl:ObjectProperty ;
+aiot3gpp:ThresholdMonitor.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ThresholdMonitor.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/operationalState> a rdf:Property ;
+aiot3gpp:ThresholdMonitor.operationalState a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ThresholdMonitor.operationalState" ;
     rdfs:comment "Indicates whether the ThresholdMonitor is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor> ;
+    rdfs:domain aiot3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/rootObjectInstances> a owl:ObjectProperty ;
+aiot3gpp:ThresholdMonitor.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ThresholdMonitor.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain aiot3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor/thresholdInfoList> a owl:ObjectProperty ;
+aiot3gpp:ThresholdMonitor.thresholdInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:ThresholdMonitor.thresholdInfoList" ;
     rdfs:comment "List of threshold info." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/ThresholdMonitor> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    rdfs:domain aiot3gpp:ThresholdMonitor ;
+    rdfs:range meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/id> a rdf:Property ;
+aiot3gpp:TraceJob.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
+    rdfs:domain aiot3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/jobId> a rdf:Property ;
+aiot3gpp:TraceJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.jobId" ;
     rdfs:comment "Identifier of a TraceJob" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
+    rdfs:domain aiot3gpp:TraceJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/jobType> a rdf:Property ;
+aiot3gpp:TraceJob.jobType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.jobType" ;
     rdfs:comment """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
+    rdfs:domain aiot3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/listOfTraceMetrics> a rdf:Property ;
+aiot3gpp:TraceJob.listOfTraceMetrics a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.listOfTraceMetrics" ;
     rdfs:comment """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -1184,10 +1233,10 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
+    rdfs:domain aiot3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/mdtConfig> a owl:ObjectProperty ;
+aiot3gpp:TraceJob.mdtConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.mdtConfig" ;
     rdfs:comment """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
@@ -1210,71 +1259,72 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> .
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
+    rdfs:domain aiot3gpp:TraceJob ;
+    rdfs:range trace3gpp:MdtConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/nPNTarget> a owl:ObjectProperty ;
+aiot3gpp:TraceJob.nPNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.nPNTarget" ;
     rdfs:comment """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
+    rdfs:domain aiot3gpp:TraceJob ;
+    rdfs:range types3gpp:NpnId .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/pLMNTarget> a owl:ObjectProperty ;
+aiot3gpp:TraceJob.pLMNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNTarget> .
+    rdfs:domain aiot3gpp:TraceJob ;
+    rdfs:range aiot3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/rrcReportType> a rdf:Property ;
+aiot3gpp:TraceJob.rrcReportType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.rrcReportType" ;
     rdfs:comment "Specifies the RRC reports requested. " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
+    rdfs:domain aiot3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/traceCollectionEntityIPAddress> a rdf:Property ;
+aiot3gpp:TraceJob.traceCollectionEntityIPAddress a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.traceCollectionEntityIPAddress" ;
     rdfs:comment """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
+    rdfs:domain aiot3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/traceConfig> a owl:ObjectProperty ;
+aiot3gpp:TraceJob.traceConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.traceConfig" ;
     rdfs:comment "Trace config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> .
+    rdfs:domain aiot3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/traceReference> a owl:ObjectProperty ;
+aiot3gpp:TraceJob.traceReference a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.traceReference" ;
     rdfs:comment """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
 Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+    rdfs:domain aiot3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceReference .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/traceReportingConsumerUri> a rdf:Property ;
+aiot3gpp:TraceJob.traceReportingConsumerUri a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.traceReportingConsumerUri" ;
     rdfs:comment """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
+    rdfs:domain aiot3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/traceReportingFormat> a rdf:Property ;
+aiot3gpp:TraceJob.traceReportingFormat a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.traceReportingFormat" ;
     rdfs:comment """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
+    rdfs:domain aiot3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/traceTarget> a owl:ObjectProperty ;
+aiot3gpp:TraceJob.traceTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1282,36 +1332,36 @@ Trace, MDT, and 5GC UE level measurements collection.
 In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/traceTarget> .
+    rdfs:domain aiot3gpp:TraceJob ;
+    rdfs:range aiot3gpp:traceTarget .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob/ueCoreMeasConfig> a owl:ObjectProperty ;
+aiot3gpp:TraceJob.ueCoreMeasConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-aiot:TraceJob.ueCoreMeasConfig" ;
     rdfs:comment "5GC UE level measurements config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> .
+    rdfs:domain aiot3gpp:TraceJob ;
+    rdfs:range trace3gpp:UECoreMeasConfig .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId/mcc> a rdf:Property ;
+aiot3gpp:pLMNId.mcc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:pLMNId.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId> ;
+    rdfs:domain aiot3gpp:pLMNId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId/mnc> a rdf:Property ;
+aiot3gpp:pLMNId.mnc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:pLMNId.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNId> ;
+    rdfs:domain aiot3gpp:pLMNId ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNTarget/mcc> a rdf:Property ;
+aiot3gpp:pLMNTarget.mcc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:pLMNTarget.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNTarget> ;
+    rdfs:domain aiot3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNTarget/mnc> a rdf:Property ;
+aiot3gpp:pLMNTarget.mnc a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:pLMNTarget.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/pLMNTarget> ;
+    rdfs:domain aiot3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/traceTarget/traceTargetType> a rdf:Property ;
+aiot3gpp:traceTarget.traceTargetType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:traceTarget.traceTargetType" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1372,13 +1422,13 @@ the targetIdType shall be able to carry the corresponding
 Measured UE Identifier as defined by the bullet g) of the 5GC UE
 level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/traceTarget> ;
+    rdfs:domain aiot3gpp:traceTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/traceTarget/traceTargetValueList> a rdf:Property ;
+aiot3gpp:traceTarget.traceTargetValueList a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-aiot:traceTarget.traceTargetValueList" ;
     rdfs:comment """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-aiot/traceTarget> ;
+    rdfs:domain aiot3gpp:traceTarget ;
     rdfs:range xsd:string .
 

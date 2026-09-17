@@ -1,10 +1,46 @@
+@prefix cbeamform3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-commonbeamformingfunction#> .
+@prefix cbeamform3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-commonbeamformingfunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction> a owl:Ontology ;
+cbeamform3gpp-shapes:CommonBeamformingFunction a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path cbeamform3gpp:CommonBeamformingFunction.id ],
+        [ sh:datatype xsd:int ;
+            sh:description """Identifies the sector carrier coverage shape described by
+the envelope of the contained SSB beams. The coverage shape is
+implementation dependent.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path cbeamform3gpp:CommonBeamformingFunction.coverageShape ],
+        [ sh:datatype xsd:int ;
+            sh:description """Digitally-controlled azimuth through beamforming.
+It represents the horizontal pointing direction of the antenna
+relative to the antenna bore sight, representing the total
+non-mechanical horizontal pan of the selected coverageShape.
+Positive value gives azimuth to the right and negative value gives
+an azimuth to the left.""" ;
+            sh:maxCount 1 ;
+            sh:path cbeamform3gpp:CommonBeamformingFunction.digitalAzimuth ],
+        [ sh:datatype xsd:int ;
+            sh:description """Digitally-controlled tilt through beamforming.
+It represents the vertical pointing direction of the antenna relative
+to the antenna bore sight, representing the total non-mechanical
+vertical tilt of the selected coverageShape. Positive value gives
+downwards tilt and negative value gives upwards tilt.""" ;
+            sh:maxCount 1 ;
+            sh:path cbeamform3gpp:CommonBeamformingFunction.digitalTilt ] ;
+    sh:targetClass cbeamform3gpp:CommonBeamformingFunction .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-commonbeamformingfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-commonbeamformingfunction" ;
     dcterms:description """Defines the YANG mapping of the CommonBeamformingFuntion IOC
 that is part of the NR Network Resource Model (NRM).
@@ -14,38 +50,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-commonbeamformingfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunctionShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/id> ],
-        [ sh:datatype xsd:int ;
-            sh:description """Identifies the sector carrier coverage shape described by
-the envelope of the contained SSB beams. The coverage shape is
-implementation dependent.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/coverageShape> ],
-        [ sh:datatype xsd:int ;
-            sh:description """Digitally-controlled azimuth through beamforming.
-It represents the horizontal pointing direction of the antenna
-relative to the antenna bore sight, representing the total
-non-mechanical horizontal pan of the selected coverageShape.
-Positive value gives azimuth to the right and negative value gives
-an azimuth to the left.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/digitalAzimuth> ],
-        [ sh:datatype xsd:int ;
-            sh:description """Digitally-controlled tilt through beamforming.
-It represents the vertical pointing direction of the antenna relative
-to the antenna bore sight, representing the total non-mechanical
-vertical tilt of the selected coverageShape. Positive value gives
-downwards tilt and negative value gives upwards tilt.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/digitalTilt> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> .
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-commonbeamformingfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction> .
 

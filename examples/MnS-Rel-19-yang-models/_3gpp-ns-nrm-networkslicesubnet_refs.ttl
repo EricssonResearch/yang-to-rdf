@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix nss3gpp: <https://semantics.ericsson.com/yang/_3gpp-ns-nrm-networkslicesubnet#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-ns-nrm-networkslicesubnet> a owl:Ontology ;
     rdfs:label "_3gpp-ns-nrm-networkslicesubnet" ;
     dcterms:description """This IOC represents the properties of a network slice subnet
 instance in a 5G network.
@@ -17,21 +18,23 @@ Information model definitions for network slice NRM (chapter 6)
 """ ;
     dcterms:title "_3gpp-ns-nrm-networkslicesubnet" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-01-25 (CR-1442)" .
+    owl:versionInfo "revision 2025-01-25 (CR-1442)" ;
+    y2r:yangModuleName "_3gpp-ns-nrm-networkslicesubnet" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet> .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/epTransportRef> nrm:candidate "EpTransport" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+nss3gpp:NetworkSliceSubnet.epTransportRef y2r:candidate "EpTransport" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/managedFunctionRef> nrm:candidate "ManagedFunction" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+nss3gpp:NetworkSliceSubnet.managedFunctionRef y2r:candidate "ManagedFunction" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet/networkSliceSubnetRef> rdfs:range <urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/NetworkSliceSubnet> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+nss3gpp:NetworkSliceSubnet.networkSliceSubnetRef rdfs:range nss3gpp:NetworkSliceSubnet ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-ns-nrm-networkslicesubnet/SliceProfile/sliceProfileId> nrm:candidate "SliceProfileId" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+nss3gpp:SliceProfile.sliceProfileId y2r:candidate "SliceProfileId" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix exdata3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-externaldata#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-externaldata> a owl:Ontology ;
     rdfs:label "_3gpp-common-externaldata" ;
     dcterms:description """Defines the YANG mapping of the external data.
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -12,13 +13,15 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.623 Generic Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-common-externaldata" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-07-19 (CR-0551)" .
+    owl:versionInfo "revision 2025-07-19 (CR-0551)" ;
+    y2r:yangModuleName "_3gpp-common-externaldata" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-externaldata> .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesExcluded> nrm:candidate "ObjectInstancesExcluded" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+exdata3gpp:ExternalDataScope.objectInstancesExcluded y2r:candidate "ObjectInstancesExcluded" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-externaldata/ExternalDataScope/objectInstancesIncluded> nrm:candidate "ObjectInstancesIncluded" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+exdata3gpp:ExternalDataScope.objectInstancesIncluded y2r:candidate "ObjectInstancesIncluded" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

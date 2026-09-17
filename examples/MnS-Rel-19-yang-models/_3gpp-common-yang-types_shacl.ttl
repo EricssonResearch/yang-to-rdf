@@ -2,50 +2,41 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix smf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-smffunction#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
+@prefix types3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-yang-types> a owl:Ontology ;
-    rdfs:label "_3gpp-common-yang-types" ;
-    dcterms:description """The model defines a YANG mapping of the top level
-information classes used for management of 5G networks and
-network slicing.
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.623" ;
-    dcterms:title "_3gpp-common-yang-types" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-10-07 (CR-0573 CR-0582 CR-583)" .
-
-<urn:3gpp:sa5:_3gpp-common-yang-types/GeoAreaShape> a sh:NodeShape ;
-    sh:property [ sh:class <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate> ;
+types3gpp-shapes:GeoArea a sh:NodeShape ;
+    sh:property [ sh:class types3gpp:GeoCoordinate ;
             sh:description """Specifies the geographical area with a convex polygon.
 The convex polygon is specified by its corners.""" ;
             sh:minCount 3 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea/geoPolygon> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-yang-types/GeoArea> .
+            sh:path types3gpp:GeoArea.geoPolygon ] ;
+    sh:targetClass types3gpp:GeoArea .
 
-<urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinateShape> a sh:NodeShape ;
+types3gpp-shapes:GeoCoordinate a sh:NodeShape ;
     sh:property [ sh:datatype xsd:decimal ;
             sh:description """Latitude based on World Geodetic System (1984 version)
 global reference frame (WGS 84). Positive values correspond to the
 northern hemisphere.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate/latitude> ],
+            sh:path types3gpp:GeoCoordinate.latitude ],
         [ sh:datatype xsd:decimal ;
             sh:description """Longitude based on World Geodetic System (1984 version)
 global reference frame (WGS 84). Positive values correspond to
 degrees east of 0 degrees longitude.""" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate/longitude> ],
+            sh:path types3gpp:GeoCoordinate.longitude ],
         [ sh:datatype xsd:decimal ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate/altitude> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-yang-types/GeoCoordinate> .
+            sh:path types3gpp:GeoCoordinate.altitude ] ;
+    sh:targetClass types3gpp:GeoCoordinate .
 
-<urn:3gpp:sa5:_3gpp-common-yang-types/NpnIdShape> a sh:NodeShape ;
+types3gpp-shapes:NpnId a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """It identifies a CAG list containing up to 12
 CAG-identifiers per Ue or up to 12 CAG-identifiers per cell,
@@ -53,54 +44,69 @@ see TS 38.331.
 CAG ID is used to combine with PLMN ID to identify a PNI-NPN.CAG ID is
 a hexadecimal range with size 32 bit""" ;
             sh:maxCount 256 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId/cAGIdList> ;
+            sh:path types3gpp:NpnId.cAGIdList ;
             sh:pattern "^[A-Fa-f0-9]{8}$" ],
         [ sh:datatype xsd:string ;
             sh:description """It identifies a list of NIDs containing up to 16 NIDs, see
 TS 38.331. NID is used to combine with PLMN ID to identify an SNPN.
 NID is a hexadecimal range with size 44 bit.""" ;
             sh:maxCount 16 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId/nIDList> ;
+            sh:path types3gpp:NpnId.nIDList ;
             sh:pattern "^[A-Fa-f0-9]{11}$" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/plmnId> ;
+        [ sh:class smf3gpp:plmnId ;
             sh:description "It specifies the PLMN Id of the NPN network." ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId/plmnId> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
+            sh:path types3gpp:NpnId.plmnId ] ;
+    sh:targetClass types3gpp:NpnId .
 
-<urn:3gpp:sa5:_3gpp-common-yang-types/SAPShape> a sh:NodeShape ;
+types3gpp-shapes:SAP a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/SAP/host> ],
+            sh:path types3gpp:SAP.host ],
         [ sh:datatype xsd:unsignedShort ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/SAP/port> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+            sh:path types3gpp:SAP.port ] ;
+    sh:targetClass types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-common-yang-types/TaiShape> a sh:NodeShape ;
+types3gpp-shapes:Tai a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description "Tracking Area Code" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/Tai/tac> ;
+            sh:path types3gpp:Tai.tac ;
             sh:pattern "([A-Fa-f0-9]{4})|([A-Fa-f0-9]{6})" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-smffunction/plmnId> ;
+        [ sh:class smf3gpp:plmnId ;
             sh:description "PLMN Identity." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/Tai/plmnId> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-yang-types/Tai> .
+            sh:path types3gpp:Tai.plmnId ] ;
+    sh:targetClass types3gpp:Tai .
 
-<urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindowShape> a sh:NodeShape ;
+types3gpp-shapes:TimeWindow a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow/startTime> ;
+            sh:path types3gpp:TimeWindow.startTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow/endTime> ;
+            sh:path types3gpp:TimeWindow.endTime ;
             sh:pattern "[0-9]{4}-(1[0-2]|0[1-9])-(0[1-9]|[1-2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|[\\+\\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-yang-types/TimeWindow> .
+    sh:targetClass types3gpp:TimeWindow .
+
+<https://semantics.ericsson.com/yang/_3gpp-common-yang-types> a owl:Ontology ;
+    rdfs:label "_3gpp-common-yang-types" ;
+    dcterms:description """The model defines a YANG mapping of the top level
+information classes used for management of 5G networks and
+network slicing.
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.623" ;
+    dcterms:title "_3gpp-common-yang-types" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2026-03-19 (CR-0618)" ;
+    y2r:yangModuleName "_3gpp-common-yang-types" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-yang-types> .
 

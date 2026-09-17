@@ -1,11 +1,12 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix dmrof3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dmrofunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> a rdfs:Class ;
+dmrof3gpp:DMROFunction a rdfs:Class ;
     rdfs:label "DMROFunction" ;
     rdfs:comment """This IOC contains attributes to support the D-SON function
 of MRO.
@@ -14,7 +15,7 @@ In the case where multiple DMRO MOIs exist at different levels of the
 containment tree, the DMRO MOI at the lower level overrides the DMRO
 MOIs at higher level(s) of the same containment tree.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dmrofunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-dmrofunction" ;
     dcterms:description """Defines the YANG mapping of the DMROFunction
 Information Object Class (IOC) that is part of the NR Network Resource
@@ -25,65 +26,67 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-dmrofunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-dmrofunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/aIMLInferenceFunctionRefList> a owl:ObjectProperty ;
+dmrof3gpp:DMROFunction.aIMLInferenceFunctionRefList a owl:ObjectProperty ;
     rdfs:label "DMROFunction.aIMLInferenceFunctionRefList" ;
     rdfs:comment """This attribute holds a DN list of AIMLInferenceFunction
 (See TS 28.105) .""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> ;
-    nrm:isReference true .
+    rdfs:domain dmrof3gpp:DMROFunction ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/dmroControl> a rdf:Property ;
+dmrof3gpp:DMROFunction.dmroControl a rdf:Property ;
     rdfs:label "DMROFunction.dmroControl" ;
     rdfs:comment """This attribute determines whether the MRO function is
 enabled or disabled.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> ;
+    rdfs:domain dmrof3gpp:DMROFunction ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/id> a rdf:Property ;
+dmrof3gpp:DMROFunction.id a rdf:Property ;
     rdfs:label "DMROFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> ;
+    rdfs:domain dmrof3gpp:DMROFunction ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/mLModelRefList> a owl:ObjectProperty ;
+dmrof3gpp:DMROFunction.mLModelRefList a owl:ObjectProperty ;
     rdfs:label "DMROFunction.mLModelRefList" ;
     rdfs:comment """This attribute holds a DN list of MLModel ¨
 (See TS 28.105).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> ;
-    nrm:isReference true .
+    rdfs:domain dmrof3gpp:DMROFunction ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/maximumDeviationHoTriggerHigh> a rdf:Property ;
+dmrof3gpp:DMROFunction.maximumDeviationHoTriggerHigh a rdf:Property ;
     rdfs:label "DMROFunction.maximumDeviationHoTriggerHigh" ;
     rdfs:comment """This parameter defines the maximum allowed upper
 deviation of the Handover Trigger, from the default point of
 operation.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> ;
+    rdfs:domain dmrof3gpp:DMROFunction ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/maximumDeviationHoTriggerLow> a rdf:Property ;
+dmrof3gpp:DMROFunction.maximumDeviationHoTriggerLow a rdf:Property ;
     rdfs:label "DMROFunction.maximumDeviationHoTriggerLow" ;
     rdfs:comment """This parameter defines the maximum allowed lower
 deviation of the Handover Trigger, from the default point of
 operation.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> ;
+    rdfs:domain dmrof3gpp:DMROFunction ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/minimumTimeBetweenHoTriggerChange> a rdf:Property ;
+dmrof3gpp:DMROFunction.minimumTimeBetweenHoTriggerChange a rdf:Property ;
     rdfs:label "DMROFunction.minimumTimeBetweenHoTriggerChange" ;
     rdfs:comment """This parameter defines the minimum allowed time interval
 between two Handover Trigger change performed by MRO. This is used to
 control the stability and convergence of the algorithm.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> ;
+    rdfs:domain dmrof3gpp:DMROFunction ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction/tstoreUEcntxt> a rdf:Property ;
+dmrof3gpp:DMROFunction.tstoreUEcntxt a rdf:Property ;
     rdfs:label "DMROFunction.tstoreUEcntxt" ;
     rdfs:comment """The timer used for detection of too early HO, too late HO
 and HO to wrong cell.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-dmrofunction/DMROFunction> ;
+    rdfs:domain dmrof3gpp:DMROFunction ;
     rdfs:range xsd:unsignedInt .
 

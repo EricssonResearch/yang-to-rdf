@@ -1,16 +1,17 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rrsset3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-rimrsset#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> a rdfs:Class ;
+rrsset3gpp:FrequencyDomainPara a rdfs:Class ;
     rdfs:label "FrequencyDomainPara" ;
     rdfs:comment """Configuration parameters of frequency domain resource to
 support RIM RS. """ .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal> a rdfs:Class ;
+rrsset3gpp:RimRSGlobal a rdfs:Class ;
     rdfs:label "RimRSGlobal" ;
     rdfs:comment """Represents global/common Remote Interference Management (RIM)
 Reference Signal (RS) resource allocated for the whole network.
@@ -18,12 +19,12 @@ Resource for RIM-RS transmission is defined by Sequence domain resource,
 Time domain resource and Frequency resource. The configure parameters
 of the RIM RS resource are applied to all Sets of RIM RS Resource
 across gNBs/cells in the network.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet> .
+    y2r:hasAttribute rrsset3gpp:FrequencyDomainPara,
+        rrsset3gpp:SequenceDomainPara,
+        rrsset3gpp:TimeDomainPara ;
+    y2r:nameContains rrsset3gpp:RimRSSet .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet> a rdfs:Class ;
+rrsset3gpp:RimRSSet a rdfs:Class ;
     rdfs:label "RimRSSet" ;
     rdfs:comment """Represents aggressor or victim Set organized by OAM.
 The RIM RS Resource is assigned to each Set, which is identified by
@@ -32,36 +33,38 @@ triple indices set of
 The triple indices set can be derived by setId attribute
 (See subclause 7.4.1.6 in TS 38.211 ).""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> a rdfs:Class ;
+rrsset3gpp:SequenceDomainPara a rdfs:Class ;
     rdfs:label "SequenceDomainPara" ;
     rdfs:comment """Configuration parameters of sequence domain resource to
 support RIM RS. """ .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> a rdfs:Class ;
+rrsset3gpp:TimeDomainPara a rdfs:Class ;
     rdfs:label "TimeDomainPara" ;
     rdfs:comment """Configuration parameters of time domain resource to
 support RIM RS. """ .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-rimrsset> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-rimrsset" ;
     dcterms:description """Defines the YANG mapping of the RimRSSet Information Object
 Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3GPP SA5" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-rimrsset" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
+    owl:versionInfo "revision 2026-05-19 (CR-1702 CR-1703)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-rimrsset" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/nrofGlobalRIMRSFrequencyCandidates> a rdf:Property ;
+rrsset3gpp:FrequencyDomainPara.nrofGlobalRIMRSFrequencyCandidates a rdf:Property ;
     rdfs:label "FrequencyDomainPara.nrofGlobalRIMRSFrequencyCandidates" ;
     rdfs:comment """The number of candidate frequency resources in the whole
 network (N_f^RIM ) (see 38.211 subclause 7.4.1.6).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> ;
+    rdfs:domain rrsset3gpp:FrequencyDomainPara ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/rIMRSBandwidth> a rdf:Property ;
+rrsset3gpp:FrequencyDomainPara.rIMRSBandwidth a rdf:Property ;
     rdfs:label "FrequencyDomainPara.rIMRSBandwidth" ;
     rdfs:comment """It is the bandwidth of the RIM-RS in resource blocks
 (see 38.211 subclause 5.3.3).
@@ -74,15 +77,18 @@ Minimum of {96 , bandwidth of downlink carrier in number of PRBs} if
 subcarrier spacing is15kHz
 Minimum of {48, bandwidth of downlink carrier in number of PRBs } if
 subcarrier spacing is 30kHz""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> ;
+    rdfs:domain rrsset3gpp:FrequencyDomainPara ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/rimRSCommonCarrierReferencePoint> a rdf:Property ;
+rrsset3gpp:FrequencyDomainPara.rimRSCommonCarrierReferencePoint a rdf:Property ;
     rdfs:label "FrequencyDomainPara.rimRSCommonCarrierReferencePoint" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> ;
+    rdfs:comment """This attribute is used to configure the common reference
+point for RIM RS. Where represents the frequency-location of point A
+expressed as in ARFCN. See 3GPP TS 38.211 subclause 4.4.4.2""" ;
+    rdfs:domain rrsset3gpp:FrequencyDomainPara ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/rimRSStartingFrequencyOffsetIdList> a rdf:Property ;
+rrsset3gpp:FrequencyDomainPara.rimRSStartingFrequencyOffsetIdList a rdf:Property ;
     rdfs:label "FrequencyDomainPara.rimRSStartingFrequencyOffsetIdList" ;
     rdfs:comment """List of configured frequency offsets in units of resource
 blocks, where each element is the frequency offset relative to a
@@ -93,69 +99,69 @@ have no overlapping bandwidth.  (see 38.211 subclause 7.4.1.6).
 
 allowedValues: 0..maxNrofPhysicalResourceBlocks-1 where
 maxNrofPhysicalResourceBlocks = 550""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> ;
+    rdfs:domain rrsset3gpp:FrequencyDomainPara ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara/rimRSSubcarrierSpacing> a rdf:Property ;
+rrsset3gpp:FrequencyDomainPara.rimRSSubcarrierSpacing a rdf:Property ;
     rdfs:label "FrequencyDomainPara.rimRSSubcarrierSpacing" ;
     rdfs:comment """It is the subcarrier spacing configuration (u) for the RIM-RS.
 Subcarrier spacing delta-f=2^u*15 kHz. (see 38.211 subclause 5.3.3).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> ;
+    rdfs:domain rrsset3gpp:FrequencyDomainPara ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal/frequencyDomainPara> a owl:ObjectProperty ;
+rrsset3gpp:RimRSGlobal.frequencyDomainPara a owl:ObjectProperty ;
     rdfs:label "RimRSGlobal.frequencyDomainPara" ;
     rdfs:comment """Configuration parameters of frequency domain resource to
 support RIM RS. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/FrequencyDomainPara> .
+    rdfs:domain rrsset3gpp:RimRSGlobal ;
+    rdfs:range rrsset3gpp:FrequencyDomainPara .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal/id> a rdf:Property ;
+rrsset3gpp:RimRSGlobal.id a rdf:Property ;
     rdfs:label "RimRSGlobal.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal> ;
+    rdfs:domain rrsset3gpp:RimRSGlobal ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal/sequenceDomainPara> a owl:ObjectProperty ;
+rrsset3gpp:RimRSGlobal.sequenceDomainPara a owl:ObjectProperty ;
     rdfs:label "RimRSGlobal.sequenceDomainPara" ;
     rdfs:comment """Configuration parameters of sequence domain resource to
 support RIM RS. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> .
+    rdfs:domain rrsset3gpp:RimRSGlobal ;
+    rdfs:range rrsset3gpp:SequenceDomainPara .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal/timeDomainPara> a owl:ObjectProperty ;
+rrsset3gpp:RimRSGlobal.timeDomainPara a owl:ObjectProperty ;
     rdfs:label "RimRSGlobal.timeDomainPara" ;
     rdfs:comment """Configuration parameters of time domain resource to
 support RIM RS. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSGlobal> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> .
+    rdfs:domain rrsset3gpp:RimRSGlobal ;
+    rdfs:range rrsset3gpp:TimeDomainPara .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet/id> a rdf:Property ;
+rrsset3gpp:RimRSSet.id a rdf:Property ;
     rdfs:label "RimRSSet.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet> ;
+    rdfs:domain rrsset3gpp:RimRSSet ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet/nRCellDURef> a owl:ObjectProperty ;
+rrsset3gpp:RimRSSet.nRCellDURef a owl:ObjectProperty ;
     rdfs:label "RimRSSet.nRCellDURef" ;
     rdfs:comment "This attribute contains the DN of a NR Cell (NRCellDU)" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet> ;
-    nrm:isReference true .
+    rdfs:domain rrsset3gpp:RimRSSet ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet/setId> a rdf:Property ;
+rrsset3gpp:RimRSSet.setId a rdf:Property ;
     rdfs:label "RimRSSet.setId" ;
     rdfs:comment """This specifies the set ID of a victim Set (RIM-RS1 Set) or
 aggressor Set (RIM-RS2 set). (See subclause 7.4.1.6 in TS 38.211).
 
 allowedValues: The bit length of the set ID is maximum 22bit.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet> ;
+    rdfs:domain rrsset3gpp:RimRSSet ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet/setType> a rdf:Property ;
+rrsset3gpp:RimRSSet.setType a rdf:Property ;
     rdfs:label "RimRSSet.setType" ;
     rdfs:comment """The attribute specifies type of a RIM-RS Set .
 RIM RS1 is generated and transmitted by victim to indicate its suffering
@@ -164,27 +170,10 @@ aggressor to measure if Remote Interference still exist
 
 If the attribute value is 'RS1', the RIM-RS Set is victim set.
 If the attribute value is 'RS2', the RIM-RS Set is aggressor set.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/RimRSSet> ;
+    rdfs:domain rrsset3gpp:RimRSSet ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/RIMRSScrambleTimerMultiplier> a rdf:Property ;
-    rdfs:label "SequenceDomainPara.RIMRSScrambleTimerMultiplier" ;
-    rdfs:comment """It is parameter multiplier factor gamma for initialization
-seed of the pseudo-random sequence c~(i)
-(see 38.211 subclause 7.4.1.6.2).
-allowedValues:  0,1...2^31-1""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> ;
-    rdfs:range xsd:unsignedInt .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/RIMRSScrambleTimerOffset> a rdf:Property ;
-    rdfs:label "SequenceDomainPara.RIMRSScrambleTimerOffset" ;
-    rdfs:comment """It is parameter offset delta for initialization seed of
-the pseudo-random sequence c~(i) (see 38.211 subclause 7.4.1.6.2).
-allowedValues: 0,1...2^31-1""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> ;
-    rdfs:range xsd:unsignedInt .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/enableEnoughNotEnoughIndication> a rdf:Property ;
+rrsset3gpp:SequenceDomainPara.enableEnoughNotEnoughIndication a rdf:Property ;
     rdfs:label "SequenceDomainPara.enableEnoughNotEnoughIndication" ;
     rdfs:comment """It is indication of whether 'Enough'/'Not enough' indication
 functionality is enabled for RIM RS-1 (see 38.211 subclause 7.4.1.6).
@@ -201,41 +190,58 @@ at aggressor side
 
 enableEnoughNotEnoughIndication is equivalent to EnoughIndication
 (see 38.211 subclause 7.4.1.6)""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> ;
+    rdfs:domain rrsset3gpp:SequenceDomainPara ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/nrofRIMRSSequenceCandidatesofRS1> a rdf:Property ;
+rrsset3gpp:SequenceDomainPara.nrofRIMRSSequenceCandidatesofRS1 a rdf:Property ;
     rdfs:label "SequenceDomainPara.nrofRIMRSSequenceCandidatesofRS1" ;
     rdfs:comment """The number of candidate sequences assigned for RIM RS-1
 (N_s^RIM,1) (see 38.211 [subclause 7.4.1.6). It should be even when
 enableEnoughNotEnoughIndication for RS-1 is ON""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> ;
+    rdfs:domain rrsset3gpp:SequenceDomainPara ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/nrofRIMRSSequenceCandidatesofRS2> a rdf:Property ;
+rrsset3gpp:SequenceDomainPara.nrofRIMRSSequenceCandidatesofRS2 a rdf:Property ;
     rdfs:label "SequenceDomainPara.nrofRIMRSSequenceCandidatesofRS2" ;
     rdfs:comment """The number of candidate sequences assigned for RIM RS-2
 (N_s^RIM,2) (see 38.211 subclause 7.4.1.6).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> ;
+    rdfs:domain rrsset3gpp:SequenceDomainPara ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/rimRSScrambleIdListofRS1> a rdf:Property ;
+rrsset3gpp:SequenceDomainPara.rIMRSScrambleTimerMultiplier a rdf:Property ;
+    rdfs:label "SequenceDomainPara.rIMRSScrambleTimerMultiplier" ;
+    rdfs:comment """It is parameter multiplier factor gamma for initialization
+seed of the pseudo-random sequence c~(i)
+(see 38.211 subclause 7.4.1.6.2).
+allowedValues:  0,1...2^31-1""" ;
+    rdfs:domain rrsset3gpp:SequenceDomainPara ;
+    rdfs:range xsd:unsignedInt .
+
+rrsset3gpp:SequenceDomainPara.rIMRSScrambleTimerOffset a rdf:Property ;
+    rdfs:label "SequenceDomainPara.rIMRSScrambleTimerOffset" ;
+    rdfs:comment """It is parameter offset delta for initialization seed of
+the pseudo-random sequence c~(i) (see 38.211 subclause 7.4.1.6.2).
+allowedValues: 0,1...2^31-1""" ;
+    rdfs:domain rrsset3gpp:SequenceDomainPara ;
+    rdfs:range xsd:unsignedInt .
+
+rrsset3gpp:SequenceDomainPara.rimRSScrambleIdListofRS1 a rdf:Property ;
     rdfs:label "SequenceDomainPara.rimRSScrambleIdListofRS1" ;
     rdfs:comment """List of configured scrambling identities for RIM RS-1 (
 see 38.211 [subclause 7.4.1.6). The size of the list is
 nrofRIMRSSequenceCandidatesofRS1.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> ;
+    rdfs:domain rrsset3gpp:SequenceDomainPara ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara/rimRSScrambleIdListofRS2> a rdf:Property ;
+rrsset3gpp:SequenceDomainPara.rimRSScrambleIdListofRS2 a rdf:Property ;
     rdfs:label "SequenceDomainPara.rimRSScrambleIdListofRS2" ;
     rdfs:comment """List of configured scrambling identities for RIM RS-2 (
 see 38.211 subclause 7.4.1.6).
 The size of the list is nrofRIMRSSequenceCandidatesofRS2.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/SequenceDomainPara> ;
+    rdfs:domain rrsset3gpp:SequenceDomainPara ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/consecutiveRIMRS1List> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.consecutiveRIMRS1List a rdf:Property ;
     rdfs:label "TimeDomainPara.consecutiveRIMRS1List" ;
     rdfs:comment """It is used to configure the OFDM symbol position(s) of RIM
 RS-1 within the uplink-downlink switching period. It is a list of symbol
@@ -246,10 +252,10 @@ The resulting RIM RS-1 symbols and its reference point shall belong to
 the same 10ms frame.
 
 allowedValues: 2,3..20*2**maxNrofSymbols-1, where maxNrofSymbols=14""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/consecutiveRIMRS2List> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.consecutiveRIMRS2List a rdf:Property ;
     rdfs:label "TimeDomainPara.consecutiveRIMRS2List" ;
     rdfs:comment """It is used to configure the OFDM symbol position(s) of
 RIM RS-2 within the uplink-downlink switching period. It is a list of
@@ -260,10 +266,10 @@ The resulting RIM RS-2 symbols and its reference point shall belong to
 the same 10ms frame.
 
 allowedValues: 2,3..20*2**maxNrofSymbols-1, where maxNrofSymbols=14""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/dlULSwitchingPeriod1> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.dlULSwitchingPeriod1 a rdf:Property ;
     rdfs:label "TimeDomainPara.dlULSwitchingPeriod1" ;
     rdfs:comment """This attribute is used to configure the first uplink-downlink
 switching period (P1) for RIM RS transmission in the network, where one
@@ -291,10 +297,10 @@ MS0P5, MS0P625, MS1, MS1P25, MS2, MS2P5, MS4, MS5, MS10, MS20,
 if a single uplink-downlink period is configured for RIM-RS purposes;
 MS0P5, MS0P625, MS1, MS1P25, MS2, MS2P5, MS3, MS4, MS5, MS10, MS20,
 if two uplink-downlink periods are configured for RIM-RS purposes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/dlULSwitchingPeriod2> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.dlULSwitchingPeriod2 a rdf:Property ;
     rdfs:label "TimeDomainPara.dlULSwitchingPeriod2" ;
     rdfs:comment """Used to configure the second uplink-downlink switching
 period (P2) for RIM RS transmission in the network, where one RIM RS is
@@ -311,10 +317,10 @@ allowedValues: MS0P5, MS0P625, MS1, MS1P25, MS2, MS2P5, MS3, MS4, MS5,
 MS10
 
 P2 is equivalent to T_(per,2)^RIM  (see 38.211 subclause 7.4.1.6)""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/enablenearfarIndicationRS1> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.enablenearfarIndicationRS1 a rdf:Property ;
     rdfs:label "TimeDomainPara.enablenearfarIndicationRS1" ;
     rdfs:comment """It is indication of whether near-far functionality is enabled
 for RIM RS1.
@@ -324,10 +330,10 @@ the first half of nrofConsecutiveRIMRS1 (R1) consecutive uplink-downlink
 switching period is for 'Near' indication with R1/2 repetitions,
 the second half of R1 consecutive uplink-downlink switching period is
 for 'Far' indication with R1/2 repetitions.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/enablenearfarIndicationRS2> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.enablenearfarIndicationRS2 a rdf:Property ;
     rdfs:label "TimeDomainPara.enablenearfarIndicationRS2" ;
     rdfs:comment """It is indication of whether near-far functionality is enabled
 for RIM RS2.
@@ -337,30 +343,30 @@ the first half of nrofConsecutiveRIMRS2 (R2) consecutive uplink-downlink
 switching period is for 'Near' indication with R2/2  repetitions,
 the second half of R2 consecutive uplink-downlink switching period is
 for 'Far' indication with R2/2 repetitions.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/nrofConsecutiveRIMRS1> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.nrofConsecutiveRIMRS1 a rdf:Property ;
     rdfs:label "TimeDomainPara.nrofConsecutiveRIMRS1" ;
     rdfs:comment """It is the number of consecutive uplink-downlink switching
 periods for RS-1 (R1) for repetition/near-far indication:.
 (see 38.211 subclause 7.4.1.6).
 
 allowedValues: 1,2,4,8""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/nrofConsecutiveRIMRS2> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.nrofConsecutiveRIMRS2 a rdf:Property ;
     rdfs:label "TimeDomainPara.nrofConsecutiveRIMRS2" ;
     rdfs:comment """It is the number of consecutive uplink-downlink switching
 periods for RS-2 (R2) for repetition/near-far indication.
 (see 38.211 subclause 7.4.1.6).
 
 allowedValues: 1,2,4,8""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/symbolOffsetOfReferencePoint1> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.symbolOffsetOfReferencePoint1 a rdf:Property ;
     rdfs:label "TimeDomainPara.symbolOffsetOfReferencePoint1" ;
     rdfs:comment """This attribute is used to configure the reference point in
 the first uplink-downlink switching period, which is the symbols offset
@@ -382,10 +388,10 @@ configured for first uplink-downlink switching period is the DL
 transmission boundary of the first TDD-UL-DL-Pattern.
 
 allowedValues: 2, 3..20*2*maxNrofSymbols-1, where maxNrofSymbols=14""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/symbolOffsetOfReferencePoint2> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.symbolOffsetOfReferencePoint2 a rdf:Property ;
     rdfs:label "TimeDomainPara.symbolOffsetOfReferencePoint2" ;
     rdfs:comment """This attribute is used to configure the reference point in
 the second uplink-downlink switching period, which is the symbol offset
@@ -398,24 +404,24 @@ configured for second uplink-downlink switching period is the
 DL transmission boundary of the second TDD-UL-DL-Pattern.
 
 allowedValues: 2, 3..20*2*maxNrofSymbols-1, where maxNrofSymbols=14""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/totalnrofSetIdofRS1> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.totalnrofSetIdofRS1 a rdf:Property ;
     rdfs:label "TimeDomainPara.totalnrofSetIdofRS1" ;
     rdfs:comment """It is the total number of set IDs for RIM RS-1
 (N_setID ^RIM,1) (see 38.211 subclause 7.4.1.6).
 
 allowedValues: 0,1...2^22-1""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara/totalnrofSetIdofRS2> a rdf:Property ;
+rrsset3gpp:TimeDomainPara.totalnrofSetIdofRS2 a rdf:Property ;
     rdfs:label "TimeDomainPara.totalnrofSetIdofRS2" ;
     rdfs:comment """It is the total number of set IDs for RIM RS-2
 (N_setID^RIM,2) (see 38.211 subclause 7.4.1.6).
 
 allowedValues: 0,1...2^22""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-rimrsset/TimeDomainPara> ;
+    rdfs:domain rrsset3gpp:TimeDomainPara ;
     rdfs:range xsd:unsignedInt .
 

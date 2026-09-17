@@ -1,10 +1,31 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix eutraneteutranfreq3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-eutranfrequency#> .
+@prefix eutraneteutranfreq3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-eutranfrequency#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency> a owl:Ontology ;
+eutraneteutranfreq3gpp-shapes:EUtranFrequency a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path eutraneteutranfreq3gpp:EUtranFrequency.id ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Specifies the channel number for the central DL frequency." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path eutraneteutranfreq3gpp:EUtranFrequency.earfcnDL ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description "List of additional frequency bands the frequency belongs to." ;
+            sh:minCount 0 ;
+            sh:path eutraneteutranfreq3gpp:EUtranFrequency.multiBandInfoListEutra ] ;
+    sh:targetClass eutraneteutranfreq3gpp:EUtranFrequency .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-eutranfrequency> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-eutranfrequency" ;
     dcterms:description """Defines the YANG mapping of the EUtranFrequency Information
 Object Class (IOC), that is part of the NR Network Resource Model (NRM).
@@ -15,23 +36,7 @@ TTA, TTC). All rights reserved.""" ;
 3GPP TS 28.658 (E-UTRAN) Network Resource Model (NRM)""" ;
     dcterms:title "_3gpp-nr-nrm-eutranfrequency" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequencyShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/id> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description "Specifies the channel number for the central DL frequency." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/earfcnDL> ],
-        [ sh:datatype xsd:unsignedShort ;
-            sh:description "List of additional frequency bands the frequency belongs to." ;
-            sh:minCount 0 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency/multiBandInfoListEutra> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency/EUtranFrequency> .
+    owl:versionInfo "revision 2025-04-25 (CR-1526 CR-1527)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-eutranfrequency" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-eutranfrequency> .
 

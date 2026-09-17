@@ -1,9 +1,11 @@
+@prefix aiotread3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-aiotreader#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix nrsectcarr3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrsectorcarrier#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-aiotreader> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-aiotreader" ;
     dcterms:description """Defines the YANG mapping the AIoT Reader.
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -12,9 +14,11 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-nr-nrm-aiotreader" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-07 (CR-1640)" .
+    owl:versionInfo "revision 2025-11-07 (CR-1640)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-aiotreader" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-aiotreader/AIOTReader/nRSectorCarrierRef> rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork-nrsectorcarrier/NRSectorCarrier> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+aiotread3gpp:AIOTReader.nRSectorCarrierRef rdfs:range nrsectcarr3gpp:NRSectorCarrier ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 

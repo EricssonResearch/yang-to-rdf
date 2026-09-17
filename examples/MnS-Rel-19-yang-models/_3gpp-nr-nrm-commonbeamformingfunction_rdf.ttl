@@ -1,17 +1,19 @@
+@prefix beam3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-beam#> .
+@prefix cbeamform3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-commonbeamformingfunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> a rdfs:Class ;
+cbeamform3gpp:CommonBeamformingFunction a rdfs:Class ;
     rdfs:label "CommonBeamformingFunction" ;
     rdfs:comment """Represents common beamforming functionality (eg: SSB beams)
 for the NRSectorCarrier.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> .
+    y2r:nameContains beam3gpp:Beam .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-commonbeamformingfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-commonbeamformingfunction" ;
     dcterms:description """Defines the YANG mapping of the CommonBeamformingFuntion IOC
 that is part of the NR Network Resource Model (NRM).
@@ -21,17 +23,19 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-commonbeamformingfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-commonbeamformingfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/coverageShape> a rdf:Property ;
+cbeamform3gpp:CommonBeamformingFunction.coverageShape a rdf:Property ;
     rdfs:label "CommonBeamformingFunction.coverageShape" ;
     rdfs:comment """Identifies the sector carrier coverage shape described by
 the envelope of the contained SSB beams. The coverage shape is
 implementation dependent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> ;
+    rdfs:domain cbeamform3gpp:CommonBeamformingFunction ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/digitalAzimuth> a rdf:Property ;
+cbeamform3gpp:CommonBeamformingFunction.digitalAzimuth a rdf:Property ;
     rdfs:label "CommonBeamformingFunction.digitalAzimuth" ;
     rdfs:comment """Digitally-controlled azimuth through beamforming.
 It represents the horizontal pointing direction of the antenna
@@ -39,24 +43,24 @@ relative to the antenna bore sight, representing the total
 non-mechanical horizontal pan of the selected coverageShape.
 Positive value gives azimuth to the right and negative value gives
 an azimuth to the left.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> ;
+    rdfs:domain cbeamform3gpp:CommonBeamformingFunction ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/digitalTilt> a rdf:Property ;
+cbeamform3gpp:CommonBeamformingFunction.digitalTilt a rdf:Property ;
     rdfs:label "CommonBeamformingFunction.digitalTilt" ;
     rdfs:comment """Digitally-controlled tilt through beamforming.
 It represents the vertical pointing direction of the antenna relative
 to the antenna bore sight, representing the total non-mechanical
 vertical tilt of the selected coverageShape. Positive value gives
 downwards tilt and negative value gives upwards tilt.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> ;
+    rdfs:domain cbeamform3gpp:CommonBeamformingFunction ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction/id> a rdf:Property ;
+cbeamform3gpp:CommonBeamformingFunction.id a rdf:Property ;
     rdfs:label "CommonBeamformingFunction.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-commonbeamformingfunction/CommonBeamformingFunction> ;
+    rdfs:domain cbeamform3gpp:CommonBeamformingFunction ;
     rdfs:range xsd:string .
 

@@ -1,604 +1,641 @@
+@prefix PredPccRules3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-predefinedpccruleset#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet> a rdfs:Class ;
+PredPccRules3gpp:PredefinedPccRuleSet a rdfs:Class ;
     rdfs:label "PredefinedPccRuleSet" ;
     rdfs:comment "Specifies the predefined PCC rules." ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> .
+    y2r:hasAttribute PredPccRules3gpp:PredefinedPccRules .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> a rdfs:Class ;
+PredPccRules3gpp:PredefinedPccRules a rdfs:Class ;
     rdfs:label "PredefinedPccRules" ;
     rdfs:comment "The list of predefined PCC rules." ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> .
+    y2r:hasAttribute PredPccRules3gpp:TrafficControlData,
+        PredPccRules3gpp:flowInfo,
+        PredPccRules3gpp:qosDataInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> a rdfs:Class ;
+PredPccRules3gpp:TrafficControlData a rdfs:Class ;
+    rdfs:label "TrafficControlData" ;
+    rdfs:comment "The list of traffic control policy data." ;
+    y2r:hasAttribute PredPccRules3gpp:redirectInfo,
+        PredPccRules3gpp:routeToLoc,
+        PredPccRules3gpp:sNSSAIList .
+
+PredPccRules3gpp:flowInfo a rdfs:Class ;
     rdfs:label "flowInfo" ;
     rdfs:comment "The list of IP flow packet filter information." .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> a rdfs:Class ;
+PredPccRules3gpp:qosDataInfo a rdfs:Class ;
     rdfs:label "qosDataInfo" ;
     rdfs:comment "The list of QoS control policy data." .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo> a rdfs:Class ;
+PredPccRules3gpp:redirectInfo a rdfs:Class ;
     rdfs:label "redirectInfo" ;
     rdfs:comment """The list of redirect information indicating whether the
 detected application traffic should be redirected to another
 controlled address.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> a rdfs:Class ;
+PredPccRules3gpp:routeToLoc a rdfs:Class ;
     rdfs:label "routeToLoc" ;
     rdfs:comment """The list of location which the traffic shall be routed to
 for the AF request.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> a rdfs:Class ;
-    rdfs:label "trafficControlDataInfo" ;
-    rdfs:comment "The list of traffic control policy data." ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo>,
-        <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> .
+PredPccRules3gpp:sNSSAIList a rdfs:Class ;
+    rdfs:label "_3gpp-5gc-nrm-predefinedpccruleset:sNSSAIList" ;
+    rdfs:comment """It represents the list of S-NSSAI the managed object is
+supporting. The S-NSSAI is defined in 3GPP TS 23.003.""" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-predefinedpccruleset> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-predefinedpccruleset" ;
     dcterms:description """This IOC represents the predefined PCC rules, which are
 configured to SMF and referenced by PCF.
-Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+Copyright 2026, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
 TTA, TTC). All rights reserved.""" ;
     dcterms:publisher "3gpp SA5" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-predefinedpccruleset" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-05-01 (CR-xxxx)" .
+    owl:versionInfo "revision 2026-03-19 (CR-1694)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-predefinedpccruleset" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet/PredefinedPccRules> a owl:ObjectProperty ;
+PredPccRules3gpp:PredefinedPccRuleSet.PredefinedPccRules a owl:ObjectProperty ;
     rdfs:label "PredefinedPccRuleSet.PredefinedPccRules" ;
     rdfs:comment "The list of predefined PCC rules." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> .
+    rdfs:domain PredPccRules3gpp:PredefinedPccRuleSet ;
+    rdfs:range PredPccRules3gpp:PredefinedPccRules .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet/id> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRuleSet.id a rdf:Property ;
     rdfs:label "PredefinedPccRuleSet.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRuleSet> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRuleSet ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/accessType> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.accessType a rdf:Property ;
     rdfs:label "PredefinedPccRules.accessType" ;
     rdfs:comment """It provides the condition of access type of the UE when the
 session AMBR shall be enforced.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/activationTime> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.activationTime a rdf:Property ;
     rdfs:label "PredefinedPccRules.activationTime" ;
     rdfs:comment """ It indicates the time (in date-time format) when the decision
 data shall be activated.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/afSigProtocol> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.afSigProtocol a rdf:Property ;
     rdfs:label "PredefinedPccRules.afSigProtocol" ;
     rdfs:comment """Indicates the protocol used for signalling between the UE
 and the AF, the default value is NO_INFORMATION.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/appDescriptor> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.appDescriptor a rdf:Property ;
     rdfs:label "PredefinedPccRules.appDescriptor" ;
     rdfs:comment "It is the ATSSS rule application descriptor." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/applicationId> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.applicationId a rdf:Property ;
     rdfs:label "PredefinedPccRules.applicationId" ;
     rdfs:comment """A reference to the application detection filter configured
 at the UPF.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/burstArrivalTime> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.burstArrivalTime a rdf:Property ;
     rdfs:label "PredefinedPccRules.burstArrivalTime" ;
     rdfs:comment """It Indicates the arrival time (in date-time format) of the
 data burst in reference to the TSN GM.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/capBatNotificationCapable> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.capBatNotificationCapable a rdf:Property ;
     rdfs:label "PredefinedPccRules.capBatNotificationCapable" ;
     rdfs:comment "Indicates the capability for AF to adjust the burst sending time." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/condId> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.condId a rdf:Property ;
     rdfs:label "PredefinedPccRules.condId" ;
     rdfs:comment "It uniquely identifies the condition data." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/contentVersion> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.contentVersion a rdf:Property ;
     rdfs:label "PredefinedPccRules.contentVersion" ;
     rdfs:comment "Indicates the content version of the PCC rule." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/deactivationTime> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.deactivationTime a rdf:Property ;
     rdfs:label "PredefinedPccRules.deactivationTime" ;
     rdfs:comment """It indicates the time (in date-time format) when the decision
 data shall be deactivated.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/easRedisIndRequired> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.easRedisIndRequired a rdf:Property ;
     rdfs:label "PredefinedPccRules.easRedisIndRequired" ;
     rdfs:comment "Indicates whether the EAS rediscovery is required for the application." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/flowInfo> a owl:ObjectProperty ;
+PredPccRules3gpp:PredefinedPccRules.flowInfo a owl:ObjectProperty ;
     rdfs:label "PredefinedPccRules.flowInfo" ;
     rdfs:comment "The list of IP flow packet filter information." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> .
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
+    rdfs:range PredPccRules3gpp:flowInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/isAppRelocatable> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.isAppRelocatable a rdf:Property ;
     rdfs:label "PredefinedPccRules.isAppRelocatable" ;
     rdfs:comment """It indicates the application relocation possibility, the
 default value is NO_INFORMATION.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/isUeAddrPreserved> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.isUeAddrPreserved a rdf:Property ;
     rdfs:label "PredefinedPccRules.isUeAddrPreserved" ;
     rdfs:comment "It Indicates whether UE IP address should be preserved." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/nscSupportedFeats> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.nscSupportedFeats a rdf:Property ;
     rdfs:label "PredefinedPccRules.nscSupportedFeats" ;
     rdfs:comment "Indicates the Network Function Service Consumer features supported per service." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/packFiltAllPrec> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.packFiltAllPrec a rdf:Property ;
     rdfs:label "PredefinedPccRules.packFiltAllPrec" ;
     rdfs:comment "Determines the order of TFT packet filter allocation for PCC rules." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/pccRuleId> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.pccRuleId a rdf:Property ;
     rdfs:label "PredefinedPccRules.pccRuleId" ;
     rdfs:comment "It identifies the PCC rule." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/periodicity> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.periodicity a rdf:Property ;
     rdfs:label "PredefinedPccRules.periodicity" ;
     rdfs:comment """It identifies the time period between the start of two bursts
 in reference to the TSN GM.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/precedence> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.precedence a rdf:Property ;
     rdfs:label "PredefinedPccRules.precedence" ;
     rdfs:comment """It indicates the order in which this PCC rule is applied
 relative to other PCC rules within the same PDU session.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/qosDataInfo> a owl:ObjectProperty ;
+PredPccRules3gpp:PredefinedPccRules.qosDataInfo a owl:ObjectProperty ;
     rdfs:label "PredefinedPccRules.qosDataInfo" ;
     rdfs:comment "The list of QoS control policy data." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> .
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
+    rdfs:range PredPccRules3gpp:qosDataInfo .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/ratType> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.ratType a rdf:Property ;
     rdfs:label "PredefinedPccRules.ratType" ;
     rdfs:comment """It provides the condition of RAT type of the UE when the
 session AMBR shall be enforced.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/trafficControlDataInfo> a owl:ObjectProperty ;
+PredPccRules3gpp:PredefinedPccRules.trafficControlDataInfo a owl:ObjectProperty ;
     rdfs:label "PredefinedPccRules.trafficControlDataInfo" ;
     rdfs:comment "The list of traffic control policy data." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> .
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
+    rdfs:range PredPccRules3gpp:TrafficControlData .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/tscaiTimeDom> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.tscaiTimeDom a rdf:Property ;
     rdfs:label "PredefinedPccRules.tscaiTimeDom" ;
     rdfs:comment "Indicates the (g)PTP domain that the (TSN)AF is located in." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules/ueNotifEnabled> a rdf:Property ;
+PredPccRules3gpp:PredefinedPccRules.ueNotifEnabled a rdf:Property ;
     rdfs:label "PredefinedPccRules.ueNotifEnabled" ;
     rdfs:comment "Indicates whether QoS flow parameter signalling to the UE is enabled (TRUE), when the SMF is notified by the NG-RAN of changes in the fulfilled QoS situation," ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/PredefinedPccRules> ;
+    rdfs:domain PredPccRules3gpp:PredefinedPccRules ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/destMacAddr> a rdf:Property ;
+PredPccRules3gpp:TrafficControlData.active a rdf:Property ;
+    rdfs:label "TrafficControlData.active" ;
+    rdfs:comment "It indicates the active access, see TS 29.571." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.afAckInd a rdf:Property ;
+    rdfs:label "TrafficControlData.afAckInd" ;
+    rdfs:comment """It identifies whether the AF acknowledgement of UP path
+event notification is expected.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:boolean .
+
+PredPccRules3gpp:TrafficControlData.dnaiChgType a rdf:Property ;
+    rdfs:label "TrafficControlData.dnaiChgType" ;
+    rdfs:comment "It indicates the type of DNAI change, see TS 29.512" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.flowStatus a rdf:Property ;
+    rdfs:label "TrafficControlData.flowStatus" ;
+    rdfs:comment """It represents whether the service data flow(s) are enabled
+or disabled.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.mulAccCtrl a rdf:Property ;
+    rdfs:label "TrafficControlData.mulAccCtrl" ;
+    rdfs:comment "It indicates whether the service data flow, corresponding to the service data flow template, is allowed or not allowed." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.muteNotif a rdf:Property ;
+    rdfs:label "TrafficControlData.muteNotif" ;
+    rdfs:comment """It indicates whether applicat'on's start or stop notification
+is to be muted.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:boolean .
+
+PredPccRules3gpp:TrafficControlData.notifCorreId a rdf:Property ;
+    rdfs:label "TrafficControlData.notifCorreId" ;
+    rdfs:comment """It is used to set the value of Notification Correlation ID in
+the notification sent by the SMF, see TS 29.512""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.notificationUri a rdf:Property ;
+    rdfs:label "TrafficControlData.notificationUri" ;
+    rdfs:comment """It provides notification address (Uri) of AF receiving the
+event notification.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.prioAcc a rdf:Property ;
+    rdfs:label "TrafficControlData.prioAcc" ;
+    rdfs:comment "It indicates the high priority access." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.redirectAddressType a rdf:Property ;
+    rdfs:label "TrafficControlData.redirectAddressType" ;
+    rdfs:comment "It indicates the type of redirect address." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.redirectEnabled a rdf:Property ;
+    rdfs:label "TrafficControlData.redirectEnabled" ;
+    rdfs:comment "It indicates whether the redirect instruction is enabled." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:boolean .
+
+PredPccRules3gpp:TrafficControlData.redirectInfo a owl:ObjectProperty ;
+    rdfs:label "TrafficControlData.redirectInfo" ;
+    rdfs:comment """The list of redirect information indicating whether the
+detected application traffic should be redirected to another
+controlled address.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range PredPccRules3gpp:redirectInfo .
+
+PredPccRules3gpp:TrafficControlData.redirectServerAddress a rdf:Property ;
+    rdfs:label "TrafficControlData.redirectServerAddress" ;
+    rdfs:comment "It indicates the address of the redirect server." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.routeToLoc a owl:ObjectProperty ;
+    rdfs:label "TrafficControlData.routeToLoc" ;
+    rdfs:comment """The list of location which the traffic shall be routed to
+for the AF request.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range PredPccRules3gpp:routeToLoc .
+
+PredPccRules3gpp:TrafficControlData.sNSSAIList a owl:ObjectProperty ;
+    rdfs:label "TrafficControlData.sNSSAIList" ;
+    rdfs:comment """It represents the list of S-NSSAI the managed object is
+supporting. The S-NSSAI is defined in 3GPP TS 23.003.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range PredPccRules3gpp:sNSSAIList .
+
+PredPccRules3gpp:TrafficControlData.standby a rdf:Property ;
+    rdfs:label "TrafficControlData.standby" ;
+    rdfs:comment "It indicates the Standby access, see TS 29.571." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.steerFun a rdf:Property ;
+    rdfs:label "TrafficControlData.steerFun" ;
+    rdfs:comment "It indicates the applicable traffic steering functionality." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.steerModeValue a rdf:Property ;
+    rdfs:label "TrafficControlData.steerModeValue" ;
+    rdfs:comment "It indicates the value of the steering mode, see TS 29.512." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.tcId a rdf:Property ;
+    rdfs:label "TrafficControlData.tcId" ;
+    rdfs:comment """It univocally identifies the traffic control policy data
+within a PDU session.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.threeGLoad a rdf:Property ;
+    rdfs:label "TrafficControlData.threeGLoad" ;
+    rdfs:comment """It indicates the traffic load to steer to the 3GPP Access
+expressed in one percent.""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:unsignedByte .
+
+PredPccRules3gpp:TrafficControlData.traffCorreInd a rdf:Property ;
+    rdfs:label "TrafficControlData.traffCorreInd" ;
+    rdfs:comment "It indicates the traffic correlation." ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:boolean .
+
+PredPccRules3gpp:TrafficControlData.trafficSteeringPolIdDl a rdf:Property ;
+    rdfs:label "TrafficControlData.trafficSteeringPolIdDl" ;
+    rdfs:comment "It references to a pre-configured traffic steering policy for downlink traffic at the SMF, see TS 29.512" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:TrafficControlData.trafficSteeringPolIdUl a rdf:Property ;
+    rdfs:label "TrafficControlData.trafficSteeringPolIdUl" ;
+    rdfs:comment """It references to a pre-configured traffic steering policy for
+uplink traffic at the SMF, see TS 29.512""" ;
+    rdfs:domain PredPccRules3gpp:TrafficControlData ;
+    rdfs:range xsd:string .
+
+PredPccRules3gpp:flowInfo.destMacAddr a rdf:Property ;
     rdfs:label "flowInfo.destMacAddr" ;
     rdfs:comment """It specifies the destination MAC address formatted in the
 hexadecimal .""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/destMacAddrEnd> a rdf:Property ;
+PredPccRules3gpp:flowInfo.destMacAddrEnd a rdf:Property ;
     rdfs:label "flowInfo.destMacAddrEnd" ;
     rdfs:comment "It specifies the destination MAC address end. If this attribute is present, the destMacAddr attribute specifies the destination MAC address start." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/ethType> a rdf:Property ;
+PredPccRules3gpp:flowInfo.ethType a rdf:Property ;
     rdfs:label "flowInfo.ethType" ;
     rdfs:comment "A two-octet string that represents the Ethertype." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/fDesc> a rdf:Property ;
+PredPccRules3gpp:flowInfo.fDesc a rdf:Property ;
     rdfs:label "flowInfo.fDesc" ;
     rdfs:comment "It contains the flow description for the Uplink or Downlink IP flow. It shall be present when the ethtype is IP." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/fDir> a rdf:Property ;
+PredPccRules3gpp:flowInfo.fDir a rdf:Property ;
     rdfs:label "flowInfo.fDir" ;
     rdfs:comment "It indicates the packet filter direction." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/flowDescription> a rdf:Property ;
+PredPccRules3gpp:flowInfo.flowDescription a rdf:Property ;
     rdfs:label "flowInfo.flowDescription" ;
     rdfs:comment "It defines a packet filter for an IP flow." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/flowDirection> a rdf:Property ;
+PredPccRules3gpp:flowInfo.flowDirection a rdf:Property ;
     rdfs:label "flowInfo.flowDirection" ;
     rdfs:comment "It indicates the direction/directions that a filter is applicable." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/flowLabel> a rdf:Property ;
+PredPccRules3gpp:flowInfo.flowLabel a rdf:Property ;
     rdfs:label "flowInfo.flowLabel" ;
     rdfs:comment "It specifies the Ipv6 flow label header field." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/packFiltId> a rdf:Property ;
+PredPccRules3gpp:flowInfo.packFiltId a rdf:Property ;
     rdfs:label "flowInfo.packFiltId" ;
     rdfs:comment "It is the identifier of the packet filter." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/packetFilterUsage> a rdf:Property ;
+PredPccRules3gpp:flowInfo.packetFilterUsage a rdf:Property ;
     rdfs:label "flowInfo.packetFilterUsage" ;
     rdfs:comment "It indicates if the packet shall be sent to the UE." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/sourceMacAddr> a rdf:Property ;
+PredPccRules3gpp:flowInfo.sourceMacAddr a rdf:Property ;
     rdfs:label "flowInfo.sourceMacAddr" ;
     rdfs:comment """It specifies the source MAC address formatted in the
 hexadecimal notation.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/spi> a rdf:Property ;
+PredPccRules3gpp:flowInfo.spi a rdf:Property ;
     rdfs:label "flowInfo.spi" ;
     rdfs:comment "It is the security parameter index of the IPSec packet." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/srcMacAddrEnd> a rdf:Property ;
+PredPccRules3gpp:flowInfo.srcMacAddrEnd a rdf:Property ;
     rdfs:label "flowInfo.srcMacAddrEnd" ;
     rdfs:comment "It specifies the source MAC address end. If this attribute is present, the sourceMacAddr attribute specifies the source MAC address start. E.g. srcMacAddrEnd with value 00-10-A4-23-3E-FE and sourceMacAddr with value 00-10-A4-23-3E-02 means all MAC addresses from 00-10-A4-23-3E-02 up to and including 00-10-A4-23-3E-FE." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/tosTrafficClass> a rdf:Property ;
+PredPccRules3gpp:flowInfo.tosTrafficClass a rdf:Property ;
     rdfs:label "flowInfo.tosTrafficClass" ;
     rdfs:comment "It contains the Ipv4 Type-of-Service and mask field or the Ipv6 Traffic-Class field and mask field." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo/vlanTags> a rdf:Property ;
+PredPccRules3gpp:flowInfo.vlanTags a rdf:Property ;
     rdfs:label "flowInfo.vlanTags" ;
     rdfs:comment """It specifies the Customer-VLAN and/or Service-VLAN tags
 containing the VID, PCP/DEI fields as defined in IEEE 802.1Q and
 IETF RFC 7042. The first/lower instance in the array stands for the
 Customer-VLAN tag and the second/higher instance in the array stands
 for the Service-VLAN tag.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/flowInfo> ;
+    rdfs:domain PredPccRules3gpp:flowInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/extMaxDataBurstVol> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.extMaxDataBurstVol a rdf:Property ;
     rdfs:label "qosDataInfo.extMaxDataBurstVol" ;
     rdfs:comment "It denotes the largest amount of data that is required to be transferred within a period of 5G-AN PDB, see TS 29.512" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/fiveQIValue> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.fiveQIValue a rdf:Property ;
     rdfs:label "qosDataInfo.fiveQIValue" ;
     rdfs:comment "It indicates the 5QI value." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/gbrDl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.gbrDl a rdf:Property ;
     rdfs:label "qosDataInfo.gbrDl" ;
     rdfs:comment "It represents the guaranteed downlink bandwidth." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/gbrUl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.gbrUl a rdf:Property ;
     rdfs:label "qosDataInfo.gbrUl" ;
     rdfs:comment "It represents the guaranteed uplink bandwidth." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/maxPacketLossRateDl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.maxPacketLossRateDl a rdf:Property ;
     rdfs:label "qosDataInfo.maxPacketLossRateDl" ;
     rdfs:comment "It indicates the downlink maximum rate for lost packets that can be tolerated for the service data flow." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/maxPacketLossRateUl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.maxPacketLossRateUl a rdf:Property ;
     rdfs:label "qosDataInfo.maxPacketLossRateUl" ;
     rdfs:comment "It indicates the uplink maximum rate for lost packets that can be tolerated for the service data flow." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/maxbrDl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.maxbrDl a rdf:Property ;
     rdfs:label "qosDataInfo.maxbrDl" ;
     rdfs:comment "It represents the maximum downlink bandwidth." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/maxbrUl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.maxbrUl a rdf:Property ;
     rdfs:label "qosDataInfo.maxbrUl" ;
     rdfs:comment "It represents the maximum uplink bandwidth." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/preemptCap> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.preemptCap a rdf:Property ;
     rdfs:label "qosDataInfo.preemptCap" ;
     rdfs:comment "It defines whether a service data flow may get resources that were already assigned to another service data flow with a lower priority level." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/preemptVuln> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.preemptVuln a rdf:Property ;
     rdfs:label "qosDataInfo.preemptVuln" ;
     rdfs:comment "It defines whether a service data flow may lose the resources assigned to it in order to admit a service data flow with higher priority level." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/priorityLevel> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.priorityLevel a rdf:Property ;
     rdfs:label "qosDataInfo.priorityLevel" ;
     rdfs:comment "It defines the relative importance of a resource request." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/qosId> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.qosId a rdf:Property ;
     rdfs:label "qosDataInfo.qosId" ;
     rdfs:comment "It identifies the QoS control policy data for a PCC rule." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/qosNotificationControl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.qosNotificationControl a rdf:Property ;
     rdfs:label "qosDataInfo.qosNotificationControl" ;
     rdfs:comment "It indicates whether notifications are requested from 3GPP NG-RAN when the GFBR can no longer (or again) be guaranteed for a QoS Flow during the lifetime of the QoS Flow." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/reflectiveQos> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.reflectiveQos a rdf:Property ;
     rdfs:label "qosDataInfo.reflectiveQos" ;
     rdfs:comment "Indicates whether the QoS information is reflective for the corresponding non-GBR service data flow" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/sharingKeyDl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.sharingKeyDl a rdf:Property ;
     rdfs:label "qosDataInfo.sharingKeyDl" ;
     rdfs:comment "It indicates, by containing the same value, what PCC rules may share resource in downlink direction." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo/sharingKeyUl> a rdf:Property ;
+PredPccRules3gpp:qosDataInfo.sharingKeyUl a rdf:Property ;
     rdfs:label "qosDataInfo.sharingKeyUl" ;
     rdfs:comment "It indicates, by containing the same value, what PCC rules may share resource in uplink direction." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/qosDataInfo> ;
+    rdfs:domain PredPccRules3gpp:qosDataInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo/redirectAddressType> a rdf:Property ;
+PredPccRules3gpp:redirectInfo.redirectAddressType a rdf:Property ;
     rdfs:label "redirectInfo.redirectAddressType" ;
     rdfs:comment "It indicates the type of redirect address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo> ;
+    rdfs:domain PredPccRules3gpp:redirectInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo/redirectEnabled> a rdf:Property ;
+PredPccRules3gpp:redirectInfo.redirectEnabled a rdf:Property ;
     rdfs:label "redirectInfo.redirectEnabled" ;
     rdfs:comment "It indicates whether the redirect instruction is enabled." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo> ;
+    rdfs:domain PredPccRules3gpp:redirectInfo ;
     rdfs:range xsd:boolean .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo/redirectServerAddress> a rdf:Property ;
+PredPccRules3gpp:redirectInfo.redirectServerAddress a rdf:Property ;
     rdfs:label "redirectInfo.redirectServerAddress" ;
     rdfs:comment "It indicates the address of the redirect server." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo> ;
+    rdfs:domain PredPccRules3gpp:redirectInfo ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/dnai> a rdf:Property ;
+PredPccRules3gpp:routeToLoc.dnai a rdf:Property ;
     rdfs:label "routeToLoc.dnai" ;
     rdfs:comment "It represents the DNAI (Data network access identifier)." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> ;
+    rdfs:domain PredPccRules3gpp:routeToLoc ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/ipv4Addr> a rdf:Property ;
+PredPccRules3gpp:routeToLoc.ipv4Addr a rdf:Property ;
     rdfs:label "routeToLoc.ipv4Addr" ;
     rdfs:comment """It defines the Ipv4 address of the tunnel end point in the
 data network, formatted in the dotted decimal notation.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> ;
+    rdfs:domain PredPccRules3gpp:routeToLoc ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/ipv6Addr> a rdf:Property ;
+PredPccRules3gpp:routeToLoc.ipv6Addr a rdf:Property ;
     rdfs:label "routeToLoc.ipv6Addr" ;
     rdfs:comment """It defines the Ipv6 address of the tunnel end point in the
 data network.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> ;
+    rdfs:domain PredPccRules3gpp:routeToLoc ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/portNumber> a rdf:Property ;
+PredPccRules3gpp:routeToLoc.portNumber a rdf:Property ;
     rdfs:label "routeToLoc.portNumber" ;
     rdfs:comment """ It defines the UDP port number of the tunnel end point in
 the data network, see TS 29.571""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> ;
+    rdfs:domain PredPccRules3gpp:routeToLoc ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc/routeProfId> a rdf:Property ;
+PredPccRules3gpp:routeToLoc.routeProfId a rdf:Property ;
     rdfs:label "routeToLoc.routeProfId" ;
     rdfs:comment "It identifies the routing profile." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> ;
+    rdfs:domain PredPccRules3gpp:routeToLoc ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/active> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.active" ;
-    rdfs:comment "It indicates the active access, see TS 29.571." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
+PredPccRules3gpp:sNSSAIList.sd a rdf:Property ;
+    rdfs:label "_3gpp-5gc-nrm-predefinedpccruleset:sNSSAIList.sd" ;
+    rdfs:comment """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+    rdfs:domain PredPccRules3gpp:sNSSAIList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/afAckInd> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.afAckInd" ;
-    rdfs:comment """It identifies whether the AF acknowledgement of UP path
-event notification is expected.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:boolean .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/dnaiChgType> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.dnaiChgType" ;
-    rdfs:comment "It indicates the type of DNAI change, see TS 29.512" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/flowStatus> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.flowStatus" ;
-    rdfs:comment """It represents whether the service data flow(s) are enabled
-or disabled.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/mulAccCtrl> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.mulAccCtrl" ;
-    rdfs:comment "It indicates whether the service data flow, corresponding to the service data flow template, is allowed or not allowed." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/muteNotif> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.muteNotif" ;
-    rdfs:comment """It indicates whether applicat'on's start or stop notification
-is to be muted.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:boolean .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/notifCorreId> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.notifCorreId" ;
-    rdfs:comment """It is used to set the value of Notification Correlation ID in
-the notification sent by the SMF, see TS 29.512""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/notificationUri> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.notificationUri" ;
-    rdfs:comment """It provides notification address (Uri) of AF receiving the
-event notification.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/prioAcc> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.prioAcc" ;
-    rdfs:comment "It indicates the high priority access." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/redirectAddressType> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.redirectAddressType" ;
-    rdfs:comment "It indicates the type of redirect address." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/redirectEnabled> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.redirectEnabled" ;
-    rdfs:comment "It indicates whether the redirect instruction is enabled." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:boolean .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/redirectInfo> a owl:ObjectProperty ;
-    rdfs:label "trafficControlDataInfo.redirectInfo" ;
-    rdfs:comment """The list of redirect information indicating whether the
-detected application traffic should be redirected to another
-controlled address.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/redirectInfo> .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/redirectServerAddress> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.redirectServerAddress" ;
-    rdfs:comment "It indicates the address of the redirect server." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/routeToLoc> a owl:ObjectProperty ;
-    rdfs:label "trafficControlDataInfo.routeToLoc" ;
-    rdfs:comment """The list of location which the traffic shall be routed to
-for the AF request.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/routeToLoc> .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/standby> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.standby" ;
-    rdfs:comment "It indicates the Standby access, see TS 29.571." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/steerFun> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.steerFun" ;
-    rdfs:comment "It indicates the applicable traffic steering functionality." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/steerModeValue> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.steerModeValue" ;
-    rdfs:comment "It indicates the value of the steering mode, see TS 29.512." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/tcId> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.tcId" ;
-    rdfs:comment """It univocally identifies the traffic control policy data
-within a PDU session.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/threeGLoad> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.threeGLoad" ;
-    rdfs:comment """It indicates the traffic load to steer to the 3GPP Access
-expressed in one percent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
+PredPccRules3gpp:sNSSAIList.sst a rdf:Property ;
+    rdfs:label "_3gpp-5gc-nrm-predefinedpccruleset:sNSSAIList.sst" ;
+    rdfs:comment """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+    rdfs:domain PredPccRules3gpp:sNSSAIList ;
     rdfs:range xsd:unsignedByte .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/trafficSteeringPolIdDl> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.trafficSteeringPolIdDl" ;
-    rdfs:comment "It references to a pre-configured traffic steering policy for downlink traffic at the SMF, see TS 29.512" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo/trafficSteeringPolIdUl> a rdf:Property ;
-    rdfs:label "trafficControlDataInfo.trafficSteeringPolIdUl" ;
-    rdfs:comment """It references to a pre-configured traffic steering policy for
-uplink traffic at the SMF, see TS 29.512""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-predefinedpccruleset/trafficControlDataInfo> ;
-    rdfs:range xsd:string .
 

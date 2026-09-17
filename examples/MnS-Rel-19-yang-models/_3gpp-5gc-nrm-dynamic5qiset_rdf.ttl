@@ -1,33 +1,35 @@
+@prefix conf5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-configurable5qiset#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix dyn5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-dynamic5qiset#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet> a rdfs:Class ;
+dyn5QIs3gpp:Dynamic5QISet a rdfs:Class ;
     rdfs:label "Dynamic5QISet" ;
     rdfs:comment """Specifies the dynamic 5QIs including their QoS
 characteristics, see 3GPP TS 23.501.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> .
+    y2r:hasAttribute dyn5QIs3gpp:dynamic5QIs ;
+    y2r:nameContains dyn5QIs3gpp:FiveQICharacteristics .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> a rdfs:Class ;
+dyn5QIs3gpp:FiveQICharacteristics a rdfs:Class ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics" ;
     rdfs:comment """This specifies the 5QI value and the corresponding
 QoS characteristics for a 5QI.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> .
+    y2r:hasAttribute conf5QIs3gpp:PacketErrorRate .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> a rdfs:Class ;
+dyn5QIs3gpp:dynamic5QIs a rdfs:Class ;
     rdfs:label "dynamic5QIs" ;
     rdfs:comment """This IOC specifies the dynamically assigned 5QIs
 including their QoS characteristics, see 3GPP TS 23.501.
 The instance of this IOC shall not be created or modified by the
 MnS consumer except for the instance associated to
 PCFFunction MOI or SMFFunction MOI when the PCF is not deployed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> .
+    y2r:hasAttribute conf5QIs3gpp:PacketErrorRate .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-dynamic5qiset> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset" ;
     dcterms:description """This IOC represents the dynamic 5QIs including their QoS
 characteristics.
@@ -37,127 +39,129 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-dynamic5qiset" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-03-25 (CR-1489)" .
+    owl:versionInfo "revision 2025-03-25 (CR-1489)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-dynamic5qiset" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet/dynamic5QIs> a owl:ObjectProperty ;
+dyn5QIs3gpp:Dynamic5QISet.dynamic5QIs a owl:ObjectProperty ;
     rdfs:label "Dynamic5QISet.dynamic5QIs" ;
     rdfs:comment """This IOC specifies the dynamically assigned 5QIs
 including their QoS characteristics, see 3GPP TS 23.501.
 The instance of this IOC shall not be created or modified by the
 MnS consumer except for the instance associated to
 PCFFunction MOI or SMFFunction MOI when the PCF is not deployed.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> .
+    rdfs:domain dyn5QIs3gpp:Dynamic5QISet ;
+    rdfs:range dyn5QIs3gpp:dynamic5QIs .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet/id> a rdf:Property ;
+dyn5QIs3gpp:Dynamic5QISet.id a rdf:Property ;
     rdfs:label "Dynamic5QISet.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet> ;
+    rdfs:domain dyn5QIs3gpp:Dynamic5QISet ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/averagingWindow> a rdf:Property ;
+dyn5QIs3gpp:FiveQICharacteristics.averagingWindow a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics.averagingWindow" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> ;
+    rdfs:domain dyn5QIs3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/fiveQIValue> a rdf:Property ;
+dyn5QIs3gpp:FiveQICharacteristics.fiveQIValue a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics.fiveQIValue" ;
     rdfs:comment "Identifies the 5QI value." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> ;
+    rdfs:domain dyn5QIs3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/id> a rdf:Property ;
+dyn5QIs3gpp:FiveQICharacteristics.id a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> ;
+    rdfs:domain dyn5QIs3gpp:FiveQICharacteristics ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/maximumDataBurstVolume> a rdf:Property ;
+dyn5QIs3gpp:FiveQICharacteristics.maximumDataBurstVolume a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics.maximumDataBurstVolume" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> ;
+    rdfs:domain dyn5QIs3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/packetDelayBudget> a rdf:Property ;
+dyn5QIs3gpp:FiveQICharacteristics.packetDelayBudget a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics.packetDelayBudget" ;
     rdfs:comment """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
 as specified in TS 23.501 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> ;
+    rdfs:domain dyn5QIs3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/packetErrorRate> a owl:ObjectProperty ;
+dyn5QIs3gpp:FiveQICharacteristics.packetErrorRate a owl:ObjectProperty ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics.packetErrorRate" ;
     rdfs:comment """It indicates the Packet Error Rate of a 5QI,
 as specified in TS 23.501.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> .
+    rdfs:domain dyn5QIs3gpp:FiveQICharacteristics ;
+    rdfs:range conf5QIs3gpp:PacketErrorRate .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/priorityLevel> a rdf:Property ;
+dyn5QIs3gpp:FiveQICharacteristics.priorityLevel a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics.priorityLevel" ;
     rdfs:comment """It indicates the Priority Level of a 5QI, as specified
 in TS 23.501.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> ;
+    rdfs:domain dyn5QIs3gpp:FiveQICharacteristics ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/resourceType> a rdf:Property ;
+dyn5QIs3gpp:FiveQICharacteristics.resourceType a rdf:Property ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset:FiveQICharacteristics.resourceType" ;
     rdfs:comment """It indicates the Resource Type of a 5QI, as specified
 in TS 23.501 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> ;
+    rdfs:domain dyn5QIs3gpp:FiveQICharacteristics ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/averagingWindow> a rdf:Property ;
+dyn5QIs3gpp:dynamic5QIs.averagingWindow a rdf:Property ;
     rdfs:label "dynamic5QIs.averagingWindow" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
+    rdfs:domain dyn5QIs3gpp:dynamic5QIs ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/fiveQIValue> a rdf:Property ;
+dyn5QIs3gpp:dynamic5QIs.fiveQIValue a rdf:Property ;
     rdfs:label "dynamic5QIs.fiveQIValue" ;
     rdfs:comment "Identifies the 5QI value." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
+    rdfs:domain dyn5QIs3gpp:dynamic5QIs ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/id> a rdf:Property ;
+dyn5QIs3gpp:dynamic5QIs.id a rdf:Property ;
     rdfs:label "dynamic5QIs.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
+    rdfs:domain dyn5QIs3gpp:dynamic5QIs ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/maximumDataBurstVolume> a rdf:Property ;
+dyn5QIs3gpp:dynamic5QIs.maximumDataBurstVolume a rdf:Property ;
     rdfs:label "dynamic5QIs.maximumDataBurstVolume" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
+    rdfs:domain dyn5QIs3gpp:dynamic5QIs ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/packetDelayBudget> a rdf:Property ;
+dyn5QIs3gpp:dynamic5QIs.packetDelayBudget a rdf:Property ;
     rdfs:label "dynamic5QIs.packetDelayBudget" ;
     rdfs:comment """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
 as specified in TS 23.501 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
+    rdfs:domain dyn5QIs3gpp:dynamic5QIs ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/packetErrorRate> a owl:ObjectProperty ;
+dyn5QIs3gpp:dynamic5QIs.packetErrorRate a owl:ObjectProperty ;
     rdfs:label "dynamic5QIs.packetErrorRate" ;
     rdfs:comment """It indicates the Packet Error Rate of a 5QI,
 as specified in TS 23.501.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> .
+    rdfs:domain dyn5QIs3gpp:dynamic5QIs ;
+    rdfs:range conf5QIs3gpp:PacketErrorRate .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/priorityLevel> a rdf:Property ;
+dyn5QIs3gpp:dynamic5QIs.priorityLevel a rdf:Property ;
     rdfs:label "dynamic5QIs.priorityLevel" ;
     rdfs:comment """It indicates the Priority Level of a 5QI, as specified
 in TS 23.501.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
+    rdfs:domain dyn5QIs3gpp:dynamic5QIs ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/resourceType> a rdf:Property ;
+dyn5QIs3gpp:dynamic5QIs.resourceType a rdf:Property ;
     rdfs:label "dynamic5QIs.resourceType" ;
     rdfs:comment """It indicates the Resource Type of a 5QI, as specified
 in TS 23.501 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
+    rdfs:domain dyn5QIs3gpp:dynamic5QIs ;
     rdfs:range xsd:string .
 

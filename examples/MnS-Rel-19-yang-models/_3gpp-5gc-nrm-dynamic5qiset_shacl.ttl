@@ -1,11 +1,123 @@
+@prefix conf5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-configurable5qiset#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dyn5QIs3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-dynamic5qiset#> .
+@prefix dyn5QIs3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-5gc-nrm-dynamic5qiset#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset> a owl:Ontology ;
+dyn5QIs3gpp-shapes:Dynamic5QISet a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path dyn5QIs3gpp:Dynamic5QISet.id ],
+        [ sh:class dyn5QIs3gpp:dynamic5QIs ;
+            sh:description """This IOC specifies the dynamically assigned 5QIs
+including their QoS characteristics, see 3GPP TS 23.501.
+The instance of this IOC shall not be created or modified by the
+MnS consumer except for the instance associated to
+PCFFunction MOI or SMFFunction MOI when the PCF is not deployed.""" ;
+            sh:path dyn5QIs3gpp:Dynamic5QISet.dynamic5QIs ] ;
+    sh:targetClass dyn5QIs3gpp:Dynamic5QISet .
+
+dyn5QIs3gpp-shapes:FiveQICharacteristics a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path dyn5QIs3gpp:FiveQICharacteristics.id ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Identifies the 5QI value." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:FiveQICharacteristics.fiveQIValue ],
+        [ sh:description """It indicates the Resource Type of a 5QI, as specified
+in TS 23.501 """ ;
+            sh:in ( "GBR" "NON_GBR" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:FiveQICharacteristics.resourceType ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It indicates the Priority Level of a 5QI, as specified
+in TS 23.501.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:FiveQICharacteristics.priorityLevel ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
+as specified in TS 23.501 """ ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:FiveQICharacteristics.packetDelayBudget ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:FiveQICharacteristics.averagingWindow ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:FiveQICharacteristics.maximumDataBurstVolume ],
+        [ sh:class conf5QIs3gpp:PacketErrorRate ;
+            sh:description """It indicates the Packet Error Rate of a 5QI,
+as specified in TS 23.501.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:FiveQICharacteristics.packetErrorRate ] ;
+    sh:targetClass dyn5QIs3gpp:FiveQICharacteristics .
+
+dyn5QIs3gpp-shapes:dynamic5QIs a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path dyn5QIs3gpp:dynamic5QIs.id ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description "Identifies the 5QI value." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:dynamic5QIs.fiveQIValue ],
+        [ sh:description """It indicates the Resource Type of a 5QI, as specified
+in TS 23.501 """ ;
+            sh:in ( "GBR" "NON_GBR" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:dynamic5QIs.resourceType ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It indicates the Priority Level of a 5QI, as specified
+in TS 23.501.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:dynamic5QIs.priorityLevel ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
+as specified in TS 23.501 """ ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:dynamic5QIs.packetDelayBudget ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:dynamic5QIs.averagingWindow ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:dynamic5QIs.maximumDataBurstVolume ],
+        [ sh:class conf5QIs3gpp:PacketErrorRate ;
+            sh:description """It indicates the Packet Error Rate of a 5QI,
+as specified in TS 23.501.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path dyn5QIs3gpp:dynamic5QIs.packetErrorRate ] ;
+    sh:targetClass dyn5QIs3gpp:dynamic5QIs .
+
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-dynamic5qiset> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-dynamic5qiset" ;
     dcterms:description """This IOC represents the dynamic 5QIs including their QoS
 characteristics.
@@ -15,113 +127,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-dynamic5qiset" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-03-25 (CR-1489)" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISetShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet/id> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> ;
-            sh:description """This IOC specifies the dynamically assigned 5QIs
-including their QoS characteristics, see 3GPP TS 23.501.
-The instance of this IOC shall not be created or modified by the
-MnS consumer except for the instance associated to
-PCFFunction MOI or SMFFunction MOI when the PCF is not deployed.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet/dynamic5QIs> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/Dynamic5QISet> .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristicsShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/id> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description "Identifies the 5QI value." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/fiveQIValue> ],
-        [ sh:description """It indicates the Resource Type of a 5QI, as specified
-in TS 23.501 """ ;
-            sh:in ( "GBR" "NON_GBR" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/resourceType> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description """It indicates the Priority Level of a 5QI, as specified
-in TS 23.501.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/priorityLevel> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
-as specified in TS 23.501 """ ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/packetDelayBudget> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/averagingWindow> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/maximumDataBurstVolume> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> ;
-            sh:description """It indicates the Packet Error Rate of a 5QI,
-as specified in TS 23.501.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics/packetErrorRate> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/FiveQICharacteristics> .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIsShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/id> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description "Identifies the 5QI value." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/fiveQIValue> ],
-        [ sh:description """It indicates the Resource Type of a 5QI, as specified
-in TS 23.501 """ ;
-            sh:in ( "GBR" "NON_GBR" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/resourceType> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description """It indicates the Priority Level of a 5QI, as specified
-in TS 23.501.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/priorityLevel> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description """Indicates the Packet Delay Budget (in unit of 0.5ms)of a 5QI,
-as specified in TS 23.501 """ ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/packetDelayBudget> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/averagingWindow> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/maximumDataBurstVolume> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-configurable5qiset/PacketErrorRate> ;
-            sh:description """It indicates the Packet Error Rate of a 5QI,
-as specified in TS 23.501.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs/packetErrorRate> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset/dynamic5QIs> .
+    owl:versionInfo "revision 2025-03-25 (CR-1489)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-dynamic5qiset" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-dynamic5qiset> .
 

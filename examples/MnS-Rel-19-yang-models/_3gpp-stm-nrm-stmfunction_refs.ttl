@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction> a owl:Ontology ;
     rdfs:label "_3gpp-stm-nrm-stmfunction" ;
     dcterms:description """This IOC represents the STM function defined in 3GPP TS 28.560.
 Copyright 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -13,9 +14,11 @@ TTA, TTC). All rights reserved.""" ;
 Signalling traffic monitoring management""" ;
     dcterms:title "_3gpp-stm-nrm-stmfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-08-07 (CR-0011)" .
+    owl:versionInfo "revision 2025-08-07 (CR-0011)" ;
+    y2r:yangModuleName "_3gpp-stm-nrm-stmfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction> .
 
-<urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface/networkInterfaceInstanceList> nrm:candidate "NetworkInterfaceInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+stm3gpp:NetworkInterface.networkInterfaceInstanceList y2r:candidate "NetworkInterfaceInstance" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix magent3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-mnsagent#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-mnsagent> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-mnsagent> a owl:Ontology ;
     rdfs:label "_3gpp-common-mnsagent" ;
     dcterms:description """Defines MnsAgent IOCs
 Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -23,9 +24,11 @@ Information Service (IS)
 Umbrella Information Model (UIM)""" ;
     dcterms:title "_3gpp-common-mnsagent" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-0271)" .
+    owl:versionInfo "revision 2023-09-18 (CR-0271)" ;
+    y2r:yangModuleName "_3gpp-common-mnsagent" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-mnsagent> .
 
-<urn:3gpp:sa5:_3gpp-common-mnsagent/MnsAgent/systemDN> nrm:candidate "SystemDN" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+magent3gpp:MnsAgent.systemDN y2r:candidate "SystemDN" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

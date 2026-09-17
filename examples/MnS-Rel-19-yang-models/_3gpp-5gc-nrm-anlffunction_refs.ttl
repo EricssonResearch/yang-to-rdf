@@ -1,9 +1,10 @@
+@prefix anlf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-anlffunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-anlffunction> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-anlffunction" ;
     dcterms:description """This IOC represents the AnLF function in 5GC.
 For more information about the AnLF, see 3GPP TS 23.288.
@@ -13,13 +14,15 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-anlffunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-anlffunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/aIMLInferenceFunctionRefList> nrm:candidate "AIMLInferenceFunction" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+anlf3gpp:AnLFFunction.aIMLInferenceFunctionRefList y2r:candidate "AIMLInferenceFunction" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-anlffunction/AnLFFunction/mLModelRefList> nrm:candidate "MLModel" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+anlf3gpp:AnLFFunction.mLModelRefList y2r:candidate "MLModel" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

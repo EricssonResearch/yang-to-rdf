@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix mnsregist3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-mnsregistry#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-mnsregistry> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-common-mnsregistry> a owl:Ontology ;
     rdfs:label "_3gpp-common-mnsregistry" ;
     dcterms:description """Defines the YANG mapping of the MNSRegistry IOC and its
 contained classes that ares part of the Generic Network Resource Model (NRM).
@@ -13,21 +14,23 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.623 Generic Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-common-mnsregistry" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-02 (CR-0586)" .
+    owl:versionInfo "revision 2025-11-02 (CR-0586)" ;
+    y2r:yangModuleName "_3gpp-common-mnsregistry" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-mnsregistry> .
 
-<urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedDataReportingMnSRef> nrm:candidate "SupportedDataReportingMnS" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+mnsregist3gpp:MgmtDataInfo.supportedDataReportingMnSRef y2r:candidate "SupportedDataReportingMnS" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo/supportedDataRequestMnSRef> nrm:candidate "SupportedDataRequestMnS" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+mnsregist3gpp:MgmtDataInfo.supportedDataRequestMnSRef y2r:candidate "SupportedDataRequestMnS" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsInfo/mgmtDataInfoRef> rdfs:range <urn:3gpp:sa5:_3gpp-common-mnsregistry/MgmtDataInfo> ;
-    nrm:confidence "unambiguous" ;
-    nrm:inferredBy "dn-name-suffix" .
+mnsregist3gpp:MnsInfo.mgmtDataInfoRef rdfs:range mnsregist3gpp:MgmtDataInfo ;
+    y2r:confidence "unambiguous" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-common-mnsregistry/MnsScope/objectInstanceList> nrm:candidate "ObjectInstance" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+mnsregist3gpp:MnsScope.objectInstanceList y2r:candidate "ObjectInstance" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

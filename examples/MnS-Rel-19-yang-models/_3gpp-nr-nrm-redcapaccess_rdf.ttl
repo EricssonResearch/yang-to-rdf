@@ -1,17 +1,18 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix redcap3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-redcapaccess#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap> a rdfs:Class ;
+redcap3gpp:CellReselectionRedcap a rdfs:Class ;
     rdfs:label "CellReselectionRedcap" ;
     rdfs:comment """This attribute indicates the configuration parameters
 to allow relaxation of RRM measurement requirements for redcap UE
 cell reselection""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/RedCapAccessCriteria> a rdfs:Class ;
+redcap3gpp:RedCapAccessCriteria a rdfs:Class ;
     rdfs:label "RedCapAccessCriteria" ;
     rdfs:comment """The RedCapAccessCriteria <<IOC>> contains attributes
 to support the controlling of RedCap access in a NR Cell.
@@ -25,7 +26,7 @@ UEs to a NR Cell. This information can be used to decide whether
 RedCap/eRedCap UEs are barred or allowed at the time of new UE
 access attempt in NR cell during applicable RAN procedures.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-redcapaccess> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-redcapaccess" ;
     dcterms:description """Defines the YANG mapping of the NRCellDU Information Object
 Class (IOC) that is part of the NR Network Resource Model (NRM).
@@ -35,47 +36,49 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-redcapaccess" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-07 (CR-1640)" .
+    owl:versionInfo "revision 2025-11-07 (CR-1640)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-redcapaccess" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap/sSearchDeltaPStationary> a rdf:Property ;
+redcap3gpp:CellReselectionRedcap.sSearchDeltaPStationary a rdf:Property ;
     rdfs:label "CellReselectionRedcap.sSearchDeltaPStationary" ;
     rdfs:comment """This specifies the threshold (in dB) on Srxlev variation
 to evaluate stationary criterion for relaxed measurement. It
 corresponds to the SSearchDeltaP-Stationary in TS 38.304 [49].
 Its unit is 1 dB. Where Srxlev is the cell selection received
 signal level value. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap> ;
+    rdfs:domain redcap3gpp:CellReselectionRedcap ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap/sSearchThresholdP2> a rdf:Property ;
+redcap3gpp:CellReselectionRedcap.sSearchThresholdP2 a rdf:Property ;
     rdfs:label "CellReselectionRedcap.sSearchThresholdP2" ;
     rdfs:comment """This specifies the Srxlev threshold (in dB) to evaluate
 not at cell edge criterion for relaxed measurement. It corresponds
 to the SSearchThresholdP2 in TS 38.304 [49]. Its unit is 1 dB.
 Where Srxlev is the cell selection received signal level value.  """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap> ;
+    rdfs:domain redcap3gpp:CellReselectionRedcap ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap/sSearchThresholdQ2> a rdf:Property ;
+redcap3gpp:CellReselectionRedcap.sSearchThresholdQ2 a rdf:Property ;
     rdfs:label "CellReselectionRedcap.sSearchThresholdQ2" ;
     rdfs:comment """This specifies the Squal threshold (in dB) to
 evaluate not at cell edge criterion for relaxed measurement. It
 corresponds to the SSearchThresholdQ2 in TS 38.304 [49]. Its unit
 is 1 dB. Where Srxlev is the cell selection quality level value. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap> ;
+    rdfs:domain redcap3gpp:CellReselectionRedcap ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap/tSearchDeltaPStationary> a rdf:Property ;
+redcap3gpp:CellReselectionRedcap.tSearchDeltaPStationary a rdf:Property ;
     rdfs:label "CellReselectionRedcap.tSearchDeltaPStationary" ;
     rdfs:comment """TThis specifies the time period over which the Srxlev
 variation is evaluated for stationary criterion for relaxed measurement.
 It corresponds to the TSearchDeltaP-Stationary in TS 38.304 [49]. Its
 unit is seconds. Where Srxlev is the cell selection received signal
 level value. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/CellReselectionRedcap> ;
+    rdfs:domain redcap3gpp:CellReselectionRedcap ;
     rdfs:range xsd:unsignedShort .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/RedCapAccessCriteria/criteriaConditionRef> a owl:ObjectProperty ;
+redcap3gpp:RedCapAccessCriteria.criteriaConditionRef a owl:ObjectProperty ;
     rdfs:label "RedCapAccessCriteria.criteriaConditionRef" ;
     rdfs:comment """This specifies the DN of the ConditionMonitor MOI.The
 attribute condition will contain information on the condition to be
@@ -92,20 +95,20 @@ decision whether the RAN node is barred or allowed for
 (e)RedCap UEs.
 The threshold level of performance metrics value which when crossed
 the RAN node is barred or allowed for (e)RedCap UEs""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/RedCapAccessCriteria> ;
-    nrm:isReference true .
+    rdfs:domain redcap3gpp:RedCapAccessCriteria ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/RedCapAccessCriteria/id> a rdf:Property ;
+redcap3gpp:RedCapAccessCriteria.id a rdf:Property ;
     rdfs:label "RedCapAccessCriteria.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/RedCapAccessCriteria> ;
+    rdfs:domain redcap3gpp:RedCapAccessCriteria ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/RedCapAccessCriteria/nRCellDURef> a owl:ObjectProperty ;
+redcap3gpp:RedCapAccessCriteria.nRCellDURef a owl:ObjectProperty ;
     rdfs:label "RedCapAccessCriteria.nRCellDURef" ;
     rdfs:comment "This attribute contains the DN of a NR Cell (NRCellDU) " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-redcapaccess/RedCapAccessCriteria> ;
-    nrm:isReference true .
+    rdfs:domain redcap3gpp:RedCapAccessCriteria ;
+    y2r:isReference true .
 

@@ -1,11 +1,20 @@
+@prefix cpcicf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cpciconfigurationfunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix dracho3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-drachoptimizationfunction#> .
+@prefix meas3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-measurements#> .
+@prefix mf3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-managed-function#> .
+@prefix nrcelldu3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrcelldu#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rrmpolicy3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-rrmpolicy#> .
+@prefix stm3gpp: <https://semantics.ericsson.com/yang/_3gpp-stm-nrm-stmfunction#> .
+@prefix trace3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-trace#> .
+@prefix types3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-yang-types#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> a rdfs:Class ;
+nrcelldu3gpp:File a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File" ;
     rdfs:comment """Represents a file. It is name-contained by 'Files'.
 
@@ -80,7 +89,7 @@ clause 11.6.1.1.1. Note that to receive 'notifyFilePreparationError'
 in that case the notification subscription needs to include these
 objects in its scope.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files> a rdfs:Class ;
+nrcelldu3gpp:Files a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:Files" ;
     rdfs:comment """This IOC represents a collection of files. It can be
 name-contained by 'SubNetwork', 'ManagedElement', 'PerfMetricJob' or
@@ -127,15 +136,15 @@ In addition, the attribute '_linkToFiles' allows for simple
 deployments not relying on notifications for reporting the
 availability of new files, where the MnS consumer polls regularly
 for new files under 'Files'.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> .
+    y2r:nameContains nrcelldu3gpp:File .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> a rdfs:Class ;
+nrcelldu3gpp:ManagedNFService a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService" ;
     rdfs:comment "Represents a Network Function (NF)" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-function/Operation>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    y2r:hasAttribute mf3gpp:Operation,
+        types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> a rdfs:Class ;
+nrcelldu3gpp:NRCellDU a rdfs:Class ;
     rdfs:label "NRCellDU" ;
     rdfs:comment """This IOC represents the part of NR cell information that
 describes the specific resources instances.
@@ -176,22 +185,22 @@ related TAIs broadcast may change with a foot print moving on earth,
 which is predictable, time windows per TAList can be derived and
 configured for NTN cell. These time windows define the specific periods
 during which the satellite coverage will be available for the location.""" ;
-    rdfs:subClassOf nrm:ManagedFunction ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters>,
-        <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-cpciconfigurationfunction/CPCIConfigurationFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-drachoptimizationfunction/DRACHOptimizationFunction>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-rrmpolicy/RRMPolicyRatio> .
+    rdfs:subClassOf y2r:ManagedFunction ;
+    y2r:hasAttribute mf3gpp:PeeParameters,
+        mf3gpp:VnfParameters,
+        types3gpp:NpnId,
+        nrcelldu3gpp:SupportedPerfMetricGroups,
+        nrcelldu3gpp:pLMNInfoList ;
+    y2r:nameContains cpcicf3gpp:CPCIConfigurationFunction,
+        dracho3gpp:DRACHOptimizationFunction,
+        nrcelldu3gpp:ManagedNFService,
+        nrcelldu3gpp:PerfMetricJob,
+        nrcelldu3gpp:StmCtrl,
+        nrcelldu3gpp:ThresholdMonitor,
+        nrcelldu3gpp:TraceJob,
+        rrmpolicy3gpp:RRMPolicyRatio .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> a rdfs:Class ;
+nrcelldu3gpp:PerfMetricJob a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob" ;
     rdfs:comment """This IOC represents a performance metric production job. It
 can be name-contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -274,16 +283,16 @@ by the MnS producer.
 Creation and deletion of PerfMetricJob instances by MnS consumers is
 optional; when not supported, PerfMetricJob instances may be created and
 deleted by the system or be pre-installed.""" ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files> .
+    y2r:nameContains nrcelldu3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl> a rdfs:Class ;
+nrcelldu3gpp:StmCtrl a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:StmCtrl" ;
     rdfs:comment """This IOC represents the STM Control and Configuration
 parameters of a particular STM controlling. It can be
 name-contained by SubNetwork, ManagedElement, or ManagedFunction.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    y2r:hasAttribute stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups> a rdfs:Class ;
+nrcelldu3gpp:SupportedPerfMetricGroups a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -293,7 +302,7 @@ under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor> a rdfs:Class ;
+nrcelldu3gpp:ThresholdMonitor a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ThresholdMonitor" ;
     rdfs:comment """Represents a threshold monitor for performance metrics.
 It can be contained by SubNetwork, ManagedElement, or ManagedFunction.
@@ -367,14 +376,15 @@ monitored are not produced by a PerfMetricJob.
 Creation and deletion of ThresholdMonitor instances by MnS consumers is
 optional; when not supported, ThresholdMonitor instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    y2r:hasAttribute meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> a rdfs:Class ;
+nrcelldu3gpp:TraceJob a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob" ;
     rdfs:comment """A TraceJob instance represents the Trace Control and
 Configuration parameters of a particular Trace Job (see TS 32.421 and
 TS 32.422 for details). It can be name-contained by SubNetwork,
-ManagedElement, ManagedFunction.
+ManagedElement, ManagedFunction. In case of signalling based trace
+activation, it shall be name-contained by the UDMFunction, see TS 28.541.
 
 To activate Trace Jobs, a MnS consumer has to create TraceJob object
 instances on the MnS producer. A MnS consumer can activate a Trace Job
@@ -386,15 +396,14 @@ For the details of Trace Job activation see clauses 4.1.1.1.2 and
 4.1.2.1.2 of TS 32.422.
 
 When a MnS consumer wishes to deactivate a Trace Job, the MnS consumer
-shall delete the corresponding TraceJob instance.
-
-For details of management Trace Job activation/deactivation see clause
-4.1.1.1.2 of TS 32.422.
+shall delete the corresponding TraceJob instance. For details of
+management Trace Job deactivation see clauses 4.1.3.8 to 4.1.3.11 a
+nd 4.1.4.10 to 4.1.4.13  of TS 32.422
 
 The attribute traceReference specifies a globally unique ID and
 identifies a Trace session. One Trace Session may be activated to
 multiple Network Elements. The traceReference is populated by the
-consumer that makes the request for a Trace Session.
+consumer that makes the request for a Trace Session, TS 32.422.
 
 The jobId attribute presents the job identifier of a TraceJob instance.
 The jobId can be used to associate  multiple TraceJob instances.
@@ -410,14 +419,15 @@ which the trace records shall be transferred, while in case of
 stream-based reporting the attribute traceReportingConsumerUri
 specifies the streaming target.
 
-The mandatory attribute traceTarget determines the target object of
-the TraceJob. Dependent on the network element to which the Trace
-Session is activated different types of the target object are possible.
+The attribute traceTarget determines the target object of the
+TraceJob. Dependent on the network element to which the Trace Session
+is activated different types of the target object are possible.
+
 The attribute pLMNTarget defines the PLMN for which sessions shall be
 selected in the Trace Session in case of management based activation
-when several PLMNs are supported in the RAN.The MDT configuration may
-include area scope defined by network slice, in which case
-the attribute pLMNTarget is not applicable.
+when several PLMNs are supported in the RAN.  The MDT configuration
+may include area scope defined by network slice, in which case the
+attribute pLMNTarget is not applicable.
 
 The attribute listOfTraceMetrics allows configuraton of which metrics
 shall be recorded.
@@ -436,16 +446,16 @@ be present. The rrcReportType allows the tracing of RRC reports.
 Creation and deletion of TraceJob instances by MnS consumers is
 optional; when not supported, the TraceJob instances may be created
 and deleted by the system or be pre-installed.""" ;
-    nrm:hasAttribute <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig>,
-        <urn:3gpp:sa5:_3gpp-common-trace/TraceReference>,
-        <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig>,
-        <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNTarget>,
-        <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/traceTarget> ;
-    nrm:nameContains <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files> .
+    y2r:hasAttribute trace3gpp:MdtConfig,
+        trace3gpp:TraceConfig,
+        trace3gpp:TraceReference,
+        trace3gpp:UECoreMeasConfig,
+        types3gpp:NpnId,
+        nrcelldu3gpp:pLMNTarget,
+        nrcelldu3gpp:traceTarget ;
+    y2r:nameContains nrcelldu3gpp:Files .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList> a rdfs:Class ;
+nrcelldu3gpp:pLMNInfoList a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:pLMNInfoList" ;
     rdfs:comment """The PLMNInfoList is a list of PLMNInfo data type. It
 defines which PLMNs that can be served by the NR cell, and which
@@ -454,12 +464,12 @@ in case of network slicing feature is supported. The plMNId of the
 first entry of the list is the PLMNId used to construct the nCGI for
 the NR cell.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNTarget> a rdfs:Class ;
+nrcelldu3gpp:pLMNTarget a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/traceTarget> a rdfs:Class ;
+nrcelldu3gpp:traceTarget a rdfs:Class ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -468,7 +478,7 @@ In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-nrcelldu> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu" ;
     dcterms:description """Defines the YANG mapping of the NRCellDU Information Object
 Class (IOC) that is part of the NR Network Resource Model (NRM).
@@ -478,50 +488,52 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-nrcelldu" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-07 (CR-1640 CR-1643)" .
+    owl:versionInfo "revision 2026-05-19 (CR-1702)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-nrcelldu" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/fileCompression> a rdf:Property ;
+nrcelldu3gpp:File.fileCompression a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.fileCompression" ;
     rdfs:comment """Name of the algorithm used for compressing the file.
 An absent 'fileCompression' parameter indicates the file is
 not compressed. The MnS producer selects the compression algorithm.
 It is encouraged to use popular algorithms such as GZIP.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/fileContent> a rdf:Property ;
+nrcelldu3gpp:File.fileContent a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.fileContent" ;
     rdfs:comment """File content as a Base64 encoded string according to
 RFC 4648 section 4.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:base64Binary ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/fileDataType> a rdf:Property ;
+nrcelldu3gpp:File.fileDataType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.fileDataType" ;
     rdfs:comment "Type of the management data stored in the file." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/fileExpirationTime> a rdf:Property ;
+nrcelldu3gpp:File.fileExpirationTime a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.fileExpirationTime" ;
     rdfs:comment "Date and time after which the file may be deleted." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/fileFormat> a rdf:Property ;
+nrcelldu3gpp:File.fileFormat a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.fileFormat" ;
     rdfs:comment """Identifier of the schema (incl. its version)
 used to produce the file content. If there is no schema for the file
 or it is not available, the fileFormat parameter is absent.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/fileLocation> a rdf:Property ;
+nrcelldu3gpp:File.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.fileLocation" ;
     rdfs:comment """Location of the file incl. the file transfer protocol,
 and the file name.
@@ -535,139 +547,139 @@ Examples:
 'sftp://companyA.com/datastore/fileName.xml',
 'https://companyA.com/ManagedElement=1/Files=1/File=1'
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/fileReadyTime> a rdf:Property ;
+nrcelldu3gpp:File.fileReadyTime a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.fileReadyTime" ;
     rdfs:comment """Date and time, when the file was closed (the last time)
 and made available on the MnS producer.
 The file content will not be changed anymore.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/fileSize> a rdf:Property ;
+nrcelldu3gpp:File.fileSize a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.fileSize" ;
     rdfs:comment "Size of the file" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:unsignedLong ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/id> a rdf:Property ;
+nrcelldu3gpp:File.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/jobId> a rdf:Property ;
+nrcelldu3gpp:File.jobId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
+    rdfs:domain nrcelldu3gpp:File ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File/jobRef> a owl:ObjectProperty ;
+nrcelldu3gpp:File.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:File.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/File> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:File ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files/id> a rdf:Property ;
+nrcelldu3gpp:Files.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:Files.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files> ;
+    rdfs:domain nrcelldu3gpp:Files ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files/jobId> a rdf:Property ;
+nrcelldu3gpp:Files.jobId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:Files.jobId" ;
     rdfs:comment "Identifier of a PerfMetricJob job or a TraceJob." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files> ;
+    rdfs:domain nrcelldu3gpp:Files ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files/jobRef> a owl:ObjectProperty ;
+nrcelldu3gpp:Files.jobRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:Files.jobRef" ;
     rdfs:comment """Object instance of the 'PerfMetricJob' or 'TraceJob'
 that produced the file.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files> ;
-    nrm:isInvariant true ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:Files ;
+    y2r:isInvariant true ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files/numberOfFiles> a rdf:Property ;
+nrcelldu3gpp:Files.numberOfFiles a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:Files.numberOfFiles" ;
     rdfs:comment "Number of files in a file collection." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/Files> ;
+    rdfs:domain nrcelldu3gpp:Files ;
     rdfs:range xsd:unsignedLong .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/administrativeState> a rdf:Property ;
+nrcelldu3gpp:ManagedNFService.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.administrativeState" ;
     rdfs:comment "Permission to use or prohibition against using the instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/id> a rdf:Property ;
+nrcelldu3gpp:ManagedNFService.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/nFServiceType> a rdf:Property ;
+nrcelldu3gpp:ManagedNFService.nFServiceType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.nFServiceType" ;
     rdfs:comment """The type of the managed NF service instance
 The specifc values allowed are described in clause 7.2 of TS 23.501""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/operationalState> a rdf:Property ;
+nrcelldu3gpp:ManagedNFService.operationalState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.operationalState" ;
     rdfs:comment "Describes whether the resource is installed and working" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/operations> a owl:ObjectProperty ;
+nrcelldu3gpp:ManagedNFService.operations a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.operations" ;
     rdfs:comment """Set of operations supported by the managed NF
 service instance""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/Operation> .
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
+    rdfs:range mf3gpp:Operation .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/registrationState> a rdf:Property ;
+nrcelldu3gpp:ManagedNFService.registrationState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.registrationState" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/sAP> a owl:ObjectProperty ;
+nrcelldu3gpp:ManagedNFService.sAP a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.sAP" ;
     rdfs:comment "The service access point of the managed NF service instance" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/SAP> .
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
+    rdfs:range types3gpp:SAP .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/usageState> a rdf:Property ;
+nrcelldu3gpp:ManagedNFService.usageState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.usageState" ;
     rdfs:comment """Describes whether the resource is actively in use at a
 specific instant, and if so, whether or not it has spare
 capacity for additional users.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService/userLabel> a rdf:Property ;
+nrcelldu3gpp:ManagedNFService.userLabel a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ManagedNFService.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ManagedNFService> ;
+    rdfs:domain nrcelldu3gpp:ManagedNFService ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/SupportedPerfMetricGroups> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.SupportedPerfMetricGroups a owl:ObjectProperty ;
     rdfs:label "NRCellDU.SupportedPerfMetricGroups" ;
     rdfs:comment """Captures a group of supported performance metrics and
 associated parameters related to their production and reporting.
@@ -676,149 +688,149 @@ define performanceMetrics for any MOI under the subtree contained
 under that MOI, e.g. SupportedPerfMetricGroup on a ManagedElement
 can specify supported metrics for contained ManagedFunctions
 like a GNBDUFunction.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups> .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    rdfs:range nrcelldu3gpp:SupportedPerfMetricGroups .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/administrativeState> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.administrativeState a rdf:Property ;
     rdfs:label "NRCellDU.administrativeState" ;
     rdfs:comment """Administrative state of the NRCellDU. Indicates the
 permission to use or prohibition against using the cell, imposed
 through the OAM services.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/aggressorSetRef> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.aggressorSetRef a owl:ObjectProperty ;
     rdfs:label "NRCellDU.aggressorSetRef" ;
     rdfs:comment "DN of an aggressor Set (RimRSSet)" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/arfcnDL> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.arfcnDL a rdf:Property ;
     rdfs:label "NRCellDU.arfcnDL" ;
     rdfs:comment """NR Absolute Radio Frequency Channel Number (NR-ARFCN) for
 downlink.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/arfcnSUL> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.arfcnSUL a rdf:Property ;
     rdfs:label "NRCellDU.arfcnSUL" ;
     rdfs:comment """NR Absolute Radio Frequency Channel Number (NR-ARFCN) for
 supplementary uplink.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/arfcnUL> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.arfcnUL a rdf:Property ;
     rdfs:label "NRCellDU.arfcnUL" ;
     rdfs:comment """NR Absolute Radio Frequency Channel Number (NR-ARFCN) for
 uplink.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/bSChannelBwDL> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.bSChannelBwDL a rdf:Property ;
     rdfs:label "NRCellDU.bSChannelBwDL" ;
     rdfs:comment "Base station channel bandwidth for downlink." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/bSChannelBwSUL> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.bSChannelBwSUL a rdf:Property ;
     rdfs:label "NRCellDU.bSChannelBwSUL" ;
     rdfs:comment "Base station channel bandwidth for supplementary uplink." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/bSChannelBwUL> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.bSChannelBwUL a rdf:Property ;
     rdfs:label "NRCellDU.bSChannelBwUL" ;
     rdfs:comment "Base station channel bandwidth for uplink." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/bWPRef> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.bWPRef a owl:ObjectProperty ;
     rdfs:label "NRCellDU.bWPRef" ;
     rdfs:comment "Reference to corresponding BWP instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/bWPSetRef> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.bWPSetRef a owl:ObjectProperty ;
     rdfs:label "NRCellDU.bWPSetRef" ;
     rdfs:comment "Reference to corresponding BWPSet instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/cellLocalId> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.cellLocalId a rdf:Property ;
     rdfs:label "NRCellDU.cellLocalId" ;
     rdfs:comment """Identifies an NR cell of a gNB. Together with the
 corresponding gNB identifier in forms the NR Cell Identity (NCI).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/cellState> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.cellState a rdf:Property ;
     rdfs:label "NRCellDU.cellState" ;
     rdfs:comment """Cell state of the NRCellDU instance. Indicates whether the
 cell is not currently in use (IDLE), or currently in use but not
 configured to carry traffic (INACTIVE), or currently in use and is
 configured to carry traffic (ACTIVE).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/id> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.id a rdf:Property ;
     rdfs:label "NRCellDU.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/nPNIdentityList> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.nPNIdentityList a owl:ObjectProperty ;
     rdfs:label "NRCellDU.nPNIdentityList" ;
     rdfs:comment """It defines which NPNs that can be served by the NR cell,
 and which CAG IDs or NIDs can be supported by the NR cell for
 corresponding PNI-NPN or SNPN in case of the cell is NPN-only cell.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    rdfs:range types3gpp:NpnId .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/nRFrequencyRef> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.nRFrequencyRef a owl:ObjectProperty ;
     rdfs:label "NRCellDU.nRFrequencyRef" ;
     rdfs:comment "Reference to corresponding NRFrequency instance." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/nRPCI> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.nRPCI a rdf:Property ;
     rdfs:label "NRCellDU.nRPCI" ;
     rdfs:comment "The Physical Cell Identity (PCI) of the NR cell." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/nRSectorCarrierRef> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.nRSectorCarrierRef a owl:ObjectProperty ;
     rdfs:label "NRCellDU.nRSectorCarrierRef" ;
     rdfs:comment """This attribute contains the DN of the referenced
 NRSectorCarrier.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/nRTAC> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.nRTAC a rdf:Property ;
     rdfs:label "NRCellDU.nRTAC" ;
     rdfs:comment "The common 5GS Tracking Area Code for the PLMNs." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/nTNTAClist> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.nTNTAClist a rdf:Property ;
     rdfs:label "NRCellDU.nTNTAClist" ;
     rdfs:comment """It is the list of Tracking Area Codes which is only present
 in an NTN cell. If this field is present, network does not configure
 trackingAreaCode, see TS 38.331).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/operationalState> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.operationalState a rdf:Property ;
     rdfs:label "NRCellDU.operationalState" ;
     rdfs:comment """Operational state of the NRCellDU instance. Indicates
 whether the resource is installed and partially or fully operable
 (ENABLED) or the resource is not installed or not operable
 (DISABLED).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/pLMNInfoList> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.pLMNInfoList a owl:ObjectProperty ;
     rdfs:label "NRCellDU.pLMNInfoList" ;
     rdfs:comment """The PLMNInfoList is a list of PLMNInfo data type. It
 defines which PLMNs that can be served by the NR cell, and which
@@ -826,30 +838,30 @@ S-NSSAIs that can be supported by the NR cell for corresponding PLMN
 in case of network slicing feature is supported. The plMNId of the
 first entry of the list is the PLMNId used to construct the nCGI for
 the NR cell.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList> .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    rdfs:range nrcelldu3gpp:pLMNInfoList .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/peeParameterslist> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.peeParameterslist a owl:ObjectProperty ;
     rdfs:label "NRCellDU.peeParameterslist" ;
     rdfs:comment """This attribute contains the parameter list for the control
 and monitoring of power, energy and environmental parameters of
 ManagedFunction instance(s). """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/PeeParameters> .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    rdfs:range mf3gpp:PeeParameters .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/priorityLabel> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.priorityLabel a rdf:Property ;
     rdfs:label "NRCellDU.priorityLabel" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/redCapAccessCriteriaRef> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.redCapAccessCriteriaRef a owl:ObjectProperty ;
     rdfs:label "NRCellDU.redCapAccessCriteriaRef" ;
     rdfs:comment """This attribute contains the DN of the redCapAccessCriteria
 MOI """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/rimRSMonitoringOccasionInterval> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.rimRSMonitoringOccasionInterval a rdf:Property ;
     rdfs:label "NRCellDU.rimRSMonitoringOccasionInterval" ;
     rdfs:comment """Configures the interval between adjacent monitoring
 occasions (M) within the monitoring window, in unit of consecutive
@@ -857,10 +869,10 @@ detection duration.
 M is expected to be prime to N_T, where N_T is given in above
 attribute rimRSMonitoringWindowDuration.
 allowedValues: 1,2..N_T-1""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/rimRSMonitoringOccasionStartingOffset> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.rimRSMonitoringOccasionStartingOffset a rdf:Property ;
     rdfs:label "NRCellDU.rimRSMonitoringOccasionStartingOffset" ;
     rdfs:comment """Configures the start offset of the first monitoring occasions
 within the monitoring window (S_M), in unit of consecutive detection
@@ -874,24 +886,24 @@ allowedValues: 0,1,2..M-1
 where M is the the interval between adjacent monitoring occasions
 within the monitoring window
 (configured by rimRSMonitoringOccasionInterval)""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/rimRSMonitoringStartTime> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.rimRSMonitoringStartTime a rdf:Property ;
     rdfs:label "NRCellDU.rimRSMonitoringStartTime" ;
     rdfs:comment """Configures the UTC time when the gNB attempts to start
 RIM-RS monitoring.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/rimRSMonitoringStopTime> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.rimRSMonitoringStopTime a rdf:Property ;
     rdfs:label "NRCellDU.rimRSMonitoringStopTime" ;
     rdfs:comment """Configures the UTC time when the gNB stops RIM-RS
 monitoring.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/rimRSMonitoringWindowDuration> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.rimRSMonitoringWindowDuration a rdf:Property ;
     rdfs:label "NRCellDU.rimRSMonitoringWindowDuration" ;
     rdfs:comment """Configures a duration of the monitoring window  in which
 gNB monitors the RIM-RS, in unit of P_t, where P_t is the RIM-RS
@@ -939,31 +951,31 @@ N_f # RIM  is the number of candidate frequency resources in the whole
 network (configured by nrofGlobalRIMRSFrequencyCandidates), and
 N_s # 'RIM,1'  is the number of candidate sequences assigned for
 RIM RS-1 (configured by nrofRIMRSSequenceCandidatesofRS1).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/rimRSMonitoringWindowPeriodicity> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.rimRSMonitoringWindowPeriodicity a rdf:Property ;
     rdfs:label "NRCellDU.rimRSMonitoringWindowPeriodicity" ;
     rdfs:comment """Configures the periodicity of the monitoring window, in
 unit of hours""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/rimRSMonitoringWindowStartingOffset> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.rimRSMonitoringWindowStartingOffset a rdf:Property ;
     rdfs:label "NRCellDU.rimRSMonitoringWindowStartingOffset" ;
     rdfs:comment """Configures the start offset of the first monitoring window
 within one day, in unit of hours.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/ssbDuration> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.ssbDuration a rdf:Property ;
     rdfs:label "NRCellDU.ssbDuration" ;
     rdfs:comment """Duration of the measurement window in which to receive
 SS/PBCH blocks.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/ssbFrequency> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.ssbFrequency a rdf:Property ;
     rdfs:label "NRCellDU.ssbFrequency" ;
     rdfs:comment """Indicates cell defining SSB frequency domain position.
 Frequency (in terms of NR-ARFCN) of the cell defining SSB transmission.
@@ -971,33 +983,33 @@ The frequency identifies the position of resource element RE=#0
 (subcarrier #0) of resource block RB#10 of the SS block. The frequency
 must be positioned on the NR global frequency raster, as defined in
 3GPP TS 38.101-1, and within bSChannelBwDL.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/ssbOffset> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.ssbOffset a rdf:Property ;
     rdfs:label "NRCellDU.ssbOffset" ;
     rdfs:comment """Indicates cell defining SSB time domain position. Defined
 as the offset of the measurement window, in which to receive SS/PBCH
 blocks, where allowed values depend on the ssbPeriodicity
 (ssbOffset < ssbPeriodicity).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/ssbPeriodicity> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.ssbPeriodicity a rdf:Property ;
     rdfs:label "NRCellDU.ssbPeriodicity" ;
     rdfs:comment """Indicates cell defined SSB periodicity. The SSB periodicity
 is used for the rate matching purpose.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/ssbSubCarrierSpacing> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.ssbSubCarrierSpacing a rdf:Property ;
     rdfs:label "NRCellDU.ssbSubCarrierSpacing" ;
     rdfs:comment """Subcarrier spacing of SSB. Only the values 15 kHz or 30 kHz
 (< 6 GHz), 120 kHz or 240 kHz (> 6 GHz) are applicable.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:int .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/supportedTraceMetrics> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.supportedTraceMetrics a rdf:Property ;
     rdfs:label "NRCellDU.supportedTraceMetrics" ;
     rdfs:comment """List of trace metrics. When this attribute is contained in
 a managed object it defines the trace metrics supported for this
@@ -1008,59 +1020,71 @@ Trace metrics include trace messages, MDT measurements
 see TS 32.422. Trace metrics are identified with their metric
 identifier. The metric identifier is constructed as defined
 in clause 10 of TS 32.422.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/userLabel> a rdf:Property ;
+nrcelldu3gpp:NRCellDU.uECellBarredAccess a rdf:Property ;
+    rdfs:label "NRCellDU.uECellBarredAccess" ;
+    rdfs:comment """Represents whether the NR Cell bars access to a UE type
+(e.g. RedCap UE).
+If present, a value indicates the UE type is not allowed access to
+the cell.
+allowedValues:
+- REDCAP_1RX and REDCAP_2RX for RedCap UE(s),
+- EREDCAP_1RX and EREDCAP_2RX for eRedCap UE(s).""" ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    rdfs:range xsd:string .
+
+nrcelldu3gpp:NRCellDU.userLabel a rdf:Property ;
     rdfs:label "NRCellDU.userLabel" ;
     rdfs:comment "A user-friendly (and user assignable) name of this object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/victimSetRef> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.victimSetRef a owl:ObjectProperty ;
     rdfs:label "NRCellDU.victimSetRef" ;
     rdfs:comment """DN of a victim Set (RimRSSet)
 Implemented if RIM feature is supported""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU/vnfParametersList> a owl:ObjectProperty ;
+nrcelldu3gpp:NRCellDU.vnfParametersList a owl:ObjectProperty ;
     rdfs:label "NRCellDU.vnfParametersList" ;
     rdfs:comment """This attribute contains the parameter set of the VNF
 instance(s) corresponding to an NE. The presence of this attribute
 indicates that the ManagedFunction represented by the MOI is a
 virtualized function """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/NRCellDU> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-managed-function/VnfParameters> .
+    rdfs:domain nrcelldu3gpp:NRCellDU ;
+    rdfs:range mf3gpp:VnfParameters .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/_linkToFiles> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob._linkToFiles a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob._linkToFiles" ;
     rdfs:comment "Link to a 'Files' object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/administrativeState> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.administrativeState" ;
     rdfs:comment "Enable or disables production of the metrics" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/conditionMonitorRef> a owl:ObjectProperty ;
+nrcelldu3gpp:PerfMetricJob.conditionMonitorRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.conditionMonitorRef" ;
     rdfs:comment "Pointer to a ConditionMonitor object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/fileLocation> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.fileLocation a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.fileLocation" ;
     rdfs:comment """Applicable and must be present when the file-based
 reporting method is supported, and the files are stored on the
 MnS consumer.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/fileReportingPeriod> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.fileReportingPeriod a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.fileReportingPeriod" ;
     rdfs:comment """For the file-based reporting method this is the time
 window during which collected measurements are stored into the same
@@ -1068,51 +1092,51 @@ file before the file is closed and a new file is opened.
 The time-period must be a multiple of the granularityPeriod.
 
 Applicable when the file-based reporting method is supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/granularityPeriod> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.granularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.granularityPeriod" ;
     rdfs:comment """Granularity period used to produce measurements. The value
 must be one of the supported granularity periods for the metric.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/id> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/jobId> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.jobId" ;
     rdfs:comment "Id for a PerfMetricJob job." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/notificationRecipientAddress> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.notificationRecipientAddress a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.notificationRecipientAddress" ;
     rdfs:comment """Must be present when the notification-based reporting
 method is supported, and the the files are available as
 notifications for the MnS consumer to subscribe to.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/objectInstances> a owl:ObjectProperty ;
+nrcelldu3gpp:PerfMetricJob.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/operationalState> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.operationalState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.operationalState" ;
     rdfs:comment "Indicates whether the PerfMetricJob is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/performanceMetrics> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554. Performance metrics can
@@ -1125,85 +1149,85 @@ the bullet e) of the measurement definition.
 
 For KPIs defined in TS 28.554 the name is defined in the KPI
 definitions template as the component designated with e).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/rootObjectInstances> a owl:ObjectProperty ;
+nrcelldu3gpp:PerfMetricJob.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/schedulerRef> a owl:ObjectProperty ;
+nrcelldu3gpp:PerfMetricJob.schedulerRef a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.schedulerRef" ;
     rdfs:comment "Pointer to a Scheduler object." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob/streamTarget> a rdf:Property ;
+nrcelldu3gpp:PerfMetricJob.streamTarget a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:PerfMetricJob.streamTarget" ;
     rdfs:comment """Applicable when stream-based reporting method is
 supported.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/PerfMetricJob> ;
+    rdfs:domain nrcelldu3gpp:PerfMetricJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl/administrativeState> a rdf:Property ;
+nrcelldu3gpp:StmCtrl.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:StmCtrl.administrativeState" ;
     rdfs:comment """It is used by the STM consumer to lock or unlock the
 StmCtrl instance in order to stop or start the signalling traffic
 monitoring""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl> ;
+    rdfs:domain nrcelldu3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl/id> a rdf:Property ;
+nrcelldu3gpp:StmCtrl.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:StmCtrl.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl> ;
+    rdfs:domain nrcelldu3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl/operationalState> a rdf:Property ;
+nrcelldu3gpp:StmCtrl.operationalState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:StmCtrl.operationalState" ;
     rdfs:comment "It is used by STM consumer to report its working state" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl> ;
+    rdfs:domain nrcelldu3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl/reportingNFList> a owl:ObjectProperty ;
+nrcelldu3gpp:StmCtrl.reportingNFList a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:StmCtrl.reportingNFList" ;
     rdfs:comment """List of Network Function Distinguished Name, which
 specifies the target network interface type to be monitored. If
 this parameter is not present or it is empty, then all applicable
 interface types from the target NF shall be monitored""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:StmCtrl ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl/stmTargetUri> a rdf:Property ;
+nrcelldu3gpp:StmCtrl.stmTargetUri a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:StmCtrl.stmTargetUri" ;
     rdfs:comment """It specifies the Uniform Resource Identifier (URI) of the STM
 consumer that shall receive the monitored signalling message copies """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl> ;
+    rdfs:domain nrcelldu3gpp:StmCtrl ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl/targetInterfaceInfoList> a owl:ObjectProperty ;
+nrcelldu3gpp:StmCtrl.targetInterfaceInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:StmCtrl.targetInterfaceInfoList" ;
     rdfs:comment """List of network interface to be monitored. If this
 parameter is not present or it is empty, then all Network Functions
 within the SubNetwork or ManagedElement shall be monitored. This
 parameter shall be omitted if the STM control object is specified
 under a ManagedFunction. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/StmCtrl> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-stm-nrm-stmfunction/NetworkInterface> .
+    rdfs:domain nrcelldu3gpp:StmCtrl ;
+    rdfs:range stm3gpp:NetworkInterface .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups/granularityPeriods> a rdf:Property ;
+nrcelldu3gpp:SupportedPerfMetricGroups.granularityPeriods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:SupportedPerfMetricGroups.granularityPeriods" ;
     rdfs:comment """Granularity periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups> ;
+    rdfs:domain nrcelldu3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups/performanceMetrics> a rdf:Property ;
+nrcelldu3gpp:SupportedPerfMetricGroups.performanceMetrics a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:SupportedPerfMetricGroups.performanceMetrics" ;
     rdfs:comment """Performance metrics include measurements defined in
 TS 28.552 and KPIs defined in TS 28.554.
@@ -1218,91 +1242,91 @@ definitions template as the component designated with e).
 
 For non-3GPP specified measurements the name is defined
 elsewhere.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups> ;
+    rdfs:domain nrcelldu3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups/reportingMethods> a rdf:Property ;
+nrcelldu3gpp:SupportedPerfMetricGroups.reportingMethods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:SupportedPerfMetricGroups.reportingMethods" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups> ;
+    rdfs:domain nrcelldu3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups/reportingPeriods> a rdf:Property ;
+nrcelldu3gpp:SupportedPerfMetricGroups.reportingPeriods a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:SupportedPerfMetricGroups.reportingPeriods" ;
     rdfs:comment """Reporting periods supported for the associated
 measurement types. The period is defined in seconds.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/SupportedPerfMetricGroups> ;
+    rdfs:domain nrcelldu3gpp:SupportedPerfMetricGroups ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor/administrativeState> a rdf:Property ;
+nrcelldu3gpp:ThresholdMonitor.administrativeState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ThresholdMonitor.administrativeState" ;
     rdfs:comment "Enables or disables the ThresholdMonitor." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor> ;
+    rdfs:domain nrcelldu3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor/id> a rdf:Property ;
+nrcelldu3gpp:ThresholdMonitor.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ThresholdMonitor.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor> ;
+    rdfs:domain nrcelldu3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor/monitorGranularityPeriod> a rdf:Property ;
+nrcelldu3gpp:ThresholdMonitor.monitorGranularityPeriod a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ThresholdMonitor.monitorGranularityPeriod" ;
     rdfs:comment """ Granularity period used to monitor measurements for
 threshold crossings. """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor> ;
+    rdfs:domain nrcelldu3gpp:ThresholdMonitor ;
     rdfs:range xsd:unsignedInt .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor/objectInstances> a owl:ObjectProperty ;
+nrcelldu3gpp:ThresholdMonitor.objectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ThresholdMonitor.objectInstances" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor/operationalState> a rdf:Property ;
+nrcelldu3gpp:ThresholdMonitor.operationalState a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ThresholdMonitor.operationalState" ;
     rdfs:comment "Indicates whether the ThresholdMonitor is working." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor> ;
+    rdfs:domain nrcelldu3gpp:ThresholdMonitor ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor/rootObjectInstances> a owl:ObjectProperty ;
+nrcelldu3gpp:ThresholdMonitor.rootObjectInstances a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ThresholdMonitor.rootObjectInstances" ;
     rdfs:comment """Each object instance designates the root of a subtree that
 contains the root object and all descendant objects.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor> ;
-    nrm:isReference true .
+    rdfs:domain nrcelldu3gpp:ThresholdMonitor ;
+    y2r:isReference true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor/thresholdInfoList> a owl:ObjectProperty ;
+nrcelldu3gpp:ThresholdMonitor.thresholdInfoList a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:ThresholdMonitor.thresholdInfoList" ;
     rdfs:comment "List of threshold info." ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/ThresholdMonitor> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-measurements/ThresholdInfo> .
+    rdfs:domain nrcelldu3gpp:ThresholdMonitor ;
+    rdfs:range meas3gpp:ThresholdInfo .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/id> a rdf:Property ;
+nrcelldu3gpp:TraceJob.id a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.id" ;
     rdfs:comment """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/jobId> a rdf:Property ;
+nrcelldu3gpp:TraceJob.jobId a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.jobId" ;
     rdfs:comment "Identifier of a TraceJob" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
     rdfs:range xsd:string ;
-    nrm:isInvariant true .
+    y2r:isInvariant true .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/jobType> a rdf:Property ;
+nrcelldu3gpp:TraceJob.jobType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.jobType" ;
     rdfs:comment """It specifies whether the
 TraceJob represents only MDT, Trace, RLF, RCEF, RRC or 5GC UE
 level measurements job, or a combined job. It also defines the
 MDT mode.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/listOfTraceMetrics> a rdf:Property ;
+nrcelldu3gpp:TraceJob.listOfTraceMetrics a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.listOfTraceMetrics" ;
     rdfs:comment """List of trace metrics identified by name.
 Includes trace messages, MDT measurements (Immediate MDT,
@@ -1312,10 +1336,10 @@ identifier. Trace metric identifier is constructed as defined
 in clause 10 of TS 32.422.
 For non-3GPP specified trace metrics the name is defined elsewhere.
 """ ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/mdtConfig> a owl:ObjectProperty ;
+nrcelldu3gpp:TraceJob.mdtConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.mdtConfig" ;
     rdfs:comment """This <<dataType>> defines the configuration parameters of
 IOC TraceJob which are specific for MDT or any combination of MDT.
@@ -1338,71 +1362,72 @@ and logged MDT, both the attribute immediateMdtConfig and the
 attribute loggedMdtConfig are applicable.
 The optional attribute plmnList allows to specify the PLMNs where
 measurements collection, status indication and log reporting is
-allowed.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/MdtConfig> .
+allowed. For NTN MDT, if the list of plmnList is included, it will
+only log measurements for the cells belonging to the listed PLMNs.""" ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
+    rdfs:range trace3gpp:MdtConfig .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/nPNTarget> a owl:ObjectProperty ;
+nrcelldu3gpp:TraceJob.nPNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.nPNTarget" ;
     rdfs:comment """applicable only for NR and shall be present in case of NPN
 either a PNI-NPN or a SNPN) and for management-based activation when
 several NPNs are supported in the RAN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-yang-types/NpnId> .
+    rdfs:domain nrcelldu3gpp:TraceJob ;
+    rdfs:range types3gpp:NpnId .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/pLMNTarget> a owl:ObjectProperty ;
+nrcelldu3gpp:TraceJob.pLMNTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.pLMNTarget" ;
     rdfs:comment """It specifies which PLMN that the subscriber of the session to
 be recorded uses as selected PLMN.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNTarget> .
+    rdfs:domain nrcelldu3gpp:TraceJob ;
+    rdfs:range nrcelldu3gpp:pLMNTarget .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/rrcReportType> a rdf:Property ;
+nrcelldu3gpp:TraceJob.rrcReportType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.rrcReportType" ;
     rdfs:comment "Specifies the RRC reports requested. " ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/traceCollectionEntityIPAddress> a rdf:Property ;
+nrcelldu3gpp:TraceJob.traceCollectionEntityIPAddress a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.traceCollectionEntityIPAddress" ;
     rdfs:comment """It specifies the address of the Trace Collection Entity
 when the attribute traceReportingFormat is configured for the
 file-based reporting. The attribute is applicable for both Trace and
 MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/traceConfig> a owl:ObjectProperty ;
+nrcelldu3gpp:TraceJob.traceConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.traceConfig" ;
     rdfs:comment "Trace config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceConfig> .
+    rdfs:domain nrcelldu3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceConfig .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/traceReference> a owl:ObjectProperty ;
+nrcelldu3gpp:TraceJob.traceReference a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.traceReference" ;
     rdfs:comment """A globally unique identifier, which uniquely identifies the
 Trace Session that is created by the TraceJob.
 In case of shared network, it is the MCC and MNC of the Participating
 Operator that request the trace session that shall be provided.
 The attribute is applicable for both Trace and MDT.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/TraceReference> .
+    rdfs:domain nrcelldu3gpp:TraceJob ;
+    rdfs:range trace3gpp:TraceReference .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/traceReportingConsumerUri> a rdf:Property ;
+nrcelldu3gpp:TraceJob.traceReportingConsumerUri a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.traceReportingConsumerUri" ;
     rdfs:comment """URI of the Streaming Trace data reporting MnS consumer
 (a.k.a. streaming target).""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/traceReportingFormat> a rdf:Property ;
+nrcelldu3gpp:TraceJob.traceReportingFormat a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.traceReportingFormat" ;
     rdfs:comment """Specifies the trace reporting format - streaming trace
 reporting or file-based trace reporting""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
+    rdfs:domain nrcelldu3gpp:TraceJob ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/traceTarget> a owl:ObjectProperty ;
+nrcelldu3gpp:TraceJob.traceTarget a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.traceTarget" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1410,51 +1435,51 @@ Trace, MDT, and 5GC UE level measurements collection.
 In case of management based Immediate MDT, RLF reporting, RCEF
 reporting or RRC reposring, the traceTarget attribute shall be null
 value.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/traceTarget> .
+    rdfs:domain nrcelldu3gpp:TraceJob ;
+    rdfs:range nrcelldu3gpp:traceTarget .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob/ueCoreMeasConfig> a owl:ObjectProperty ;
+nrcelldu3gpp:TraceJob.ueCoreMeasConfig a owl:ObjectProperty ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:TraceJob.ueCoreMeasConfig" ;
     rdfs:comment "5GC UE level measurements config" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/TraceJob> ;
-    rdfs:range <urn:3gpp:sa5:_3gpp-common-trace/UECoreMeasConfig> .
+    rdfs:domain nrcelldu3gpp:TraceJob ;
+    rdfs:range trace3gpp:UECoreMeasConfig .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList/mcc> a rdf:Property ;
+nrcelldu3gpp:pLMNInfoList.mcc a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:pLMNInfoList.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList> ;
+    rdfs:domain nrcelldu3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList/mnc> a rdf:Property ;
+nrcelldu3gpp:pLMNInfoList.mnc a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:pLMNInfoList.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList> ;
+    rdfs:domain nrcelldu3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList/sd> a rdf:Property ;
+nrcelldu3gpp:pLMNInfoList.sd a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:pLMNInfoList.sd" ;
     rdfs:comment """Slice Differentiator
 If not needed, the value can be set to ff:ff:ff.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList> ;
+    rdfs:domain nrcelldu3gpp:pLMNInfoList ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList/sst> a rdf:Property ;
+nrcelldu3gpp:pLMNInfoList.sst a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:pLMNInfoList.sst" ;
     rdfs:comment """Slice/Service Type.
 Values 0 to 127 belong to standardized SST range and are defined in
 3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNInfoList> ;
+    rdfs:domain nrcelldu3gpp:pLMNInfoList ;
     rdfs:range xsd:unsignedByte .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNTarget/mcc> a rdf:Property ;
+nrcelldu3gpp:pLMNTarget.mcc a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:pLMNTarget.mcc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNTarget> ;
+    rdfs:domain nrcelldu3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNTarget/mnc> a rdf:Property ;
+nrcelldu3gpp:pLMNTarget.mnc a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:pLMNTarget.mnc" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/pLMNTarget> ;
+    rdfs:domain nrcelldu3gpp:pLMNTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/traceTarget/traceTargetType> a rdf:Property ;
+nrcelldu3gpp:traceTarget.traceTargetType a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:traceTarget.traceTargetType" ;
     rdfs:comment """It specifies the target object of the Trace, MDT and
 5GC UE level measurements collection. The attribute is applicable for
@@ -1515,13 +1540,13 @@ the targetIdType shall be able to carry the corresponding
 Measured UE Identifier as defined by the bullet g) of the 5GC UE
 level measurements (see TS 28.558) when the TraceJob is created at
 the subject ManagedEntity.""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/traceTarget> ;
+    rdfs:domain nrcelldu3gpp:traceTarget ;
     rdfs:range xsd:string .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/traceTarget/traceTargetValueList> a rdf:Property ;
+nrcelldu3gpp:traceTarget.traceTargetValueList a rdf:Property ;
     rdfs:label "_3gpp-nr-nrm-nrcelldu:traceTarget.traceTargetValueList" ;
     rdfs:comment """It specifies the ID value(s) of the target object defined
 by traceTargetType""" ;
-    rdfs:domain <urn:3gpp:sa5:_3gpp-nr-nrm-nrcelldu/traceTarget> ;
+    rdfs:domain nrcelldu3gpp:traceTarget ;
     rdfs:range xsd:string .
 

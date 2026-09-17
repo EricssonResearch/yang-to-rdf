@@ -1,10 +1,44 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix mmgmtnode3gpp: <https://semantics.ericsson.com/yang/_3gpp-common-management-node#> .
+@prefix mmgmtnode3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-common-management-node#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-common-management-node> a owl:Ontology ;
+mmgmtnode3gpp-shapes:ManagementNode a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path mmgmtnode3gpp:ManagementNode.id ],
+        [ sh:datatype xsd:string ;
+            sh:description "A user-friendly (and user assignable) name of this object." ;
+            sh:maxCount 1 ;
+            sh:path mmgmtnode3gpp:ManagementNode.userLabel ],
+        [ sh:description """Contains a list of the DN(s) of the related subclasses of
+ManagedElement_ instance(s).""" ;
+            sh:path mmgmtnode3gpp:ManagementNode.managedElements ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path mmgmtnode3gpp:ManagementNode.vendorName ],
+        [ sh:datatype xsd:string ;
+            sh:description "An operator defined state for operator specific usage" ;
+            sh:maxCount 1 ;
+            sh:path mmgmtnode3gpp:ManagementNode.userDefinedState ],
+        [ sh:datatype xsd:string ;
+            sh:description "The physical location of this entity (e.g. an address)." ;
+            sh:maxCount 1 ;
+            sh:path mmgmtnode3gpp:ManagementNode.locationName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path mmgmtnode3gpp:ManagementNode.swVersion ] ;
+    sh:targetClass mmgmtnode3gpp:ManagementNode .
+
+<https://semantics.ericsson.com/yang/_3gpp-common-management-node> a owl:Ontology ;
     rdfs:label "_3gpp-common-management-node" ;
     dcterms:description """Defines ManagementNode IOCs
 Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
@@ -24,36 +58,7 @@ Information Service (IS)
 Umbrella Information Model (UIM)""" ;
     dcterms:title "_3gpp-common-management-node" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-0271)" .
-
-<urn:3gpp:sa5:_3gpp-common-management-node/ManagementNodeShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/id> ],
-        [ sh:datatype xsd:string ;
-            sh:description "A user-friendly (and user assignable) name of this object." ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/userLabel> ],
-        [ sh:description """Contains a list of the DN(s) of the related subclasses of
-ManagedElement_ instance(s).""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/managedElements> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/vendorName> ],
-        [ sh:datatype xsd:string ;
-            sh:description "An operator defined state for operator specific usage" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/userDefinedState> ],
-        [ sh:datatype xsd:string ;
-            sh:description "The physical location of this entity (e.g. an address)." ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/locationName> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode/swVersion> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-common-management-node/ManagementNode> .
+    owl:versionInfo "revision 2023-09-18 (CR-0271)" ;
+    y2r:yangModuleName "_3gpp-common-management-node" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-common-management-node> .
 

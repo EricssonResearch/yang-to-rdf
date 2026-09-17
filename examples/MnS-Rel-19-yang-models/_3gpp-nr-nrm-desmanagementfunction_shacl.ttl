@@ -1,11 +1,130 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix desmf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-desmanagementfunction#> .
+@prefix desmf3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-desmanagementfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction> a owl:Ontology ;
+desmf3gpp-shapes:DESManagementFunction a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.id ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This attribute determines whether the Distributed SON
+energy saving function is enabled or disabled.""" ;
+            sh:maxCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.desSwitch ],
+        [ sh:class desmf3gpp:loadTimeThreshold ;
+            sh:description """This attribute indicates the traffic load threshold and the
+time duration, which are used by distributed inter-RAT ES algorithms to
+allow an original cell to enter the energySaving state.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.interRatEsActivationOriginalCellParameters ],
+        [ sh:class desmf3gpp:loadTimeThreshold ;
+            sh:description """This attribute indicates the traffic load threshold and the
+time duration, which are used by distributed inter-RAT ES algorithms to
+allow an original cell to enter the energySaving state.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.interRatEsActivationCandidateCellParameters ],
+        [ sh:class desmf3gpp:loadTimeThreshold ;
+            sh:description """This attribute indicates the traffic load threshold and the
+time duration which is used by distributed inter-RAT ES algorithms to
+allow an original cell to leave the energySaving state.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.interRatEsDeactivationCandidateCellParameters ],
+        [ sh:description """Specifies the status regarding the energy saving in the
+cell.""" ;
+            sh:in ( "isNotEnergySaving" "isEnergySaving" ) ;
+            sh:maxCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.energySavingState ],
+        [ sh:description """This attribute indicates whether this cell is capable of
+performing the ES probing procedure.""" ;
+            sh:in ( "yes" "no" ) ;
+            sh:maxCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.isProbingCapable ],
+        [ sh:description """This attribute holds a DN list of MLModel ¨
+(See TS 28.105]).""" ;
+            sh:path desmf3gpp:DESManagementFunction.mLModelRefList ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """This attribute holds a DN list of AIMLInferenceFunction
+(See TS 28.105) .""" ;
+            sh:path desmf3gpp:DESManagementFunction.aIMLInferenceFunctionRefList ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:class desmf3gpp:loadTimeThreshold ;
+            sh:description """This attributes is relevant, if the cell acts as an original
+cell. This attribute indicates the traffic load threshold and the time
+duration, which are used by distributed ES algorithms to allow a cell
+to enter the energySaving state.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.intraRatEsActivationOriginalCellLoadParameters ],
+        [ sh:class desmf3gpp:loadTimeThreshold ;
+            sh:description """This attribute indicates the traffic load threshold and the
+time duration, which are used by distributed ES algorithms level to
+allow an 'original' cell to enter the energySaving state.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.intraRatEsActivationCandidateCellsLoadParameters ],
+        [ sh:class desmf3gpp:loadTimeThreshold ;
+            sh:description """This attributes is relevant, if the cell acts as a candidate
+cell.This attribute indicates the traffic load threshold  and the time
+duration which is used by distributed ES algorithms to allow a cell to
+leave the energySaving state.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path desmf3gpp:DESManagementFunction.intraRatEsDeactivationCandidateCellsLoadParameters ],
+        [ sh:class desmf3gpp:EsNotAllowedTimePeriod ;
+            sh:description """This is a list of time periods during which
+inter-RAT energy saving is not allowed""" ;
+            sh:path desmf3gpp:DESManagementFunction.esNotAllowedTimePeriod ] ;
+    sh:targetClass desmf3gpp:DESManagementFunction .
+
+desmf3gpp-shapes:EsNotAllowedTimePeriod a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Start of not allowed time period in UTC time zone.
+If set, the endTime must also be set. If not set, this is
+interpreted as around the clock.""" ;
+            sh:maxCount 1 ;
+            sh:path desmf3gpp:EsNotAllowedTimePeriod.startTime ;
+            sh:pattern "(([01]?[0-9])|(2[0-3])):([0-5][0-9])" ],
+        [ sh:datatype xsd:string ;
+            sh:description """If endTime has a lower value than startTime, it will
+be interpreted as referring to the following day.""" ;
+            sh:maxCount 1 ;
+            sh:path desmf3gpp:EsNotAllowedTimePeriod.endTime ;
+            sh:pattern "(([01]?[0-9])|(2[0-3])):([0-5][0-9])" ],
+        [ sh:description """Specifies that the not allowed periods are only
+applicable to the specified days in UTC timezone. Every day if
+not set.""" ;
+            sh:in ( "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday" ) ;
+            sh:path desmf3gpp:EsNotAllowedTimePeriod.daysOfWeek ] ;
+    sh:targetClass desmf3gpp:EsNotAllowedTimePeriod .
+
+desmf3gpp-shapes:loadTimeThreshold a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:description """This attribute is used by distributed ES algorithms to allow
+a cell to enter the energySaving state.""" ;
+            sh:maxCount 1 ;
+            sh:path desmf3gpp:loadTimeThreshold.threshold ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """The time duration indicates how long the traffic load
+(either for UL or DL) in the cell needs to have been above the
+threshold to wake up one or more original cells which have been
+provided backup coverage by the candidate cell.""" ;
+            sh:maxCount 1 ;
+            sh:path desmf3gpp:loadTimeThreshold.timeDuration ] ;
+    sh:targetClass desmf3gpp:loadTimeThreshold .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-desmanagementfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-desmanagementfunction" ;
     dcterms:description """Defines the YANG mapping of the DESManagementFunction
 Information Object Class (IOC) that is part of the NR Network Resource
@@ -16,121 +135,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-desmanagementfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunctionShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/id> ],
-        [ sh:datatype xsd:boolean ;
-            sh:description """This attribute determines whether the Distributed SON
-energy saving function is enabled or disabled.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/desSwitch> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> ;
-            sh:description """This attribute indicates the traffic load threshold and the
-time duration, which are used by distributed inter-RAT ES algorithms to
-allow an original cell to enter the energySaving state.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/interRatEsActivationOriginalCellParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> ;
-            sh:description """This attribute indicates the traffic load threshold and the
-time duration, which are used by distributed inter-RAT ES algorithms to
-allow an original cell to enter the energySaving state.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/interRatEsActivationCandidateCellParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> ;
-            sh:description """This attribute indicates the traffic load threshold and the
-time duration which is used by distributed inter-RAT ES algorithms to
-allow an original cell to leave the energySaving state.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/interRatEsDeactivationCandidateCellParameters> ],
-        [ sh:description """Specifies the status regarding the energy saving in the
-cell.""" ;
-            sh:in ( "isNotEnergySaving" "isEnergySaving" ) ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/energySavingState> ],
-        [ sh:description """This attribute indicates whether this cell is capable of
-performing the ES probing procedure.""" ;
-            sh:in ( "yes" "no" ) ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/isProbingCapable> ],
-        [ sh:description """This attribute holds a DN list of MLModel ¨
-(See TS 28.105]).""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/mLModelRefList> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:description """This attribute holds a DN list of AIMLInferenceFunction
-(See TS 28.105) .""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/aIMLInferenceFunctionRefList> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> ;
-            sh:description """This attributes is relevant, if the cell acts as an original
-cell. This attribute indicates the traffic load threshold and the time
-duration, which are used by distributed ES algorithms to allow a cell
-to enter the energySaving state.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/intraRatEsActivationOriginalCellLoadParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> ;
-            sh:description """This attribute indicates the traffic load threshold and the
-time duration, which are used by distributed ES algorithms level to
-allow an 'original' cell to enter the energySaving state.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/intraRatEsActivationCandidateCellsLoadParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> ;
-            sh:description """This attributes is relevant, if the cell acts as a candidate
-cell.This attribute indicates the traffic load threshold  and the time
-duration which is used by distributed ES algorithms to allow a cell to
-leave the energySaving state.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/intraRatEsDeactivationCandidateCellsLoadParameters> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod> ;
-            sh:description """This is a list of time periods during which
-inter-RAT energy saving is not allowed""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction/esNotAllowedTimePeriod> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/DESManagementFunction> .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriodShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Start of not allowed time period in UTC time zone.
-If set, the endTime must also be set. If not set, this is
-interpreted as around the clock.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod/startTime> ;
-            sh:pattern "(([01]?[0-9])|(2[0-3])):([0-5][0-9])" ],
-        [ sh:datatype xsd:string ;
-            sh:description """If endTime has a lower value than startTime, it will
-be interpreted as referring to the following day.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod/endTime> ;
-            sh:pattern "(([01]?[0-9])|(2[0-3])):([0-5][0-9])" ],
-        [ sh:description """Specifies that the not allowed periods are only
-applicable to the specified days in UTC timezone. Every day if
-not set.""" ;
-            sh:in ( "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday" ) ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod/daysOfWeek> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/EsNotAllowedTimePeriod> .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThresholdShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:unsignedInt ;
-            sh:description """This attribute is used by distributed ES algorithms to allow
-a cell to enter the energySaving state.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold/threshold> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description """The time duration indicates how long the traffic load
-(either for UL or DL) in the cell needs to have been above the
-threshold to wake up one or more original cells which have been
-provided backup coverage by the candidate cell.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold/timeDuration> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction/loadTimeThreshold> .
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-desmanagementfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-desmanagementfunction> .
 

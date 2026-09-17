@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix ntn3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-ntnfunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-ntnfunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-ntnfunction" ;
     dcterms:description """Implements support the C-SON function of Capacity and
 Coverage optimization .
@@ -13,9 +14,11 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-nr-nrm-ntnfunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2026-02-02 (CR-1682 CR-1683)" .
+    owl:versionInfo "revision 2026-05-07 (CR-1717)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-ntnfunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ntnfunction/NTNEntityConfig/nTNConfEntity> nrm:candidate "NTNConfEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ntn3gpp:NTNEntityConfig.nTNConfEntity y2r:candidate "NTNConfEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 

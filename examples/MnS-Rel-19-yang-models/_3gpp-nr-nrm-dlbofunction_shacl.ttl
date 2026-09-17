@@ -1,10 +1,53 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dlbof3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dlbofunction#> .
+@prefix dlbof3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-dlbofunction#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction> a owl:Ontology ;
+dlbof3gpp-shapes:DLBOFunction a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path dlbof3gpp:DLBOFunction.id ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """This attribute determines whether the LBO function is
+enabled or disabled.""" ;
+            sh:maxCount 1 ;
+            sh:path dlbof3gpp:DLBOFunction.dlboControl ],
+        [ sh:datatype xsd:int ;
+            sh:description """This parameter defines the maximum allowed lower
+deviation of the Handover Trigger, from the default point of
+operation.""" ;
+            sh:maxCount 1 ;
+            sh:path dlbof3gpp:DLBOFunction.maximumDeviationHoTriggerLow ],
+        [ sh:datatype xsd:int ;
+            sh:description """This parameter defines the maximum allowed upper
+deviation of the Handover Trigger, from the default point of
+operation.""" ;
+            sh:maxCount 1 ;
+            sh:path dlbof3gpp:DLBOFunction.maximumDeviationHoTriggerHigh ],
+        [ sh:datatype xsd:int ;
+            sh:description """This parameter defines the minimum allowed time interval
+between two Handover Trigger change performed by MRO. This is used
+to control the stability and convergence of the algorithm.""" ;
+            sh:maxCount 1 ;
+            sh:path dlbof3gpp:DLBOFunction.minimumTimeBetweenHoTriggerChange ],
+        [ sh:description """This attribute holds a DN list of MLModel ¨
+(See TS 28.105).""" ;
+            sh:path dlbof3gpp:DLBOFunction.mLModelRefList ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
+        [ sh:description """This attribute holds a DN list of AIMLInferenceFunction
+(See TS 28.105) .""" ;
+            sh:path dlbof3gpp:DLBOFunction.aIMLInferenceFunctionRefList ;
+            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
+    sh:targetClass dlbof3gpp:DLBOFunction .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-dlbofunction> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-dlbofunction" ;
     dcterms:description """Defines the YANG mapping of the DLBOFunction
 Information Object Class (IOC) that is part of the NR Network Resource
@@ -15,45 +58,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-dlbofunction" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2024-08-07 (CR-1331)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunctionShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/id> ],
-        [ sh:datatype xsd:boolean ;
-            sh:description """This attribute determines whether the LBO function is
-enabled or disabled.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/dlboControl> ],
-        [ sh:datatype xsd:int ;
-            sh:description """This parameter defines the maximum allowed lower
-deviation of the Handover Trigger, from the default point of
-operation.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/maximumDeviationHoTriggerLow> ],
-        [ sh:datatype xsd:int ;
-            sh:description """This parameter defines the maximum allowed upper
-deviation of the Handover Trigger, from the default point of
-operation.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/maximumDeviationHoTriggerHigh> ],
-        [ sh:datatype xsd:int ;
-            sh:description """This parameter defines the minimum allowed time interval
-between two Handover Trigger change performed by MRO. This is used
-to control the stability and convergence of the algorithm.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/minimumTimeBetweenHoTriggerChange> ],
-        [ sh:description """This attribute holds a DN list of MLModel ¨
-(See TS 28.105).""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/mLModelRefList> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ],
-        [ sh:description """This attribute holds a DN list of AIMLInferenceFunction
-(See TS 28.105) .""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction/aIMLInferenceFunctionRefList> ;
-            sh:pattern "[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?(,[A-Z][^,=+<>#;\\\\\"\\r\\n*.]*=([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2}))(([^,=+<>#;\\\\\"\\r\\n*]|(\\\\[a-fA-F0-9]{2}))*([^,=+<>#;\\\\\"\\r\\n* ]|(\\\\[a-fA-F0-9]{2})))?)*" ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction/DLBOFunction> .
+    owl:versionInfo "revision 2024-08-07 (CR-1331)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-dlbofunction" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-dlbofunction> .
 

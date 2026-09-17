@@ -1,11 +1,113 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gtpUPathQMCtrl3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl#> .
+@prefix gtpUPathQMCtrl3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl> a owl:Ontology ;
+gtpUPathQMCtrl3gpp-shapes:GtpUPathQoSMonitoringControl a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Key leaf (namingAttribute) for a class/list.
+Should be used as a key leaf for lists representing
+stage 2 classes.""" ;
+            sh:maxCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.id ],
+        [ sh:description "The state of GTP-U path QoS monitoring." ;
+            sh:in ( "ENABLED" "DISABLED" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.gtpUPathQoSMonitoringState ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """The DSCPs for which the GTP-U path QoS monitoring is to be
+performed.""" ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.monitoredDSCPs ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates whether the event triggered GTP-U path QoS
+monitoring reporting based on thresholds is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.isEventTriggeredGtpUPathMonitoringSupported ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates whether the periodic GTP-U path QoS monitoring
+reporting is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.isPeriodicGtpUMonitoringSupported ],
+        [ sh:datatype xsd:boolean ;
+            sh:description """It indicates whether the immediate GTP-U path QoS monitoring
+reporting is supported.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.isImmediateGtpUMonitoringSupported ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the minimum waiting time (in seconds) between
+two consecutive reports for event triggered GTP-U path QoS monitoring
+reporting.""" ;
+            sh:maxCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.gtpUPathMinimumWaitTime ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:description """It specifies the period (in seconds) for reporting the packet
+delay for GTP-U path QoS monitoring.""" ;
+            sh:maxCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.gtpUPathMeasurementPeriod ],
+        [ sh:class gtpUPathQMCtrl3gpp:gtpUPathMonitoredSNSSAIs ;
+            sh:description """The S-NSSAIs for which the the GTP-U path QoS monitoring is
+to be performed.""" ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.gtpUPathMonitoredSNSSAIs ],
+        [ sh:class gtpUPathQMCtrl3gpp:gtpUPathDelayThresholds ;
+            sh:description """It specifies the thresholds for reporting the packet delay
+for the GTO-U path QoS monitoring.""" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl.gtpUPathDelayThresholds ] ;
+    sh:targetClass gtpUPathQMCtrl3gpp:GtpUPathQoSMonitoringControl .
+
+gtpUPathQMCtrl3gpp-shapes:gtpUPathDelayThresholds a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:gtpUPathDelayThresholds.n3AveragePacketDelayThreshold ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:gtpUPathDelayThresholds.n3MinPacketDelayThreshold ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:gtpUPathDelayThresholds.n3MaxPacketDelayThreshold ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:gtpUPathDelayThresholds.n9AveragePacketDelayThreshold ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:gtpUPathDelayThresholds.n9MinPacketDelayThreshold ],
+        [ sh:datatype xsd:unsignedInt ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:gtpUPathDelayThresholds.n9MaxPacketDelayThreshold ] ;
+    sh:targetClass gtpUPathQMCtrl3gpp:gtpUPathDelayThresholds .
+
+gtpUPathQMCtrl3gpp-shapes:gtpUPathMonitoredSNSSAIs a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description """Slice Differentiator
+If not needed, the value can be set to ff:ff:ff.""" ;
+            sh:maxCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:gtpUPathMonitoredSNSSAIs.sd ;
+            sh:pattern "([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?" ],
+        [ sh:datatype xsd:unsignedByte ;
+            sh:description """Slice/Service Type.
+Values 0 to 127 belong to standardized SST range and are defined in
+3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
+            sh:maxCount 1 ;
+            sh:path gtpUPathQMCtrl3gpp:gtpUPathMonitoredSNSSAIs.sst ] ;
+    sh:targetClass gtpUPathQMCtrl3gpp:gtpUPathMonitoredSNSSAIs .
+
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl> a owl:Ontology ;
     rdfs:label "_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl" ;
     dcterms:description """This IOC represents the capabilities and properties for control
 of GTP-U path QoS monitoring defined in 3GPP TS 23.501.
@@ -15,104 +117,7 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541" ;
     dcterms:title "_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControlShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Key leaf (namingAttribute) for a class/list.
-Should be used as a key leaf for lists representing
-stage 2 classes.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/id> ],
-        [ sh:description "The state of GTP-U path QoS monitoring." ;
-            sh:in ( "ENABLED" "DISABLED" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathQoSMonitoringState> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description """The DSCPs for which the GTP-U path QoS monitoring is to be
-performed.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/monitoredDSCPs> ],
-        [ sh:datatype xsd:boolean ;
-            sh:description """It indicates whether the event triggered GTP-U path QoS
-monitoring reporting based on thresholds is supported.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/isEventTriggeredGtpUPathMonitoringSupported> ],
-        [ sh:datatype xsd:boolean ;
-            sh:description """It indicates whether the periodic GTP-U path QoS monitoring
-reporting is supported.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/isPeriodicGtpUMonitoringSupported> ],
-        [ sh:datatype xsd:boolean ;
-            sh:description """It indicates whether the immediate GTP-U path QoS monitoring
-reporting is supported.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/isImmediateGtpUMonitoringSupported> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description """It specifies the minimum waiting time (in seconds) between
-two consecutive reports for event triggered GTP-U path QoS monitoring
-reporting.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathMinimumWaitTime> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:description """It specifies the period (in seconds) for reporting the packet
-delay for GTP-U path QoS monitoring.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathMeasurementPeriod> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs> ;
-            sh:description """The S-NSSAIs for which the the GTP-U path QoS monitoring is
-to be performed.""" ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs> ],
-        [ sh:class <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> ;
-            sh:description """It specifies the thresholds for reporting the packet delay
-for the GTO-U path QoS monitoring.""" ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/GtpUPathQoSMonitoringControl> .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholdsShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n3AveragePacketDelayThreshold> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n3MinPacketDelayThreshold> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n3MaxPacketDelayThreshold> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n9AveragePacketDelayThreshold> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n9MinPacketDelayThreshold> ],
-        [ sh:datatype xsd:unsignedInt ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds/n9MaxPacketDelayThreshold> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathDelayThresholds> .
-
-<urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIsShape> a sh:NodeShape ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description """Slice Differentiator
-If not needed, the value can be set to ff:ff:ff.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs/sd> ;
-            sh:pattern "([0-9a-fA-F]{2}(:[0-9a-fA-F]{2})*)?" ],
-        [ sh:datatype xsd:unsignedByte ;
-            sh:description """Slice/Service Type.
-Values 0 to 127 belong to standardized SST range and are defined in
-3GPP TS 23.501. Values 128 to 255 belong to operator-specific range.""" ;
-            sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs/sst> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl/gtpUPathMonitoredSNSSAIs> .
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-5gc-nrm-GtpUPathQoSMonitoringControl> .
 

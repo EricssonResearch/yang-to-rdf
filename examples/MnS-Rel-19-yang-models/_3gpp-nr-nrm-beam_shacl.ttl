@@ -1,38 +1,29 @@
+@prefix beam3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-beam#> .
+@prefix beam3gpp-shapes: <https://semantics.ericsson.com/shapes/_3gpp-nr-nrm-beam#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-beam> a owl:Ontology ;
-    rdfs:label "_3gpp-nr-nrm-beam" ;
-    dcterms:description """Defines the YANG mapping of the Beam Information
-Object Class (IOC) that is part of the NR Network Resource Model (NRM).
-Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-TTA, TTC). All rights reserved.""" ;
-    dcterms:publisher "3GPP SA5" ;
-    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
-    dcterms:title "_3gpp-nr-nrm-beam" ;
-    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2023-09-18 (CR-1043)" .
-
-<urn:3gpp:sa5:_3gpp-nr-nrm-beam/BeamShape> a sh:NodeShape ;
+beam3gpp-shapes:Beam a sh:NodeShape ;
     sh:property [ sh:datatype xsd:string ;
             sh:description """Key leaf (namingAttribute) for a class/list.
 Should be used as a key leaf for lists representing
 stage 2 classes.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/id> ],
+            sh:path beam3gpp:Beam.id ],
         [ sh:datatype xsd:int ;
             sh:description "Index of the beam. " ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamIndex> ],
+            sh:path beam3gpp:Beam.beamIndex ],
         [ sh:description "The type of the beam. " ;
             sh:in ( "SSB-BEAM" ) ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamType> ],
+            sh:path beam3gpp:Beam.beamType ],
         [ sh:datatype xsd:int ;
             sh:description """The azimuth of a beam transmission, which means the
 horizontal beamforming pointing angle (beam peak direction) in the
@@ -42,7 +33,7 @@ of the beam relative to the reference plane. Zero degree implies
 explicit antenna bearing (boresight). Positive angle implies clockwise
 from the antenna bearing.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamAzimuth> ],
+            sh:path beam3gpp:Beam.beamAzimuth ],
         [ sh:datatype xsd:int ;
             sh:description """The tilt of a beam transmission, which means the vertical
 beamforming pointing angle (beam peak direction) in the Theta-axis in
@@ -51,18 +42,32 @@ The pointing angle is the direction equal to the geometric centre of
 the half-power contour of the beam relative to the reference plane.
 Positive value implies downtilt.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamTilt> ],
+            sh:path beam3gpp:Beam.beamTilt ],
         [ sh:datatype xsd:int ;
             sh:description """ The Horizontal beamWidth of a beam transmission, which
 means the horizontal beamforming half-power (3dB down) beamwidth in the
 Phi-axis in 1/10th degree resolution.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamHorizWidth> ],
+            sh:path beam3gpp:Beam.beamHorizWidth ],
         [ sh:datatype xsd:int ;
             sh:description """ The Vertical beamWidth of a beam transmission, which means
 the vertical beamforming half-power (3dB down) beamwidth in the
 Theta-axis in 1/10th degree resolution.""" ;
             sh:maxCount 1 ;
-            sh:path <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam/beamVertWidth> ] ;
-    sh:targetClass <urn:3gpp:sa5:_3gpp-nr-nrm-beam/Beam> .
+            sh:path beam3gpp:Beam.beamVertWidth ] ;
+    sh:targetClass beam3gpp:Beam .
+
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-beam> a owl:Ontology ;
+    rdfs:label "_3gpp-nr-nrm-beam" ;
+    dcterms:description """Defines the YANG mapping of the Beam Information
+Object Class (IOC) that is part of the NR Network Resource Model (NRM).
+Copyright 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+TTA, TTC). All rights reserved.""" ;
+    dcterms:publisher "3GPP SA5" ;
+    dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
+    dcterms:title "_3gpp-nr-nrm-beam" ;
+    rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
+    owl:versionInfo "revision 2023-09-18 (CR-1043)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-beam" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-beam> .
 

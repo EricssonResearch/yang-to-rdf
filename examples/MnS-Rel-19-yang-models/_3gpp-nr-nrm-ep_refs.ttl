@@ -1,9 +1,10 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix nrm: <https://3gpp.org/nrm/vocab#> .
+@prefix ep3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-ep#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix y2r: <https://semantics.ericsson.com/vocab#> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-nr-nrm-ep> a owl:Ontology ;
     rdfs:label "_3gpp-nr-nrm-ep" ;
     dcterms:description """Defines the YANG mapping of the NR related endpoint
 Information Object Classes (IOCs) that are part of the NR Network
@@ -14,49 +15,51 @@ TTA, TTC). All rights reserved.""" ;
     dcterms:source "3GPP TS 28.541 5G Network Resource Model (NRM)" ;
     dcterms:title "_3gpp-nr-nrm-ep" ;
     rdfs:seeAlso "https://www.3gpp.org/DynaReport/TSG-WG--S5--officials.htm?Itemid=464" ;
-    owl:versionInfo "revision 2025-11-07 (CR-1640 CR-1643)" .
+    owl:versionInfo "revision 2025-11-07 (CR-1640 CR-1643)" ;
+    y2r:yangModuleName "_3gpp-nr-nrm-ep" ;
+    y2r:yangNamespace <urn:3gpp:sa5:_3gpp-nr-nrm-ep> .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_E1/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_E1.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1C/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_F1C.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/epTransportRef> nrm:candidate "EpTransport" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_F1U.epTransportRef y2r:candidate "EpTransport" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_F1U/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_F1U.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgC/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_NgC.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_NgU/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_NgU.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_S1U/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_S1U.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2C/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_X2C.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_X2U/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_X2U.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnC/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_XnC.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
-<urn:3gpp:sa5:_3gpp-nr-nrm-ep/EP_XnU/farEndEntity> nrm:candidate "FarEndEntity" ;
-    nrm:confidence "unresolved" ;
-    nrm:inferredBy "dn-name-suffix" .
+ep3gpp:EP_XnU.farEndEntity y2r:candidate "FarEndEntity" ;
+    y2r:confidence "unresolved" ;
+    y2r:inferredBy "dn-name-suffix" .
 
