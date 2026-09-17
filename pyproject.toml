@@ -39,6 +39,14 @@ packages = ["yang_to_rdf"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# `slow` marks tests that convert the FULL 120-module set through a subprocess
+# (~35s each). Everything else runs against the ~8-module tiny set or the
+# session-scoped parsed model. Fast loop while developing:
+#     uv run pytest -m "not slow"
+# Full suite at task boundaries and before any commit claiming completion.
+markers = [
+    "slow: converts the full 3GPP module set; excluded by -m 'not slow'",
+]
 
 [tool.ruff]
 line-length = 100

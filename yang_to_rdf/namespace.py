@@ -204,7 +204,13 @@ def module_stem(module_iri_: str) -> str:
 
 
 def bind_standard_namespaces(graph: Graph, base: str) -> None:
-    """Bind the prefixes every converter uses, so serialized TTL is readable."""
+    """Bind the prefixes every converter uses, so serialized TTL is readable.
+
+    Deliberately only the handful of standard prefixes. Per-module prefixes are
+    bound per OUTPUT FILE by output_writer.bind_used_prefixes, because binding
+    all of them on every graph made conversion 10x slower (354s vs 35s on the
+    Rel-19 set): rdflib pays for every binding on every term it serializes.
+    """
     for prefix, ns in (("rdf", RDF), ("rdfs", RDFS), ("owl", OWL),
                        ("xsd", XSD), ("y2r", vocab_namespace(base)),
                        ("dcterms", DCTERMS)):

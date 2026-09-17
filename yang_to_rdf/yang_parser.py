@@ -85,6 +85,10 @@ class ModuleMeta:
     contact: str = ""
     description: str = ""
     reference: str = ""
+    # The module's own `prefix` statement (RFC 7950 §7.1.4). Used to bind a
+    # readable Turtle prefix rather than inventing one. Measured on the 3GPP
+    # Rel-19 set: 118 modules, 118 distinct prefixes, all NCName-legal.
+    prefix: str = ""
 
 
 @dataclass
@@ -427,6 +431,7 @@ class _Parser:
                 contact=_stmt_arg(m, "contact"),
                 description=_desc(m),
                 reference=_stmt_arg(m, "reference"),
+                prefix=_stmt_arg(m, "prefix"),
             )
 
             for td in m.search("typedef"):

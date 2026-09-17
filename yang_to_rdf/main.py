@@ -9,10 +9,12 @@ from rdflib import Graph
 from yang_to_rdf.input_handler import collect_yang_files, fetch_forge_release
 from yang_to_rdf.namespace import DEFAULT_BASE_IRI, normalize_base_iri
 from yang_to_rdf.output_writer import (
+    bind_used_prefixes,
     module_prefix_map,
     module_stem,
     split_graph,
     stamp_versions,
+    turtle_prefixes,
 )
 from yang_to_rdf.rdf_converter import YangToRDFConverter
 from yang_to_rdf.reference_layer import ReferenceLayerBuilder
@@ -111,8 +113,10 @@ def main():
         # One merged file per layer.
         stem = Path(args.input[0]).stem
         titles = {"rdf": "RDF TBox", "shacl": "SHACL shapes", "refs": "Reference layer"}
+        prefixes = turtle_prefixes(model)
         for layer_name, g in layers:
             stamp_versions(g, model, release_label=args.release, aggregate=True)
+            bind_used_prefixes(g, prefixes)
             path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
             g.serialize(destination=path, format="turtle")
             print(f"{titles[layer_name]} -> {path} ({len(g)} triples)")
@@ -122,6 +126,7 @@ def main():
         file_count = 0
         module_count = 0
         prefix_map = module_prefix_map(args.base_iri, model.module_iris)
+        prefixes = turtle_prefixes(model)
         for layer_name, layer_graph in layers:
             mods, leftover = split_graph(layer_graph, prefix_map, args.base_iri)
             # Accumulate leftovers into shared index (carry prefixes for readable ttl)
@@ -131,6 +136,9 @@ def main():
                 index.add(t)
             for module_iri_, mg in sorted(mods.items()):  # sorted → deterministic
                 stamp_versions(mg, model)
+                # Bind only this module's own + referenced prefixes: binding all
+                # of them made conversion 10x slower. See bind_used_prefixes.
+                bind_used_prefixes(mg, prefixes)
                 stem = module_stem(module_iri_)
                 path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
                 mg.serialize(destination=path, format="turtle")
@@ -138,6 +146,7 @@ def main():
             module_count = max(module_count, len(mods))
 
         stamp_versions(index, model, release_label=args.release, aggregate=True)
+        bind_used_prefixes(index, prefixes)
         index_path = os.path.join(args.output, "index.ttl")
         index.serialize(destination=index_path, format="turtle")
         file_count += 1
