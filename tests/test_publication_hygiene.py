@@ -42,12 +42,40 @@ HISTORICAL = ("docs/superpowers/", "CHANGELOG.md", "tests/")
 SKIP_SUFFIXES = {".ttl", ".zip", ".docx", ".lock", ".png", ".pdf"}
 
 
+# Directories that are never part of the shipped repository.
+SKIP_DIRS = {".git", ".venv", "__pycache__", ".pytest_cache", ".ruff_cache",
+             ".mypy_cache", "node_modules", "dist", "output", "public",
+             ".superpowers"}
+
+
+def _scan_source() -> tuple[list[Path], str]:
+    """Files to scan, plus which mode produced them.
+
+    Prefers `git ls-files`. Falls back to a filesystem walk when git is
+    unavailable -- which is the case inside the Docker image, since .dockerignore
+    excludes .git. The fallback exists because these tests previously ERRORED in
+    the container with `git ls-files ... exit status 128`, and a hygiene check that
+    cannot run in CI is worse than one that fails: it is silent.
+
+    It must never SKIP. `test_the_scan_actually_covers_the_repo` asserts the
+    resulting file set is real in either mode.
+    """
+    r = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True)
+    if r.returncode == 0 and r.stdout.split():
+        return ([ROOT / x for x in r.stdout.split()], "git")
+    files = []
+    for p in ROOT.rglob("*"):
+        if any(part in SKIP_DIRS for part in p.relative_to(ROOT).parts):
+            continue
+        if p.is_file():
+            files.append(p)
+    return (files, "walk")
+
+
 def _tracked() -> list[Path]:
-    out = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True,
-                         text=True, check=True).stdout.split()
-    assert out, "git ls-files returned nothing -- this check did not run"
-    return [ROOT / r for r in out
-            if (ROOT / r).is_file() and (ROOT / r).suffix not in SKIP_SUFFIXES]
+    files, mode = _scan_source()
+    assert files, f"the {mode} scan found no files -- this check did not run"
+    return [p for p in files if p.is_file() and p.suffix not in SKIP_SUFFIXES]
 
 
 def _live(paths: list[Path]) -> list[Path]:
@@ -68,6 +96,13 @@ def _hits(needle: str, paths: list[Path]) -> list[str]:
             if needle in line:
                 out.append(f"{p.relative_to(ROOT)}:{i}")
     return out
+
+
+def test_the_scan_reports_which_mode_it_used():
+    """Both modes must yield a real file set; neither may quietly yield nothing."""
+    files, mode = _scan_source()
+    assert mode in ("git", "walk")
+    assert len(files) > 20, f"{mode} scan found only {len(files)} files"
 
 
 def test_the_scan_actually_covers_the_repo():
