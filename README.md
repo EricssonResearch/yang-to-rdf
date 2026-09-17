@@ -4,21 +4,53 @@ Convert YANG modules to RDF TBox vocabularies and SHACL validation shapes.
 
 Designed for 3GPP NRM (TS 28.541) YANG modules but applicable to any YANG schema.
 
-📖 **[Browse the generated ontology documentation](https://gitlabpages-central.internal.ericsson.com/yang-to-rdf-c22bc3)** (GitLab Pages, rebuilt from the latest Rel-19 on every push to `main`).
-
 A committed, browsable example of the generated output for the 3GPP SA5 MnS
 Release-19 set is in [`examples/`](examples/) — you can inspect the vocabulary
-without running the tool. The source YANG modules are **not** redistributed here
-(see below for how to obtain them).
+without running the tool. It is pinned to an immutable upstream tag and
+**reproduces byte-for-byte**; see
+[its README](examples/MnS-Rel-19-yang-models/README.md). The source YANG modules
+are **not** redistributed here (see below for how to obtain them).
 
 ## Install
 
-Requires Python ≥ 3.10 and [uv](https://docs.astral.sh/uv/) (`uv` provisions the
-right Python and dependencies from the lockfile):
+Requires Python ≥ 3.10 and [uv](https://docs.astral.sh/uv/), which provisions the
+right Python and dependencies from the lockfile:
 
 ```bash
-uv sync            # from a clone
+git clone https://github.com/EricssonResearch/yang-to-rdf.git
+cd yang-to-rdf
+uv sync --locked
 ```
+
+The [`Dockerfile`](Dockerfile) runs **exactly these commands** from a clean
+`python:3.12-slim` base, and a test asserts that correspondence, so these
+instructions cannot go stale. The container substitutes `COPY` for the
+`git clone` line — that is the only difference.
+
+## Verifying that it all reproduces
+
+One command builds a clean image and runs every check: install from the lockfile,
+the unit suite, a wheel build installed into a fresh virtualenv, conversion of the
+pinned upstream tag, the IRI gates, and a byte-for-byte diff against
+[`examples/`](examples/).
+
+```bash
+docker build -t yang-to-rdf .
+docker run --rm -v "$PWD/examples:/yang-to-rdf/examples:ro" yang-to-rdf
+```
+
+`examples/` is excluded from the build context to keep the image small, hence the
+read-only mount for the reproducibility stage.
+
+Without access to the 3GPP forge, the stages that need it **fail** rather than
+skip. To run only the offline stages, ask for it explicitly — the summary then
+reports `INCOMPLETE` rather than success:
+
+```bash
+docker run --rm yang-to-rdf --offline
+```
+
+The same entry point works on a host checkout: `uv run python -m scripts.verify`.
 
 ## Getting the YANG modules
 

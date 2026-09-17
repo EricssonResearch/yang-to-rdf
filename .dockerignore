@@ -1,0 +1,20 @@
+.git
+.venv
+.pytest_cache
+.ruff_cache
+.mypy_cache
+__pycache__
+*.pyc
+output
+dist
+public
+# The committed reference output (~10 MB). Excluded to keep the image small;
+# mount it read-only to run the reproducibility stage:
+#   docker run --rm -v "$PWD/examples:/yang-to-rdf/examples:ro" yang-to-rdf
+# Without the mount that stage FAILS with an explanatory message.
+examples
+# The 3GPP YANG dataset is not redistributed; the container fetches the pinned
+# tag from the forge instead.
+*.zip
+.superpowers
+docs/idea.docx
