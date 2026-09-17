@@ -49,10 +49,27 @@ def test_module_and_term_iris():
 
 
 def test_shapes_live_in_a_separate_namespace():
-    """A class named FooShape must not collide with the shape of Foo (spec §4)."""
+    """The shape of X must not collide with the class X itself (spec §4).
+
+    This assertion was originally written as `class_iri("FooShape") !=
+    shape_iri("Foo")`, carried over from the OLD scheme where a shape IRI was the
+    class name with "Shape" appended. Inverting the guard -- collapsing the shapes
+    namespace into the class namespace -- did NOT make that version fail, because
+    `#FooShape` and `#Foo` differ as strings regardless.
+
+    The collision the CURRENT design actually risks is different: `shape_iri` uses
+    the bare class name, so if the two namespaces were the same, the shape of `Foo`
+    would BE the class `Foo`. That is what is asserted here, and the inversion does
+    fail it.
+    """
     nb = namespace_base(module_iri(BASE, MOD))
     sb = namespace_base(shapes_module_iri(BASE, MOD))
+    assert nb != sb, "shapes must not share the class namespace"
+    assert shape_iri(sb, "Foo") != class_iri(nb, "Foo"), \
+        "the shape of Foo must not be the class Foo"
+    # And the old scheme's hazard remains covered: a real class named FooShape.
     assert class_iri(nb, "FooShape") != shape_iri(sb, "Foo")
+    assert class_iri(nb, "FooShape") != shape_iri(sb, "FooShape")
 
 
 def test_vocab_aggregate_and_version_iris():

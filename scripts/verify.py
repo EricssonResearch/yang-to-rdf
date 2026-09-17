@@ -336,11 +336,21 @@ STAGES = [
     ("examples reproduce", stage_examples),
 ]
 
-# Asserted by tests/test_verify.py. STAGES + the summary itself. A new stage that
-# is not summarised must break a test rather than pass unnoticed. Note the
-# `stage_` prefix is reserved for stage implementations, so that the
+# An INDEPENDENT literal, deliberately not len(STAGES) + 1.
+#
+# It was written as `len(STAGES) + 1` first, and inverting the guard -- adding a
+# stage to STAGES without touching anything else -- did NOT fail: both sides of
+# the assertion derived from STAGES, so it compared a value to itself and could
+# never fire. A count assertion whose expected value is computed from the thing it
+# checks is a decoration.
+#
+# Typed by hand, so adding a stage forces a deliberate edit here and the test
+# fails until someone has confirmed the new stage is summarised.
+# 7 stages + the summary.
+STAGE_COUNT = 8
+
+# The `stage_` prefix is reserved for stage implementations, so the
 # 'every stage function is wired in' test can enumerate them by name.
-STAGE_COUNT = len(STAGES) + 1
 
 
 def all_stage_names() -> list[str]:

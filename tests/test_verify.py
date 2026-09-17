@@ -22,10 +22,21 @@ def _run(*args, ):
 
 def test_stage_count_matches_the_stages_defined():
     """Adding a stage without updating STAGE_COUNT fails here, so a stage cannot
-    appear without being counted in the summary."""
+    appear without being counted in the summary.
+
+    This works only because STAGE_COUNT is a hand-typed literal. When it was
+    `len(STAGES) + 1`, inverting the guard by adding a stage did not fail -- both
+    sides derived from STAGES, so the assertion compared a value to itself.
+    """
     names = all_stage_names()
     assert len(names) == STAGE_COUNT, (
-        f"{len(names)} stages defined ({names}) but STAGE_COUNT is {STAGE_COUNT}")
+        f"{len(names)} stages defined ({names}) but STAGE_COUNT is {STAGE_COUNT}. "
+        f"If you added a stage, confirm it is summarised, then update the literal.")
+    # Guard the guard: STAGE_COUNT must not be derived from STAGES.
+    src = (ROOT / "scripts" / "verify.py").read_text()
+    assert "STAGE_COUNT = len(" not in src, (
+        "STAGE_COUNT must be an independent literal; deriving it from STAGES makes "
+        "this assertion tautological")
 
 
 def test_stage_names_are_unique_and_include_the_summary():
