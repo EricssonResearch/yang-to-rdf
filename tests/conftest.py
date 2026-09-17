@@ -1,4 +1,8 @@
-import os, glob, zipfile, tempfile, shutil
+import os
+import glob
+import zipfile
+import tempfile
+import shutil
 from pathlib import Path
 import pytest
 from yang_to_rdf.pyang_context import build_context

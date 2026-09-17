@@ -25,7 +25,7 @@ class ReferenceLayerBuilder:
     DistinguishedName references have no schema-declared target, so the base TBox
     leaves their range open. This builder *guesses* the target IOC by stripping a
     Ref/RefList suffix from the leaf name (see _candidate) and matching it against
-    known IOC class names, tagging every guess with nrm:confidence provenance so
+    known IOC class names, tagging every guess with y2r:confidence provenance so
     the heuristic stays auditable and quarantined from the base output.
     """
 

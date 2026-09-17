@@ -1,4 +1,5 @@
-import glob, os
+import glob
+import os
 from yang_to_rdf.pyang_context import build_context
 from tests._shared import cached_context
 

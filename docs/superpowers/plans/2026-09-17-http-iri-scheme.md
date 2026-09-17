@@ -1983,8 +1983,8 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FORBIDDEN = ("internal.ericsson.com", "gitlabpages-central", "gitlab.internal",
-             "3gpp.org/nrm/", "--base-namespace")
+# (the concrete internal hostnames live in the test itself, not in this plan)
+FORBIDDEN = (INTERNAL_HOSTNAMES + ("3gpp.org/nrm/", "--base-namespace"))
 
 
 def test_no_forbidden_strings_in_tracked_files():
@@ -2019,7 +2019,7 @@ references, and the `3gpp.org/nrm/` mentions.
 
 - [ ] **Step 3: Make the edits**
 
-- `README.md`: delete the GitLab Pages line entirely (no replacement — see spec
+- `README.md`: delete the internal Pages link entirely (no replacement — see spec
   §11). Rewrite the **IRI Strategy** section for the new scheme with a worked
   example. Rename `nrm:` → `y2r:` in the NRM Vocabulary section and say the
   namespace is ours and does not currently resolve. Add the `docker run` line.

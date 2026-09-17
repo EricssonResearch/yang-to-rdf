@@ -1,5 +1,5 @@
 # tests/test_type_resolver.py
-from yang_to_rdf.type_resolver import resolve_type, DN_TYPEDEFS
+from yang_to_rdf.type_resolver import resolve_type
 from rdflib.namespace import XSD
 from tests._shared import cached_context
 
@@ -10,7 +10,8 @@ def _find_leaf(ctx, module, leaf_name):
     m = ctx.get_module(module)
     stack = list(m.substmts)
     while stack:
-        c = stack.pop(); stack += list(c.substmts)
+        c = stack.pop()
+        stack += list(c.substmts)
         if c.keyword in ("leaf", "leaf-list") and c.arg == leaf_name:
             return c
     raise AssertionError(f"leaf {leaf_name} not found")

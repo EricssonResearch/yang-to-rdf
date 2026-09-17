@@ -4,7 +4,21 @@ This document explains how the `yang-to-rdf` tool handles versioning and how to 
 
 ## Why IRIs are release-agnostic
 
-By design, class and property IRIs in the generated RDF **do not change across releases**. The YANG `namespace` URN for a module (e.g., `urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction`) remains stable from Rel-19 to Rel-20 and beyond, per RFC 7950. We mirror this stability in the RDF output.
+By design, class and property IRIs in the generated RDF **do not change across releases**.
+
+Term IRIs are keyed on the module's **declared name** (`<base>yang/<module>#<Term>`),
+and RFC 7950 §11 (*Updating a Module*) states that "a module name MUST NOT be
+changed. Furthermore, the 'namespace' statement MUST NOT be changed, since all XML
+elements are qualified by the namespace." So both candidate keys are stable across
+revisions by specification, and the IRIs inherit that stability.
+
+(Two caveats worth stating rather than glossing. RFC 7950 requires module names to
+be unique *within a server*, not globally — so uniqueness across an arbitrary
+mixture of module sets is not guaranteed by the spec. `scripts/iri_census.py`
+gate G2 therefore asserts injectivity over whatever set was actually converted;
+for 3GPP Rel-19 that is 120 distinct paths from 120 modules. And a *renamed*
+module is a new module as far as the spec is concerned, which is what the two
+3GPP namespace/name discrepancies recorded in CONVERSION_NOTES.md §1 amount to.)
 
 This is **correct and intentional**:
 - The same concept (e.g., `AMFFunction`) across releases should have the same IRI to enable cross-release comparison, reasoning, and migration queries.
@@ -18,7 +32,7 @@ If you load Rel-19 and Rel-20 into one default graph:
 
 ```turtle
 # Naive load (DON'T DO THIS for multi-release comparison)
-@prefix amf: <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/> .
+@prefix amf: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amffunction#> .
 
 amf:AMFFunction a rdfs:Class ;
     rdfs:comment "..." ;
@@ -35,13 +49,13 @@ Load each release into its own **named graph**, using the release's `owl:version
 
 ```turtle
 # index.ttl from Rel-19
-<https://3gpp.org/nrm/ontology> a owl:Ontology ;
-    owl:versionIRI <https://3gpp.org/nrm/ontology/version/Rel-19> ;
+<https://semantics.ericsson.com/ontology> a owl:Ontology ;
+    owl:versionIRI <https://semantics.ericsson.com/ontology/version/Rel-19> ;
     owl:versionInfo "Rel-19" .
 
 # index.ttl from Rel-20
-<https://3gpp.org/nrm/ontology> a owl:Ontology ;
-    owl:versionIRI <https://3gpp.org/nrm/ontology/version/Tag_Rel20_SA112> ;
+<https://semantics.ericsson.com/ontology> a owl:Ontology ;
+    owl:versionIRI <https://semantics.ericsson.com/ontology/version/Tag_Rel20_SA112> ;
     owl:versionInfo "Tag_Rel20_SA112" .
 ```
 
@@ -49,7 +63,7 @@ Each module ontology also gets `owl:versionInfo` from its YANG `revision` statem
 
 ```turtle
 # _3gpp-5gc-nrm-amffunction_rdf.ttl
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amffunction> a owl:Ontology ;
     owl:versionInfo "revision 2026-05-25 (CR-1702)" .
 ```
 
@@ -67,15 +81,15 @@ Each module ontology also gets `owl:versionInfo` from its YANG `revision` statem
 
    ds = Dataset()
    ds.parse("rel19/index.ttl", format="turtle",
-            publicID="https://3gpp.org/nrm/ontology/version/Rel-19")
+            publicID="https://semantics.ericsson.com/ontology/version/Rel-19")
    ds.parse("rel20/index.ttl", format="turtle",
-            publicID="https://3gpp.org/nrm/ontology/version/Tag_Rel20_SA112")
+            publicID="https://semantics.ericsson.com/ontology/version/Tag_Rel20_SA112")
    ```
 
    Or with SPARQL LOAD:
    ```sparql
-   LOAD <file:///path/to/rel19/index.ttl> INTO GRAPH <https://3gpp.org/nrm/ontology/version/Rel-19>
-   LOAD <file:///path/to/rel20/index.ttl> INTO GRAPH <https://3gpp.org/nrm/ontology/version/Tag_Rel20_SA112>
+   LOAD <file:///path/to/rel19/index.ttl> INTO GRAPH <https://semantics.ericsson.com/ontology/version/Rel-19>
+   LOAD <file:///path/to/rel20/index.ttl> INTO GRAPH <https://semantics.ericsson.com/ontology/version/Tag_Rel20_SA112>
    ```
 
 3. Query across releases. Example: "What properties were added to `AMFFunction` in Rel-20?"
@@ -83,12 +97,12 @@ Each module ontology also gets `owl:versionInfo` from its YANG `revision` statem
    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
    SELECT ?p WHERE {
-     GRAPH <https://3gpp.org/nrm/ontology/version/Tag_Rel20_SA112> {
-       ?p rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction>
+     GRAPH <https://semantics.ericsson.com/ontology/version/Tag_Rel20_SA112> {
+       ?p rdfs:domain <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amffunction#AMFFunction>
      }
      FILTER NOT EXISTS {
-       GRAPH <https://3gpp.org/nrm/ontology/version/Rel-19> {
-         ?p rdfs:domain <urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction>
+       GRAPH <https://semantics.ericsson.com/ontology/version/Rel-19> {
+         ?p rdfs:domain <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amffunction#AMFFunction>
        }
      }
    }
@@ -99,7 +113,7 @@ Each module ontology also gets `owl:versionInfo` from its YANG `revision` statem
 ### `--release LABEL`
 
 Records the label as:
-- `owl:versionIRI` on the aggregate ontology `<https://3gpp.org/nrm/ontology>` (in `index.ttl`).
+- `owl:versionIRI` on the aggregate ontology `<https://semantics.ericsson.com/ontology>` (in `index.ttl`).
 - `owl:versionInfo` on the aggregate ontology.
 - Per-module `owl:versionInfo` from each YANG module's `revision` statement (date + CR reference).
 
@@ -110,14 +124,14 @@ yang-to-rdf input/ --release Rel-19 -o output/
 
 Produces `index.ttl`:
 ```turtle
-<https://3gpp.org/nrm/ontology> a owl:Ontology ;
-    owl:versionIRI <https://3gpp.org/nrm/ontology/version/Rel-19> ;
+<https://semantics.ericsson.com/ontology> a owl:Ontology ;
+    owl:versionIRI <https://semantics.ericsson.com/ontology/version/Rel-19> ;
     owl:versionInfo "Rel-19" .
 ```
 
 And each module file (e.g., `_3gpp-5gc-nrm-amffunction_rdf.ttl`):
 ```turtle
-<urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction> a owl:Ontology ;
+<https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amffunction> a owl:Ontology ;
     owl:versionInfo "revision 2026-05-25 (CR-1702)" .
 ```
 
@@ -143,16 +157,16 @@ The date is identical; only the CR differs. This means:
 
 ## When you DO want distinct per-release IRIs
 
-If you need each release to have **physically distinct IRIs** (e.g., to load everything into a single default graph without collision), use `--base-namespace` to rewrite the URN prefix:
+If you need each release to have **physically distinct IRIs** (e.g., to load everything into a single default graph without collision), use `--base-iri` to move every term under a per-release base:
 
 ```bash
-yang-to-rdf input/ --base-namespace "https://example.com/nrm/rel19/" -o rel19/
-yang-to-rdf input/ --base-namespace "https://example.com/nrm/rel20/" -o rel20/
+yang-to-rdf input/ --base-iri "https://example.com/nrm/rel19/" -o rel19/
+yang-to-rdf input/ --base-iri "https://example.com/nrm/rel20/" -o rel20/
 ```
 
 This produces:
-- Rel-19: `<https://example.com/nrm/rel19/AMFFunction>`
-- Rel-20: `<https://example.com/nrm/rel20/AMFFunction>`
+- Rel-19: `<https://example.com/nrm/rel19/yang/_3gpp-5gc-nrm-amffunction#AMFFunction>`
+- Rel-20: `<https://example.com/nrm/rel20/yang/_3gpp-5gc-nrm-amffunction#AMFFunction>`
 
 **Trade-off**: You gain collision-free coexistence in one graph, but **lose cross-release identity**. The same concept now has different IRIs, preventing direct comparison and OWL reasoning across releases. Use this only if you truly need separate IRI spaces (e.g., for publishing multiple releases as independent datasets on a public SPARQL endpoint).
 
@@ -162,6 +176,6 @@ This produces:
 2. **Load each release into a named graph** = its `versionIRI`. Never load multiple releases into the same default graph.
 3. **Use SPARQL named-graph queries** (GRAPH clause) to compare releases, compute diffs, or partition data.
 4. **Rely on the release label**, not module revision dates, as the unique release key.
-5. **Only use `--base-namespace`** if you absolutely need distinct IRIs per release and can sacrifice cross-release reasoning.
+5. **Only use `--base-iri`** if you absolutely need distinct IRIs per release and can sacrifice cross-release reasoning.
 
 For more on the tool's output structure (split vs single-file, layers, etc.), see the main `README.md`.

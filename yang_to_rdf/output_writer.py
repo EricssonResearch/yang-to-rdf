@@ -146,7 +146,7 @@ def split_graph(g: Graph, prefix_map: dict[str, str],
     behind sh:in) travel with the module IRI that owns them, via its Concise
     Bounded Description — CBD = the subject's triples plus, transitively, every
     blank node reachable from them (rdflib's Graph.cbd). Every other triple
-    (nrm: vocab, stray subjects) goes to the leftover index graph. No triple is
+    (the y2r: vocabulary, stray subjects) goes to the leftover index graph. No triple is
     dropped: a final completeness pass routes anything not yet emitted to index.
     """
     def _new_graph() -> Graph:
@@ -156,7 +156,7 @@ def split_graph(g: Graph, prefix_map: dict[str, str],
         return ng
 
     modules: dict[str, Graph] = {}
-    index = _new_graph()  # inherit prefixes so index.ttl serializes with nrm:/rdfs: etc.
+    index = _new_graph()  # inherit prefixes so index.ttl serializes with y2r:/rdfs: etc.
 
     emitted: set = set()
     # Seed only from URIRef subjects; CBD pulls their blank-node closure.

@@ -1,8 +1,10 @@
-import glob, os, subprocess, sys
+import subprocess
+import sys
 from pathlib import Path
 
 def test_cli_emits_three_layers_and_is_deterministic(tiny_yang_dir, tmp_path):
-    out1 = tmp_path / "o1"; out2 = tmp_path / "o2"
+    out1 = tmp_path / "o1"
+    out2 = tmp_path / "o2"
     cmd = [sys.executable, "-m", "yang_to_rdf.main", tiny_yang_dir, "-o"]
     subprocess.run(cmd + [str(out1), "--single-file"], check=True)
     subprocess.run(cmd + [str(out2), "--single-file"], check=True)

@@ -1,5 +1,5 @@
 # tests/test_input_handler.py
-import os, zipfile
+import zipfile
 import pytest
 from yang_to_rdf.input_handler import collect_yang_files, _extract_zip
 

@@ -24,8 +24,8 @@ uv sync --locked
 
 The [`Dockerfile`](Dockerfile) runs **exactly these commands** from a clean
 `python:3.12-slim` base, and a test asserts that correspondence, so these
-instructions cannot go stale. The container substitutes `COPY` for the
-`git clone` line — that is the only difference.
+instructions cannot go stale. The container substitutes `COPY` for `git clone`
+and `WORKDIR` for `cd` — getting the source into place is the only difference.
 
 ## Verifying that it all reproduces
 
@@ -77,12 +77,19 @@ curl -L -o yang-models.zip \
 uv run yang-to-rdf yang-models.zip -o output/
 ```
 
-`--fetch-release` pulls the current tip of the named ref, so the exact class
-counts track upstream and won't byte-match the committed [`examples/`](examples/)
-snapshot — any recent revision yields valid output. Because 3GPP YANG namespaces
-(and therefore the generated IRIs) are stable across releases, use `--release`
-(auto-set by `--fetch-release`) to tag each run so releases can be told apart —
-see [VERSIONING.md](VERSIONING.md).
+**Branch or tag matters for reproducibility.** A *branch* (`--ref-type heads`,
+the default) tracks the moving tip, so class counts follow upstream and will not
+byte-match the committed [`examples/`](examples/). A *tag* is immutable; the
+committed examples are pinned to `Tag_Rel19_SA112` and regenerate exactly:
+
+```bash
+uv run yang-to-rdf --fetch-release Tag_Rel19_SA112 --ref-type tags \
+  -o examples/MnS-Rel-19-yang-models
+```
+
+Term IRIs are stable across releases — RFC 7950 §11 forbids changing a module's
+name or namespace — so use `--release` (auto-set by `--fetch-release`) to tag each
+run and tell releases apart. See [VERSIONING.md](VERSIONING.md).
 
 ## Usage
 
@@ -119,14 +126,14 @@ uv run yang-to-rdf MnS-Rel-19-yang-models.zip --format shacl
 The converter produces three **layers** of Turtle output. By default each layer is
 **split into one file per source YANG module** (`<module>_rdf.ttl`,
 `<module>_shacl.ttl`, `<module>_refs.ttl`) plus an `index.ttl` that carries the
-shared `nrm:` vocabulary and `owl:imports` every module — so files stay small and
+shared `y2r:` vocabulary and `owl:imports` every module — so files stay small and
 browsable. Pass `--single-file` to instead get one merged file per layer
 (`<stem>_rdf.ttl`, etc.). The three layers:
 
 1. **RDF layer (`…_rdf.ttl`)** — RDFS/OWL TBox vocabulary
    - Classes for IOCs and dataTypes
    - Properties with domain/range
-   - Containment relationships (`nrm:nameContains`)
+   - Containment relationships (`y2r:nameContains`)
    - Inheritance hierarchy (`rdfs:subClassOf`)
 
 2. **SHACL layer (`…_shacl.ttl`)** — SHACL validation shapes
@@ -136,19 +143,22 @@ browsable. Pass `--single-file` to instead get one merged file per layer
 
 3. **Reference layer (`…_refs.ttl`)** — reference extension (unless `--no-inference`)
    - Inferred `rdfs:range` for DistinguishedName references (detected by type; ranges guessed from the leaf name — see [DN Reference Inference](#dn-reference-inference))
-   - Provenance metadata: `nrm:inferredBy`, `nrm:confidence` (unambiguous/unresolved)
-   - ~121 unambiguous ranges inferred from name patterns (121 for the Rel-19 set; varies by module set)
+   - Provenance metadata: `y2r:inferredBy`, `y2r:confidence` (unambiguous/unresolved)
+   - 147 unambiguous ranges for the pinned Rel-19 tag, 584 unresolved; varies by
+     module set (see [the examples README](examples/MnS-Rel-19-yang-models/README.md),
+     which records the figures for the committed snapshot)
    - Kept separate for auditability and optional loading
 
 A committed reference snapshot for the MnS Rel-19 set lives in
 [`examples/MnS-Rel-19-yang-models/`](examples/MnS-Rel-19-yang-models/) (per-module
-files + `index.ttl`; see its README for provenance). Output is deterministic, so
-regenerating from the same input produces no diff.
+files + `index.ttl`; see its README for provenance). It is pinned to an immutable
+upstream tag, so regenerating reproduces it byte-for-byte — asserted as a stage of
+the Docker verification described above.
 
 ## Design Decisions
 
 For a full audit of where the conversion follows RDF/OWL/SHACL standards and
-where it introduces its own conventions (the `nrm:` vocabulary and a few
+where it introduces its own conventions (the `y2r:` vocabulary and a few
 modelling choices), see [CONVERSION_NOTES.md](CONVERSION_NOTES.md).
 
 For how this tool fits the broader semantic network management picture and how it
@@ -158,39 +168,77 @@ connector-model approach to 3GPP), see
 
 ### IRI Strategy
 
-Properties are path-scoped to avoid multi-domain conflicts:
-- Class: `<module-namespace>/ClassName`
-- Property: `<module-namespace>/ClassName/propertyName`
+Terms are `https` IRIs in a **per-module hash namespace**, keyed on the module's
+declared YANG name. Each module binds its own YANG `prefix`, so the Turtle reads
+like the source:
+
+```turtle
+@prefix y2r:     <https://semantics.ericsson.com/vocab#> .
+@prefix amf3gpp: <https://semantics.ericsson.com/yang/_3gpp-5gc-nrm-amffunction#> .
+
+amf3gpp:AMFFunction a rdfs:Class ; rdfs:subClassOf y2r:ManagedFunction .
+amf3gpp:AMFFunction.aMFSetRef a owl:ObjectProperty .
+```
+
+| Kind | IRI |
+|---|---|
+| minted vocabulary | `<base>vocab#<term>` |
+| aggregate ontology | `<base>ontology` |
+| per-module ontology | `<base>yang/<module>` |
+| class / typedef | `<base>yang/<module>#<Class>` |
+| property (class-scoped) | `<base>yang/<module>#<Class>.<prop>` |
+| SHACL NodeShape | `<base>shapes/<module>#<Class>` |
+
+`<base>` defaults to `https://semantics.ericsson.com/` and is set with
+**`--base-iri`**. That default is an Ericsson-owned namespace minted by this
+project: it is **not currently dereferenceable** and asserts no 3GPP endorsement.
+The YANG namespace each module came from is retained as `y2r:yangNamespace`, so
+nothing is discarded.
+
+Properties are class-scoped because property names are heavily reused: 655 of
+4,523 `(module, property)` pairs recur across classes within a single module, and
+`id` alone appears on 178 classes, so a flat namespace would merge distinct
+properties. Shapes get their own namespace so a class named `FooShape` cannot
+collide with the shape of `Foo`.
+
+[CONVERSION_NOTES.md](CONVERSION_NOTES.md) §1a records what the scheme rests on,
+the standing of each reference, and which parts are ours. To check the emitted
+IRIs yourself:
+
+```bash
+uv run python -m scripts.iri_census examples/MnS-Rel-19-yang-models
+```
 
 ### YANG → RDF Mapping
 
 | YANG construct | RDF output |
 |---|---|
-| `augment` adding `list X` | `nrm:nameContains` (containment) |
+| `augment` adding `list X` | `y2r:nameContains` (containment) |
 | `uses ManagedFunctionGrp` | `rdfs:subClassOf` (inheritance) |
 | `leaf` | `rdf:Property` with `rdfs:domain` + `rdfs:range` |
-| `leaf` typed as `DistinguishedName`/`Dn`/`LDN` | `owl:ObjectProperty` + `nrm:isReference` (DN reference with open range in base; inferred ranges in `_refs.ttl`) |
+| `leaf` typed as `DistinguishedName`/`Dn`/`LDN` | `owl:ObjectProperty` + `y2r:isReference` (DN reference with open range in base; inferred ranges in `_refs.ttl`) |
 | `typedef` | `rdfs:Datatype` |
-| `list` inside `attributes` | `rdfs:Class` + `owl:ObjectProperty` + `nrm:hasAttribute` (3GPP <<dataType>> structured attributes) |
+| `list` inside `attributes` | `rdfs:Class` + `owl:ObjectProperty` + `y2r:hasAttribute` (3GPP <<dataType>> structured attributes) |
 | `choice`/`case` leaves | flattened onto the owning class (mutual-exclusivity is not currently emitted as `sh:xone`) |
 
-### NRM Vocabulary
+### Minted Vocabulary
 
-A small `nrm:` vocabulary defines 3GPP-specific relationships:
-- `nrm:nameContains` — containment hierarchy
-- `nrm:ManagedFunction` — base class for all NF IOCs
-- `nrm:hasAttribute` — links IOC to structured attribute class (3GPP <<dataType>>)
-- `nrm:isReference` — marks DN leaf properties (range inferred separately)
-- `nrm:isInvariant` — marks properties with the `inVariant` extension
+A small `y2r:` vocabulary defines the 3GPP-specific relationships that have no
+standard equivalent. It is the entire non-standard term surface:
+- `y2r:nameContains` — containment hierarchy
+- `y2r:ManagedFunction` — base class for all NF IOCs
+- `y2r:hasAttribute` — links IOC to structured attribute class (3GPP <<dataType>>)
+- `y2r:isReference` — marks DN leaf properties (range inferred separately)
+- `y2r:isInvariant` — marks properties with the `inVariant` extension
 
 ### DN Reference Inference
 
 Detection and range inference are two separate steps:
 
-1. **Detection (by type, reliable):** a leaf is treated as a Distinguished Name reference when its resolved type chain bottoms out at `DistinguishedName`, `Dn`, or `LDN`. The base RDF layer marks these as `owl:ObjectProperty` + `nrm:isReference` with an open range (no `rdfs:range` triple). This does not rely on the leaf name.
+1. **Detection (by type, reliable):** a leaf is treated as a Distinguished Name reference when its resolved type chain bottoms out at `DistinguishedName`, `Dn`, or `LDN`. The base RDF layer marks these as `owl:ObjectProperty` + `y2r:isReference` with an open range (no `rdfs:range` triple). This does not rely on the leaf name.
 2. **Range inference (by name, heuristic):** the separate reference extension layer (`_refs.ttl`) guesses the target IOC by stripping a trailing `Ref`, `Refs`, `RefList`, or `List` from the leaf name and matching against IOC class names:
 
-- **Unambiguous** (121 for the Rel-19 set; varies by module set): Single matching IOC → `rdfs:range` triple with `nrm:confidence "unambiguous"`
-- **Unresolved**: Zero or multiple matches → no range, `nrm:confidence "unresolved"`, candidate name recorded
+- **Unambiguous** (121 for the Rel-19 set; varies by module set): Single matching IOC → `rdfs:range` triple with `y2r:confidence "unambiguous"`
+- **Unresolved**: Zero or multiple matches → no range, `y2r:confidence "unresolved"`, candidate name recorded
 
 This separation keeps the base TBox clean and the inference layer auditable. Load `_refs.ttl` optionally depending on your tolerance for heuristic reasoning.

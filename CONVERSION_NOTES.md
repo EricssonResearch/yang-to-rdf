@@ -12,10 +12,13 @@ The short version:
   subclassing, cardinality, patterns, enumerations, and ontology versioning are
   all expressed with `rdf:`, `rdfs:`, `owl:`, `xsd:`, and `sh:` (SHACL) — nothing
   invented.
-- **One small project vocabulary, `nrm:`**, carries the handful of 3GPP-specific
+- **One small project vocabulary, `y2r:`**, carries the handful of 3GPP-specific
   relationships that have no direct standard equivalent. It is namespaced under
-  `https://3gpp.org/nrm/vocab#` and is the *entire* non-standard surface. Every
-  term is listed below with its justification.
+  `https://semantics.ericsson.com/vocab#` and is the *entire* non-standard term
+  surface. Every term is listed below with its justification.
+- **The IRI scheme itself is a proposal, not a standard.** §1a states what it
+  rests on, which parts are ours, and what the default namespace does and does
+  not claim.
 - **No reasoner-dependent semantics are asserted** (no `owl:inverseOf`,
   `owl:disjointWith`, domain/range as OWL restrictions used for inference). RDFS
   `domain`/`range` are used descriptively, and constraints are pushed into SHACL,
@@ -23,23 +26,40 @@ The short version:
 
 ---
 
-## 1. The `nrm:` vocabulary — the complete non-standard surface
+## 1. The `y2r:` vocabulary — the complete non-standard surface
 
-Base: `https://3gpp.org/nrm/vocab#`. These are the only terms the tool mints
-outside standard vocabularies.
+Base: `https://semantics.ericsson.com/vocab#` (relocatable with `--base-iri`).
+These are the only terms the tool mints outside standard vocabularies.
 
 | Term | Declared as | Purpose | Why not a standard term |
 |---|---|---|---|
-| `nrm:ManagedFunction` | `rdfs:Class` | Common superclass for network-function IOCs (those whose YANG grouping `uses ManagedFunctionGrp`). | 3GPP domain concept; no standard class means "managed function". |
-| `nrm:nameContains` | `owl:ObjectProperty` | 3GPP **name-containment** hierarchy — the parent→child structure a DN path encodes (e.g. `SubNetwork` contains `ManagedElement` contains `AMFFunction`). Emitted from YANG `augment`/nested-list structure. | This is 3GPP's specific containment relation, distinct from `rdfs:subClassOf` (that's inheritance) and from generic part-of vocabularies; naming it explicitly keeps it unambiguous. |
-| `nrm:hasAttribute` | `owl:ObjectProperty` | Links an IOC (or dataType) to a **structured `<<dataType>>` attribute class** built from a nested `list` inside an `attributes` container. | Distinguishes "a structured attribute value" from `nrm:nameContains` (a contained managed object) — a real 3GPP modelling distinction that no standard predicate captures. |
-| `nrm:isReference` | `owl:ObjectProperty`* | Marks a property whose YANG type is a `DistinguishedName` (a reference to another object) rather than a literal value. | See §3 — DN references have no schema-declared target, so we flag them rather than fabricate a `rdfs:range`. |
-| `nrm:isInvariant` | `owl:DatatypeProperty`* | Marks a property carrying the 3GPP `yext3gpp:inVariant` extension (set-once / immutable after creation). | 3GPP YANG extension with no OWL/SHACL equivalent; preserved as an annotation so the semantics aren't lost. |
+| `y2r:ManagedFunction` | `rdfs:Class` | Common superclass for network-function IOCs (those whose YANG grouping `uses ManagedFunctionGrp`). | 3GPP domain concept; no standard class means "managed function". |
+| `y2r:nameContains` | `owl:ObjectProperty` | 3GPP **name-containment** hierarchy — the parent→child structure a DN path encodes (e.g. `SubNetwork` contains `ManagedElement` contains `AMFFunction`). Emitted from YANG `augment`/nested-list structure. | This is 3GPP's specific containment relation, distinct from `rdfs:subClassOf` (that's inheritance) and from generic part-of vocabularies; naming it explicitly keeps it unambiguous. |
+| `y2r:hasAttribute` | `owl:ObjectProperty` | Links an IOC (or dataType) to a **structured `<<dataType>>` attribute class** built from a nested `list` inside an `attributes` container. | Distinguishes "a structured attribute value" from `y2r:nameContains` (a contained managed object) — a real 3GPP modelling distinction that no standard predicate captures. |
+| `y2r:isReference` | `owl:ObjectProperty`* | Marks a property whose YANG type is a `DistinguishedName` (a reference to another object) rather than a literal value. | See §3 — DN references have no schema-declared target, so we flag them rather than fabricate a `rdfs:range`. |
+| `y2r:isInvariant` | `owl:DatatypeProperty`* | Marks a property carrying the 3GPP `yext3gpp:inVariant` extension (set-once / immutable after creation). | 3GPP YANG extension with no OWL/SHACL equivalent; preserved as an annotation so the semantics aren't lost. |
 
-\* `nrm:isReference` and `nrm:isInvariant` are used as **annotation flags** on
+\* `y2r:isReference` and `y2r:isInvariant` are used as **annotation flags** on
 properties (object of `true`), not as relationships between individuals. They are
 declared with an `owl:` property type for tooling convenience; treat them as
 boolean markers, not as assertions requiring OWL reasoning.
+
+### Provenance predicates (on each module ontology)
+
+| Term | Value | Meaning |
+|---|---|---|
+| `y2r:yangModuleName` | string | The declared YANG module name the IRI was keyed on. |
+| `y2r:yangNamespace` | IRI | The module's YANG `namespace` statement, retained verbatim. |
+
+Module identity is keyed on the **declared module name**, so the YANG `namespace`
+would otherwise be discarded. It is kept because it is the only record of the
+original URN — and in the 3GPP Rel-19 set two namespaces disagree with their
+module name, so the mapping is not derivable after the fact:
+
+| Module | Its YANG namespace |
+|---|---|
+| `_3gpp-5gc-nrm-externalseppfunction` | `urn:3gpp:sa5:_3gpp-5gc-nrm-ex**tt**ernalseppfunction` (upstream typo) |
+| `_3gpp-nr-nrm-nrsectorcarrier` | `urn:3gpp:sa5:_3gpp-nr-nrm-nrnetwork-nrsectorcarrier` |
 
 ### Reference-layer predicates (in `*_refs.ttl` only)
 
@@ -48,31 +68,101 @@ provenance for a heuristic (see §3):
 
 | Term | Value | Meaning |
 |---|---|---|
-| `nrm:confidence` | `"unambiguous"` / `"unresolved"` | Whether the inferred range is trusted. |
-| `nrm:inferredBy` | `"dn-name-suffix"` | Which heuristic produced the guess. |
-| `nrm:candidate` | string | The guessed target class name when unresolved. |
+| `y2r:confidence` | `"unambiguous"` / `"unresolved"` | Whether the inferred range is trusted. |
+| `y2r:inferredBy` | `"dn-name-suffix"` | Which heuristic produced the guess. |
+| `y2r:candidate` | string | The guessed target class name when unresolved. |
 
 > **Known gap (audit note):** these three reference-layer predicates are currently
 > *used* but **not formally declared** (no `rdf:type`/`rdfs:comment` triple) in the
-> emitted vocabulary, unlike the five core `nrm:` terms which are declared in the
+> emitted vocabulary, unlike the five core `y2r:` terms which are declared in the
 > base RDF layer. They are provenance annotations, so this is low-impact, but a
 > strict OWL consumer will see undeclared predicates. Declaring them is a
 > reasonable future improvement.
 
 ---
 
+## 1a. The IRI scheme — what it rests on, and what is ours
+
+```
+<base> = https://semantics.ericsson.com/          (--base-iri)
+
+<base>vocab#<term>                    minted vocabulary            prefix y2r:
+<base>ontology                        aggregate ontology        →  index.ttl
+<base>ontology/version/<label>        owl:versionIRI
+<base>yang/<module>                   per-module ontology       →  <m>_rdf.ttl
+<base>yang/<module>#<Class>           class (IOC / dataType) and typedef
+<base>yang/<module>#<Class>.<prop>    property, class-scoped
+<base>shapes/<module>#<Class>         SHACL NodeShape           →  <m>_shacl.ttl
+```
+
+Each module binds its own YANG `prefix` statement, so the Turtle reads like the
+source: `amf3gpp:AMFFunction.aMFSetRef`.
+
+### What this rests on, and how much weight each carries
+
+Stating the status matters, because only one of these is a Recommendation and the
+two that speak most directly to vocabulary publishing are the weakest:
+
+| Reference | Status | Used for |
+|---|---|---|
+| [XML Namespaces 1.0 3e](https://www.w3.org/TR/xml-names/) | **W3C Recommendation**, 8 Dec 2009 | The `NCName` production. `/` is excluded by construction; the first character must be a letter or `_`. |
+| [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986) | **IETF Standard** (STD 66) | URI syntax; `-._~` are unreserved. |
+| [RFC 7950](https://www.rfc-editor.org/rfc/rfc7950) | IETF **Proposed Standard** | YANG `identifier` grammar (§6.2), module/namespace uniqueness, `belongs-to`. |
+| [Best Practice Recipes for Publishing RDF Vocabularies](https://www.w3.org/TR/swbp-vocab-pub/) | W3C **Working Group Note**, 28 Aug 2008 — says of itself that it is "inappropriate to cite this document as other than work in progress" | Hash-vs-slash guidance, and the "local name must be a legal NCName" requirement. Guidance, not a requirement. |
+| [Cool URIs for the Semantic Web](https://www.w3.org/TR/cooluris/) | W3C **Interest Group Note**, 3 Dec 2008 | Background on 303 vs hash dereferencing. |
+
+**Why a hash namespace per module.** The Recipes note says to choose on size, and
+a module here has a median of 70 terms, at most 256, in a file of at most 136 KB —
+its "served in a single Web access" case. The consequence that decides it: a hash
+namespace needs only the note's Recipe 1, so serving these IRIs later requires
+static files and no server configuration — no 303 redirects, no content
+negotiation. It also gives every module ONE namespace, so a prefix binds all its
+terms; the previous two-level slash form put properties in a namespace per class.
+
+### Ours, and asserting nothing
+
+- **`semantics.ericsson.com` is an Ericsson-owned namespace minted by this
+  project. It is not currently dereferenceable** (no DNS record as of
+  2026-09-17) and asserts no 3GPP endorsement. `--base-iri` relocates every term.
+- **The `.` joining a class and property local name is our convention.** No
+  standard prescribes it. It was already this project's `rdfs:label` convention,
+  so the IRI local name and the label now coincide.
+- Class scoping is not decorative: 655 of 4,523 `(module, property)` pairs reuse a
+  property name across classes within one module (`id` alone spans 178 classes), so
+  a flat namespace would silently merge distinct properties into one IRI.
+- **No ASCII separator is free of a theoretical ambiguity**, because RFC 7950
+  identifiers and NCNames permit the same character set: a class named `A.B` would
+  collide with property `B` of class `A`. An earlier draft therefore refused every
+  identifier containing `.` — which was wrong, because the IETF `ietf-yang-types`
+  module that nearly every 3GPP module imports defines `typedef xpath1.0`
+  (RFC 6991). The ambiguity is narrower than "contains a dot": a split is only a
+  real alternative reading when *both* halves are legal YANG identifiers, and an
+  identifier cannot begin with a digit, so `xpath1.0` has exactly one reading.
+  `scripts/iri_census.py` gate G2 asserts this over the whole corpus; measured
+  0 ambiguous of 10,234 terms.
+- **SHACL shapes live in their own document namespace** (`<base>shapes/…#`) so a
+  YANG class genuinely named `FooShape` cannot collide with the shape of `Foo`.
+  There is no such class in the 3GPP set, which is exactly why the separation is
+  structural rather than left to the corpus.
+
+Every claim above is re-derivable:
+
+```bash
+uv run python -m scripts.iri_census examples/MnS-Rel-19-yang-models
+```
+
 ## 2. YANG construct → RDF mapping (and the judgement calls)
 
 | YANG construct | RDF output | Standard? | Note |
 |---|---|---|---|
-| `module` | `owl:Ontology` (per-module) + `owl:imports` in `index.ttl` | standard | IRI = the module's YANG `namespace` URN. |
+| `module` | `owl:Ontology` (per-module) + `owl:imports` in `index.ttl` | standard | IRI = `<base>yang/<declared module name>`; the YANG `namespace` is retained as `y2r:yangNamespace` (§1). |
 | `list` with an `attributes` container (an IOC) | `rdfs:Class` | standard | "Is it an IOC?" is decided structurally (presence of `attributes`), not by name. |
-| `list` inside `attributes` (a `<<dataType>>`) | `rdfs:Class` + `nrm:hasAttribute` link | **deviation** | 3GPP structured attributes become first-class classes rather than blank nodes — see §4. |
+| `list` inside `attributes` (a `<<dataType>>`) | `rdfs:Class` + `y2r:hasAttribute` link | **deviation** | 3GPP structured attributes become first-class classes rather than blank nodes — see §4. |
 | `uses <X>Grp` (grouping) | class **named/identified by the grouping** | **deviation** | See §5 — this is the most opinionated choice. |
-| `uses ManagedFunctionGrp` | `rdfs:subClassOf nrm:ManagedFunction` | standard use, project class | Inheritance. |
-| `augment` / nested sub-IOC list | `nrm:nameContains` | project predicate | Containment (§1). |
+| `uses ManagedFunctionGrp` | `rdfs:subClassOf y2r:ManagedFunction` | standard use, project class | Inheritance. |
+| `augment` / nested sub-IOC list | `y2r:nameContains` | project predicate | Containment (§1). |
 | `leaf` | `rdf:Property` + `rdfs:domain` + `rdfs:range` (XSD) | standard | Range from the resolved type chain. |
-| `leaf` typed `DistinguishedName`/`Dn`/`LDN` | `owl:ObjectProperty` + `nrm:isReference`, **no `rdfs:range`** | **deviation** | §3. |
+| `leaf` typed `DistinguishedName`/`Dn`/`LDN` | `owl:ObjectProperty` + `y2r:isReference`, **no `rdfs:range`** | **deviation** | §3. |
 | `typedef` | `rdfs:Datatype` | standard | Not `rdfs:Class` — a typedef is a value type. |
 | `enumeration` | `sh:in` list in SHACL | standard | Values constrained in the shape, not as individuals. |
 | `pattern`, `min/max-elements`, `mandatory` | `sh:pattern` / `sh:minCount` / `sh:maxCount` | standard | Constraints live in SHACL. |
@@ -93,11 +183,11 @@ schema-declared target class**.
 Decision:
 - **Detection is reliable and type-based:** a leaf is a reference iff its resolved
   type chain bottoms out at `DistinguishedName`/`Dn`/`LDN`. We mark it
-  `nrm:isReference` and, crucially, emit **no `rdfs:range`** in the base ontology —
+  `y2r:isReference` and, crucially, emit **no `rdfs:range`** in the base ontology —
   asserting a range we cannot justify would be fabrication.
 - **Range *inference* is a separate, opt-out layer** (`*_refs.ttl`). It guesses the
   target by stripping a `Ref`/`RefList`/… suffix from the leaf name and matching
-  against class names, tagged with `nrm:confidence`. This is explicitly a
+  against class names, tagged with `y2r:confidence`. This is explicitly a
   heuristic, physically separated from the base TBox, and labelled as such so a
   consumer can ignore it or audit every guess.
 
@@ -110,7 +200,7 @@ the schema states; anything inferred is quarantined and provenance-tagged.**
 
 3GPP `<<dataType>>` attributes (a nested `list` inside `attributes`) could be
 modelled as anonymous/blank-node structures. We instead mint a **named
-`rdfs:Class`** and link it with `nrm:hasAttribute`.
+`rdfs:Class`** and link it with `y2r:hasAttribute`.
 
 Rationale: these are reused, named 3GPP data types (e.g. `GeoArea`, `PLMNInfo`)
 that appear across many IOCs. Giving them stable class IRIs makes the reuse
@@ -164,11 +254,12 @@ the *semantics* (one type, reused) than mirroring collection names.
 ## 7. What a reviewer can rely on
 
 - Load the base `*_rdf.ttl` + `*_shacl.ttl` and you get standards-only RDF/OWL/SHACL
-  **plus** the five declared `nrm:` terms — nothing else non-standard.
+  **plus** the five declared `y2r:` terms — nothing else non-standard.
 - Skip `*_refs.ttl` (`--no-inference`) and there is **zero heuristic content** in
   the output.
-- IRIs are derived deterministically from YANG namespaces and names; the same input
-  produces byte-identical output.
+- IRIs are derived deterministically from the declared module name and term names;
+  the same input produces byte-identical output, which
+  `examples/MnS-Rel-19-yang-models/` is pinned to demonstrate.
 - Every deviation above is a modelling choice made to be *more* faithful to 3GPP
   semantics, not a shortcut — and each is isolated (own vocabulary term, own file,
   or clearly documented) so it can be reviewed, kept, or replaced independently.

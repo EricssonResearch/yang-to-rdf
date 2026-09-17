@@ -20,8 +20,8 @@ urn:3gpp:sa5:_3gpp-ns-nrm-networkslice/ServiceProfile/dLThptPerUE
 ```
 
 with its structure preserved (it ranges onto `…/XLThpt`, which itself carries
-`guaThpt`/`maxThpt`), a small `nrm:` vocabulary for the 3GPP-specific relations
-(`nrm:nameContains`, `nrm:hasAttribute`, `nrm:isReference`, `nrm:ManagedFunction`),
+`guaThpt`/`maxThpt`), a small `y2r:` vocabulary for the 3GPP-specific relations
+(`y2r:nameContains`, `y2r:hasAttribute`, `y2r:isReference`, `y2r:ManagedFunction`),
 and SHACL to validate instance data. See [`examples/`](../examples/) for a
 committed, browsable output of the full SA5 MnS Release-19 set.
 
@@ -124,7 +124,7 @@ the KPI side aligns to.
 - It does not emit TIO/ICM typing (`met:Metric`, `quan:Quantity`, expectations) —
   see §2; that is an intent-layer overlay.
 - It covers the 28.541 NRM (requirement) layer, not 28.552 PM (assurance) — see §3.
-- It targets 3GPP NRM but is not 3GPP-specific by construction; the `nrm:`
+- It targets 3GPP NRM but is not 3GPP-specific by construction; the `y2r:`
   vocabulary is the only 3GPP-shaped surface (see CONVERSION_NOTES).
 
 ## Summary

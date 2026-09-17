@@ -18,9 +18,52 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
       - name: Sync dependencies
-        run: uv sync --all-extras --dev
+        run: uv sync --locked --all-extras --dev
       - name: Run tests
-        # The 3GPP YANG dataset is not redistributed; dataset-dependent tests
-        # skip automatically when MnS-Rel-19-yang-models.zip is absent. Set the
-        # YANG_TEST_ZIP env var to a local copy to run the full suite.
+        # The 3GPP YANG dataset is not redistributed, so dataset-dependent tests
+        # skip here. Those paths are covered by the `verify` job below, which
+        # fetches the pinned tag from the forge and converts it for real.
         run: uv run pytest -v
+
+  verify:
+    # The full reproducibility gate: builds the image the README documents and
+    # runs every stage, ending in a byte-for-byte diff against examples/.
+    #
+    # NOTE: this needs egress to forge.3gpp.org. Whether GitHub-hosted runners can
+    # reach it has NOT been verified -- it was only confirmed from a developer
+    # machine. If this job fails on a fresh fork with a network error, that is the
+    # likely cause, and the failing stage says so explicitly rather than skipping.
+    # Do not "fix" it by adding --offline, which would silence the gate.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the verification image
+        # The revision is passed in because .dockerignore excludes .git, so the
+        # provenance stage cannot derive it. Without these it reports "unknown"
+        # and declines to certify reproducibility.
+        run: |
+          docker build -t yang-to-rdf \
+            --build-arg GIT_HEAD="${GITHUB_SHA}" \
+            --build-arg GIT_BRANCH="${GITHUB_REF_NAME}" \
+            --build-arg GIT_DIRTY=0 \
+            .
+
+      - name: Run the full verification
+        # examples/ is excluded from the build context, so mount it read-only for
+        # the reproducibility stage. Without the mount that stage FAILS with an
+        # explanatory message.
+        run: |
+          mkdir -p verify-out
+          docker run --rm \
+            -v "${GITHUB_WORKSPACE}/examples:/yang-to-rdf/examples:ro" \
+            -v "${GITHUB_WORKSPACE}/verify-out:/out" \
+            yang-to-rdf --json /out/verification-report.json
+
+      - name: Upload the verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-report
+          path: verify-out/verification-report.json
+          if-no-files-found: warn
