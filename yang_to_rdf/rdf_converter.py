@@ -8,11 +8,11 @@ from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import OWL, RDF, RDFS
 
 from yang_to_rdf.namespace import (
-    NRM,
     bind_standard_namespaces,
     class_iri,
     namespace_base,
     property_iri,
+    vocab_namespace,
 )
 from yang_to_rdf.output_writer import module_stem
 from yang_to_rdf.yang_parser import AttrRef, Klass, Leaf, Model, Typedef
@@ -21,8 +21,9 @@ from yang_to_rdf.yang_parser import AttrRef, Klass, Leaf, Model, Typedef
 class YangToRDFConverter:
     def __init__(self, model: Model):
         self.model = model
+        self.y2r = vocab_namespace(model.base_iri)
         self.graph = Graph()
-        bind_standard_namespaces(self.graph)
+        bind_standard_namespaces(self.graph, model.base_iri)
         self._labels = self._assign_labels()
 
     def _assign_labels(self) -> dict[str, str]:
@@ -32,7 +33,7 @@ class YangToRDFConverter:
         IOCs are distinct classes), so a bare local name is neither unique nor a
         usable HTML anchor for documentation tools. Rule: bare `Name` when the name
         is unique across the whole model; else qualify with the module stem
-        (`amffunction:PerfMetricJob`); if that still collides (same name in the same
+        (`_3gpp-5gc-nrm-amffunction:PerfMetricJob`); if that still collides (same name in the same
         module), append a `#N` suffix. Classes and typedefs share one label space.
         Deterministic (terms processed in model order, which is sorted by module).
         """
@@ -74,11 +75,11 @@ class YangToRDFConverter:
 
     def _emit_vocab(self):
         g = self.graph
-        g.add((NRM.nameContains, RDF.type, OWL.ObjectProperty))
-        g.add((NRM.hasAttribute, RDF.type, OWL.ObjectProperty))
-        g.add((NRM.ManagedFunction, RDF.type, RDFS.Class))
-        g.add((NRM.isReference, RDF.type, OWL.ObjectProperty))
-        g.add((NRM.isInvariant, RDF.type, OWL.DatatypeProperty))
+        g.add((self.y2r.nameContains, RDF.type, OWL.ObjectProperty))
+        g.add((self.y2r.hasAttribute, RDF.type, OWL.ObjectProperty))
+        g.add((self.y2r.ManagedFunction, RDF.type, RDFS.Class))
+        g.add((self.y2r.isReference, RDF.type, OWL.ObjectProperty))
+        g.add((self.y2r.isInvariant, RDF.type, OWL.DatatypeProperty))
 
     def _emit_typedef(self, td: Typedef):
         uri = URIRef(class_iri(namespace_base(td.namespace), td.name))
@@ -99,7 +100,7 @@ class YangToRDFConverter:
         for parent in cls.subclass_of:
             g.add((uri, RDFS.subClassOf, URIRef(parent)))
         for child_iri in cls.contains:
-            g.add((uri, NRM.nameContains, URIRef(child_iri)))
+            g.add((uri, self.y2r.nameContains, URIRef(child_iri)))
         for leaf in cls.leaves:
             self._emit_leaf(leaf, cls, base, uri)
         for ref in cls.attr_refs:
@@ -110,7 +111,7 @@ class YangToRDFConverter:
         prop = URIRef(property_iri(base, cls.name, leaf.name))
         if leaf.is_reference:
             g.add((prop, RDF.type, OWL.ObjectProperty))
-            g.add((prop, NRM.isReference, Literal(True)))
+            g.add((prop, self.y2r.isReference, Literal(True)))
         else:
             g.add((prop, RDF.type, RDF.Property))
             if leaf.xsd is not None:
@@ -120,7 +121,7 @@ class YangToRDFConverter:
         if leaf.description:
             g.add((prop, RDFS.comment, Literal(leaf.description)))
         if leaf.is_invariant:
-            g.add((prop, NRM.isInvariant, Literal(True)))
+            g.add((prop, self.y2r.isInvariant, Literal(True)))
 
     def _emit_attr_ref(self, ref: AttrRef, cls: Klass, base: str, cls_uri: URIRef):
         g = self.graph
@@ -130,6 +131,6 @@ class YangToRDFConverter:
         g.add((prop, RDFS.label, Literal(f"{self._class_label(cls)}.{ref.name}")))
         g.add((prop, RDFS.domain, cls_uri))
         g.add((prop, RDFS.range, target))
-        g.add((cls_uri, NRM.hasAttribute, target))
+        g.add((cls_uri, self.y2r.hasAttribute, target))
         if ref.description:
             g.add((prop, RDFS.comment, Literal(ref.description)))

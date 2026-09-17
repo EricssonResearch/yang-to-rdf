@@ -1,13 +1,21 @@
 """Split a merged RDF graph into per-module graphs for browsable output."""
 from __future__ import annotations
 
-from urllib.parse import quote
-
-from rdflib import BNode, Graph, Literal, URIRef
+from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import DCTERMS, OWL, RDF, RDFS
 
-# Aggregating ontology IRI used by index.ttl to owl:imports every module.
-INDEX_ONTOLOGY = URIRef("https://3gpp.org/nrm/ontology")
+from yang_to_rdf.namespace import (
+    aggregate_ontology_iri,
+    module_stem,
+    shapes_module_iri,
+    version_iri,
+    vocab_namespace,
+)
+
+__all__ = [
+    "module_prefix_map", "module_ns", "module_stem", "split_graph",
+    "stamp_versions",
+]
 
 
 def _stamp_module_meta(graph: Graph, ns: str, model) -> None:
@@ -33,36 +41,43 @@ def _stamp_module_meta(graph: Graph, ns: str, model) -> None:
         graph.add((node, DCTERMS.source, Literal(meta.reference)))
 
 
-def module_ns(iri, namespaces: set[str]) -> str | None:
-    """Return the source-module namespace an IRI belongs to, else None.
+def module_prefix_map(base: str, module_iris: set[str]) -> dict[str, str]:
+    """IRI prefix -> owning module IRI.
 
-    An emitted IRI is `<module-namespace>/Class[/prop]`, so it belongs to the
-    (unique) namespace in `namespaces` that it starts with. Driven by the actual
-    set of module namespaces the parser saw — scheme-agnostic, so non-3GPP or
-    non-URN modules partition correctly too.
+    Each module contributes TWO prefixes: its own ontology IRI (classes,
+    properties, typedefs) and its shapes ontology IRI. Both route to the same
+    module so a module's three output files stay together, while shapes keep a
+    namespace of their own — which is what makes a class named `FooShape` unable
+    to collide with the shape of `Foo` (spec §4).
+    """
+    pmap: dict[str, str] = {}
+    for m in module_iris:
+        pmap[m] = m
+        pmap[shapes_module_iri(base, module_stem(m))] = m
+    return pmap
+
+
+def module_ns(iri, prefix_map: dict[str, str]) -> str | None:
+    """Return the module IRI an emitted IRI belongs to, else None.
+
+    A term is `<prefix>#<local>`; the module ontology node is `<prefix>` exactly.
+    Requiring the '#' for the term form is what stops `<base>yang/mod` from
+    capturing `<base>yang/mod-extra#X`. Longest match wins as belt-and-braces.
     """
     if not isinstance(iri, URIRef):
         return None
     s = str(iri)
-    # Longest match wins in the unlikely case one namespace prefixes another.
-    best = None
-    for ns in namespaces:
-        if s == ns or s.startswith(ns + "/"):
-            if best is None or len(ns) > len(best):
-                best = ns
-    return best
+    best_prefix = None
+    for prefix in prefix_map:
+        if s == prefix or s.startswith(prefix + "#"):
+            if best_prefix is None or len(prefix) > len(best_prefix):
+                best_prefix = prefix
+    return prefix_map[best_prefix] if best_prefix is not None else None
 
 
-def module_stem(ns: str) -> str:
-    """Filename stem for a module namespace (matches the source .yang basename).
-
-    e.g. `urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction` -> `_3gpp-5gc-nrm-amffunction`.
-    """
-    return ns.rsplit(":", 1)[-1].rsplit("/", 1)[-1]
-
-
-def split_graph(g: Graph, namespaces: set[str]) -> tuple[dict[str, Graph], Graph]:
-    """Partition g into {module_namespace: Graph} + a leftover index Graph.
+def split_graph(g: Graph, prefix_map: dict[str, str],
+                base_iri: str) -> tuple[dict[str, Graph], Graph]:
+    """Partition g into {module_iri: Graph} + a leftover index Graph.
 
     A triple is assigned to the module of its **subject** (when the subject IRI
     belongs to one of `namespaces`, the parser's set of source-module
@@ -85,8 +100,8 @@ def split_graph(g: Graph, namespaces: set[str]) -> tuple[dict[str, Graph], Graph
     emitted: set = set()
     # Seed only from URIRef subjects; CBD pulls their blank-node closure.
     for s in sorted((s for s in set(g.subjects()) if isinstance(s, URIRef)), key=str):
-        ns = module_ns(s, namespaces)
-        target = modules.setdefault(ns, _new_graph()) if ns else index
+        mod = module_ns(s, prefix_map)
+        target = modules.setdefault(mod, _new_graph()) if mod else index
         for t in g.cbd(s):
             target.add(t)
             emitted.add(t)
@@ -97,70 +112,95 @@ def split_graph(g: Graph, namespaces: set[str]) -> tuple[dict[str, Graph], Graph
             index.add(t)
 
     # Declare each module as an owl:Ontology and have the index import them.
-    index.add((INDEX_ONTOLOGY, RDF.type, OWL.Ontology))
-    for ns in modules:
-        modules[ns].add((URIRef(ns), RDF.type, OWL.Ontology))
-        index.add((INDEX_ONTOLOGY, OWL.imports, URIRef(ns)))
+    index_ontology = URIRef(aggregate_ontology_iri(base_iri))
+    index.add((index_ontology, RDF.type, OWL.Ontology))
+    for mod in modules:
+        modules[mod].add((URIRef(mod), RDF.type, OWL.Ontology))
+        index.add((index_ontology, OWL.imports, URIRef(mod)))
 
     return modules, index
 
 
 def stamp_versions(graph: Graph, model, release_label: str | None = None,
                    aggregate: bool = False) -> None:
-    """Add OWL version metadata to a graph.
+    """Add OWL version metadata and YANG provenance to a graph.
 
-    For each module URN in model.revisions that has subjects in graph, adds
-    owl:versionInfo to the module ontology node (the URN itself).
+    For each module IRI with subjects in `graph`, stamps the module ontology node
+    with its `revision` (when it has one), its YANG-sourced dcterms metadata, and
+    the provenance recording what the IRI was derived from.
 
-    If aggregate=True and release_label is given, also adds owl:versionIRI
-    and owl:versionInfo to the INDEX_ONTOLOGY.
+    If aggregate=True and release_label is given, also adds owl:versionIRI and
+    owl:versionInfo to the aggregate ontology.
 
     Args:
         graph: The RDF graph to stamp.
-        model: The Model with .revisions dict[urn, (date, cr_ref_or_None)].
+        model: The Model with .module_iris, .revisions, .module_yang_namespace.
         release_label: Optional release label (e.g. "Rel-19").
         aggregate: Whether this is an aggregate ontology graph (for versionIRI).
     """
-    # Which module namespaces have subjects present in this graph? We only stamp
-    # modules that carry a revision, so the revision keys are the candidate set
-    # (they are module namespaces); union module_namespaces for completeness.
-    candidates = set(model.revisions) | set(model.module_namespaces)
+    # Which modules have subjects present in this graph?
+    candidates = module_prefix_map(
+        model.base_iri, set(model.revisions) | set(model.module_iris))
     present = set()
     for s in graph.subjects():
         if isinstance(s, URIRef):
-            ns = module_ns(s, candidates)
-            if ns:
-                present.add(ns)
+            mod = module_ns(s, candidates)
+            if mod:
+                present.add(mod)
 
-    # Stamp module versionInfo for present modules (deterministic order)
-    for ns in sorted(model.revisions):
-        if ns not in present:
+    # Iterate the UNION, not just one source. Iterating only `revisions` (as the
+    # old code did) skips metadata and provenance for a module with no
+    # `revision` statement; iterating only `module_iris` would drop a module that
+    # somehow carries a revision without being registered. Neither omission
+    # should be silent.
+    for mod in sorted(set(model.module_iris) | set(model.revisions)):
+        if mod not in present:
             continue
-        date, cr_ref = model.revisions[ns]
-        version_string = f"revision {date}"
-        if cr_ref:
-            version_string += f" ({cr_ref})"
-
-        graph.add((URIRef(ns), RDF.type, OWL.Ontology))
-        graph.add((URIRef(ns), OWL.versionInfo, Literal(version_string)))
-        _stamp_module_meta(graph, ns, model)
+        graph.add((URIRef(mod), RDF.type, OWL.Ontology))
+        if mod in model.revisions:
+            date, cr_ref = model.revisions[mod]
+            version_string = f"revision {date}"
+            if cr_ref:
+                version_string += f" ({cr_ref})"
+            graph.add((URIRef(mod), OWL.versionInfo, Literal(version_string)))
+        _stamp_module_meta(graph, mod, model)
+        _stamp_yang_provenance(graph, mod, model)
 
     # Aggregate ontology: title/description (derived from the YANG) + version.
     if aggregate:
-        graph.add((INDEX_ONTOLOGY, RDF.type, OWL.Ontology))
+        index_ontology = URIRef(aggregate_ontology_iri(model.base_iri))
+        graph.add((index_ontology, RDF.type, OWL.Ontology))
         title, description = _aggregate_title(model)
-        graph.add((INDEX_ONTOLOGY, DCTERMS.title, Literal(title)))
-        graph.add((INDEX_ONTOLOGY, RDFS.label, Literal(title)))
+        graph.add((index_ontology, DCTERMS.title, Literal(title)))
+        graph.add((index_ontology, RDFS.label, Literal(title)))
         if description:
-            graph.add((INDEX_ONTOLOGY, DCTERMS.description, Literal(description)))
+            graph.add((index_ontology, DCTERMS.description, Literal(description)))
         publishers = {m.organization for m in model.module_meta.values() if m.organization}
         for pub in sorted(publishers):
-            graph.add((INDEX_ONTOLOGY, DCTERMS.publisher, Literal(pub)))
+            graph.add((index_ontology, DCTERMS.publisher, Literal(pub)))
         if release_label:
-            version_iri = URIRef(
-                f"https://3gpp.org/nrm/ontology/version/{quote(release_label, safe='')}")
-            graph.add((INDEX_ONTOLOGY, OWL.versionIRI, version_iri))
-            graph.add((INDEX_ONTOLOGY, OWL.versionInfo, Literal(release_label)))
+            graph.add((index_ontology, OWL.versionIRI,
+                       URIRef(version_iri(model.base_iri, release_label))))
+            graph.add((index_ontology, OWL.versionInfo, Literal(release_label)))
+
+
+def _stamp_yang_provenance(graph: Graph, mod: str, model) -> None:
+    """Record what a module IRI was derived from (spec D6).
+
+    `y2r:yangModuleName` and `y2r:yangNamespace` are minted by this project and
+    assert no external authority. They exist because module identity is keyed on
+    the declared module name, so the module's YANG `namespace` would otherwise be
+    discarded — and in the 3GPP Rel-19 set two namespaces disagree with their
+    module name, making this the only record of the original URN.
+    """
+    y2r = vocab_namespace(model.base_iri)
+    meta = model.module_meta.get(mod)
+    if meta is not None:
+        graph.add((URIRef(mod), y2r.yangModuleName, Literal(meta.name)))
+    urn = model.module_yang_namespace.get(mod)
+    if urn:
+        # A URN is a legal IRI, so this is emitted as a URIRef, not a string.
+        graph.add((URIRef(mod), y2r.yangNamespace, URIRef(urn)))
 
 
 def _aggregate_title(model) -> tuple[str, str]:
@@ -171,7 +211,7 @@ def _aggregate_title(model) -> tuple[str, str]:
     from collections import Counter
 
     refs = Counter(m.reference for m in model.module_meta.values() if m.reference)
-    n_modules = len(model.module_namespaces)
+    n_modules = len(model.module_iris)
     if refs:
         # Most common reference — collapse to its first line (the TS title).
         top_ref = refs.most_common(1)[0][0].splitlines()[0].strip()

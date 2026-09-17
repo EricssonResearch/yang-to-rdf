@@ -41,9 +41,21 @@ DEFAULT_BASE_IRI = "https://semantics.ericsson.com/"
 # Joins a class and property local name: <Class>.<prop>. OURS -- no standard
 # prescribes it. It is legal in a non-initial NCName position, and it is already
 # this project's convention for rdfs:label (every property label is
-# "<Class>.<prop>"). No ASCII separator can be unambiguous, because RFC 7950
-# identifiers and NCNames permit the same character set -- so identifiers
-# containing it are REFUSED rather than silently made ambiguous. See spec §3.
+# "<Class>.<prop>").
+#
+# No ASCII separator is free of a THEORETICAL ambiguity, because RFC 7950
+# identifiers and NCNames permit the same character set: a class named `A.B`
+# would produce the same local name as property `B` of class `A`. An earlier
+# draft refused every identifier containing '.', which was wrong -- the IETF
+# `ietf-yang-types` module that nearly every 3GPP module imports defines
+# `typedef xpath1.0` (RFC 6991), so refusing dots breaks the primary use case.
+#
+# The ambiguity is much narrower than "contains a dot". A split is only a real
+# alternative reading if BOTH halves are legal YANG identifiers, and an
+# identifier cannot begin with a digit -- so `xpath1.0` has no valid split and
+# is unambiguously one name. is_ambiguous_local_name() below decides this
+# precisely, and gate G2 asserts it over the whole corpus (measured: 0 ambiguous
+# of 7,225 local names). See spec §3.
 SCOPE_SEPARATOR = "."
 
 # NCName restricted to the ASCII range, which is all an RFC 7950 identifier can
@@ -83,22 +95,43 @@ def _check_yang_identifier(name: str, what: str) -> str:
 
 
 def _check_local_name(name: str, what: str) -> str:
-    """Refuse anything that cannot become an unambiguous NCName local part.
+    """Validate a class or property name destined for an NCName local part.
 
-    Stricter than _check_yang_identifier: a class or property name lands *after*
-    the '#', where SCOPE_SEPARATOR is load-bearing, so a name containing it
-    would make the composed local name ambiguous.
+    Identical to _check_yang_identifier today; kept as a distinct seam because
+    local names carry the extra obligation of composing unambiguously, which is
+    enforced corpus-wide by is_ambiguous_local_name / gate G2 rather than by
+    rejecting individual names. See the SCOPE_SEPARATOR comment.
     """
-    _check_yang_identifier(name, what)
-    if SCOPE_SEPARATOR in name:
-        raise ValueError(
-            f"{what} {name!r} contains {SCOPE_SEPARATOR!r}, which this project "
-            f"reserves as the class/property scope separator. No ASCII separator "
-            f"can be unambiguous here (RFC 7950 identifiers and NCNames share a "
-            f"character set), so such names are refused rather than made "
-            f"ambiguous. See the IRI scheme design, §3."
-        )
-    return name
+    return _check_yang_identifier(name, what)
+
+
+def split_local_name(local: str) -> list[tuple[str, str]]:
+    """Every reading of a composed local name as (class, property).
+
+    A split at SCOPE_SEPARATOR is only a real alternative reading when BOTH
+    halves are legal YANG identifiers. Since an identifier cannot start with a
+    digit, `xpath1.0` yields no splits and is unambiguously a single name, while
+    `AMFFunction.pLMNId` yields exactly one.
+    """
+    out = []
+    for i, ch in enumerate(local):
+        if ch != SCOPE_SEPARATOR:
+            continue
+        head, tail = local[:i], local[i + 1:]
+        if YANG_IDENTIFIER_RE.match(head) and YANG_IDENTIFIER_RE.match(tail):
+            out.append((head, tail))
+    return out
+
+
+def is_ambiguous_local_name(local: str) -> bool:
+    """True when a local name could be read as more than one term.
+
+    Ambiguity needs two or more valid (class, property) splits, or one valid
+    split for a name that is *also* a legal standalone identifier -- the case
+    where a class named `A.B` collides with property `B` of class `A`. Callers
+    resolve which of those actually occur; this only reports the possibility.
+    """
+    return len(split_local_name(local)) > 1
 
 
 def vocab_namespace(base: str) -> Namespace:

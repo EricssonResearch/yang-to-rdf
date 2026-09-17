@@ -3,13 +3,18 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from yang_to_rdf.namespace import class_iri
+from yang_to_rdf.namespace import (
+    DEFAULT_BASE_IRI,
+    class_iri,
+    module_iri,
+    namespace_base,
+    vocab_namespace,
+)
 from yang_to_rdf.pyang_context import build_context
 from yang_to_rdf.type_resolver import resolve_type
 
 INVARIANT_EXT = ("_3gpp-common-yang-extensions", "inVariant")
 MANAGED_FUNCTION_GRP = "ManagedFunctionGrp"
-MANAGED_FUNCTION_IRI = "https://3gpp.org/nrm/vocab#ManagedFunction"
 BASE_GROUPINGS = {
     "Top_Grp",
     "ManagedFunctionGrp",
@@ -86,20 +91,43 @@ class ModuleMeta:
 class Model:
     classes: list[Klass] = field(default_factory=list)
     typedefs: list[Typedef] = field(default_factory=list)
+    # Keyed by MODULE IRI (<base>yang/<module>), not by YANG namespace.
     revisions: dict[str, tuple[str, str | None]] = field(default_factory=dict)
-    # Every source module's YANG namespace (URN or otherwise). This is the
-    # authoritative set used to partition output per module — scheme-agnostic,
-    # so non-3GPP / non-URN namespaces split correctly too.
-    module_namespaces: set[str] = field(default_factory=set)
-    # Module namespace -> metadata from that module's YANG statements.
+    # Every source module's ontology IRI. This is the authoritative set used to
+    # partition output per module.
+    module_iris: set[str] = field(default_factory=set)
+    # Module IRI -> metadata from that module's YANG statements.
     module_meta: dict[str, "ModuleMeta"] = field(default_factory=dict)
+    # Module IRI -> the module's YANG `namespace` statement, retained so the
+    # mapping stays queryable and reversible (spec D6). Not merely decorative:
+    # two modules in the 3GPP Rel-19 set have a namespace that disagrees with
+    # their module name, so this is the only record of the original URN.
+    module_yang_namespace: dict[str, str] = field(default_factory=dict)
+    base_iri: str = DEFAULT_BASE_IRI
 
     @property
     def iocs(self) -> list[Klass]:
         return [c for c in self.classes if c.kind == "ioc"]
 
 
-def _ns(stmt) -> str:
+def _module_name(stmt) -> str:
+    """The declared name of the module a statement belongs to.
+
+    Submodules carry no `namespace`; they name their parent via `belongs-to`
+    (RFC 7950 §7.2.2), and terms defined in a submodule belong to that parent.
+    Resolving that here means every caller gets it, where previously only
+    grouping resolution handled submodules.
+    """
+    m = stmt.i_module if getattr(stmt, "i_module", None) is not None else stmt
+    if m.keyword == "submodule":
+        bt = m.search_one("belongs-to")
+        if bt is not None:
+            return bt.arg
+    return m.arg
+
+
+def _yang_namespace(stmt) -> str:
+    """The module's own `namespace` statement, retained for provenance only."""
     m = stmt.i_module if getattr(stmt, "i_module", None) is not None else stmt
     n = m.search_one("namespace")
     return n.arg if n is not None else ""
@@ -146,27 +174,23 @@ def _is_ioc(list_node) -> bool:
     return _attributes_container(list_node) is not None
 
 
-def _grouping_home_ns(u, ctx):
-    """Resolve the home module namespace for a uses statement's grouping."""
+def _grouping_home_module(u):
+    """Resolve the home module NAME for a uses statement's grouping.
+
+    Returns a module name, not an IRI; the caller composes the IRI. Submodules
+    are handled by _module_name via `belongs-to`.
+    """
     g = getattr(u, "i_grouping", None)
     if g is None:
         return None
     m = getattr(g, "i_module", None)
     if m is None:
         return None
-    ns = m.search_one("namespace")
-    if ns is not None:
-        return ns.arg  # defining module
-    bt = m.search_one("belongs-to")  # submodule -> parent module namespace
-    if bt is not None:
-        parent = ctx.get_module(bt.arg)
-        if parent is not None and parent.search_one("namespace") is not None:
-            return parent.search_one("namespace").arg
-    return None
+    return _module_name(m)
 
 
-def _class_identity(list_node, ctx):
-    """Compute (name, namespace, iri) identity for a list node's class.
+def _class_identity(list_node, ctx, base_iri):
+    """Compute (name, module_iri, iri) identity for a list node's class.
 
     Design decision (see CONVERSION_NOTES.md §5): a class is identified by the
     YANG *grouping* it is built from, not the list node's own name. So a node
@@ -194,16 +218,15 @@ def _class_identity(list_node, ctx):
     if len(real_groupings) == 1:
         u, local_name = real_groupings[0]
         class_name = local_name[:-3]  # strip 'Grp' suffix
-        class_ns = _grouping_home_ns(u, ctx)
-        if class_ns is not None:
-            cls_iri = class_iri(class_ns + "/", class_name)
-            return (class_name, class_ns, cls_iri)
+        home = _grouping_home_module(u)
+        if home is not None:
+            mod = module_iri(base_iri, home)
+            return (class_name, mod, class_iri(namespace_base(mod), class_name))
 
     # Fallback: node-based naming
-    ns = _ns(list_node)
+    mod = module_iri(base_iri, _module_name(list_node))
     name = list_node.arg
-    iri = class_iri(ns + "/", name)
-    return (name, ns, iri)
+    return (name, mod, class_iri(namespace_base(mod), name))
 
 
 def _leaf_from(stmt) -> Leaf:
@@ -248,7 +271,7 @@ def _grouping_uses_managed_function(grp) -> bool:
     return False
 
 
-def _subclasses(list_node) -> list[str]:
+def _subclasses(list_node, managed_function_iri: str) -> list[str]:
     out: list[str] = []
     scopes = [list_node]
     attrs = _attributes_container(list_node)
@@ -259,14 +282,16 @@ def _subclasses(list_node) -> list[str]:
             if sub.keyword == "uses":
                 grp = getattr(sub, "i_grouping", None)
                 if grp is not None and _grouping_uses_managed_function(grp):
-                    if MANAGED_FUNCTION_IRI not in out:
-                        out.append(MANAGED_FUNCTION_IRI)
+                    if managed_function_iri not in out:
+                        out.append(managed_function_iri)
     return out
 
 
 class _Parser:
-    def __init__(self):
-        self.model = Model()
+    def __init__(self, base_iri: str = DEFAULT_BASE_IRI):
+        self.base_iri = base_iri
+        self.model = Model(base_iri=base_iri)
+        self.managed_function_iri = str(vocab_namespace(base_iri).ManagedFunction)
         self.seen: dict[str, Klass] = {}
         # keywords encountered inside a class that we deliberately do not model,
         # collected so nothing is dropped silently (surfaced by parse()).
@@ -275,7 +300,7 @@ class _Parser:
 
     def _register_datatype(self, list_node) -> str:
         """Register a nested dataType list as a class; return its IRI."""
-        name, ns, iri = _class_identity(list_node, self.ctx)
+        name, ns, iri = _class_identity(list_node, self.ctx, self.base_iri)
         if iri in self.seen:
             return iri
         cls = Klass(name=name, namespace=ns, kind="datatype",
@@ -314,7 +339,7 @@ class _Parser:
                 else:
                     self._register_datatype(c)
                 # Get the consistent IRI via _class_identity
-                _, _, target_iri = _class_identity(c, self.ctx)
+                _, _, target_iri = _class_identity(c, self.ctx, self.base_iri)
                 cls.attr_refs.append(AttrRef(
                     name=c.arg, target_iri=target_iri,
                     min_elements=_int(c, "min-elements"),
@@ -328,7 +353,7 @@ class _Parser:
                 self.unhandled.add(c.keyword)
 
     def register_ioc(self, list_node) -> Klass:
-        name, ns, iri = _class_identity(list_node, self.ctx)
+        name, ns, iri = _class_identity(list_node, self.ctx, self.base_iri)
         existing = self.seen.get(iri)
         if existing is not None:
             if existing.kind == "ioc":
@@ -339,12 +364,12 @@ class _Parser:
             # were already populated by _register_datatype, so don't refill them.
             cls = existing
             cls.kind = "ioc"
-            cls.subclass_of = _subclasses(list_node)
+            cls.subclass_of = _subclasses(list_node, self.managed_function_iri)
             self._fill_containment(cls, list_node)
             return cls
         cls = Klass(name=name, namespace=ns, kind="ioc",
                     description=_desc(list_node),
-                    subclass_of=_subclasses(list_node))
+                    subclass_of=_subclasses(list_node, self.managed_function_iri))
         self.seen[iri] = cls
         self.model.classes.append(cls)
 
@@ -367,7 +392,7 @@ class _Parser:
         for c in getattr(list_node, "i_children", []):
             if c.keyword == "list" and c.arg != "idx" and _is_ioc(c):
                 self.register_ioc(c)
-                _, _, child_iri = _class_identity(c, self.ctx)
+                _, _, child_iri = _class_identity(c, self.ctx, self.base_iri)
                 if child_iri not in cls.contains:
                     cls.contains.append(child_iri)
 
@@ -378,30 +403,36 @@ class _Parser:
             m = ctx.modules[key]
             if m.keyword != "module":
                 continue
-            # Capture revision metadata for versioning
-            ns = _ns(m)
+            # Module identity is the declared module name, so a module is
+            # registered whether or not it declares a `namespace` — the old
+            # namespace-keyed code silently skipped any module without one.
+            mod = module_iri(self.base_iri, m.arg)
+            self.model.module_iris.add(mod)
+            ns = _yang_namespace(m)
             if ns:
-                self.model.module_namespaces.add(ns)
-                rev = m.search_one("revision")
-                if rev is not None:
-                    date = rev.arg
-                    ref_stmt = rev.search_one("reference")
-                    cr_ref = ref_stmt.arg if ref_stmt is not None else None
-                    self.model.revisions[ns] = (date, cr_ref)
-                # Capture module metadata (for ontology dcterms:* — sourced from
-                # the YANG itself; any statement may be absent).
-                self.model.module_meta[ns] = ModuleMeta(
-                    name=m.arg,
-                    organization=_stmt_arg(m, "organization"),
-                    contact=_stmt_arg(m, "contact"),
-                    description=_desc(m),
-                    reference=_stmt_arg(m, "reference"),
-                )
+                # Provenance only (spec D6): two modules in the 3GPP Rel-19 set
+                # have a namespace that disagrees with their module name.
+                self.model.module_yang_namespace[mod] = ns
+            rev = m.search_one("revision")
+            if rev is not None:
+                date = rev.arg
+                ref_stmt = rev.search_one("reference")
+                cr_ref = ref_stmt.arg if ref_stmt is not None else None
+                self.model.revisions[mod] = (date, cr_ref)
+            # Capture module metadata (for ontology dcterms:* — sourced from
+            # the YANG itself; any statement may be absent).
+            self.model.module_meta[mod] = ModuleMeta(
+                name=m.arg,
+                organization=_stmt_arg(m, "organization"),
+                contact=_stmt_arg(m, "contact"),
+                description=_desc(m),
+                reference=_stmt_arg(m, "reference"),
+            )
 
             for td in m.search("typedef"):
                 rt = resolve_type(td.search_one("type"))
                 self.model.typedefs.append(
-                    Typedef(td.arg, _ns(m), rt.enums, rt.pattern, _desc(td)))
+                    Typedef(td.arg, mod, rt.enums, rt.pattern, _desc(td)))
 
         for key in sorted(ctx.modules.keys()):
             m = ctx.modules[key]
@@ -415,15 +446,16 @@ class _Parser:
                 for child in getattr(aug, "i_children", []):
                     if child.keyword == "list" and child.arg != "idx" and _is_ioc(child):
                         self.register_ioc(child)
-                        _, _, ci = _class_identity(child, self.ctx)
+                        _, _, ci = _class_identity(child, self.ctx, self.base_iri)
                         if ci not in parent.contains:
                             parent.contains.append(ci)
         return self.model
 
 
-def parse(yang_files, search_paths) -> tuple[Model, list[str]]:
+def parse(yang_files, search_paths,
+          base_iri: str = DEFAULT_BASE_IRI) -> tuple[Model, list[str]]:
     ctx, errors = build_context(yang_files, search_paths)
-    parser = _Parser()
+    parser = _Parser(base_iri)
     model = parser.run(ctx)
     # Surface any attribute-child node kinds we did not model, so coverage gaps
     # are visible rather than silent.

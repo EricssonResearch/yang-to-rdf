@@ -6,8 +6,10 @@ from rdflib import RDF, URIRef
 from rdflib.namespace import DCTERMS, OWL
 
 from scripts.build_docs import build_doc_graph
-from yang_to_rdf.output_writer import INDEX_ONTOLOGY
-from tests._shared import cached_parse
+from tests._shared import BASE, cached_parse, cls_iri
+from yang_to_rdf.namespace import aggregate_ontology_iri
+
+INDEX_ONTOLOGY = URIRef(aggregate_ontology_iri(BASE))
 
 
 def test_doc_graph_has_single_titled_ontology(yang_dir, external_yams_dir):
@@ -24,7 +26,7 @@ def test_doc_graph_has_single_titled_ontology(yang_dir, external_yams_dir):
 
     # Classes survive the demotion (a known IOC is still present with its label).
     from rdflib.namespace import RDFS
-    amf = URIRef("urn:3gpp:sa5:_3gpp-5gc-nrm-amffunction/AMFFunction")
+    amf = URIRef(cls_iri("_3gpp-5gc-nrm-amffunction", "AMFFunction"))
     assert (amf, RDF.type, RDFS.Class) in g
     assert g.value(amf, RDFS.label) is not None
 

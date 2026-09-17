@@ -14,6 +14,7 @@ from yang_to_rdf.namespace import (
     aggregate_ontology_iri,
     bind_standard_namespaces,
     class_iri,
+    is_ambiguous_local_name,
     module_iri,
     module_stem,
     namespace_base,
@@ -21,6 +22,7 @@ from yang_to_rdf.namespace import (
     property_iri,
     shape_iri,
     shapes_module_iri,
+    split_local_name,
     version_iri,
     vocab_namespace,
 )
@@ -95,8 +97,8 @@ def test_normalize_base_iri_refuses_non_http_bases(bad):
 
 
 # --- G5: YANG identifier validation --------------------------------------
-# Cannot be reached by real 3GPP YANG (all 2,014 local names are alphanumeric),
-# so it is exercised only by these constructed inputs.
+# Cannot be reached by real 3GPP YANG: 0 of 7,225 local names in the Rel-19 set
+# are non-NCName. So it is exercised only by these constructed inputs.
 
 @pytest.mark.parametrize("bad", ["1leading", "-leading", ".leading", "has space",
                                  "has/slash", "has:colon", ""])
@@ -105,29 +107,42 @@ def test_class_iri_refuses_non_yang_identifiers(bad):
         class_iri(namespace_base(module_iri(BASE, MOD)), bad)
 
 
-# --- G9: the '.' separator must stay unambiguous -------------------------
-# Also unreachable on the real corpus: 0 of 1,482 local names contain a dot.
+# --- G9: composed local names must be unambiguous ------------------------
+# NOT by refusing dots. The IETF ietf-yang-types module that nearly every 3GPP
+# module imports defines `typedef xpath1.0` (RFC 6991), so a blanket refusal
+# breaks the primary use case. Measured over the real corpus: 1 of 7,225 local
+# names contains a dot, and 0 are ambiguous.
 
-def test_class_name_containing_the_separator_is_refused():
+def test_a_dotted_typedef_name_from_ietf_yang_types_is_accepted():
+    """Regression: an earlier draft refused this, breaking every 3GPP module."""
+    nb = namespace_base(module_iri(BASE, "ietf-yang-types"))
+    assert class_iri(nb, "xpath1.0").endswith("#xpath1.0")
+
+
+def test_xpath1_0_has_no_valid_split_so_it_is_unambiguous():
+    """A property named '0' is impossible -- YANG identifiers must start with a
+    letter or '_' (RFC 7950 §6.2) -- so there is only one reading."""
+    assert split_local_name("xpath1.0") == []
+    assert not is_ambiguous_local_name("xpath1.0")
+
+
+def test_a_normal_property_local_name_has_exactly_one_reading():
+    assert split_local_name("AMFFunction.pLMNId") == [("AMFFunction", "pLMNId")]
+    assert not is_ambiguous_local_name("AMFFunction.pLMNId")
+
+
+def test_a_genuinely_ambiguous_local_name_is_detected():
+    """Two valid splits: class 'A' prop 'B.C', or class 'A.B' prop 'C'. This is
+    the collision the guard exists to catch. No such name exists in the 3GPP
+    corpus (0 of 7,225), which is why it must be tested with constructed input."""
+    assert split_local_name("A.B.C") == [("A", "B.C"), ("A.B", "C")]
+    assert is_ambiguous_local_name("A.B.C")
+
+
+def test_the_collision_that_ambiguity_would_cause():
+    """Documents why it matters: two distinct terms, one IRI."""
     nb = namespace_base(module_iri(BASE, MOD))
-    with pytest.raises(ValueError, match=r"separator"):
-        class_iri(nb, "Foo.Bar")
-
-
-def test_property_name_containing_the_separator_is_refused():
-    nb = namespace_base(module_iri(BASE, MOD))
-    with pytest.raises(ValueError, match=r"separator"):
-        property_iri(nb, "Foo", "bar.baz")
-
-
-def test_separator_rejection_is_what_prevents_ambiguity():
-    """Without G9, class 'A.B' and property 'B' of class 'A' would produce the
-    same IRI. Documents the collision the guard exists to prevent."""
-    nb = namespace_base(module_iri(BASE, MOD))
-    # The collision that would occur if 'A.B' were allowed as a class name:
-    assert property_iri(nb, "A", "B") == nb + "A.B"
-    with pytest.raises(ValueError):
-        class_iri(nb, "A.B")
+    assert property_iri(nb, "A", "B.C") == property_iri(nb, "A.B", "C")
 
 
 def test_module_name_may_contain_a_dot():

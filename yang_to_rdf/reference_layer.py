@@ -8,11 +8,11 @@ from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import RDFS
 
 from yang_to_rdf.namespace import (
-    NRM,
     bind_standard_namespaces,
     class_iri,
     namespace_base,
     property_iri,
+    vocab_namespace,
 )
 from yang_to_rdf.yang_parser import Model
 
@@ -31,8 +31,9 @@ class ReferenceLayerBuilder:
 
     def __init__(self, model: Model):
         self.model = model
+        self.y2r = vocab_namespace(model.base_iri)
         self.graph = Graph()
-        bind_standard_namespaces(self.graph)
+        bind_standard_namespaces(self.graph, model.base_iri)
         self._by_name: dict[str, list[str]] = {}
         for cls in model.classes:
             if cls.kind == "ioc":
@@ -60,12 +61,12 @@ class ReferenceLayerBuilder:
                 prop = URIRef(property_iri(base, cls.name, leaf.name))
                 cand = self._candidate(leaf.name)
                 matches = self._by_name.get(cand, []) if cand else []
-                g.add((prop, NRM.inferredBy, Literal("dn-name-suffix")))
+                g.add((prop, self.y2r.inferredBy, Literal("dn-name-suffix")))
                 if len(matches) == 1:
                     g.add((prop, RDFS.range, URIRef(matches[0])))
-                    g.add((prop, NRM.confidence, Literal("unambiguous")))
+                    g.add((prop, self.y2r.confidence, Literal("unambiguous")))
                 else:
-                    g.add((prop, NRM.confidence, Literal("unresolved")))
+                    g.add((prop, self.y2r.confidence, Literal("unresolved")))
                     if cand:
-                        g.add((prop, NRM.candidate, Literal(cand)))
+                        g.add((prop, self.y2r.candidate, Literal(cand)))
         return g

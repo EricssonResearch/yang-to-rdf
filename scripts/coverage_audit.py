@@ -32,8 +32,13 @@ import sys
 from rdflib import RDF, RDFS, URIRef
 
 from yang_to_rdf.input_handler import collect_yang_files
-from yang_to_rdf.namespace import class_iri, namespace_base, property_iri
-from yang_to_rdf.rdf_converter import NRM, YangToRDFConverter
+from yang_to_rdf.namespace import (
+    class_iri,
+    namespace_base,
+    property_iri,
+    vocab_namespace,
+)
+from yang_to_rdf.rdf_converter import YangToRDFConverter
 from yang_to_rdf.shacl_converter import SH, YangToSHACLConverter
 from yang_to_rdf.yang_parser import parse
 
@@ -60,7 +65,7 @@ def audit(model, rdf, shacl) -> dict:
 
     # RDF/SHACL class parity (ManagedFunction is a vocab base class, no shape).
     rdf_classes = {str(s) for s in rdf.subjects(RDF.type, RDFS.Class)}
-    rdf_classes.discard(str(NRM.ManagedFunction))
+    rdf_classes.discard(str(vocab_namespace(model.base_iri).ManagedFunction))
     shape_targets = {str(o) for o in shacl.objects(None, SH.targetClass)}
     class_no_shape = sorted(rdf_classes - shape_targets)
     shape_no_class = sorted(shape_targets - rdf_classes)

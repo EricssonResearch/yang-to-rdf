@@ -7,7 +7,7 @@ a single subject ontology, so this script:
 
   1. runs the converter in --single-file mode to get one merged RDF TBox,
   2. demotes each per-module `owl:Ontology` to an `owl:imports` of the aggregate
-     `https://3gpp.org/nrm/ontology` (which keeps every class/property but leaves
+     the aggregate ontology IRI (which keeps every class/property but leaves
      exactly one ontology for the tool to document),
   3. renders HTML with pyLODE.
 
@@ -29,7 +29,8 @@ from rdflib import Graph, URIRef
 from rdflib.namespace import OWL, RDF
 
 from yang_to_rdf.input_handler import collect_yang_files, fetch_forge_release
-from yang_to_rdf.output_writer import INDEX_ONTOLOGY, stamp_versions
+from yang_to_rdf.namespace import aggregate_ontology_iri
+from yang_to_rdf.output_writer import stamp_versions
 from yang_to_rdf.rdf_converter import YangToRDFConverter
 from yang_to_rdf.yang_parser import parse
 
@@ -38,12 +39,13 @@ def build_doc_graph(model, release_label: str | None) -> Graph:
     """Merged TBox with a single documentable ontology (the aggregate)."""
     g = YangToRDFConverter(model).convert()
     stamp_versions(g, model, release_label=release_label, aggregate=True)
+    index_ontology = URIRef(aggregate_ontology_iri(model.base_iri))
     # Collapse the many module ontologies into imports of the aggregate so the
     # documentation tool has exactly one subject ontology.
     for s in list(g.subjects(RDF.type, OWL.Ontology)):
-        if s != INDEX_ONTOLOGY:
+        if s != index_ontology:
             g.remove((s, RDF.type, OWL.Ontology))
-            g.add((INDEX_ONTOLOGY, OWL.imports, s))
+            g.add((index_ontology, OWL.imports, s))
     return g
 
 

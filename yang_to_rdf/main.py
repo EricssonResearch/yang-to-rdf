@@ -7,7 +7,13 @@ from pathlib import Path
 from rdflib import Graph
 
 from yang_to_rdf.input_handler import collect_yang_files, fetch_forge_release
-from yang_to_rdf.output_writer import module_stem, split_graph, stamp_versions
+from yang_to_rdf.namespace import DEFAULT_BASE_IRI, normalize_base_iri
+from yang_to_rdf.output_writer import (
+    module_prefix_map,
+    module_stem,
+    split_graph,
+    stamp_versions,
+)
 from yang_to_rdf.rdf_converter import YangToRDFConverter
 from yang_to_rdf.reference_layer import ReferenceLayerBuilder
 from yang_to_rdf.shacl_converter import YangToSHACLConverter
@@ -42,14 +48,26 @@ def main():
     p.add_argument("--single-file", action="store_true",
                    help="Write one merged TTL per layer instead of one file per YANG module (default: split per module)")
     p.add_argument("--output", "-o", default="output")
+    p.add_argument(
+        "--base-iri", dest="base_iri", default=DEFAULT_BASE_IRI,
+        help=(f"Base IRI for every emitted term (default: {DEFAULT_BASE_IRI}). "
+              f"Must be an absolute http(s) IRI. The default names an "
+              f"Ericsson-owned namespace minted by this project; it is not "
+              f"currently dereferenceable and asserts no 3GPP endorsement."))
     p.add_argument("--release", default=None,
                    help="Release/version label (e.g. Rel-19, Tag_Rel20_SA112); recorded as owl:versionIRI / owl:versionInfo so multiple releases can be told apart. See VERSIONING.md.")
     p.add_argument("--fetch-release", dest="fetch_release", default=None,
                    help="Download yang-models for this ref from 3GPP forge (e.g. Rel-19, Tag_Rel20_SA112)")
     p.add_argument("--ref-type", choices=["heads", "tags"], default="heads",
                    help="Ref type for --fetch-release: heads (branch) or tags (tag)")
-    p.add_argument("--version", action="version", version="%(prog)s 0.2.0")
+    p.add_argument("--version", action="version", version="%(prog)s 0.3.0")
     args = p.parse_args()
+
+    try:
+        args.base_iri = normalize_base_iri(args.base_iri)
+    except ValueError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
 
     # Handle --fetch-release before input collection
     if args.fetch_release:
@@ -74,7 +92,7 @@ def main():
         sys.exit(1)
 
     print(f"Found {len(yang_files)} YANG files")
-    model, errors = parse(yang_files, search_paths)
+    model, errors = parse(yang_files, search_paths, base_iri=args.base_iri)
     if errors:
         print(f"WARNING: {len(errors)} validation error(s); output may be incomplete:",
               file=sys.stderr)
@@ -103,16 +121,17 @@ def main():
         index = Graph()
         file_count = 0
         module_count = 0
+        prefix_map = module_prefix_map(args.base_iri, model.module_iris)
         for layer_name, layer_graph in layers:
-            mods, leftover = split_graph(layer_graph, model.module_namespaces)
+            mods, leftover = split_graph(layer_graph, prefix_map, args.base_iri)
             # Accumulate leftovers into shared index (carry prefixes for readable ttl)
             for prefix, ns in leftover.namespaces():
                 index.bind(prefix, ns)
             for t in leftover:
                 index.add(t)
-            for module_namespace, mg in sorted(mods.items()):  # sorted → deterministic
+            for module_iri_, mg in sorted(mods.items()):  # sorted → deterministic
                 stamp_versions(mg, model)
-                stem = module_stem(module_namespace)
+                stem = module_stem(module_iri_)
                 path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
                 mg.serialize(destination=path, format="turtle")
                 file_count += 1

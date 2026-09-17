@@ -6,7 +6,15 @@ from rdflib import BNode, Graph, Literal, Namespace, URIRef
 from rdflib.collection import Collection
 from rdflib.namespace import RDF
 
-from yang_to_rdf.namespace import bind_standard_namespaces, class_iri, namespace_base, property_iri
+from yang_to_rdf.namespace import (
+    bind_standard_namespaces,
+    class_iri,
+    module_stem,
+    namespace_base,
+    property_iri,
+    shape_iri,
+    shapes_module_iri,
+)
 from yang_to_rdf.yang_parser import AttrRef, Klass, Leaf, Model
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
@@ -16,7 +24,7 @@ class YangToSHACLConverter:
     def __init__(self, model: Model):
         self.model = model
         self.graph = Graph()
-        bind_standard_namespaces(self.graph)
+        bind_standard_namespaces(self.graph, model.base_iri)
         self.graph.bind("sh", SH)
 
     def convert(self) -> Graph:
@@ -27,8 +35,12 @@ class YangToSHACLConverter:
     def _emit_shape(self, cls: Klass):
         g = self.graph
         base = namespace_base(cls.namespace)
+        # Shapes get their OWN namespace, so a YANG class genuinely named
+        # `FooShape` cannot collide with the shape of `Foo` (spec §4).
+        shapes_base = namespace_base(
+            shapes_module_iri(self.model.base_iri, module_stem(cls.namespace)))
         cls_uri = URIRef(class_iri(base, cls.name))
-        shape = URIRef(class_iri(base, f"{cls.name}Shape"))
+        shape = URIRef(shape_iri(shapes_base, cls.name))
         g.add((shape, RDF.type, SH.NodeShape))
         g.add((shape, SH.targetClass, cls_uri))
         for i, leaf in enumerate(cls.leaves):
