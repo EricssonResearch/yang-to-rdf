@@ -167,15 +167,27 @@ def g4_round_trip(graphs: dict[Path, Graph]) -> GateResult:
     shapes are blank nodes, and a reparse assigns them fresh labels, so set
     equality reports every _shacl.ttl as differing while the triple counts match
     exactly -- which is what an earlier draft of this gate did.
+
+    Set equality is still tried FIRST, because it is exact when it succeeds
+    (equal sets imply isomorphic graphs) and it costs nothing. Canonicalisation is
+    reserved for the graphs that actually carry blank nodes. Measured on the Rel-19
+    corpus: calling isomorphic() unconditionally took 488s of the census's 490s.
     """
     bad = []
+    exact = canonical = 0
     for path, g in graphs.items():
         h = Graph()
         h.parse(data=g.serialize(format="turtle"), format="turtle")
+        if set(g) == set(h):
+            exact += 1
+            continue
+        # Differs only up to blank-node labelling? That is the expensive question.
+        canonical += 1
         if not isomorphic(g, h):
             bad.append(f"{path.name}: {len(g)} triples in, {len(h)} out, not isomorphic")
     return GateResult("G4", not bad, len(graphs), bad[:20],
-                      f"{len(graphs) - len(bad)}/{len(graphs)} files round-trip")
+                      f"{len(graphs) - len(bad)}/{len(graphs)} round-trip "
+                      f"({exact} exact, {canonical} up to bnode relabelling)")
 
 
 def g7_filename_matches_module(graphs: dict[Path, Graph], base: str) -> GateResult:
@@ -205,11 +217,16 @@ def g8_ncname_locals(graphs: dict[Path, Graph], base: str) -> GateResult:
                       f"{len(terms) - len(bad)}/{len(terms)} local names are NCNames")
 
 
-def census(output_dir: Path, base_iri: str = DEFAULT_BASE_IRI) -> list[GateResult]:
+def census(output_dir: Path, base_iri: str = DEFAULT_BASE_IRI,
+           graphs: dict[Path, Graph] | None = None) -> list[GateResult]:
     """Run every gate. Adding a gate here without wiring it into the summary is
-    caught by tests/test_iri_census.py, which asserts the gate set."""
+    caught by tests/test_iri_census.py, which asserts the gate set.
+
+    `graphs` lets a caller pass an already-parsed corpus; main() does, so the 325
+    files are parsed once rather than once here and again in corpus_summary().
+    """
     base = normalize_base_iri(base_iri)
-    graphs = load_graphs(Path(output_dir))
+    graphs = load_graphs(Path(output_dir)) if graphs is None else graphs
     uris = all_uris(graphs)
     return [
         g1_absolute_http(uris, provenance_urns(graphs)),
@@ -221,10 +238,11 @@ def census(output_dir: Path, base_iri: str = DEFAULT_BASE_IRI) -> list[GateResul
     ]
 
 
-def corpus_summary(output_dir: Path, base_iri: str = DEFAULT_BASE_IRI) -> dict:
+def corpus_summary(output_dir: Path, base_iri: str = DEFAULT_BASE_IRI,
+                   graphs: dict[Path, Graph] | None = None) -> dict:
     """The figures quoted in the design doc, with their definitions attached."""
     base = normalize_base_iri(base_iri)
-    graphs = load_graphs(Path(output_dir))
+    graphs = load_graphs(Path(output_dir)) if graphs is None else graphs
     uris = all_uris(graphs)
     ours = _ours(uris, base)
     terms = _terms(uris, base)
@@ -236,6 +254,28 @@ def corpus_summary(output_dir: Path, base_iri: str = DEFAULT_BASE_IRI) -> dict:
     vocab_terms = [t for t in terms if t.startswith(f"{base}vocab#")]
     unaccounted = sorted(set(terms) - set(yang_terms) - set(shape_terms)
                          - set(vocab_terms))
+
+    # Why properties are class-scoped, as a number rather than an assertion. Owned
+    # HERE so the documentation can cite one definition instead of retyping a
+    # figure that drifts every time the corpus is regenerated -- which is exactly
+    # what happened: 655/4,523 was quoted in two documents and went stale.
+    #
+    # Definition: for each (module namespace, property local name), how many
+    # distinct classes carry it. Counted WITHIN a module, not globally.
+    per_module: dict[tuple[str, str], set[str]] = {}
+    global_prop: dict[str, set[str]] = {}
+    for u in yang_terms:
+        ns, local = u.rsplit("#", 1)
+        if "." not in local:
+            continue
+        cls, prop = local.split(".", 1)
+        per_module.setdefault((ns, prop), set()).add(cls)
+        global_prop.setdefault(prop, set()).add(f"{ns}#{cls}")
+    reused = [k for k, v in per_module.items() if len(v) > 1]
+    worst_local = max(per_module.items(), key=lambda kv: len(kv[1]),
+                      default=(("", ""), set()))
+    worst_global = max(global_prop.items(), key=lambda kv: len(kv[1]),
+                       default=("", set()))
     return {
         "files": len(graphs),
         "triples": sum(len(g) for g in graphs.values()),
@@ -249,6 +289,12 @@ def corpus_summary(output_dir: Path, base_iri: str = DEFAULT_BASE_IRI) -> dict:
         "distinct_local_names": len({t.rsplit("#", 1)[1] for t in terms}),
         "terms_with_dotted_local_name": len([
             t for t in terms if "." in t.rsplit("#", 1)[1]]),
+        "module_property_pairs": len(per_module),
+        "property_names_reused_across_classes_in_a_module": len(reused),
+        "most_reused_within_a_module": (
+            f"{worst_local[0][1]} on {len(worst_local[1])} classes"),
+        "most_reused_across_all_modules": (
+            f"{worst_global[0]} on {len(worst_global[1])} classes"),
     }
 
 
@@ -260,12 +306,15 @@ def main(argv=None) -> int:
                     help="also write the results as JSON")
     a = ap.parse_args(argv)
 
-    results = census(a.output_dir, a.base_iri)
-    summary = corpus_summary(a.output_dir, a.base_iri)
+    graphs = load_graphs(a.output_dir)          # parsed once, shared by both
+    results = census(a.output_dir, a.base_iri, graphs=graphs)
+    summary = corpus_summary(a.output_dir, a.base_iri, graphs=graphs)
 
     print(f"corpus: {a.output_dir}")
     for k, v in summary.items():
-        print(f"  {k:32s} {v:>9,}")
+        # The summary mixes counts and short strings, so format per type.
+        print(f"  {k:52s} {v:>9,}" if isinstance(v, int)
+              else f"  {k:52s} {v:>9}")
     print()
     print(f"{'gate':6s} {'result':8s} {'checked':>9s}  note")
     for r in results:

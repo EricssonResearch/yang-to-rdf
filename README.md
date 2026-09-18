@@ -155,6 +155,12 @@ files + `index.ttl`; see its README for provenance). It is pinned to an immutabl
 upstream tag, so regenerating reproduces it byte-for-byte — asserted as a stage of
 the Docker verification described above.
 
+## Contributing
+
+Known gaps are listed honestly in [CONTRIBUTING.md](CONTRIBUTING.md#where-help-is-most-useful)
+— including the ones nobody has looked at yet, such as whether the emitted TBox is
+consistent OWL. Several are self-contained enough to be a first contribution.
+
 ## Design Decisions
 
 For a full audit of where the conversion follows RDF/OWL/SHACL standards and
@@ -195,11 +201,12 @@ project: it is **not currently dereferenceable** and asserts no 3GPP endorsement
 The YANG namespace each module came from is retained as `y2r:yangNamespace`, so
 nothing is discarded.
 
-Properties are class-scoped because property names are heavily reused: 655 of
-4,523 `(module, property)` pairs recur across classes within a single module, and
-`id` alone appears on 178 classes, so a flat namespace would merge distinct
-properties. Shapes get their own namespace so a class named `FooShape` cannot
-collide with the shape of `Foo`.
+Properties are class-scoped because property names are heavily reused: **814 of
+5,572** `(module, property)` pairs recur across classes within a single module, and
+`id` appears on **650** classes across the set — so a flat namespace would merge
+distinct properties. Shapes get their own namespace so a class named `FooShape`
+cannot collide with the shape of `Foo`. (Counts from `scripts/iri_census.py`, which
+owns them; they move with the corpus.)
 
 [CONVERSION_NOTES.md](CONVERSION_NOTES.md) §1a records what the scheme rests on,
 the standing of each reference, and which parts are ours. To check the emitted

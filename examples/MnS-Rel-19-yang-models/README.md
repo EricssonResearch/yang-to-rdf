@@ -81,9 +81,11 @@ Model summary, as reported by the converter and by
 | typedefs | 139 |
 | DN references | 147 unambiguous / 584 unresolved |
 | parse errors | 0 |
-| output files | 325 (324 per-module + `index.ttl`), largest 136 KB |
+| output files | 325 (324 per-module + `index.ttl`), largest 134 KiB, median 51 KiB |
 | triples | 102,255 |
 | distinct terms | 10,234 — 9,042 `yang/`, 1,182 `shapes/`, 10 minted `vocab#` |
+| terms per module (`_rdf.ttl`) | median 106, max 497, none over 500 |
+| property names reused across classes in one module | 814 of 5,572 pairs |
 
 `131 = 130 files − 2 submodules + 3 IETF modules`: the two submodules
 (`_3gpp-ns-nrm-serviceprofile`, `_3gpp-ns-nrm-sliceprofile`) register under their

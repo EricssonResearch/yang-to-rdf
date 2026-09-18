@@ -72,12 +72,15 @@ provenance for a heuristic (see §3):
 | `y2r:inferredBy` | `"dn-name-suffix"` | Which heuristic produced the guess. |
 | `y2r:candidate` | string | The guessed target class name when unresolved. |
 
-> **Known gap (audit note):** these three reference-layer predicates are currently
-> *used* but **not formally declared** (no `rdf:type`/`rdfs:comment` triple) in the
-> emitted vocabulary, unlike the five core `y2r:` terms which are declared in the
-> base RDF layer. They are provenance annotations, so this is low-impact, but a
-> strict OWL consumer will see undeclared predicates. Declaring them is a
-> reasonable future improvement.
+> **Known gap (audit note):** these three reference-layer predicates are *used* but
+> **not formally declared** (no `rdf:type`/`rdfs:comment` triple) in the emitted
+> vocabulary, unlike the five core `y2r:` terms which are declared in the base RDF
+> layer. The two provenance predicates in the next subsection
+> (`y2r:yangModuleName`, `y2r:yangNamespace`) share the gap, so it is **five
+> undeclared predicates in total**, not three. All are annotations, so the impact is
+> low, but a strict OWL consumer sees undeclared predicates. Declaring them is a
+> small, self-contained improvement — see
+> [CONTRIBUTING.md](CONTRIBUTING.md#where-help-is-most-useful).
 
 ---
 
@@ -111,9 +114,17 @@ two that speak most directly to vocabulary publishing are the weakest:
 | [Best Practice Recipes for Publishing RDF Vocabularies](https://www.w3.org/TR/swbp-vocab-pub/) | W3C **Working Group Note**, 28 Aug 2008 — says of itself that it is "inappropriate to cite this document as other than work in progress" | Hash-vs-slash guidance, and the "local name must be a legal NCName" requirement. Guidance, not a requirement. |
 | [Cool URIs for the Semantic Web](https://www.w3.org/TR/cooluris/) | W3C **Interest Group Note**, 3 Dec 2008 | Background on 303 vs hash dereferencing. |
 
-**Why a hash namespace per module.** The Recipes note says to choose on size, and
-a module here has a median of 70 terms, at most 256, in a file of at most 136 KB —
-its "served in a single Web access" case. The consequence that decides it: a hash
+**Why a hash namespace per module.** The Recipes note says to choose on size, and a
+module here has a **median of 106 terms, at most 497**, in a file of at most
+**134 KiB** — its "served in a single Web access" case, with no module over 500
+terms.
+
+Worth noting honestly: the maximum was 256 on the previous corpus snapshot and is
+497 on the current one, so the headroom against "large enough to need a slash
+namespace" is thinner than it looks. The conclusion is unchanged today, but if
+upstream modules keep growing this choice deserves re-examining rather than
+inheriting. Re-measure with `scripts/iri_census.py` instead of trusting these
+figures. The consequence that decides it: a hash
 namespace needs only the note's Recipe 1, so serving these IRIs later requires
 static files and no server configuration — no 303 redirects, no content
 negotiation. It also gives every module ONE namespace, so a prefix binds all its
@@ -127,9 +138,13 @@ terms; the previous two-level slash form put properties in a namespace per class
 - **The `.` joining a class and property local name is our convention.** No
   standard prescribes it. It was already this project's `rdfs:label` convention,
   so the IRI local name and the label now coincide.
-- Class scoping is not decorative: 655 of 4,523 `(module, property)` pairs reuse a
-  property name across classes within one module (`id` alone spans 178 classes), so
-  a flat namespace would silently merge distinct properties into one IRI.
+- Class scoping is not decorative: **814 of 5,572** `(module, property)` pairs reuse
+  a property name across classes *within one module*, and `id` spans **650** classes
+  across the whole set — so a flat namespace would silently merge distinct properties
+  into one IRI. These figures are produced by `scripts/iri_census.py`
+  (`module_property_pairs`, `property_names_reused_across_classes_in_a_module`);
+  re-run it rather than trusting the numbers quoted here, which move with the
+  corpus.
 - **No ASCII separator is free of a theoretical ambiguity**, because RFC 7950
   identifiers and NCNames permit the same character set: a class named `A.B` would
   collide with property `B` of class `A`. An earlier draft therefore refused every
@@ -240,10 +255,21 @@ the *semantics* (one type, reused) than mirroring collection names.
   flattened onto the owning class so **no data is lost**, but the "exactly one
   case" constraint is **not** emitted (no `sh:xone`). A consumer will see all case
   leaves as optional siblings. Adding `sh:xone` is a candidate improvement.
-- **Names live in IRIs + `rdfs:comment` only** — no `rdfs:label`/`skos:prefLabel`
-  is emitted. Human-readable labels would help generic RDF tools; currently the
-  local name is carried by the IRI and the YANG `description` by `rdfs:comment`.
-- **Reference-layer predicates are undeclared** (see §1 audit note).
+- **No `skos:prefLabel`.** Every class, typedef and property does carry an
+  `rdfs:label` (9,162 of them for the pinned Rel-19 set), globally unique so that
+  documentation tools can use them as anchors, and the YANG `description` becomes
+  `rdfs:comment`. A SKOS layer would help thesaurus-oriented consumers but is not
+  emitted. (This bullet previously claimed no `rdfs:label` was emitted at all;
+  that was stale.)
+- **Five minted predicates are used but not formally declared** — no `rdf:type`
+  or `rdfs:comment` triple for `y2r:confidence`, `y2r:inferredBy`,
+  `y2r:candidate`, `y2r:yangModuleName`, `y2r:yangNamespace`. The other five
+  (`nameContains`, `hasAttribute`, `isReference`, `isInvariant`,
+  `ManagedFunction`) are declared in the base RDF layer. All five undeclared ones
+  are annotations, so the impact is low, but a strict OWL consumer sees undeclared
+  predicates. Counts, so the gap is measurable rather than vague: 731 uses of
+  `confidence` and `inferredBy`, 584 of `candidate`, 120 each of the two
+  provenance predicates.
 - **DN range inference is name-heuristic** and deliberately fenced into
   `*_refs.ttl`; ~unresolved references are listed, never silently ranged.
 - **`identityref` → `rdfs:subClassOf` is not implemented** (3GPP NRM defines very
