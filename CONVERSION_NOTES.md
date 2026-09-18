@@ -287,9 +287,19 @@ Run it against any module set:
 python scripts/coverage_audit.py MnS-Rel-19-yang-models.zip   # exits non-zero on any gap
 ```
 
-A **stronger** notion of equivalence — instance-level — is a separate, larger
-exercise not yet automated here: validate the same RESTCONF/NETCONF sample against
-the YANG (e.g. `yangson`/`yanglint`) and, converted to RDF, against the SHACL
-(`pyshacl`); the schema and the shapes agree if they accept/reject the same
-instances for the same reasons. This needs representative sample data and extra
-dependencies.
+4. **SHACL enforcement** — `tests/test_shacl_validation.py` loads the emitted
+   shapes into a real SHACL engine (`pyshacl`) and checks two separate things:
+   that every one of the 118 shapes files *compiles*, and that each constraint
+   kind actually **rejects** invalid data while **accepting** valid data. Both
+   directions matter: an empty data graph conforms to any shapes graph, so a test
+   that only validated conforming data would pass however broken the shapes were.
+   Observed rejecting: `sh:maxCount`, `sh:datatype`, `sh:minCount` (YANG
+   `mandatory true`), `sh:in` (enumerations), `sh:pattern`.
+
+A **stronger** notion of equivalence — full instance-level parity — remains a
+separate, larger exercise: validate the same RESTCONF/NETCONF sample against the
+YANG (e.g. `yangson`/`yanglint`) *and*, converted to RDF, against the SHACL, then
+confirm the two accept and reject the same instances for the same reasons. What is
+automated today proves the shapes are live and enforce the constraints they
+declare; it does **not** prove they are equivalent to the YANG, which needs
+representative sample data.

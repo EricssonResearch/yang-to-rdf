@@ -55,4 +55,8 @@ line-length = 100
 dev = [
     "pylode>=3.1,<3.2",
     "pytest>=9.1.1",
+    # A real SHACL engine, so the claim "we emit SHACL validation shapes" is
+    # backed by a processor accepting them and enforcing them -- not merely by
+    # the presence of sh:-namespace triples. See tests/test_shacl_validation.py.
+    "pyshacl>=0.30",
 ]
