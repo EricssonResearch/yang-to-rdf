@@ -1,3 +1,19 @@
+# GENERATED FILE -- do not edit; your changes will be overwritten.
+#
+# RDF vocabulary (RDFS/OWL TBox) produced by yang-to-rdf
+#   https://github.com/EricssonResearch/yang-to-rdf
+# Contact: Jean Martins <jean.martins@ericsson.com>
+# Source: _3gpp-nr-nrm-nrcelldu (from 3GPP SA5 MnS forge, tags ref Tag_Rel19_SA112)
+#
+# The CONVERSION is this project's work. The class and property names below,
+# and the `rdfs:comment` / `dcterms:description` text, are the source YANG's
+# own wording. The publisher of those modules did not produce, review or
+# endorse this file, and it must not be cited as their model. The IRI scheme,
+# the modelling decisions and the SHACL constraints are ours -- see
+# CONVERSION_NOTES.md. See NOTICE for the source documents and their terms.
+#
+# Regenerate: uv run yang-to-rdf --fetch-release Tag_Rel19_SA112 --ref-type tags -o <output-dir>
+
 @prefix cpcicf3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-cpciconfigurationfunction#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dracho3gpp: <https://semantics.ericsson.com/yang/_3gpp-nr-nrm-drachoptimizationfunction#> .

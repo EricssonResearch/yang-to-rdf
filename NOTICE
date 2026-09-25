@@ -1,0 +1,72 @@
+# NOTICE
+
+This file records what in this repository is **not** this project's own work, and what
+the generated artifacts are and are not.
+
+## Source documents: NOT redistributed
+
+### 3GPP SA5 MnS YANG modules
+
+**Not present in this repository.** No `.yang` file and no archive of them is tracked
+here — `.gitignore` excludes `*.zip`, and `git ls-files` lists zero YANG files. The
+converter downloads them at run time from the 3GPP SA5 forge:
+
+    https://forge.3gpp.org/rep/sa5/MnS/
+
+The committed reference output under `examples/` was produced from the immutable tag
+`Tag_Rel19_SA112` (commit `24ffa42e24c806959fe94cbd3565bc0ffbe4b379`).
+
+Those modules carry:
+
+    Copyright 2026, 3GPP Organizational Partners
+    (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC). All rights reserved.
+
+### IETF YANG modules
+
+The 3GPP set imports `ietf-yang-types`, `ietf-inet-types` and
+`ietf-yang-schema-mount`, which the forge archive bundles under `external-yams/`.
+Also not redistributed here. They carry:
+
+    Copyright (c) 2025 IETF Trust and the persons identified as
+    authors of the code. All rights reserved.
+
+## Generated artifacts: this project's conversion, NOT the publishers' model
+
+**The 325 files under `examples/MnS-Rel-19-yang-models/` are not 3GPP's work, and not
+IETF's.** They are this project's conversion of the modules named above.
+
+Split precisely, because the distinction is the whole point of this file:
+
+- **Theirs:** the class and property *names*, and the text carried into
+  `rdfs:comment` and `dcterms:description`, which is the source YANG's own wording.
+  Because that text is copied verbatim, **322 of the 325 files contain a 3GPP
+  copyright notice** and 2 contain an IETF Trust notice, reproduced from the YANG
+  `description` statements they came from.
+- **Ours:** the IRI scheme, the modelling decisions (see `CONVERSION_NOTES.md`), the
+  SHACL constraints, the reference-inference heuristic, and the `y2r:` vocabulary.
+
+Neither 3GPP nor the IETF has produced, reviewed or endorsed any of it, and **none of
+it may be cited as their own model** of a network or of these APIs.
+
+Every generated file repeats that in a header, so the statement travels with the file
+instead of living only here. `tests/test_provenance_header.py` is what keeps the
+headers from going missing.
+
+## Unverified
+
+Whether reproducing 3GPP's `description` text inside derived RDF is permitted under
+3GPP's published IPR and copyright policy has **not** been verified against that
+policy. The modules are publicly downloadable from 3GPP Forge and the text is
+reproduced for interoperability rather than as a substitute for the specifications,
+but "publicly downloadable" is not the same as "licensed for derived redistribution".
+This is recorded as an open question rather than left implicit, and it is the one item
+here that a reviewer may need to rule on.
+
+## This project's own licence
+
+Everything else — all 37 Python source files, the documentation, the tests and the
+container — is this project's work under the MIT licence in `LICENSE`
+(Copyright (c) 2025 Ericsson Research).
+
+Third-party libraries are consumed unmodified from PyPI at the versions pinned in
+`uv.lock`. No third-party code is vendored, forked or patched in this repository.

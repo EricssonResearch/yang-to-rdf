@@ -4,6 +4,11 @@ Convert YANG modules to RDF TBox vocabularies and SHACL validation shapes.
 
 Designed for 3GPP NRM (TS 28.541) YANG modules but applicable to any YANG schema.
 
+Every generated file carries a header stating that the conversion is this project's
+work and that the standards bodies did not produce or endorse it; see
+[NOTICE](NOTICE) for the source documents, their terms, and one question a reviewer
+may need to rule on.
+
 A committed, browsable example of the generated output for the 3GPP SA5 MnS
 Release-19 set is in [`examples/`](examples/) — you can inspect the vocabulary
 without running the tool. It is pinned to an immutable upstream tag and

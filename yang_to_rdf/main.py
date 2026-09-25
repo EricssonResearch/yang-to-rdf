@@ -8,6 +8,11 @@ from rdflib import Graph
 
 from yang_to_rdf.input_handler import collect_yang_files, fetch_forge_release
 from yang_to_rdf.namespace import DEFAULT_BASE_IRI, normalize_base_iri
+from yang_to_rdf.provenance import (
+    provenance_header,
+    regenerate_command,
+    source_label,
+)
 from yang_to_rdf.output_writer import (
     bind_used_prefixes,
     module_prefix_map,
@@ -106,6 +111,23 @@ def main():
 
     os.makedirs(args.output, exist_ok=True)
 
+    regenerate = regenerate_command(args.fetch_release, args.ref_type)
+
+    def write(graph, path: str, layer: str, module: str | None = None) -> None:
+        """Serialize one graph with its provenance header prepended.
+
+        The ONE place output is written, so a new output path cannot be added that
+        quietly skips the header. Comments are prepended to the serialized text
+        rather than added as triples, so the parsed graph is unchanged --
+        tests/test_provenance_header.py asserts that.
+        """
+        body = graph.serialize(format="turtle")
+        header = provenance_header(
+            layer, source_label(args.fetch_release, args.ref_type, module), regenerate)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(header)
+            fh.write(body)
+
     # Build every requested layer once; the two modes differ only in routing.
     layers = _build_layers(model, args.format, args.no_inference)
 
@@ -118,7 +140,7 @@ def main():
             stamp_versions(g, model, release_label=args.release, aggregate=True)
             bind_used_prefixes(g, prefixes)
             path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
-            g.serialize(destination=path, format="turtle")
+            write(g, path, layer_name)
             print(f"{titles[layer_name]} -> {path} ({len(g)} triples)")
     else:
         # One file per module per layer, plus a shared index.ttl.
@@ -141,14 +163,14 @@ def main():
                 bind_used_prefixes(mg, prefixes)
                 stem = module_stem(module_iri_)
                 path = os.path.join(args.output, f"{stem}_{layer_name}.ttl")
-                mg.serialize(destination=path, format="turtle")
+                write(mg, path, layer_name, module=stem)
                 file_count += 1
             module_count = max(module_count, len(mods))
 
         stamp_versions(index, model, release_label=args.release, aggregate=True)
         bind_used_prefixes(index, prefixes)
         index_path = os.path.join(args.output, "index.ttl")
-        index.serialize(destination=index_path, format="turtle")
+        write(index, index_path, "index")
         file_count += 1
         print(f"Split output -> {args.output}/ ({module_count} modules, {file_count} files)")
 
